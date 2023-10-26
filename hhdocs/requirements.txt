@@ -1,0 +1,7 @@
+mkdocs-glightbox
+mkdocs-autorefs
+mkdocs-git-revision-date-localized-plugin
+mkdocs-redirects
+mkdocs-awesome-pages-plugin
+mkdocs-htmlproofer-plugin
+mike

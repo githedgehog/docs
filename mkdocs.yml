@@ -1,0 +1,110 @@
+site_name: Open Network Fabric
+site_url: https://docs.githedgehog.com/
+site_description: Hedgehog Open Network Fabric Documentation
+site_author: Hedgehog Authors
+copyright: ©2023 Hedgehog
+
+theme:
+  name: material
+  logo: assets/logo.webp
+  favicon: assets/favicon.ico
+  custom_dir: overrides
+  features:
+    - content.action.edit
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    # - navigation.sections
+    # - navigation.tabs # TODO Do we need them or just everything in the sidebar is better?
+    # we can hide sidebars for the tabs where it's not needed
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#hiding-the-sidebars
+    - navigation.expand
+    - toc.follow
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra:
+  homepage: https://docs.githedgehog.com
+  version:
+    provider: mike
+    default: latest
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/githedgehog/
+
+  # consent:
+  #   title: Cookie consent
+  #   description: >-
+  #     We use cookies to recognize your repeated visits and preferences, as well
+  #     as to measure the effectiveness of our documentation and whether users
+  #     find what they're searching for. With your consent, you're helping us to
+  #     make our documentation better.
+
+repo_url: https://github.com/githedgehog/docs
+repo_name: githedgehog/docs
+# edit_uri: edit/master/docs/
+
+plugins:
+  - search
+  - glightbox
+  - autorefs
+  - awesome-pages:
+      collapse_single_pages: true
+      sort_type: natural
+      order_by: title
+  - git-revision-date-localized:
+      enable_creation_date: true
+  # - htmlproofer # https://github.com/manuzhang/mkdocs-htmlproofer-plugin
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - admonition
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+watch:
+  - includes
+  - overrides

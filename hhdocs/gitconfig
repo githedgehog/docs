@@ -1,0 +1,7 @@
+[user]
+    name = HHDocs
+    email = hhdocs@githedgehog.com
+
+[safe]
+    directory = /docs
+	directory = /site
