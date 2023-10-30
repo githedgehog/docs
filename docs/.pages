@@ -1,12 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - getting-started
-  - concepts
-  - Wiring Diagram: wiring
-  - Install & Upgrade: install-upgrade
-  - User Guide: user-guide
-  - Reference: reference
-  - Troubleshooting: troubleshooting
   - ...
-  - contribute
+  - release-notes
+  
