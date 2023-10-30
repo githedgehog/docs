@@ -27,6 +27,8 @@ jobs:
     if: github.ref != 'refs/heads/gh-pages'
     steps:
       - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
 
       - name: Build docs
         run: make build
