@@ -49,6 +49,6 @@ ALIAS ?= master
 
 .PHONY: deploy
 deploy: docker ## Deploy documentation version with mike.
-	$(RUN) mike deploy -u $(RELEASE) $(ALIAS)
+	$(RUN) mike deploy -b publish -u $(RELEASE) $(ALIAS)
 
 # TODO we need to "deploy dev" in master and "deploy -u alpha-x latest" in release/alpha-x branches

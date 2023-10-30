@@ -3,7 +3,7 @@ name: Publish docs
 on:
   push:
     branches:
-        - gh-pages
+        - publish
   workflow_dispatch:
     inputs:
       debug_enabled:

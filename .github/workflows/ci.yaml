@@ -21,7 +21,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/gh-pages'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -54,7 +53,7 @@ jobs:
             PUSH_TOKEN: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
         run: |
             make deploy RELEASE=dev ALIAS=master
-            git push https://$PUSH_TOKEN@github.com/${{ github.repository }} gh-pages
+            git push https://$PUSH_TOKEN@github.com/${{ github.repository }} publish
 
       - name: Setup tmate session for debug
         if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
