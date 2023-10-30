@@ -1,6 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - introduction.md
+  - index.md
   - getting-started
   - concepts
   - Wiring Diagram: wiring
