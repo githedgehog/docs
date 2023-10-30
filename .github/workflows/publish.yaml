@@ -1,11 +1,9 @@
-name: Build and deploy docs
+name: Publish docs
 
 on:
   push:
     branches:
-        - master
-        - release/*
-  pull_request:
+        - gh-pages
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -15,43 +13,29 @@ on:
         default: false
 
 concurrency:
-  group: ci-${{ github.head_ref || github.run_id }}
+  group: publish-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/gh-pages'
     steps:
       - uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
 
-      - name: Build docs
-        run: make build
-
-      - name: Deploy preview to Netlify
+      - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
-        if: github.event_name == 'pull_request'
         with:
-          publish-dir: ./site
-          production-deploy: false
+          publish-dir: ./
+          production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: ${{ github.event.pull_request.title }}
           enable-commit-comment: ${{ github.event_name != 'schedule' }}
-          alias: preview-${{ github.event.number }}
           fails-without-credentials: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 5
-
-      - name: Deploy versioned docs
-        # TODO support publishing non-dev versions
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: |
-            make deploy RELEASE=dev ALIAS=master
-            git push origin gh-pages
 
       - name: Setup tmate session for debug
         if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
