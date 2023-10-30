@@ -17,6 +17,7 @@ help: ## Display this help.
 
 IMAGE ?= ghcr.io/githedgehog/hhdocs:latest
 RUN = docker run --rm -v ${PWD}:/docs -p 8000:8000 $(IMAGE)
+RUN_IT = docker run --rm -it -v ${PWD}:/docs -p 8000:8000 $(IMAGE)
 
 
 .PHONY: all
@@ -30,7 +31,7 @@ CMD ?= mkdocs
 
 .PHONY: run
 run: docker ## Run a command in the mkdocs docker image.
-	$(RUN) $(CMD)
+	$(RUN_IT) $(CMD)
 
 .PHONY: build
 build: docker ## Build the documentation.
@@ -38,11 +39,11 @@ build: docker ## Build the documentation.
 
 .PHONY: serve
 serve: docker ## Serve the documentation.
-	$(RUN) mkdocs serve -a 0.0.0.0:8000
+	$(RUN_IT) mkdocs serve -a 0.0.0.0:8000
 
 .PHONY: serve-versioned
 serve-versioned: docker ## Serve versioned documentation with mike.
-	$(RUN) mike serve -a 0.0.0.0:8000
+	$(RUN_IT) mike serve -a 0.0.0.0:8000
 
 RELEASE ?= dev
 ALIAS ?= master
