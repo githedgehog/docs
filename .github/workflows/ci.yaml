@@ -50,14 +50,11 @@ jobs:
       - name: Deploy versioned docs
         # TODO support publishing non-dev versions
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: make deploy RELEASE=dev ALIAS=master
-
-      - name: Push gh-pages branch
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.event.ref, 'refs/heads/release/'))
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-            github_token: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
-            branch: gh-deploy
+        env:
+            PUSH_TOKEN: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
+        run: |
+            make deploy RELEASE=dev ALIAS=master
+            git push https://$PUSH_TOKEN@github.com/${{ github.repository }} gh-pages
 
       - name: Setup tmate session for debug
         if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
