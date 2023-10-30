@@ -1,0 +1,45 @@
+name: Publish docs
+
+on:
+  push:
+    branches:
+        - publish
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        type: boolean
+        description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
+        required: false
+        default: false
+
+concurrency:
+  group: publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: ./
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-comment: ${{ github.event_name != 'schedule' }}
+          fails-without-credentials: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+      - name: Setup tmate session for debug
+        if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 45
+        with:
+          limit-access-to-actor: true
