@@ -1,4 +1,4 @@
-name: Build and deploy docs
+name: Build docs
 
 on:
   push:
@@ -57,7 +57,7 @@ jobs:
         uses: ad-m/github-push-action@v0.8.0
         with:
             github_token: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
-            branch: ${{ github.ref }}
+            branch: gh-deploy
 
       - name: Setup tmate session for debug
         if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
