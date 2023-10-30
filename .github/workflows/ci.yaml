@@ -2,7 +2,10 @@ name: Build and deploy docs
 
 on:
   push:
-    branches: ["master"]
+    branches:
+        - master
+        - gh-pages
+        - release/*
   #schedule:
     #- cron:  '*/15 * * * *'
   pull_request:
@@ -21,6 +24,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/gh-pages'
     steps:
       - uses: actions/checkout@v4
 
@@ -32,15 +36,23 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           publish-dir: ./site
-          production-branch: gh-pages
+          production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }}
           enable-commit-comment: ${{ github.event_name != 'schedule' }}
           alias: preview-${{ github.event.number }}
+          fails-without-credentials: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 5
+
+      - name: Deploy versioned docs
+        # TODO support publishing non-dev versions
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+            make deploy RELEASE=dev ALIAS=master
+            git push origin gh-pages
 
       - name: Setup tmate session for debug
         if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
@@ -52,24 +64,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [build]
-    # TODO support publishing from release/* branches
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/gh-pages'
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build versioned docs
-        # TODO support publishing non-dev versions
-        run: make deploy RELEASE=dev ALIAS=master
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: ./
-          production-branch: gh-pages
+          production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }}
           enable-commit-comment: ${{ github.event_name != 'schedule' }}
-          alias: preview-${{ github.event.number }}
+          fails-without-credentials: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
