@@ -423,7 +423,102 @@
 
 <h1 id="release-notes">Release notes</h1>
 <h2 id="alpha-1">Alpha-1</h2>
-<p>Fabric topology: collapsed-core</p>
+<ul>
+<li>
+<p>Controller:</p>
+<ul>
+<li>A single controller connecting to each switch management port. No redundancy.</li>
+</ul>
+</li>
+<li>
+<p>Controller requirements:</p>
+<ul>
+<li>One 1 gig port per switch</li>
+<li>One+ 1 gig+ ports connecting to the external management network.</li>
+<li>4 Cores, 12GB RAM, 100GB SSD.</li>
+</ul>
+</li>
+<li>
+<p>Seeder:</p>
+<ul>
+<li>Seeder and Controller functions co-resident on the control node. Switch booting and ZTP on management ports directly connected to the controller.</li>
+</ul>
+</li>
+<li>
+<p><abbr title="Hedgehog Fabricator - a tool for building Hedgehog Fabric">HHFab</abbr> - the fabricator:</p>
+<ul>
+<li>An operational tool to generate, initiate, and maintain the fabric software appliance.  Allows fabrication of the environment-specific image with all of the required underlay and security configuration baked in.</li>
+</ul>
+</li>
+<li>
+<p>DHCP Service:</p>
+<ul>
+<li>A simple DHCP server for assigning IP addresses to hosts connecting to the fabric, optimized for use with <abbr title="Virtual Private Cloud">VPC</abbr> overlay.</li>
+</ul>
+</li>
+<li>
+<p>Topology:</p>
+<ul>
+<li>Support for a Collapsed Core topology with 2 switch nodes.</li>
+</ul>
+</li>
+<li>
+<p>Underlay:</p>
+<ul>
+<li>A simple single-VRF network with a BGP control plane.  IPv4 support only.</li>
+</ul>
+</li>
+<li>
+<p>External connectivity:</p>
+<ul>
+<li>An edge router must be connected to selected ports of one or both switches.  IPv4 support only.</li>
+</ul>
+</li>
+<li>
+<p>Dual-homing:</p>
+<ul>
+<li>L2 Dual homing with MCLAG is implemented to connect servers, storage, and other devices in the data center.  NIC bonding and LACP configuration at the host are required.</li>
+</ul>
+</li>
+<li>
+<p><abbr title="Virtual Private Cloud">VPC</abbr> overlay implementation:</p>
+<ul>
+<li><abbr title="Virtual Private Cloud">VPC</abbr> is implemented as a set of ACLs within the underlay VRF. External connectivity to the VRF is performed via internally managed VLANs.  IPv4 support only.</li>
+</ul>
+</li>
+<li>
+<p><abbr title="Virtual Private Cloud">VPC</abbr> Peering:</p>
+<ul>
+<li><abbr title="Virtual Private Cloud">VPC</abbr> peering is performed via ACLs with no fine-grained control.</li>
+</ul>
+</li>
+<li>
+<p>NAT</p>
+<ul>
+<li>DNAT + SNAT are supported per <abbr title="Virtual Private Cloud">VPC</abbr>. SNAT and DNAT can’t be enabled per <abbr title="Virtual Private Cloud">VPC</abbr> simultaneously.</li>
+</ul>
+</li>
+<li>
+<p>Hardware support:</p>
+<ul>
+<li>Please see the supported hardware list.</li>
+</ul>
+</li>
+<li>
+<p>Virtual Lab:</p>
+<ul>
+<li>A simulation of the two-node Collapsed Core Topology as a virtual environment. Designed for use as a network simulation, a configuration scratchpad, or a training/demonstration tool.  Minimum requirements: 8 cores, 24GB RAM, 100GB SSD</li>
+</ul>
+</li>
+<li>
+<p>Limitations:</p>
+<ul>
+<li>40 VPCs max</li>
+<li>50 <abbr title="Virtual Private Cloud">VPC</abbr> peerings</li>
+<li>[ 768 ACL entry platform limitation from Broadcom ]</li>
+</ul>
+</li>
+<li>
 <p>Software versions:</p>
 <ul>
 <li>Fabricator: v0.5.2</li>
@@ -433,13 +528,15 @@
 <li>Zot: v1.4.3</li>
 <li>SONiC: Broadcom Enterprise Base 4.1.1</li>
 </ul>
+</li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2023</span>
       
         <br>
         Created:
