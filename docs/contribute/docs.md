@@ -26,6 +26,8 @@ If you want to quick edit any page in the documentation, you can press the `Edit
 
 Please, never push to the `master` or `release/*` branches directly. Always create a pull request and wait for the review.
 
+Each pull request will be automatically built and preview will be deployed. You can find the link to the preview in the comments in pull request.
+
 ## Repository
 
 Documentation is organized in per-release branches:
