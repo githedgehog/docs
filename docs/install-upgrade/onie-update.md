@@ -1,6 +1,6 @@
 # ONIE Update/Upgrade
 
-## Hedgehog ONIE Supported Systems
+## Hedgehog ONIE (HONIE) Supported Systems
 
 * DELL
   
@@ -20,15 +20,23 @@
 
 * Via USB
   
+  * For this example we will be updating a DELL S5248 to Hedgehog ONIE (HONIE)
+    
+    * Note: the USB port is on the back of the switch with the Management and Console
+  
   * Prepare the USB stick by burning the honie-usb.img to a 4G or larger USB drive
   
   * Insert the USB drive into the switch
+    
+    * For example, to burn the file to disk X of an OSX machine
+      
+      * sudo dd if=honie-usb.img of=/dev/rdiskX bs=1m
   
   * Boot into ONIE Installer
     
     * ![](../assets/grub-onie.png)
     
-    * ![](../assets/grub-onie.png)
+    * ![](../assets/onie-install.png)
     
     * 
   
@@ -38,7 +46,7 @@
       
       Platform  : x86_64-dellemc_s5200_c3538-r0
       
-      <mark>Version   : 3.40.1.1-7</mark>
+      <mark>Version   : 3.40.1.1-7</mark> <- Non HONIE version
       
       Build Date: 2020-03-24T20:44-07:00
       
@@ -108,7 +116,7 @@
       
       Preparing image archive ... OK.
       
-      <mark>ONIE: Version       : 3.40.1.1-8</mark>
+      <mark>ONIE: Version       : 3.40.1.1-8</mark> <- HONIE Version
       
       ONIE: Architecture  : x86_64
       
