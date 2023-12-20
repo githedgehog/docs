@@ -61,6 +61,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.githedgehog.com/dev/user-guide/external/</loc>
+         <lastmod>2023-12-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.githedgehog.com/dev/user-guide/harvester/</loc>
          <lastmod>2023-12-20</lastmod>
          <changefreq>daily</changefreq>
