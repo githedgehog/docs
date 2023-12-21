@@ -71,6 +71,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.githedgehog.com/dev/user-guide/fabric/</loc>
+         <lastmod>2023-12-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.githedgehog.com/dev/user-guide/harvester/</loc>
          <lastmod>2023-12-21</lastmod>
          <changefreq>daily</changefreq>
