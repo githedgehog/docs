@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/requirements/">
+        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/onie-update/">
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../../wiring/clos/">
       
       
-        <link rel="next" href="../supported-devices/">
+        <link rel="next" href="../overview/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Requirements - Open Network Fabric</title>
+        <title>ONIE Update/Upgrade - Open Network Fabric</title>
       
     
     
@@ -91,6 +91,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#onie-updateupgrade" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -138,7 +143,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Requirements
+              ONIE Update/Upgrade
             
           </span>
         </div>
@@ -461,9 +466,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../onie-update/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ONIE Update/Upgrade
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -472,6 +497,40 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hedgehog-onie-honie-supported-systems" class="md-nav__link">
+    Hedgehog ONIE (HONIE) Supported Systems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-onie" class="md-nav__link">
+    Updating ONIE
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -501,16 +560,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -519,7 +571,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -902,6 +953,30 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hedgehog-onie-honie-supported-systems" class="md-nav__link">
+    Hedgehog ONIE (HONIE) Supported Systems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-onie" class="md-nav__link">
+    Updating ONIE
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -916,7 +991,7 @@
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/requirements.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/onie-update.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -924,20 +999,142 @@
   
 
 
-  <h1>Requirements</h1>
-
-
+<h1 id="onie-updateupgrade">ONIE Update/Upgrade</h1>
+<h2 id="hedgehog-onie-honie-supported-systems">Hedgehog ONIE (HONIE) Supported Systems</h2>
+<ul>
+<li>
+<p>DELL</p>
+</li>
+<li>
+<p>S5248F-ON</p>
+</li>
+<li>
+<p>S5232F-ON</p>
+</li>
+<li>
+<p>Edge-Core</p>
+</li>
+<li>
+<p>DCS501 (AS7726-32X)</p>
+</li>
+<li>
+<p>DCS203 (AS7326-56X)</p>
+</li>
+<li>
+<p>EPS203 (AS4630-54NPE)</p>
+</li>
+</ul>
+<h2 id="updating-onie">Updating ONIE</h2>
+<ul>
+<li>
+<p>Via USB</p>
+</li>
+<li>
+<p>For this example we will be updating a DELL S5248 to Hedgehog ONIE (HONIE)</p>
+<ul>
+<li>Note: the USB port is on the back of the switch with the Management and Console</li>
+</ul>
+</li>
+<li>
+<p>Prepare the USB stick by burning the honie-usb.img to a 4G or larger USB drive</p>
+</li>
+<li>
+<p>Insert the USB drive into the switch</p>
+<ul>
+<li>
+<p>For example, to burn the file to disk X of an OSX machine</p>
+</li>
+<li>
+<p>sudo dd if=honie-usb.img of=/dev/rdiskX bs=1m</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Boot into ONIE Installer</p>
+<ul>
+<li>
+<p><a class="glightbox" href="../../assets/grub-onie.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/grub-onie.png" /></a></p>
+</li>
+<li>
+<p><a class="glightbox" href="../../assets/onie-install.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/onie-install.png" /></a></p>
+</li>
+<li></li>
+</ul>
+</li>
+<li>
+<p>ONIE will install the ONIE update and reboot</p>
+<ul>
+<li>`ONIE: OS Install Mode ...</li>
+</ul>
+<p>Platform  : x86_64-dellemc_s5200_c3538-r0</p>
+<p><mark>Version   : 3.40.1.1-7</mark> &lt;- Non HONIE version</p>
+<p>Build Date: 2020-03-24T20:44-07:00</p>
+<p>Info: Mounting EFI System on /boot/efi ...</p>
+<p>Info: BIOS mode: UEFI</p>
+<p>Info: Making NOS install boot mode persistent.</p>
+<p>Info: Using eth0 MAC address: 3c:2c:30:66:f0:00</p>
+<p>Info: eth0:  Checking link... up.</p>
+<p>Info: Trying DHCPv4 on interface: eth0</p>
+<p>Warning: Unable to configure interface using DHCPv4: eth0</p>
+<p>ONIE: Using link-local IPv4 addr: eth0: 169.254.95.249/16</p>
+<p>Starting: klogd... done.</p>
+<p>Starting: dropbear ssh daemon... done.</p>
+<p>Starting: telnetd... done.</p>
+<p>discover: installer mode detected.  Running installer.</p>
+<p>Starting: discover... done.</p>
+<p>Please press Enter to activate this console. Info: eth0:  Checking link... up.</p>
+<p>Info: Trying DHCPv4 on interface: eth0</p>
+<p>Warning: Unable to configure interface using DHCPv4: eth0</p>
+<p>ONIE: Using link-local IPv4 addr: eth0: 169.254.6.139/16</p>
+<p>ONIE: Starting ONIE Service Discovery</p>
+<p>Info: Attempting file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0 ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538-r0 ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538-r0.bin ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538.bin ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-dellemc_s5248f_c3538 ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-dellemc_s5248f_c3538.bin ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-bcm ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-bcm.bin ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64 ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64.bin ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer ...</p>
+<p>Info: Attempting file://dev/mmcblk0p1/onie-installer.bin ...</p>
+<p>ONIE: Executing installer: file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0</p>
+<p>Verifying image checksum ... OK.</p>
+<p>Preparing image archive ... OK.</p>
+<p><mark>ONIE: Version       : 3.40.1.1-8</mark> &lt;- HONIE Version</p>
+<p>ONIE: Architecture  : x86_64</p>
+<p>ONIE: Machine       : dellemc_s5200_c3538</p>
+<p>ONIE: Machine Rev   : 0</p>
+<p>ONIE: Config Version: 1</p>
+<p>ONIE: Build Date    : 2023-12-15T23:43+00:00</p>
+<p>Installing ONIE on: /dev/sda</p>
+<p>ONIE: NOS install successful: file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0</p>
+<p>ONIE: Rebooting...</p>
+<p>discover: installer mode detected.</p>
+<p>Stopping: discover...start-stop-daemon: warning: killing process 665: No such process</p>
+<p>Info: Unmounting kernel filesystems</p>
+<p>umount: can't unmount /: Invalid argument</p>
+<p>The system is going down NOW!</p>
+<p>Sent SIGTERM to all processes</p>
+<p>Sent SIGKILL to all processes</p>
+<p>Requesting system reboot`</p>
+</li>
+<li>
+<p>System is now ready for use</p>
+</li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 20, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 20, 2023</span>
       
     
   </small>

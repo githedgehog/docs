@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.githedgehog.com/dev/install-upgrade/onie-update/</loc>
+         <lastmod>2023-12-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.githedgehog.com/dev/install-upgrade/overview/</loc>
          <lastmod>2023-12-21</lastmod>
          <changefreq>daily</changefreq>
