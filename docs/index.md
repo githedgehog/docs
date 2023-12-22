@@ -7,8 +7,8 @@ Fabric is built around concept of VPCs (Virtual Private Clouds) similar to the p
 API to define user intent on network isolation, connectivity and etc which gets automatically transformed into switches
 and software appliances configuration.
 
-You can read more about [concepts](concepts/overview.md), [how to get started](getting-started/overview.md) and
-[architecture](architecture/overview.md) in the documentation.
+You can read more about [concepts](concepts/overview.md) and [architecture](architecture/overview.md) in the
+documentation.
 
 You can find how to [download](getting-started/download.md) and try Fabric on the self-hosted
 [fully virtualized lab](vlab/overview.md) or on the [hardware](install-upgrade/overview.md).
