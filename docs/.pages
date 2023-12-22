@@ -1,12 +1,13 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - getting-started
-  - concepts
-  - Wiring Diagram: wiring
+  - Concepts: concepts
+  - Getting Started: getting-started
+  - Virtual Lab (VLAB): vlab
   - Install & Upgrade: install-upgrade
   - User Guide: user-guide
   - Reference: reference
+  - Architecture: architecture
   - Troubleshooting: troubleshooting
   - ...
   - release-notes

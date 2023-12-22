@@ -1,4 +1,5 @@
 nav:
   - overview.md
-  - clos.md
+  - running.md
+  - demo.md
   - ...

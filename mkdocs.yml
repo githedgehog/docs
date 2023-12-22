@@ -10,6 +10,7 @@ theme:
   favicon: assets/favicon.ico
   custom_dir: overrides
   features:
+    - announce.dismiss
     - content.action.edit
     - navigation.instant
     - navigation.instant.progress

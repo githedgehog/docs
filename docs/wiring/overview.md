@@ -1,1 +1,0 @@
-# Wiring Diagram

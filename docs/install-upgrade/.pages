@@ -1,0 +1,7 @@
+nav:
+  - Overview: overview.md
+  - Supported Devices: supported-devices.md
+  - System Requirements: requirements.md
+  - Build Wiring Diagram: build-wiring.md
+  - ONiE Update (prepare switch): onie-update.md
+  - ...

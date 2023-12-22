@@ -1,16 +1,16 @@
 # External Peering
 
 Hedgehog Fabric uses Border Leaf concept to exchange VPC routes outside the Fabric and providing L3 connectivity.
-`External Peering` feature allows to set up an external peering endpoint and to enforce several policies between internal
-and external endpoints.
+`External Peering` feature allows to set up an external peering endpoint and to enforce several policies between
+internal and external endpoints.
 
 >Hedgehog Fabric does not operate Edge side devices.
 
 ## Overview
 
 Traffic exit from the Fabric is done on Border Leafs that are connected with Edge devices. Border Leafs are suitable to
-terminate l2vpn connections and distinguish VPC L3 routable traffic towards Edge device as well as to land VPC servers. Border Leafs
-(or Borders) can connect to several Edge devices.
+terminate l2vpn connections and distinguish VPC L3 routable traffic towards Edge device as well as to land VPC servers.
+Border Leafs (or Borders) can connect to several Edge devices.
 
 >External Peering is only available on the switch devices that are capable for sub-interfaces.
 
@@ -30,20 +30,21 @@ Fabric is sharing VPC routes with Edge devices via BGP. Peering is done over Vla
 
 ### Data Plane
 
-VPC L3 routable traffic will be tagged with Vlan and sent to Edge device. Later processing of VPC traffic (NAT, PBR, etc) should
-happen on Edge devices.
+VPC L3 routable traffic will be tagged with Vlan and sent to Edge device. Later processing of VPC traffic
+(NAT, PBR, etc) should happen on Edge devices.
 
 ### VPC access to Edge device
 
-Each VPC within the Fabric can ba allowed to access Edge devices. Additional filtering can be applied to the routes that
+Each VPC within the Fabric can be allowed to access Edge devices. Additional filtering can be applied to the routes that
 VPC can export to Edge devices and import from the Edge devices.
 
 ## API and implementation
 
 ### External
 
-General configuration starts with specification of `External` objects. Each object of `External` type can represent a set of
-Edge devices, or a single BGP instance on Edge device, or any other united Edge entities that can be described with following config
+General configuration starts with specification of `External` objects. Each object of `External` type can represent a
+set of Edge devices, or a single BGP instance on Edge device, or any other united Edge entities that can be described
+with following config
 
 - Name of `External`
 - Inbound routes are marked with dedicated BGP community
@@ -57,8 +58,8 @@ kind: External
 metadata:
   name: default--5835
 spec:
-  inboundCommunity: # BGP Standard Community of routes from Edge devices
   ipv4Namespace: # VPC IP Namespace
+  inboundCommunity: # BGP Standard Community of routes from Edge devices
   outboundCommunity: # BGP Standard Community required to be assigned on prefixes advertised from Fabric
 ```
 
@@ -77,7 +78,6 @@ spec:
       switch:
         port: # SwtichName/EthernetXXX
 ```
-
 
 ### External Attachment
 
@@ -140,7 +140,7 @@ spec:
 ```
 `ge` and `le` can also be combined.
 
-Example: 
+Example:
 ```yaml
 spec:
   permit:
@@ -234,7 +234,7 @@ spec:
 ```
 ### Example Edge side BGP configuration based on SONiC OS
 
-> **_NOTE:_** Hedgehog does not recommend to use SONiC OS as an Edge device. This example is used only as example of Edge Peer config
+> **_NOTE:_** Hedgehog does not recommend using following configuration for production. It's just as example of Edge Peer config
 
 Interface config
 ```yaml

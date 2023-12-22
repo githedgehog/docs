@@ -1,8 +1,4 @@
-# Supported Device List
-
-## Alpha-2
-
-These devices are supported in HedgeHog fabric for Alpha-2
+# Supported Devices
 
 ## Spine
 

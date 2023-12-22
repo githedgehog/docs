@@ -1,6 +1,8 @@
 nav:
   - overview.md
-  - vpc.md
-  - harvester.md
+  - devices.md
+  - connections.md
+  - vpcs.md
   - external.md
+  - harvester.md
   - ...
