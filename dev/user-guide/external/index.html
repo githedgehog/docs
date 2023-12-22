@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://docs.githedgehog.com/dev/user-guide/external/">
       
       
-        <link rel="prev" href="../harvester/">
+        <link rel="prev" href="../vpcs/">
       
       
-        <link rel="next" href="../fabric/">
+        <link rel="next" href="../harvester/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -99,6 +99,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+Documentation is under construction and may be incomplete.
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
       <div data-md-color-scheme="default" data-md-component="outdated" hidden>
@@ -106,10 +123,10 @@
           <aside class="md-banner md-banner--warning">
             <div class="md-banner__inner md-grid md-typeset">
               
-  You're not viewing the latest version.
-  <a href="../../..">
-    <strong>Click here to go to latest.</strong>
-  </a>
+You're not viewing the latest version.
+<a href="../../..">
+  <strong>Click here to go to latest.</strong>
+</a>
 
             </div>
             <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
@@ -307,11 +324,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/overview/" class="md-nav__link">
+      <a href="../../concepts/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting Started
+    Concepts
   </span>
   
 
@@ -326,11 +343,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/overview/" class="md-nav__link">
+      <a href="../../getting-started/download/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Concepts
+    Download
   </span>
   
 
@@ -363,7 +380,7 @@
             
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Virtual Lab (VLAB)
   </span>
   
 
@@ -373,7 +390,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Wiring Diagram
+            Virtual Lab (VLAB)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -383,11 +400,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/overview/" class="md-nav__link">
+      <a href="../../vlab/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Overview
   </span>
   
 
@@ -403,11 +420,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/clos/" class="md-nav__link">
+      <a href="../../vlab/running/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Clos
+    Running VLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vlab/demo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo on VLAB
   </span>
   
 
@@ -468,26 +505,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update/Upgrade
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../install-upgrade/overview/" class="md-nav__link">
         
   
@@ -508,11 +525,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/requirements/" class="md-nav__link">
+      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Requirements
+    Supported Devices
   </span>
   
 
@@ -528,11 +545,51 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
+      <a href="../../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Supported Device List
+    System Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/build-wiring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Wiring Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ONiE Update (prepare switch)
   </span>
   
 
@@ -613,11 +670,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../vpc/" class="md-nav__link">
+      <a href="../devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    VPCs
+    Switches and Servers
   </span>
   
 
@@ -633,11 +690,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../harvester/" class="md-nav__link">
+      <a href="../connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Harvester
+    Connections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPCs and Namespaces
   </span>
   
 
@@ -856,11 +933,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../fabric/" class="md-nav__link">
+      <a href="../harvester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HedgeHog Network Fabric
+    Using VPCs with Harvester
   </span>
   
 
@@ -925,7 +1002,7 @@
         
   
   <span class="md-ellipsis">
-    API Reference
+    Fabric API
   </span>
   
 
@@ -945,7 +1022,92 @@
         
   
   <span class="md-ellipsis">
-    CLI reference
+    Fabric CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
   </span>
   
 
@@ -1017,10 +1179,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1031,8 +1193,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Contribute
           </label>
@@ -1277,52 +1439,53 @@
   
 
 
-<h1 id="external-peering">External Peering</h1>
-<p>Hedgehog Fabric uses Border Leaf concept to exchange <abbr title="Virtual Private Cloud">VPC</abbr> routes outside the Fabric and providing L3 connectivity.
-<code>External Peering</code> feature allows to set up an external peering endpoint and to enforce several policies between internal
-and external endpoints.</p>
+<h1 id="external-peering"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Peering</h1>
+<p>Hedgehog Fabric uses Border Leaf concept to exchange <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes outside the Fabric and providing L3 connectivity.
+<code>External Peering</code> feature allows to set up an external peering endpoint and to enforce several policies between
+internal and external endpoints.</p>
 <blockquote>
 <p>Hedgehog Fabric does not operate Edge side devices.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
 <p>Traffic exit from the Fabric is done on Border Leafs that are connected with Edge devices. Border Leafs are suitable to
-terminate l2vpn connections and distinguish <abbr title="Virtual Private Cloud">VPC</abbr> L3 routable traffic towards Edge device as well as to land <abbr title="Virtual Private Cloud">VPC</abbr> servers. Border Leafs
-(or Borders) can connect to several Edge devices.</p>
+terminate l2vpn connections and distinguish <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> L3 routable traffic towards Edge device as well as to land <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> servers.
+Border Leafs (or Borders) can connect to several Edge devices.</p>
 <blockquote>
-<p>External Peering is only available on the switch devices that are capable for sub-interfaces.</p>
+<p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Peering is only available on the switch devices that are capable for sub-interfaces.</p>
 </blockquote>
 <h3 id="connect-border-leaf-to-edge-device">Connect Border Leaf to Edge device</h3>
-<p>In order to distinguish <abbr title="Virtual Private Cloud">VPC</abbr> traffic Edge device should be capable for
+<p>In order to distinguish <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic Edge device should be capable for
 - Set up BGP IPv4 to advertise and receive routes from the Fabric
 - Connect to Fabric Border Leaf over Vlan
 - Be able to mark egress routes towards the Fabric with BGP Communities
 - Be able to filter ingress routes from the Fabric by BGP Communities</p>
 <p>All other filtering and processing of L3 Routed Fabric traffic should be done on the Edge devices.</p>
 <h3 id="control-plane">Control Plane</h3>
-<p>Fabric is sharing <abbr title="Virtual Private Cloud">VPC</abbr> routes with Edge devices via BGP. Peering is done over Vlan in IPv4 Unicast AFI/SAFI.</p>
+<p>Fabric is sharing <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes with Edge devices via BGP. Peering is done over Vlan in IPv4 Unicast AFI/SAFI.</p>
 <h3 id="data-plane">Data Plane</h3>
-<p><abbr title="Virtual Private Cloud">VPC</abbr> L3 routable traffic will be tagged with Vlan and sent to Edge device. Later processing of <abbr title="Virtual Private Cloud">VPC</abbr> traffic (NAT, PBR, etc) should
-happen on Edge devices.</p>
-<h3 id="vpc-access-to-edge-device"><abbr title="Virtual Private Cloud">VPC</abbr> access to Edge device</h3>
-<p>Each <abbr title="Virtual Private Cloud">VPC</abbr> within the Fabric can ba allowed to access Edge devices. Additional filtering can be applied to the routes that
-<abbr title="Virtual Private Cloud">VPC</abbr> can export to Edge devices and import from the Edge devices.</p>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> L3 routable traffic will be tagged with Vlan and sent to Edge device. Later processing of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic
+(NAT, PBR, etc) should happen on Edge devices.</p>
+<h3 id="vpc-access-to-edge-device"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> access to Edge device</h3>
+<p>Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> within the Fabric can be allowed to access Edge devices. Additional filtering can be applied to the routes that
+<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can export to Edge devices and import from the Edge devices.</p>
 <h2 id="api-and-implementation">API and implementation</h2>
-<h3 id="external">External</h3>
-<p>General configuration starts with specification of <code>External</code> objects. Each object of <code>External</code> type can represent a set of
-Edge devices, or a single BGP instance on Edge device, or any other united Edge entities that can be described with following config</p>
+<h3 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h3>
+<p>General configuration starts with specification of <code>External</code> objects. Each object of <code>External</code> type can represent a
+set of Edge devices, or a single BGP instance on Edge device, or any other united Edge entities that can be described
+with following config</p>
 <ul>
 <li>Name of <code>External</code></li>
 <li>Inbound routes are marked with dedicated BGP community</li>
 <li>Outbound routes are required to be marked with dedicated community</li>
 </ul>
-<p>Each <code>External</code> should be bound to some <abbr title="Virtual Private Cloud">VPC</abbr> IP Namespace, otherwise prefixes overlap may happen.</p>
+<p>Each <code>External</code> should be bound to some <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> IP Namespace, otherwise prefixes overlap may happen.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">External</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default--5835</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">inboundCommunity</span><span class="p">:</span><span class="w"> </span><span class="c1"># BGP Standard Community of routes from Edge devices</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="c1"># VPC IP Namespace</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="c1"># VPC IP Namespace</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">inboundCommunity</span><span class="p">:</span><span class="w"> </span><span class="c1"># BGP Standard Community of routes from Edge devices</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">outboundCommunity</span><span class="p">:</span><span class="w"> </span><span class="c1"># BGP Standard Community required to be assigned on prefixes advertised from Fabric</span>
 </span></code></pre></div>
 <h3 id="connection">Connection</h3>
@@ -1337,7 +1500,7 @@ Edge devices, or a single BGP instance on Edge device, or any other united Edge 
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="c1"># SwtichName/EthernetXXX</span>
 </span></code></pre></div>
-<h3 id="external-attachment">External Attachment</h3>
+<h3 id="external-attachment"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Attachment</h3>
 <p><code>External Attachment</code> is a definition of BGP Peering and traffic connectivity between a Border leaf and <code>External</code>.
 Attachments are bound to <code>Connection</code> with type <code>external</code> and specify <code>Vlan</code> that will be used to segregate particular
 Edge peering.</p>
@@ -1356,8 +1519,8 @@ Edge peering.</p>
 </span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="c1"># Vlan ID to tag control and data traffic</span>
 </span></code></pre></div>
 <p>Several <code>External Attachment</code> can be configured for the same <code>Connection</code> but for different <code>vlan</code>.</p>
-<h3 id="external-vpc-peering">External <abbr title="Virtual Private Cloud">VPC</abbr> Peering</h3>
-<p>To allow specific <abbr title="Virtual Private Cloud">VPC</abbr> have access to Edge devices <abbr title="Virtual Private Cloud">VPC</abbr> should be bound to specific <code>External</code> object. This is done via
+<h3 id="external-vpc-peering"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
+<p>To allow specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> have access to Edge devices <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> should be bound to specific <code>External</code> object. This is done via
 <code>External Peering</code> object.</p>
 <p><div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExternalPeering</span>
@@ -1386,7 +1549,7 @@ Edge peering.</p>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
 </span></code></pre></div>
 <code>ge</code> and <code>le</code> can also be combined.</p>
-<p>Example: 
+<p>Example:
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">external</span><span class="p">:</span>
@@ -1398,11 +1561,11 @@ Edge peering.</p>
 </span></code></pre></div>
 For instance, <code>77.42.0.0/18</code> will be matched for given prefix rule above, but <code>77.128.77.128/25</code> or <code>77.10.0.0/16</code> won't.</p>
 <h2 id="examples">Examples</h2>
-<p>This example will show peering with <code>External</code> object with name <code>HedgeEdge</code> given Fabric <abbr title="Virtual Private Cloud">VPC</abbr> with name <code>vpc-1</code> on the Border
+<p>This example will show peering with <code>External</code> object with name <code>HedgeEdge</code> given Fabric <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> with name <code>vpc-1</code> on the Border
 Leaf <code>switchBorder</code> that has a cable between an Edge device on the port <code>Ethernet42</code>. <code>vpc-1</code> is required to receive any prefixes
 advertised from the <code>External</code>.</p>
 <h3 id="fabric-api-configuration">Fabric API configuration</h3>
-<h4 id="external_1">External</h4>
+<h4 id="external_1"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h4>
 <p><div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp"># </span>hhfctl<span class="w"> </span>external<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>HedgeEdge<span class="w"> </span>--ipns<span class="w"> </span>default<span class="w"> </span>--in<span class="w"> </span><span class="m">65102</span>:5000<span class="w"> </span>--out<span class="w"> </span><span class="m">5000</span>:65102
 </span></code></pre></div>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
@@ -1430,7 +1593,7 @@ advertised from the <code>External</code>.</p>
 </span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
 </span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switchBorder/Ethernet42</span>
 </span></code></pre></div>
-<h4 id="externalattachment">ExternalAttachment</h4>
+<h4 id="externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></h4>
 <p>Specified in <code>wiring</code> diagram
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExternalAttachment</span>
@@ -1446,7 +1609,7 @@ advertised from the <code>External</code>.</p>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.100.0.1/24</span>
 </span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 </span></code></pre></div></p>
-<h4 id="externalpeering">ExternalPeering</h4>
+<h4 id="externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></h4>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExternalPeering</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1465,7 +1628,7 @@ advertised from the <code>External</code>.</p>
 </span></code></pre></div>
 <h3 id="example-edge-side-bgp-configuration-based-on-sonic-os">Example Edge side BGP configuration based on SONiC OS</h3>
 <blockquote>
-<p><strong><em>NOTE:</em></strong> Hedgehog does not recommend to use SONiC OS as an Edge device. This example is used only as example of Edge Peer config</p>
+<p><strong><em>NOTE:</em></strong> Hedgehog does not recommend using following configuration for production. It's just as example of Edge Peer config</p>
 </blockquote>
 <p>Interface config
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="l l-Scalar l-Scalar-Plain">interface Ethernet2.100</span>
@@ -1512,7 +1675,7 @@ Route Map configuration
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 20, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
         <br>
         Created:
@@ -1588,7 +1751,7 @@ Route Map configuration
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>

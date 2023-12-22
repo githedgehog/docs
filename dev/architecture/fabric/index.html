@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/requirements/">
+        <link rel="canonical" href="https://docs.githedgehog.com/dev/architecture/fabric/">
       
       
-        <link rel="prev" href="../supported-devices/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../build-wiring/">
+        <link rel="next" href="../../troubleshooting/overview/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>System Requirements - Open Network Fabric</title>
+        <title>Fabric Implementation - Open Network Fabric</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#system-requirements" class="md-skip">
+        <a href="#hedgehog-network-fabric" class="md-skip">
           Skip to content
         </a>
       
@@ -160,7 +160,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              System Requirements
+              Fabric Implementation
             
           </span>
         </div>
@@ -465,20 +465,20 @@ You're not viewing the latest version.
       
   
   
-    
-  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -492,7 +492,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Install & Upgrade
@@ -505,7 +505,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../install-upgrade/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -525,7 +525,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../supported-devices/" class="md-nav__link">
+      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -543,29 +543,9 @@ You're not viewing the latest version.
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    System Requirements
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -574,47 +554,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
-    Non-HA (minimal) setup - 1 Control Node
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-ha-setup-3-control-nodes-per-node" class="md-nav__link">
-    (Future) HA setup - 3+ Control Nodes (per node)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#device-participating-in-the-hedgehog-fabric-eg-switch" class="md-nav__link">
-    Device participating in the Hedgehog Fabric (e.g. switch)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -626,7 +565,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../build-wiring/" class="md-nav__link">
+      <a href="../../install-upgrade/build-wiring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -646,7 +585,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../onie-update/" class="md-nav__link">
+      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -921,20 +860,20 @@ You're not viewing the latest version.
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -948,7 +887,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Architecture
@@ -961,7 +900,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -979,9 +918,29 @@ You're not viewing the latest version.
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../architecture/fabric/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -990,6 +949,74 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#underlay-network" class="md-nav__link">
+    Underlay Network
+  </a>
+  
+    <nav class="md-nav" aria-label="Underlay Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collapsed-core" class="md-nav__link">
+    Collapsed Core
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spine-leaf" class="md-nav__link">
+    Spine - Leaf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overlay-network" class="md-nav__link">
+    Overlay Network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-peering" class="md-nav__link">
+    VPC Peering
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1152,22 +1179,49 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
-    Non-HA (minimal) setup - 1 Control Node
+  <a href="#underlay-network" class="md-nav__link">
+    Underlay Network
+  </a>
+  
+    <nav class="md-nav" aria-label="Underlay Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collapsed-core" class="md-nav__link">
+    Collapsed Core
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spine-leaf" class="md-nav__link">
+    Spine - Leaf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overlay-network" class="md-nav__link">
+    Overlay Network
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#future-ha-setup-3-control-nodes-per-node" class="md-nav__link">
-    (Future) HA setup - 3+ Control Nodes (per node)
+  <a href="#vpc" class="md-nav__link">
+    VPC
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#device-participating-in-the-hedgehog-fabric-eg-switch" class="md-nav__link">
-    Device participating in the Hedgehog Fabric (e.g. switch)
+  <a href="#vpc-peering" class="md-nav__link">
+    VPC Peering
   </a>
   
 </li>
@@ -1187,7 +1241,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/requirements.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/architecture/fabric.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -1195,119 +1249,96 @@ You're not viewing the latest version.
   
 
 
-<h1 id="system-requirements">System Requirements</h1>
+<h1 id="hedgehog-network-fabric">Hedgehog Network Fabric</h1>
+<p>The Hedgehog Open Network Fabric is an open source network architecture that provides connectivity between virtual and
+physical workloads and provides a way to achieve network isolation between different groups of workloads using standar
+BGP EVPN and vxlan technology. The fabric provides a standard kubernetes interfaces to manage the elements in the
+physical network and provides a mechanism to configure virtual networks and define attachments to these virtual networks.
+The Hedgehog Fabric provides isolation between different groups of workloads by placing them in different virtual
+networks called <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s. To achieve this we define different abstractions starting from the physical network where we
+define <code>Connection</code> which defines how a physical server on the network connects to a physical switch on the fabric.</p>
+<h2 id="underlay-network">Underlay Network</h2>
+<p>The Hedgehog Fabric currently support two underlay network topologies.</p>
+<h3 id="collapsed-core">Collapsed Core</h3>
+<p>A collapsed core topology is just a pair of switches connected in a mclag configuration with no other network elements.
+All workloads attach to these two switches.</p>
+<p><a class="glightbox" href="../fabric-collapsedcore.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="image" src="../fabric-collapsedcore.png" /></a></p>
+<p>The leaf's in this setup are configured to be in a mclag pair and servers can either be connected to both switches as
+a mclag port channel or as orphan ports connected to only one switch. both the leaves peer to external networks using
+BGP and act as gateway for workloads attached to them. The configuration of the underlay in the collapsed core is very
+simple and is ideal for very small deployments.</p>
+<h3 id="spine-leaf">Spine - Leaf</h3>
+<p>A spine-leaf topology is a standard clos network with workloads attaching to leaf switches and spines providing
+connectivity between different leaves.</p>
+<p><a class="glightbox" href="../fabric-spineleaf.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="image" src="../fabric-spineleaf.png" /></a></p>
+<p>This kind of topology is useful for bigger deployments and provides all the advantages of a typical clos network.
+The underlay network is established using eBGP where each leaf has a separate ASN and peers will all spines in the
+network. We used <a href="https://datatracker.ietf.org/doc/html/rfc7938">RFC7938</a> as the reference for establishing the
+underlay network.</p>
+<h2 id="overlay-network">Overlay Network</h2>
+<p>The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
+and data plane traffic between different virtual networks and the underlay network. Vitualization is achieved in the
+hedgehog fabric by encapsulating workload traffic over vxlan tunnels that are source and terminated on the leaf switches
+in the network. The fabric using BGP-EVPN/Vxlan to enable creation and management of virtual networks on top of the
+virtual. The fabric supports multiple virtual networks over the same underlay network to support multi-tenancy. Each
+virtual network in the hedgehog fabric is identified by a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. In the following sections we will dive a bit deeper into
+a high level overview of how are vpc's implemented in the hedgehog fabric and it's associated objects.</p>
+<h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
+<p>We know what is a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and how to attach workloads to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. Let us now take a look at how is this actually
+implemented on the network to provice the view of a private network.</p>
 <ul>
-<li>Fast SSDs for system/root and K8s &amp; container runtime forlders are required for stable work</li>
-<li>SSDs are mandatory for Control Nodes</li>
-<li>Minimal (non-HA) setup is a single Contol Node</li>
-<li>(Future) Full (HA) setup is at least 3 Control Nodes</li>
-<li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack and etc.</li>
+<li>Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a vrf on each switch where there are <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attachments defined for this vpc.
+   The Vrf is allocated its own VNI. The Vrf is local to each switch and the VNI is global for the entire fabric. By
+   mapping the vrf to a VNI and configuring an evpn instance in each vrf we establish a shared l3vni across the entire
+   fabric. All vrf participating in this vni can freely communicate with each other without a need for a policy. A Vlan
+   is allocated for each vrf which functions as a IRB Vlan for the vrf.</li>
+<li>The vrf created on each switch corresponding to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> configures a BGP instance with evpn to advertise its locally
+   attached subnets and import routes from its peered <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s. The BGP instance in the tenant vrf's does not establish
+   neighbor relationships and is purely used to advertise locally attached routes into the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (all vrf's with the same
+   l3vni) across leafs in the network.</li>
+<li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can have multuple subnets. Each Subnet in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a Vlan on the switch. The vlan is only locally
+   significant and a given subnet might have different Vlan's on different leaves on the network. We assign a globally
+   significant vni for each subnet. This VNI is used to extend the subnet across different leaves in the network and
+   provides a view of single streched l2 domain if the applications need it.</li>
+<li>The hedgehog fabric has a built-in DHCP server which will automatically assign IP addresses to each workload
+   depending on the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it belongs to. This is achieved by configuring a DHCP relay on each of the server facing vlans.
+   The DHCP server is accesible through the underlay network and is shared by all vpcs in the fabric. The inbuilt DHCP
+   server is capable of identifying the source <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> of the request and assigning IP addresses from a pool allocated to the
+   <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> at creation.</li>
+<li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> by default cannot communicate to anyone outside the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and we need to define specific peering rules to allow
+   communication to external networks or to other VPCs.</li>
 </ul>
-<h2 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h2>
+<h2 id="vpc-peering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h2>
+<p>To enable communication between 2 different <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s we need to configure a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering policy. The hedgehog fabric
+supports two different peering modes.</p>
 <ul>
-<li>Control Node runs non-HA K8s Contol Plane installation with non-HA Hedgehog Fabric Control Plane on top of it</li>
-<li>Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments</li>
+<li>Local Peering - A local peering directly imports routers from the other <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> locally. This is achieved by a simple
+  import route from the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. In case there are no locally attached worloads to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> the fabric
+  automatically creates a stub vpc for peering and imports routes from it. This allows <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s to peer with each other
+  without the need for dedicated peering leaf. If a local peering is done for a pair of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s which have locally
+  attached workloads the fabric automatically allocates a pair of ports on the switch to router traffic between these
+  vrf's using static routes. This is required because of limitations in  the underlying platform. The net result of
+  this is that the bandwidth between these 2 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s is limited by the bandwidth of the loopback interfaces allocated
+  on the switch.</li>
+<li>Remote Peering  - Remote peering is implemented using a dedicated peering switch/switches which is used as a
+  rendezvous point for the 2 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s in the fabric. The set of switches to be used for peering is determined by
+  configuration in the peering policy. When a remote peering policy is applied for a pair of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s the vrf's
+  corresponding to these <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s on the peering switch advertise default routes into their specific vrf's identified
+  by the l3vni. All traffic that does not belong to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s is forwarded to the peering switch and which has routes
+  to the other <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s and gets forwarded from there. The bandwith limitation that exists in the local peering solution
+  is solved here as the bandwith between the two <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s is determined by the fabric cross section bandwidth.</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Minimal</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>Disk</td>
-<td>100 GB</td>
-<td>250 GB</td>
-</tr>
-</tbody>
-</table>
-<h2 id="future-ha-setup-3-control-nodes-per-node">(Future) HA setup - 3+ Control Nodes (per node)</h2>
-<ul>
-<li>Each Contol Node runs part of the HA K8s Control Plane installation with Hedgehog Fabric Control Plane on top of it in
-  HA mode as well</li>
-<li>Recommended for all cases where more then 10 devices participating in the Hedgehog Fabric</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Minimal</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>Disk</td>
-<td>100 GB</td>
-<td>250 GB</td>
-</tr>
-</tbody>
-</table>
-<h2 id="device-participating-in-the-hedgehog-fabric-eg-switch">Device participating in the Hedgehog Fabric (e.g. switch)</h2>
-<ul>
-<li>(Future) Each participating device is part of the K8s cluster, so, it run K8s kubelet</li>
-<li>Additionally it run Hedgehog Fabric Agent that controls devices configuration</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Minimal</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>1 GB</td>
-<td>1.5 GB</td>
-</tr>
-<tr>
-<td>Disk</td>
-<td>5 GB</td>
-<td>10 GB</td>
-</tr>
-</tbody>
-</table>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
     
   </small>

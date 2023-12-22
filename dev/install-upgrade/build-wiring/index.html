@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/requirements/">
+        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/build-wiring/">
       
       
-        <link rel="prev" href="../supported-devices/">
+        <link rel="prev" href="../requirements/">
       
       
-        <link rel="next" href="../build-wiring/">
+        <link rel="next" href="../onie-update/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>System Requirements - Open Network Fabric</title>
+        <title>Build Wiring Diagram - Open Network Fabric</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#system-requirements" class="md-skip">
+        <a href="#build-wiring-diagram" class="md-skip">
           Skip to content
         </a>
       
@@ -160,7 +160,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              System Requirements
+              Build Wiring Diagram
             
           </span>
         </div>
@@ -543,6 +543,26 @@ You're not viewing the latest version.
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -554,79 +574,7 @@ You're not viewing the latest version.
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    System Requirements
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    System Requirements
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
-    Non-HA (minimal) setup - 1 Control Node
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-ha-setup-3-control-nodes-per-node" class="md-nav__link">
-    (Future) HA setup - 3+ Control Nodes (per node)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#device-participating-in-the-hedgehog-fabric-eg-switch" class="md-nav__link">
-    Device participating in the Hedgehog Fabric (e.g. switch)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../build-wiring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -635,6 +583,7 @@ You're not viewing the latest version.
   
 
       </a>
+      
     </li>
   
 
@@ -1145,35 +1094,6 @@ You're not viewing the latest version.
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
-    Non-HA (minimal) setup - 1 Control Node
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-ha-setup-3-control-nodes-per-node" class="md-nav__link">
-    (Future) HA setup - 3+ Control Nodes (per node)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#device-participating-in-the-hedgehog-fabric-eg-switch" class="md-nav__link">
-    Device participating in the Hedgehog Fabric (e.g. switch)
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1187,7 +1107,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/requirements.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/build-wiring.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -1195,119 +1115,48 @@ You're not viewing the latest version.
   
 
 
-<h1 id="system-requirements">System Requirements</h1>
-<ul>
-<li>Fast SSDs for system/root and K8s &amp; container runtime forlders are required for stable work</li>
-<li>SSDs are mandatory for Control Nodes</li>
-<li>Minimal (non-HA) setup is a single Contol Node</li>
-<li>(Future) Full (HA) setup is at least 3 Control Nodes</li>
-<li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack and etc.</li>
-</ul>
-<h2 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h2>
-<ul>
-<li>Control Node runs non-HA K8s Contol Plane installation with non-HA Hedgehog Fabric Control Plane on top of it</li>
-<li>Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Minimal</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>Disk</td>
-<td>100 GB</td>
-<td>250 GB</td>
-</tr>
-</tbody>
-</table>
-<h2 id="future-ha-setup-3-control-nodes-per-node">(Future) HA setup - 3+ Control Nodes (per node)</h2>
-<ul>
-<li>Each Contol Node runs part of the HA K8s Control Plane installation with Hedgehog Fabric Control Plane on top of it in
-  HA mode as well</li>
-<li>Recommended for all cases where more then 10 devices participating in the Hedgehog Fabric</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Minimal</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>Disk</td>
-<td>100 GB</td>
-<td>250 GB</td>
-</tr>
-</tbody>
-</table>
-<h2 id="device-participating-in-the-hedgehog-fabric-eg-switch">Device participating in the Hedgehog Fabric (e.g. switch)</h2>
-<ul>
-<li>(Future) Each participating device is part of the K8s cluster, so, it run K8s kubelet</li>
-<li>Additionally it run Hedgehog Fabric Agent that controls devices configuration</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Minimal</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>1 GB</td>
-<td>1.5 GB</td>
-</tr>
-<tr>
-<td>Disk</td>
-<td>5 GB</td>
-<td>10 GB</td>
-</tr>
-</tbody>
-</table>
+<h1 id="build-wiring-diagram">Build Wiring Diagram</h1>
+<div class="admonition warning">
+<p>Under construction.</p>
+</div>
+<p>In the meantime, to have a look at the working wiring diagram for the Hedgehog Fabric, please run sample generator that
+produces VLAB-compatible wiring diagrams:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ubuntu@sl-dev:~$<span class="w"> </span>hhfab<span class="w"> </span>wiring<span class="w"> </span>sample<span class="w"> </span>-h
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>NAME:
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>hhfab<span class="w"> </span>wiring<span class="w"> </span>sample<span class="w"> </span>-<span class="w"> </span>sample<span class="w"> </span>wiring<span class="w"> </span>diagram<span class="w"> </span><span class="o">(</span>would<span class="w"> </span>work<span class="w"> </span><span class="k">for</span><span class="w"> </span>vlab<span class="o">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>USAGE:
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">   </span>hhfab<span class="w"> </span>wiring<span class="w"> </span>sample<span class="w"> </span><span class="o">[</span><span class="nb">command</span><span class="w"> </span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>arguments...<span class="o">]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>OPTIONS:
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">   </span>--brief,<span class="w"> </span>-b<span class="w">                    </span>brief<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>only<span class="w"> </span>warn<span class="w"> </span>and<span class="w"> </span>error<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">   </span>--fabric-mode<span class="w"> </span>value,<span class="w"> </span>-m<span class="w"> </span>value<span class="w">  </span>fabric<span class="w"> </span>mode<span class="w"> </span><span class="o">(</span>one<span class="w"> </span>of:<span class="w"> </span>collapsed-core,<span class="w"> </span>spine-leaf<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="s2">&quot;spine-leaf&quot;</span><span class="o">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">   </span>--help,<span class="w"> </span>-h<span class="w">                     </span>show<span class="w"> </span><span class="nb">help</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">   </span>--verbose,<span class="w"> </span>-v<span class="w">                  </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>includes<span class="w"> </span>debug<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">   </span>wiring<span class="w"> </span>generator<span class="w"> </span>options:
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">   </span>--chain-control-link<span class="w">         </span>chain<span class="w"> </span>control<span class="w"> </span>links<span class="w"> </span>instead<span class="w"> </span>of<span class="w"> </span>all<span class="w"> </span>switches<span class="w"> </span>directly<span class="w"> </span>connected<span class="w"> </span>to<span class="w"> </span>control<span class="w"> </span>node<span class="w"> </span><span class="k">if</span><span class="w"> </span>fabric<span class="w"> </span>mode<span class="w"> </span>is<span class="w"> </span>spine-leaf<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">   </span>--control-links-count<span class="w"> </span>value<span class="w">  </span>number<span class="w"> </span>of<span class="w"> </span>control<span class="w"> </span>links<span class="w"> </span><span class="k">if</span><span class="w"> </span>chain-control-link<span class="w"> </span>is<span class="w"> </span>enabled<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">   </span>--fabric-links-count<span class="w"> </span>value<span class="w">   </span>number<span class="w"> </span>of<span class="w"> </span>fabric<span class="w"> </span>links<span class="w"> </span><span class="k">if</span><span class="w"> </span>fabric<span class="w"> </span>mode<span class="w"> </span>is<span class="w"> </span>spine-leaf<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">   </span>--mclag-leafs-count<span class="w"> </span>value<span class="w">    </span>number<span class="w"> </span>of<span class="w"> </span>mclag<span class="w"> </span>leafs<span class="w"> </span><span class="o">(</span>should<span class="w"> </span>be<span class="w"> </span>even<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">   </span>--mclag-peer-links<span class="w"> </span>value<span class="w">     </span>number<span class="w"> </span>of<span class="w"> </span>mclag<span class="w"> </span>peer<span class="w"> </span>links<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>mclag<span class="w"> </span>leaf<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">   </span>--mclag-session-links<span class="w"> </span>value<span class="w">  </span>number<span class="w"> </span>of<span class="w"> </span>mclag<span class="w"> </span>session<span class="w"> </span>links<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>mclag<span class="w"> </span>leaf<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">   </span>--orphan-leafs-count<span class="w"> </span>value<span class="w">   </span>number<span class="w"> </span>of<span class="w"> </span>orphan<span class="w"> </span>leafs<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">   </span>--spines-count<span class="w"> </span>value<span class="w">         </span>number<span class="w"> </span>of<span class="w"> </span>spines<span class="w"> </span><span class="k">if</span><span class="w"> </span>fabric<span class="w"> </span>mode<span class="w"> </span>is<span class="w"> </span>spine-leaf<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">   </span>--vpc-loopbacks<span class="w"> </span>value<span class="w">        </span>number<span class="w"> </span>of<span class="w"> </span>vpc<span class="w"> </span>loopbacks<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>switch<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
     
   </small>

@@ -18,7 +18,7 @@
         <link rel="prev" href="../api/">
       
       
-        <link rel="next" href="../../troubleshooting/overview/">
+        <link rel="next" href="../../architecture/overview/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>CLI reference - Open Network Fabric</title>
+        <title>Fabric CLI - Open Network Fabric</title>
       
     
     
@@ -92,12 +92,29 @@
     <div data-md-component="skip">
       
         
-        <a href="#cli-reference" class="md-skip">
+        <a href="#fabric-cli" class="md-skip">
           Skip to content
         </a>
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+Documentation is under construction and may be incomplete.
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
       
     </div>
     
@@ -106,10 +123,10 @@
           <aside class="md-banner md-banner--warning">
             <div class="md-banner__inner md-grid md-typeset">
               
-  You're not viewing the latest version.
-  <a href="../../..">
-    <strong>Click here to go to latest.</strong>
-  </a>
+You're not viewing the latest version.
+<a href="../../..">
+  <strong>Click here to go to latest.</strong>
+</a>
 
             </div>
             <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
@@ -143,7 +160,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CLI reference
+              Fabric CLI
             
           </span>
         </div>
@@ -307,11 +324,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/overview/" class="md-nav__link">
+      <a href="../../concepts/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting Started
+    Concepts
   </span>
   
 
@@ -326,11 +343,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/overview/" class="md-nav__link">
+      <a href="../../getting-started/download/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Concepts
+    Download
   </span>
   
 
@@ -363,7 +380,7 @@
             
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Virtual Lab (VLAB)
   </span>
   
 
@@ -373,7 +390,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Wiring Diagram
+            Virtual Lab (VLAB)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -383,11 +400,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/overview/" class="md-nav__link">
+      <a href="../../vlab/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Overview
   </span>
   
 
@@ -403,11 +420,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/clos/" class="md-nav__link">
+      <a href="../../vlab/running/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Clos
+    Running VLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vlab/demo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo on VLAB
   </span>
   
 
@@ -468,26 +505,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update/Upgrade
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../install-upgrade/overview/" class="md-nav__link">
         
   
@@ -508,11 +525,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/requirements/" class="md-nav__link">
+      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Requirements
+    Supported Devices
   </span>
   
 
@@ -528,11 +545,51 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
+      <a href="../../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Supported Device List
+    System Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/build-wiring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Wiring Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ONiE Update (prepare switch)
   </span>
   
 
@@ -613,11 +670,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/vpc/" class="md-nav__link">
+      <a href="../../user-guide/devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    VPCs
+    Switches and Servers
   </span>
   
 
@@ -633,11 +690,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/harvester/" class="md-nav__link">
+      <a href="../../user-guide/connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Harvester
+    Connections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPCs and Namespaces
   </span>
   
 
@@ -673,11 +750,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/fabric/" class="md-nav__link">
+      <a href="../../user-guide/harvester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HedgeHog Network Fabric
+    Using VPCs with Harvester
   </span>
   
 
@@ -742,7 +819,7 @@
         
   
   <span class="md-ellipsis">
-    API Reference
+    Fabric API
   </span>
   
 
@@ -767,16 +844,138 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fabric CLI
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    CLI reference
+    Fabric CLI
   </span>
   
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -844,10 +1043,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -858,8 +1057,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Contribute
           </label>
@@ -932,6 +1131,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -953,14 +1167,57 @@
   
 
 
-<h1 id="cli-reference">CLI reference</h1>
+<h1 id="fabric-cli">Fabric CLI</h1>
+<div class="admonition warning">
+<p>Under construction.</p>
+</div>
+<p>Currently Fabric CLI is represented by a kubectl plugin <code>kubectl-fabric</code> automatically installed on the Control Node.
+It is a wrapper around <code>kubectl</code> and Kubernetes client which allows to manage Fabric resources in a more convenient way.
+Fabric CLI only provides a subset of the functionality available via Fabric API and is focused on simplifying objects
+creation and some manipulation with the already existing objects while main get/list/update operations are expected to
+be done using <code>kubectl</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>NAME:
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>hhfctl<span class="w"> </span>-<span class="w"> </span>Hedgehog<span class="w"> </span>Fabric<span class="w"> </span>user<span class="w"> </span>client
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>USAGE:
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">   </span>hhfctl<span class="w"> </span><span class="o">[</span>global<span class="w"> </span>options<span class="o">]</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span><span class="nb">command</span><span class="w"> </span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>arguments...<span class="o">]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>VERSION:
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">   </span>v0.23.0
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>COMMANDS:
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">   </span>vpc<span class="w">                </span>VPC<span class="w"> </span>commands
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">   </span>switch,<span class="w"> </span>sw,<span class="w"> </span>agent<span class="w">  </span>Switch/Agent<span class="w"> </span>commands
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">   </span>connection,<span class="w"> </span>conn<span class="w">   </span>Connection<span class="w"> </span>commands
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">   </span>switchgroup,<span class="w"> </span>sg<span class="w">    </span>SwitchGroup<span class="w"> </span>commands
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">   </span>external<span class="w">           </span>External<span class="w"> </span>commands
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">   </span>help,<span class="w"> </span>h<span class="w">            </span>Shows<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>commands<span class="w"> </span>or<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>one<span class="w"> </span><span class="nb">command</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>GLOBAL<span class="w"> </span>OPTIONS:
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">   </span>--verbose,<span class="w"> </span>-v<span class="w">  </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>includes<span class="w"> </span>debug<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">   </span>--help,<span class="w"> </span>-h<span class="w">     </span>show<span class="w"> </span><span class="nb">help</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">   </span>--version,<span class="w"> </span>-V<span class="w">  </span>print<span class="w"> </span>the<span class="w"> </span>version
+</span></code></pre></div>
+<h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
+<p>Create <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> named <code>vpc-1</code> with subnet <code>10.0.1.0/24</code> and VLAN <code>1001</code> with DHCP enabled and DHCP range starting from
+<code>10.0.1.10</code> (optional):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>vpc-1<span class="w"> </span>--subnet<span class="w"> </span><span class="m">10</span>.0.1.0/24<span class="w"> </span>--vlan<span class="w"> </span><span class="m">1001</span><span class="w"> </span>--dhcp<span class="w"> </span>--dhcp-start<span class="w"> </span><span class="m">10</span>.0.1.10
+</span></code></pre></div>
+<p>Attach previously created <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to the server <code>server-01</code> (which is connected to the Fabric using the
+<code>server-01--mclag--leaf-01--leaf-02</code> Connection):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--vpc-subnet<span class="w"> </span>vpc-1/default<span class="w"> </span>--connection<span class="w"> </span>server-01--mclag--leaf-01--leaf-02
+</span></code></pre></div>
+<p>To peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> with another <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (e.g. <code>vpc-2</code>) use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>peer<span class="w"> </span>--vpc<span class="w"> </span>vpc-1<span class="w"> </span>--vpc<span class="w"> </span>vpc-2
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
         <br>
         Created:
@@ -1036,7 +1293,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>

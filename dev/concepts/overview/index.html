@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://docs.githedgehog.com/dev/concepts/overview/">
       
       
-        <link rel="prev" href="../../getting-started/overview/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../wiring/overview/">
+        <link rel="next" href="../../getting-started/download/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -99,6 +99,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+Documentation is under construction and may be incomplete.
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
       <div data-md-color-scheme="default" data-md-component="outdated" hidden>
@@ -106,10 +123,10 @@
           <aside class="md-banner md-banner--warning">
             <div class="md-banner__inner md-grid md-typeset">
               
-  You're not viewing the latest version.
-  <a href="../../..">
-    <strong>Click here to go to latest.</strong>
-  </a>
+You're not viewing the latest version.
+<a href="../../..">
+  <strong>Click here to go to latest.</strong>
+</a>
 
             </div>
             <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
@@ -305,25 +322,6 @@
       
   
   
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/overview/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Getting Started
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -335,6 +333,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -345,6 +354,99 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric-api" class="md-nav__link">
+    Fabric API
+  </a>
+  
+    <nav class="md-nav" aria-label="Fabric API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wiring-diagram-api" class="md-nav__link">
+    Wiring Diagram API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-facing-api" class="md-nav__link">
+    User-facing API
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabricator" class="md-nav__link">
+    Fabricator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#das-boot" class="md-nav__link">
+    Das Boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric" class="md-nav__link">
+    Fabric
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Download
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -373,7 +475,7 @@
             
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Virtual Lab (VLAB)
   </span>
   
 
@@ -383,7 +485,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Wiring Diagram
+            Virtual Lab (VLAB)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -393,11 +495,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/overview/" class="md-nav__link">
+      <a href="../../vlab/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Overview
   </span>
   
 
@@ -413,11 +515,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/clos/" class="md-nav__link">
+      <a href="../../vlab/running/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Clos
+    Running VLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vlab/demo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo on VLAB
   </span>
   
 
@@ -478,26 +600,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update/Upgrade
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../install-upgrade/overview/" class="md-nav__link">
         
   
@@ -518,11 +620,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/requirements/" class="md-nav__link">
+      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Requirements
+    Supported Devices
   </span>
   
 
@@ -538,11 +640,51 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
+      <a href="../../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Supported Device List
+    System Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/build-wiring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Wiring Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ONiE Update (prepare switch)
   </span>
   
 
@@ -623,11 +765,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/vpc/" class="md-nav__link">
+      <a href="../../user-guide/devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    VPCs
+    Switches and Servers
   </span>
   
 
@@ -643,11 +785,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/harvester/" class="md-nav__link">
+      <a href="../../user-guide/connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Harvester
+    Connections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPCs and Namespaces
   </span>
   
 
@@ -683,11 +845,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/fabric/" class="md-nav__link">
+      <a href="../../user-guide/harvester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HedgeHog Network Fabric
+    Using VPCs with Harvester
   </span>
   
 
@@ -752,7 +914,7 @@
         
   
   <span class="md-ellipsis">
-    API Reference
+    Fabric API
   </span>
   
 
@@ -772,7 +934,92 @@
         
   
   <span class="md-ellipsis">
-    CLI reference
+    Fabric CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
   </span>
   
 
@@ -844,10 +1091,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -858,8 +1105,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Contribute
           </label>
@@ -932,6 +1179,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric-api" class="md-nav__link">
+    Fabric API
+  </a>
+  
+    <nav class="md-nav" aria-label="Fabric API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wiring-diagram-api" class="md-nav__link">
+    Wiring Diagram API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-facing-api" class="md-nav__link">
+    User-facing API
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabricator" class="md-nav__link">
+    Fabricator
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#das-boot" class="md-nav__link">
+    Das Boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric" class="md-nav__link">
+    Fabric
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -954,13 +1264,113 @@
 
 
 <h1 id="concepts">Concepts</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Hedgehog Open Network Fabric is build on top of Kubernetes and uses Kubernetes API to manage its resources. It means
+that all user-facing APIs are <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">Kubernetes Custom Resources (CRDs)</a>
+and so you can use standard Kubernetes tools to manage Fabric resources.</p>
+<p>Hedgehog Fabric consists of the following components:</p>
+<ul>
+<li>Fabricator - special tool that allows to install and configre Fabric as well as run virtual labs</li>
+<li>Control Node - one or more Kubernetes nodes in a single clusters running Fabric software<ul>
+<li>Das Boot - set of services providing switch boot and installation</li>
+<li>Fabric Controller - main control plane component that manages Fabric resources</li>
+</ul>
+</li>
+<li>Fabric Kubectl plugin (Fabric CLI) - plugin for kubectl that allows to manage Fabric resources in an easy way</li>
+<li>Fabric Agent - runs on every switch and manages switch configuration</li>
+</ul>
+<h2 id="fabric-api">Fabric API</h2>
+<p>All infrastructure is represented as a set of Fabric resource (Kubernetes CRDs) and named Wiring Diagram. It allows to
+define switches, servers, control nodes, external systems and connections between them in a single place and then use
+it to deploy and manage the whole infrastructure. On top of it Fabric provides a set of APIs to manage the VPCs and
+connections between them and between VPCs and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> systems.</p>
+<h3 id="wiring-diagram-api">Wiring Diagram API</h3>
+<p>Wiring Diagram consists of the following resources:</p>
+<ul>
+<li>"Devices": describes any device in the Fabric<ul>
+<li><strong>Switch</strong>: configuration of the switch, like port group speeds, port breakouts, switch IP/ASN, etc.</li>
+<li><strong>Server</strong>: any physical server attached to the Fabric including control nodes</li>
+</ul>
+</li>
+<li><strong>Connection</strong>: <em>any</em> logical connection for devices<ul>
+<li>usually it's a connection between two or more ports on two different devices</li>
+<li>incl. MCLAG Peer Link, Unbundled/MCLAG server connections, Fabric connection between spine and leaf etc.</li>
+</ul>
+</li>
+<li><strong>VLANNamespace</strong> -&gt; non-overlapping VLAN ranges for attaching servers</li>
+<li><strong>IPv4Namespace</strong> -&gt; non-overlapping IPv4 ranges for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets</li>
+</ul>
+<h3 id="user-facing-api">User-facing API</h3>
+<ul>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> API<ul>
+<li><strong><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></strong>: Virtual Private Cloud, similar to the public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it provides an isolated private network for the
+  resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP</li>
+<li><strong><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></strong>: represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignemnt to the Connection object which means exact server port to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> binding</li>
+<li><strong><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></strong>: enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)</li>
+</ul>
+</li>
+<li><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> API<ul>
+<li><strong><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></strong>: definition of the "external system" to peer with (could be one or multiple devices such as edge/provider routers)</li>
+<li><strong><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></strong>: configuration for a specific switch (using Connection object) describing how it connects to an external system</li>
+<li><strong><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></strong>: enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> connectivity by exposing specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets to the external system and allowing inbound routes from it</li>
+</ul>
+</li>
+</ul>
+<h2 id="fabricator">Fabricator</h2>
+<p>Installer builder and VLAB.</p>
+<ul>
+<li>Installer builder based on a preset (currently vlab for virtual &amp; lab for physical)</li>
+<li>Main input - wiring diagram</li>
+<li>All input artifacts coming from OCI registry</li>
+<li>Always full airgap (everything running from private registry)</li>
+<li>Flatcar Linux for control node, generated ignition.json</li>
+<li>Automatic k3s installation and private registry setup</li>
+<li>All components and their dependencies running in K8s</li>
+<li>Integrated Virtual Lab (VLAB) management</li>
+<li>Future:</li>
+<li>In-cluster (control) Operator to manage all components</li>
+<li>Upgrades handling for everything starting control node OS</li>
+<li>Installation progress, status and retries</li>
+<li>Disaster recovery and backups</li>
+</ul>
+<h2 id="das-boot">Das Boot</h2>
+<p>Switch boot and installation.</p>
+<ul>
+<li>Seeder</li>
+<li>Actual switch provisioing</li>
+<li>ONIE on a switch discovers control node using LLDP</li>
+<li>It loads and runs our multi-stage installer<ul>
+<li>Network configuration &amp; identity setup</li>
+<li>Performs device registration</li>
+<li>Hedgehog identity partion gets created on the switch</li>
+<li>Downloads SONiC installer and runs it</li>
+<li>Downloads Agent and it's config and installs to the switch</li>
+</ul>
+</li>
+<li>Registration Controller</li>
+<li>Device identity and registration</li>
+<li>Actual SONiC installers</li>
+<li>Misc: rsyslog/ntp</li>
+</ul>
+<h2 id="fabric">Fabric</h2>
+<p>Control plane and switch agent.</p>
+<ul>
+<li>Currently Fabric is basically single controller manager running in K8s</li>
+<li>It includes controllers for different CRDs and needs</li>
+<li>For example, auto assigning VNIs to <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> or generating Agent config</li>
+<li>Additionally, it's running admission webhook for our CRD APIs</li>
+<li>Agent is watching for the corresonding Agent CRD in K8s API</li>
+<li>It applies the changes and saves new config locally</li>
+<li>It reports back some status and information back to API</li>
+<li>Can perform reinstall and reboot of SONiC</li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
         <br>
         Created:
@@ -1036,7 +1446,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>

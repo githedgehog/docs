@@ -99,6 +99,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+Documentation is under construction and may be incomplete.
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
       <div data-md-color-scheme="default" data-md-component="outdated" hidden>
@@ -106,10 +123,10 @@
           <aside class="md-banner md-banner--warning">
             <div class="md-banner__inner md-grid md-typeset">
               
-  You're not viewing the latest version.
-  <a href="../..">
-    <strong>Click here to go to latest.</strong>
-  </a>
+You're not viewing the latest version.
+<a href="../..">
+  <strong>Click here to go to latest.</strong>
+</a>
 
             </div>
             <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
@@ -307,11 +324,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/overview/" class="md-nav__link">
+      <a href="../concepts/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting Started
+    Concepts
   </span>
   
 
@@ -326,11 +343,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/overview/" class="md-nav__link">
+      <a href="../getting-started/download/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Concepts
+    Download
   </span>
   
 
@@ -363,7 +380,7 @@
             
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Virtual Lab (VLAB)
   </span>
   
 
@@ -373,7 +390,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Wiring Diagram
+            Virtual Lab (VLAB)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -383,11 +400,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../wiring/overview/" class="md-nav__link">
+      <a href="../vlab/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Overview
   </span>
   
 
@@ -403,11 +420,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../wiring/clos/" class="md-nav__link">
+      <a href="../vlab/running/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Clos
+    Running VLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vlab/demo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo on VLAB
   </span>
   
 
@@ -468,26 +505,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../install-upgrade/onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update/Upgrade
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../install-upgrade/overview/" class="md-nav__link">
         
   
@@ -508,11 +525,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../install-upgrade/requirements/" class="md-nav__link">
+      <a href="../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Requirements
+    Supported Devices
   </span>
   
 
@@ -528,11 +545,51 @@
   
   
     <li class="md-nav__item">
-      <a href="../install-upgrade/supported-devices/" class="md-nav__link">
+      <a href="../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Supported Device List
+    System Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install-upgrade/build-wiring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Wiring Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install-upgrade/onie-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ONiE Update (prepare switch)
   </span>
   
 
@@ -613,11 +670,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../user-guide/vpc/" class="md-nav__link">
+      <a href="../user-guide/devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    VPCs
+    Switches and Servers
   </span>
   
 
@@ -633,11 +690,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../user-guide/harvester/" class="md-nav__link">
+      <a href="../user-guide/connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Harvester
+    Connections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPCs and Namespaces
   </span>
   
 
@@ -673,11 +750,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../user-guide/fabric/" class="md-nav__link">
+      <a href="../user-guide/harvester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HedgeHog Network Fabric
+    Using VPCs with Harvester
   </span>
   
 
@@ -742,7 +819,7 @@
         
   
   <span class="md-ellipsis">
-    API Reference
+    Fabric API
   </span>
   
 
@@ -762,7 +839,92 @@
         
   
   <span class="md-ellipsis">
-    CLI reference
+    Fabric CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
   </span>
   
 
@@ -1081,10 +1243,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1095,8 +1257,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Contribute
           </label>
@@ -1454,28 +1616,28 @@
 </ul>
 <h3 id="underlay-configuration">Underlay configuration:</h3>
 <p>Port speed, port group speed, port breakouts are configurable through the API</p>
-<h3 id="vpc-overlay-implementation"><abbr title="Virtual Private Cloud">VPC</abbr> (overlay) Implementation</h3>
+<h3 id="vpc-overlay-implementation"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (overlay) Implementation</h3>
 <p>VXLAN-based BGP eVPN.</p>
 <h3 id="multi-subnet-vpcs">Multi-subnet VPCs</h3>
-<p>A <abbr title="Virtual Private Cloud">VPC</abbr> consists of subnets, each with a user-specified VLAN for external host/server connectivity.</p>
+<p>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> consists of subnets, each with a user-specified VLAN for external host/server connectivity.</p>
 <h3 id="multiple-ip-address-namespaces">Multiple IP address namespaces</h3>
-<p>Multiple IP address namespaces are supported per fabric. Each <abbr title="Virtual Private Cloud">VPC</abbr> belongs to the corresponding IPv4 namespace. There are no subnet overlaps within a single IPv4 namespace. IP address namespaces can mutually overlap.</p>
+<p>Multiple IP address namespaces are supported per fabric. Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to the corresponding IPv4 namespace. There are no subnet overlaps within a single IPv4 namespace. IP address namespaces can mutually overlap.</p>
 <h3 id="vlan-namespace">VLAN Namespace</h3>
-<p>VLAN Namespaces guarantee the uniqueness of VLANs for a set of participating devices. Each switch belongs to a list of VLAN namespaces with non-overlapping VLAN ranges. Each <abbr title="Virtual Private Cloud">VPC</abbr> belongs to the VLAN namespace. There are no VLAN overlaps within a single VLAN namespace.</p>
+<p>VLAN Namespaces guarantee the uniqueness of VLANs for a set of participating devices. Each switch belongs to a list of VLAN namespaces with non-overlapping VLAN ranges. Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to the VLAN namespace. There are no VLAN overlaps within a single VLAN namespace.</p>
 <p>This feature is useful when multiple VM-management domains (like separate VMware clusters connect to the fabric).</p>
 <h3 id="switch-groups">Switch Groups</h3>
 <p>Each switch belongs to a list of switch groups used for identifying redundancy groups for things like external connectivity.</p>
-<h3 id="mutual-vpc-peering">Mutual <abbr title="Virtual Private Cloud">VPC</abbr> Peering</h3>
-<p><abbr title="Virtual Private Cloud">VPC</abbr> peering is supported and possible between a pair of VPCs that belong to the same IPv4 and VLAN namespaces.</p>
-<h3 id="external-vpc-peering">External <abbr title="Virtual Private Cloud">VPC</abbr> Peering</h3>
-<p><abbr title="Virtual Private Cloud">VPC</abbr> peering provides the means of peering with external networking devices (edge routers, firewalls, or data center interconnects). <abbr title="Virtual Private Cloud">VPC</abbr> egress/ingress is pinned to a specific group of the border or mixed leaf switches. Multiple “external systems” with multiple devices/links in each of them are supported.</p>
+<h3 id="mutual-vpc-peering">Mutual <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering is supported and possible between a pair of VPCs that belong to the same IPv4 and VLAN namespaces.</p>
+<h3 id="external-vpc-peering"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering provides the means of peering with external networking devices (edge routers, firewalls, or data center interconnects). <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> egress/ingress is pinned to a specific group of the border or mixed leaf switches. Multiple “external systems” with multiple devices/links in each of them are supported.</p>
 <p>The user controls what subnets/prefixes to import and export from/to the external system.</p>
 <p>No NAT function is supported for external peering.</p>
 <h3 id="host-connectivity">Host connectivity</h3>
 <p>Servers can be attached as Unbundled, Bundled (LAG) and MCLAG</p>
 <h3 id="dhcp-service">DHCP Service</h3>
-<p><abbr title="Virtual Private Cloud">VPC</abbr> is provided with an optional DHCP service with simple IPAM</p>
-<h3 id="local-vpc-peering-loopbacks">Local <abbr title="Virtual Private Cloud">VPC</abbr> peering loopbacks</h3>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is provided with an optional DHCP service with simple IPAM</p>
+<h3 id="local-vpc-peering-loopbacks">Local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering loopbacks</h3>
 <p>To enable local inter-vpc peering that allows routing of traffic between VPCs, local loopbacks are required to overcome silicon limitations.</p>
 <h3 id="scale">Scale</h3>
 <ul>
@@ -1485,16 +1647,16 @@
 <li>Total VPCs per switch: up to 1000</li>
 <li>[ Including VPCs attached at the given switch and VPCs peered with ]</li>
 <li>Total VPCs per VLAN namespace: up to 3000</li>
-<li>[ assuming 1 subnet per <abbr title="Virtual Private Cloud">VPC</abbr> ]</li>
+<li>[ assuming 1 subnet per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> ]</li>
 <li>Total VPCs per fabric:  unlimited</li>
 <li>[ if using multiple VLAN namespaces ]</li>
-<li><abbr title="Virtual Private Cloud">VPC</abbr> subnets per switch: up to 3000</li>
-<li><abbr title="Virtual Private Cloud">VPC</abbr> subnets per VLAN namespace up to 3000</li>
-<li>Subnets per <abbr title="Virtual Private Cloud">VPC</abbr>: up to 20</li>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets per switch: up to 3000</li>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets per VLAN namespace up to 3000</li>
+<li>Subnets per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>: up to 20</li>
 <li>[ just a validation; the current design allows up to 100, but it could be increased even more in the future ]</li>
-<li><abbr title="Virtual Private Cloud">VPC</abbr> Slots per remote peering @ switch: 2</li>
-<li>Max <abbr title="Virtual Private Cloud">VPC</abbr> loopbacks per switch: 500</li>
-<li>[ <abbr title="Virtual Private Cloud">VPC</abbr> loopback workarounds per switch are needed for local peering when both VPCs are attached to the switch or for external peering with <abbr title="Virtual Private Cloud">VPC</abbr> attached on the same switch that is peering with external ]</li>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Slots per remote peering @ switch: 2</li>
+<li>Max <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopbacks per switch: 500</li>
+<li>[ <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback workarounds per switch are needed for local peering when both VPCs are attached to the switch or for external peering with <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attached on the same switch that is peering with external ]</li>
 </ul>
 <h3 id="software-versions">Software versions</h3>
 <ul>
@@ -1513,11 +1675,11 @@
 <li>Fabric MTU is 9100 and not configurable right now (A3 planned)</li>
 <li>Server-facing MTU is 9136 and not configurable right now (A3+)</li>
 <li>no support for Access VLANs for attaching servers (A3 planned)</li>
-<li><abbr title="Virtual Private Cloud">VPC</abbr> peering is enabled on all subnets of the participating VPCs. No subnet selection for peering. (A3 planned)</li>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering is enabled on all subnets of the participating VPCs. No subnet selection for peering. (A3 planned)</li>
 <li>peering with external is only possible with a VLAN (by design)</li>
 <li>If you have VPCs with remote peering on a switch group, you can’t attach those VPCs on that switch group (by definition of remote peering)</li>
-<li>if a group of VPCs has remote peering on a switch group, any other <abbr title="Virtual Private Cloud">VPC</abbr> that will peer with those VPCs remotely will need to use the same switch group (by design)</li>
-<li>if <abbr title="Virtual Private Cloud">VPC</abbr> peers with external, it can only be remotely peered with on the same switches that have a connection to that external (by design)</li>
+<li>if a group of VPCs has remote peering on a switch group, any other <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> that will peer with those VPCs remotely will need to use the same switch group (by design)</li>
+<li>if <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peers with external, it can only be remotely peered with on the same switches that have a connection to that external (by design)</li>
 <li>the server-facing connection object is immutable as it’s very easy to get into a deadlock, re-create to change it (A3+)</li>
 </ul>
 <h2 id="alpha-1">Alpha-1</h2>
@@ -1539,11 +1701,11 @@
 <li>
 <p>Seeder:</p>
 <ul>
-<li>Seeder and Controller functions co-resident on the control node. Switch booting and ZTP on management ports directly connected to the controller.</li>
+<li>Seeder and Controller functions co-resident on the control node. Switch booting and <abbr title="Zero Touch Provisioning">ZTP</abbr> on management ports directly connected to the controller.</li>
 </ul>
 </li>
 <li>
-<p><abbr title="Hedgehog Fabricator - a tool for building Hedgehog Fabric">HHFab</abbr> - the fabricator:</p>
+<p><abbr title="Hedgehog Fabricator - a tool for building Hedgehog Fabric installers and running Virtual LABs">HHFab</abbr> - the fabricator:</p>
 <ul>
 <li>An operational tool to generate, initiate, and maintain the fabric software appliance.  Allows fabrication of the environment-specific image with all of the required underlay and security configuration baked in.</li>
 </ul>
@@ -1551,7 +1713,7 @@
 <li>
 <p>DHCP Service:</p>
 <ul>
-<li>A simple DHCP server for assigning IP addresses to hosts connecting to the fabric, optimized for use with <abbr title="Virtual Private Cloud">VPC</abbr> overlay.</li>
+<li>A simple DHCP server for assigning IP addresses to hosts connecting to the fabric, optimized for use with <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> overlay.</li>
 </ul>
 </li>
 <li>
@@ -1567,7 +1729,7 @@
 </ul>
 </li>
 <li>
-<p>External connectivity:</p>
+<p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> connectivity:</p>
 <ul>
 <li>An edge router must be connected to selected ports of one or both switches.  IPv4 support only.</li>
 </ul>
@@ -1579,21 +1741,21 @@
 </ul>
 </li>
 <li>
-<p><abbr title="Virtual Private Cloud">VPC</abbr> overlay implementation:</p>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> overlay implementation:</p>
 <ul>
-<li><abbr title="Virtual Private Cloud">VPC</abbr> is implemented as a set of ACLs within the underlay VRF. External connectivity to the VRF is performed via internally managed VLANs.  IPv4 support only.</li>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is implemented as a set of ACLs within the underlay VRF. <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> connectivity to the VRF is performed via internally managed VLANs.  IPv4 support only.</li>
 </ul>
 </li>
 <li>
-<p><abbr title="Virtual Private Cloud">VPC</abbr> Peering:</p>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering:</p>
 <ul>
-<li><abbr title="Virtual Private Cloud">VPC</abbr> peering is performed via ACLs with no fine-grained control.</li>
+<li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering is performed via ACLs with no fine-grained control.</li>
 </ul>
 </li>
 <li>
 <p>NAT</p>
 <ul>
-<li>DNAT + SNAT are supported per <abbr title="Virtual Private Cloud">VPC</abbr>. SNAT and DNAT can’t be enabled per <abbr title="Virtual Private Cloud">VPC</abbr> simultaneously.</li>
+<li>DNAT + SNAT are supported per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. SNAT and DNAT can’t be enabled per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> simultaneously.</li>
 </ul>
 </li>
 <li>
@@ -1612,7 +1774,7 @@
 <p>Limitations:</p>
 <ul>
 <li>40 VPCs max</li>
-<li>50 <abbr title="Virtual Private Cloud">VPC</abbr> peerings</li>
+<li>50 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings</li>
 <li>[ 768 ACL entry platform limitation from Broadcom ]</li>
 </ul>
 </li>
@@ -1710,7 +1872,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>

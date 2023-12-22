@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/overview/">
       
       
-        <link rel="prev" href="../onie-update/">
+        <link rel="prev" href="../../vlab/demo/">
       
       
-        <link rel="next" href="../requirements/">
+        <link rel="next" href="../supported-devices/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -92,12 +92,29 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview" class="md-skip">
+        <a href="#install-fabric" class="md-skip">
           Skip to content
         </a>
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+Documentation is under construction and may be incomplete.
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
       
     </div>
     
@@ -106,10 +123,10 @@
           <aside class="md-banner md-banner--warning">
             <div class="md-banner__inner md-grid md-typeset">
               
-  You're not viewing the latest version.
-  <a href="../../..">
-    <strong>Click here to go to latest.</strong>
-  </a>
+You're not viewing the latest version.
+<a href="../../..">
+  <strong>Click here to go to latest.</strong>
+</a>
 
             </div>
             <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
@@ -307,11 +324,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/overview/" class="md-nav__link">
+      <a href="../../concepts/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting Started
+    Concepts
   </span>
   
 
@@ -326,11 +343,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/overview/" class="md-nav__link">
+      <a href="../../getting-started/download/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Concepts
+    Download
   </span>
   
 
@@ -363,7 +380,7 @@
             
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Virtual Lab (VLAB)
   </span>
   
 
@@ -373,7 +390,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Wiring Diagram
+            Virtual Lab (VLAB)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -383,11 +400,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/overview/" class="md-nav__link">
+      <a href="../../vlab/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Wiring Diagram
+    Overview
   </span>
   
 
@@ -403,11 +420,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../wiring/clos/" class="md-nav__link">
+      <a href="../../vlab/running/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Clos
+    Running VLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vlab/demo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo on VLAB
   </span>
   
 
@@ -466,26 +503,6 @@
                 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update/Upgrade
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -497,6 +514,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -507,26 +535,53 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../requirements/" class="md-nav__link">
         
-  
-  <span class="md-ellipsis">
-    Requirements
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-steps" class="md-nav__link">
+    Main steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
+    Build Control Node configuration and installer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-control-node" class="md-nav__link">
+    Install Control Node
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -542,7 +597,67 @@
         
   
   <span class="md-ellipsis">
-    Supported Device List
+    Supported Devices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-wiring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Wiring Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onie-update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ONiE Update (prepare switch)
   </span>
   
 
@@ -623,11 +738,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/vpc/" class="md-nav__link">
+      <a href="../../user-guide/devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    VPCs
+    Switches and Servers
   </span>
   
 
@@ -643,11 +758,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/harvester/" class="md-nav__link">
+      <a href="../../user-guide/connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Harvester
+    Connections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/vpcs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VPCs and Namespaces
   </span>
   
 
@@ -683,11 +818,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user-guide/fabric/" class="md-nav__link">
+      <a href="../../user-guide/harvester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HedgeHog Network Fabric
+    Using VPCs with Harvester
   </span>
   
 
@@ -752,7 +887,7 @@
         
   
   <span class="md-ellipsis">
-    API Reference
+    Fabric API
   </span>
   
 
@@ -772,7 +907,92 @@
         
   
   <span class="md-ellipsis">
-    CLI reference
+    Fabric CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
   </span>
   
 
@@ -844,10 +1064,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -858,8 +1078,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Contribute
           </label>
@@ -932,6 +1152,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-steps" class="md-nav__link">
+    Main steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
+    Build Control Node configuration and installer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-control-node" class="md-nav__link">
+    Install Control Node
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -953,14 +1209,100 @@
   
 
 
-<h1 id="overview">Overview</h1>
+<h1 id="install-fabric">Install Fabric</h1>
+<div class="admonition warning">
+<p>Under construction.</p>
+</div>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Have a machine with access to internet to use Fabricator and build installer</li>
+<li>Have a machine to install Fabric Control Node on with enough NICs to connect to at least one switch using Front Panel
+  ports and enough CPU and RAM (<a href="../requirements/">System Requirements</a>) as well as IPMI access to it to install OS</li>
+<li>Have enough <a href="../supported-devices/">Supported Switches</a> for your Fabric</li>
+</ul>
+<h2 id="main-steps">Main steps</h2>
+<p>This chapter is dedicated to the Hedgehog Fabric installation on the bare-metal control node(s) and switches, their
+preparation and configuration.</p>
+<p>Please, get <code>hhfab</code> installed following instructions from the <a href="../../getting-started/download/">Download</a> section.</p>
+<p>Main steps to install Fabric are:</p>
+<ol>
+<li>Install <code>hhfab</code> on the machines with access to internet<ol>
+<li><a href="../build-wiring/">Prepare Wiring Diagram</a></li>
+<li><a href="#build-control-node-configuration-and-installer">Build Control Node configuration and installer</a></li>
+</ol>
+</li>
+<li><a href="#install-control-node">Install Control Node</a><ol>
+<li>Install Flatcar Linux on the Control Node</li>
+<li>Upload and run Control Node installer on the Control Node</li>
+</ol>
+</li>
+<li>Prepare supported switches<ol>
+<li><a href="../onie-update/">Install Hedgehog ONiE (HONiE) on them</a></li>
+<li>Reboot them into ONiE Install Mode and they will be automatically provisioned</li>
+</ol>
+</li>
+</ol>
+<h2 id="build-control-node-configuration-and-installer">Build Control Node configuration and installer</h2>
+<p>It's the only step that requires internet access to download artifacts and build installer.</p>
+<p>Once you've prepated Wiring Diagram, you can initialize Fabricator by running <code>hhfab init</code> command and passwing optional
+configuration into it as well as wiring diagram file(s) as flags. Additionally, there are a lot of customizations
+availble as flags, e.g. to setup default credentials, keys and etc, please, refer to <code>hhfab init --help</code> for more.</p>
+<p>The <code>--dev</code> options allows to enable development mode which will enable default credentials and keys for the Control
+Node and switches:</p>
+<ul>
+<li>Default user with passwordless sudo for the control node and test servers is <code>core</code> with password <code>HHFab.Admin!</code>.</li>
+<li>Admin user with full access and passwordless sudo for the switches is <code>admin</code> with password <code>HHFab.Admin!</code>.</li>
+<li>Read-only, non-sudo user with access only to the switch CLI for the switches is <code>op</code> with password <code>HHFab.Op!</code>.</li>
+</ul>
+<p>Alternatively, you can pass your own credentials and keys using <code>--authorized-key</code> and <code>--control-password-hash</code> flags.
+Password hash can be generated using <code>openssl passwd -5</code> command. Further customizations are available in the config
+file that could be passed using <code>--config</code> flag.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>hhfab<span class="w"> </span>init<span class="w"> </span>--preset<span class="w"> </span>lab<span class="w"> </span>--dev<span class="w"> </span>--wiring<span class="w"> </span>file1.yaml<span class="w"> </span>--wiring<span class="w"> </span>file2.yaml
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>hhfab<span class="w"> </span>build
+</span></code></pre></div>
+<p>As a result, you will get the following files in the <code>.hhfab</code> directory or the one you've passed using <code>--basedir</code> flag:</p>
+<ul>
+<li><code>control-os/ignition.json</code> - ignition config for the control node to get OS installed</li>
+<li><code>control-install.tgz</code> - installer for the control node, it will be uploaded to the control node and run there</li>
+</ul>
+<h2 id="install-control-node">Install Control Node</h2>
+<p>It's fully air-gapped installation and doesn't require internet access.</p>
+<p>Please, download latest stable Flatcar Container Linux ISO from the
+<a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">link</a> and boot into it
+(using IPMI attaching media, USB stick or any other way).</p>
+<p>Once you've booted into the Flatcar installer, you need to download <code>ignition.json</code> built in the prvious step to it and
+run Flatcar installation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>flatcar-install<span class="w"> </span>-d<span class="w"> </span>/dev/sda<span class="w"> </span>-i<span class="w"> </span>ignition.json
+</span></code></pre></div>
+<p>Where <code>/dev/sda</code> is a disk you want to install Control Node to and <code>ignition.json</code> is the <code>control-os/ignition.json</code>
+file from previous step downloaded to the Flatcar installer.</p>
+<p>Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.</p>
+<p>At that point, you should get into the installed Flatcar Linux using the dev or provided credentials with user <code>core</code>
+and you can now install Hedgehog Open Network Fabric on it. Download <code>control-install.tgz</code> to the just installed Control
+Node (e.g. by using scp) and run it.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-install.tgz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>control-install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>run
+</span></code></pre></div>
+<p>It'll output log of installing the Fabric (including Kubernetes cluster, OCI registry misc components and etc), you should see
+following output in the end:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>...
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="m">01</span>:34:45<span class="w"> </span>INF<span class="w"> </span>Running<span class="w"> </span><span class="nv">name</span><span class="o">=</span>reloader-image<span class="w"> </span><span class="nv">op</span><span class="o">=</span><span class="s2">&quot;push fabricator/reloader:v1.0.40&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="m">01</span>:34:47<span class="w"> </span>INF<span class="w"> </span>Running<span class="w"> </span><span class="nv">name</span><span class="o">=</span>reloader-chart<span class="w"> </span><span class="nv">op</span><span class="o">=</span><span class="s2">&quot;push fabricator/charts/reloader:1.0.40&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="m">01</span>:34:47<span class="w"> </span>INF<span class="w"> </span>Running<span class="w"> </span><span class="nv">name</span><span class="o">=</span>reloader-install<span class="w"> </span><span class="nv">op</span><span class="o">=</span><span class="s2">&quot;file /var/lib/rancher/k3s/server/manifests/hh-reloader-install.yaml&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="m">01</span>:34:47<span class="w"> </span>INF<span class="w"> </span>Running<span class="w"> </span><span class="nv">name</span><span class="o">=</span>reloader-wait<span class="w"> </span><span class="nv">op</span><span class="o">=</span><span class="s2">&quot;wait deployment/reloader-reloader&quot;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>deployment.apps/reloader-reloader<span class="w"> </span>condition<span class="w"> </span>met
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="m">01</span>:35:15<span class="w"> </span>INF<span class="w"> </span>Done<span class="w"> </span><span class="nv">took</span><span class="o">=</span>3m39.586394608s
+</span></code></pre></div>
+<p>At that point, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code> preinstalled as
+part of the Control Node installer.</p>
+<p>You can now get HONiE installed on your switches and reboot them into ONiE Install Mode and they will be automatically
+provisioned from the Control Node.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
       
         <br>
         Created:
@@ -1036,7 +1378,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
