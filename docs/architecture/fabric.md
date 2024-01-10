@@ -1,3 +1,18 @@
+<!--@@joggrdoc@@-->
+<!-- @joggr:version(v1):end -->
+<!-- @joggr:warning:start -->
+<!-- 
+  _   _   _    __        __     _      ____    _   _   ___   _   _    ____     _   _   _ 
+ | | | | | |   \ \      / /    / \    |  _ \  | \ | | |_ _| | \ | |  / ___|   | | | | | |
+ | | | | | |    \ \ /\ / /    / _ \   | |_) | |  \| |  | |  |  \| | | |  _    | | | | | |
+ |_| |_| |_|     \ V  V /    / ___ \  |  _ <  | |\  |  | |  | |\  | | |_| |   |_| |_| |_|
+ (_) (_) (_)      \_/\_/    /_/   \_\ |_| \_\ |_| \_| |___| |_| \_|  \____|   (_) (_) (_)
+                                                              
+This document is managed by Joggr. Editing this document could break Joggr's core features, i.e. our 
+ability to auto-maintain this document. Please use the Joggr editor to edit this document 
+(link at bottom of the page).
+-->
+<!-- @joggr:warning:end -->
 # Hedgehog Network Fabric
 
 The Hedgehog Open Network Fabric is an open source network architecture that provides connectivity between virtual and
@@ -90,3 +105,10 @@ supports two different peering modes.
   by the l3vni. All traffic that does not belong to the VPC's is forwarded to the peering switch and which has routes
   to the other VPC's and gets forwarded from there. The bandwith limitation that exists in the local peering solution
   is solved here as the bandwith between the two VPC's is determined by the fabric cross section bandwidth.
+
+<!-- @joggr:editLink(16328031-368b-4704-861e-2ada85a7a942):start -->
+---
+<a href="https://app.joggr.io/app/documents/16328031-368b-4704-861e-2ada85a7a942/edit" alt="Edit doc on Joggr">
+  <img src="https://storage.googleapis.com/joggr-public-assets/github/badges/edit-document-badge.svg" />
+</a>
+<!-- @joggr:editLink(16328031-368b-4704-861e-2ada85a7a942):end -->

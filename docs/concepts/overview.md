@@ -1,3 +1,18 @@
+<!--@@joggrdoc@@-->
+<!-- @joggr:version(v1):end -->
+<!-- @joggr:warning:start -->
+<!-- 
+  _   _   _    __        __     _      ____    _   _   ___   _   _    ____     _   _   _ 
+ | | | | | |   \ \      / /    / \    |  _ \  | \ | | |_ _| | \ | |  / ___|   | | | | | |
+ | | | | | |    \ \ /\ / /    / _ \   | |_) | |  \| |  | |  |  \| | | |  _    | | | | | |
+ |_| |_| |_|     \ V  V /    / ___ \  |  _ <  | |\  |  | |  | |\  | | |_| |   |_| |_| |_|
+ (_) (_) (_)      \_/\_/    /_/   \_\ |_| \_\ |_| \_| |___| |_| \_|  \____|   (_) (_) (_)
+                                                              
+This document is managed by Joggr. Editing this document could break Joggr's core features, i.e. our 
+ability to auto-maintain this document. Please use the Joggr editor to edit this document 
+(link at bottom of the page).
+-->
+<!-- @joggr:warning:end -->
 # Concepts
 
 ## Introduction
@@ -95,3 +110,9 @@ Control plane and switch agent.
   * It applies the changes and saves new config locally
   * It reports back some status and information back to API
   * Can perform reinstall and reboot of SONiC
+<!-- @joggr:editLink(2d6b5766-6d7b-4bc0-a403-28fc5d1b0ad3):start -->
+---
+<a href="https://app.joggr.io/app/documents/2d6b5766-6d7b-4bc0-a403-28fc5d1b0ad3/edit" alt="Edit doc on Joggr">
+  <img src="https://storage.googleapis.com/joggr-public-assets/github/badges/edit-document-badge.svg" />
+</a>
+<!-- @joggr:editLink(2d6b5766-6d7b-4bc0-a403-28fc5d1b0ad3):end -->

@@ -1,3 +1,18 @@
+<!--@@joggrdoc@@-->
+<!-- @joggr:version(v1):end -->
+<!-- @joggr:warning:start -->
+<!-- 
+  _   _   _    __        __     _      ____    _   _   ___   _   _    ____     _   _   _ 
+ | | | | | |   \ \      / /    / \    |  _ \  | \ | | |_ _| | \ | |  / ___|   | | | | | |
+ | | | | | |    \ \ /\ / /    / _ \   | |_) | |  \| |  | |  |  \| | | |  _    | | | | | |
+ |_| |_| |_|     \ V  V /    / ___ \  |  _ <  | |\  |  | |  | |\  | | |_| |   |_| |_| |_|
+ (_) (_) (_)      \_/\_/    /_/   \_\ |_| \_\ |_| \_| |___| |_| \_|  \____|   (_) (_) (_)
+                                                              
+This document is managed by Joggr. Editing this document could break Joggr's core features, i.e. our 
+ability to auto-maintain this document. Please use the Joggr editor to edit this document 
+(link at bottom of the page).
+-->
+<!-- @joggr:warning:end -->
 # Demo on VLAB
 
 You can find instructions on how to setup VLAB in the [Overview](overview.md) and [Running VLAB](running.md) sections.
@@ -266,3 +281,9 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
     3 packets transmitted, 3 received, +3 duplicates, 0% packet loss, time 2003ms
     rtt min/avg/max/mdev = 6.987/8.720/9.595/1.226 ms
     ```
+<!-- @joggr:editLink(7689bbd5-2f65-4007-bad2-741c81aa0766):start -->
+---
+<a href="https://app.joggr.io/app/documents/7689bbd5-2f65-4007-bad2-741c81aa0766/edit" alt="Edit doc on Joggr">
+  <img src="https://storage.googleapis.com/joggr-public-assets/github/badges/edit-document-badge.svg" />
+</a>
+<!-- @joggr:editLink(7689bbd5-2f65-4007-bad2-741c81aa0766):end -->

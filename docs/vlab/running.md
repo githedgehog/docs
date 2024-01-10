@@ -1,3 +1,18 @@
+<!--@@joggrdoc@@-->
+<!-- @joggr:version(v1):end -->
+<!-- @joggr:warning:start -->
+<!-- 
+  _   _   _    __        __     _      ____    _   _   ___   _   _    ____     _   _   _ 
+ | | | | | |   \ \      / /    / \    |  _ \  | \ | | |_ _| | \ | |  / ___|   | | | | | |
+ | | | | | |    \ \ /\ / /    / _ \   | |_) | |  \| |  | |  |  \| | | |  _    | | | | | |
+ |_| |_| |_|     \ V  V /    / ___ \  |  _ <  | |\  |  | |  | |\  | | |_| |   |_| |_| |_|
+ (_) (_) (_)      \_/\_/    /_/   \_\ |_| \_\ |_| \_| |___| |_| \_|  \____|   (_) (_) (_)
+                                                              
+This document is managed by Joggr. Editing this document could break Joggr's core features, i.e. our 
+ability to auto-maintain this document. Please use the Joggr editor to edit this document 
+(link at bottom of the page).
+-->
+<!-- @joggr:warning:end -->
 # Running VLAB
 
 Please, make sure to follow prerequisites and check system requirements in the [VLAB Overview](overview.md) section
@@ -304,3 +319,10 @@ default   6h12m
 ## Reset VLAB
 
 To reset VLAB and start over just remove the `.hhfab` directory and run `hhfab init` again.
+
+<!-- @joggr:editLink(685062a6-2231-4e97-9f3f-6cf178efcb6e):start -->
+---
+<a href="https://app.joggr.io/app/documents/685062a6-2231-4e97-9f3f-6cf178efcb6e/edit" alt="Edit doc on Joggr">
+  <img src="https://storage.googleapis.com/joggr-public-assets/github/badges/edit-document-badge.svg" />
+</a>
+<!-- @joggr:editLink(685062a6-2231-4e97-9f3f-6cf178efcb6e):end -->

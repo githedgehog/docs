@@ -1,3 +1,18 @@
+<!--@@joggrdoc@@-->
+<!-- @joggr:version(v1):end -->
+<!-- @joggr:warning:start -->
+<!-- 
+  _   _   _    __        __     _      ____    _   _   ___   _   _    ____     _   _   _ 
+ | | | | | |   \ \      / /    / \    |  _ \  | \ | | |_ _| | \ | |  / ___|   | | | | | |
+ | | | | | |    \ \ /\ / /    / _ \   | |_) | |  \| |  | |  |  \| | | |  _    | | | | | |
+ |_| |_| |_|     \ V  V /    / ___ \  |  _ <  | |\  |  | |  | |\  | | |_| |   |_| |_| |_|
+ (_) (_) (_)      \_/\_/    /_/   \_\ |_| \_\ |_| \_| |___| |_| \_|  \____|   (_) (_) (_)
+                                                              
+This document is managed by Joggr. Editing this document could break Joggr's core features, i.e. our 
+ability to auto-maintain this document. Please use the Joggr editor to edit this document 
+(link at bottom of the page).
+-->
+<!-- @joggr:warning:end -->
 # System Requirements
 
 - Fast SSDs for system/root and K8s & container runtime forlders are required for stable work
@@ -39,3 +54,10 @@
 | CPU  | 1       | 2           |
 | RAM  | 1 GB    | 1.5 GB      |
 | Disk | 5 GB    | 10 GB       |
+
+<!-- @joggr:editLink(e5647ea8-4fef-4251-9a78-97e353abe161):start -->
+---
+<a href="https://app.joggr.io/app/documents/e5647ea8-4fef-4251-9a78-97e353abe161/edit" alt="Edit doc on Joggr">
+  <img src="https://storage.googleapis.com/joggr-public-assets/github/badges/edit-document-badge.svg" />
+</a>
+<!-- @joggr:editLink(e5647ea8-4fef-4251-9a78-97e353abe161):end -->

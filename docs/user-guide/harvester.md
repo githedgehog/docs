@@ -1,3 +1,18 @@
+<!--@@joggrdoc@@-->
+<!-- @joggr:version(v1):end -->
+<!-- @joggr:warning:start -->
+<!-- 
+  _   _   _    __        __     _      ____    _   _   ___   _   _    ____     _   _   _ 
+ | | | | | |   \ \      / /    / \    |  _ \  | \ | | |_ _| | \ | |  / ___|   | | | | | |
+ | | | | | |    \ \ /\ / /    / _ \   | |_) | |  \| |  | |  |  \| | | |  _    | | | | | |
+ |_| |_| |_|     \ V  V /    / ___ \  |  _ <  | |\  |  | |  | |\  | | |_| |   |_| |_| |_|
+ (_) (_) (_)      \_/\_/    /_/   \_\ |_| \_\ |_| \_| |___| |_| \_|  \____|   (_) (_) (_)
+                                                              
+This document is managed by Joggr. Editing this document could break Joggr's core features, i.e. our 
+ability to auto-maintain this document. Please use the Joggr editor to edit this document 
+(link at bottom of the page).
+-->
+<!-- @joggr:warning:end -->
 # Using VPCs with Harvester
 
 It's an example of how Hedgehog Fabric can be used with Harvester or any hypervisor on the servers connected to Fabric.
@@ -99,3 +114,10 @@ spec:
 ### Using the VPCs
 
 Now you can choose created VM Networks when creating a VM in Harvester and have them created as part of the VPC.
+
+<!-- @joggr:editLink(88a811d6-e7cc-4cd0-b0da-9989f5d89783):start -->
+---
+<a href="https://app.joggr.io/app/documents/88a811d6-e7cc-4cd0-b0da-9989f5d89783/edit" alt="Edit doc on Joggr">
+  <img src="https://storage.googleapis.com/joggr-public-assets/github/badges/edit-document-badge.svg" />
+</a>
+<!-- @joggr:editLink(88a811d6-e7cc-4cd0-b0da-9989f5d89783):end -->
