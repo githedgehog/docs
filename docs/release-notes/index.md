@@ -1,5 +1,42 @@
 # Release notes
 
+## Alpha-3
+
+### SONiC support
+
+Broadcom Enterprise SONiC 4.2.0 (previously 4.1.1)
+
+### Multiple IPv4 namespaces
+
+* Support for multiple overlapping IPv4 addresses in the Fabric
+* Integrated with on-demand DHCP Service (see below)
+* All IPv4 addresses within a given VPC must be unique
+* Only VPCs with non-overlapping IPv4 subnets can peer within the Fabric
+* An external NAT device is required for peering of VPCs with overlapping subnets
+
+### Hedgehog Fabric DHCP and IPAM Service
+
+* Custom DHCP server executing in the controllers
+* Multiple IPv4 namespaces with overlapping subnets
+* Multiple VLAN namespaces with overlapping VLAN ranges
+* DHCP leases exposed through the Fabric API
+* Available for VLAB as well as the Fabric
+
+### Hedgehog Fabric NTP Service
+
+* Custom NTP servers at the controller
+* Switches automatically configured to use control node as NTP server
+* NTP servers can be configured to sync to external time/NTP server
+
+### StaticExternal connections
+
+* Directly connect external infrastructure services (such as NTP, DHCP, DNS) to the Fabric
+* No BGP is required, just automatically configured  static routes
+
+### DHCP Relay to 3rd party DHCP service
+Support for 3rd party DHCP server (DHCP Relay config) through the API
+
+
 ## Alpha-2
 
 ### Controller

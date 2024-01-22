@@ -15,13 +15,18 @@ spec:
   ipv4Namespace: default # Limits to which subnets could be used by VPC to guarantee non-overlapping IPv4 ranges
   vlanNamespace: default # Limits to which switches VPC could be attached to guarantee non-overlapping VLANs
   subnets:
-    default: # Each subnet is named
-      dhcp: # On-demand DHCP server
-        enable: true
+    default: # Each subnet is named, "default" subnet isn't required, but actively used by CLI
+      dhcp:
+        enable: true # On-demand DHCP server
         range: # Optionally, start/end range could be specified
           start: 10.10.1.10
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
       vlan: "1001" # User-defined VLAN from vlan namespace
+    thrird-party-dhcp: # Another subnet
+      dhcp:
+        relay: 10.99.0.100/24 # Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection
+      subnet: "10.10.2.0/24"
+      vlan: "1002"
     another-subnet: # Minimal configuration is just a name, subnet and VLAN
       subnet: 10.10.100.0/24
       vlan: "1100"

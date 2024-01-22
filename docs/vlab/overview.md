@@ -70,3 +70,7 @@ ubuntu@docs:~$ kvm-ok
 INFO: /dev/kvm exists
 KVM acceleration can be used
 ```
+
+## Next steps
+
+* [Running VLAB](./running.md)

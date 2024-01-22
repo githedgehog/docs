@@ -183,9 +183,38 @@ spec:
         port: s5248-01/Ethernet0
 ```
 
-## External
+## Connecting Fabric to outside world
 
-Connection to the external systems, e.g. edge/provider routers.
+Provides connectivity to the outside world, e.g. internet, other networks or some other systems such as DHCP, NTP, LMA,
+AAA services.
+
+### StaticExternal
+
+Simple way to connect things like DHCP server directly to the Fabric by connecting it to specific switch ports.
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1alpha2
+kind: Connection
+metadata:
+  name: third-party-dhcp-server--static-external--s5248-04
+  namespace: default
+spec:
+  staticExternal:
+    link:
+      switch:
+        port: s5248-04/Ethernet1 # switch port to use
+        ip: 172.30.50.5/24 # IP address that will be assigned to the switch port
+        vlan: 1005 # Optional VLAN ID to use for the switch port, if 0 - no VLAN is configured
+        subnets: # List of subnets that will be routed to the switch port using static routes and next hop
+          - 10.99.0.1/24
+          - 10.199.0.100/32
+        nextHop: 172.30.50.1 # Next hop IP address that will be used when configuring static routes for the "subnets" list
+```
+
+### External
+
+Connection to the external systems, e.g. edge/provider routers using BGP peering and configuring Inbound/Outbound
+communities as well as granularly controlling what's getting advertised and which routes are accepted.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2

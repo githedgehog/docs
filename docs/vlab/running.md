@@ -54,6 +54,9 @@ ubuntu@docs:~$ hhfab init -p vlab --mclag-leafs-count 4 --orphan-leafs-count 2
 01:21:53 INF Initialized preset=vlab fabricMode=spine-leaf config=.hhfab/config.yaml wiring=.hhfab/wiring.yaml
 ```
 
+Additionally, you can do extra Fabric configuration using flags on `init` command or by passing config file, more
+information about it is available in the [Fabric Configuration](../install-upgrade/config.md) section.
+
 Once you have initialized the VLAB you need to download all artifacts and build the installer using `hhfab build`
 command. It will automatically download all required artifacts from the OCI registry and build the installer as well as
 all other prerequisites for running the VLAB.
@@ -304,3 +307,7 @@ default   6h12m
 ## Reset VLAB
 
 To reset VLAB and start over just remove the `.hhfab` directory and run `hhfab init` again.
+
+## Next steps
+
+* [Running Demo](./demo.md)

@@ -21,6 +21,7 @@ Main steps to install Fabric are:
 
 1. Install `hhfab` on the machines with access to internet
     1. [Prepare Wiring Diagram](./build-wiring.md)
+    1. [Select Fabric Configuration](./config.md)
     1. [Build Control Node configuration and installer](#build-control-node-configuration-and-installer)
 1. [Install Control Node](#install-control-node)
     1. Install Flatcar Linux on the Control Node
