@@ -585,6 +585,26 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../install-upgrade/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../install-upgrade/onie-update/" class="md-nav__link">
         
   
@@ -1012,6 +1032,61 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#alpha-3" class="md-nav__link">
+    Alpha-3
+  </a>
+  
+    <nav class="md-nav" aria-label="Alpha-3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sonic-support" class="md-nav__link">
+    SONiC support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-ipv4-namespaces" class="md-nav__link">
+    Multiple IPv4 namespaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hedgehog-fabric-dhcp-and-ipam-service" class="md-nav__link">
+    Hedgehog Fabric DHCP and IPAM Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hedgehog-fabric-ntp-service" class="md-nav__link">
+    Hedgehog Fabric NTP Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#staticexternal-connections" class="md-nav__link">
+    StaticExternal connections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-relay-to-3rd-party-dhcp-service" class="md-nav__link">
+    DHCP Relay to 3rd party DHCP service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alpha-2" class="md-nav__link">
     Alpha-2
   </a>
@@ -1338,6 +1413,61 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#alpha-3" class="md-nav__link">
+    Alpha-3
+  </a>
+  
+    <nav class="md-nav" aria-label="Alpha-3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sonic-support" class="md-nav__link">
+    SONiC support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-ipv4-namespaces" class="md-nav__link">
+    Multiple IPv4 namespaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hedgehog-fabric-dhcp-and-ipam-service" class="md-nav__link">
+    Hedgehog Fabric DHCP and IPAM Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hedgehog-fabric-ntp-service" class="md-nav__link">
+    Hedgehog Fabric NTP Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#staticexternal-connections" class="md-nav__link">
+    StaticExternal connections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcp-relay-to-3rd-party-dhcp-service" class="md-nav__link">
+    DHCP Relay to 3rd party DHCP service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alpha-2" class="md-nav__link">
     Alpha-2
   </a>
@@ -1568,6 +1698,38 @@ You're not viewing the latest version.
 
 
 <h1 id="release-notes">Release notes</h1>
+<h2 id="alpha-3">Alpha-3</h2>
+<h3 id="sonic-support">SONiC support</h3>
+<p>Broadcom Enterprise SONiC 4.2.0 (previously 4.1.1)</p>
+<h3 id="multiple-ipv4-namespaces">Multiple IPv4 namespaces</h3>
+<ul>
+<li>Support for multiple overlapping IPv4 addresses in the Fabric</li>
+<li>Integrated with on-demand DHCP Service (see below)</li>
+<li>All IPv4 addresses within a given <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> must be unique</li>
+<li>Only VPCs with non-overlapping IPv4 subnets can peer within the Fabric</li>
+<li>An external NAT device is required for peering of VPCs with overlapping subnets</li>
+</ul>
+<h3 id="hedgehog-fabric-dhcp-and-ipam-service">Hedgehog Fabric DHCP and IPAM Service</h3>
+<ul>
+<li>Custom DHCP server executing in the controllers</li>
+<li>Multiple IPv4 namespaces with overlapping subnets</li>
+<li>Multiple VLAN namespaces with overlapping VLAN ranges</li>
+<li>DHCP leases exposed through the Fabric API</li>
+<li>Available for VLAB as well as the Fabric</li>
+</ul>
+<h3 id="hedgehog-fabric-ntp-service">Hedgehog Fabric NTP Service</h3>
+<ul>
+<li>Custom NTP servers at the controller</li>
+<li>Switches automatically configured to use control node as NTP server</li>
+<li>NTP servers can be configured to sync to external time/NTP server</li>
+</ul>
+<h3 id="staticexternal-connections">StaticExternal connections</h3>
+<ul>
+<li>Directly connect external infrastructure services (such as NTP, DHCP, DNS) to the Fabric</li>
+<li>No BGP is required, just automatically configured  static routes</li>
+</ul>
+<h3 id="dhcp-relay-to-3rd-party-dhcp-service">DHCP Relay to 3rd party DHCP service</h3>
+<p>Support for 3rd party DHCP server (DHCP Relay config) through the API</p>
 <h2 id="alpha-2">Alpha-2</h2>
 <h3 id="controller">Controller</h3>
 <p>A single controller. No controller redundancy.</p>
@@ -1796,7 +1958,7 @@ You're not viewing the latest version.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
       
         <br>
         Created:

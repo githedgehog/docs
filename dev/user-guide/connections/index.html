@@ -585,6 +585,26 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../../install-upgrade/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../install-upgrade/onie-update/" class="md-nav__link">
         
   
@@ -811,9 +831,29 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#connecting-fabric-to-outside-world" class="md-nav__link">
+    Connecting Fabric to outside world
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting Fabric to outside world">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#staticexternal" class="md-nav__link">
+    StaticExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#external" class="md-nav__link">
     External
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1288,9 +1328,29 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#connecting-fabric-to-outside-world" class="md-nav__link">
+    Connecting Fabric to outside world
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting Fabric to outside world">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#staticexternal" class="md-nav__link">
+    StaticExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#external" class="md-nav__link">
     External
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1467,18 +1527,41 @@ caused by the hardware limitation of the currently supported switches.</p>
 </span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.20.1/31</span>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-01/Ethernet0</span>
 </span></code></pre></div>
-<h2 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h2>
-<p>Connection to the external systems, e.g. edge/provider routers.</p>
+<h2 id="connecting-fabric-to-outside-world">Connecting Fabric to outside world</h2>
+<p>Provides connectivity to the outside world, e.g. internet, other networks or some other systems such as DHCP, NTP, LMA,
+AAA services.</p>
+<h3 id="staticexternal">StaticExternal</h3>
+<p>Simple way to connect things like DHCP server directly to the Fabric by connecting it to specific switch ports.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-03--external--5835</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">third-party-dhcp-server--static-external--s5248-04</span>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">external</span><span class="p">:</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nt">link</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines a single link between a switch and an external system</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">staticExternal</span><span class="p">:</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nt">link</span><span class="p">:</span>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-03/Ethernet3</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-04/Ethernet1</span><span class="w"> </span><span class="c1"># switch port to use</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.50.5/24</span><span class="w"> </span><span class="c1"># IP address that will be assigned to the switch port</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1005</span><span class="w"> </span><span class="c1"># Optional VLAN ID to use for the switch port, if 0 - no VLAN is configured</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="c1"># List of subnets that will be routed to the switch port using static routes and next hop</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.1/24</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.199.0.100/32</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="nt">nextHop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.50.1</span><span class="w"> </span><span class="c1"># Next hop IP address that will be used when configuring static routes for the &quot;subnets&quot; list</span>
+</span></code></pre></div>
+<h3 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h3>
+<p>Connection to the external systems, e.g. edge/provider routers using BGP peering and configuring Inbound/Outbound
+communities as well as granularly controlling what's getting advertised and which routes are accepted.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-03--external--5835</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">external</span><span class="p">:</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="nt">link</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines a single link between a switch and an external system</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-03/Ethernet3</span>
 </span></code></pre></div>
 
   <hr>
@@ -1486,7 +1569,7 @@ caused by the hardware limitation of the currently supported switches.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
       
         <br>
         Created:

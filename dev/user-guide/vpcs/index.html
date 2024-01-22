@@ -585,6 +585,26 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../../install-upgrade/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../install-upgrade/onie-update/" class="md-nav__link">
         
   
@@ -1236,16 +1256,21 @@ support for multiple subnets each with user-provided VLANs and on-demand DHCP.</
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits to which subnets could be used by VPC to guarantee non-overlapping IPv4 ranges</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">vlanNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits to which switches VPC could be attached to guarantee non-overlapping VLANs</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="c1"># Each subnet is named</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="c1"># On-demand DHCP server</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="c1"># Each subnet is named, &quot;default&quot; subnet isn&#39;t required, but actively used by CLI</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># On-demand DHCP server</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optionally, start/end range could be specified</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">          </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.10</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.0/24</span><span class="w"> </span><span class="c1"># User-defined subnet from ipv4 namespace</span>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1001&quot;</span><span class="w"> </span><span class="c1"># User-defined VLAN from vlan namespace</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">another-subnet</span><span class="p">:</span><span class="w"> </span><span class="c1"># Minimal configuration is just a name, subnet and VLAN</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1100&quot;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">thrird-party-dhcp</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">relay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.100/24</span><span class="w"> </span><span class="c1"># Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.10.2.0/24&quot;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1002&quot;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">another-subnet</span><span class="p">:</span><span class="w"> </span><span class="c1"># Minimal configuration is just a name, subnet and VLAN</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1100&quot;</span>
 </span></code></pre></div>
 <h2 id="vpcattachment"><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></h2>
 <p>Represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignemnt to the <code>Connection</code> object which means exact server port to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> binding.
@@ -1320,7 +1345,7 @@ non-overlapping VLAN ranges.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
       
         <br>
         Created:

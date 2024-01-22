@@ -514,6 +514,13 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    Next steps
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -659,6 +666,26 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Build Wiring Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Configuration
   </span>
   
 
@@ -1228,6 +1255,13 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    Next steps
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1294,6 +1328,8 @@ workaround.</p>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="m">01</span>:21:53<span class="w"> </span>WRN<span class="w"> </span>Wiring<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>hydrated,<span class="w"> </span>hydrating<span class="w"> </span><span class="nv">reason</span><span class="o">=</span><span class="s2">&quot;error validating wiring: ASN not set for switch leaf-01&quot;</span>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="m">01</span>:21:53<span class="w"> </span>INF<span class="w"> </span>Initialized<span class="w"> </span><span class="nv">preset</span><span class="o">=</span>vlab<span class="w"> </span><span class="nv">fabricMode</span><span class="o">=</span>spine-leaf<span class="w"> </span><span class="nv">config</span><span class="o">=</span>.hhfab/config.yaml<span class="w"> </span><span class="nv">wiring</span><span class="o">=</span>.hhfab/wiring.yaml
 </span></code></pre></div>
+<p>Additionally, you can do extra Fabric configuration using flags on <code>init</code> command or by passing config file, more
+information about it is available in the <a href="../../install-upgrade/config/">Fabric Configuration</a> section.</p>
 <p>Once you have initialized the VLAB you need to download all artifacts and build the installer using <code>hhfab build</code>
 command. It will automatically download all required artifacts from the OCI registry and build the installer as well as
 all other prerequisites for running the VLAB.</p>
@@ -1506,13 +1542,17 @@ using the Fabric in the <a href="../../user-guide/overview/">User Guide</a>, <a 
 </span></code></pre></div>
 <h2 id="reset-vlab">Reset VLAB</h2>
 <p>To reset VLAB and start over just remove the <code>.hhfab</code> directory and run <code>hhfab init</code> again.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="../demo/">Running Demo</a></li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
       
         <br>
         Created:
