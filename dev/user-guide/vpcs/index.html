@@ -1272,6 +1272,14 @@ support for multiple subnets each with user-provided VLANs and on-demand DHCP.</
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1100&quot;</span>
 </span></code></pre></div>
+<p>In case if you're using thirt-party DHCP server by configuring <code>spec.subnets.&lt;subnet&gt;.dhcp.relay</code> additional information
+will be added to the DHCP packet it forwards to the DHCP server to make it possible to identify the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and subnet. The
+information is added under the RelayAgentInfo option(82) on the DHCP packet. The relay sets two suboptions in the packet</p>
+<ul>
+<li>VirtualSubnetSelection -- (suboption 151) is populated with the VRF which uniquely idenitifies a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> on the Hedgehog
+  Fabric and will be in <code>VrfV&lt;VPC-name&gt;</code> format, e.g. <code>VrfVvpc-1</code> for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> named <code>vpc-1</code> in the Fabric API</li>
+<li>CircuitID -- (suboption 1) identifies the VLAN which together with VRF (<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>) name maps to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet</li>
+</ul>
 <h2 id="vpcattachment"><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></h2>
 <p>Represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignemnt to the <code>Connection</code> object which means exact server port to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> binding.
 It basically leads to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> being available on the specific server port(s) on a subnet VLAN.</p>
@@ -1345,7 +1353,7 @@ non-overlapping VLAN ranges.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 24, 2024</span>
       
         <br>
         Created:
