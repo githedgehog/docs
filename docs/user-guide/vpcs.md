@@ -32,6 +32,14 @@ spec:
       vlan: "1100"
 ```
 
+In case if you're using thirt-party DHCP server by configuring `spec.subnets.<subnet>.dhcp.relay` additional information
+will be added to the DHCP packet it forwards to the DHCP server to make it possible to identify the VPC and subnet. The
+information is added under the RelayAgentInfo option(82) on the DHCP packet. The relay sets two suboptions in the packet
+
+* VirtualSubnetSelection -- (suboption 151) is populated with the VRF which uniquely idenitifies a VPC on the Hedgehog
+  Fabric and will be in `VrfV<VPC-name>` format, e.g. `VrfVvpc-1` for VPC named `vpc-1` in the Fabric API
+* CircuitID -- (suboption 1) identifies the VLAN which together with VRF (VPC) name maps to a specific VPC subnet
+
 ## VPCAttachment
 
 Represents a specific VPC subnet assignemnt to the `Connection` object which means exact server port to a VPC binding.

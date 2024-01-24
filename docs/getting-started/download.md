@@ -16,10 +16,17 @@ docker login ghcr.io
 
 The main entry point for the software is the Hedgehog Fabricator CLI named `hhfab`. All software is published into the
 OCI registry [GitHub Package](https://ghcr.io) including binaries, container images, helm charts and etc.
-The `hhfab` binary can be downloaded from the [GitHub Package](https://ghcr.io) using the following command:
+The latest stable `hhfab` binary can be downloaded from the [GitHub Package](https://ghcr.io) using the following
+command:
 
 ```bash
-curl -fsSL https://i.hhdev.io/hhfab | VERSION=alpha-2 bash
+curl -fsSL https://i.hhdev.io/hhfab | bash
+```
+
+Or you can download a specific version using the following command:
+
+```bash
+curl -fsSL https://i.hhdev.io/hhfab | VERSION=alpha-X bash
 ```
 
 The `VERSION` environment variable can be used to specify the version of the software to download. If it's not specified
