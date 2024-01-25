@@ -1262,6 +1262,13 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#conneslag" class="md-nav__link">
+    ConnESLAG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#connexternal" class="md-nav__link">
     ConnExternal
   </a>
@@ -1502,6 +1509,13 @@ You're not viewing the latest version.
           <li class="md-nav__item">
   <a href="#switchgroupstatus" class="md-nav__link">
     SwitchGroupStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchredundancy" class="md-nav__link">
+    SwitchRedundancy
   </a>
   
 </li>
@@ -2217,6 +2231,13 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#conneslag" class="md-nav__link">
+    ConnESLAG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#connexternal" class="md-nav__link">
     ConnExternal
   </a>
@@ -2457,6 +2478,13 @@ You're not viewing the latest version.
           <li class="md-nav__item">
   <a href="#switchgroupstatus" class="md-nav__link">
     SwitchGroupStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchredundancy" class="md-nav__link">
+    SwitchRedundancy
   </a>
   
 </li>
@@ -3573,6 +3601,28 @@ the underlay definition including Switches, Server, wiring between them and etc.
 </tr>
 </tbody>
 </table>
+<h4 id="conneslag">ConnESLAG</h4>
+<p>ConnESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a> array</em></td>
+<td>Links is the list of server-to-switch links</td>
+</tr>
+<tr>
+<td><code>mtu</code> <em>integer</em></td>
+<td>MTU is the MTU to be configured on the switch port or port channel</td>
+</tr>
+</tbody>
+</table>
 <h4 id="connexternal">ConnExternal</h4>
 <p>ConnExternal defines the external connection (single switch to a single external device with a single link)</p>
 <p><em>Appears in:</em>
@@ -3650,7 +3700,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 </tbody>
 </table>
 <h4 id="connmclag">ConnMCLAG</h4>
-<p>ConnMCLAG defines the MCLAG connection (port channel, single server to multiple switches with multiple links)</p>
+<p>ConnMCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</p>
 <p><em>Appears in:</em>
 - <a href="#connectionspec">ConnectionSpec</a></p>
 <table>
@@ -3954,7 +4004,11 @@ the underlay definition including Switches, Server, wiring between them and etc.
 </tr>
 <tr>
 <td><code>mclag</code> <em><a href="#connmclag">ConnMCLAG</a></em></td>
-<td>MCLAG defines the MCLAG connection (port channel, single server to multiple switches with multiple links)</td>
+<td>MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</td>
+</tr>
+<tr>
+<td><code>eslag</code> <em><a href="#conneslag">ConnESLAG</a></em></td>
+<td>ESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links)</td>
 </tr>
 <tr>
 <td><code>mclagDomain</code> <em><a href="#connmclagdomain">ConnMCLAGDomain</a></em></td>
@@ -4188,6 +4242,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <p>ServerFacingConnectionConfig defines any server-facing connection (unbundled, bundled, mclag, etc.) configuration</p>
 <p><em>Appears in:</em>
 - <a href="#connbundled">ConnBundled</a>
+- <a href="#conneslag">ConnESLAG</a>
 - <a href="#connmclag">ConnMCLAG</a>
 - <a href="#connunbundled">ConnUnbundled</a></p>
 <table>
@@ -4238,6 +4293,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <p>ServerToSwitchLink defines the server-to-switch link</p>
 <p><em>Appears in:</em>
 - <a href="#connbundled">ConnBundled</a>
+- <a href="#conneslag">ConnESLAG</a>
 - <a href="#connmclag">ConnMCLAG</a>
 - <a href="#connunbundled">ConnUnbundled</a></p>
 <table>
@@ -4336,6 +4392,28 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <p>SwitchGroupStatus defines the observed state of SwitchGroup</p>
 <p><em>Appears in:</em>
 - <a href="#switchgroup">SwitchGroup</a></p>
+<h4 id="switchredundancy">SwitchRedundancy</h4>
+<p>SwitchRedundancy is the switch redundancy configuration which includes name of the redundancy group switch belongs to and its type, used both for MCLAG and ESLAG connections. It defines how redundancy will be configured and handled on the switch as well as which connection types will be available. If not specified, switch will not be part of any redundancy group. If name isn't empty, type must be specified as well and name should be the same as one of the SwitchGroup objects.</p>
+<p><em>Appears in:</em>
+- <a href="#switchspec">SwitchSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code> <em>string</em></td>
+<td>Group is the name of the redundancy group switch belongs to</td>
+</tr>
+<tr>
+<td><code>type</code> <em><a href="#redundancytype">RedundancyType</a></em></td>
+<td>Type is the type of the redundancy group, could be mclag or eslag</td>
+</tr>
+</tbody>
+</table>
 <h4 id="switchrole">SwitchRole</h4>
 <p><em>Underlying type:</em> <em>string</em></p>
 <p>SwitchRole is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf</p>
@@ -4378,6 +4456,10 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <td><code>groups</code> <em>string array</em></td>
 <td>Groups is a list of switch groups the switch belongs to</td>
+</tr>
+<tr>
+<td><code>redundancy</code> <em><a href="#switchredundancy">SwitchRedundancy</a></em></td>
+<td>Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used both for MCLAG and ESLAG connections</td>
 </tr>
 <tr>
 <td><code>vlanNamespaces</code> <em>string array</em></td>
