@@ -54,6 +54,9 @@ spec:
 ### MCLAG
 
 MCLAG server connections are used to connect servers to the pair of switches using multiple ports (Dual-homing).
+Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type `mclag`
+and Connection with type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and
+`spec.VTEPIP`.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -64,6 +67,30 @@ metadata:
 spec:
   mclag:
     links: # Defines multiple links between a single server and a pair of switches
+    - server:
+        port: server-1/enp2s1
+      switch:
+        port: s5248-01/Ethernet1
+    - server:
+        port: server-1/enp2s2
+      switch:
+        port: s5248-02/Ethernet1
+```
+
+### ESLAG
+
+ESLAG server connections are used to connect servers to the 2-4 switches using multiple ports (Multi-homing). Switches
+should belong to the same redundancy group with type `eslag`, but no other configuration like in MCLAG case is required.
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1alpha2
+kind: Connection
+metadata:
+  name: server-1--eslag--s5248-01--s5248-02
+  namespace: default
+spec:
+  eslag:
+    links: # Defines multiple links between a single server and a 2-4 switches
     - server:
         port: server-1/enp2s1
       switch:
@@ -108,7 +135,9 @@ spec:
 
 ### MCLAG-Domain
 
-Used to define a pair of MCLAG switches with Session and Peer link between them.
+Used to define a pair of MCLAG switches with Session and Peer link between them. Switches should be configured as an
+MCLAG pair which requires them to be in a single redundancy group of type `mclag` and Connection with type
+`mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and `spec.VTEPIP`.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
