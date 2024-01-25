@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fabric-api" class="md-skip">
+        <a href="#api-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -844,6 +844,17 @@ You're not viewing the latest version.
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fabric API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -853,6 +864,710 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    Packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentgithedgehogcomv1alpha2" class="md-nav__link">
+    agent.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="agent.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    Agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentstatus" class="md-nav__link">
+    AgentStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nosinfo" class="md-nav__link">
+    NOSInfo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpgithedgehogcomv1alpha2" class="md-nav__link">
+    dhcp.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="dhcp.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_1" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dhcpallocated" class="md-nav__link">
+    DHCPAllocated
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpsubnet" class="md-nav__link">
+    DHCPSubnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpsubnetspec" class="md-nav__link">
+    DHCPSubnetSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpsubnetstatus" class="md-nav__link">
+    DHCPSubnetStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpcgithedgehogcomv1alpha2" class="md-nav__link">
+    vpc.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="vpc.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_2" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external" class="md-nav__link">
+    External
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachment" class="md-nav__link">
+    ExternalAttachment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentneighbor" class="md-nav__link">
+    ExternalAttachmentNeighbor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentspec" class="md-nav__link">
+    ExternalAttachmentSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentstatus" class="md-nav__link">
+    ExternalAttachmentStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentswitch" class="md-nav__link">
+    ExternalAttachmentSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeering" class="md-nav__link">
+    ExternalPeering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspec" class="md-nav__link">
+    ExternalPeeringSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecexternal" class="md-nav__link">
+    ExternalPeeringSpecExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecpermit" class="md-nav__link">
+    ExternalPeeringSpecPermit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecprefix" class="md-nav__link">
+    ExternalPeeringSpecPrefix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecvpc" class="md-nav__link">
+    ExternalPeeringSpecVPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringstatus" class="md-nav__link">
+    ExternalPeeringStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalspec" class="md-nav__link">
+    ExternalSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalstatus" class="md-nav__link">
+    ExternalStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4namespace" class="md-nav__link">
+    IPv4Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4namespacespec" class="md-nav__link">
+    IPv4NamespaceSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4namespacestatus" class="md-nav__link">
+    IPv4NamespaceStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcattachment" class="md-nav__link">
+    VPCAttachment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcattachmentspec" class="md-nav__link">
+    VPCAttachmentSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcattachmentstatus" class="md-nav__link">
+    VPCAttachmentStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcp" class="md-nav__link">
+    VPCDHCP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcprange" class="md-nav__link">
+    VPCDHCPRange
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeer" class="md-nav__link">
+    VPCPeer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeering" class="md-nav__link">
+    VPCPeering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeeringspec" class="md-nav__link">
+    VPCPeeringSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeeringstatus" class="md-nav__link">
+    VPCPeeringStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcspec" class="md-nav__link">
+    VPCSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcstatus" class="md-nav__link">
+    VPCStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcsubnet" class="md-nav__link">
+    VPCSubnet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiringgithedgehogcomv1alpha2" class="md-nav__link">
+    wiring.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="wiring.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_3" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baseportname" class="md-nav__link">
+    BasePortName
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connbundled" class="md-nav__link">
+    ConnBundled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connexternal" class="md-nav__link">
+    ConnExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connexternallink" class="md-nav__link">
+    ConnExternalLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connfabric" class="md-nav__link">
+    ConnFabric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connfabriclinkswitch" class="md-nav__link">
+    ConnFabricLinkSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmclag" class="md-nav__link">
+    ConnMCLAG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmclagdomain" class="md-nav__link">
+    ConnMCLAGDomain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmt" class="md-nav__link">
+    ConnMgmt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmtlink" class="md-nav__link">
+    ConnMgmtLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmtlinkserver" class="md-nav__link">
+    ConnMgmtLinkServer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmtlinkswitch" class="md-nav__link">
+    ConnMgmtLinkSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connstaticexternal" class="md-nav__link">
+    ConnStaticExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connstaticexternallink" class="md-nav__link">
+    ConnStaticExternalLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connstaticexternallinkswitch" class="md-nav__link">
+    ConnStaticExternalLinkSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connunbundled" class="md-nav__link">
+    ConnUnbundled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connvpcloopback" class="md-nav__link">
+    ConnVPCLoopback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    Connection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectionspec" class="md-nav__link">
+    ConnectionSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectionstatus" class="md-nav__link">
+    ConnectionStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fabriclink" class="md-nav__link">
+    FabricLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    Location
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locationsig" class="md-nav__link">
+    LocationSig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rack" class="md-nav__link">
+    Rack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rackposition" class="md-nav__link">
+    RackPosition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rackspec" class="md-nav__link">
+    RackSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rackstatus" class="md-nav__link">
+    RackStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverfacingconnectionconfig" class="md-nav__link">
+    ServerFacingConnectionConfig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverspec" class="md-nav__link">
+    ServerSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverstatus" class="md-nav__link">
+    ServerStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servertoswitchlink" class="md-nav__link">
+    ServerToSwitchLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servertype" class="md-nav__link">
+    ServerType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    Switch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchgroup" class="md-nav__link">
+    SwitchGroup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchgroupspec" class="md-nav__link">
+    SwitchGroupSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchgroupstatus" class="md-nav__link">
+    SwitchGroupStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchrole" class="md-nav__link">
+    SwitchRole
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchspec" class="md-nav__link">
+    SwitchSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchstatus" class="md-nav__link">
+    SwitchStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchtoswitchlink" class="md-nav__link">
+    SwitchToSwitchLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlannamespace" class="md-nav__link">
+    VLANNamespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlannamespacespec" class="md-nav__link">
+    VLANNamespaceSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlannamespacestatus" class="md-nav__link">
+    VLANNamespaceStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1114,6 +1829,699 @@ You're not viewing the latest version.
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    Packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentgithedgehogcomv1alpha2" class="md-nav__link">
+    agent.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="agent.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    Agent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agentstatus" class="md-nav__link">
+    AgentStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nosinfo" class="md-nav__link">
+    NOSInfo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcpgithedgehogcomv1alpha2" class="md-nav__link">
+    dhcp.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="dhcp.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_1" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dhcpallocated" class="md-nav__link">
+    DHCPAllocated
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpsubnet" class="md-nav__link">
+    DHCPSubnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpsubnetspec" class="md-nav__link">
+    DHCPSubnetSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dhcpsubnetstatus" class="md-nav__link">
+    DHCPSubnetStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpcgithedgehogcomv1alpha2" class="md-nav__link">
+    vpc.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="vpc.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_2" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external" class="md-nav__link">
+    External
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachment" class="md-nav__link">
+    ExternalAttachment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentneighbor" class="md-nav__link">
+    ExternalAttachmentNeighbor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentspec" class="md-nav__link">
+    ExternalAttachmentSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentstatus" class="md-nav__link">
+    ExternalAttachmentStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalattachmentswitch" class="md-nav__link">
+    ExternalAttachmentSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeering" class="md-nav__link">
+    ExternalPeering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspec" class="md-nav__link">
+    ExternalPeeringSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecexternal" class="md-nav__link">
+    ExternalPeeringSpecExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecpermit" class="md-nav__link">
+    ExternalPeeringSpecPermit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecprefix" class="md-nav__link">
+    ExternalPeeringSpecPrefix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringspecvpc" class="md-nav__link">
+    ExternalPeeringSpecVPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalpeeringstatus" class="md-nav__link">
+    ExternalPeeringStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalspec" class="md-nav__link">
+    ExternalSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalstatus" class="md-nav__link">
+    ExternalStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4namespace" class="md-nav__link">
+    IPv4Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4namespacespec" class="md-nav__link">
+    IPv4NamespaceSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv4namespacestatus" class="md-nav__link">
+    IPv4NamespaceStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcattachment" class="md-nav__link">
+    VPCAttachment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcattachmentspec" class="md-nav__link">
+    VPCAttachmentSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcattachmentstatus" class="md-nav__link">
+    VPCAttachmentStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcp" class="md-nav__link">
+    VPCDHCP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcprange" class="md-nav__link">
+    VPCDHCPRange
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeer" class="md-nav__link">
+    VPCPeer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeering" class="md-nav__link">
+    VPCPeering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeeringspec" class="md-nav__link">
+    VPCPeeringSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcpeeringstatus" class="md-nav__link">
+    VPCPeeringStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcspec" class="md-nav__link">
+    VPCSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcstatus" class="md-nav__link">
+    VPCStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcsubnet" class="md-nav__link">
+    VPCSubnet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiringgithedgehogcomv1alpha2" class="md-nav__link">
+    wiring.githedgehog.com/v1alpha2
+  </a>
+  
+    <nav class="md-nav" aria-label="wiring.githedgehog.com/v1alpha2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_3" class="md-nav__link">
+    Resource Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baseportname" class="md-nav__link">
+    BasePortName
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connbundled" class="md-nav__link">
+    ConnBundled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connexternal" class="md-nav__link">
+    ConnExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connexternallink" class="md-nav__link">
+    ConnExternalLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connfabric" class="md-nav__link">
+    ConnFabric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connfabriclinkswitch" class="md-nav__link">
+    ConnFabricLinkSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmclag" class="md-nav__link">
+    ConnMCLAG
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmclagdomain" class="md-nav__link">
+    ConnMCLAGDomain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmt" class="md-nav__link">
+    ConnMgmt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmtlink" class="md-nav__link">
+    ConnMgmtLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmtlinkserver" class="md-nav__link">
+    ConnMgmtLinkServer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connmgmtlinkswitch" class="md-nav__link">
+    ConnMgmtLinkSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connstaticexternal" class="md-nav__link">
+    ConnStaticExternal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connstaticexternallink" class="md-nav__link">
+    ConnStaticExternalLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connstaticexternallinkswitch" class="md-nav__link">
+    ConnStaticExternalLinkSwitch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connunbundled" class="md-nav__link">
+    ConnUnbundled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connvpcloopback" class="md-nav__link">
+    ConnVPCLoopback
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection" class="md-nav__link">
+    Connection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectionspec" class="md-nav__link">
+    ConnectionSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectionstatus" class="md-nav__link">
+    ConnectionStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fabriclink" class="md-nav__link">
+    FabricLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    Location
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locationsig" class="md-nav__link">
+    LocationSig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rack" class="md-nav__link">
+    Rack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rackposition" class="md-nav__link">
+    RackPosition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rackspec" class="md-nav__link">
+    RackSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rackstatus" class="md-nav__link">
+    RackStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverfacingconnectionconfig" class="md-nav__link">
+    ServerFacingConnectionConfig
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverspec" class="md-nav__link">
+    ServerSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverstatus" class="md-nav__link">
+    ServerStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servertoswitchlink" class="md-nav__link">
+    ServerToSwitchLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servertype" class="md-nav__link">
+    ServerType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch" class="md-nav__link">
+    Switch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchgroup" class="md-nav__link">
+    SwitchGroup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchgroupspec" class="md-nav__link">
+    SwitchGroupSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchgroupstatus" class="md-nav__link">
+    SwitchGroupStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchrole" class="md-nav__link">
+    SwitchRole
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchspec" class="md-nav__link">
+    SwitchSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchstatus" class="md-nav__link">
+    SwitchStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchtoswitchlink" class="md-nav__link">
+    SwitchToSwitchLink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlannamespace" class="md-nav__link">
+    VLANNamespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlannamespacespec" class="md-nav__link">
+    VLANNamespaceSpec
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vlannamespacestatus" class="md-nav__link">
+    VLANNamespaceStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1135,19 +2543,1965 @@ You're not viewing the latest version.
   
 
 
-<h1 id="fabric-api">Fabric API</h1>
-<div class="admonition warning">
-<p>Under construction.</p>
-</div>
-<p>Please, refer to the <a href="../../user-guide/overview/">User Guide</a> chapter for examples and instructions and
-<a href="../../vlab/overview/">VLAB</a> chapter for how to try different APIs in a virtual environment.</p>
+<h1 id="api-reference">API Reference</h1>
+<h2 id="packages">Packages</h2>
+<ul>
+<li><a href="#agentgithedgehogcomv1alpha2">agent.githedgehog.com/v1alpha2</a></li>
+<li><a href="#dhcpgithedgehogcomv1alpha2">dhcp.githedgehog.com/v1alpha2</a></li>
+<li><a href="#vpcgithedgehogcomv1alpha2">vpc.githedgehog.com/v1alpha2</a></li>
+<li><a href="#wiringgithedgehogcomv1alpha2">wiring.githedgehog.com/v1alpha2</a></li>
+</ul>
+<h2 id="agentgithedgehogcomv1alpha2">agent.githedgehog.com/v1alpha2</h2>
+<p>Package v1alpha2 contains API Schema definitions for the agent v1alpha2 API group. This is the internal API group
+for the switch and control node agents. Not intended to be modified by the user.</p>
+<h3 id="resource-types">Resource Types</h3>
+<ul>
+<li><a href="#agent">Agent</a></li>
+</ul>
+<h4 id="agent">Agent</h4>
+<p>Agent is an internal API object used by the controller to pass all relevant information to the agent running on a specific switch in order to fully configure it and manage its lifecycle. It is not intended to be used directly by users. Spec of the object isn't user-editable, it is managed by the controller. Status of the object is updated by the agent and is used by the controller to track the state of the agent and the switch it is running on. Name of the Agent object is the same as the name of the switch it is running on and it's created in the same namespace as the Switch object.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>agent.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Agent</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#agentspec">AgentSpec</a></em></td>
+<td>Spec is the desired state of the Agent</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#agentstatus">AgentStatus</a></em></td>
+<td>Status is the observed state of the Agent</td>
+</tr>
+</tbody>
+</table>
+<h4 id="agentstatus">AgentStatus</h4>
+<p>AgentStatus defines the observed state of the agent running on a specific switch and includes information about the switch itself as well as the state of the agent and applied configuration.</p>
+<p><em>Appears in:</em>
+- <a href="#agent">Agent</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code> <em>string</em></td>
+<td>Current running agent version</td>
+</tr>
+<tr>
+<td><code>installID</code> <em>string</em></td>
+<td>ID of the agent installation, used to track NOS re-installs</td>
+</tr>
+<tr>
+<td><code>runID</code> <em>string</em></td>
+<td>ID of the agent run, used to track NOS reboots</td>
+</tr>
+<tr>
+<td><code>lastHeartbeat</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
+<td>Time of the last heartbeat from the agent</td>
+</tr>
+<tr>
+<td><code>lastAttemptTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
+<td>Time of the last attempt to apply configuration</td>
+</tr>
+<tr>
+<td><code>lastAttemptGen</code> <em>integer</em></td>
+<td>Generation of the last attempt to apply configuration</td>
+</tr>
+<tr>
+<td><code>lastAppliedTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
+<td>Time of the last successful configuration application</td>
+</tr>
+<tr>
+<td><code>lastAppliedGen</code> <em>integer</em></td>
+<td>Generation of the last successful configuration application</td>
+</tr>
+<tr>
+<td><code>nosInfo</code> <em><a href="#nosinfo">NOSInfo</a></em></td>
+<td>Information about the switch and NOS</td>
+</tr>
+<tr>
+<td><code>statusUpdates</code> <em><a href="#applystatusupdate">ApplyStatusUpdate</a> array</em></td>
+<td>Status updates from the agent</td>
+</tr>
+<tr>
+<td><code>conditions</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#condition-v1-meta">Condition</a> array</em></td>
+<td>Conditions of the agent, includes readiness marker for use with kubectl wait</td>
+</tr>
+</tbody>
+</table>
+<h4 id="nosinfo">NOSInfo</h4>
+<p>NOSInfo contains information about the switch and NOS received from the switch itself by the agent</p>
+<p><em>Appears in:</em>
+- <a href="#agentstatus">AgentStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>asicVersion</code> <em>string</em></td>
+<td>ASIC name, such as "broadcom" or "vs"</td>
+</tr>
+<tr>
+<td><code>buildCommit</code> <em>string</em></td>
+<td>NOS build commit</td>
+</tr>
+<tr>
+<td><code>buildDate</code> <em>string</em></td>
+<td>NOS build date</td>
+</tr>
+<tr>
+<td><code>builtBy</code> <em>string</em></td>
+<td>NOS build user</td>
+</tr>
+<tr>
+<td><code>configDbVersion</code> <em>string</em></td>
+<td>NOS config DB version, such as "version_4_2_1"</td>
+</tr>
+<tr>
+<td><code>distributionVersion</code> <em>string</em></td>
+<td>Distribution version, such as "Debian 10.13"</td>
+</tr>
+<tr>
+<td><code>hardwareVersion</code> <em>string</em></td>
+<td>Hardware version, such as "X01"</td>
+</tr>
+<tr>
+<td><code>hwskuVersion</code> <em>string</em></td>
+<td>Hwsku version, such as "DellEMC-S5248f-P-25G-DPB"</td>
+</tr>
+<tr>
+<td><code>kernelVersion</code> <em>string</em></td>
+<td>Kernel version, such as "5.10.0-21-amd64"</td>
+</tr>
+<tr>
+<td><code>mfgName</code> <em>string</em></td>
+<td>Manufacturer name, such as "Dell EMC"</td>
+</tr>
+<tr>
+<td><code>platformName</code> <em>string</em></td>
+<td>Platform name, such as "x86_64-dellemc_s5248f_c3538-r0"</td>
+</tr>
+<tr>
+<td><code>productDescription</code> <em>string</em></td>
+<td>NOS product description, such as "Enterprise SONiC Distribution by Broadcom - Enterprise Base package"</td>
+</tr>
+<tr>
+<td><code>productVersion</code> <em>string</em></td>
+<td>NOS product version, empty for Broadcom SONiC</td>
+</tr>
+<tr>
+<td><code>serialNumber</code> <em>string</em></td>
+<td>Switch serial number</td>
+</tr>
+<tr>
+<td><code>softwareVersion</code> <em>string</em></td>
+<td>NOS software version, such as "4.2.0-Enterprise_Base"</td>
+</tr>
+<tr>
+<td><code>upTime</code> <em>string</em></td>
+<td>Switch uptime, such as "21:21:27 up 1 day, 23:26, 0 users, load average: 1.92, 1.99, 2.00 "</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dhcpgithedgehogcomv1alpha2">dhcp.githedgehog.com/v1alpha2</h2>
+<p>Package v1alpha2 contains API Schema definitions for the dhcp v1alpha2 API group. It is the primarely internal API
+group for the intended Hedgehog DHCP server configuration and storing leases as well as making them available to the
+end user through API. Not intended to be modified by the user.</p>
+<h3 id="resource-types_1">Resource Types</h3>
+<ul>
+<li><a href="#dhcpsubnet">DHCPSubnet</a></li>
+</ul>
+<h4 id="dhcpallocated">DHCPAllocated</h4>
+<p>DHCPAllocated is a single allocated IP with expiry time and hostname from DHCP requests, it's effectively a DHCP lease</p>
+<p><em>Appears in:</em>
+- <a href="#dhcpsubnetstatus">DHCPSubnetStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>Allocated IP address</td>
+</tr>
+<tr>
+<td><code>expiry</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
+<td>Expiry time of the lease</td>
+</tr>
+<tr>
+<td><code>hostname</code> <em>string</em></td>
+<td>Hostname from DHCP request</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dhcpsubnet">DHCPSubnet</h4>
+<p>DHCPSubnet is the configuration (spec) for the Hedgehog DHCP server and storage for the leases (status). It's primarely internal API group, but it makes allocated IPs / leases information available to the end user through API. Not intended to be modified by the user.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>dhcp.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>DHCPSubnet</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#dhcpsubnetspec">DHCPSubnetSpec</a></em></td>
+<td>Spec is the desired state of the DHCPSubnet</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#dhcpsubnetstatus">DHCPSubnetStatus</a></em></td>
+<td>Status is the observed state of the DHCPSubnet</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dhcpsubnetspec">DHCPSubnetSpec</h4>
+<p>DHCPSubnetSpec defines the desired state of DHCPSubnet</p>
+<p><em>Appears in:</em>
+- <a href="#dhcpsubnet">DHCPSubnet</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnet</code> <em>string</em></td>
+<td>Full <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet name (including <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> name), such as "vpc-0/default"</td>
+</tr>
+<tr>
+<td><code>cidrBlock</code> <em>string</em></td>
+<td>CIDR block to use for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet, such as "10.10.10.0/24"</td>
+</tr>
+<tr>
+<td><code>gateway</code> <em>string</em></td>
+<td>Gateway, such as 10.10.10.1</td>
+</tr>
+<tr>
+<td><code>startIP</code> <em>string</em></td>
+<td>Start IP from the CIDRBlock to allocate IPs, such as 10.10.10.10</td>
+</tr>
+<tr>
+<td><code>endIP</code> <em>string</em></td>
+<td>End IP from the CIDRBlock to allocate IPs, such as 10.10.10.99</td>
+</tr>
+<tr>
+<td><code>vrf</code> <em>string</em></td>
+<td>VRF name to identify specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (will be added to DHCP packets by DHCP relay in suboption 151), such as "VrfVvpc-1" as it's named on switch</td>
+</tr>
+<tr>
+<td><code>circuitID</code> <em>string</em></td>
+<td>VLAN ID to identify specific subnet withing the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, such as "Vlan1000" as it's named on switch</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dhcpsubnetstatus">DHCPSubnetStatus</h4>
+<p>DHCPSubnetStatus defines the observed state of DHCPSubnet</p>
+<p><em>Appears in:</em>
+- <a href="#dhcpsubnet">DHCPSubnet</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allocated</code> <em>object (keys:string, values:<a href="#dhcpallocated">DHCPAllocated</a>)</em></td>
+<td>Allocated is a map of allocated IPs with expiry time and hostname from DHCP requests</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vpcgithedgehogcomv1alpha2">vpc.githedgehog.com/v1alpha2</h2>
+<p>Package v1alpha2 contains API Schema definitions for the vpc v1alpha2 API group. It is public API group for the VPCs
+and Externals APIs. Intended to be used by the user.</p>
+<h3 id="resource-types_2">Resource Types</h3>
+<ul>
+<li><a href="#external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></a></li>
+<li><a href="#externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></a></li>
+<li><a href="#externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></a></li>
+<li><a href="#ipv4namespace">IPv4Namespace</a></li>
+<li><a href="#vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></a></li>
+<li><a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></li>
+<li><a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></li>
+</ul>
+<h4 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h4>
+<p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object represents an external system connected to the Fabric and available to the specific IPv4Namespace. Users can do external peering with the external system by specifying the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Object without need to worry about the details of how external system is attached to the Fabric.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>External</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#externalspec">ExternalSpec</a></em></td>
+<td>Spec is the desired state of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#externalstatus">ExternalStatus</a></em></td>
+<td>Status is the observed state of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></h4>
+<p><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr> is a definition of how specific switch is connected with external system (<abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object). Effectively it represents BGP peering between the switch and external system including all needed configuration.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>ExternalAttachment</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#externalattachmentspec">ExternalAttachmentSpec</a></em></td>
+<td>Spec is the desired state of the <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#externalattachmentstatus">ExternalAttachmentStatus</a></em></td>
+<td>Status is the observed state of the <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalattachmentneighbor">ExternalAttachmentNeighbor</h4>
+<p>ExternalAttachmentNeighbor defines the BGP neighbor configuration for the external attachment</p>
+<p><em>Appears in:</em>
+- <a href="#externalattachmentspec">ExternalAttachmentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>asn</code> <em>integer</em></td>
+<td>ASN is the ASN of the BGP neighbor</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the BGP neighbor to peer with</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalattachmentspec">ExternalAttachmentSpec</h4>
+<p>ExternalAttachmentSpec defines the desired state of <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>external</code> <em>string</em></td>
+<td><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> is the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object this attachment belongs to</td>
+</tr>
+<tr>
+<td><code>connection</code> <em>string</em></td>
+<td>Connection is the name of the Connection object this attachment belongs to (essentialy the name of the switch/port)</td>
+</tr>
+<tr>
+<td><code>switch</code> <em><a href="#externalattachmentswitch">ExternalAttachmentSwitch</a></em></td>
+<td>Switch is the switch port configuration for the external attachment</td>
+</tr>
+<tr>
+<td><code>neighbor</code> <em><a href="#externalattachmentneighbor">ExternalAttachmentNeighbor</a></em></td>
+<td>Neighbor is the BGP neighbor configuration for the external attachment</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalattachmentstatus">ExternalAttachmentStatus</h4>
+<p>ExternalAttachmentStatus defines the observed state of <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></a></p>
+<h4 id="externalattachmentswitch">ExternalAttachmentSwitch</h4>
+<p>ExternalAttachmentSwitch defines the switch port configuration for the external attachment</p>
+<p><em>Appears in:</em>
+- <a href="#externalattachmentspec">ExternalAttachmentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vlan</code> <em>integer</em></td>
+<td>VLAN is the VLAN ID used for the subinterface on a switch port specified in the connection</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the subinterface on a switch port specified in the connection</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></h4>
+<p><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr> is the Schema for the externalpeerings API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>ExternalPeering</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#externalpeeringspec">ExternalPeeringSpec</a></em></td>
+<td>Spec is the desired state of the <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#externalpeeringstatus">ExternalPeeringStatus</a></em></td>
+<td>Status is the observed state of the <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeeringspec">ExternalPeeringSpec</h4>
+<p>ExternalPeeringSpec defines the desired state of <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>permit</code> <em><a href="#externalpeeringspecpermit">ExternalPeeringSpecPermit</a></em></td>
+<td>Permit defines the peering policy - which <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to peer with and which subnets/prefixes to permit</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeeringspecexternal">ExternalPeeringSpecExternal</h4>
+<p>ExternalPeeringSpecExternal defines the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>-side of the configuration to peer with</p>
+<p><em>Appears in:</em>
+- <a href="#externalpeeringspecpermit">ExternalPeeringSpecPermit</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code> <em>string</em></td>
+<td>Name is the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to peer with</td>
+</tr>
+<tr>
+<td><code>prefixes</code> <em><a href="#externalpeeringspecprefix">ExternalPeeringSpecPrefix</a> array</em></td>
+<td>Prefixes is the list of prefixes to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeeringspecpermit">ExternalPeeringSpecPermit</h4>
+<p>ExternalPeeringSpecPermit defines the peering policy - which <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to peer with and which subnets/prefixes to permit</p>
+<p><em>Appears in:</em>
+- <a href="#externalpeeringspec">ExternalPeeringSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vpc</code> <em><a href="#externalpeeringspecvpc">ExternalPeeringSpecVPC</a></em></td>
+<td><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-side of the configuration to peer with</td>
+</tr>
+<tr>
+<td><code>external</code> <em><a href="#externalpeeringspecexternal">ExternalPeeringSpecExternal</a></em></td>
+<td><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> is the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>-side of the configuration to peer with</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeeringspecprefix">ExternalPeeringSpecPrefix</h4>
+<p>ExternalPeeringSpecPrefix defines the prefix to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#externalpeeringspecexternal">ExternalPeeringSpecExternal</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prefix</code> <em>string</em></td>
+<td>Prefix is the subnet to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, e.g. 0.0.0.0/0 for default route</td>
+</tr>
+<tr>
+<td><code>ge</code> <em>integer</em></td>
+<td>Ge is the minimum prefix length to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, e.g. 24 for /24</td>
+</tr>
+<tr>
+<td><code>le</code> <em>integer</em></td>
+<td>Le is the maximum prefix length to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, e.g. 32 for /32</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeeringspecvpc">ExternalPeeringSpecVPC</h4>
+<p>ExternalPeeringSpecVPC defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-side of the configuration to peer with</p>
+<p><em>Appears in:</em>
+- <a href="#externalpeeringspecpermit">ExternalPeeringSpecPermit</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code> <em>string</em></td>
+<td>Name is the name of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to peer with</td>
+</tr>
+<tr>
+<td><code>subnets</code> <em>string array</em></td>
+<td>Subnets is the list of subnets to advertise from <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalpeeringstatus">ExternalPeeringStatus</h4>
+<p>ExternalPeeringStatus defines the observed state of <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></a></p>
+<h4 id="externalspec">ExternalSpec</h4>
+<p>ExternalSpec describes IPv4 namespace <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> belongs to and inbound/outbound communities which are used to filter routes from/to the external system.</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ipv4Namespace</code> <em>string</em></td>
+<td>IPv4Namespace is the name of the IPv4Namespace this <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> belongs to</td>
+</tr>
+<tr>
+<td><code>inboundCommunity</code> <em>string</em></td>
+<td>InboundCommunity is the name of the inbound community to filter routes from the external system</td>
+</tr>
+<tr>
+<td><code>outboundCommunity</code> <em>string</em></td>
+<td>OutboundCommunity is the name of the outbound community that all outbound routes will be stamped with</td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalstatus">ExternalStatus</h4>
+<p>ExternalStatus defines the observed state of <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></a></p>
+<h4 id="ipv4namespace">IPv4Namespace</h4>
+<p>IPv4Namespace represents a namespace for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets allocation. All <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets withing a single IPv4Namespace are non-overlapping. Users can create multiple IPv4Namespaces to allocate same <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>IPv4Namespace</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#ipv4namespacespec">IPv4NamespaceSpec</a></em></td>
+<td>Spec is the desired state of the IPv4Namespace</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#ipv4namespacestatus">IPv4NamespaceStatus</a></em></td>
+<td>Status is the observed state of the IPv4Namespace</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ipv4namespacespec">IPv4NamespaceSpec</h4>
+<p>IPv4NamespaceSpec defines the desired state of IPv4Namespace</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#ipv4namespace">IPv4Namespace</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnets</code> <em>string array</em></td>
+<td>Subnets is the list of subnets to allocate <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets from, couldn't overlap between each other and with Fabric reserved subnets</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ipv4namespacestatus">IPv4NamespaceStatus</h4>
+<p>IPv4NamespaceStatus defines the observed state of IPv4Namespace</p>
+<p><em>Appears in:</em>
+- <a href="#ipv4namespace">IPv4Namespace</a></p>
+<h4 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h4>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is Virtual Private Cloud, similar to the public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>VPC</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#vpcspec">VPCSpec</a></em></td>
+<td>Spec is the desired state of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#vpcstatus">VPCStatus</a></em></td>
+<td>Status is the observed state of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcattachment"><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></h4>
+<p><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr> is the Schema for the vpcattachments API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>VPCAttachment</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#vpcattachmentspec">VPCAttachmentSpec</a></em></td>
+<td>Spec is the desired state of the <abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#vpcattachmentstatus">VPCAttachmentStatus</a></em></td>
+<td>Status is the observed state of the <abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcattachmentspec">VPCAttachmentSpec</h4>
+<p>VPCAttachmentSpec defines the desired state of <abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnet</code> <em>string</em></td>
+<td>Subnet is the full name of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet to attach to, such as "vpc-1/default"</td>
+</tr>
+<tr>
+<td><code>connection</code> <em>string</em></td>
+<td>Connection is the name of the connection to attach to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcattachmentstatus">VPCAttachmentStatus</h4>
+<p>VPCAttachmentStatus defines the observed state of <abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></p>
+<h4 id="vpcdhcp">VPCDHCP</h4>
+<p>VPCDHCP defines the on-demand DHCP configuration for the subnet</p>
+<p><em>Appears in:</em>
+- <a href="#vpcsubnet">VPCSubnet</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>relay</code> <em>string</em></td>
+<td>Relay is the DHCP relay IP address, if specified, DHCP server will be disabled</td>
+</tr>
+<tr>
+<td><code>enable</code> <em>boolean</em></td>
+<td>Enable enables DHCP server for the subnet</td>
+</tr>
+<tr>
+<td><code>range</code> <em><a href="#vpcdhcprange">VPCDHCPRange</a></em></td>
+<td>Range is the DHCP range for the subnet if DHCP server is enabled</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcdhcprange">VPCDHCPRange</h4>
+<p><em>Underlying type:</em> <em><a href="#struct{start-string-&quot;json:\&quot;start,omitempty\&quot;&quot;;-end-string-&quot;json:\&quot;end,omitempty\&quot;&quot;}">struct{Start string "json:\"start,omitempty\""; End string "json:\"end,omitempty\""}</a></em></p>
+<p>VPCDHCPRange defines the DHCP range for the subnet if DHCP server is enabled</p>
+<p><em>Appears in:</em>
+- <a href="#vpcdhcp">VPCDHCP</a></p>
+<h4 id="vpcpeer">VPCPeer</h4>
+<p><em>Appears in:</em>
+- <a href="#vpcpeeringspec">VPCPeeringSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnets</code> <em>string array</em></td>
+<td>Subnets is the list of subnets to advertise from current <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></h4>
+<p><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> represents a peering between two VPCs with corresponding filtering rules. Minimal example of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering showing vpc-1 to vpc-2 peering with all subnets allowed: 
+ spec: permit: - vpc-1: {} vpc-2: {}</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>vpc.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>VPCPeering</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#vpcpeeringspec">VPCPeeringSpec</a></em></td>
+<td>Spec is the desired state of the <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#vpcpeeringstatus">VPCPeeringStatus</a></em></td>
+<td>Status is the observed state of the <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcpeeringspec">VPCPeeringSpec</h4>
+<p>VPCPeeringSpec defines the desired state of <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>remote</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>permit</code> <em><a href="#map[string]vpcpeer">map[string]VPCPeer</a> array</em></td>
+<td>Permit defines a list of the peering policies - which <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets will have access to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcpeeringstatus">VPCPeeringStatus</h4>
+<p>VPCPeeringStatus defines the observed state of <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></p>
+<h4 id="vpcspec">VPCSpec</h4>
+<p>VPCSpec defines the desired state of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. At least one subnet is required.</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnets</code> <em>object (keys:string, values:<a href="#vpcsubnet">VPCSubnet</a>)</em></td>
+<td>Subnets is the list of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets to configure</td>
+</tr>
+<tr>
+<td><code>ipv4Namespace</code> <em>string</em></td>
+<td>IPv4Namespace is the name of the IPv4Namespace this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to</td>
+</tr>
+<tr>
+<td><code>vlanNamespace</code> <em>string</em></td>
+<td>VLANNamespace is the name of the VLANNamespace this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcstatus">VPCStatus</h4>
+<p>VPCStatus defines the observed state of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vni</code> <em>integer</em></td>
+<td>VNI is the global Fabric-level VNI allocated for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+<tr>
+<td><code>subnetVNIs</code> <em>object (keys:string, values:integer)</em></td>
+<td>SubnetVNIs is the map of subnet names to the global Fabric-level VNIs allocated for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcsubnet">VPCSubnet</h4>
+<p>VPCSubnet defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet configuration</p>
+<p><em>Appears in:</em>
+- <a href="#vpcspec">VPCSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnet</code> <em>string</em></td>
+<td>Subnet is the subnet CIDR block, such as "10.0.0.0/24", should belong to the IPv4Namespace and be unique within the namespace</td>
+</tr>
+<tr>
+<td><code>dhcp</code> <em><a href="#vpcdhcp">VPCDHCP</a></em></td>
+<td>DHCP is the on-demand DHCP configuration for the subnet</td>
+</tr>
+<tr>
+<td><code>vlan</code> <em>string</em></td>
+<td>VLAN is the VLAN ID for the subnet, should belong to the VLANNamespace and be unique within the namespace</td>
+</tr>
+</tbody>
+</table>
+<h2 id="wiringgithedgehogcomv1alpha2">wiring.githedgehog.com/v1alpha2</h2>
+<p>Package v1alpha2 contains API Schema definitions for the wiring v1alpha2 API group. It is public API group mainly for
+the underlay definition including Switches, Server, wiring between them and etc. Intended to be used by the user.</p>
+<h3 id="resource-types_3">Resource Types</h3>
+<ul>
+<li><a href="#connection">Connection</a></li>
+<li><a href="#rack">Rack</a></li>
+<li><a href="#server">Server</a></li>
+<li><a href="#switch">Switch</a></li>
+<li><a href="#switchgroup">SwitchGroup</a></li>
+<li><a href="#vlannamespace">VLANNamespace</a></li>
+</ul>
+<h4 id="baseportname">BasePortName</h4>
+<p>BasePortName defines the full name of the switch port</p>
+<p><em>Appears in:</em>
+- <a href="#connexternallink">ConnExternalLink</a>
+- <a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a>
+- <a href="#connmgmtlinkserver">ConnMgmtLinkServer</a>
+- <a href="#connmgmtlinkswitch">ConnMgmtLinkSwitch</a>
+- <a href="#connstaticexternallinkswitch">ConnStaticExternalLinkSwitch</a>
+- <a href="#servertoswitchlink">ServerToSwitchLink</a>
+- <a href="#switchtoswitchlink">SwitchToSwitchLink</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connbundled">ConnBundled</h4>
+<p>ConnBundled defines the bundled connection (port channel, single server to a single switch with multiple links)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a> array</em></td>
+<td>Links is the list of server-to-switch links</td>
+</tr>
+<tr>
+<td><code>mtu</code> <em>integer</em></td>
+<td>MTU is the MTU to be configured on the switch port or port channel</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connexternal">ConnExternal</h4>
+<p>ConnExternal defines the external connection (single switch to a single external device with a single link)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>link</code> <em><a href="#connexternallink">ConnExternalLink</a></em></td>
+<td>Link is the external connection link</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connexternallink">ConnExternalLink</h4>
+<p>ConnExternalLink defines the external connection link</p>
+<p><em>Appears in:</em>
+- <a href="#connexternal">ConnExternal</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>switch</code> <em><a href="#baseportname">BasePortName</a></em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="connfabric">ConnFabric</h4>
+<p>ConnFabric defines the fabric connection (single spine to a single leaf with at least one link)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code> <em><a href="#fabriclink">FabricLink</a> array</em></td>
+<td>Links is the list of spine-to-leaf links</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connfabriclinkswitch">ConnFabricLinkSwitch</h4>
+<p>ConnFabricLinkSwitch defines the switch side of the fabric link</p>
+<p><em>Appears in:</em>
+- <a href="#fabriclink">FabricLink</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the switch side of the fabric link (switch port configuration)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connmclag">ConnMCLAG</h4>
+<p>ConnMCLAG defines the MCLAG connection (port channel, single server to multiple switches with multiple links)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a> array</em></td>
+<td>Links is the list of server-to-switch links</td>
+</tr>
+<tr>
+<td><code>mtu</code> <em>integer</em></td>
+<td>MTU is the MTU to be configured on the switch port or port channel</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connmclagdomain">ConnMCLAGDomain</h4>
+<p>ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or redundancy group and allows to use MCLAG connections to connect servers in a multi-homed way.</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>peerLinks</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
+<td>PeerLinks is the list of peer links between the switches, used to pass server traffic between switch</td>
+</tr>
+<tr>
+<td><code>sessionLinks</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
+<td>SessionLinks is the list of session links between the switches, used only to pass MCLAG control plane and BGP traffic between switches</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connmgmt">ConnMgmt</h4>
+<p>ConnMgmt defines the management connection (single control node/server to a single switch with a single link)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>link</code> <em><a href="#connmgmtlink">ConnMgmtLink</a></em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="connmgmtlink">ConnMgmtLink</h4>
+<p>ConnMgmtLink defines the management connection link</p>
+<p><em>Appears in:</em>
+- <a href="#connmgmt">ConnMgmt</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server</code> <em><a href="#connmgmtlinkserver">ConnMgmtLinkServer</a></em></td>
+<td>Server is the server side of the management link</td>
+</tr>
+<tr>
+<td><code>switch</code> <em><a href="#connmgmtlinkswitch">ConnMgmtLinkSwitch</a></em></td>
+<td>Switch is the switch side of the management link</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connmgmtlinkserver">ConnMgmtLinkServer</h4>
+<p>ConnMgmtLinkServer defines the server side of the management link</p>
+<p><em>Appears in:</em>
+- <a href="#connmgmtlink">ConnMgmtLink</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the server side of the management link (control node port configuration)</td>
+</tr>
+<tr>
+<td><code>mac</code> <em>string</em></td>
+<td>MAC is an optional MAC address of the control node port for the management link, if specified will be used to create a "virtual" link with the connection names on the control node</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connmgmtlinkswitch">ConnMgmtLinkSwitch</h4>
+<p>ConnMgmtLinkSwitch defines the switch side of the management link</p>
+<p><em>Appears in:</em>
+- <a href="#connmgmtlink">ConnMgmtLink</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the switch side of the management link (switch port configuration)</td>
+</tr>
+<tr>
+<td><code>oniePortName</code> <em>string</em></td>
+<td>ONIEPortName is an optional ONIE port name of the switch side of the management link that's only used by the IPv6 Link Local discovery</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connstaticexternal">ConnStaticExternal</h4>
+<p>ConnStaticExternal defines the static external connection (single switch to a single external device with a single link)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>link</code> <em><a href="#connstaticexternallink">ConnStaticExternalLink</a></em></td>
+<td>Link is the static external connection link</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connstaticexternallink">ConnStaticExternalLink</h4>
+<p>ConnStaticExternalLink defines the static external connection link</p>
+<p><em>Appears in:</em>
+- <a href="#connstaticexternal">ConnStaticExternal</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>switch</code> <em><a href="#connstaticexternallinkswitch">ConnStaticExternalLinkSwitch</a></em></td>
+<td>Switch is the switch side of the static external connection link</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connstaticexternallinkswitch">ConnStaticExternalLinkSwitch</h4>
+<p>ConnStaticExternalLinkSwitch defines the switch side of the static external connection link</p>
+<p><em>Appears in:</em>
+- <a href="#connstaticexternallink">ConnStaticExternalLink</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the switch side of the static external connection link (switch port configuration)</td>
+</tr>
+<tr>
+<td><code>nextHop</code> <em>string</em></td>
+<td>NextHop is the next hop IP address for static routes that will be created for the subnets</td>
+</tr>
+<tr>
+<td><code>subnets</code> <em>string array</em></td>
+<td>Subnets is the list of subnets that will get static routes using the specified next hop</td>
+</tr>
+<tr>
+<td><code>vlan</code> <em>integer</em></td>
+<td>VLAN is the optional VLAN ID to be configured on the switch port</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connunbundled">ConnUnbundled</h4>
+<p>ConnUnbundled defines the unbundled connection (no port channel, single server to a single switch with a single link)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>link</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a></em></td>
+<td>Link is the server-to-switch link</td>
+</tr>
+<tr>
+<td><code>mtu</code> <em>integer</em></td>
+<td>MTU is the MTU to be configured on the switch port or port channel</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connvpcloopback">ConnVPCLoopback</h4>
+<p>ConnVPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) that enables automated workaround named "<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Loopback" that allow to avoid switch hardware limitations and traffic going through CPU in some cases</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
+<td>Links is the list of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback links</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connection">Connection</h4>
+<p>Connection object represents a logical and physical connections between any devices in the Fabric (Switch, Server and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> objects). It's needed to define all physical and logical connections between the devices in the Wiring Diagram. Connection type is defined by the top-level field in the ConnectionSpec. Exactly one of them could be used in a single Connection object.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>wiring.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Connection</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#connectionspec">ConnectionSpec</a></em></td>
+<td>Spec is the desired state of the Connection</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#connectionstatus">ConnectionStatus</a></em></td>
+<td>Status is the observed state of the Connection</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connectionspec">ConnectionSpec</h4>
+<p>ConnectionSpec defines the desired state of Connection</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#connection">Connection</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>unbundled</code> <em><a href="#connunbundled">ConnUnbundled</a></em></td>
+<td>Unbundled defines the unbundled connection (no port channel, single server to a single switch with a single link)</td>
+</tr>
+<tr>
+<td><code>bundled</code> <em><a href="#connbundled">ConnBundled</a></em></td>
+<td>Bundled defines the bundled connection (port channel, single server to a single switch with multiple links)</td>
+</tr>
+<tr>
+<td><code>management</code> <em><a href="#connmgmt">ConnMgmt</a></em></td>
+<td>Management defines the management connection (single control node/server to a single switch with a single link)</td>
+</tr>
+<tr>
+<td><code>mclag</code> <em><a href="#connmclag">ConnMCLAG</a></em></td>
+<td>MCLAG defines the MCLAG connection (port channel, single server to multiple switches with multiple links)</td>
+</tr>
+<tr>
+<td><code>mclagDomain</code> <em><a href="#connmclagdomain">ConnMCLAGDomain</a></em></td>
+<td>MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing</td>
+</tr>
+<tr>
+<td><code>fabric</code> <em><a href="#connfabric">ConnFabric</a></em></td>
+<td>Fabric defines the fabric connection (single spine to a single leaf with at least one link)</td>
+</tr>
+<tr>
+<td><code>vpcLoopback</code> <em><a href="#connvpcloopback">ConnVPCLoopback</a></em></td>
+<td>VPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) for automated workaround</td>
+</tr>
+<tr>
+<td><code>external</code> <em><a href="#connexternal">ConnExternal</a></em></td>
+<td><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> defines the external connection (single switch to a single external device with a single link)</td>
+</tr>
+<tr>
+<td><code>staticExternal</code> <em><a href="#connstaticexternal">ConnStaticExternal</a></em></td>
+<td>StaticExternal defines the static external connection (single switch to a single external device with a single link)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connectionstatus">ConnectionStatus</h4>
+<p>ConnectionStatus defines the observed state of Connection</p>
+<p><em>Appears in:</em>
+- <a href="#connection">Connection</a></p>
+<h4 id="fabriclink">FabricLink</h4>
+<p>FabricLink defines the fabric connection link</p>
+<p><em>Appears in:</em>
+- <a href="#connfabric">ConnFabric</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spine</code> <em><a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a></em></td>
+<td>Spine is the spine side of the fabric link</td>
+</tr>
+<tr>
+<td><code>leaf</code> <em><a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a></em></td>
+<td>Leaf is the leaf side of the fabric link</td>
+</tr>
+</tbody>
+</table>
+<h4 id="location">Location</h4>
+<p>Location defines the geopraphical position of the device in a datacenter</p>
+<p><em>Appears in:</em>
+- <a href="#switchspec">SwitchSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>location</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>aisle</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>row</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>rack</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>slot</code> <em>string</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="locationsig">LocationSig</h4>
+<p>LocationSig contains signatures for the location UUID as well as the device location itself</p>
+<p><em>Appears in:</em>
+- <a href="#switchspec">SwitchSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sig</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>uuidSig</code> <em>string</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="rack">Rack</h4>
+<p>Rack is the Schema for the racks API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>wiring.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Rack</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#rackspec">RackSpec</a></em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#rackstatus">RackStatus</a></em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="rackposition">RackPosition</h4>
+<p>RackPosition defines the geopraphical position of the rack in a datacenter</p>
+<p><em>Appears in:</em>
+- <a href="#rackspec">RackSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>location</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>aisle</code> <em>string</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>row</code> <em>string</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="rackspec">RackSpec</h4>
+<p>RackSpec defines the properties of a rack which we are modelling</p>
+<p><em>Appears in:</em>
+- <a href="#rack">Rack</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>numServers</code> <em>integer</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hasControlNode</code> <em>boolean</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hasConsoleServer</code> <em>boolean</em></td>
+<td></td>
+</tr>
+<tr>
+<td><code>position</code> <em><a href="#rackposition">RackPosition</a></em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="rackstatus">RackStatus</h4>
+<p>RackStatus defines the observed state of Rack</p>
+<p><em>Appears in:</em>
+- <a href="#rack">Rack</a></p>
+<h4 id="server">Server</h4>
+<p>Server is the Schema for the servers API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>wiring.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Server</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#serverspec">ServerSpec</a></em></td>
+<td>Spec is desired state of the server</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#serverstatus">ServerStatus</a></em></td>
+<td>Status is the observed state of the server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="serverfacingconnectionconfig">ServerFacingConnectionConfig</h4>
+<p>ServerFacingConnectionConfig defines any server-facing connection (unbundled, bundled, mclag, etc.) configuration</p>
+<p><em>Appears in:</em>
+- <a href="#connbundled">ConnBundled</a>
+- <a href="#connmclag">ConnMCLAG</a>
+- <a href="#connunbundled">ConnUnbundled</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mtu</code> <em>integer</em></td>
+<td>MTU is the MTU to be configured on the switch port or port channel</td>
+</tr>
+</tbody>
+</table>
+<h4 id="serverspec">ServerSpec</h4>
+<p>ServerSpec defines the desired state of Server</p>
+<p><em>Appears in:</em>
+- <a href="#server">Server</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code> <em><a href="#servertype">ServerType</a></em></td>
+<td>Type is the type of server, could be control for control nodes or default (empty string) for everything else</td>
+</tr>
+<tr>
+<td><code>description</code> <em>string</em></td>
+<td>Description is a description of the server</td>
+</tr>
+<tr>
+<td><code>profile</code> <em>string</em></td>
+<td>Profile is the profile of the server, name of the ServerProfile object to be used for this server, currently not used by the Fabric</td>
+</tr>
+</tbody>
+</table>
+<h4 id="serverstatus">ServerStatus</h4>
+<p>ServerStatus defines the observed state of Server</p>
+<p><em>Appears in:</em>
+- <a href="#server">Server</a></p>
+<h4 id="servertoswitchlink">ServerToSwitchLink</h4>
+<p>ServerToSwitchLink defines the server-to-switch link</p>
+<p><em>Appears in:</em>
+- <a href="#connbundled">ConnBundled</a>
+- <a href="#connmclag">ConnMCLAG</a>
+- <a href="#connunbundled">ConnUnbundled</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server</code> <em><a href="#baseportname">BasePortName</a></em></td>
+<td>Server is the server side of the connection</td>
+</tr>
+<tr>
+<td><code>switch</code> <em><a href="#baseportname">BasePortName</a></em></td>
+<td>Switch is the switch side of the connection</td>
+</tr>
+</tbody>
+</table>
+<h4 id="servertype">ServerType</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p>ServerType is the type of server, could be control for control nodes or default (empty string) for everything else</p>
+<p><em>Appears in:</em>
+- <a href="#serverspec">ServerSpec</a></p>
+<h4 id="switch">Switch</h4>
+<p>Switch is the Schema for the switches API 
+ All switches should always have 1 labels defined: wiring.githedgehog.com/rack. It represents name of the rack it belongs to.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>wiring.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Switch</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#switchspec">SwitchSpec</a></em></td>
+<td>Spec is desired state of the switch</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#switchstatus">SwitchStatus</a></em></td>
+<td>Status is the observed state of the switch</td>
+</tr>
+</tbody>
+</table>
+<h4 id="switchgroup">SwitchGroup</h4>
+<p>SwitchGroup is the marker API object to group switches together, switch can belong to multiple groups</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>wiring.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>SwitchGroup</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#switchgroupspec">SwitchGroupSpec</a></em></td>
+<td>Spec is the desired state of the SwitchGroup</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#switchgroupstatus">SwitchGroupStatus</a></em></td>
+<td>Status is the observed state of the SwitchGroup</td>
+</tr>
+</tbody>
+</table>
+<h4 id="switchgroupspec">SwitchGroupSpec</h4>
+<p>SwitchGroupSpec defines the desired state of SwitchGroup</p>
+<p><em>Appears in:</em>
+- <a href="#switchgroup">SwitchGroup</a></p>
+<h4 id="switchgroupstatus">SwitchGroupStatus</h4>
+<p>SwitchGroupStatus defines the observed state of SwitchGroup</p>
+<p><em>Appears in:</em>
+- <a href="#switchgroup">SwitchGroup</a></p>
+<h4 id="switchrole">SwitchRole</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p>SwitchRole is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#switchspec">SwitchSpec</a></p>
+<h4 id="switchspec">SwitchSpec</h4>
+<p>SwitchSpec defines the desired state of Switch</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#switch">Switch</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>role</code> <em><a href="#switchrole">SwitchRole</a></em></td>
+<td>Role is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf</td>
+</tr>
+<tr>
+<td><code>description</code> <em>string</em></td>
+<td>Description is a description of the switch</td>
+</tr>
+<tr>
+<td><code>profile</code> <em>string</em></td>
+<td>Profile is the profile of the switch, name of the SwitchProfile object to be used for this switch, currently not used by the Fabric</td>
+</tr>
+<tr>
+<td><code>location</code> <em><a href="#location">Location</a></em></td>
+<td>Location is the location of the switch, it is used to generate the location UUID and location signature</td>
+</tr>
+<tr>
+<td><code>locationSig</code> <em><a href="#locationsig">LocationSig</a></em></td>
+<td>LocationSig is the location signature for the switch</td>
+</tr>
+<tr>
+<td><code>groups</code> <em>string array</em></td>
+<td>Groups is a list of switch groups the switch belongs to</td>
+</tr>
+<tr>
+<td><code>vlanNamespaces</code> <em>string array</em></td>
+<td>VLANNamespaces is a list of VLAN namespaces the switch is part of, their VLAN ranges could not overlap</td>
+</tr>
+<tr>
+<td><code>asn</code> <em>integer</em></td>
+<td>ASN is the ASN of the switch</td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP of the switch that could be used to access it from other switches and control nodes in the Fabric</td>
+</tr>
+<tr>
+<td><code>vtepIP</code> <em>string</em></td>
+<td>VTEPIP is the VTEP IP of the switch</td>
+</tr>
+<tr>
+<td><code>protocolIP</code> <em>string</em></td>
+<td>ProtocolIP is used as BGP Router ID for switch configuration</td>
+</tr>
+<tr>
+<td><code>portGroupSpeeds</code> <em>object (keys:string, values:string)</em></td>
+<td>PortGroupSpeeds is a map of port group speeds, key is the port group name, value is the speed, such as '"2": 10G'</td>
+</tr>
+<tr>
+<td><code>portSpeeds</code> <em>object (keys:string, values:string)</em></td>
+<td>PortSpeeds is a map of port speeds, key is the port name, value is the speed</td>
+</tr>
+<tr>
+<td><code>portBreakouts</code> <em>object (keys:string, values:string)</em></td>
+<td>PortBreakouts is a map of port breakouts, key is the port name, value is the breakout configuration, such as "1/55: 4x25G"</td>
+</tr>
+</tbody>
+</table>
+<h4 id="switchstatus">SwitchStatus</h4>
+<p>SwitchStatus defines the observed state of Switch</p>
+<p><em>Appears in:</em>
+- <a href="#switch">Switch</a></p>
+<h4 id="switchtoswitchlink">SwitchToSwitchLink</h4>
+<p>SwitchToSwitchLink defines the switch-to-switch link</p>
+<p><em>Appears in:</em>
+- <a href="#connmclagdomain">ConnMCLAGDomain</a>
+- <a href="#connvpcloopback">ConnVPCLoopback</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>switch1</code> <em><a href="#baseportname">BasePortName</a></em></td>
+<td>Switch1 is the first switch side of the connection</td>
+</tr>
+<tr>
+<td><code>switch2</code> <em><a href="#baseportname">BasePortName</a></em></td>
+<td>Switch2 is the second switch side of the connection</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vlannamespace">VLANNamespace</h4>
+<p>VLANNamespace is the Schema for the vlannamespaces API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>wiring.githedgehog.com/v1alpha2</code></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>VLANNamespace</code></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#vlannamespacespec">VLANNamespaceSpec</a></em></td>
+<td>Spec is the desired state of the VLANNamespace</td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#vlannamespacestatus">VLANNamespaceStatus</a></em></td>
+<td>Status is the observed state of the VLANNamespace</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vlannamespacespec">VLANNamespaceSpec</h4>
+<p>VLANNamespaceSpec defines the desired state of VLANNamespace</p>
+<p><em>Appears in:</em>
+- <a href="#agentspec">AgentSpec</a>
+- <a href="#vlannamespace">VLANNamespace</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ranges</code> <em>VLANRange array</em></td>
+<td>Ranges is a list of VLAN ranges to be used in this namespace, couldn't overlap between each other and with Fabric reserved VLAN ranges</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vlannamespacestatus">VLANNamespaceStatus</h4>
+<p>VLANNamespaceStatus defines the observed state of VLANNamespace</p>
+<p><em>Appears in:</em>
+- <a href="#vlannamespace">VLANNamespace</a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2024</span>
       
         <br>
         Created:
