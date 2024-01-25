@@ -1,5 +1,8 @@
 # Demo on VLAB
 
+Goal of this demo is to show how to use VPCs, attach and peer them and test connectivity between the servers. Examples
+are based on the default VLAB topology.
+
 You can find instructions on how to setup VLAB in the [Overview](overview.md) and [Running VLAB](running.md) sections.
 
 ## Default topology
@@ -266,3 +269,62 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
     3 packets transmitted, 3 received, +3 duplicates, 0% packet loss, time 2003ms
     rtt min/avg/max/mdev = 6.987/8.720/9.595/1.226 ms
     ```
+
+## Using VPCs with overlapping subnets
+
+First of all, we'll need to make sure that we have a second IPv4Namespace with the same subnet as default one:
+
+```bash
+core@control-1 ~ $ kubectl get ipns
+NAME      SUBNETS           AGE
+default   ["10.0.0.0/16"]   24m
+
+core@control-1 ~ $ cat <<EOF > ipns-2.yaml
+apiVersion: vpc.githedgehog.com/v1alpha2
+kind: IPv4Namespace
+metadata:
+  name: ipns-2
+  namespace: default
+spec:
+  subnets:
+  - 10.0.0.0/16
+EOF
+
+core@control-1 ~ $ kubectl apply -f ipns-2.yaml
+ipv4namespace.vpc.githedgehog.com/ipns-2 created
+
+core@control-1 ~ $ kubectl get ipns
+NAME      SUBNETS           AGE
+default   ["10.0.0.0/16"]   30m
+ipns-2    ["10.0.0.0/16"]   8s
+```
+
+Let's assume that `vpc-1` already exists and is attached to `server-01` (see [Creating and attaching VPCs](#creating-and-attaching-vpcs)).
+Now we can create `vpc-3` with the same subnet as `vpc-1` (but in the different IPv4Namespace) and attach it to the
+`server-03`:
+
+```bash
+core@control-1 ~ $ cat <<EOF > vpc-3.yaml
+apiVersion: vpc.githedgehog.com/v1alpha2
+kind: VPC
+metadata:
+  name: vpc-1
+  namespace: default
+spec:
+  ipv4Namespace: ipns-2
+  subnets:
+    default:
+      dhcp:
+        enable: true
+        range:
+          start: 10.0.1.10
+      subnet: 10.0.1.0/24
+      vlan: "2001"
+  vlanNamespace: default
+EOF
+
+core@control-1 ~ $ kubectl apply -f vpc-3.yaml
+```
+
+At that point you can setup networking on the `server-03` same as for `server-01` and `server-02` in a previous sections
+and see that we have now `server-01` and `server-03` with the IP addresses from the same subnets.
