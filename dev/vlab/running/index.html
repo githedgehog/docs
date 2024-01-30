@@ -487,6 +487,13 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-vlab-vms" class="md-nav__link">
+    Configuring VLAB VMs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#default-credentials" class="md-nav__link">
     Default credentials
   </a>
@@ -1228,6 +1235,13 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-vlab-vms" class="md-nav__link">
+    Configuring VLAB VMs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#default-credentials" class="md-nav__link">
     Default credentials
   </a>
@@ -1431,6 +1445,14 @@ to get VMs back up and running.</p>
 </span></code></pre></div>
 <p>After you see <code>VM installed name=control-1</code>, it means that the installer has finished and you can get into the control
 node and other VMs to watch the Fabric coming up and switches getting provisioned.</p>
+<h2 id="configuring-vlab-vms">Configuring VLAB VMs</h2>
+<p>By default, all test server VMs are isolated and have no connectivity to the host or internet. You can configure it
+using <code>hhfab vlab up --restrict-servers=false</code> flag to allow the test servers to access the internet and the host. It
+will mean that VMs will have default route pointing to the host which means in case of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering you'll need to
+configure test server VMs to use the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attachement as a default route (or just some specific subnets).</p>
+<p>Additionally, you can configure the size of all VMs using <code>hhfab vlab up --vm-size &lt;size&gt;</code> flag. It will allow you to
+choose from one of the presets (compact, default, full and huge) to get the control, switch and server VMs of different
+sizes.</p>
 <h2 id="default-credentials">Default credentials</h2>
 <p>Fabricator will create default users and keys for you to login into the control node and test servers as well as for the
 SONiC Virtual Switches.</p>
@@ -1552,7 +1574,7 @@ using the Fabric in the <a href="../../user-guide/overview/">User Guide</a>, <a 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 30, 2024</span>
       
         <br>
         Created:
