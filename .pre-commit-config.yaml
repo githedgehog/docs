@@ -1,0 +1,38 @@
+default_stages: [commit]
+default_install_hook_types: [pre-commit, prepare-commit-msg]
+exclude: |
+  (?x)^(
+    ^docs/reference/api.md
+  )
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: text-unicode-replacement-char
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.7.0-4
+    hooks:
+      - id: shfmt-docker
+        alias: shfmt
+        args: ["-i", "2"]
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.6
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.10.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.18.0
+    hooks:
+      - id: typos
+        exclude_types:
+          - svg
