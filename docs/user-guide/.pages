@@ -5,4 +5,5 @@ nav:
   - vpcs.md
   - external.md
   - harvester.md
+  - shrink-expand.md
   - ...
