@@ -3499,24 +3499,6 @@ and Externals APIs. Intended to be used by the user.</p>
 <p>VPCStatus defines the observed state of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></p>
 <p><em>Appears in:</em>
 - <a href="#vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></a></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>vni</code> <em>integer</em></td>
-<td>VNI is the global Fabric-level VNI allocated for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
-</tr>
-<tr>
-<td><code>subnetVNIs</code> <em>object (keys:string, values:integer)</em></td>
-<td>SubnetVNIs is the map of subnet names to the global Fabric-level VNIs allocated for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets</td>
-</tr>
-</tbody>
-</table>
 <h4 id="vpcsubnet">VPCSubnet</h4>
 <p>VPCSubnet defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet configuration</p>
 <p><em>Appears in:</em>
@@ -4036,20 +4018,6 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <p>ConnectionStatus defines the observed state of Connection</p>
 <p><em>Appears in:</em>
 - <a href="#connection">Connection</a></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>systemID</code> <em>integer</em></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h4 id="fabriclink">FabricLink</h4>
 <p>FabricLink defines the fabric connection link</p>
 <p><em>Appears in:</em>
@@ -4597,7 +4565,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 30, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2024</span>
       
         <br>
         Created:
