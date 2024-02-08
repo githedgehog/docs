@@ -111,6 +111,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.githedgehog.com/dev/user-guide/shrink-expand/</loc>
+         <lastmod>2024-02-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.githedgehog.com/dev/user-guide/vpcs/</loc>
          <lastmod>2024-02-08</lastmod>
          <changefreq>daily</changefreq>
