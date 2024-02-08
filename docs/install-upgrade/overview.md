@@ -34,9 +34,9 @@ Main steps to install Fabric are:
 
 It's the only step that requires internet access to download artifacts and build installer.
 
-Once you've prepated Wiring Diagram, you can initialize Fabricator by running `hhfab init` command and passwing optional
+Once you've prepared Wiring Diagram, you can initialize Fabricator by running `hhfab init` command and passwing optional
 configuration into it as well as wiring diagram file(s) as flags. Additionally, there are a lot of customizations
-availble as flags, e.g. to setup default credentials, keys and etc, please, refer to `hhfab init --help` for more.
+available as flags, e.g. to setup default credentials, keys and etc, please, refer to `hhfab init --help` for more.
 
 The `--dev` options allows to enable development mode which will enable default credentials and keys for the Control
 Node and switches:

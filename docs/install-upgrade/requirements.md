@@ -1,14 +1,14 @@
 # System Requirements
 
-- Fast SSDs for system/root and K8s & container runtime forlders are required for stable work
+- Fast SSDs for system/root and K8s & container runtime folders are required for stable work
 - SSDs are mandatory for Control Nodes
-- Minimal (non-HA) setup is a single Contol Node
+- Minimal (non-HA) setup is a single Control Node
 - (Future) Full (HA) setup is at least 3 Control Nodes
 - (Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack and etc.
 
 ## Non-HA (minimal) setup - 1 Control Node
 
-- Control Node runs non-HA K8s Contol Plane installation with non-HA Hedgehog Fabric Control Plane on top of it
+- Control Node runs non-HA K8s Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it
 - Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments
 
 |      | Minimal | Recommended |
@@ -19,7 +19,7 @@
 
 ## (Future) HA setup - 3+ Control Nodes (per node)
 
-- Each Contol Node runs part of the HA K8s Control Plane installation with Hedgehog Fabric Control Plane on top of it in
+- Each Control Node runs part of the HA K8s Control Plane installation with Hedgehog Fabric Control Plane on top of it in
   HA mode as well
 - Recommended for all cases where more then 10 devices participating in the Hedgehog Fabric
 

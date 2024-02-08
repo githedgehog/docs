@@ -42,7 +42,7 @@ information is added under the RelayAgentInfo option(82) on the DHCP packet. The
 
 ## VPCAttachment
 
-Represents a specific VPC subnet assignemnt to the `Connection` object which means exact server port to a VPC binding.
+Represents a specific VPC subnet assignment to the `Connection` object which means exact server port to a VPC binding.
 It basically leads to the VPC being available on the specific server port(s) on a subnet VLAN.
 
 VPC could be attached to a switch which is a part of the VLAN namespace used by the VPC.

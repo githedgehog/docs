@@ -9,7 +9,7 @@ connection to the switches.
 You can have multiple VPCs created and attached to the `Connections` to this servers to make them available to the VMs
 in Harvester or any other hypervisor.
 
-## Congigure Harvester
+## Configure Harvester
 
 ### Add a Cluster Network
 

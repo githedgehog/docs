@@ -1,7 +1,7 @@
 # Hedgehog Network Fabric
 
 The Hedgehog Open Network Fabric is an open source network architecture that provides connectivity between virtual and
-physical workloads and provides a way to achieve network isolation between different groups of workloads using standar
+physical workloads and provides a way to achieve network isolation between different groups of workloads using standard
 BGP EVPN and vxlan technology. The fabric provides a standard kubernetes interfaces to manage the elements in the
 physical network and provides a mechanism to configure virtual networks and define attachments to these virtual networks.
 The Hedgehog Fabric provides isolation between different groups of workloads by placing them in different virtual
@@ -39,7 +39,7 @@ underlay network.
 ## Overlay Network
 
 The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
-and data plane traffic between different virtual networks and the underlay network. Vitualization is achieved in the
+and data plane traffic between different virtual networks and the underlay network. Visualization is achieved in the
 hedgehog fabric by encapsulating workload traffic over vxlan tunnels that are source and terminated on the leaf switches
 in the network. The fabric using BGP-EVPN/Vxlan to enable creation and management of virtual networks on top of the
 virtual. The fabric supports multiple virtual networks over the same underlay network to support multi-tenancy. Each
@@ -48,7 +48,7 @@ a high level overview of how are vpc's implemented in the hedgehog fabric and it
 
 ## VPC
 We know what is a VPC and how to attach workloads to a specific VPC. Let us now take a look at how is this actually
-implemented on the network to provice the view of a private network.
+implemented on the network to provide the view of a private network.
 
  - Each VPC is modeled as a vrf on each switch where there are VPC attachments defined for this vpc.
    The Vrf is allocated its own VNI. The Vrf is local to each switch and the VNI is global for the entire fabric. By
@@ -62,10 +62,10 @@ implemented on the network to provice the view of a private network.
  - A VPC can have multuple subnets. Each Subnet in the VPC is modeled as a Vlan on the switch. The vlan is only locally
    significant and a given subnet might have different Vlan's on different leaves on the network. We assign a globally
    significant vni for each subnet. This VNI is used to extend the subnet across different leaves in the network and
-   provides a view of single streched l2 domain if the applications need it.
+   provides a view of single stretched l2 domain if the applications need it.
  - The hedgehog fabric has a built-in DHCP server which will automatically assign IP addresses to each workload
    depending on the VPC it belongs to. This is achieved by configuring a DHCP relay on each of the server facing vlans.
-   The DHCP server is accesible through the underlay network and is shared by all vpcs in the fabric. The inbuilt DHCP
+   The DHCP server is accessible through the underlay network and is shared by all vpcs in the fabric. The inbuilt DHCP
    server is capable of identifying the source VPC of the request and assigning IP addresses from a pool allocated to the
    VPC at creation.
  - A VPC by default cannot communicate to anyone outside the VPC and we need to define specific peering rules to allow
@@ -76,7 +76,7 @@ To enable communication between 2 different VPC's we need to configure a VPC pee
 supports two different peering modes.
 
 - Local Peering - A local peering directly imports routers from the other VPC locally. This is achieved by a simple
-  import route from the peer VPC. In case there are no locally attached worloads to the peer VPC the fabric
+  import route from the peer VPC. In case there are no locally attached workloads to the peer VPC the fabric
   automatically creates a stub vpc for peering and imports routes from it. This allows VPC's to peer with each other
   without the need for dedicated peering leaf. If a local peering is done for a pair of VPC's which have locally
   attached workloads the fabric automatically allocates a pair of ports on the switch to router traffic between these
@@ -88,5 +88,5 @@ supports two different peering modes.
   configuration in the peering policy. When a remote peering policy is applied for a pair of VPC's the vrf's
   corresponding to these VPC's on the peering switch advertise default routes into their specific vrf's identified
   by the l3vni. All traffic that does not belong to the VPC's is forwarded to the peering switch and which has routes
-  to the other VPC's and gets forwarded from there. The bandwith limitation that exists in the local peering solution
-  is solved here as the bandwith between the two VPC's is determined by the fabric cross section bandwidth.
+  to the other VPC's and gets forwarded from there. The bandwidth limitation that exists in the local peering solution
+  is solved here as the bandwidth between the two VPC's is determined by the fabric cross section bandwidth.
