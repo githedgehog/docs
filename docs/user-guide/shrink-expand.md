@@ -1,20 +1,20 @@
-# Switch adding/removing guide 
+# Fabric Shrink/Expand
 
-This article gives brief overview of how to add or remove switches within the fabric using Hedgehog Fabric API and manage connection relations between them.
+This article gives brief overview of how to add or remove switches within the fabric using Hedgehog Fabric API and manage connections between them.
 
-Manipulating with API objects done with assumption that target devices are correctly cabeled and connected.
+Manipulating API objects done with assumption that target devices are correctly cabeled and connected.
 
 This article operates terms that can be found in [Hedgehog Concepts](../concepts/overview.md), [User Guide](overview.md) documentation and [Fabric API](../reference/api.md) reference.
 
-### Add switch to existing fabric
+### Add switch to the existing fabric
 
-For every switch needs to be installed into the Hedgehog fabric it's should be attached to the fabric dedicated `Switch` object has to be described. Example can be found in [User Guilde](devices.md).
+For every switch to be added into the Hedgehog fabric it should have a corresponding `Switch` object. Example can be found in [User Guilde](devices.md).
 
->If the`Switch` will be used in `ESLag` or `MCLag` groups, appropriate groups should exists. Groups should be specified in the `Switch` object before creation.
+>If the`Switch` will be used in `ESLAG` or `MCLAG` groups, appropriate groups should exist. Redundancy groups should be specified in the `Switch` object before creation.
 
-After the `Switch` object is created for dedicated device `Connections` can be defined and created. Based on the `Switch` role given to the device types of connections may be different. Please refer to [Connections section](connections.md).
+After the `Switch` object is created, dedicated device `Connections` can be defined and created. Based on the `Switch` role given to the device types of connections may be different. Please refer to [Connections section](connections.md).
 
->If switch is facing control node connection on the front-pannel port, such switch port should be described in `Management` connection
+>If switch is facing control node connection on the front-panel port, such switch port should be described in `Management` connection
 
 >Switch device should be booted in `ONIE` or `HONIE` Installation mode to install SONiC OS and configure Fabric agent
 
@@ -28,4 +28,3 @@ If the switch has to be decommissioned or removed there are several preparation 
 - If the `Switch` is a `Leaf` switch (including `Mixed` and `Border` leaf configuration) all `VPCAttachments` bound to all switches `Connections` must be removed first. If the `Switch` was used for `ExternalPeering` all `ExternalAttachment` object that are bound to `Connections` of the `Switch` must be removed.
 -  All connections of the `Switch` must be removed.
 - `Switch` and `Agent` object can be removed.
-
