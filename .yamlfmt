@@ -1,1 +1,6 @@
-retain_line_breaks: True
+formatter:
+  type: basic
+  drop_merge_tag: true
+  pad_line_comments: 2 # Align with yamllint
+  scan_folded_as_literal: true
+  retain_line_breaks: true
