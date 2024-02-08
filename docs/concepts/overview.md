@@ -8,7 +8,7 @@ and so you can use standard Kubernetes tools to manage Fabric resources.
 
 Hedgehog Fabric consists of the following components:
 
-* Fabricator - special tool that allows to install and configre Fabric as well as run virtual labs
+* Fabricator - special tool that allows to install and configure Fabric as well as run virtual labs
 * Control Node - one or more Kubernetes nodes in a single clusters running Fabric software
     * Das Boot - set of services providing switch boot and installation
     * Fabric Controller - main control plane component that manages Fabric resources
@@ -40,7 +40,7 @@ Wiring Diagram consists of the following resources:
 * VPC API
     * __VPC__: Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the
       resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP
-    * __VPCAttachment__: represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding
+    * __VPCAttachment__: represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding
     * __VPCPeering__: enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)
 * External API
     * __External__: definition of the "external system" to peer with (could be one or multiple devices such as edge/provider routers)
@@ -70,12 +70,12 @@ Installer builder and VLAB.
 Switch boot and installation.
 
 * Seeder
-  * Actual switch provisioing
+  * Actual switch provisioning
   * ONIE on a switch discovers control node using LLDP
   * It loads and runs our multi-stage installer
     * Network configuration & identity setup
     * Performs device registration
-    * Hedgehog identity partion gets created on the switch
+    * Hedgehog identity partition gets created on the switch
     * Downloads SONiC installer and runs it
     * Downloads Agent and it's config and installs to the switch
 * Registration Controller
@@ -91,7 +91,7 @@ Control plane and switch agent.
   * It includes controllers for different CRDs and needs
   * For example, auto assigning VNIs to VPC or generating Agent config
   * Additionally, it's running admission webhook for our CRD APIs
-* Agent is watching for the corresonding Agent CRD in K8s API
+* Agent is watching for the corresponding Agent CRD in K8s API
   * It applies the changes and saves new config locally
   * It reports back some status and information back to API
   * Can perform reinstall and reboot of SONiC

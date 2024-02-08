@@ -172,7 +172,7 @@ node and other VMs to watch the Fabric coming up and switches getting provisione
 By default, all test server VMs are isolated and have no connectivity to the host or internet. You can configure it
 using `hhfab vlab up --restrict-servers=false` flag to allow the test servers to access the internet and the host. It
 will mean that VMs will have default route pointing to the host which means in case of the VPC peering you'll need to
-configure test server VMs to use the VPC attachement as a default route (or just some specific subnets).
+configure test server VMs to use the VPC attachment as a default route (or just some specific subnets).
 
 Additionally, you can configure the size of all VMs using `hhfab vlab up --vm-size <size>` flag. It will allow you to
 choose from one of the presets (compact, default, full and huge) to get the control, switch and server VMs of different

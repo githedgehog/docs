@@ -10,7 +10,7 @@ In order to contribute to the documentation, you'll need to have Git and Docker 
 make serve
 ```
 
-Now you can open continuosly updated preview of your edits in browser at [http://127.0.0.1:8000](http://127.0.0.1:8000). Pages will be automatically updated while you're editing.
+Now you can open continuously updated preview of your edits in browser at [http://127.0.0.1:8000](http://127.0.0.1:8000). Pages will be automatically updated while you're editing.
 
 Additionally you can run
 
@@ -124,7 +124,7 @@ Admonitions, also known as call-outs, are an excellent choice for including side
 
 Details can be found [here](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/).
 
-Simple code block with line nums and higlighted lines:
+Simple code block with line nums and highlighted lines:
 
 ```py title="bubble_sort.py" hl_lines="2 3" linenums="1"
 def bubble_sort(items):
