@@ -1290,7 +1290,7 @@ that all user-facing APIs are <a href="https://kubernetes.io/docs/concepts/exten
 and so you can use standard Kubernetes tools to manage Fabric resources.</p>
 <p>Hedgehog Fabric consists of the following components:</p>
 <ul>
-<li>Fabricator - special tool that allows to install and configre Fabric as well as run virtual labs</li>
+<li>Fabricator - special tool that allows to install and configure Fabric as well as run virtual labs</li>
 <li>Control Node - one or more Kubernetes nodes in a single clusters running Fabric software<ul>
 <li>Das Boot - set of services providing switch boot and installation</li>
 <li>Fabric Controller - main control plane component that manages Fabric resources</li>
@@ -1325,7 +1325,7 @@ connections between them and between VPCs and <abbr title="Definition of the &qu
 <li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> API<ul>
 <li><strong><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></strong>: Virtual Private Cloud, similar to the public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it provides an isolated private network for the
   resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP</li>
-<li><strong><abbr title="Represents a specific VPC subnet assignemnt to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></strong>: represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignemnt to the Connection object which means exact server port to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> binding</li>
+<li><strong><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></strong>: represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignment to the Connection object which means exact server port to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> binding</li>
 <li><strong><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></strong>: enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)</li>
 </ul>
 </li>
@@ -1357,12 +1357,12 @@ connections between them and between VPCs and <abbr title="Definition of the &qu
 <p>Switch boot and installation.</p>
 <ul>
 <li>Seeder</li>
-<li>Actual switch provisioing</li>
+<li>Actual switch provisioning</li>
 <li>ONIE on a switch discovers control node using LLDP</li>
 <li>It loads and runs our multi-stage installer<ul>
 <li>Network configuration &amp; identity setup</li>
 <li>Performs device registration</li>
-<li>Hedgehog identity partion gets created on the switch</li>
+<li>Hedgehog identity partition gets created on the switch</li>
 <li>Downloads SONiC installer and runs it</li>
 <li>Downloads Agent and it's config and installs to the switch</li>
 </ul>
@@ -1379,7 +1379,7 @@ connections between them and between VPCs and <abbr title="Definition of the &qu
 <li>It includes controllers for different CRDs and needs</li>
 <li>For example, auto assigning VNIs to <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> or generating Agent config</li>
 <li>Additionally, it's running admission webhook for our CRD APIs</li>
-<li>Agent is watching for the corresonding Agent CRD in K8s API</li>
+<li>Agent is watching for the corresponding Agent CRD in K8s API</li>
 <li>It applies the changes and saves new config locally</li>
 <li>It reports back some status and information back to API</li>
 <li>Can perform reinstall and reboot of SONiC</li>
@@ -1390,7 +1390,7 @@ connections between them and between VPCs and <abbr title="Definition of the &qu
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2024</span>
       
         <br>
         Created:
