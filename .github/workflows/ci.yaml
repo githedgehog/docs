@@ -3,8 +3,8 @@ name: Build docs
 on:
   push:
     branches:
-        - master
-        - release/*
+      - master
+      - release/*
   pull_request:
   workflow_dispatch:
     inputs:
@@ -24,8 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-            persist-credentials: false
-            fetch-depth: 0
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Build docs
         run: make build
@@ -50,10 +50,10 @@ jobs:
         # TODO support publishing non-dev versions
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
-            PUSH_TOKEN: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
+          PUSH_TOKEN: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
         run: |
-            make deploy RELEASE=dev ALIAS=master
-            git push https://$PUSH_TOKEN@github.com/${{ github.repository }} publish
+          make deploy RELEASE=dev ALIAS=master
+          git push https://$PUSH_TOKEN@github.com/${{ github.repository }} publish
 
       - name: Setup tmate session for debug
         if: ${{ failure() && github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}

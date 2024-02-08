@@ -74,7 +74,7 @@ plugins:
       order_by: title
   - git-revision-date-localized:
       enable_creation_date: true
-  # - htmlproofer # https://github.com/manuzhang/mkdocs-htmlproofer-plugin
+      # - htmlproofer # https://github.com/manuzhang/mkdocs-htmlproofer-plugin
 
 markdown_extensions:
   - abbr
