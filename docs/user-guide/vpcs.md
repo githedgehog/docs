@@ -89,21 +89,21 @@ It enables VPC to VPC connectivity. There are tw o types of VPC peering:
 
 VPC peering is only possible between VPCs attached to the same IPv4 namespace.
 
-Local:
+### Local VPC peering
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
 kind: VPCPeering
 metadata:
-  name: vpc-1--vpc-3
+  name: vpc-1--vpc-2
   namespace: default
 spec:
   permit: # Defines a pair of VPCs to peer
   - vpc-1: {} # meaning all subnets of two VPCs will be able to communicate to each other
-    vpc-3: {} # more advanced filtering will be supported in future releases
+    vpc-2: {} # see "Subnet filtering" for more advanced configuration
 ```
 
-Remote:
+### Remote VPC peering
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -116,6 +116,30 @@ spec:
   - vpc-1: {}
     vpc-2: {}
   remote: border # indicates a switch group to implement the peering on
+```
+
+### Subnet filtering
+
+It's possible to specify which specific subnets of the peering VPCs could communicate to each other using the `permit`
+field.
+
+```yaml
+```yaml
+apiVersion: vpc.githedgehog.com/v1alpha2
+kind: VPCPeering
+metadata:
+  name: vpc-1--vpc-2
+  namespace: default
+spec:
+  permit: # subnet-1 and subnet-2 of vpc-1 could communicate to subnet-3 of vpc-2 as well as subnet-4 of vpc-2 could communicate to subnet-5 and subnet-6 of vpc-2
+  - vpc-1:
+      subnets: [subnet-1, subnet-2]
+    vpc-2:
+      subnets: [subnet-3]
+  - vpc-1:
+      subnets: [subnet-4]
+    vpc-2:
+      subnets: [subnet-5, subnet-6]
 ```
 
 ## IPv4Namespace
