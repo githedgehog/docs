@@ -37,6 +37,9 @@ spec:
   vtepIP: 172.30.12.100/32
   groups: # Defines which groups the switch belongs to
   - some-group
+  redundancy: # Optional field to define that switch belongs to the redundancy group
+    group: eslag-1 # Name of the redundancy group
+    type: eslag # Type of the redundancy group, one of mclag or eslag
 ```
 
 The `SwitchGroup` is just a marker at that point and doesn't have any configuration options.
@@ -49,6 +52,68 @@ metadata:
   namespace: default
 spec: {}
 ```
+
+## Redundancy Groups
+
+Redundancy groups are used to define the redundancy between switches. It's a regular `SwitchGroup` used by multiple
+switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). Switch can only belong to a single redundancy group.
+
+MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches.
+
+Connections with types `mclag` and `eslag` are used to define the servers connections to switches and only supported if
+switch belongs to a redundancy group with corresponding type.
+
+In order to define MCLAG or ESLAG redundancy group, you need to create a `SwitchGroup` object and assign it to the
+switches using `redundancy` field.
+
+Example of switch configured for ESLAG:
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1alpha2
+kind: SwitchGroup
+metadata:
+  name: eslag-1
+  namespace: default
+spec: {}
+---
+apiVersion: wiring.githedgehog.com/v1alpha2
+kind: Switch
+metadata:
+  name: s5248-03
+  namespace: default
+spec:
+  ...
+  redundancy:
+    group: eslag-1
+    type: eslag
+  ...
+```
+
+And example of switch configured for MCLAG:
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1alpha2
+kind: SwitchGroup
+metadata:
+  name: mclag-1
+  namespace: default
+spec: {}
+---
+apiVersion: wiring.githedgehog.com/v1alpha2
+kind: Switch
+metadata:
+  name: s5248-01
+  namespace: default
+spec:
+  ...
+  redundancy:
+    group: mclag-1
+    type: mclag
+  ...
+```
+
+In case of MCLAG it's required to have a special connection with type `mclag-domain` that defines peer and session links
+between switches, for more details see [Connections](./connections.md).
 
 ## Servers
 
