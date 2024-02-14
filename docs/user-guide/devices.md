@@ -58,7 +58,8 @@ spec: {}
 Redundancy groups are used to define the redundancy between switches. It's a regular `SwitchGroup` used by multiple
 switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). Switch can only belong to a single redundancy group.
 
-MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches.
+MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
+groups can be used in the fabric simultaneously.
 
 Connections with types `mclag` and `eslag` are used to define the servers connections to switches and only supported if
 switch belongs to a redundancy group with corresponding type.
