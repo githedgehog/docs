@@ -1,10 +1,63 @@
 # Release notes
 
+## Alpha-4
+
+### Documentation
+
+* Fabric API reference
+
+### Host connectivity dual homing improvements
+
+* ESI for VXLAN-based BGP EVPN
+  * Support in Fabric and VLAB
+* Host connectivity Redundancy Groups
+  * Groups LEAF switches to provide multi-homed connectivity to the Fabric
+  * 2-4 switches per group
+  * Support for MCLAG and ESLAG (EVPN MH / ESI)
+  * A single redundancy group can only support multi-homing of one type (ESLAG or MCLAG)
+  * Multiple types of redundancy groups can be used in the fabric simultaneously
+
+### Improved VPC security policy - better Zero Trust
+
+* Inter-VPC
+    * Allow inter-VPC and external peering with per subnet control
+* Intra-VPC intra-subnet policies
+    * Isolated Subnets
+        * subnets isolated by default from other subnets in the VPC
+        * require a user-defined explicitly permit list to allow communications to other subnets within the VPC
+        * can be set on individual subnets within VPC or per entire VPC - off by default
+        * Inter-VPC and external peering configurations are not affected and work the same as before
+    * Restricted Subnets
+        * Hosts within a subnet have no mutual reachability
+        * Hosts within a subnet can be reached by members of other subnets or peered VPCs as specified by the policy
+        * Inter-VPC and external peering configurations are not affected and work the same as before
+    * Permit Lists
+        * Intra-VPC Permit Lists govern connectivity between subnets within the VPC for isolated subnets
+        * Inter-VPC Permit Lists govern which subnets of one VPC have access to some subnets of the other VPC for finer-grained control of inter-VPC and external peering
+
+### Static External Connection
+
+* Allows access between hosts within the VPC and devices attached to a switch with user-defined static routes
+
+### Internal Improvements
+
+* A new, more reliable automated ID allocation system
+* Extra validation of object lifecycle (e.g., object-in-use removal validation)
+
+### Known Issues
+
+* External Peering Failover
+    * Conditions: ExternalPeering is specified for the VPC, and the same VPC has Border Leaf VPCPeering
+    * Issue: Detaching ExternalPeering may cause VPCPeering on the Border Leaf group to stop working
+    * Workaround: VPCPeering on the Border Leaf group should be recreated
+
+
+
 ## Alpha-3
 
 ### SONiC support
 
-Broadcom Enterprise SONiC 4.2.0 (previously 4.1.1)
+* Broadcom Enterprise SONiC 4.2.0 (previously 4.1.1)
 
 ### Multiple IPv4 namespaces
 
@@ -84,20 +137,20 @@ MCLAG-only.
 #### LEAFs
 
 * DELL:
-  * S5248F-ON
-  * S5232F-ON
+    * S5248F-ON
+    * S5232F-ON
 
 * Edge-Core:
-  * DCS204 (AS7726-32X)
-  * DCS203 (AS7326-56X)
-  * EPS203 (AS4630-54NPE)
+    * DCS204 (AS7726-32X)
+    * DCS203 (AS7326-56X)
+    * EPS203 (AS4630-54NPE)
 
 #### SPINEs
 
 * DELL:
-  * S5232F-ON
+    * S5232F-ON
 * Edge-Core:
-  * DCS204 (AS7726-32X)
+    * DCS204 (AS7726-32X)
 
 ### Underlay configuration:
 
