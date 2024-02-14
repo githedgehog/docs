@@ -17,7 +17,6 @@ spec:
   subnets:
     defaultIsolated: true # Sets default behavior for the current VPC subnets to be isolated
     defaultRestricted: true # Sets default behavior for the current VPC subnets to be restricted
-    defaultRestricted: true
     default: # Each subnet is named, "default" subnet isn't required, but actively used by CLI
       dhcp:
         enable: true # On-demand DHCP server
