@@ -240,6 +240,18 @@ spec:
         nextHop: 172.30.50.1 # Next hop IP address that will be used when configuring static routes for the "subnets" list
 ```
 
+Additionally, it's possible to configure `StaticExternal` within the VPC to provide access to the third-party resources
+within a specific VPC with the same rest of the configuration.
+
+```yaml
+...
+spec:
+  staticExternal:
+    withinVPC: vpc-1 # VPC name to attach the static external to
+    link:
+      ...
+```
+
 ### External
 
 Connection to the external systems, e.g. edge/provider routers using BGP peering and configuring Inbound/Outbound
