@@ -125,8 +125,7 @@ spec:
       - # Name of the subnet within VPC
 
 ```
-`Prefixes` can be specified as `exact match` or with mask range indicators `le` and `ge` keywords.
-`le` is identifying prefixes lengths that are `less than or equal` and `ge` for prefixes lengths that are `greater than or equal`.
+`Prefixes` are be specified as `exact match` with prefix length `less or equal 32` by default.
 
 Example: Allow ANY IPv4 prefix that came from `External` - allow all prefixes that match default route with any prefix length
 ```yaml
@@ -135,10 +134,8 @@ spec:
     external:
       name: ###
       prefixes:
-      - le: 32
-        prefix: 0.0.0.0/0
+      - prefix: 0.0.0.0/0
 ```
-`ge` and `le` can also be combined.
 
 Example:
 ```yaml
@@ -147,11 +144,8 @@ spec:
     external:
       name: ###
       prefixes:
-      - le: 24
-        ge: 16
-        prefix: 77.0.0.0/8
+      - prefix: 77.71.0.0/24
 ```
-For instance, `77.42.0.0/18` will be matched for given prefix rule above, but `77.128.77.128/25` or `77.10.0.0/16` won't.
 
 ## Examples
 
@@ -225,8 +219,7 @@ spec:
     external:
       name: HedgeEdge
       prefixes:
-      - le: 32
-        prefix: 0.0.0.0/0
+      - prefix: 0.0.0.0/0
     vpc:
       name: vpc-1
       subnets:
