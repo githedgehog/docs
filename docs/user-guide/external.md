@@ -125,7 +125,9 @@ spec:
       - # Name of the subnet within VPC
 
 ```
-`Prefixes` are be specified as `exact match` with prefix length `less or equal 32` by default.
+
+`Prefixes` is the list of subnet to permit from the External to the VPC, e.g. 0.0.0.0/0 for any route including default route.
+It matches any prefix length less than or equal to 32 effectively permitting all prefixes within the specified one.
 
 Example: Allow ANY IPv4 prefix that came from `External` - allow all prefixes that match default route with any prefix length
 ```yaml
@@ -134,7 +136,7 @@ spec:
     external:
       name: ###
       prefixes:
-      - prefix: 0.0.0.0/0
+      - prefix: 0.0.0.0/0 # Any route will be allowed including default route
 ```
 
 Example:
@@ -144,7 +146,7 @@ spec:
     external:
       name: ###
       prefixes:
-      - prefix: 77.71.0.0/24
+      - prefix: 77.0.0.0/8 # Any route that belongs to the specified prefix will be allowed (e.g. 77.0.0.0/8 or 77.1.2.0/24)
 ```
 
 ## Examples
