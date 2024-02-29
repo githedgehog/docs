@@ -77,6 +77,7 @@ metadata:
 spec:
   connection: server-1--mclag--s5248-01--s5248-02 # Connection name representing the server port(s)
   subnet: vpc-1/default # VPC subnet name
+  nativeVLAN: true # Optional, if true the port will be configured as a native VLAN port (untagged)
 ```
 
 ## VPCPeering
