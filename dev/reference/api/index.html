@@ -2880,6 +2880,10 @@ end user through API. Not intended to be modified by the user.</p>
 <td><code>circuitID</code> <em>string</em></td>
 <td>VLAN ID to identify specific subnet withing the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, such as "Vlan1000" as it's named on switch</td>
 </tr>
+<tr>
+<td><code>pxeURL</code> <em>string</em></td>
+<td>PXE IP (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
+</tr>
 </tbody>
 </table>
 <h4 id="dhcpsubnetstatus">DHCPSubnetStatus</h4>
@@ -3365,6 +3369,10 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <td><code>connection</code> <em>string</em></td>
 <td>Connection is the name of the connection to attach to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+</tr>
+<tr>
+<td><code>nativeVLAN</code> <em>boolean</em></td>
+<td>NativeVLAN is the flag to indicate if the native VLAN should be used for attaching the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet</td>
 </tr>
 </tbody>
 </table>
@@ -4601,7 +4609,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 26, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 29, 2024</span>
       
         <br>
         Created:
