@@ -2882,7 +2882,7 @@ end user through API. Not intended to be modified by the user.</p>
 </tr>
 <tr>
 <td><code>pxeURL</code> <em>string</em></td>
-<td>PXE IP (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
+<td>PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
 </tr>
 </tbody>
 </table>
@@ -3402,11 +3402,11 @@ and Externals APIs. Intended to be used by the user.</p>
 </tr>
 <tr>
 <td><code>range</code> <em><a href="#vpcdhcprange">VPCDHCPRange</a></em></td>
-<td>Range is the DHCP range for the subnet if DHCP server is enabled</td>
+<td>Range (optional) is the DHCP range for the subnet if DHCP server is enabled</td>
 </tr>
 <tr>
 <td><code>pxeURL</code> <em>string</em></td>
-<td>PXEURL is the URL for the PXE server if DHCP server is enabled</td>
+<td>PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
 </tr>
 </tbody>
 </table>
