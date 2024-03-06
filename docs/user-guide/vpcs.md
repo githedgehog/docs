@@ -22,6 +22,8 @@ spec:
         enable: true # On-demand DHCP server
         range: # Optionally, start/end range could be specified
           start: 10.10.1.10
+          end: 10.10.1.99
+          pxeURL: http://10.10.10.99/bootfilename # PXEURL (optional) to identify the pxe server to use to boot hosts, http query strings are not supported
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
       vlan: "1001" # User-defined VLAN from vlan namespace
       isolated: true # Makes subnet isolated from other subnets within the VPC (doesn't affect VPC peering)
