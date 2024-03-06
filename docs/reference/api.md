@@ -526,6 +526,7 @@ _Appears in:_
 | `relay` _string_ | Relay is the DHCP relay IP address, if specified, DHCP server will be disabled |
 | `enable` _boolean_ | Enable enables DHCP server for the subnet |
 | `range` _[VPCDHCPRange](#vpcdhcprange)_ | Range is the DHCP range for the subnet if DHCP server is enabled |
+| `pxeURL` _string_ | PXEURL is the URL for the PXE server if DHCP server is enabled |
 
 
 #### VPCDHCPRange
@@ -713,6 +714,7 @@ _Appears in:_
 | --- | --- |
 | `links` _[ServerToSwitchLink](#servertoswitchlink) array_ | Links is the list of server-to-switch links |
 | `mtu` _integer_ | MTU is the MTU to be configured on the switch port or port channel |
+| `fallback` _boolean_ | Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link |
 
 
 #### ConnExternal
@@ -785,6 +787,7 @@ _Appears in:_
 | --- | --- |
 | `links` _[ServerToSwitchLink](#servertoswitchlink) array_ | Links is the list of server-to-switch links |
 | `mtu` _integer_ | MTU is the MTU to be configured on the switch port or port channel |
+| `fallback` _boolean_ | Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link |
 
 
 #### ConnMCLAGDomain
