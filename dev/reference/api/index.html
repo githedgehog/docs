@@ -3404,6 +3404,10 @@ and Externals APIs. Intended to be used by the user.</p>
 <td><code>range</code> <em><a href="#vpcdhcprange">VPCDHCPRange</a></em></td>
 <td>Range is the DHCP range for the subnet if DHCP server is enabled</td>
 </tr>
+<tr>
+<td><code>pxeURL</code> <em>string</em></td>
+<td>PXEURL is the URL for the PXE server if DHCP server is enabled</td>
+</tr>
 </tbody>
 </table>
 <h4 id="vpcdhcprange">VPCDHCPRange</h4>
@@ -3643,6 +3647,10 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
 </tr>
+<tr>
+<td><code>fallback</code> <em>boolean</em></td>
+<td>Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link</td>
+</tr>
 </tbody>
 </table>
 <h4 id="connexternal">ConnExternal</h4>
@@ -3740,6 +3748,10 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+</tr>
+<tr>
+<td><code>fallback</code> <em>boolean</em></td>
+<td>Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link</td>
 </tr>
 </tbody>
 </table>
@@ -4609,7 +4621,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 29, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2024</span>
       
         <br>
         Created:
