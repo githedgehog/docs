@@ -1,5 +1,30 @@
 # Release notes
 
+## Alpha-5
+
+### Open Source
+
+* Apache License 2.0
+* The main repos are [public](https://github.com/githedgehog):
+    * Fabric
+    * Fabricator
+    * Das-boot
+    * Toolbox
+    * Docs
+* Items not open-sourced:
+    * HONIE with front panel booting support
+
+### DHCP/PXE boot support for multi-homed connections
+
+* PXE URL support for on-demand DHCP service
+* LACP link (MCLAG and ESLAG) fallback allows support of one of the links without the use of a host-level bond
+
+### Improvements
+
+* Native VLAN support for server-facing connections
+* Extended wiring validation at hhfab init/build time
+* External peering failover in case of using remote peering on the same switches as external connectivity
+
 ## Alpha-4
 
 ### Documentation
