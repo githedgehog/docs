@@ -2607,39 +2607,51 @@ for the switch and control node agents. Not intended to be modified by the user.
 <li><a href="#agent">Agent</a></li>
 </ul>
 <h4 id="agent">Agent</h4>
-<p>Agent is an internal API object used by the controller to pass all relevant information to the agent running on a specific switch in order to fully configure it and manage its lifecycle. It is not intended to be used directly by users. Spec of the object isn't user-editable, it is managed by the controller. Status of the object is updated by the agent and is used by the controller to track the state of the agent and the switch it is running on. Name of the Agent object is the same as the name of the switch it is running on and it's created in the same namespace as the Switch object.</p>
+<p>Agent is an internal API object used by the controller to pass all relevant information to the agent running on a
+specific switch in order to fully configure it and manage its lifecycle. It is not intended to be used directly by
+users. Spec of the object isn't user-editable, it is managed by the controller. Status of the object is updated by
+the agent and is used by the controller to track the state of the agent and the switch it is running on. Name of the
+Agent object is the same as the name of the switch it is running on and it's created in the same namespace as the
+Switch object.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>agent.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>Agent</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
-</tr>
-<tr>
-<td><code>spec</code> <em><a href="#agentspec">AgentSpec</a></em></td>
-<td>Spec is the desired state of the Agent</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#agentstatus">AgentStatus</a></em></td>
 <td>Status is the observed state of the Agent</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="agentstatus">AgentStatus</h4>
-<p>AgentStatus defines the observed state of the agent running on a specific switch and includes information about the switch itself as well as the state of the agent and applied configuration.</p>
+<p>AgentStatus defines the observed state of the agent running on a specific switch and includes information about the
+switch itself as well as the state of the agent and applied configuration.</p>
 <p><em>Appears in:</em>
 - <a href="#agent">Agent</a></p>
 <table>
@@ -2647,52 +2659,70 @@ for the switch and control node agents. Not intended to be modified by the user.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>version</code> <em>string</em></td>
 <td>Current running agent version</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>installID</code> <em>string</em></td>
 <td>ID of the agent installation, used to track NOS re-installs</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>runID</code> <em>string</em></td>
 <td>ID of the agent run, used to track NOS reboots</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>lastHeartbeat</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
 <td>Time of the last heartbeat from the agent</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>lastAttemptTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
 <td>Time of the last attempt to apply configuration</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>lastAttemptGen</code> <em>integer</em></td>
 <td>Generation of the last attempt to apply configuration</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>lastAppliedTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
 <td>Time of the last successful configuration application</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>lastAppliedGen</code> <em>integer</em></td>
 <td>Generation of the last successful configuration application</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>nosInfo</code> <em><a href="#nosinfo">NOSInfo</a></em></td>
 <td>Information about the switch and NOS</td>
-</tr>
-<tr>
-<td><code>statusUpdates</code> <em><a href="#applystatusupdate">ApplyStatusUpdate</a> array</em></td>
-<td>Status updates from the agent</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>conditions</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#condition-v1-meta">Condition</a> array</em></td>
 <td>Conditions of the agent, includes readiness marker for use with kubectl wait</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2705,77 +2735,111 @@ for the switch and control node agents. Not intended to be modified by the user.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>asicVersion</code> <em>string</em></td>
 <td>ASIC name, such as "broadcom" or "vs"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>buildCommit</code> <em>string</em></td>
 <td>NOS build commit</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>buildDate</code> <em>string</em></td>
 <td>NOS build date</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>builtBy</code> <em>string</em></td>
 <td>NOS build user</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>configDbVersion</code> <em>string</em></td>
 <td>NOS config DB version, such as "version_4_2_1"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>distributionVersion</code> <em>string</em></td>
 <td>Distribution version, such as "Debian 10.13"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>hardwareVersion</code> <em>string</em></td>
 <td>Hardware version, such as "X01"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>hwskuVersion</code> <em>string</em></td>
 <td>Hwsku version, such as "DellEMC-S5248f-P-25G-DPB"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kernelVersion</code> <em>string</em></td>
 <td>Kernel version, such as "5.10.0-21-amd64"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>mfgName</code> <em>string</em></td>
 <td>Manufacturer name, such as "Dell EMC"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>platformName</code> <em>string</em></td>
 <td>Platform name, such as "x86_64-dellemc_s5248f_c3538-r0"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>productDescription</code> <em>string</em></td>
 <td>NOS product description, such as "Enterprise SONiC Distribution by Broadcom - Enterprise Base package"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>productVersion</code> <em>string</em></td>
 <td>NOS product version, empty for Broadcom SONiC</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>serialNumber</code> <em>string</em></td>
 <td>Switch serial number</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>softwareVersion</code> <em>string</em></td>
 <td>NOS software version, such as "4.2.0-Enterprise_Base"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>upTime</code> <em>string</em></td>
 <td>Switch uptime, such as "21:21:27 up 1 day, 23:26, 0 users, load average: 1.92, 1.99, 2.00 "</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="dhcpgithedgehogcomv1alpha2">dhcp.githedgehog.com/v1alpha2</h2>
-<p>Package v1alpha2 contains API Schema definitions for the dhcp v1alpha2 API group. It is the primarely internal API
+<p>Package v1alpha2 contains API Schema definitions for the dhcp v1alpha2 API group. It is the primary internal API
 group for the intended Hedgehog DHCP server configuration and storing leases as well as making them available to the
 end user through API. Not intended to be modified by the user.</p>
 <h3 id="resource-types_1">Resource Types</h3>
@@ -2791,52 +2855,74 @@ end user through API. Not intended to be modified by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>Allocated IP address</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>expiry</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta">Time</a></em></td>
 <td>Expiry time of the lease</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>hostname</code> <em>string</em></td>
 <td>Hostname from DHCP request</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="dhcpsubnet">DHCPSubnet</h4>
-<p>DHCPSubnet is the configuration (spec) for the Hedgehog DHCP server and storage for the leases (status). It's primarely internal API group, but it makes allocated IPs / leases information available to the end user through API. Not intended to be modified by the user.</p>
+<p>DHCPSubnet is the configuration (spec) for the Hedgehog DHCP server and storage for the leases (status). It's
+primary internal API group, but it makes allocated IPs / leases information available to the end user through API.
+Not intended to be modified by the user.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>dhcp.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>DHCPSubnet</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#dhcpsubnetspec">DHCPSubnetSpec</a></em></td>
 <td>Spec is the desired state of the DHCPSubnet</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#dhcpsubnetstatus">DHCPSubnetStatus</a></em></td>
 <td>Status is the observed state of the DHCPSubnet</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2849,40 +2935,58 @@ end user through API. Not intended to be modified by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>subnet</code> <em>string</em></td>
 <td>Full <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet name (including <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> name), such as "vpc-0/default"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>cidrBlock</code> <em>string</em></td>
 <td>CIDR block to use for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet, such as "10.10.10.0/24"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>gateway</code> <em>string</em></td>
 <td>Gateway, such as 10.10.10.1</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>startIP</code> <em>string</em></td>
 <td>Start IP from the CIDRBlock to allocate IPs, such as 10.10.10.10</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>endIP</code> <em>string</em></td>
 <td>End IP from the CIDRBlock to allocate IPs, such as 10.10.10.99</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vrf</code> <em>string</em></td>
 <td>VRF name to identify specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (will be added to DHCP packets by DHCP relay in suboption 151), such as "VrfVvpc-1" as it's named on switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>circuitID</code> <em>string</em></td>
 <td>VLAN ID to identify specific subnet withing the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, such as "Vlan1000" as it's named on switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>pxeURL</code> <em>string</em></td>
 <td>PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2895,12 +2999,16 @@ end user through API. Not intended to be modified by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>allocated</code> <em>object (keys:string, values:<a href="#dhcpallocated">DHCPAllocated</a>)</em></td>
 <td>Allocated is a map of allocated IPs with expiry time and hostname from DHCP requests</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2918,66 +3026,93 @@ and Externals APIs. Intended to be used by the user.</p>
 <li><a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></li>
 </ul>
 <h4 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h4>
-<p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object represents an external system connected to the Fabric and available to the specific IPv4Namespace. Users can do external peering with the external system by specifying the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Object without need to worry about the details of how external system is attached to the Fabric.</p>
+<p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object represents an external system connected to the Fabric and available to the specific IPv4Namespace.
+Users can do external peering with the external system by specifying the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Object without need to
+worry about the details of how external system is attached to the Fabric.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>External</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#externalspec">ExternalSpec</a></em></td>
 <td>Spec is the desired state of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#externalstatus">ExternalStatus</a></em></td>
 <td>Status is the observed state of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></h4>
-<p><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr> is a definition of how specific switch is connected with external system (<abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object). Effectively it represents BGP peering between the switch and external system including all needed configuration.</p>
+<p><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr> is a definition of how specific switch is connected with external system (<abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object).
+Effectively it represents BGP peering between the switch and external system including all needed configuration.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>ExternalAttachment</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#externalattachmentspec">ExternalAttachmentSpec</a></em></td>
 <td>Spec is the desired state of the <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#externalattachmentstatus">ExternalAttachmentStatus</a></em></td>
 <td>Status is the observed state of the <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2990,47 +3125,62 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>asn</code> <em>integer</em></td>
 <td>ASN is the ASN of the BGP neighbor</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the BGP neighbor to peer with</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="externalattachmentspec">ExternalAttachmentSpec</h4>
 <p>ExternalAttachmentSpec defines the desired state of <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#externalattachment"><abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr></a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>external</code> <em>string</em></td>
 <td><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> is the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object this attachment belongs to</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>connection</code> <em>string</em></td>
 <td>Connection is the name of the Connection object this attachment belongs to (essentialy the name of the switch/port)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>switch</code> <em><a href="#externalattachmentswitch">ExternalAttachmentSwitch</a></em></td>
 <td>Switch is the switch port configuration for the external attachment</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>neighbor</code> <em><a href="#externalattachmentneighbor">ExternalAttachmentNeighbor</a></em></td>
 <td>Neighbor is the BGP neighbor configuration for the external attachment</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3047,16 +3197,22 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>vlan</code> <em>integer</em></td>
 <td>VLAN is the VLAN ID used for the subinterface on a switch port specified in the connection</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the subinterface on a switch port specified in the connection</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3067,47 +3223,62 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>ExternalPeering</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#externalpeeringspec">ExternalPeeringSpec</a></em></td>
 <td>Spec is the desired state of the <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#externalpeeringstatus">ExternalPeeringStatus</a></em></td>
 <td>Status is the observed state of the <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="externalpeeringspec">ExternalPeeringSpec</h4>
 <p>ExternalPeeringSpec defines the desired state of <abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>permit</code> <em><a href="#externalpeeringspecpermit">ExternalPeeringSpecPermit</a></em></td>
 <td>Permit defines the peering policy - which <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to peer with and which subnets/prefixes to permit</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3120,16 +3291,22 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>name</code> <em>string</em></td>
 <td>Name is the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to peer with</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>prefixes</code> <em><a href="#externalpeeringspecprefix">ExternalPeeringSpecPrefix</a> array</em></td>
 <td>Prefixes is the list of prefixes to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3142,16 +3319,22 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>vpc</code> <em><a href="#externalpeeringspecvpc">ExternalPeeringSpecVPC</a></em></td>
 <td><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-side of the configuration to peer with</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>external</code> <em><a href="#externalpeeringspecexternal">ExternalPeeringSpecExternal</a></em></td>
 <td><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> is the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>-side of the configuration to peer with</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3164,12 +3347,16 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>prefix</code> <em>string</em></td>
-<td>Prefix is the subnet to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, e.g. 0.0.0.0/0 for any route including default route. It matches any prefix length less than or equal to 32 effectively permitting all prefixes within the specified one.</td>
+<td>Prefix is the subnet to permit from the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, e.g. 0.0.0.0/0 for any route including default route.<br />It matches any prefix length less than or equal to 32 effectively permitting all prefixes within the specified one.</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3182,16 +3369,22 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>name</code> <em>string</em></td>
 <td>Name is the name of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to peer with</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>subnets</code> <em>string array</em></td>
 <td>Subnets is the list of subnets to advertise from <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3200,29 +3393,37 @@ and Externals APIs. Intended to be used by the user.</p>
 <p><em>Appears in:</em>
 - <a href="#externalpeering"><abbr title="Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it">ExternalPeering</abbr></a></p>
 <h4 id="externalspec">ExternalSpec</h4>
-<p>ExternalSpec describes IPv4 namespace <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> belongs to and inbound/outbound communities which are used to filter routes from/to the external system.</p>
+<p>ExternalSpec describes IPv4 namespace <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> belongs to and inbound/outbound communities which are used to
+filter routes from/to the external system.</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ipv4Namespace</code> <em>string</em></td>
 <td>IPv4Namespace is the name of the IPv4Namespace this <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> belongs to</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>inboundCommunity</code> <em>string</em></td>
 <td>InboundCommunity is the name of the inbound community to filter routes from the external system</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>outboundCommunity</code> <em>string</em></td>
 <td>OutboundCommunity is the name of the outbound community that all outbound routes will be stamped with</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3231,53 +3432,69 @@ and Externals APIs. Intended to be used by the user.</p>
 <p><em>Appears in:</em>
 - <a href="#external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></a></p>
 <h4 id="ipv4namespace">IPv4Namespace</h4>
-<p>IPv4Namespace represents a namespace for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets allocation. All <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets withing a single IPv4Namespace are non-overlapping. Users can create multiple IPv4Namespaces to allocate same <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</p>
+<p>IPv4Namespace represents a namespace for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets allocation. All <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets withing a single IPv4Namespace are
+non-overlapping. Users can create multiple IPv4Namespaces to allocate same <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>IPv4Namespace</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#ipv4namespacespec">IPv4NamespaceSpec</a></em></td>
 <td>Spec is the desired state of the IPv4Namespace</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#ipv4namespacestatus">IPv4NamespaceStatus</a></em></td>
 <td>Status is the observed state of the IPv4Namespace</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="ipv4namespacespec">IPv4NamespaceSpec</h4>
 <p>IPv4NamespaceSpec defines the desired state of IPv4Namespace</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#ipv4namespace">IPv4Namespace</a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>subnets</code> <em>string array</em></td>
 <td>Subnets is the list of subnets to allocate <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets from, couldn't overlap between each other and with Fabric reserved subnets</td>
+<td></td>
+<td>MaxItems: 20 <br />MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -3286,34 +3503,47 @@ and Externals APIs. Intended to be used by the user.</p>
 <p><em>Appears in:</em>
 - <a href="#ipv4namespace">IPv4Namespace</a></p>
 <h4 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h4>
-<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is Virtual Private Cloud, similar to the public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP.</p>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is Virtual Private Cloud, similar to the public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it provides an isolated private network for the
+resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>VPC</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#vpcspec">VPCSpec</a></em></td>
 <td>Spec is the desired state of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#vpcstatus">VPCStatus</a></em></td>
 <td>Status is the observed state of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3324,55 +3554,74 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>VPCAttachment</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#vpcattachmentspec">VPCAttachmentSpec</a></em></td>
 <td>Spec is the desired state of the <abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#vpcattachmentstatus">VPCAttachmentStatus</a></em></td>
 <td>Status is the observed state of the <abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="vpcattachmentspec">VPCAttachmentSpec</h4>
 <p>VPCAttachmentSpec defines the desired state of <abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>subnet</code> <em>string</em></td>
 <td>Subnet is the full name of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet to attach to, such as "vpc-1/default"</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>connection</code> <em>string</em></td>
 <td>Connection is the name of the connection to attach to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>nativeVLAN</code> <em>boolean</em></td>
 <td>NativeVLAN is the flag to indicate if the native VLAN should be used for attaching the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3389,32 +3638,65 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>relay</code> <em>string</em></td>
 <td>Relay is the DHCP relay IP address, if specified, DHCP server will be disabled</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>enable</code> <em>boolean</em></td>
 <td>Enable enables DHCP server for the subnet</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>range</code> <em><a href="#vpcdhcprange">VPCDHCPRange</a></em></td>
 <td>Range (optional) is the DHCP range for the subnet if DHCP server is enabled</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>pxeURL</code> <em>string</em></td>
 <td>PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="vpcdhcprange">VPCDHCPRange</h4>
-<p><em>Underlying type:</em> <em><a href="#struct{start-string-&quot;json:\&quot;start,omitempty\&quot;&quot;;-end-string-&quot;json:\&quot;end,omitempty\&quot;&quot;}">struct{Start string "json:\"start,omitempty\""; End string "json:\"end,omitempty\""}</a></em></p>
 <p>VPCDHCPRange defines the DHCP range for the subnet if DHCP server is enabled</p>
 <p><em>Appears in:</em>
 - <a href="#vpcdhcp">VPCDHCP</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code> <em>string</em></td>
+<td>Start is the start IP address of the DHCP range</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>end</code> <em>string</em></td>
+<td>End is the end IP address of the DHCP range</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="vpcpeer">VPCPeer</h4>
 <p><em>Appears in:</em>
 - <a href="#vpcpeeringspec">VPCPeeringSpec</a></p>
@@ -3423,68 +3705,94 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>subnets</code> <em>string array</em></td>
 <td>Subnets is the list of subnets to advertise from current <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td>MaxItems: 10 <br />MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
 <h4 id="vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></h4>
-<p><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> represents a peering between two VPCs with corresponding filtering rules. Minimal example of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering showing vpc-1 to vpc-2 peering with all subnets allowed: 
- spec: permit: - vpc-1: {} vpc-2: {}</p>
+<p><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> represents a peering between two VPCs with corresponding filtering rules.
+Minimal example of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering showing vpc-1 to vpc-2 peering with all subnets allowed:</p>
+<div class="language-text highlight"><pre><span></span><code>spec:
+  permit:
+  - vpc-1: {}
+    vpc-2: {}
+</code></pre></div>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>vpc.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>VPCPeering</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#vpcpeeringspec">VPCPeeringSpec</a></em></td>
 <td>Spec is the desired state of the <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#vpcpeeringstatus">VPCPeeringStatus</a></em></td>
 <td>Status is the observed state of the <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="vpcpeeringspec">VPCPeeringSpec</h4>
 <p>VPCPeeringSpec defines the desired state of <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>remote</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>permit</code> <em><a href="#map[string]vpcpeer">map[string]VPCPeer</a> array</em></td>
 <td>Permit defines a list of the peering policies - which <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets will have access to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</td>
+<td></td>
+<td>MaxItems: 10 <br />MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -3493,41 +3801,55 @@ and Externals APIs. Intended to be used by the user.</p>
 <p><em>Appears in:</em>
 - <a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></p>
 <h4 id="vpcspec">VPCSpec</h4>
-<p>VPCSpec defines the desired state of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. At least one subnet is required.</p>
+<p>VPCSpec defines the desired state of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.
+At least one subnet is required.</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>subnets</code> <em>object (keys:string, values:<a href="#vpcsubnet">VPCSubnet</a>)</em></td>
 <td>Subnets is the list of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets to configure</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ipv4Namespace</code> <em>string</em></td>
 <td>IPv4Namespace is the name of the IPv4Namespace this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to (if not specified, "default" is used)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vlanNamespace</code> <em>string</em></td>
 <td>VLANNamespace is the name of the VLANNamespace this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to (if not specified, "default" is used)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>defaultIsolated</code> <em>boolean</em></td>
 <td>DefaultIsolated sets default bahivour for isolated mode for the subnets (disabled by default)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>defaultRestricted</code> <em>boolean</em></td>
 <td>DefaultRestricted sets default bahivour for restricted mode for the subnets (disabled by default)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>permit</code> <em>string array array</em></td>
-<td>Permit defines a list of the access policies between the subnets within the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> - each policy is a list of subnets that have access to each other. It's applied on top of the subnet isolation flag and if subnet isn't isolated it's not required to have it in a permit list while if vpc is marked as isolated it's required to have it in a permit list to have access to other subnets.</td>
+<td>Permit defines a list of the access policies between the subnets within the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> - each policy is a list of subnets that have access to each other.<br />It's applied on top of the subnet isolation flag and if subnet isn't isolated it's not required to have it in a permit list while if vpc is marked<br />as isolated it's required to have it in a permit list to have access to other subnets.</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3544,28 +3866,40 @@ and Externals APIs. Intended to be used by the user.</p>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>subnet</code> <em>string</em></td>
 <td>Subnet is the subnet CIDR block, such as "10.0.0.0/24", should belong to the IPv4Namespace and be unique within the namespace</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>dhcp</code> <em><a href="#vpcdhcp">VPCDHCP</a></em></td>
 <td>DHCP is the on-demand DHCP configuration for the subnet</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vlan</code> <em>string</em></td>
 <td>VLAN is the VLAN ID for the subnet, should belong to the VLANNamespace and be unique within the namespace</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>isolated</code> <em>boolean</em></td>
 <td>Isolated is the flag to enable isolated mode for the subnet which means no access to and from the other subnets within the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>restricted</code> <em>boolean</em></td>
 <td>Restricted is the flag to enable restricted mode for the subnet which means no access between hosts within the subnet itself</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3596,12 +3930,16 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3614,16 +3952,22 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>links</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a> array</em></td>
 <td>Links is the list of server-to-switch links</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3636,20 +3980,28 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>links</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a> array</em></td>
 <td>Links is the list of server-to-switch links</td>
+<td></td>
+<td>MinItems: 2 <br /></td>
 </tr>
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>fallback</code> <em>boolean</em></td>
 <td>Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3662,12 +4014,16 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>link</code> <em><a href="#connexternallink">ConnExternalLink</a></em></td>
 <td>Link is the external connection link</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3680,11 +4036,15 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>switch</code> <em><a href="#baseportname">BasePortName</a></em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -3698,12 +4058,16 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>links</code> <em><a href="#fabriclink">FabricLink</a> array</em></td>
 <td>Links is the list of spine-to-leaf links</td>
+<td></td>
+<td>MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -3716,16 +4080,22 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the switch side of the fabric link (switch port configuration)</td>
+<td></td>
+<td>Pattern: <code>^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$</code> <br /></td>
 </tr>
 </tbody>
 </table>
@@ -3738,25 +4108,34 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>links</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a> array</em></td>
 <td>Links is the list of server-to-switch links</td>
+<td></td>
+<td>MinItems: 2 <br /></td>
 </tr>
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>fallback</code> <em>boolean</em></td>
 <td>Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="connmclagdomain">ConnMCLAGDomain</h4>
-<p>ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or redundancy group and allows to use MCLAG connections to connect servers in a multi-homed way.</p>
+<p>ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or
+redundancy group and allows to use MCLAG connections to connect servers in a multi-homed way.</p>
 <p><em>Appears in:</em>
 - <a href="#connectionspec">ConnectionSpec</a></p>
 <table>
@@ -3764,16 +4143,22 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>peerLinks</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
 <td>PeerLinks is the list of peer links between the switches, used to pass server traffic between switch</td>
+<td></td>
+<td>MinItems: 1 <br /></td>
 </tr>
 <tr>
 <td><code>sessionLinks</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
-<td>SessionLinks is the list of session links between the switches, used only to pass MCLAG control plane and BGP traffic between switches</td>
+<td>SessionLinks is the list of session links between the switches, used only to pass MCLAG control plane and BGP<br />traffic between switches</td>
+<td></td>
+<td>MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -3786,11 +4171,15 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>link</code> <em><a href="#connmgmtlink">ConnMgmtLink</a></em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -3804,16 +4193,22 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>server</code> <em><a href="#connmgmtlinkserver">ConnMgmtLinkServer</a></em></td>
 <td>Server is the server side of the management link</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>switch</code> <em><a href="#connmgmtlinkswitch">ConnMgmtLinkSwitch</a></em></td>
 <td>Switch is the switch side of the management link</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3826,20 +4221,28 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the server side of the management link (control node port configuration)</td>
+<td></td>
+<td>Pattern: <code>^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$</code> <br /></td>
 </tr>
 <tr>
 <td><code>mac</code> <em>string</em></td>
-<td>MAC is an optional MAC address of the control node port for the management link, if specified will be used to create a "virtual" link with the connection names on the control node</td>
+<td>MAC is an optional MAC address of the control node port for the management link, if specified will be used to<br />create a "virtual" link with the connection names on the control node</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3852,20 +4255,28 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the switch side of the management link (switch port configuration)</td>
+<td></td>
+<td>Pattern: <code>^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$</code> <br /></td>
 </tr>
 <tr>
 <td><code>oniePortName</code> <em>string</em></td>
 <td>ONIEPortName is an optional ONIE port name of the switch side of the management link that's only used by the IPv6 Link Local discovery</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3878,16 +4289,22 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>link</code> <em><a href="#connstaticexternallink">ConnStaticExternalLink</a></em></td>
 <td>Link is the static external connection link</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>withinVPC</code> <em>string</em></td>
 <td>WithinVPC is the optional <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> name to provision the static external connection within the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> VRF instead of default one to make resource available to the specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3900,12 +4317,16 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>switch</code> <em><a href="#connstaticexternallinkswitch">ConnStaticExternalLinkSwitch</a></em></td>
 <td>Switch is the switch side of the static external connection link</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3918,28 +4339,40 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1". SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the switch side of the static external connection link (switch port configuration)</td>
+<td></td>
+<td>Pattern: <code>^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$</code> <br /></td>
 </tr>
 <tr>
 <td><code>nextHop</code> <em>string</em></td>
 <td>NextHop is the next hop IP address for static routes that will be created for the subnets</td>
+<td></td>
+<td>Pattern: <code>^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$</code> <br /></td>
 </tr>
 <tr>
 <td><code>subnets</code> <em>string array</em></td>
 <td>Subnets is the list of subnets that will get static routes using the specified next hop</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vlan</code> <em>integer</em></td>
 <td>VLAN is the optional VLAN ID to be configured on the switch port</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -3952,21 +4385,29 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>link</code> <em><a href="#servertoswitchlink">ServerToSwitchLink</a></em></td>
 <td>Link is the server-to-switch link</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="connvpcloopback">ConnVPCLoopback</h4>
-<p>ConnVPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) that enables automated workaround named "<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Loopback" that allow to avoid switch hardware limitations and traffic going through CPU in some cases</p>
+<p>ConnVPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) that enables automated
+workaround named "<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Loopback" that allow to avoid switch hardware limitations and traffic going through CPU in some
+cases</p>
 <p><em>Appears in:</em>
 - <a href="#connectionspec">ConnectionSpec</a></p>
 <table>
@@ -3974,99 +4415,139 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>links</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
 <td>Links is the list of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback links</td>
+<td></td>
+<td>MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
 <h4 id="connection">Connection</h4>
-<p>Connection object represents a logical and physical connections between any devices in the Fabric (Switch, Server and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> objects). It's needed to define all physical and logical connections between the devices in the Wiring Diagram. Connection type is defined by the top-level field in the ConnectionSpec. Exactly one of them could be used in a single Connection object.</p>
+<p>Connection object represents a logical and physical connections between any devices in the Fabric (Switch, Server
+and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> objects). It's needed to define all physical and logical connections between the devices in the Wiring
+Diagram. Connection type is defined by the top-level field in the ConnectionSpec. Exactly one of them could be used
+in a single Connection object.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>wiring.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>Connection</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#connectionspec">ConnectionSpec</a></em></td>
 <td>Spec is the desired state of the Connection</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#connectionstatus">ConnectionStatus</a></em></td>
 <td>Status is the observed state of the Connection</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="connectionspec">ConnectionSpec</h4>
 <p>ConnectionSpec defines the desired state of Connection</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#connection">Connection</a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>unbundled</code> <em><a href="#connunbundled">ConnUnbundled</a></em></td>
 <td>Unbundled defines the unbundled connection (no port channel, single server to a single switch with a single link)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>bundled</code> <em><a href="#connbundled">ConnBundled</a></em></td>
 <td>Bundled defines the bundled connection (port channel, single server to a single switch with multiple links)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>management</code> <em><a href="#connmgmt">ConnMgmt</a></em></td>
 <td>Management defines the management connection (single control node/server to a single switch with a single link)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>mclag</code> <em><a href="#connmclag">ConnMCLAG</a></em></td>
 <td>MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>eslag</code> <em><a href="#conneslag">ConnESLAG</a></em></td>
 <td>ESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>mclagDomain</code> <em><a href="#connmclagdomain">ConnMCLAGDomain</a></em></td>
 <td>MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>fabric</code> <em><a href="#connfabric">ConnFabric</a></em></td>
 <td>Fabric defines the fabric connection (single spine to a single leaf with at least one link)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vpcLoopback</code> <em><a href="#connvpcloopback">ConnVPCLoopback</a></em></td>
 <td>VPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) for automated workaround</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>external</code> <em><a href="#connexternal">ConnExternal</a></em></td>
 <td><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> defines the external connection (single switch to a single external device with a single link)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>staticExternal</code> <em><a href="#connstaticexternal">ConnStaticExternal</a></em></td>
 <td>StaticExternal defines the static external connection (single switch to a single external device with a single link)</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4083,21 +4564,27 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>spine</code> <em><a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a></em></td>
 <td>Spine is the spine side of the fabric link</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>leaf</code> <em><a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a></em></td>
 <td>Leaf is the leaf side of the fabric link</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="location">Location</h4>
-<p>Location defines the geopraphical position of the device in a datacenter</p>
+<p>Location defines the geographical position of the device in a datacenter</p>
 <p><em>Appears in:</em>
 - <a href="#switchspec">SwitchSpec</a></p>
 <table>
@@ -4105,27 +4592,39 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>location</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>aisle</code> <em>string</em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>row</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>rack</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>slot</code> <em>string</em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -4139,15 +4638,21 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>sig</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>uuidSig</code> <em>string</em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -4159,33 +4664,45 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>wiring.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>Rack</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#rackspec">RackSpec</a></em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#rackstatus">RackStatus</a></em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="rackposition">RackPosition</h4>
-<p>RackPosition defines the geopraphical position of the rack in a datacenter</p>
+<p>RackPosition defines the geographical position of the rack in a datacenter</p>
 <p><em>Appears in:</em>
 - <a href="#rackspec">RackSpec</a></p>
 <table>
@@ -4193,19 +4710,27 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>location</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>aisle</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>row</code> <em>string</em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -4219,23 +4744,33 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>numServers</code> <em>integer</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>hasControlNode</code> <em>boolean</em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>hasConsoleServer</code> <em>boolean</em></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>position</code> <em><a href="#rackposition">RackPosition</a></em></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -4251,28 +4786,40 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>wiring.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>Server</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#serverspec">ServerSpec</a></em></td>
 <td>Spec is desired state of the server</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#serverstatus">ServerStatus</a></em></td>
 <td>Status is the observed state of the server</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4288,12 +4835,16 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4306,20 +4857,28 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>type</code> <em><a href="#servertype">ServerType</a></em></td>
 <td>Type is the type of server, could be control for control nodes or default (empty string) for everything else</td>
+<td></td>
+<td>Enum: [control] <br /></td>
 </tr>
 <tr>
 <td><code>description</code> <em>string</em></td>
 <td>Description is a description of the server</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>profile</code> <em>string</em></td>
 <td>Profile is the profile of the server, name of the ServerProfile object to be used for this server, currently not used by the Fabric</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4339,54 +4898,75 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>server</code> <em><a href="#baseportname">BasePortName</a></em></td>
 <td>Server is the server side of the connection</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>switch</code> <em><a href="#baseportname">BasePortName</a></em></td>
 <td>Switch is the switch side of the connection</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="servertype">ServerType</h4>
 <p><em>Underlying type:</em> <em>string</em></p>
 <p>ServerType is the type of server, could be control for control nodes or default (empty string) for everything else</p>
+<p><em>Validation:</em>
+- Enum: [control]</p>
 <p><em>Appears in:</em>
 - <a href="#serverspec">ServerSpec</a></p>
 <h4 id="switch">Switch</h4>
-<p>Switch is the Schema for the switches API 
- All switches should always have 1 labels defined: wiring.githedgehog.com/rack. It represents name of the rack it belongs to.</p>
+<p>Switch is the Schema for the switches API</p>
+<p>All switches should always have 1 labels defined: wiring.githedgehog.com/rack. It represents name of the rack it
+belongs to.</p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>wiring.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>Switch</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#switchspec">SwitchSpec</a></em></td>
 <td>Spec is desired state of the switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#switchstatus">SwitchStatus</a></em></td>
 <td>Status is the observed state of the switch</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4397,28 +4977,40 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>wiring.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>SwitchGroup</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#switchgroupspec">SwitchGroupSpec</a></em></td>
 <td>Spec is the desired state of the SwitchGroup</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#switchgroupstatus">SwitchGroupStatus</a></em></td>
 <td>Status is the observed state of the SwitchGroup</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4431,7 +5023,11 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <p><em>Appears in:</em>
 - <a href="#switchgroup">SwitchGroup</a></p>
 <h4 id="switchredundancy">SwitchRedundancy</h4>
-<p>SwitchRedundancy is the switch redundancy configuration which includes name of the redundancy group switch belongs to and its type, used both for MCLAG and ESLAG connections. It defines how redundancy will be configured and handled on the switch as well as which connection types will be available. If not specified, switch will not be part of any redundancy group. If name isn't empty, type must be specified as well and name should be the same as one of the SwitchGroup objects.</p>
+<p>SwitchRedundancy is the switch redundancy configuration which includes name of the redundancy group switch belongs
+to and its type, used both for MCLAG and ESLAG connections. It defines how redundancy will be configured and handled
+on the switch as well as which connection types will be available. If not specified, switch will not be part of any
+redundancy group. If name isn't empty, type must be specified as well and name should be the same as one of the
+SwitchGroup objects.</p>
 <p><em>Appears in:</em>
 - <a href="#switchspec">SwitchSpec</a></p>
 <table>
@@ -4439,97 +5035,135 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>group</code> <em>string</em></td>
 <td>Group is the name of the redundancy group switch belongs to</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>type</code> <em><a href="#redundancytype">RedundancyType</a></em></td>
 <td>Type is the type of the redundancy group, could be mclag or eslag</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="switchrole">SwitchRole</h4>
 <p><em>Underlying type:</em> <em>string</em></p>
 <p>SwitchRole is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf</p>
+<p><em>Validation:</em>
+- Enum: [spine server-leaf border-leaf mixed-leaf virtual-edge]</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#switchspec">SwitchSpec</a></p>
 <h4 id="switchspec">SwitchSpec</h4>
 <p>SwitchSpec defines the desired state of Switch</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#switch">Switch</a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>role</code> <em><a href="#switchrole">SwitchRole</a></em></td>
 <td>Role is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf</td>
+<td></td>
+<td>Enum: [spine server-leaf border-leaf mixed-leaf virtual-edge] <br />Required: {} <br /></td>
 </tr>
 <tr>
 <td><code>description</code> <em>string</em></td>
 <td>Description is a description of the switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>profile</code> <em>string</em></td>
 <td>Profile is the profile of the switch, name of the SwitchProfile object to be used for this switch, currently not used by the Fabric</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>location</code> <em><a href="#location">Location</a></em></td>
 <td>Location is the location of the switch, it is used to generate the location UUID and location signature</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>locationSig</code> <em><a href="#locationsig">LocationSig</a></em></td>
 <td>LocationSig is the location signature for the switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>groups</code> <em>string array</em></td>
 <td>Groups is a list of switch groups the switch belongs to</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>redundancy</code> <em><a href="#switchredundancy">SwitchRedundancy</a></em></td>
 <td>Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used both for MCLAG and ESLAG connections</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vlanNamespaces</code> <em>string array</em></td>
 <td>VLANNamespaces is a list of VLAN namespaces the switch is part of, their VLAN ranges could not overlap</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>asn</code> <em>integer</em></td>
 <td>ASN is the ASN of the switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP of the switch that could be used to access it from other switches and control nodes in the Fabric</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>vtepIP</code> <em>string</em></td>
 <td>VTEPIP is the VTEP IP of the switch</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>protocolIP</code> <em>string</em></td>
 <td>ProtocolIP is used as BGP Router ID for switch configuration</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>portGroupSpeeds</code> <em>object (keys:string, values:string)</em></td>
 <td>PortGroupSpeeds is a map of port group speeds, key is the port group name, value is the speed, such as '"2": 10G'</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>portSpeeds</code> <em>object (keys:string, values:string)</em></td>
 <td>PortSpeeds is a map of port speeds, key is the port name, value is the speed</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>portBreakouts</code> <em>object (keys:string, values:string)</em></td>
 <td>PortBreakouts is a map of port breakouts, key is the port name, value is the breakout configuration, such as "1/55: 4x25G"</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4547,16 +5181,22 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>switch1</code> <em><a href="#baseportname">BasePortName</a></em></td>
 <td>Switch1 is the first switch side of the connection</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>switch2</code> <em><a href="#baseportname">BasePortName</a></em></td>
 <td>Switch2 is the second switch side of the connection</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -4567,47 +5207,62 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>apiVersion</code> <em>string</em></td>
 <td><code>wiring.githedgehog.com/v1alpha2</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>kind</code> <em>string</em></td>
 <td><code>VLANNamespace</code></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta">ObjectMeta</a></em></td>
 <td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#vlannamespacespec">VLANNamespaceSpec</a></em></td>
 <td>Spec is the desired state of the VLANNamespace</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#vlannamespacestatus">VLANNamespaceStatus</a></em></td>
 <td>Status is the observed state of the VLANNamespace</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="vlannamespacespec">VLANNamespaceSpec</h4>
 <p>VLANNamespaceSpec defines the desired state of VLANNamespace</p>
 <p><em>Appears in:</em>
-- <a href="#agentspec">AgentSpec</a>
 - <a href="#vlannamespace">VLANNamespace</a></p>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Description</th>
+<th>Default</th>
+<th>Validation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ranges</code> <em>VLANRange array</em></td>
 <td>Ranges is a list of VLAN ranges to be used in this namespace, couldn't overlap between each other and with Fabric reserved VLAN ranges</td>
+<td></td>
+<td>MaxItems: 20 <br />MinItems: 1 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -4621,7 +5276,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 22, 2024</span>
       
         <br>
         Created:
