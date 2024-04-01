@@ -76,7 +76,7 @@ spec:
   external:
     link:
       switch:
-        port: # SwtichName/EthernetXXX
+        port: # SwitchName/EthernetXXX
 ```
 
 ### External Attachment

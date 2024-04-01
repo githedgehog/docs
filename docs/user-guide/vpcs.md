@@ -14,9 +14,11 @@ metadata:
 spec:
   ipv4Namespace: default # Limits to which subnets could be used by VPC to guarantee non-overlapping IPv4 ranges
   vlanNamespace: default # Limits to which switches VPC could be attached to guarantee non-overlapping VLANs
+
+  defaultIsolated: true # Sets default behavior for the current VPC subnets to be isolated
+  defaultRestricted: true # Sets default behavior for the current VPC subnets to be restricted
+
   subnets:
-    defaultIsolated: true # Sets default behavior for the current VPC subnets to be isolated
-    defaultRestricted: true # Sets default behavior for the current VPC subnets to be restricted
     default: # Each subnet is named, "default" subnet isn't required, but actively used by CLI
       dhcp:
         enable: true # On-demand DHCP server
@@ -25,17 +27,21 @@ spec:
           end: 10.10.1.99
           pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the pxe server to use to boot hosts, http query strings are not supported
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
+      gateway: 10.10.1.1 # User-defined gateway (optional, default is .1)
       vlan: "1001" # User-defined VLAN from vlan namespace
       isolated: true # Makes subnet isolated from other subnets within the VPC (doesn't affect VPC peering)
       restricted: true # Makes all hosts in the subnet to be isolated from each other
+
     thrird-party-dhcp: # Another subnet
       dhcp:
         relay: 10.99.0.100/24 # Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection
       subnet: "10.10.2.0/24"
       vlan: "1002"
+
     another-subnet: # Minimal configuration is just a name, subnet and VLAN
       subnet: 10.10.100.0/24
       vlan: "1100"
+
   permit: # Defines which VPCs could communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
     - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets could communicate to each other
     - [subnet-4, subnet-5] # Possible to define multiple lists
