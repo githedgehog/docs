@@ -1,23 +1,24 @@
 # Using VPCs with Harvester
 
-It's an example of how Hedgehog Fabric can be used with Harvester or any hypervisor on the servers connected to Fabric.
-It assumes that you have already installed Fabric and have some servers running Harvester attached to it.
+This section contains an example of how Hedgehog Fabric can be used with Harvester or any hypervisor on the servers
+connected to Fabric. It assumes that you have already installed Fabric and have some servers running Harvester attached
+to it.
 
-You'll need to define `Server` object per each server running Harvester and `Connection` object per each server
+You need to define a `Server` object for each server running Harvester and a `Connection` object for each server
 connection to the switches.
 
-You can have multiple VPCs created and attached to the `Connections` to this servers to make them available to the VMs
-in Harvester or any other hypervisor.
+You can have multiple VPCs created and attached to the `Connections` to the servers to make them available to the VMs in
+Harvester or any other hypervisor.
 
 ## Configure Harvester
 
 ### Add a Cluster Network
 
-From the "Cluster Network/Confg" side menu. Create a new Cluster Network.
+From the "Cluster Networks/Configs" side menu, create a new Cluster Network.
 
 ![Harvester Cluster Network](./harvester-cluster-network.png)
 
-Here is what the CRD looks like cleaned up:
+Here is a cleaned-up version of what the CRD looks like:
 
 ```yaml
 apiVersion: network.harvesterhci.io/v1beta1
@@ -28,11 +29,11 @@ metadata:
 
 ### Add a Network Config
 
-By clicking "Create Network Confg". Add your connections and select bonding type.
+Click "Create Network Config". Add your connections and select the bonding type.
 
 ![Harvester Network Config](./harvester-network-config.png)
 
-The resulting cleaned up CRD:
+The resulting CRD (cleaned up) looks like the following:
 
 ```yaml
 apiVersion: network.harvesterhci.io/v1beta1
@@ -56,12 +57,12 @@ spec:
 
 ### Add VLAN based VM Networks
 
-Browse over to "VM Networks" and add one for each Vlan you want to support, assigning them to the cluster network.
+Browse over to "VM Networks" and add one network for each VLAN you want to support. Assign them to the cluster network.
 
 ![Harvester VM Networks](./harvester-vm-networks.png)
 ![Harvester VM Network Details](./harvester-vm-network-details.png)
 
-Here is what the CRDs will look like for both vlans:
+Here is what the CRDs will look like for both VLANs:
 
 ```yaml
 apiVersion: k8s.cni.cncf.io/v1
@@ -98,4 +99,4 @@ spec:
 
 ### Using the VPCs
 
-Now you can choose created VM Networks when creating a VM in Harvester and have them created as part of the VPC.
+Now you can choose the new VM Networks when creating a VM in Harvester, and have them created as part of the VPC.

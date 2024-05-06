@@ -1,17 +1,17 @@
 # Demo on VLAB
 
-Goal of this demo is to show how to use VPCs, attach and peer them and test connectivity between the servers. Examples
-are based on the default VLAB topology.
+The goal of this demo is to show how to use VPCs, attach and peer them and run test connectivity between the servers.
+Examples are based on the default VLAB topology.
 
 You can find instructions on how to setup VLAB in the [Overview](overview.md) and [Running VLAB](running.md) sections.
 
 ## Default topology
 
-The default topology is Spine-Leaf with 2 spines, 2 MCLAG leafs and 1 non-MCLAG leaf.
-Optionally, you can choose to run default Collapsed Core topology using `--fabric-mode collapsed-core`
-(or `-m collapsed-core`) flag which only conisists of 2 switches.
+The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can choose to run
+the default Collapsed Core topology using flag `--fabric-mode collapsed-core` (or `-m collapsed-core`) which only
+consists of 2 switches.
 
-For more details on the customizing topologies see [Running VLAB](running.md) section.
+For more details on customizing topologies see the [Running VLAB](running.md) section.
 
 In the default topology, the following Control Node and Switch VMs are created:
 
@@ -35,13 +35,14 @@ graph TD
     S2 --> L3
 ```
 
-As well as test servers:
+As well as the following test servers:
 
 ```mermaid
 graph TD
     L1[MCLAG Leaf 1]
     L2[MCLAG Leaf 2]
     L3[Leaf 3]
+    L4[Leaf 4]
 
     TS1[Test Server 1]
     TS2[Test Server 2]
@@ -65,9 +66,9 @@ graph TD
 
 ## Creating and attaching VPCs
 
-You can create and attach VPCs to the VMs using the `kubectl fabric vpc` command on control node or outside of cluster
-using the kubeconfig. For example, run following commands to create a 2 VPCs with a single subnet each, DHCP server
-enabled with optional IP address range start defined and attach them to some test servers:
+You can create and attach VPCs to the VMs using the `kubectl fabric vpc` command on the Control Node or outside of the
+cluster using the kubeconfig. For example, run the following commands to create 2 VPCs with a single subnet each, a DHCP
+server enabled with its optional IP address range start defined, and to attach them to some of the test servers:
 
 ```console
 core@control-1 ~ $ kubectl get conn | grep server
@@ -91,7 +92,7 @@ core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-2/default --connec
 06:49:34 INF VPCAttachment created name=vpc-2--default--server-02--mclag--leaf-01--leaf-02
 ```
 
-VPC subnet should belong to some IPv4Namespace, default one in the VLAB is `10.0.0.0/16`:
+The VPC subnet should belong to an IPv4Namespace, the default one in the VLAB is `10.0.0.0/16`:
 
 ```console
 core@control-1 ~ $ kubectl get ipns
@@ -99,8 +100,8 @@ NAME      SUBNETS           AGE
 default   ["10.0.0.0/16"]   5h14m
 ```
 
-After you created VPCs and VPCAttachments, you can check the status of the agents to make sure that requested
-configuration was apploed to the switches:
+After you created the VPCs and VPCAttachments, you can check the status of the agents to make sure that the requested
+configuration was applied to the switches:
 
 ```console
 core@control-1 ~ $ kubectl get agents
@@ -112,17 +113,18 @@ spine-01   spine         VS-04           16m       3          3          v0.23.0
 spine-02   spine         VS-05           18m       4          4          v0.23.0
 ```
 
-As you can see columns `APPLIED` and `APPLIEDG` are equal which means that requested configuration was applied.
+In this example, the values in columns `APPLIED` and `APPLIEDG` are equal which means that the requested configuration
+has been applied.
 
 ## Setting up networking on test servers
 
-You can use `hhfab vlab ssh` on the host to ssh into the test servers and configure networking there. For example, for
-both server-01 (MCLAG attached to both leaf-01 and leaf-02) we need to configure bond with a vlan on top of it and for
-the server-05 (single-homed unbundled attached to leaf-03) we need to configure just a vlan and they both will get an
-IP address from the DHCP server. You can use `ip` command to configure networking on the servers or use little helper
-preinstalled by Fabricator on test servers.
+You can use `hhfab vlab ssh` on the host to SSH into the test servers and configure networking there. For example, for
+both `server-01` (MCLAG attached to both `leaf-01` and `leaf-02`) we need to configure a bond with a VLAN on top of it
+and for the `server-05` (single-homed unbundled attached to `leaf-03`) we need to configure just a VLAn and they both
+will get an IP address from the DHCP server. You can use the `ip` command to configure networking on the servers or use
+the little helper preinstalled by Fabricator on test servers.
 
-For server-01:
+For `server-01`:
 
 ```console
 core@server-01 ~ $ hhnet cleanup
@@ -146,7 +148,7 @@ core@server-01 ~ $ ip a
        valid_lft forever preferred_lft forever
 ```
 
-And for server-02:
+And for `server-02`:
 
 ```console
 core@server-02 ~ $ hhnet cleanup
@@ -172,7 +174,7 @@ core@server-02 ~ $ ip a
 
 ## Testing connectivity before peering
 
-You can test connectivity between the servers before peering the switches using `ping` command:
+You can test connectivity between the servers before peering the switches using the `ping` command:
 
 ```console
 core@server-01 ~ $ ping 10.0.2.10
@@ -198,14 +200,14 @@ From 10.0.2.1 icmp_seq=3 Destination Net Unreachable
 
 ## Peering VPCs and testing connectivity
 
-To enable connectivity between the VPCs, you need to peer them using `kubectl fabric vpc peer` command:
+To enable connectivity between the VPCs, peer them using `kubectl fabric vpc peer`:
 
 ```console
 core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
 07:04:58 INF VPCPeering created name=vpc-1--vpc-2
 ```
 
-Make sure to wait until the peering is applied to the switches using `kubectl get agents` command. After that you can
+Make sure to wait until the peering is applied to the switches using `kubectl get agents` command. After that, you can
 test connectivity between the servers again:
 
 ```console
@@ -232,8 +234,8 @@ PING 10.0.1.10 (10.0.1.10) 56(84) bytes of data.
 rtt min/avg/max/mdev = 4.489/5.529/6.656/0.886 ms
 ```
 
-If you will delete VPC peering using command following command and wait for the agent to apply configuration on the
-switches, you will see that connectivity will be lost again:
+If you delete the VPC peering with `kubectl delete` applied to the relevant object and wait for the agent to apply the
+configuration on the switches, you can observe that connectivity is lost again:
 
 ```console
 core@control-1 ~ $ kubectl delete vpcpeering/vpc-1--vpc-2
@@ -272,7 +274,7 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
 
 ## Using VPCs with overlapping subnets
 
-First of all, we'll need to make sure that we have a second IPv4Namespace with the same subnet as default one:
+First, create a second IPv4Namespace with the same subnet as the default one:
 
 ```console
 core@control-1 ~ $ kubectl get ipns
@@ -326,5 +328,6 @@ EOF
 core@control-1 ~ $ kubectl apply -f vpc-3.yaml
 ```
 
-At that point you can setup networking on the `server-03` same as for `server-01` and `server-02` in a previous sections
-and see that we have now `server-01` and `server-03` with the IP addresses from the same subnets.
+At that point you can setup networking on `server-03` the same as you did for `server-01` and `server-02` in
+[a previous section](#setting-up-networking-on-test-servers). Once you have configured networking, `server-01` and
+`server-03` have IP addresses from the same subnets.

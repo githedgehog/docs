@@ -1,19 +1,19 @@
 # Running VLAB
 
-Please, make sure to follow prerequisites and check system requirements in the [VLAB Overview](overview.md) section
+Make sure to follow the prerequisites and check system requirements in the [VLAB Overview](overview.md) section
 before running VLAB.
 
 ## Initialize VLAB
 
-As a first step you need to initialize Fabricator for the VLAB by running `hhfab init --preset vlab` (or `-p vlab`). It
-supports a lot of customization options which you can find by adding `--help` to the command. If you want to tune the
-topology used for the VLAB you can use `--fabric-mode` (or `-m`) flag to choose between `spine-leaf` (default) and
-`collapsed-core` topologies as well as you can configure the number of spines, leafs, connections and etc. For example,
-`--spines-count` and `--mclag-leafs-count` flags allows to set number of spines and MCLAG leafs respectively.
+First, initialize Fabricator for the VLAB by running `hhfab init --preset vlab` (or `-p vlab`). This command supports
+several customization options that are listed in the output of `hhfab init --help`. To tune the topology used for the
+VLAB, you can use the `--fabric-mode` (or `-m`) flag to choose between `spine-leaf` (default) and `collapsed-core`
+topologies. You can also configure the number of spines, leafs, connections, and so on. For example, flags
+`--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively.
 
-So, by default you'll get 2 spines, 2 MCLAG leafs and 1 non-MCLAG leaf with 2 fabric connections (between each spine and
-leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC Loopback
-workaround.
+By default, the command creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each
+spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC
+Loopback workaround.
 
 ```console
 ubuntu@docs:~$ hhfab init -p vlab
@@ -40,7 +40,7 @@ ubuntu@docs:~$ hhfab init -p vlab -m collapsed-core
 01:20:07 INF Initialized preset=vlab fabricMode=collapsed-core config=.hhfab/config.yaml wiring=.hhfab/wiring.yaml
 ```
 
-Or you can run custom topology with 2 spines, 4 MCLAG leafs and 2 non-MCLAG leafs using flags:
+Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:
 
 ```console
 ubuntu@docs:~$ hhfab init -p vlab --mclag-leafs-count 4 --orphan-leafs-count 2
@@ -54,12 +54,12 @@ ubuntu@docs:~$ hhfab init -p vlab --mclag-leafs-count 4 --orphan-leafs-count 2
 01:21:53 INF Initialized preset=vlab fabricMode=spine-leaf config=.hhfab/config.yaml wiring=.hhfab/wiring.yaml
 ```
 
-Additionally, you can do extra Fabric configuration using flags on `init` command or by passing config file, more
-information about it is available in the [Fabric Configuration](../install-upgrade/config.md) section.
+Additionally, you can pass extra Fabric configuration items using flags on `init` command or by passing a configuration
+file. For more information, refer to the [Fabric Configuration](../install-upgrade/config.md) section.
 
-Once you have initialized the VLAB you need to download all artifacts and build the installer using `hhfab build`
-command. It will automatically download all required artifacts from the OCI registry and build the installer as well as
-all other prerequisites for running the VLAB.
+Once you have initialized the VLAB, download the artifacts and build the installer using `hhfab build`. This command
+automatically downloads all required artifacts from the OCI registry and builds the installer and all other
+prerequisites for running the VLAB.
 
 ## Build the installer and VLAB
 
@@ -98,10 +98,10 @@ Copying k9s  57.75 MiB / 57.75 MiB   ⠼   0.00 b/s done
 01:25:45 INF Packing done took=5.67007384s
 ```
 
-As soon as it's done you can run the VLAB using `hhfab vlab up` command. It will automatically start all VMs and run
-the installers on the control node and test servers. It will take some time for all VMs to come up and for the installer
-to finish, you will see the progress in the output. If you stop the command, it'll stop all VMs, and you can re-run it
-to get VMs back up and running.
+As soon as the build has completed, you can run the VLAB using `hhfab vlab up`. This command automatically starts all
+VMs and runs the installers on the control node and test servers. It takes some time for all VMs to come up and for the
+installer to finish. You can monitor progress in the output. If you stop the command, it will stop all VMs, and you can
+re-run it to get VMs back up and running.
 
 ## Run VMs and installers
 
@@ -164,23 +164,25 @@ ubuntu@docs:~$ hhfab vlab up
 01:35:15 INF VM installed name=control-1 type=control installer=control-install
 ```
 
-After you see `VM installed name=control-1`, it means that the installer has finished and you can get into the control
-node and other VMs to watch the Fabric coming up and switches getting provisioned.
+Line `VM installed name=control-1` from the installer's output means that the installer has finished. After this line
+has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
+provisioned.
 
 ## Configuring VLAB VMs
 
-By default, all test server VMs are isolated and have no connectivity to the host or internet. You can configure it
-using `hhfab vlab up --restrict-servers=false` flag to allow the test servers to access the internet and the host. It
-will mean that VMs will have default route pointing to the host which means in case of the VPC peering you'll need to
-configure test server VMs to use the VPC attachment as a default route (or just some specific subnets).
+By default, all test server VMs are isolated and have no connectivity to the host or the Internet. You can configure
+enable connectivity using `hhfab vlab up --restrict-servers=false` to allow the test servers to access the Internet and
+the host. When you enable connectivity, VMs get a default route pointing to the host, which means that in case of the
+VPC peering you need to configure test server VMs to use the VPC attachment as a default route (or just some specific
+subnets).
 
-Additionally, you can configure the size of all VMs using `hhfab vlab up --vm-size <size>` flag. It will allow you to
-choose from one of the presets (compact, default, full and huge) to get the control, switch and server VMs of different
+Additionally, you can configure the size of all VMs using `hhfab vlab up --vm-size <size>`. The flag allows you to
+choose from one of the presets (compact, default, full and huge) to get the control, switch, and server VMs of different
 sizes.
 
 ## Default credentials
 
-Fabricator will create default users and keys for you to login into the control node and test servers as well as for the
+Fabricator creates default users and keys for you to login into the control node and test servers as well as for the
 SONiC Virtual Switches.
 
 Default user with passwordless sudo for the control node and test servers is `core` with password `HHFab.Admin!`.
@@ -219,11 +221,11 @@ Ready:          true
 Basedir:        .hhfab/vlab-vms/control-1
 ```
 
-On the control node you'll have access to the kubectl, Fabric CLI and k9s to manage the Fabric. You can find information
+On the control node you have access to kubectl, Fabric CLI, and k9s to manage the Fabric. You can find information
 about the switches provisioning by running `kubectl get agents -o wide`. It usually takes about 10-15 minutes for the
 switches to get installed.
 
-After switches are provisioned you will see something like this:
+After the switches are provisioned, the command returns something like this:
 
 ```console
 core@control-1 ~ $ kubectl get agents -o wide
@@ -235,21 +237,21 @@ spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   vs     26s  
 spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   vs     19s         3m53s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m53s     4          10m
 ```
 
-`Heartbeat` column shows how long ago the switch has sent the heartbeat to the control node. `Applied` column shows how long
-ago the switch has applied the configuration. `AppliedG` shows the generation of the configuration applied. `CurrentG` shows
-the generation of the configuration the switch is supposed to run. If `AppliedG` and `CurrentG` are different it means that
-the switch is in the process of applying the configuration.
+The `Heartbeat` column shows how long ago the switch has sent the heartbeat to the control node. The `Applied` column
+shows how long ago the switch has applied the configuration. `AppliedG` shows the generation of the configuration
+applied. `CurrentG` shows the generation of the configuration the switch is supposed to run. Different values for
+`AppliedG` and `CurrentG` mean that the switch is in the process of applying the configuration.
 
 At that point Fabric is ready and you can use `kubectl` and `kubectl fabric` to manage the Fabric. You can find more
-about it in the [Running Demo](demo.md) and [User Guide](../user-guide/overview.md) sections.
+about managing the Fabric in the [Running Demo](demo.md) and [User Guide](../user-guide/overview.md) sections.
 
 ## Getting main Fabric objects
 
-You can get the main Fabric objects using `kubectl get` command on the control node. You can find more details about
+You can list the main Fabric objects by running `kubectl get` on the control node. You can find more details about
 using the Fabric in the [User Guide](../user-guide/overview.md), [Fabric API](../reference/api.md) and
 [Fabric CLI](../reference/cli.md) sections.
 
- For example, to get the list of switches you can run:
+For example, to get the list of switches, run:
 
 ```console
 core@control-1 ~ $ kubectl get switch
@@ -261,7 +263,7 @@ spine-01   spine         VS-04                    3e2c4992-a2e4-594b-bbd1-f8b2fd
 spine-02   spine         VS-05                    96fbd4eb-53b5-5a4c-8d6a-bbc27d883030   6h10m
 ```
 
-Similar for the servers:
+Similarly, to get the list of servers, run:
 
 ```console
 core@control-1 ~ $ kubectl get server
@@ -275,7 +277,7 @@ server-05             S-05 Unbundled leaf-03       6h10m
 server-06             S-06 Bundled leaf-03         6h10m
 ```
 
-For connections:
+For connections, use:
 
 ```console
 core@control-1 ~ $ kubectl get connection
@@ -303,7 +305,7 @@ spine-02--fabric--leaf-02            fabric         6h11m
 spine-02--fabric--leaf-03            fabric         6h11m
 ```
 
-For IPv4 and VLAN namespaces:
+For IPv4 and VLAN namespaces, use:
 
 ```console
 core@control-1 ~ $ kubectl get ipns
