@@ -10,20 +10,23 @@ This article operates terms that can be found in [Hedgehog Concepts](../concepts
 
 For every switch to be added into the Hedgehog fabric it should have a corresponding `Switch` object. Example can be found in [User Guilde](devices.md).
 
->If the`Switch` will be used in `ESLAG` or `MCLAG` groups, appropriate groups should exist. Redundancy groups should be specified in the `Switch` object before creation.
+!!! note
+    If the`Switch` will be used in `ESLAG` or `MCLAG` groups, appropriate groups should exist. Redundancy groups should be specified in the `Switch` object before creation.
 
 After the `Switch` object is created, dedicated device `Connections` can be defined and created. Based on the `Switch` role given to the device types of connections may be different. Please refer to [Connections section](connections.md).
 
->If switch is facing control node connection on the front-panel port, such switch port should be described in `Management` connection
+!!! note
+    If switch is facing control node connection on the front-panel port, such switch port should be described in `Management` connection
 
->Switch device should be booted in `ONIE` or `HONIE` Installation mode to install SONiC OS and configure Fabric agent
+!!! note
+    Switch device should be booted in `ONIE` or `HONIE` Installation mode to install SONiC OS and configure Fabric agent
 
 ### Remove switch from the existing fabric
 
 If the switch has to be decommissioned or removed there are several preparation steps before disabling it from the Fabric.
 
-> [!WARNING]
-> Currently the `Wiring` diagram used for initial deployment is saved in `/var/lib/rancher/k3s/server/manifests/hh-wiring.yaml` on the `Control` node. Fabric will sustain objects within the original wiring diagram. In order to remove any of the object that is described in this chapter, dedicated API object should be first removed from this file. It's recommended to reapply `hh-wiring.yaml` after changing it's internals.
+!!! warning
+    Currently the `Wiring` diagram used for initial deployment is saved in `/var/lib/rancher/k3s/server/manifests/hh-wiring.yaml` on the `Control` node. Fabric will sustain objects within the original wiring diagram. In order to remove any of the object that is described in this chapter, dedicated API object should be first removed from this file. It's recommended to reapply `hh-wiring.yaml` after changing it's internals.
 
 - If the `Switch` is a `Leaf` switch (including `Mixed` and `Border` leaf configuration) all `VPCAttachments` bound to all switches `Connections` must be removed first. If the `Switch` was used for `ExternalPeering` all `ExternalAttachment` object that are bound to `Connections` of the `Switch` must be removed.
 -  All connections of the `Switch` must be removed.
