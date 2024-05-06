@@ -231,7 +231,7 @@ To enable local inter-vpc peering that allows routing of traffic between VPCs, l
 
 * Maximum fabric size: 20 LEAF/ToR switches.
 * Routes per switch: 64k
-  * [ silicon platform limitation in Trident 3; limits te number of endpoints in the fabric  ]
+  * [ silicon platform limitation in Trident 3; limits to number of endpoints in the fabric  ]
 * Total VPCs per switch: up to 1000
   * [ Including VPCs attached at the given switch and VPCs peered with ]
 * Total VPCs per VLAN namespace: up to 3000
@@ -265,7 +265,7 @@ To enable local inter-vpc peering that allows routing of traffic between VPCs, l
 * no support for Access VLANs for attaching servers (A3 planned)
 * VPC peering is enabled on all subnets of the participating VPCs. No subnet selection for peering. (A3 planned)
 * peering with external is only possible with a VLAN (by design)
-* If you have VPCs with remote peering on a switch group, you can’t attach those VPCs on that switch group (by definition of remote peering)
+* If you have VPCs with remote peering on a switch group, you can't attach those VPCs on that switch group (by definition of remote peering)
 * if a group of VPCs has remote peering on a switch group, any other VPC that will peer with those VPCs remotely will need to use the same switch group (by design)
 * if VPC peers with external, it can only be remotely peered with on the same switches that have a connection to that external (by design)
 * the server-facing connection object is immutable as it’s very easy to get into a deadlock, re-create to change it (A3+)
@@ -309,7 +309,7 @@ To enable local inter-vpc peering that allows routing of traffic between VPCs, l
     * VPC peering is performed via ACLs with no fine-grained control.
 
 * NAT
-    * DNAT + SNAT are supported per VPC. SNAT and DNAT can’t be enabled per VPC simultaneously.
+    * DNAT + SNAT are supported per VPC. SNAT and DNAT can't be enabled per VPC simultaneously.
 
 * Hardware support:
     * Please see the supported hardware list.

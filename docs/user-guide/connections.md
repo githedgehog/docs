@@ -1,6 +1,6 @@
 # Connections
 
-The `Connection` object represents a logical and physical connections between any devices in the Fabric (`Switch`,
+The `Connection` object represents logical and physical connections between any devices in the Fabric (`Switch`,
 `Server` and `External` objects). It's needed to define all connections between the devices in the Wiring Diagram.
 
 There are multiple types of connections.
@@ -11,7 +11,7 @@ Server connections are used to connect workload servers to the switches.
 
 ### Unbundled
 
-Unbundled server connections are used to connect servers to the single switche using a single port.
+Unbundled server connections are used to connect servers to a single switch using a single port.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -30,7 +30,7 @@ spec:
 
 ### Bundled
 
-Bundled server connections are used to connect servers to the single switch using multiple ports (port channel, LAG).
+Bundled server connections are used to connect servers to a single switch using multiple ports (port channel, LAG).
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -53,9 +53,9 @@ spec:
 
 ### MCLAG
 
-MCLAG server connections are used to connect servers to the pair of switches using multiple ports (Dual-homing).
+MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
 Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type `mclag`
-and Connection with type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and
+and a Connection with type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and
 `spec.VTEPIP`.
 
 ```yaml
@@ -80,7 +80,8 @@ spec:
 ### ESLAG
 
 ESLAG server connections are used to connect servers to the 2-4 switches using multiple ports (Multi-homing). Switches
-should belong to the same redundancy group with type `eslag`, but no other configuration like in MCLAG case is required.
+should belong to the same redundancy group with type `eslag`, but contrary to the MCLAG case, no other configuration is
+required.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -108,7 +109,7 @@ the Fabric features.
 
 ### Fabric
 
-Connections between specific spine and leaf, covers all actual wires between a single pair.
+A Fabric Connections is used between specific spine and leaf, it covers all actual wires between a single pair.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -135,9 +136,9 @@ spec:
 
 ### MCLAG-Domain
 
-Used to define a pair of MCLAG switches with Session and Peer link between them. Switches should be configured as an
-MCLAG pair which requires them to be in a single redundancy group of type `mclag` and Connection with type
-`mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and `spec.VTEPIP`.
+MCLAG-Domain connections define a pair of MCLAG switches with Session and Peer link between them. Switches should be
+configured as an MCLAG, pair which requires them to be in a single redundancy group of type `mclag` and Connection with
+type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and `spec.VTEPIP`.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -169,8 +170,8 @@ spec:
 
 ### VPC-Loopback
 
-Required to implement a workaround for the local VPC peering (when both VPC are attached to the same switch) which is
-caused by the hardware limitation of the currently supported switches.
+VPC-Loopback connections are required in order to implement a workaround for the local VPC peering (when both VPC are
+attached to the same switch), which is caused by a hardware limitation of the currently supported switches.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -193,7 +194,7 @@ spec:
 
 ## Management
 
-Connection to the Control Node.
+Management connections define connections to the Control Node.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -212,14 +213,15 @@ spec:
         port: s5248-01/Ethernet0
 ```
 
-## Connecting Fabric to outside world
+## Connecting Fabric to the outside world
 
-Provides connectivity to the outside world, e.g. internet, other networks or some other systems such as DHCP, NTP, LMA,
-AAA services.
+Connections in this section provide connectivity to the outside world. For example, they can be connections to the
+Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or AAA services.
 
 ### StaticExternal
 
-Simple way to connect things like DHCP server directly to the Fabric by connecting it to specific switch ports.
+StaticExternal connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
+them to specific switch ports.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -231,17 +233,17 @@ spec:
   staticExternal:
     link:
       switch:
-        port: s5248-04/Ethernet1 # switch port to use
+        port: s5248-04/Ethernet1 # Switch port to use
         ip: 172.30.50.5/24 # IP address that will be assigned to the switch port
-        vlan: 1005 # Optional VLAN ID to use for the switch port, if 0 - no VLAN is configured
-        subnets: # List of subnets that will be routed to the switch port using static routes and next hop
+        vlan: 1005 # Optional VLAN ID to use for the switch port; if 0, no VLAN is configured
+        subnets: # List of subnets to route to the switch port using static routes and next hop
           - 10.99.0.1/24
           - 10.199.0.100/32
-        nextHop: 172.30.50.1 # Next hop IP address that will be used when configuring static routes for the "subnets" list
+        nextHop: 172.30.50.1 # Next hop IP address to use when configuring static routes for the "subnets" list
 ```
 
 Additionally, it's possible to configure `StaticExternal` within the VPC to provide access to the third-party resources
-within a specific VPC with the same rest of the configuration.
+within a specific VPC, with the rest of the YAML configuration remaining unchanged.
 
 ```yaml
 ...
@@ -254,8 +256,8 @@ spec:
 
 ### External
 
-Connection to the external systems, e.g. edge/provider routers using BGP peering and configuring Inbound/Outbound
-communities as well as granularly controlling what's getting advertised and which routes are accepted.
+Connection to external systems, such as edge/provider routers using BGP peering and configuring Inbound/Outbound
+communities as well as granularly controlling what gets advertised and which routes are accepted.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2

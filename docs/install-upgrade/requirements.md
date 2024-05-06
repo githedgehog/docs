@@ -1,14 +1,14 @@
 # System Requirements
 
-- Fast SSDs for system/root and K8s & container runtime folders are required for stable work
+- Fast SSDs for system/root as well as Kubernetes and container runtime folders are required for stable work
 - SSDs are mandatory for Control Nodes
 - Minimal (non-HA) setup is a single Control Node
 - (Future) Full (HA) setup is at least 3 Control Nodes
-- (Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack and etc.
+- (Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more
 
 ## Non-HA (minimal) setup - 1 Control Node
 
-- Control Node runs non-HA K8s Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it
+- Control Node runs non-HA Kubernetes Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it
 - Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments
 
 |      | Minimal | Recommended |
@@ -19,9 +19,9 @@
 
 ## (Future) HA setup - 3+ Control Nodes (per node)
 
-- Each Control Node runs part of the HA K8s Control Plane installation with Hedgehog Fabric Control Plane on top of it in
-  HA mode as well
-- Recommended for all cases where more then 10 devices participating in the Hedgehog Fabric
+- Each Control Node runs part of the HA Kubernetes Control Plane installation with Hedgehog Fabric Control Plane on top
+  of it in HA mode as well
+- Recommended for all cases where more than 10 devices participating in the Hedgehog Fabric
 
 |      | Minimal | Recommended |
 | ---- | ------- | ----------- |
@@ -31,8 +31,8 @@
 
 ## Device participating in the Hedgehog Fabric (e.g. switch)
 
-- (Future) Each participating device is part of the K8s cluster, so, it run K8s kubelet
-- Additionally it run Hedgehog Fabric Agent that controls devices configuration
+- (Future) Each participating device is part of the Kubernetes cluster, so it runs Kubernetes kubelet
+- Additionally, it runs the Hedgehog Fabric Agent that controls devices configuration
 
 |      | Minimal | Recommended |
 | ---- | ------- | ----------- |

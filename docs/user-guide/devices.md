@@ -1,14 +1,14 @@
 # Switches and Servers
 
-All devices in the Hedgehog Fabric are divided into two groups: switches and servers and represented by corresponding
-`Switch` and `Server` objects in the API. It's needed to define all participants of the Fabric and their roles in the
-Wiring Diagram as well as [Connections](./connections.md) between them.
+All devices in the Hedgehog Fabric are divided into two groups: switches and servers, represented by the corresponding
+`Switch` and `Server` objects in the API. These objects are needed to define all participants of the Fabric and their
+roles in the Wiring Diagram as well as [Connections](./connections.md) between them.
 
 ## Switches
 
-Switches are the main building blocks of the Fabric. They are represented by `Switch` objects in the API and consists
-of the basic information like name, description, location, role, etc. as well as port group speeds, port breakouts, ASN,
-IP addresses and etc.
+Switches are the main building blocks of the Fabric. They are represented by `Switch` objects in the API. These objects
+consist of basic metadata like name, description, location, role, as well as port group speeds, port breakouts, ASN,
+IP addresses, and more.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -56,16 +56,17 @@ spec: {}
 ## Redundancy Groups
 
 Redundancy groups are used to define the redundancy between switches. It's a regular `SwitchGroup` used by multiple
-switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). Switch can only belong to a single redundancy group.
+switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). A switch can only belong to a single redundancy
+group.
 
 MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
 groups can be used in the fabric simultaneously.
 
-Connections with types `mclag` and `eslag` are used to define the servers connections to switches and only supported if
-switch belongs to a redundancy group with corresponding type.
+Connections with types `mclag` and `eslag` are used to define the servers connections to switches. They are only
+supported if the switch belongs to a redundancy group with the corresponding type.
 
-In order to define MCLAG or ESLAG redundancy group, you need to create a `SwitchGroup` object and assign it to the
-switches using `redundancy` field.
+In order to define a MCLAG or ESLAG redundancy group, you need to create a `SwitchGroup` object and assign it to the
+switches using the `redundancy` field.
 
 Example of switch configured for ESLAG:
 
@@ -113,12 +114,12 @@ spec:
   ...
 ```
 
-In case of MCLAG it's required to have a special connection with type `mclag-domain` that defines peer and session links
-between switches, for more details see [Connections](./connections.md).
+In case of MCLAG it's required to have a special connection with type `mclag-domain` that defines the peer and session
+links between switches. For more details, see [Connections](./connections.md).
 
 ## Servers
 
-It includes both control nodes and user's workload servers.
+Servers include both control nodes and user's workload servers.
 
 Control Node:
 

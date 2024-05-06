@@ -3,8 +3,8 @@
 !!! warning ""
     Under construction.
 
-In the meantime, to have a look at the working wiring diagram for the Hedgehog Fabric, please run sample generator that
-produces VLAB-compatible wiring diagrams:
+In the meantime, to have a look at working wiring diagram for Hedgehog Fabric, run the sample generator that produces
+VLAB-compatible wiring diagrams:
 
 ```console
 ubuntu@sl-dev:~$ hhfab wiring sample -h

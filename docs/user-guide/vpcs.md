@@ -2,8 +2,8 @@
 
 ## VPC
 
-Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with
-support for multiple subnets each with user-provided VLANs and on-demand DHCP.
+A Virtual Private Cloud (VPC) is similar to a public cloud VPC. It provides an isolated private network for the
+resources with support for multiple subnets, each with user-provided VLANs and on-demand DHCP.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -25,12 +25,12 @@ spec:
         range: # Optionally, start/end range could be specified
           start: 10.10.1.10
           end: 10.10.1.99
-          pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the pxe server to use to boot hosts, http query strings are not supported
+          pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
       gateway: 10.10.1.1 # User-defined gateway (optional, default is .1)
-      vlan: "1001" # User-defined VLAN from vlan namespace
+      vlan: "1001" # User-defined VLAN from VLAN namespace
       isolated: true # Makes subnet isolated from other subnets within the VPC (doesn't affect VPC peering)
-      restricted: true # Makes all hosts in the subnet to be isolated from each other
+      restricted: true # Causes all hosts in the subnet to be isolated from each other
 
     thrird-party-dhcp: # Another subnet
       dhcp:
@@ -49,32 +49,34 @@ spec:
 
 ### Isolated and restricted subnets, permit lists
 
-Subnets could be isolated and restricted with ability to define permit lists to allow communication between specific
+Subnets can be isolated and restricted, with the ability to define permit lists to allow communication between specific
 isolated subnets. The permit list is applied on top of the isolated flag and doesn't affect VPC peering.
 
-Isolated subnet means that the subnet has no connectivity with other subnets within the VPC, but it could still be
+_Isolated subnet_ means that the subnet has no connectivity with other subnets within the VPC, but it could still be
 allowed by permit lists.
 
-Restricted subnet means that all hosts in the subnet are isolated from each other within the subnet.
+_Restricted subnet_ means that all hosts in the subnet are isolated from each other within the subnet.
 
-Permit lists are defined as a list of subnets that could communicate to each other.
+A Permit list is defined as a list of subnets that could communicate with each other.
 
 ### Third-party DHCP server
 
-In case if you're using thirt-party DHCP server by configuring `spec.subnets.<subnet>.dhcp.relay` additional information
-will be added to the DHCP packet it forwards to the DHCP server to make it possible to identify the VPC and subnet. The
-information is added under the RelayAgentInfo option(82) on the DHCP packet. The relay sets two suboptions in the packet
+In case you use a third-party DHCP server by configuring `spec.subnets.<subnet>.dhcp.relay`, additional information is
+added to the DHCP packet forwarded to the DHCP server to make it possible to identify the VPC and subnet. This
+information is added under the RelayAgentInfo (option 82) in the DHCP packet. The relay sets two suboptions in the
+packet:
 
-* VirtualSubnetSelection -- (suboption 151) is populated with the VRF which uniquely idenitifies a VPC on the Hedgehog
-  Fabric and will be in `VrfV<VPC-name>` format, e.g. `VrfVvpc-1` for VPC named `vpc-1` in the Fabric API
-* CircuitID -- (suboption 1) identifies the VLAN which together with VRF (VPC) name maps to a specific VPC subnet
+* _VirtualSubnetSelection_ (suboption 151) is populated with the VRF which uniquely identifies a VPC on the Hedgehog
+  Fabric and will be in `VrfV<VPC-name>` format, for example `VrfVvpc-1` for a VPC named `vpc-1` in the Fabric API.
+* _CircuitID_ (suboption 1) identifies the VLAN which, together with the VRF (VPC) name, maps to a specific VPC subnet.
 
 ## VPCAttachment
 
-Represents a specific VPC subnet assignment to the `Connection` object which means exact server port to a VPC binding.
+A VPCAttachment represents a specific VPC subnet assignment to the `Connection` object which means a binding between an
+exact server port and a VPC.
 It basically leads to the VPC being available on the specific server port(s) on a subnet VLAN.
 
-VPC could be attached to a switch which is a part of the VLAN namespace used by the VPC.
+VPC could be attached to a switch that is part of the VLAN namespace used by the VPC.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -90,10 +92,10 @@ spec:
 
 ## VPCPeering
 
-It enables VPC to VPC connectivity. There are tw o types of VPC peering:
+A VPCPeering enables VPC-to-VPC connectivity. There are two types of VPC peering:
 
-* Local - peering is implemented on the same switches where VPCs are attached
-* Remote - peering is implemented on the border/mixed leafs defined by the `SwitchGroup` object
+* Local: peering is implemented on the same switches where VPCs are attached
+* Remote: peering is implemented on the border/mixed leaves defined by the `SwitchGroup` object
 
 VPC peering is only possible between VPCs attached to the same IPv4 namespace.
 
@@ -107,8 +109,8 @@ metadata:
   namespace: default
 spec:
   permit: # Defines a pair of VPCs to peer
-  - vpc-1: {} # meaning all subnets of two VPCs will be able to communicate to each other
-    vpc-2: {} # see "Subnet filtering" for more advanced configuration
+  - vpc-1: {} # Meaning all subnets of two VPCs will be able to communicate with each other
+    vpc-2: {} # See "Subnet filtering" for more advanced configuration
 ```
 
 ### Remote VPC peering
@@ -123,7 +125,7 @@ spec:
   permit:
   - vpc-1: {}
     vpc-2: {}
-  remote: border # indicates a switch group to implement the peering on
+  remote: border # Indicates a switch group to implement the peering on
 ```
 
 ### Subnet filtering
@@ -152,8 +154,8 @@ spec:
 
 ## IPv4Namespace
 
-Defines non-overlapping VLAN ranges for attaching servers. Each switch belongs to a list of VLAN namespaces with
-non-overlapping VLAN ranges.
+An IPv4Namespace defines non-overlapping VLAN ranges for attaching servers. Each switch belongs to a list of VLAN
+namespaces with non-overlapping VLAN ranges.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -168,7 +170,7 @@ spec:
 
 ## VLANNamespace
 
-Defines non-overlapping IPv4 ranges for VPC subnets. Each VPC belongs to a specific IPv4 namespace.
+A VLANNamespace defines non-overlapping IPv4 ranges for VPC subnets. Each VPC belongs to a specific IPv4 namespace.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
