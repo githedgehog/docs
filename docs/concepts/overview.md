@@ -52,34 +52,34 @@ Wiring Diagram consists of the following resources:
 Installer builder and VLAB.
 
 * Installer builder based on a preset (currently vlab for virtual & lab for physical)
-  * Main input - wiring diagram
-  * All input artifacts coming from OCI registry
-  * Always full airgap (everything running from private registry)
-  * Flatcar Linux for control node, generated ignition.json
-  * Automatic k3s installation and private registry setup
-  * All components and their dependencies running in K8s
+    * Main input - wiring diagram
+    * All input artifacts coming from OCI registry
+    * Always full airgap (everything running from private registry)
+    * Flatcar Linux for control node, generated ignition.json
+    * Automatic k3s installation and private registry setup
+    * All components and their dependencies running in K8s
 * Integrated Virtual Lab (VLAB) management
 * Future:
-  * In-cluster (control) Operator to manage all components
-  * Upgrades handling for everything starting control node OS
-  * Installation progress, status and retries
-  * Disaster recovery and backups
+    * In-cluster (control) Operator to manage all components
+    * Upgrades handling for everything starting control node OS
+    * Installation progress, status and retries
+    * Disaster recovery and backups
 
 ## Das Boot
 
 Switch boot and installation.
 
 * Seeder
-  * Actual switch provisioning
-  * ONIE on a switch discovers control node using LLDP
-  * It loads and runs our multi-stage installer
-    * Network configuration & identity setup
-    * Performs device registration
-    * Hedgehog identity partition gets created on the switch
-    * Downloads SONiC installer and runs it
-    * Downloads Agent and it's config and installs to the switch
+    * Actual switch provisioning
+    * ONIE on a switch discovers control node using LLDP
+    * It loads and runs our multi-stage installer
+        * Network configuration & identity setup
+        * Performs device registration
+        * Hedgehog identity partition gets created on the switch
+        * Downloads SONiC installer and runs it
+        * Downloads Agent and it's config and installs to the switch
 * Registration Controller
-  * Device identity and registration
+    * Device identity and registration
 * Actual SONiC installers
 * Misc: rsyslog/ntp
 
@@ -88,10 +88,10 @@ Switch boot and installation.
 Control plane and switch agent.
 
 * Currently Fabric is basically single controller manager running in K8s
-  * It includes controllers for different CRDs and needs
-  * For example, auto assigning VNIs to VPC or generating Agent config
-  * Additionally, it's running admission webhook for our CRD APIs
+    * It includes controllers for different CRDs and needs
+    * For example, auto assigning VNIs to VPC or generating Agent config
+    * Additionally, it's running admission webhook for our CRD APIs
 * Agent is watching for the corresponding Agent CRD in K8s API
-  * It applies the changes and saves new config locally
-  * It reports back some status and information back to API
-  * Can perform reinstall and reboot of SONiC
+    * It applies the changes and saves new config locally
+    * It reports back some status and information back to API
+    * Can perform reinstall and reboot of SONiC
