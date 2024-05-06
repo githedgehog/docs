@@ -69,7 +69,7 @@ You can create and attach VPCs to the VMs using the `kubectl fabric vpc` command
 using the kubeconfig. For example, run following commands to create a 2 VPCs with a single subnet each, DHCP server
 enabled with optional IP address range start defined and attach them to some test servers:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get conn | grep server
 server-01--mclag--leaf-01--leaf-02   mclag          5h13m
 server-02--mclag--leaf-01--leaf-02   mclag          5h13m
@@ -93,7 +93,7 @@ core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-2/default --connec
 
 VPC subnet should belong to some IPv4Namespace, default one in the VLAB is `10.0.0.0/16`:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get ipns
 NAME      SUBNETS           AGE
 default   ["10.0.0.0/16"]   5h14m
@@ -102,7 +102,7 @@ default   ["10.0.0.0/16"]   5h14m
 After you created VPCs and VPCAttachments, you can check the status of the agents to make sure that requested
 configuration was apploed to the switches:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get agents
 NAME       ROLE          DESCR           APPLIED   APPLIEDG   CURRENTG   VERSION
 leaf-01    server-leaf   VS-01 MCLAG 1   2m2s      5          5          v0.23.0
@@ -124,7 +124,7 @@ preinstalled by Fabricator on test servers.
 
 For server-01:
 
-```bash
+```console
 core@server-01 ~ $ hhnet cleanup
 core@server-01 ~ $ hhnet bond 1001 enp2s1 enp2s2
 10.0.1.10/24
@@ -148,7 +148,7 @@ core@server-01 ~ $ ip a
 
 And for server-02:
 
-```bash
+```console
 core@server-02 ~ $ hhnet cleanup
 core@server-02 ~ $ hhnet bond 1002 enp2s1 enp2s2
 10.0.2.10/24
@@ -174,7 +174,7 @@ core@server-02 ~ $ ip a
 
 You can test connectivity between the servers before peering the switches using `ping` command:
 
-```bash
+```console
 core@server-01 ~ $ ping 10.0.2.10
 PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
 From 10.0.1.1 icmp_seq=1 Destination Net Unreachable
@@ -185,7 +185,7 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
 3 packets transmitted, 0 received, +3 errors, 100% packet loss, time 2003ms
 ```
 
-```bash
+```console
 core@server-02 ~ $ ping 10.0.1.10
 PING 10.0.1.10 (10.0.1.10) 56(84) bytes of data.
 From 10.0.2.1 icmp_seq=1 Destination Net Unreachable
@@ -200,7 +200,7 @@ From 10.0.2.1 icmp_seq=3 Destination Net Unreachable
 
 To enable connectivity between the VPCs, you need to peer them using `kubectl fabric vpc peer` command:
 
-```bash
+```console
 core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
 07:04:58 INF VPCPeering created name=vpc-1--vpc-2
 ```
@@ -208,7 +208,7 @@ core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
 Make sure to wait until the peering is applied to the switches using `kubectl get agents` command. After that you can
 test connectivity between the servers again:
 
-```bash
+```console
 core@server-01 ~ $ ping 10.0.2.10
 PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
 64 bytes from 10.0.2.10: icmp_seq=1 ttl=62 time=6.25 ms
@@ -220,7 +220,7 @@ PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
 rtt min/avg/max/mdev = 6.245/7.481/8.601/0.965 ms
 ```
 
-```bash
+```console
 core@server-02 ~ $ ping 10.0.1.10
 PING 10.0.1.10 (10.0.1.10) 56(84) bytes of data.
 64 bytes from 10.0.1.10: icmp_seq=1 ttl=62 time=5.44 ms
@@ -235,12 +235,12 @@ rtt min/avg/max/mdev = 4.489/5.529/6.656/0.886 ms
 If you will delete VPC peering using command following command and wait for the agent to apply configuration on the
 switches, you will see that connectivity will be lost again:
 
-```bash
+```console
 core@control-1 ~ $ kubectl delete vpcpeering/vpc-1--vpc-2
 vpcpeering.vpc.githedgehog.com "vpc-1--vpc-2" deleted
 ```
 
-```bash
+```console
 core@server-01 ~ $ ping 10.0.2.10
 PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
 From 10.0.1.1 icmp_seq=1 Destination Net Unreachable
@@ -255,7 +255,7 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
     You can see duplicate packets in the output of the `ping` command between some of the servers. This is expected
     behavior and is caused by the limitations in the VLAB environment.
 
-    ```yaml
+    ```console
     core@server-01 ~ $ ping 10.0.5.10
     PING 10.0.5.10 (10.0.5.10) 56(84) bytes of data.
     64 bytes from 10.0.5.10: icmp_seq=1 ttl=62 time=9.58 ms
@@ -274,7 +274,7 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
 
 First of all, we'll need to make sure that we have a second IPv4Namespace with the same subnet as default one:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get ipns
 NAME      SUBNETS           AGE
 default   ["10.0.0.0/16"]   24m
@@ -303,7 +303,7 @@ Let's assume that `vpc-1` already exists and is attached to `server-01` (see [Cr
 Now we can create `vpc-3` with the same subnet as `vpc-1` (but in the different IPv4Namespace) and attach it to the
 `server-03`:
 
-```bash
+```console
 core@control-1 ~ $ cat <<EOF > vpc-3.yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
 kind: VPC

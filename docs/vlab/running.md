@@ -15,7 +15,7 @@ So, by default you'll get 2 spines, 2 MCLAG leafs and 1 non-MCLAG leaf with 2 fa
 leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC Loopback
 workaround.
 
-```bash
+```console
 ubuntu@docs:~$ hhfab init -p vlab
 01:17:44 INF Generating wiring from gen flags
 01:17:44 INF Building wiring diagram fabricMode=spine-leaf chainControlLink=false controlLinksCount=0
@@ -29,7 +29,7 @@ ubuntu@docs:~$ hhfab init -p vlab
 
 Or if you want to run Collapsed Core topology with 2 MCLAG switches:
 
-```bash
+```console
 ubuntu@docs:~$ hhfab init -p vlab -m collapsed-core
 01:20:07 INF Generating wiring from gen flags
 01:20:07 INF Building wiring diagram fabricMode=collapsed-core chainControlLink=false controlLinksCount=0
@@ -42,7 +42,7 @@ ubuntu@docs:~$ hhfab init -p vlab -m collapsed-core
 
 Or you can run custom topology with 2 spines, 4 MCLAG leafs and 2 non-MCLAG leafs using flags:
 
-```bash
+```console
 ubuntu@docs:~$ hhfab init -p vlab --mclag-leafs-count 4 --orphan-leafs-count 2
 01:21:53 INF Generating wiring from gen flags
 01:21:53 INF Building wiring diagram fabricMode=spine-leaf chainControlLink=false controlLinksCount=0
@@ -63,7 +63,7 @@ all other prerequisites for running the VLAB.
 
 ## Build the installer and VLAB
 
-```bash
+```console
 ubuntu@docs:~$ hhfab build
 01:23:33 INF Building component=base
 01:23:33 WRN Attention! Development mode enabled - this is not secure! Default users and keys will be created.
@@ -105,7 +105,7 @@ to get VMs back up and running.
 
 ## Run VMs and installers
 
-```bash
+```console
 ubuntu@docs:~$ hhfab vlab up
 01:29:13 INF Starting VLAB server... basedir=.hhfab/vlab-vms vm-size="" dry-run=false
 01:29:13 INF VM id=0 name=control-1 type=control
@@ -195,7 +195,7 @@ provisioning and installing the software. After switches are installed you can u
 
 You can select device you want to access or pass the name using the `--vm` flag.
 
-```bash
+```console
 ubuntu@docs:~$ hhfab vlab ssh
 Use the arrow keys to navigate: ↓ ↑ → ←  and / toggles search
 SSH to VM:
@@ -225,7 +225,7 @@ switches to get installed.
 
 After switches are provisioned you will see something like this:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get agents -o wide
 NAME       ROLE          DESCR           HWSKU                      ASIC   HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE
 leaf-01    server-leaf   VS-01 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     30s         5m5s      4          4          v0.23.0   4.1.1-Enterprise_Base   5m5s      4          10m
@@ -251,7 +251,7 @@ using the Fabric in the [User Guide](../user-guide/overview.md), [Fabric API](..
 
  For example, to get the list of switches you can run:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get switch
 NAME       ROLE          DESCR           GROUPS   LOCATIONUUID                           AGE
 leaf-01    server-leaf   VS-01 MCLAG 1            5e2ae08a-8ba9-599a-ae0f-58c17cbbac67   6h10m
@@ -263,7 +263,7 @@ spine-02   spine         VS-05                    96fbd4eb-53b5-5a4c-8d6a-bbc27d
 
 Similar for the servers:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get server
 NAME        TYPE      DESCR                        AGE
 control-1   control   Control node                 6h10m
@@ -277,7 +277,7 @@ server-06             S-06 Bundled leaf-03         6h10m
 
 For connections:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get connection
 NAME                                 TYPE           AGE
 control-1--mgmt--leaf-01             management     6h11m
@@ -305,7 +305,7 @@ spine-02--fabric--leaf-03            fabric         6h11m
 
 For IPv4 and VLAN namespaces:
 
-```bash
+```console
 core@control-1 ~ $ kubectl get ipns
 NAME      SUBNETS           AGE
 default   ["10.0.0.0/16"]   6h12m
