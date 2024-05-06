@@ -4,5 +4,5 @@ nav:
   - System Requirements: requirements.md
   - Build Wiring Diagram: build-wiring.md
   - Fabric Configuration: config.md
-  - ONiE Update (prepare switch): onie-update.md
+  - ONIE Update (prepare switch): onie-update.md
   - ...

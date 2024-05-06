@@ -27,8 +27,8 @@ Main steps to install Fabric are:
     1. Install Flatcar Linux on the Control Node
     1. Upload and run Control Node installer on the Control Node
 1. Prepare supported switches
-    1. [Install Hedgehog ONiE (HONiE) on them](./onie-update.md)
-    1. Reboot them into ONiE Install Mode and they will be automatically provisioned
+    1. [Install Hedgehog ONIE (HONIE) on them](./onie-update.md)
+    1. Reboot them into ONIE Install Mode and they will be automatically provisioned
 
 ## Build Control Node configuration and installer
 
@@ -103,5 +103,5 @@ deployment.apps/reloader-reloader condition met
 At that point, you can start interacting with the Fabric using `kubectl`, `kubectl fabric` and `k9s` preinstalled as
 part of the Control Node installer.
 
-You can now get HONiE installed on your switches and reboot them into ONiE Install Mode and they will be automatically
+You can now get HONIE installed on your switches and reboot them into ONIE Install Mode and they will be automatically
 provisioned from the Control Node.

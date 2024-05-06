@@ -4,7 +4,7 @@ It's possible to run Hedgehog Fabric in a fully virtual environment using QEMU/K
 a great way to try out Fabric and learn about its looka and feel, API, capabilities and etc. It's not suitable for any
 data plane or performance testing as well as not for production use.
 
-In the VLAB all switches will start as an empty VMs with only ONiE image on them and will go through the whole
+In the VLAB all switches will start as an empty VMs with only ONIE image on them and will go through the whole
 discovery, boot and installation process like on the real hardware.
 
 ## Overview
