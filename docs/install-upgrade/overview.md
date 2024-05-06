@@ -90,7 +90,7 @@ tar xzf control-install.tgz && cd control-install && sudo ./hhfab-recipe run
 It'll output log of installing the Fabric (including Kubernetes cluster, OCI registry misc components and etc), you should see
 following output in the end:
 
-```bash
+```
 ...
 01:34:45 INF Running name=reloader-image op="push fabricator/reloader:v1.0.40"
 01:34:47 INF Running name=reloader-chart op="push fabricator/charts/reloader:1.0.40"

@@ -65,7 +65,7 @@ kvm-ok
 
 Good output of the `kvm-ok` command should look like this:
 
-```
+```console
 ubuntu@docs:~$ kvm-ok
 INFO: /dev/kvm exists
 KVM acceleration can be used

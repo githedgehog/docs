@@ -6,7 +6,7 @@
 In the meantime, to have a look at the working wiring diagram for the Hedgehog Fabric, please run sample generator that
 produces VLAB-compatible wiring diagrams:
 
-```bash
+```console
 ubuntu@sl-dev:~$ hhfab wiring sample -h
 NAME:
    hhfab wiring sample - sample wiring diagram (would work for vlab)
