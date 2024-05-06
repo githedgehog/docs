@@ -4,7 +4,8 @@ Hedgehog Fabric uses Border Leaf concept to exchange VPC routes outside the Fabr
 `External Peering` feature allows to set up an external peering endpoint and to enforce several policies between
 internal and external endpoints.
 
->Hedgehog Fabric does not operate Edge side devices.
+!!! note
+    Hedgehog Fabric does not operate Edge side devices.
 
 ## Overview
 
@@ -12,7 +13,8 @@ Traffic exit from the Fabric is done on Border Leafs that are connected with Edg
 terminate l2vpn connections and distinguish VPC L3 routable traffic towards Edge device as well as to land VPC servers.
 Border Leafs (or Borders) can connect to several Edge devices.
 
->External Peering is only available on the switch devices that are capable for sub-interfaces.
+!!! note
+    External Peering is only available on the switch devices that are capable for sub-interfaces.
 
 ### Connect Border Leaf to Edge device
 
@@ -229,7 +231,8 @@ spec:
 ```
 ### Example Edge side BGP configuration based on SONiC OS
 
-> **_NOTE:_** Hedgehog does not recommend using following configuration for production. It's just as example of Edge Peer config
+!!! warning
+    Hedgehog does not recommend using following configuration for production. It's just as example of Edge Peer config
 
 Interface config
 ```yaml
