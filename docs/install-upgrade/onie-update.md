@@ -18,29 +18,27 @@
 
 ## Updating ONIE
 
-* Via USB
+### Via USB
 
-  * For this example we will be updating a DELL S5248 to Hedgehog ONIE (HONIE)
+This example shows how to update a DELL S5248 to Hedgehog ONIE (HONIE).
 
-    * Note: the USB port is on the back of the switch with the Management and Console
+!!! note ""
+    Note: the USB port is on the back of the switch with the Management and Console.
 
-  * Prepare the USB stick by burning the honie-usb.img to a 4G or larger USB drive
+1. Prepare the USB stick by burning the honie-usb.img to a 4G or larger USB drive.
 
-  * Insert the USB drive into the switch
+2. Insert the USB drive into the switch. For example, burn the file to disk `X` of a macOS machine with
+   `sudo dd if=honie-usb.img of=/dev/rdiskX bs=1m`.
 
-    * For example, to burn the file to disk X of an OSX machine
+3. Boot into ONIE Installer
 
-      * sudo dd if=honie-usb.img of=/dev/rdiskX bs=1m
+    * First select ONIE:
+      ![](./onie-update-grub-onie.png)
 
-  * Boot into ONIE Installer
+    * Then request the installation:
+      ![](./onie-update-onie-install.png)
 
-    * ![](./onie-update-grub-onie.png)
-
-    * ![](./onie-update-onie-install.png)
-
-    *
-
-  * ONIE will install the ONIE update and reboot
+4. ONIE will install the ONIE update and reboot. Here are some sample logs:
 
     ```hl_lines="3 38"
     ONIE: OS Install Mode ...
@@ -99,4 +97,4 @@
     Requesting system reboot
     ```
 
-  * System is now ready for use
+5. The system is now ready for use.
