@@ -3,18 +3,13 @@
 ## Hedgehog ONIE (HONIE) Supported Systems
 
 * DELL
-
-  * S5248F-ON
-
-  * S5232F-ON
+    * S5248F-ON
+    * S5232F-ON
 
 * Edge-Core
-
-  * DCS501 (AS7726-32X)
-
-  * DCS203 (AS7326-56X)
-
-  * EPS203 (AS4630-54NPE)
+    * DCS501 (AS7726-32X)
+    * DCS203 (AS7326-56X)
+    * EPS203 (AS4630-54NPE)
 
 ## Updating ONIE
 
