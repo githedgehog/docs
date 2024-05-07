@@ -4652,7 +4652,7 @@ Effectively it represents BGP peering between the switch and external system inc
 <tbody>
 <tr>
 <td><code>vlan</code> <em>integer</em></td>
-<td>VLAN is the VLAN ID used for the subinterface on a switch port specified in the connection</td>
+<td>VLAN (optional) is the VLAN ID used for the subinterface on a switch port specified in the connection, set to 0 if no VLAN is used</td>
 <td></td>
 <td></td>
 </tr>
@@ -4863,13 +4863,13 @@ filter routes from/to the external system.</p>
 </tr>
 <tr>
 <td><code>inboundCommunity</code> <em>string</em></td>
-<td>InboundCommunity is the name of the inbound community to filter routes from the external system</td>
+<td>InboundCommunity is the inbound community to filter routes from the external system (e.g. 65102:5000)</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>outboundCommunity</code> <em>string</em></td>
-<td>OutboundCommunity is the name of the outbound community that all outbound routes will be stamped with</td>
+<td>OutboundCommunity is theoutbound community that all outbound routes will be stamped with (e.g. 50000:50001)</td>
 <td></td>
 <td></td>
 </tr>
@@ -6740,7 +6740,7 @@ SwitchGroup objects.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 3, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2024</span>
       
         <br>
         Created:
