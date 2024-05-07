@@ -26,7 +26,7 @@
     
     
       
-        <title>ONiE Update (prepare switch) - Open Network Fabric</title>
+        <title>ONIE Update (prepare switch) - Open Network Fabric</title>
       
     
     
@@ -143,7 +143,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ONiE Update (prepare switch)
+              ONIE Update (prepare switch)
             
           </span>
         </div>
@@ -601,7 +601,7 @@ You're not viewing the latest version.
           
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -612,7 +612,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -644,6 +644,19 @@ You're not viewing the latest version.
   <a href="#updating-onie" class="md-nav__link">
     Updating ONIE
   </a>
+  
+    <nav class="md-nav" aria-label="Updating ONIE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-usb" class="md-nav__link">
+    Via USB
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1179,6 +1192,19 @@ You're not viewing the latest version.
     Updating ONIE
   </a>
   
+    <nav class="md-nav" aria-label="Updating ONIE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-usb" class="md-nav__link">
+    Via USB
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1209,133 +1235,116 @@ You're not viewing the latest version.
 <ul>
 <li>
 <p>DELL</p>
-</li>
-<li>
-<p>S5248F-ON</p>
-</li>
-<li>
-<p>S5232F-ON</p>
+<ul>
+<li>S5248F-ON</li>
+<li>S5232F-ON</li>
+</ul>
 </li>
 <li>
 <p>Edge-Core</p>
-</li>
-<li>
-<p>DCS501 (AS7726-32X)</p>
-</li>
-<li>
-<p>DCS203 (AS7326-56X)</p>
-</li>
-<li>
-<p>EPS203 (AS4630-54NPE)</p>
+<ul>
+<li>DCS501 (AS7726-32X)</li>
+<li>DCS203 (AS7326-56X)</li>
+<li>EPS203 (AS4630-54NPE)</li>
+</ul>
 </li>
 </ul>
 <h2 id="updating-onie">Updating ONIE</h2>
-<ul>
+<h3 id="via-usb">Via USB</h3>
+<p>This example shows how to update a DELL S5248 to Hedgehog ONIE (HONIE).</p>
+<div class="admonition note">
+<p>Note: the USB port is on the back of the switch with the Management and Console.</p>
+</div>
+<ol>
 <li>
-<p>Via USB</p>
+<p>Prepare the USB stick by burning the honie-usb.img to a 4G or larger USB drive.</p>
 </li>
 <li>
-<p>For this example we will be updating a DELL S5248 to Hedgehog ONIE (HONIE)</p>
-<ul>
-<li>Note: the USB port is on the back of the switch with the Management and Console</li>
-</ul>
-</li>
-<li>
-<p>Prepare the USB stick by burning the honie-usb.img to a 4G or larger USB drive</p>
-</li>
-<li>
-<p>Insert the USB drive into the switch</p>
-<ul>
-<li>
-<p>For example, to burn the file to disk X of an OSX machine</p>
-</li>
-<li>
-<p>sudo dd if=honie-usb.img of=/dev/rdiskX bs=1m</p>
-</li>
-</ul>
+<p>Insert the USB drive into the switch. For example, burn the file to disk <code>X</code> of a macOS machine with
+   <code>sudo dd if=honie-usb.img of=/dev/rdiskX bs=1m</code>.</p>
 </li>
 <li>
 <p>Boot into ONIE Installer</p>
 <ul>
 <li>
-<p><a class="glightbox" href="../onie-update-grub-onie.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../onie-update-grub-onie.png" /></a></p>
+<p>First select ONIE:
+  <a class="glightbox" href="../onie-update-grub-onie.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../onie-update-grub-onie.png" /></a></p>
 </li>
 <li>
-<p><a class="glightbox" href="../onie-update-onie-install.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../onie-update-onie-install.png" /></a></p>
+<p>Then request the installation:
+  <a class="glightbox" href="../onie-update-onie-install.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../onie-update-onie-install.png" /></a></p>
 </li>
 </ul>
-<p>*</p>
 </li>
 <li>
-<p>ONIE will install the ONIE update and reboot</p>
-<ul>
-<li>`ONIE: OS Install Mode ...</li>
-</ul>
-<p>Platform  : x86_64-dellemc_s5200_c3538-r0</p>
-<p><mark>Version   : 3.40.1.1-7</mark> &lt;- Non HONIE version</p>
-<p>Build Date: 2020-03-24T20:44-07:00</p>
-<p>Info: Mounting EFI System on /boot/efi ...</p>
-<p>Info: BIOS mode: UEFI</p>
-<p>Info: Making NOS install boot mode persistent.</p>
-<p>Info: Using eth0 MAC address: 3c:2c:30:66:f0:00</p>
-<p>Info: eth0:  Checking link... up.</p>
-<p>Info: Trying DHCPv4 on interface: eth0</p>
-<p>Warning: Unable to configure interface using DHCPv4: eth0</p>
-<p>ONIE: Using link-local IPv4 addr: eth0: 169.254.95.249/16</p>
-<p>Starting: klogd... done.</p>
-<p>Starting: dropbear ssh daemon... done.</p>
-<p>Starting: telnetd... done.</p>
-<p>discover: installer mode detected.  Running installer.</p>
-<p>Starting: discover... done.</p>
-<p>Please press Enter to activate this console. Info: eth0:  Checking link... up.</p>
-<p>Info: Trying DHCPv4 on interface: eth0</p>
-<p>Warning: Unable to configure interface using DHCPv4: eth0</p>
-<p>ONIE: Using link-local IPv4 addr: eth0: 169.254.6.139/16</p>
-<p>ONIE: Starting ONIE Service Discovery</p>
-<p>Info: Attempting file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0 ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538-r0 ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538-r0.bin ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538.bin ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-dellemc_s5248f_c3538 ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-dellemc_s5248f_c3538.bin ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-bcm ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-bcm.bin ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64 ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64.bin ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer ...</p>
-<p>Info: Attempting file://dev/mmcblk0p1/onie-installer.bin ...</p>
-<p>ONIE: Executing installer: file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0</p>
-<p>Verifying image checksum ... OK.</p>
-<p>Preparing image archive ... OK.</p>
-<p><mark>ONIE: Version       : 3.40.1.1-8</mark> &lt;- HONIE Version</p>
-<p>ONIE: Architecture  : x86_64</p>
-<p>ONIE: Machine       : dellemc_s5200_c3538</p>
-<p>ONIE: Machine Rev   : 0</p>
-<p>ONIE: Config Version: 1</p>
-<p>ONIE: Build Date    : 2023-12-15T23:43+00:00</p>
-<p>Installing ONIE on: /dev/sda</p>
-<p>ONIE: NOS install successful: file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0</p>
-<p>ONIE: Rebooting...</p>
-<p>discover: installer mode detected.</p>
-<p>Stopping: discover...start-stop-daemon: warning: killing process 665: No such process</p>
-<p>Info: Unmounting kernel filesystems</p>
-<p>umount: can't unmount /: Invalid argument</p>
-<p>The system is going down NOW!</p>
-<p>Sent SIGTERM to all processes</p>
-<p>Sent SIGKILL to all processes</p>
-<p>Requesting system reboot`</p>
+<p>ONIE will install the ONIE update and reboot. Here are some sample logs:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ONIE: OS Install Mode ...
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Platform  : x86_64-dellemc_s5200_c3538-r0
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="hll">Version   : 3.40.1.1-7 &lt;- Non HONIE version
+</span></span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Build Date: 2020-03-24T20:44-07:00
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Info: Mounting EFI System on /boot/efi ...
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Info: BIOS mode: UEFI
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Info: Making NOS install boot mode persistent.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Info: Using eth0 MAC address: 3c:2c:30:66:f0:00
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Info: eth0:  Checking link... up.
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Info: Trying DHCPv4 on interface: eth0
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Warning: Unable to configure interface using DHCPv4: eth0
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>ONIE: Using link-local IPv4 addr: eth0: 169.254.95.249/16
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Starting: klogd... done.
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Starting: dropbear ssh daemon... done.
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>Starting: telnetd... done.
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>discover: installer mode detected.  Running installer.
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Starting: discover... done.
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Please press Enter to activate this console. Info: eth0:  Checking link... up.
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Info: Trying DHCPv4 on interface: eth0
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>Warning: Unable to configure interface using DHCPv4: eth0
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>ONIE: Using link-local IPv4 addr: eth0: 169.254.6.139/16
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>ONIE: Starting ONIE Service Discovery
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>Info: Attempting file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0 ...
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538-r0 ...
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538-r0.bin ...
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-dellemc_s5248f_c3538.bin ...
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-dellemc_s5248f_c3538 ...
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-dellemc_s5248f_c3538.bin ...
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-bcm ...
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64-bcm.bin ...
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64 ...
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer-x86_64.bin ...
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer ...
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>Info: Attempting file://dev/mmcblk0p1/onie-installer.bin ...
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>ONIE: Executing installer: file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>Verifying image checksum ... OK.
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>Preparing image archive ... OK.
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="hll">ONIE: Version       : 3.40.1.1-8 &lt;- HONIE Version
+</span></span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>ONIE: Architecture  : x86_64
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>ONIE: Machine       : dellemc_s5200_c3538
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>ONIE: Machine Rev   : 0
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>ONIE: Config Version: 1
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>ONIE: Build Date    : 2023-12-15T23:43+00:00
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>Installing ONIE on: /dev/sda
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>ONIE: NOS install successful: file://dev/sdb1/onie-installer-x86_64-dellemc_s5248f_c3538-r0
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>ONIE: Rebooting...
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>discover: installer mode detected.
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>Stopping: discover...start-stop-daemon: warning: killing process 665: No such process
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>Info: Unmounting kernel filesystems
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>umount: can&#39;t unmount /: Invalid argument
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>The system is going down NOW!
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>Sent SIGTERM to all processes
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>Sent SIGKILL to all processes
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>Requesting system reboot
+</span></code></pre></div>
 </li>
 <li>
-<p>System is now ready for use</p>
+<p>The system is now ready for use.</p>
 </li>
-</ul>
+</ol>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:

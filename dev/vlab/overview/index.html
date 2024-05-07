@@ -660,7 +660,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -1234,23 +1234,23 @@ You're not viewing the latest version.
 
 <h1 id="overview">Overview</h1>
 <p>It's possible to run Hedgehog Fabric in a fully virtual environment using QEMU/KVM and SONiC Virtual Switch (VS). It's
-a great way to try out Fabric and learn about its looka and feel, API, capabilities and etc. It's not suitable for any
-data plane or performance testing as well as not for production use.</p>
-<p>In the VLAB all switches will start as an empty VMs with only ONiE image on them and will go through the whole
-discovery, boot and installation process like on the real hardware.</p>
+a great way to try out Fabric and learn about its look and feel, API, and capabilities. It's not suitable for any
+data plane or performance testing, or for production use.</p>
+<p>In the VLAB all switches start as empty VMs with only the ONIE image on them, and they go through the whole discovery,
+boot and installation process like on real hardware.</p>
 <h2 id="overview_1">Overview</h2>
-<p>The <code>hhfab</code> CLI provides a special command <code>vlab</code> to manage the virtual labs. It allows to run set of virtual machines
-to simulate the Fabric infrastructure including control node, switches, test servers and automatically runs installer
-to get Fabric up and running.</p>
+<p>The <code>hhfab</code> CLI provides a special command <code>vlab</code> to manage the virtual labs. It allows you to run sets of virtual
+machines to simulate the Fabric infrastructure including control node, switches, test servers and it automatically runs
+the installer to get Fabric up and running.</p>
 <p>You can find more information about getting <code>hhfab</code> in the <a href="../../getting-started/download/">download</a> section.</p>
 <h2 id="system-requirements">System Requirements</h2>
 <p>Currently, it's only tested on Ubuntu 22.04 LTS, but should work on any Linux distribution with QEMU/KVM support and fairly
 up-to-date packages.</p>
-<p>Following packages needs to be installed: <code>qemu-kvm swtpm-tools tpm2-tools socat</code> and docker will be required to login
-into OCI registry.</p>
-<p>By default, VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leafs and 1 non-MCLAG leaf. Optionally, you can choose
-to run default Collapsed Core topology using <code>--fabric-mode collapsed-core</code> (or <code>-m collapsed-core</code>) flag which only
-conisists of 2 switches.</p>
+<p>The following packages needs to be installed: <code>qemu-kvm swtpm-tools tpm2-tools socat</code>. Docker is also required, to login
+into the OCI registry.</p>
+<p>By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can
+choose to run the default Collapsed Core topology using flag <code>--fabric-mode collapsed-core</code> (or <code>-m collapsed-core</code>)
+which only consists of 2 switches.</p>
 <p>You can calculate the system requirements based on the allocated resources to the VMs using the following table:</p>
 <table>
 <thead>
@@ -1282,12 +1282,12 @@ conisists of 2 switches.</p>
 </tr>
 </tbody>
 </table>
-<p>Which gives approximately the following requirements for the default topologies:</p>
+<p>These numbers give approximately the following requirements for the default topologies:</p>
 <ul>
 <li>Spine-Leaf: 38 vCPUs, 36352 MB, 410 GB disk</li>
 <li>Collapsed Core: 22 vCPUs, 19456 MB, 240 GB disk</li>
 </ul>
-<p>Usually, non of the VMs will reach 100% utilization of the allocated resources, but as a rule of thumb you should make
+<p>Usually, none of the VMs will reach 100% utilization of the allocated resources, but as a rule of thumb you should make
 sure that you have at least allocated RAM and disk space for all VMs.</p>
 <p>NVMe SSD for VM disks is highly recommended.</p>
 <h2 id="installing-prerequisites">Installing prerequisites</h2>
@@ -1303,9 +1303,9 @@ sure that you have at least allocated RAM and disk space for all VMs.</p>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>kvm-ok
 </span></code></pre></div>
 <p>Good output of the <code>kvm-ok</code> command should look like this:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ubuntu@docs:~$ kvm-ok
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>INFO: /dev/kvm exists
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>KVM acceleration can be used
+<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">ubuntu@docs:~$ </span>kvm-ok
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">INFO: /dev/kvm exists</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">KVM acceleration can be used</span>
 </span></code></pre></div>
 <h2 id="next-steps">Next steps</h2>
 <ul>
@@ -1317,7 +1317,7 @@ sure that you have at least allocated RAM and disk space for all VMs.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:

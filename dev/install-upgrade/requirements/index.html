@@ -653,7 +653,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -1220,15 +1220,15 @@ You're not viewing the latest version.
 
 <h1 id="system-requirements">System Requirements</h1>
 <ul>
-<li>Fast SSDs for system/root and K8s &amp; container runtime folders are required for stable work</li>
+<li>Fast SSDs for system/root as well as Kubernetes and container runtime folders are required for stable work</li>
 <li>SSDs are mandatory for Control Nodes</li>
 <li>Minimal (non-HA) setup is a single Control Node</li>
 <li>(Future) Full (HA) setup is at least 3 Control Nodes</li>
-<li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack and etc.</li>
+<li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more</li>
 </ul>
 <h2 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h2>
 <ul>
-<li>Control Node runs non-HA K8s Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it</li>
+<li>Control Node runs non-HA Kubernetes Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it</li>
 <li>Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments</li>
 </ul>
 <table>
@@ -1259,9 +1259,9 @@ You're not viewing the latest version.
 </table>
 <h2 id="future-ha-setup-3-control-nodes-per-node">(Future) HA setup - 3+ Control Nodes (per node)</h2>
 <ul>
-<li>Each Control Node runs part of the HA K8s Control Plane installation with Hedgehog Fabric Control Plane on top of it in
-  HA mode as well</li>
-<li>Recommended for all cases where more then 10 devices participating in the Hedgehog Fabric</li>
+<li>Each Control Node runs part of the HA Kubernetes Control Plane installation with Hedgehog Fabric Control Plane on top
+  of it in HA mode as well</li>
+<li>Recommended for all cases where more than 10 devices participating in the Hedgehog Fabric</li>
 </ul>
 <table>
 <thead>
@@ -1291,8 +1291,8 @@ You're not viewing the latest version.
 </table>
 <h2 id="device-participating-in-the-hedgehog-fabric-eg-switch">Device participating in the Hedgehog Fabric (e.g. switch)</h2>
 <ul>
-<li>(Future) Each participating device is part of the K8s cluster, so, it run K8s kubelet</li>
-<li>Additionally it run Hedgehog Fabric Agent that controls devices configuration</li>
+<li>(Future) Each participating device is part of the Kubernetes cluster, so it runs Kubernetes kubelet</li>
+<li>Additionally, it runs the Hedgehog Fabric Agent that controls devices configuration</li>
 </ul>
 <table>
 <thead>
@@ -1326,7 +1326,7 @@ You're not viewing the latest version.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:

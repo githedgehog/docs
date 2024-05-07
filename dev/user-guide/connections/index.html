@@ -592,7 +592,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -821,11 +821,11 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#connecting-fabric-to-outside-world" class="md-nav__link">
-    Connecting Fabric to outside world
+  <a href="#connecting-fabric-to-the-outside-world" class="md-nav__link">
+    Connecting Fabric to the outside world
   </a>
   
-    <nav class="md-nav" aria-label="Connecting Fabric to outside world">
+    <nav class="md-nav" aria-label="Connecting Fabric to the outside world">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1345,11 +1345,11 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#connecting-fabric-to-outside-world" class="md-nav__link">
-    Connecting Fabric to outside world
+  <a href="#connecting-fabric-to-the-outside-world" class="md-nav__link">
+    Connecting Fabric to the outside world
   </a>
   
-    <nav class="md-nav" aria-label="Connecting Fabric to outside world">
+    <nav class="md-nav" aria-label="Connecting Fabric to the outside world">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1395,13 +1395,13 @@ You're not viewing the latest version.
 
 
 <h1 id="connections">Connections</h1>
-<p>The <code>Connection</code> object represents a logical and physical connections between any devices in the Fabric (<code>Switch</code>,
+<p>The <code>Connection</code> object represents logical and physical connections between any devices in the Fabric (<code>Switch</code>,
 <code>Server</code> and <code>External</code> objects). It's needed to define all connections between the devices in the Wiring Diagram.</p>
 <p>There are multiple types of connections.</p>
 <h2 id="server-connections-user-facing">Server connections (user-facing)</h2>
 <p>Server connections are used to connect workload servers to the switches.</p>
 <h3 id="unbundled">Unbundled</h3>
-<p>Unbundled server connections are used to connect servers to the single switche using a single port.</p>
+<p>Unbundled server connections are used to connect servers to a single switch using a single port.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1416,7 +1416,7 @@ You're not viewing the latest version.
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-02/Ethernet3</span>
 </span></code></pre></div>
 <h3 id="bundled">Bundled</h3>
-<p>Bundled server connections are used to connect servers to the single switch using multiple ports (port channel, LAG).</p>
+<p>Bundled server connections are used to connect servers to a single switch using multiple ports (port channel, LAG).</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1435,9 +1435,9 @@ You're not viewing the latest version.
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-01/Ethernet4</span>
 </span></code></pre></div>
 <h3 id="mclag">MCLAG</h3>
-<p>MCLAG server connections are used to connect servers to the pair of switches using multiple ports (Dual-homing).
+<p>MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
 Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type <code>mclag</code>
-and Connection with type <code>mclag-domain</code> between them. MCLAG switches should also have the same <code>spec.ASN</code> and
+and a Connection with type <code>mclag-domain</code> between them. MCLAG switches should also have the same <code>spec.ASN</code> and
 <code>spec.VTEPIP</code>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
@@ -1458,7 +1458,8 @@ and Connection with type <code>mclag-domain</code> between them. MCLAG switches 
 </span></code></pre></div>
 <h3 id="eslag">ESLAG</h3>
 <p>ESLAG server connections are used to connect servers to the 2-4 switches using multiple ports (Multi-homing). Switches
-should belong to the same redundancy group with type <code>eslag</code>, but no other configuration like in MCLAG case is required.</p>
+should belong to the same redundancy group with type <code>eslag</code>, but contrary to the MCLAG case, no other configuration is
+required.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1480,7 +1481,7 @@ should belong to the same redundancy group with type <code>eslag</code>, but no 
 <p>Switch connections are used to connect switches to each other and provide any needed "service" connectivity to implement
 the Fabric features.</p>
 <h3 id="fabric">Fabric</h3>
-<p>Connections between specific spine and leaf, covers all actual wires between a single pair.</p>
+<p>A Fabric Connections is used between specific spine and leaf, it covers all actual wires between a single pair.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1503,9 +1504,9 @@ the Fabric features.</p>
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5232-01/Ethernet4</span>
 </span></code></pre></div>
 <h3 id="mclag-domain">MCLAG-Domain</h3>
-<p>Used to define a pair of MCLAG switches with Session and Peer link between them. Switches should be configured as an
-MCLAG pair which requires them to be in a single redundancy group of type <code>mclag</code> and Connection with type
-<code>mclag-domain</code> between them. MCLAG switches should also have the same <code>spec.ASN</code> and <code>spec.VTEPIP</code>.</p>
+<p>MCLAG-Domain connections define a pair of MCLAG switches with Session and Peer link between them. Switches should be
+configured as an MCLAG, pair which requires them to be in a single redundancy group of type <code>mclag</code> and Connection with
+type <code>mclag-domain</code> between them. MCLAG switches should also have the same <code>spec.ASN</code> and <code>spec.VTEPIP</code>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1533,8 +1534,8 @@ MCLAG pair which requires them to be in a single redundancy group of type <code>
 </span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-02/Ethernet75</span>
 </span></code></pre></div>
 <h3 id="vpc-loopback"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-Loopback</h3>
-<p>Required to implement a workaround for the local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering (when both <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> are attached to the same switch) which is
-caused by the hardware limitation of the currently supported switches.</p>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-Loopback connections are required in order to implement a workaround for the local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering (when both <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> are
+attached to the same switch), which is caused by a hardware limitation of the currently supported switches.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1553,7 +1554,7 @@ caused by the hardware limitation of the currently supported switches.</p>
 </span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-01/Ethernet19</span>
 </span></code></pre></div>
 <h2 id="management">Management</h2>
-<p>Connection to the Control Node.</p>
+<p>Management connections define connections to the Control Node.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1569,11 +1570,12 @@ caused by the hardware limitation of the currently supported switches.</p>
 </span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.20.1/31</span>
 </span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-01/Ethernet0</span>
 </span></code></pre></div>
-<h2 id="connecting-fabric-to-outside-world">Connecting Fabric to outside world</h2>
-<p>Provides connectivity to the outside world, e.g. internet, other networks or some other systems such as DHCP, NTP, LMA,
-AAA services.</p>
+<h2 id="connecting-fabric-to-the-outside-world">Connecting Fabric to the outside world</h2>
+<p>Connections in this section provide connectivity to the outside world. For example, they can be connections to the
+Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or AAA services.</p>
 <h3 id="staticexternal">StaticExternal</h3>
-<p>Simple way to connect things like DHCP server directly to the Fabric by connecting it to specific switch ports.</p>
+<p>StaticExternal connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
+them to specific switch ports.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1583,16 +1585,16 @@ AAA services.</p>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">staticExternal</span><span class="p">:</span>
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="nt">link</span><span class="p">:</span>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-04/Ethernet1</span><span class="w"> </span><span class="c1"># switch port to use</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-04/Ethernet1</span><span class="w"> </span><span class="c1"># Switch port to use</span>
 </span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.50.5/24</span><span class="w"> </span><span class="c1"># IP address that will be assigned to the switch port</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1005</span><span class="w"> </span><span class="c1"># Optional VLAN ID to use for the switch port, if 0 - no VLAN is configured</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="c1"># List of subnets that will be routed to the switch port using static routes and next hop</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1005</span><span class="w"> </span><span class="c1"># Optional VLAN ID to use for the switch port; if 0, no VLAN is configured</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="c1"># List of subnets to route to the switch port using static routes and next hop</span>
 </span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.1/24</span>
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.199.0.100/32</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="nt">nextHop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.50.1</span><span class="w"> </span><span class="c1"># Next hop IP address that will be used when configuring static routes for the &quot;subnets&quot; list</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="nt">nextHop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.50.1</span><span class="w"> </span><span class="c1"># Next hop IP address to use when configuring static routes for the &quot;subnets&quot; list</span>
 </span></code></pre></div>
 <p>Additionally, it's possible to configure <code>StaticExternal</code> within the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to provide access to the third-party resources
-within a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> with the same rest of the configuration.</p>
+within a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, with the rest of the YAML configuration remaining unchanged.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nn">...</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">staticExternal</span><span class="p">:</span>
@@ -1601,8 +1603,8 @@ within a specific <abbr title="Virtual Private Cloud, similar to the public clou
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span></code></pre></div>
 <h3 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h3>
-<p>Connection to the external systems, e.g. edge/provider routers using BGP peering and configuring Inbound/Outbound
-communities as well as granularly controlling what's getting advertised and which routes are accepted.</p>
+<p>Connection to external systems, such as edge/provider routers using BGP peering and configuring Inbound/Outbound
+communities as well as granularly controlling what gets advertised and which routes are accepted.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1620,7 +1622,7 @@ communities as well as granularly controlling what's getting advertised and whic
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:

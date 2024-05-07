@@ -592,7 +592,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -1259,26 +1259,27 @@ You're not viewing the latest version.
 
 
 <h1 id="using-vpcs-with-harvester">Using VPCs with Harvester</h1>
-<p>It's an example of how Hedgehog Fabric can be used with Harvester or any hypervisor on the servers connected to Fabric.
-It assumes that you have already installed Fabric and have some servers running Harvester attached to it.</p>
-<p>You'll need to define <code>Server</code> object per each server running Harvester and <code>Connection</code> object per each server
+<p>This section contains an example of how Hedgehog Fabric can be used with Harvester or any hypervisor on the servers
+connected to Fabric. It assumes that you have already installed Fabric and have some servers running Harvester attached
+to it.</p>
+<p>You need to define a <code>Server</code> object for each server running Harvester and a <code>Connection</code> object for each server
 connection to the switches.</p>
-<p>You can have multiple VPCs created and attached to the <code>Connections</code> to this servers to make them available to the VMs
-in Harvester or any other hypervisor.</p>
+<p>You can have multiple VPCs created and attached to the <code>Connections</code> to the servers to make them available to the VMs in
+Harvester or any other hypervisor.</p>
 <h2 id="configure-harvester">Configure Harvester</h2>
 <h3 id="add-a-cluster-network">Add a Cluster Network</h3>
-<p>From the "Cluster Network/Confg" side menu. Create a new Cluster Network.</p>
+<p>From the "Cluster Networks/Configs" side menu, create a new Cluster Network.</p>
 <p><a class="glightbox" href="../harvester-cluster-network.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Harvester Cluster Network" src="../harvester-cluster-network.png" /></a></p>
-<p>Here is what the CRD looks like cleaned up:</p>
+<p>Here is a cleaned-up version of what the CRD looks like:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">network.harvesterhci.io/v1beta1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterNetwork</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testnet</span>
 </span></code></pre></div>
 <h3 id="add-a-network-config">Add a Network Config</h3>
-<p>By clicking "Create Network Confg". Add your connections and select bonding type.</p>
+<p>Click "Create Network Config". Add your connections and select the bonding type.</p>
 <p><a class="glightbox" href="../harvester-network-config.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Harvester Network Config" src="../harvester-network-config.png" /></a></p>
-<p>The resulting cleaned up CRD:</p>
+<p>The resulting CRD (cleaned up) looks like the following:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">network.harvesterhci.io/v1beta1</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VlanConfig</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1298,10 +1299,10 @@ in Harvester or any other hypervisor.</p>
 </span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enp3s0f1</span>
 </span></code></pre></div>
 <h3 id="add-vlan-based-vm-networks">Add VLAN based VM Networks</h3>
-<p>Browse over to "VM Networks" and add one for each Vlan you want to support, assigning them to the cluster network.</p>
+<p>Browse over to "VM Networks" and add one network for each VLAN you want to support. Assign them to the cluster network.</p>
 <p><a class="glightbox" href="../harvester-vm-networks.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Harvester VM Networks" src="../harvester-vm-networks.png" /></a>
 <a class="glightbox" href="../harvester-vm-network-details.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Harvester VM Network Details" src="../harvester-vm-network-details.png" /></a></p>
-<p>Here is what the CRDs will look like for both vlans:</p>
+<p>Here is what the CRDs will look like for both VLANs:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s.cni.cncf.io/v1</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1332,14 +1333,14 @@ in Harvester or any other hypervisor.</p>
 </span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="no">{&quot;cniVersion&quot;:&quot;0.3.1&quot;,&quot;name&quot;:&quot;testnet1000&quot;,&quot;type&quot;:&quot;bridge&quot;,&quot;bridge&quot;:&quot;testnet-br&quot;,&quot;promiscMode&quot;:true,&quot;vlan&quot;:1000,&quot;ipam&quot;:{}}</span>
 </span></code></pre></div>
 <h3 id="using-the-vpcs">Using the VPCs</h3>
-<p>Now you can choose created VM Networks when creating a VM in Harvester and have them created as part of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.</p>
+<p>Now you can choose the new VM Networks when creating a VM in Harvester, and have them created as part of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:

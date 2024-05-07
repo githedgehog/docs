@@ -592,7 +592,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -1219,13 +1219,13 @@ You're not viewing the latest version.
 
 
 <h1 id="switches-and-servers">Switches and Servers</h1>
-<p>All devices in the Hedgehog Fabric are divided into two groups: switches and servers and represented by corresponding
-<code>Switch</code> and <code>Server</code> objects in the API. It's needed to define all participants of the Fabric and their roles in the
-Wiring Diagram as well as <a href="../connections/">Connections</a> between them.</p>
+<p>All devices in the Hedgehog Fabric are divided into two groups: switches and servers, represented by the corresponding
+<code>Switch</code> and <code>Server</code> objects in the API. These objects are needed to define all participants of the Fabric and their
+roles in the Wiring Diagram as well as <a href="../connections/">Connections</a> between them.</p>
 <h2 id="switches">Switches</h2>
-<p>Switches are the main building blocks of the Fabric. They are represented by <code>Switch</code> objects in the API and consists
-of the basic information like name, description, location, role, etc. as well as port group speeds, port breakouts, ASN,
-IP addresses and etc.</p>
+<p>Switches are the main building blocks of the Fabric. They are represented by <code>Switch</code> objects in the API. These objects
+consist of basic metadata like name, description, location, role, as well as port group speeds, port breakouts, ASN,
+IP addresses, and more.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1266,13 +1266,14 @@ IP addresses and etc.</p>
 </span></code></pre></div>
 <h2 id="redundancy-groups">Redundancy Groups</h2>
 <p>Redundancy groups are used to define the redundancy between switches. It's a regular <code>SwitchGroup</code> used by multiple
-switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). Switch can only belong to a single redundancy group.</p>
+switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). A switch can only belong to a single redundancy
+group.</p>
 <p>MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
 groups can be used in the fabric simultaneously.</p>
-<p>Connections with types <code>mclag</code> and <code>eslag</code> are used to define the servers connections to switches and only supported if
-switch belongs to a redundancy group with corresponding type.</p>
-<p>In order to define MCLAG or ESLAG redundancy group, you need to create a <code>SwitchGroup</code> object and assign it to the
-switches using <code>redundancy</code> field.</p>
+<p>Connections with types <code>mclag</code> and <code>eslag</code> are used to define the servers connections to switches. They are only
+supported if the switch belongs to a redundancy group with the corresponding type.</p>
+<p>In order to define a MCLAG or ESLAG redundancy group, you need to create a <code>SwitchGroup</code> object and assign it to the
+switches using the <code>redundancy</code> field.</p>
 <p>Example of switch configured for ESLAG:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SwitchGroup</span>
@@ -1313,10 +1314,10 @@ switches using <code>redundancy</code> field.</p>
 </span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mclag</span>
 </span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span></code></pre></div>
-<p>In case of MCLAG it's required to have a special connection with type <code>mclag-domain</code> that defines peer and session links
-between switches, for more details see <a href="../connections/">Connections</a>.</p>
+<p>In case of MCLAG it's required to have a special connection with type <code>mclag-domain</code> that defines the peer and session
+links between switches. For more details, see <a href="../connections/">Connections</a>.</p>
 <h2 id="servers">Servers</h2>
-<p>It includes both control nodes and user's workload servers.</p>
+<p>Servers include both control nodes and user's workload servers.</p>
 <p>Control Node:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Server</span>
@@ -1341,7 +1342,7 @@ between switches, for more details see <a href="../connections/">Connections</a>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:

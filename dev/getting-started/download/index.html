@@ -653,7 +653,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    ONiE Update (prepare switch)
+    ONIE Update (prepare switch)
   </span>
   
 
@@ -1220,26 +1220,25 @@ You're not viewing the latest version.
 
 <h1 id="download">Download</h1>
 <h2 id="getting-access">Getting access</h2>
-<p>Prior to the General Availability, access to the full software is limited and requires Design Partner Agreement.
+<p>Prior to General Availability, access to the full software is limited and requires Design Partner Agreement.
 Please submit a ticket with the request using <a href="https://support.githedgehog.com/">Hedgehog Support Portal</a>.</p>
 <p>After that you will be provided with the credentials to access the software on <a href="https://ghcr.io">GitHub Package</a>.
-In order to use it you need to login to the registry using the following command:</p>
+In order to use the software, log in to the registry using the following command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>login<span class="w"> </span>ghcr.io
 </span></code></pre></div>
 <h2 id="downloading-the-software">Downloading the software</h2>
 <p>The main entry point for the software is the Hedgehog Fabricator CLI named <code>hhfab</code>. All software is published into the
-OCI registry <a href="https://ghcr.io">GitHub Package</a> including binaries, container images, helm charts and etc.
-The latest stable <code>hhfab</code> binary can be downloaded from the <a href="https://ghcr.io">GitHub Package</a> using the following
-command:</p>
+OCI registry <a href="https://ghcr.io">GitHub Package</a> including binaries, container images, or Helm charts.
+Download the latest stable <code>hhfab</code> binary from the <a href="https://ghcr.io">GitHub Package</a> using the following command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/hhfab<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </span></code></pre></div>
-<p>Or you can download a specific version using the following command:</p>
+<p>Or download a specific version using the following command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/hhfab<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">VERSION</span><span class="o">=</span>alpha-X<span class="w"> </span>bash
 </span></code></pre></div>
-<p>The <code>VERSION</code> environment variable can be used to specify the version of the software to download. If it's not specified
-the latest release will be downloaded. You can pick specific release series (e.g. <code>alpha-2</code>) or specific release.</p>
-<p>It requires <a href="https://oras.land/">ORAS</a> to be installed which is used to download the binary from the OCI registry and
-could be installed using following command:</p>
+<p>Use the <code>VERSION</code> environment variable to specify the version of the software to download. By default, the latest
+release is downloaded. You can pick a specific release series (e.g. <code>alpha-2</code>) or a specific release.</p>
+<p>The download script requires <a href="https://oras.land/">ORAS</a> to be installed. ORAS is used to download the binary from the
+OCI registry and can be installed using following command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/oras<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </span></code></pre></div>
 <p>Currently only Linux x86 is supported for running <code>hhfab</code>.</p>
@@ -1256,7 +1255,7 @@ could be installed using following command:</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
       
         <br>
         Created:
