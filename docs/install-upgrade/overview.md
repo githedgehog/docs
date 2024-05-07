@@ -61,6 +61,8 @@ As a result, you will get the following files in the `.hhfab` directory or the o
 * `control-os/ignition.json` - ignition config for the Control Node to get OS installed
 * `control-install.tgz` - installer for the Control Node, it will be uploaded to the Control Node and run there
 
+More details on configuring the Fabric are available in the [Configuration](./config.md) section.
+
 ## Install Control Node
 
 Control Node installation is fully air-gapped and doesn't require Internet access.

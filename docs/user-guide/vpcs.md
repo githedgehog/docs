@@ -45,6 +45,11 @@ spec:
   permit: # Defines which VPCs could communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
     - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets could communicate to each other
     - [subnet-4, subnet-5] # Possible to define multiple lists
+
+  staticRoutes: # Optional, static routes to be added to the VPC
+    - prefix: 10.100.0.0/24 # Destination prefix
+      nextHops: # Next hop IP addresses
+        - 10.200.0.0
 ```
 
 ### Isolated and restricted subnets, permit lists

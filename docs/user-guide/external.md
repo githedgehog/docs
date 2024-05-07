@@ -84,8 +84,8 @@ spec:
 ### External Attachment
 
 `External Attachment` defines BGP Peering and traffic connectivity between a Border leaf and `External`. Attachments are
-bound to a `Connection` with type `external` and they specify a `vlan` that will be used to segregate particular Edge
-peering.
+bound to a `Connection` with type `external` and they specify an optional `vlan` that will be used to segregate
+particular Edge peering.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -100,7 +100,7 @@ spec:
     ip: # IP address of Edge device to peer with
   switch:
     ip: # IP address on the Border Leaf to set up BGP peering
-    vlan: # VLAN ID to tag control and data traffic
+    vlan: # VLAN (optional) ID to tag control and data traffic, use 0 for untagged
 ```
 
 Several `External Attachment` can be configured for the same `Connection` but for different `vlan`.
