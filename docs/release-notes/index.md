@@ -1,5 +1,59 @@
 # Release notes
 
+## Alpha-6
+
+### Observability
+
+#### Telemetry - Prometheus Exporter
+
+* Hedgehog Fabric Control Plane Agents on switches function as Prometheus Exporters
+
+* Telemetry data provided by Broadcom SONiC is now supported:
+    * port and interface status and counters
+    * transceiver state
+    * environmental information (temperature, fans, psu, etc.)
+    * BGP state and counters
+
+* Export to Prometheus using Prometheus Remote-Write API or any API-compatible platform
+
+#### Logging
+
+* [Grafana Alloy](https://grafana.com/docs/alloy/latest/) is supported as a certified logging agent that is installed
+and managed by the Fabric
+
+* Data collected
+    * Agent logs
+    * Agent, switch, and host-level metrics
+
+* Export to API-compliant platforms and products such as Prometheus, Loki, Grafana Cloud, or any LGTM stack
+
+#### Agent Status API Enhancements
+
+* Ports status and counters
+* Port breakout status and counters
+* Transceiver status and counters
+* Environmental and platform information
+* LLDP neighbors
+
+### Networking enhancements
+
+* Multiple direct control links per switch are now supported
+* Custom static routes could be installed into VPC using API
+* ExternalAttachment could be configured without VLAN now
+
+### Other improvements
+
+* PXE boot with HTTP
+* The `hhfab` and `hhfctl` (kubectl plugin) are now published for Linux/MacOS amd64/arm64
+* Switch users can now be configured as part of installation preparation  (username, password hash, role, and public
+  keys)
+
+### Bugs fixed
+
+* DHCP service assigning IP multiple times if restarted in between
+* Remote peering was configured as a local
+
+
 ## Alpha-5
 
 ### Open Source
