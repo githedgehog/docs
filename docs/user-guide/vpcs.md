@@ -25,7 +25,7 @@ spec:
         range: # Optionally, start/end range could be specified
           start: 10.10.1.10
           end: 10.10.1.99
-          pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported
+        pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
       gateway: 10.10.1.1 # User-defined gateway (optional, default is .1)
       vlan: "1001" # User-defined VLAN from VLAN namespace
