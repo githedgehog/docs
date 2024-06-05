@@ -936,6 +936,26 @@ You're not viewing the latest version.
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch Profiles and Port Naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1012,6 +1032,26 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Fabric CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/profiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch Profiles
   </span>
   
 
@@ -1397,6 +1437,10 @@ You're not viewing the latest version.
 <h1 id="connections">Connections</h1>
 <p>The <code>Connection</code> object represents logical and physical connections between any devices in the Fabric (<code>Switch</code>,
 <code>Server</code> and <code>External</code> objects). It's needed to define all connections between the devices in the Wiring Diagram.</p>
+<p>All connections referencing some switch and device ports. Only port naming defined by switch profiles could be used in
+the wiring diagram for thr switches, NOS (or any other) port names aren't supported. Server ports aren't validated by
+the Fabric API other than for uniqueness. See the <a href="../profiles/">Switch Profiles and Port Naming</a> section
+for more details.</p>
 <p>There are multiple types of connections.</p>
 <h2 id="server-connections-user-facing">Server connections (user-facing)</h2>
 <p>Server connections are used to connect workload servers to the switches.</p>
@@ -1622,7 +1666,7 @@ communities as well as granularly controlling what gets advertised and which rou
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 5, 2024</span>
       
         <br>
         Created:
