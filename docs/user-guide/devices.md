@@ -8,7 +8,8 @@ roles in the Wiring Diagram as well as [Connections](./connections.md) between t
 
 Switches are the main building blocks of the Fabric. They are represented by `Switch` objects in the API. These objects
 consist of basic metadata like name, description, location, role, as well as port group speeds, port breakouts, ASN,
-IP addresses, and more.
+IP addresses, and more. Additionally, it contains a reference to the `SwitchProfile` object that defines the switch
+model and capabilities, more details can be found in the [Switch Profiles and Port Naming](./profiles.md) section.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -17,6 +18,7 @@ metadata:
   name: s5248-01
   namespace: default
 spec:
+  profile: dell-s5248f-on # Mandatory reference to the SwitchProfile object defining the switch model and capabilities
   asn: 65101 # ASN of the switch
   description: leaf-1
   ip: 172.30.10.100/32 # Switch IP that will be accessible from the Control Node
@@ -25,11 +27,13 @@ spec:
   locationSig:
     sig: <undefined>
     uuidSig: <undefined>
-  portBreakouts: # Configures port breakouts for the switch
-    1/55: 4x25G
-  portGroupSpeeds: # Configures port group speeds for the switch
+  portBreakouts: # Configures port breakouts for the switch, see the SwitchProfile for available options
+    E1/55: 4x25G
+  portGroupSpeeds: # Configures port group speeds for the switch, see the SwitchProfile for available options
     "1": 10G
     "2": 10G
+  portSpeeds: # Configures port speeds for the switch, see the SwitchProfile for available options
+    E1/1: 25G
   protocolIP: 172.30.11.100/32 # Used as BGP router ID
   role: server-leaf # Role of the switch, one of server-leaf, border-leaf and mixed-leaf
   vlanNamespaces: # Defines which VLANs could be used to attach servers
