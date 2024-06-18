@@ -120,7 +120,7 @@ has been applied.
 
 You can use `hhfab vlab ssh` on the host to SSH into the test servers and configure networking there. For example, for
 both `server-01` (MCLAG attached to both `leaf-01` and `leaf-02`) we need to configure a bond with a VLAN on top of it
-and for the `server-05` (single-homed unbundled attached to `leaf-03`) we need to configure just a VLAn and they both
+and for the `server-05` (single-homed unbundled attached to `leaf-03`) we need to configure just a VLAN and they both
 will get an IP address from the DHCP server. You can use the `ip` command to configure networking on the servers or use
 the little helper preinstalled by Fabricator on test servers.
 
