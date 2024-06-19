@@ -82,6 +82,13 @@ sudo flatcar-install -d /dev/sda -i ignition.json
 Where `/dev/sda` is a disk you want to install Control Node to and `ignition.json` is the `control-os/ignition.json`
 file from previous step uploaded to the Flatcar installer.
 
+The installation is finished when you see a message similar to the following:
+
+```shell
+Installing Ignition config ignition.json...
+Success! Flatcar Container Linux stable 3510.2.6 is installed on /dev/sda
+```
+
 Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.
 
 At that point, you should get into the installed Flatcar Linux using the dev or provided credentials with user `core`
