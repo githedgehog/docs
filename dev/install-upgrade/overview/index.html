@@ -1342,21 +1342,25 @@ system and run the Flatcar installation:</p>
 </span></code></pre></div>
 <p>Where <code>/dev/sda</code> is a disk you want to install Control Node to and <code>ignition.json</code> is the <code>control-os/ignition.json</code>
 file from previous step uploaded to the Flatcar installer.</p>
+<p>The installation is finished when you see a message similar to the following:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
+</span></code></pre></div>
 <p>Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.</p>
 <p>At that point, you should get into the installed Flatcar Linux using the dev or provided credentials with user <code>core</code>
 and you can now install Hedgehog Open Network Fabric on it. Download <code>control-install.tgz</code> to the just installed Control
 Node (for example, by using scp) and run it.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-install.tgz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>control-install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>run
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-install.tgz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>control-install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>run
 </span></code></pre></div>
 <p>The command prints the logs generated while installing Fabric (including logs from the Kubernetes cluster, miscellaneous
 OCI registry misc components, and more). At the end, you should observe lines similar to the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>...
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>01:34:45 INF Running name=reloader-image op=&quot;push fabricator/reloader:v1.0.40&quot;
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>01:34:47 INF Running name=reloader-chart op=&quot;push fabricator/charts/reloader:1.0.40&quot;
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>01:34:47 INF Running name=reloader-install op=&quot;file /var/lib/rancher/k3s/server/manifests/hh-reloader-install.yaml&quot;
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>01:34:47 INF Running name=reloader-wait op=&quot;wait deployment/reloader-reloader&quot;
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>deployment.apps/reloader-reloader condition met
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>01:35:15 INF Done took=3m39.586394608s
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>...
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>01:34:45 INF Running name=reloader-image op=&quot;push fabricator/reloader:v1.0.40&quot;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>01:34:47 INF Running name=reloader-chart op=&quot;push fabricator/charts/reloader:1.0.40&quot;
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>01:34:47 INF Running name=reloader-install op=&quot;file /var/lib/rancher/k3s/server/manifests/hh-reloader-install.yaml&quot;
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>01:34:47 INF Running name=reloader-wait op=&quot;wait deployment/reloader-reloader&quot;
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>deployment.apps/reloader-reloader condition met
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>01:35:15 INF Done took=3m39.586394608s
 </span></code></pre></div>
 <p>At that point, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all preinstalled
 as part of the Control Node installer.</p>
@@ -1368,7 +1372,7 @@ provisioned from the Control Node.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 19, 2024</span>
       
         <br>
         Created:
