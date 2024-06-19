@@ -321,7 +321,7 @@ spec:
         range:
           start: 10.0.1.10
       subnet: 10.0.1.0/24
-      vlan: "2001"
+      vlan: 2001
   vlanNamespace: default
 EOF
 
