@@ -310,7 +310,7 @@ core@control-1 ~ $ cat <<EOF > vpc-3.yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
 kind: VPC
 metadata:
-  name: vpc-1
+  name: vpc-3
   namespace: default
 spec:
   ipv4Namespace: ipns-2
