@@ -84,8 +84,10 @@ file from previous step uploaded to the Flatcar installer.
 
 The installation is finished when you see a message similar to the following:
 
+```shell
 Installing Ignition config ignition.json...
 Success! Flatcar Container Linux stable 3510.2.6 is installed on /dev/sda
+```
 
 Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.
 
