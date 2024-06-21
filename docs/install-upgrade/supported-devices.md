@@ -4,10 +4,20 @@ You can find mode details in the User Guide including [switch features and port 
 
 ## Spine
 
-* DELL: S5232F-ON
-* EDGE-CORE: DCS204 (AS7726-54x)
+* Dell S5232F-ON
+* Edgecore DCS204 (AS7726-32X)
 
 ## Leaf
 
-* DELL: S5232F-ON, S5248F-ON
-* EDGE-CORE: DCS204 (AS7726-32x), DCS203 (AS7326-56x), EPS203 (AS4630-54NPE)
+* Dell S5232F-ON
+* Dell S5248F-ON
+* Edgecore DCS203 (AS7326-56X)
+* Edgecore DCS204 (AS7726-32X)
+* Edgecore EPS203 (AS4630-54NPE)
+
+## Work in Progress
+
+Expected in A7 release:
+
+* Spine/Leaf: Celestica DS3000 / Supermicro SSE-C4632SB
+* Spine: Edgecore AS7712-32X-EC
