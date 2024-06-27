@@ -48,6 +48,7 @@ config:
     ...
     fabric:
         ...
+        controlProxy: true # (optional) same as passing --control-proxy=true to hhfab init
         alloy:
             agentScrapeIntervalSeconds: 120
             controlProxyURL: http://172.30.1.1:31028
@@ -77,6 +78,7 @@ config:
                 - meminfo
             unixExporterEnabled: true
             unixScrapeIntervalSeconds: 120
+            collectSyslogEnabled: true # collect /var/log/syslog on switches and forward to the lokiTargets
 ```
 
 For additional options, see the `AlloyConfig` [struct in Fabric repo](https://github.com/githedgehog/fabric/blob/master/api/meta/alloy.go).
