@@ -40,6 +40,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "Temperature that picked by sensors from different parts of the switch",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -139,7 +140,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
-      "description": "",
+      "description": "Fan speed located on PSU and trays.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -355,6 +356,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "Temperature of transceiver with DOM support",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -485,9 +487,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "s5232-01",
-          "value": "s5232-01"
+          "selected": true,
+          "text": "s5248-01",
+          "value": "s5248-01"
         },
         "datasource": {
           "type": "prometheus",
@@ -551,6 +553,6 @@
   "timezone": "",
   "title": "Platform",
   "uid": "f8a648b9-5510-49ca-9273-952ba6169b7b",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }

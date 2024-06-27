@@ -41,6 +41,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "BGP Neighbor configuration status.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -122,7 +123,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_enabled{hostname=\"$node\", vrf=~\"$vrf\", neighbor=~\"$neighbor\"} == 1",
+          "expr": "fabric_agent_bgp_neighbor_enabled{hostname=\"$node\", vrf=~\"$vrf\", neighbor=~\"$neighbor\", env=\"$env\"} == 1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -140,6 +141,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "Session State between given node and BGP Neighbor. True if state is Established.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -221,7 +223,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_session_state{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"} == bool 6",
+          "expr": "fabric_agent_bgp_neighbor_session_state{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"} == bool 6",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -235,128 +237,12 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prom"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 9
-      },
-      "id": 6,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prom"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_messages_received_keepalive{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Received from {{neighbor}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prom"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_messages_sent_keepalive{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"}",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "Sent to {{neighbor}}",
-          "range": true,
-          "refId": "B",
-          "useBackend": false
-        }
-      ],
-      "title": "Keepalives",
-      "type": "timeseries"
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 9
       },
       "id": 3,
       "panels": [],
@@ -368,6 +254,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "Number of BGP Dropped connections for each neighbor.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -425,7 +312,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 10
       },
       "id": 4,
       "options": {
@@ -448,7 +335,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_connections_dropped{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"}",
+          "expr": "fabric_agent_bgp_neighbor_connections_dropped{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -466,6 +353,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "Number of route prefixes exported or received from each BGP Neighbor",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -523,7 +411,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 10
       },
       "id": 8,
       "options": {
@@ -546,7 +434,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_prefixes_received{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"}",
+          "expr": "fabric_agent_bgp_neighbor_prefixes_received{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -562,7 +450,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_prefixes_sent{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=\"$vrf\"}",
+          "expr": "fabric_agent_bgp_neighbor_prefixes_sent{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=\"$vrf\", env=\"$env\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -573,7 +461,7 @@
           "useBackend": false
         }
       ],
-      "title": "Prefixes",
+      "title": "BGP Prefixes",
       "type": "timeseries"
     },
     {
@@ -581,6 +469,7 @@
         "type": "prometheus",
         "uid": "prom"
       },
+      "description": "Number of BGP Route Update messages sent and received from each BPG Neighbor",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -638,7 +527,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 18
       },
       "id": 7,
       "options": {
@@ -661,7 +550,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_messages_received_update{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"}",
+          "expr": "fabric_agent_bgp_neighbor_messages_received_update{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -677,7 +566,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_bgp_neighbor_messages_sent_update{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\"}",
+          "expr": "fabric_agent_bgp_neighbor_messages_sent_update{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -690,6 +579,123 @@
       ],
       "title": "BGP Updates",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prom"
+      },
+      "description": "Counter of Keepalive messages between each BG neighbor",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "fabric_agent_bgp_neighbor_messages_received_keepalive{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Received from {{neighbor}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prom"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "fabric_agent_bgp_neighbor_messages_sent_keepalive{hostname=\"$node\", neighbor=~\"$neighbor\", vrf=~\"$vrf\", env=\"$env\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "Sent to {{neighbor}}",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        }
+      ],
+      "title": "Keepalives",
+      "type": "timeseries"
     }
   ],
   "refresh": "",
@@ -698,6 +704,33 @@
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "env-1",
+          "value": "env-1"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prom"
+        },
+        "definition": "label_values(env)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Env",
+        "multi": false,
+        "name": "env",
+        "options": [],
+        "query": {
+          "query": "label_values(env)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
       {
         "current": {
           "selected": false,
@@ -717,37 +750,6 @@
         "options": [],
         "query": {
           "query": "label_values(hostname)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "prom"
-        },
-        "definition": "label_values(neighbor)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Neighbor",
-        "multi": true,
-        "name": "neighbor",
-        "options": [],
-        "query": {
-          "query": "label_values(neighbor)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -786,6 +788,37 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prom"
+        },
+        "definition": "label_values(neighbor)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Neighbor",
+        "multi": true,
+        "name": "neighbor",
+        "options": [],
+        "query": {
+          "query": "label_values(neighbor)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
@@ -797,6 +830,6 @@
   "timezone": "",
   "title": "Fabric",
   "uid": "ab831ceb-cf5c-474a-b7e9-83dcd075c218",
-  "version": 15,
+  "version": 21,
   "weekStart": ""
 }
