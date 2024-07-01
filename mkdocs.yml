@@ -50,7 +50,7 @@ extra:
     default: latest
   analytics:
     provider: google
-    property: G-KFB7X75QW5
+    property: G-NZSPQEJNFH
 
   social:
     - icon: fontawesome/brands/linkedin
