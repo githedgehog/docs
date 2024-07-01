@@ -51,11 +51,6 @@ extra:
     provider: mike
     default: latest
   consent:
-    analytics:
-      name: Github
-      checked: false
-      name: Google
-      checked: true
     title: Cookie consent
     description:
       We use cookies to recognize your repeated visits and preferences, as well
@@ -66,6 +61,13 @@ extra:
        - manage
        - accept
        - reject
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: true
+      github:
+        name: GitHub
+        checked: false
   analytics:
     provider: google
     property: G-NZSPQEJNFH
