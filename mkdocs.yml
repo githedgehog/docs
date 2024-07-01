@@ -48,6 +48,10 @@ extra:
   version:
     provider: mike
     default: latest
+  analytics:
+    provider: google
+    property: G-KFB7X75QW5
+
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/githedgehog/
