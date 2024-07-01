@@ -2,7 +2,9 @@ site_name: Open Network Fabric
 site_url: https://docs.githedgehog.com/
 site_description: Hedgehog Open Network Fabric Documentation
 site_author: Hedgehog Authors
-copyright: ©2023 Hedgehog
+copyright:
+  Copyright &copy; 2023 Hedgehog
+  <a href="#__consent">Change cookie settings</a>
 
 theme:
   name: material
@@ -48,6 +50,24 @@ extra:
   version:
     provider: mike
     default: latest
+  consent:
+    title: Cookie consent
+    description:
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    actions:
+       - manage
+       - accept
+       - reject
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: true
+      github:
+        name: GitHub
+        checked: false
   analytics:
     provider: google
     property: G-NZSPQEJNFH
