@@ -50,7 +50,7 @@ extra:
     default: latest
   analytics:
     provider: google
-    property: G-KFB7X75QW5
+    property: G-NZSPQEJNFH
   consent:
     title: Cookie consent
     description:
@@ -62,7 +62,6 @@ extra:
        - manage
        - accept
        - reject
-
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/githedgehog/
