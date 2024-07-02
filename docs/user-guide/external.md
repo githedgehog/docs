@@ -28,7 +28,7 @@ All other filtering and processing of L3 Routed Fabric traffic should be done on
 
 ### Control Plane
 
-Fabric is sharing VPC routes with Edge devices via BGP. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.
+The fabric shares VPC routes with Edge devices via BGP. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.
 
 ### Data Plane
 
