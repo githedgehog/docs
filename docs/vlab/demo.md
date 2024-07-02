@@ -7,61 +7,81 @@ You can find instructions on how to setup VLAB in the [Overview](overview.md) an
 
 ## Default topology
 
-The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can choose to run
+The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 non-MCLAG leaf. Optionally, you can choose to run
 the default Collapsed Core topology using flag `--fabric-mode collapsed-core` (or `-m collapsed-core`) which only
 consists of 2 switches.
 
 For more details on customizing topologies see the [Running VLAB](running.md) section.
 
-In the default topology, the following Control Node and Switch VMs are created:
+In the default topology, the following Control Node and Switch VMs are created, the Control Node is connected to every switch, the lines are ommitted for clarity:
 
 ```mermaid
 graph TD
-    CN[Control Node]
+    S1([Spine 1])
+    S2([Spine 2])
 
-    S1[Spine 1]
-    S2[Spine 2]
+    L1([MCLAG Leaf 1])
+    L2([MCLAG Leaf 2])
+    L3([ESLAG Leaf 3])
+    L4([ESLAG Leaf 4])
+    L5([Leaf 5])
 
-    L1[MCLAG Leaf 1]
-    L2[MCLAG Leaf 2]
-    L3[Leaf 3]
 
-    CN --> L1
-    CN --> L2
-
-    S1 --> L1
-    S1 --> L2
-    S2 --> L2
-    S2 --> L3
+    L1 & L2 & L5 & L3 & L4 --> S1 & S2
 ```
 
-As well as the following test servers:
+As well as the following test servers, as above Control Node connections are omitted:
 
 ```mermaid
 graph TD
-    L1[MCLAG Leaf 1]
-    L2[MCLAG Leaf 2]
-    L3[Leaf 3]
-    L4[Leaf 4]
+    S1([Spine 1])
+    S2([Spine 2])
+    L1([MCLAG Leaf 1])
+    L2([MCLAG Leaf 2])
+    L3([ESLAG Leaf 3])
+    L4([ESLAG Leaf 4])
+    L5([Leaf 5])
 
-    TS1[Test Server 1]
-    TS2[Test Server 2]
-    TS3[Test Server 3]
-    TS4[Test Server 4]
-    TS5[Test Server 5]
-    TS6[Test Server 6]
+    TS1[Server 1]
+    TS2[Server 2]
+    TS3[Server 3]
+    TS4[Server 4]
+    TS5[Server 5]
+    TS6[Server 6]
+    TS7[Server 7]
+    TS8[Server 8]
+    TS9[Server 9]
+    TS10[Server 10]
 
+    subgraph MCLAG
+    L1
+    L2
+    end
+    TS3 --> L1
     TS1 --> L1
     TS1 --> L2
 
     TS2 --> L1
     TS2 --> L2
 
-    TS3 --> L1
     TS4 --> L2
 
+    subgraph ESLAG
+    L3
+    L4
+    end
+
+    TS7 --> L3
     TS5 --> L3
+    TS5 --> L4
+    TS6 --> L3
     TS6 --> L4
+
+    TS8 --> L4
+    TS9 --> L5
+    TS10 --> L5
+
+    L1 & L2 & L2 & L3 & L4 & L5 <----> S1 & S2
 ```
 
 ## Creating and attaching VPCs
