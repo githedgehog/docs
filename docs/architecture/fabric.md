@@ -39,7 +39,7 @@ underlay network.
 ## Overlay Network
 
 The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
-and data plane traffic between different virtual networks and the underlay network. Visualization is achieved in the
+and data plane traffic between different virtual networks and the underlay network. Virtualization is achieved in the
 Hedgehog Fabric by encapsulating workload traffic over VXLAN tunnels that are source and terminated on the leaf switches
 in the network. The fabric uses BGP-EVPN/VXLAN to enable the creation and management of virtual networks on top of the
 physical one. The fabric supports multiple virtual networks over the same underlay network to support multi-tenancy.
@@ -48,8 +48,8 @@ overview of how VPCs are implemented in the Hedgehog Fabric and its associated o
 
 ## VPC
 
-The previous subsections have described what a VPC is, and how to attach workloads to a specific VPC. Here comes a
-description of how VPCs are actually implemented on the network to provide the view of a private network.
+The previous subsections have described what a VPC is, and how to attach workloads to a specific VPC. The following bullet points
+describe how VPCs are actually implemented in the network to ensure a private view the network.
 
 * Each VPC is modeled as a VRF on each switch where there are VPC attachments defined for this VPC. The VRF is allocated
   its own VNI. The VRF is local to each switch and the VNI is global for the entire fabric. By mapping the VRF to a VNI
@@ -84,7 +84,7 @@ supports two different peering modes.
   attached workloads, the fabric automatically allocates a pair of ports on the switch to route traffic between these
   VRFs using static routes. This is required because of limitations in the underlying platform. The net result of these
   limitations is that the bandwidth between these 2 VPCs is limited by the bandwidth of the loopback interfaces
-  allocated on the switch.
+  allocated on the switch. Traffic between the peered VPCs will not leave the switch that connects them.
 * Remote Peering: Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
   point for the 2 VPC's in the fabric. The set of switches to be used for peering is determined by configuration in the
   peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on

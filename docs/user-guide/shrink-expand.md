@@ -5,12 +5,12 @@ how to manage connections between them.
 
 Manipulating API objects is done with the assumption that target devices are correctly cabeled and connected.
 
-This article operates terms that can be found in the [Hedgehog Concepts](../concepts/overview.md), the [User
+This article uses terms that can be found in the [Hedgehog Concepts](../concepts/overview.md), the [User
 Guide](overview.md) documentation, and the [Fabric API](../reference/api.md) reference.
 
 ### Add a switch to the existing fabric
 
-To be added to the Hedgehog Fabric, a switch should have a corresponding `Switch` object. An example on how to define
+In order to be added to the Hedgehog Fabric, a switch should have a corresponding `Switch` object. An example on how to define
 this object is available in the [User Guilde](devices.md).
 
 !!! note
