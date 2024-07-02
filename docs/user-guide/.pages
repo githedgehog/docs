@@ -6,4 +6,5 @@ nav:
   - external.md
   - harvester.md
   - shrink-expand.md
+  - grafana.md
   - ...
