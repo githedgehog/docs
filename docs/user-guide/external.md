@@ -19,6 +19,8 @@ Border Leaves (or Borders) can connect to several Edge devices.
 ### Connect Border Leaf to Edge device
 
 In order to distinguish VPC traffic, an Edge device should be able to:
+
+
 - Set up BGP IPv4 to advertise and receive routes from the Fabric
 - Connect to a Fabric Border Leaf over VLAN
 - Be able to mark egress routes towards the Fabric with BGP Communities
