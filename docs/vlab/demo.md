@@ -113,7 +113,7 @@ spine-01   spine         VS-04           16m       3          3          v0.23.0
 spine-02   spine         VS-05           18m       4          4          v0.23.0
 ```
 
-In this example, the values in columns `APPLIED` and `APPLIEDG` are equal which means that the requested configuration
+In this example, the values in columns `APPLIEDG` and `CURRENTG` are equal which means that the requested configuration
 has been applied.
 
 ## Setting up networking on test servers
