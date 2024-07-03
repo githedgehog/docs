@@ -3,8 +3,8 @@
 The `Connection` object represents logical and physical connections between any devices in the Fabric (`Switch`,
 `Server` and `External` objects). It's needed to define all connections between the devices in the Wiring Diagram.
 
-All connections referencing some switch and device ports. Only port naming defined by switch profiles could be used in
-the wiring diagram for thr switches, NOS (or any other) port names aren't supported. Server ports aren't validated by
+All connections referencing some switch and device ports. Only port naming defined by switch profiles can be used in
+the wiring diagram for the switches, NOS (or any other) port names aren't supported. Server ports aren't validated by
 the Fabric API other than for uniqueness. See the [Switch Profiles and Port Naming](../user-guide/profiles.md) section
 for more details.
 
