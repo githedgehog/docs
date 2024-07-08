@@ -1,37 +1,7 @@
 # Grafana Dashboards
 
-To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments.
-
-## Alloy enablement
-
-`hedgehog-alloy` is installed for each SONiC-based switch in Hedgehog Fabric. However, the configuration of service has to be defined on the Fabric init stage.
-Following config should be added to `hhfab.yaml` init file.
-
-```yaml
-...
-  fabric:
-    controlProxy: true
-    alloy:
-      agentScrapeIntervalSeconds: # Interval between metrics collection from agent
-      unixScrapeIntervalSeconds: # Interval between metrics collection for Node Exporter
-      unixExporterEnabled: true # Enble Node Exporter Full
-      collectSyslogEnabled: true # Enable inspection of Syslog in Loki
-      lokiTargets:
-        lab:
-          url: # Url for Loki to push logs
-          useControlProxy: true # Route messages through Control node
-          labels:
-            env: # Environment name applied as label on metrics
-      prometheusTargets:
-        lab:
-          url: # Url for Prometheus to push metrics
-          useControlProxy: true
-          labels:
-            env: 
-          sendIntervalSeconds: # Interval between pushes to Prometheus collector
-          ...
-```
-
+To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments. Make sure that you've enabled metrics and logs collection for the switches in the Fabric that is
+described in [Fabric Config](../install-upgrade/config.md#forward-switch-metrics-and-logs) section.
 
 ## Variables
 List of common variables used in Hedgehog Grafana dashboards
@@ -45,7 +15,7 @@ List of common variables used in Hedgehog Grafana dashboards
 
 ## Switch Critical Resources
 
-This table reports usage and capacity of ASIC's programmable resources 
+This table reports usage and capacity of ASIC's programmable resources
 such as:
 
 - ACLs
