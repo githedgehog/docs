@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://docs.githedgehog.com/dev/user-guide/grafana/">
       
       
-        <link rel="prev" href="../shrink-expand/">
+        <link rel="prev" href="../profiles/">
       
       
-        <link rel="next" href="../profiles/">
+        <link rel="next" href="../../reference/api/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -801,6 +801,26 @@ You're not viewing the latest version.
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../profiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch Profiles and Port Naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -847,13 +867,6 @@ You're not viewing the latest version.
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#alloy-enablement" class="md-nav__link">
-    Alloy enablement
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#variables" class="md-nav__link">
@@ -908,26 +921,6 @@ You're not viewing the latest version.
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../profiles/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Switch Profiles and Port Naming
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1280,13 +1273,6 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#alloy-enablement" class="md-nav__link">
-    Alloy enablement
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#variables" class="md-nav__link">
     Variables
   </a>
@@ -1359,33 +1345,8 @@ You're not viewing the latest version.
 
 
 <h1 id="grafana-dashboards">Grafana Dashboards</h1>
-<p>To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments.</p>
-<h2 id="alloy-enablement">Alloy enablement</h2>
-<p><code>hedgehog-alloy</code> is installed for each SONiC-based switch in Hedgehog Fabric. However, the configuration of service has to be defined on the Fabric init stage.
-Following config should be added to <code>hhfab.yaml</code> init file.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">...</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">controlProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">alloy</span><span class="p">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">agentScrapeIntervalSeconds</span><span class="p">:</span><span class="w"> </span><span class="c1"># Interval between metrics collection from agent</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">unixScrapeIntervalSeconds</span><span class="p">:</span><span class="w"> </span><span class="c1"># Interval between metrics collection for Node Exporter</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">unixExporterEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Enble Node Exporter Full</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">collectSyslogEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Enable inspection of Syslog in Loki</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">lokiTargets</span><span class="p">:</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nt">lab</span><span class="p">:</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="c1"># Url for Loki to push logs</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">          </span><span class="nt">useControlProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Route messages through Control node</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="c1"># Environment name applied as label on metrics</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">prometheusTargets</span><span class="p">:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">lab</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="c1"># Url for Prometheus to push metrics</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="nt">useControlProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">          </span><span class="nt">sendIntervalSeconds</span><span class="p">:</span><span class="w"> </span><span class="c1"># Interval between pushes to Prometheus collector</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-</span></code></pre></div>
+<p>To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments. Make sure that you've enabled metrics and logs collection for the switches in the Fabric that is
+described in <a href="../../install-upgrade/config/#forward-switch-metrics-and-logs">Fabric Config</a> section.</p>
 <h2 id="variables">Variables</h2>
 <p>List of common variables used in Hedgehog Grafana dashboards</p>
 <ul>
@@ -1397,7 +1358,7 @@ Following config should be added to <code>hhfab.yaml</code> init file.</p>
 <li><strong>file</strong> (Label: File): <code>label_valuse(filename)</code> - Name of Logs file to inspect (Loki)</li>
 </ul>
 <h2 id="switch-critical-resources">Switch Critical Resources</h2>
-<p>This table reports usage and capacity of ASIC's programmable resources 
+<p>This table reports usage and capacity of ASIC's programmable resources
 such as:</p>
 <ul>
 <li>ACLs</li>
@@ -1461,7 +1422,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 8, 2024</span>
       
         <br>
         Created:
