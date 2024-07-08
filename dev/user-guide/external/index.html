@@ -1549,14 +1549,16 @@ Border Leaves (or Borders) can connect to several Edge devices.</p>
 <p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Peering is only available on the switch devices that are capable for sub-interfaces.</p>
 </div>
 <h3 id="connect-border-leaf-to-edge-device">Connect Border Leaf to Edge device</h3>
-<p>In order to distinguish <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic, an Edge device should be able to:
-- Set up BGP IPv4 to advertise and receive routes from the Fabric
-- Connect to a Fabric Border Leaf over VLAN
-- Be able to mark egress routes towards the Fabric with BGP Communities
-- Be able to filter ingress routes from the Fabric by BGP Communities</p>
+<p>In order to distinguish <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic, an Edge device should be able to:</p>
+<ul>
+<li>Set up BGP IPv4 to advertise and receive routes from the Fabric</li>
+<li>Connect to a Fabric Border Leaf over VLAN</li>
+<li>Be able to mark egress routes towards the Fabric with BGP Communities</li>
+<li>Be able to filter ingress routes from the Fabric by BGP Communities</li>
+</ul>
 <p>All other filtering and processing of L3 Routed Fabric traffic should be done on the Edge devices.</p>
 <h3 id="control-plane">Control Plane</h3>
-<p>Fabric is sharing <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes with Edge devices via BGP. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.</p>
+<p>The Fabric shares <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes with Edge devices via BGP. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.</p>
 <h3 id="data-plane">Data Plane</h3>
 <p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> L3 routable traffic will be tagged with VLAN and sent to Edge device. Later processing of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic
 (NAT, PBR, etc) should happen on Edge devices.</p>
@@ -1767,7 +1769,7 @@ Edge Peer configuration.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2024</span>
       
         <br>
         Created:

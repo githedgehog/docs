@@ -1441,14 +1441,14 @@ configuration was applied to the switches:</p>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">spine-01   spine         VS-04           16m       3          3          v0.23.0</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">spine-02   spine         VS-05           18m       4          4          v0.23.0</span>
 </span></code></pre></div>
-<p>In this example, the values in columns <code>APPLIED</code> and <code>APPLIEDG</code> are equal which means that the requested configuration
+<p>In this example, the values in columns <code>APPLIEDG</code> and <code>CURRENTG</code> are equal which means that the requested configuration
 has been applied.</p>
 <h2 id="setting-up-networking-on-test-servers">Setting up networking on test servers</h2>
 <p>You can use <code>hhfab vlab ssh</code> on the host to SSH into the test servers and configure networking there. For example, for
 both <code>server-01</code> (MCLAG attached to both <code>leaf-01</code> and <code>leaf-02</code>) we need to configure a bond with a VLAN on top of it
 and for the <code>server-05</code> (single-homed unbundled attached to <code>leaf-03</code>) we need to configure just a VLAN and they both
 will get an IP address from the DHCP server. You can use the <code>ip</code> command to configure networking on the servers or use
-the little helper preinstalled by Fabricator on test servers.</p>
+the little helper preinstalled by Fabricator on test servers, <code>hhnet</code>.</p>
 <p>For <code>server-01</code>:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">core@server-01 ~ $ </span>hhnet<span class="w"> </span>cleanup
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="gp">core@server-01 ~ $ </span>hhnet<span class="w"> </span>bond<span class="w"> </span><span class="m">1001</span><span class="w"> </span>enp2s1<span class="w"> </span>enp2s2
@@ -1627,7 +1627,7 @@ Now we can create <code>vpc-3</code> with the same subnet as <code>vpc-1</code> 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2024</span>
       
         <br>
         Created:

@@ -1370,15 +1370,15 @@ network. <a href="https://datatracker.ietf.org/doc/html/rfc7938">RFC7938</a> was
 underlay network.</p>
 <h2 id="overlay-network">Overlay Network</h2>
 <p>The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
-and data plane traffic between different virtual networks and the underlay network. Visualization is achieved in the
+and data plane traffic between different virtual networks and the underlay network. Virtualization is achieved in the
 Hedgehog Fabric by encapsulating workload traffic over VXLAN tunnels that are source and terminated on the leaf switches
 in the network. The fabric uses BGP-EVPN/VXLAN to enable the creation and management of virtual networks on top of the
 physical one. The fabric supports multiple virtual networks over the same underlay network to support multi-tenancy.
 Each virtual network in the Hedgehog Fabric is identified by a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following subsections contain a high-level
 overview of how VPCs are implemented in the Hedgehog Fabric and its associated objects.</p>
 <h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
-<p>The previous subsections have described what a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is, and how to attach workloads to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. Here comes a
-description of how VPCs are actually implemented on the network to provide the view of a private network.</p>
+<p>The previous subsections have described what a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is, and how to attach workloads to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following bullet points
+describe how VPCs are actually implemented in the network to ensure a private view the network.</p>
 <ul>
 <li>Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VRF on each switch where there are <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attachments defined for this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The VRF is allocated
   its own VNI. The VRF is local to each switch and the VNI is global for the entire fabric. By mapping the VRF to a VNI
@@ -1412,7 +1412,7 @@ supports two different peering modes.</p>
   attached workloads, the fabric automatically allocates a pair of ports on the switch to route traffic between these
   VRFs using static routes. This is required because of limitations in the underlying platform. The net result of these
   limitations is that the bandwidth between these 2 VPCs is limited by the bandwidth of the loopback interfaces
-  allocated on the switch.</li>
+  allocated on the switch. Traffic between the peered VPCs will not leave the switch that connects them.</li>
 <li>Remote Peering: Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
   point for the 2 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s in the fabric. The set of switches to be used for peering is determined by configuration in the
   peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
@@ -1427,7 +1427,7 @@ supports two different peering modes.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
       
         <br>
         Created:
