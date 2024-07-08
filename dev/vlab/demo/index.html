@@ -1335,53 +1335,73 @@ You're not viewing the latest version.
 Examples are based on the default VLAB topology.</p>
 <p>You can find instructions on how to setup VLAB in the <a href="../overview/">Overview</a> and <a href="../running/">Running VLAB</a> sections.</p>
 <h2 id="default-topology">Default topology</h2>
-<p>The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can choose to run
+<p>The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 non-MCLAG leaf. Optionally, you can choose to run
 the default Collapsed Core topology using flag <code>--fabric-mode collapsed-core</code> (or <code>-m collapsed-core</code>) which only
 consists of 2 switches.</p>
 <p>For more details on customizing topologies see the <a href="../running/">Running VLAB</a> section.</p>
-<p>In the default topology, the following Control Node and Switch VMs are created:</p>
+<p>In the default topology, the following Control Node and Switch VMs are created, the Control Node is connected to every switch, the lines are ommitted for clarity:</p>
 <pre class="mermaid"><code>graph TD
-    CN[Control Node]
+    S1([Spine 1])
+    S2([Spine 2])
 
-    S1[Spine 1]
-    S2[Spine 2]
+    L1([MCLAG Leaf 1])
+    L2([MCLAG Leaf 2])
+    L3([ESLAG Leaf 3])
+    L4([ESLAG Leaf 4])
+    L5([Leaf 5])
 
-    L1[MCLAG Leaf 1]
-    L2[MCLAG Leaf 2]
-    L3[Leaf 3]
 
-    CN --&gt; L1
-    CN --&gt; L2
-
-    S1 --&gt; L1
-    S1 --&gt; L2
-    S2 --&gt; L2
-    S2 --&gt; L3</code></pre>
-<p>As well as the following test servers:</p>
+    L1 &amp; L2 &amp; L5 &amp; L3 &amp; L4 --&gt; S1 &amp; S2</code></pre>
+<p>As well as the following test servers, as above Control Node connections are omitted:</p>
 <pre class="mermaid"><code>graph TD
-    L1[MCLAG Leaf 1]
-    L2[MCLAG Leaf 2]
-    L3[Leaf 3]
-    L4[Leaf 4]
+    S1([Spine 1])
+    S2([Spine 2])
+    L1([MCLAG Leaf 1])
+    L2([MCLAG Leaf 2])
+    L3([ESLAG Leaf 3])
+    L4([ESLAG Leaf 4])
+    L5([Leaf 5])
 
-    TS1[Test Server 1]
-    TS2[Test Server 2]
-    TS3[Test Server 3]
-    TS4[Test Server 4]
-    TS5[Test Server 5]
-    TS6[Test Server 6]
+    TS1[Server 1]
+    TS2[Server 2]
+    TS3[Server 3]
+    TS4[Server 4]
+    TS5[Server 5]
+    TS6[Server 6]
+    TS7[Server 7]
+    TS8[Server 8]
+    TS9[Server 9]
+    TS10[Server 10]
 
+    subgraph MCLAG
+    L1
+    L2
+    end
+    TS3 --&gt; L1
     TS1 --&gt; L1
     TS1 --&gt; L2
 
     TS2 --&gt; L1
     TS2 --&gt; L2
 
-    TS3 --&gt; L1
     TS4 --&gt; L2
 
+    subgraph ESLAG
+    L3
+    L4
+    end
+
+    TS7 --&gt; L3
     TS5 --&gt; L3
-    TS6 --&gt; L4</code></pre>
+    TS5 --&gt; L4
+    TS6 --&gt; L3
+    TS6 --&gt; L4
+
+    TS8 --&gt; L4
+    TS9 --&gt; L5
+    TS10 --&gt; L5
+
+    L1 &amp; L2 &amp; L2 &amp; L3 &amp; L4 &amp; L5 &lt;----&gt; S1 &amp; S2</code></pre>
 <h2 id="creating-and-attaching-vpcs">Creating and attaching VPCs</h2>
 <p>You can create and attach VPCs to the VMs using the <code>kubectl fabric vpc</code> command on the Control Node or outside of the
 cluster using the kubeconfig. For example, run the following commands to create 2 VPCs with a single subnet each, a DHCP
@@ -1607,7 +1627,7 @@ Now we can create <code>vpc-3</code> with the same subnet as <code>vpc-1</code> 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
       
         <br>
         Created:
