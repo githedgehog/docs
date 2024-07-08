@@ -6,8 +6,8 @@ You can find mode details in the User Guide including [switch features and port 
 
 * Celestica DS3000
 * Dell S5232F-ON
-* Edgecore AS7712-32X-EC
 * Edgecore DCS204 (AS7726-32X)
+* Edgecore DCS501 (AS7712-32X-EC)
 * Supermicro SSE-C4632SB
 
 ## Leaf
