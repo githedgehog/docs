@@ -12,22 +12,28 @@
         <meta name="author" content="Hedgehog Authors">
       
       
+        <link rel="canonical" href="https://docs.githedgehog.com/dev/user-guide/grafana/">
       
       
+        <link rel="prev" href="../shrink-expand/">
       
-      <link rel="icon" href="/dev/assets/favicon.ico">
+      
+        <link rel="next" href="../profiles/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
     
     
       
-        <title>Open Network Fabric</title>
+        <title>Grafana Dashboards - Open Network Fabric</title>
       
     
     
-      <link rel="stylesheet" href="/dev/assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
       
         
-        <link rel="stylesheet" href="/dev/assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -46,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL("/dev",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -63,7 +69,18 @@
     
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -84,6 +101,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#grafana-dashboards" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -95,7 +117,7 @@
             <div class="md-banner__inner md-grid md-typeset">
               
 You're not viewing the latest version.
-<a href="..//dev">
+<a href="../../..">
   <strong>Click here to go to latest.</strong>
 </a>
 
@@ -114,7 +136,7 @@ You're not viewing the latest version.
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://docs.githedgehog.com" title="Open Network Fabric" class="md-header__button md-logo" aria-label="Open Network Fabric" data-md-component="logo">
       
-  <img src="/dev/assets/logo.webp" alt="logo">
+  <img src="../../assets/logo.webp" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -131,7 +153,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Grafana Dashboards
             
           </span>
         </div>
@@ -250,7 +272,7 @@ You're not viewing the latest version.
   <label class="md-nav__title" for="__drawer">
     <a href="https://docs.githedgehog.com" title="Open Network Fabric" class="md-nav__button md-logo" aria-label="Open Network Fabric" data-md-component="logo">
       
-  <img src="/dev/assets/logo.webp" alt="logo">
+  <img src="../../assets/logo.webp" alt="logo">
 
     </a>
     Open Network Fabric
@@ -276,7 +298,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -295,7 +317,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/concepts/overview/" class="md-nav__link">
+      <a href="../../concepts/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,7 +336,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/getting-started/download/" class="md-nav__link">
+      <a href="../../getting-started/download/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -371,7 +393,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/vlab/overview/" class="md-nav__link">
+      <a href="../../vlab/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -391,7 +413,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/vlab/running/" class="md-nav__link">
+      <a href="../../vlab/running/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -411,7 +433,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/vlab/demo/" class="md-nav__link">
+      <a href="../../vlab/demo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -476,7 +498,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/install-upgrade/overview/" class="md-nav__link">
+      <a href="../../install-upgrade/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -496,7 +518,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/install-upgrade/supported-devices/" class="md-nav__link">
+      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -516,7 +538,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/install-upgrade/requirements/" class="md-nav__link">
+      <a href="../../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -536,7 +558,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/install-upgrade/build-wiring/" class="md-nav__link">
+      <a href="../../install-upgrade/build-wiring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -556,7 +578,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/install-upgrade/config/" class="md-nav__link">
+      <a href="../../install-upgrade/config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -576,7 +598,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/install-upgrade/onie-update/" class="md-nav__link">
+      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -601,20 +623,20 @@ You're not viewing the latest version.
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -628,7 +650,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             User Guide
@@ -641,7 +663,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -661,7 +683,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/devices/" class="md-nav__link">
+      <a href="../devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -681,7 +703,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/connections/" class="md-nav__link">
+      <a href="../connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -701,7 +723,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/vpcs/" class="md-nav__link">
+      <a href="../vpcs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -721,7 +743,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/external/" class="md-nav__link">
+      <a href="../external/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -741,7 +763,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/harvester/" class="md-nav__link">
+      <a href="../harvester/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -761,7 +783,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/shrink-expand/" class="md-nav__link">
+      <a href="../shrink-expand/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -779,9 +801,29 @@ You're not viewing the latest version.
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/dev/user-guide/grafana/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Grafana Dashboards
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -790,6 +832,82 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alloy-enablement" class="md-nav__link">
+    Alloy enablement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-critical-resources" class="md-nav__link">
+    Switch Critical Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric" class="md-nav__link">
+    Fabric
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform" class="md-nav__link">
+    Platform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-exporter" class="md-nav__link">
+    Node Exporter
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -801,7 +919,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/user-guide/profiles/" class="md-nav__link">
+      <a href="../profiles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -866,7 +984,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/reference/api/" class="md-nav__link">
+      <a href="../../reference/api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -886,7 +1004,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/reference/cli/" class="md-nav__link">
+      <a href="../../reference/cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -906,7 +1024,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/reference/profiles/" class="md-nav__link">
+      <a href="../../reference/profiles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -971,7 +1089,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/architecture/overview/" class="md-nav__link">
+      <a href="../../architecture/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -991,7 +1109,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/architecture/fabric/" class="md-nav__link">
+      <a href="../../architecture/fabric/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +1136,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/troubleshooting/overview/" class="md-nav__link">
+      <a href="../../troubleshooting/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1037,7 +1155,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/release-notes/" class="md-nav__link">
+      <a href="../../release-notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1094,7 +1212,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/contribute/overview/" class="md-nav__link">
+      <a href="../../contribute/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1114,7 +1232,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="/dev/contribute/docs/" class="md-nav__link">
+      <a href="../../contribute/docs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1152,6 +1270,72 @@ You're not viewing the latest version.
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alloy-enablement" class="md-nav__link">
+    Alloy enablement
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switch-critical-resources" class="md-nav__link">
+    Switch Critical Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric" class="md-nav__link">
+    Fabric
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    Logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform" class="md-nav__link">
+    Platform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-exporter" class="md-nav__link">
+    Node Exporter
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1163,8 +1347,137 @@ You're not viewing the latest version.
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/user-guide/grafana.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="grafana-dashboards">Grafana Dashboards</h1>
+<p>To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments.</p>
+<h2 id="alloy-enablement">Alloy enablement</h2>
+<p><code>hedgehog-alloy</code> is installed for each SONiC-based switch in Hedgehog Fabric. However, the configuration of service has to be defined on the Fabric init stage.
+Following config should be added to <code>hhfab.yaml</code> init file.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">...</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">controlProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">alloy</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">agentScrapeIntervalSeconds</span><span class="p">:</span><span class="w"> </span><span class="c1"># Interval between metrics collection from agent</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">unixScrapeIntervalSeconds</span><span class="p">:</span><span class="w"> </span><span class="c1"># Interval between metrics collection for Node Exporter</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">unixExporterEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Enble Node Exporter Full</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">collectSyslogEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Enable inspection of Syslog in Loki</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">lokiTargets</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nt">lab</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="c1"># Url for Loki to push logs</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">          </span><span class="nt">useControlProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Route messages through Control node</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="c1"># Environment name applied as label on metrics</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">prometheusTargets</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">lab</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="c1"># Url for Prometheus to push metrics</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="nt">useControlProxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">          </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">          </span><span class="nt">sendIntervalSeconds</span><span class="p">:</span><span class="w"> </span><span class="c1"># Interval between pushes to Prometheus collector</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
+<h2 id="variables">Variables</h2>
+<p>List of common variables used in Hedgehog Grafana dashboards</p>
+<ul>
+<li><strong>env</strong> (Label: Env): <code>label_values(env)</code> - Environment to monitor</li>
+<li><strong>node</strong> (Label: Switch): <code>label_values(hostname)</code> - Switch Name</li>
+<li><strong>vrf</strong> (Label: VRF): <code>label_values(vrf)</code> - VRF name (Multi-value)</li>
+<li><strong>neighbor</strong> (Label: Neighbor): <code>label_values(neighbor)</code> - BGP Neighbor IP address(Multi-value)</li>
+<li><strong>interface</strong> (Label: Interface): <code>label_values(interface)</code> - Switch Interface name as defined in wiring (Multi-value)</li>
+<li><strong>file</strong> (Label: File): <code>label_valuse(filename)</code> - Name of Logs file to inspect (Loki)</li>
+</ul>
+<h2 id="switch-critical-resources">Switch Critical Resources</h2>
+<p>This table reports usage and capacity of ASIC's programmable resources 
+such as:</p>
+<ul>
+<li>ACLs</li>
+<li>IPv4 Routes</li>
+<li>IPv4 Nexthops</li>
+<li>IPv4 Neihbours</li>
+<li>IPMC Table</li>
+<li>FDB</li>
+</ul>
+<p><a href="../boards/grafana_crm.json">JSON</a></p>
+<h2 id="fabric">Fabric</h2>
+<p>Fabric underlay and external peering monitoring. Including reporing for:</p>
+<ul>
+<li>BGP Neighbors</li>
+<li>BGP Session state</li>
+<li>Number of BGP Updates and Prefixes sent/received for each BGP Neighbor</li>
+<li>Keepalive counters</li>
+</ul>
+<p><a href="../boards/grafana_fabric.json">JSON</a></p>
+<h2 id="interfaces">Interfaces</h2>
+<p>Switch interfaces monitoring visualization that includes:</p>
+<ul>
+<li>Interface Oper/Admin state</li>
+<li>Total input/output packets counter</li>
+<li>Input/output PPS/Bits rate</li>
+<li>Interface utilization</li>
+<li>Counters for Unicast/Broadcast/Multicast packets</li>
+<li>Errors and discards counters</li>
+</ul>
+<p><a href="../boards/grafana_interfaces.json">JSON</a></p>
+<h2 id="logs">Logs</h2>
+<p>System and fabric logs:</p>
+<ul>
+<li>Kernel and BGP logs from Syslog</li>
+<li>Errors in agent and syslog</li>
+<li>Full output of defined file</li>
+</ul>
+<p><a href="../boards/grafana_logs.json">JSON</a></p>
+<h2 id="platform">Platform</h2>
+<p>Information from PSU, temperature sensors and fan trays:</p>
+<ul>
+<li>Input/output PSU voltage</li>
+<li>Fan speed</li>
+<li>Temperature from switch sensors (CPU, PSU, etc)</li>
+<li>For transceivers with DOM - optic sensor temperature</li>
+</ul>
+<p><a href="../boards/grafana_platform.json">JSON</a></p>
+<h2 id="node-exporter">Node Exporter</h2>
+<p><a href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/">Grafana Node Exporter Full</a> is an opensource Grafana board that provide
+visualizations for monitoring Linux nodes. In particular case Node Exporter is used to track SONiC OS own stats such as</p>
+<ul>
+<li>Memory/disks usage</li>
+<li>CPU/System utilization</li>
+<li>Networking stats (traffic that hits SONiC interfaces)
+...</li>
+</ul>
+<p><a href="../boards/grafana_node_exporter.json">JSON</a></p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+
+                
               </article>
             </div>
           
@@ -1302,11 +1615,11 @@ You're not viewing the latest version.
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": "/dev", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "/dev/assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="/dev/assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
