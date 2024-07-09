@@ -1,5 +1,71 @@
 # Release notes
 
+## Alpha-7
+
+### Device Support
+
+New devices supported by the fabric:
+
+- Clos Spine
+    - Celestica DS3000
+    - Edgecore AS7712-32X-EC
+    - Supermicro SSE-C4632SB
+
+- Clos Leaf
+    - Celestica DS3000
+    - Supermicro SSE-C4632SB
+
+- Collapsed Core ToR
+    - Celestica DS3000
+    - Supermicro SSE-C4632SB
+
+### SwitchProfiles
+
+- Metadata describing switch capabilities, feature capacities, and resource naming mapping.
+- Switch Profiles are used for providing normalized name/id mapping, validation and internal resource management.
+- Switch Profiles are Mandatory. Each switch model must have a corresponding switch profile to be supported by the fabric.
+- Each switch defined in the wiring diagram should be pointing to the switch profile document.
+- [Detailed overview](../user-guide/profiles.md)
+- [Catalog of switch profiles](../reference/profiles.md)
+
+### New Universal Port Naming Scheme
+
+- `E<asic>/<port>/<breakout>` or `M<port>`
+- Enabled via switch profiles
+
+### Improved per switch-model/platform validation
+
+- Enabled via switch profiles
+
+### VPC
+
+- It’s now possible to explicitly specify a gateway to use in VPC subnets
+- StaticExternal now supports default routes
+
+### Inspection CLI
+
+CLI commands are intended to navigate fabric configuration and state and allow introspection of the dependencies and cross-domain checking:
+
+- Fabric (overall control nodes and switches overview incl. status, serials, etc.)
+- Switch (status, used ports, counters, etc.)
+- Switch sort (connection if used in one, counters, VPC and External attachments, etc.)
+- Server (connection if used in one, VPC attachments, etc.)
+- Connection (incl. VPC and External attachments, Loobpback Workaround usage, etc.)
+- VPC/VPCSubnet (incl. where is it attached and what's reachable from it)
+- IP Address (incl. IPv4Namespace, VPCSubnet and DHCPLease or External/StaticExternal usage)
+- MAC Address (incl. switch ports and DHCP leases)
+- Access between pair of IPs, Server names or VPCSubnets (everything except external IPs will be translated to VPCSubnets)
+
+# Observability
+
+- Example Grafana Dashboards [added to the docs](../user-guide/grafana.md)
+- Syslog (`/var/log/syslog`) is now could be collected from all switches and forwarded to Loki targets
+
+# Bug Fixes
+
+- Fixed: Restricted subnet isn't accessible from other subnets of the same VPC
+
+
 ## Alpha-6
 
 ### Observability
