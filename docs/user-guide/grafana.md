@@ -15,7 +15,10 @@ List of common variables used in Hedgehog Grafana dashboards
 
 ## Switch Critical Resources
 
-This table reports usage and capacity of ASIC's programmable resources
+![Example](./boards/ASIC-Critical-Resourses-stats.png) 
+
+
+This table reports usage and capacity of ASIC's programmable resources 
 such as:
 
 - ACLs
@@ -26,7 +29,10 @@ such as:
 - FDB
 
 [JSON](./boards/grafana_crm.json)
+
 ## Fabric
+
+![Example](./boards/BGP-Fabric-stats.png) 
 
 Fabric underlay and external peering monitoring. Including reporing for:
 
@@ -39,6 +45,9 @@ Fabric underlay and external peering monitoring. Including reporing for:
 [JSON](./boards/grafana_fabric.json)
 
 ## Interfaces
+
+![Example](./boards/Interfaces-stats.png) 
+
 
 Switch interfaces monitoring visualization that includes:
 
@@ -65,6 +74,9 @@ System and fabric logs:
 
 ## Platform
 
+![Example](./boards/Platform-stats.png) 
+
+
 Information from PSU, temperature sensors and fan trays:
 
 - Input/output PSU voltage
@@ -75,7 +87,10 @@ Information from PSU, temperature sensors and fan trays:
 
 [JSON](./boards/grafana_platform.json)
 
+
 ## Node Exporter
+
+![Example](./boards/NodeFull.png) 
 
 [Grafana Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/) is an opensource Grafana board that provide
 visualizations for monitoring Linux nodes. In particular case Node Exporter is used to track SONiC OS own stats such as
@@ -87,3 +102,4 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
 
 
 [JSON](./boards/grafana_node_exporter.json)
+
