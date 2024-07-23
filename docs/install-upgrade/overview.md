@@ -65,7 +65,7 @@ More details on configuring the Fabric are available in the [Configuration](./co
 
 ## Install Control Node
 
-Control Node installation is fully air-gapped and doesn't require Internet access.
+Control Node installation is fully air-gapped and doesn't require Internet access. This control node should be given a static IP address. Either a lease or statically assigned. 
 
 Download the [latest stable Flatcar Container Linux ISO][Flatcar ISO] and boot into it (using IPMI attaching media, USB
 stick or any other way).
