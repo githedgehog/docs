@@ -1363,7 +1363,7 @@ file and can be passed using the <code>--config</code> flag.</p>
 </ul>
 <p>More details on configuring the Fabric are available in the <a href="../config/">Configuration</a> section.</p>
 <h2 id="install-control-node">Install Control Node</h2>
-<p>Control Node installation is fully air-gapped and doesn't require Internet access.</p>
+<p>Control Node installation is fully air-gapped and doesn't require Internet access. This control node should be given a static IP address. Either a lease or statically assigned. </p>
 <p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO</a> and boot into it (using IPMI attaching media, USB
 stick or any other way).</p>
 <p>Once you've booted into the Flatcar installer, upload the file <code>ignition.json</code> built during the previous step to the
@@ -1402,7 +1402,7 @@ provisioned from the Control Node.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 19, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2024</span>
       
         <br>
         Created:
