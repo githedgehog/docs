@@ -28,7 +28,7 @@ config:
 ```
 
 Where `name` is the username, `password` is the password hash created with `openssl passwd -5` command, and `role` is
-the role of the user, one of `admin` or `operator` (read-only access to `sonic-cli` command on the switches).
+the role of the user, one of `admin` or `operator` (read-only access to `sonic-cli` command on the switches). In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
 ## Forward switch metrics and logs
 
