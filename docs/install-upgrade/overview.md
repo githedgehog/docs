@@ -93,10 +93,10 @@ Installing Ignition config ignition.json...
 Success! Flatcar Container Linux stable 3510.2.6 is installed on /dev/sda
 ```
 
-[Move on to the next step](#continue-forward)
+[Move on to the next step](#install-hedgehog-controller)
 
 ### Air Gapped Instructions
-Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above you need to install 
+Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above.
 
 1. Download the [latest stable Flatcar Container Linux ISO ~400MiB][Flatcar ISO] and bios boot into it (using IPMI attaching media, USB
 stick or any other way).
@@ -129,9 +129,9 @@ The installation is finished when you see a message similar to the following:
 Installing Ignition config ignition.json...
 Success! Flatcar Container Linux stable 3510.2.6 is installed on /dev/sda
 ```
-[Move on to the next step](#continue-forward)
+[Move on to the next step](#install-hedgehog-controller)
 
-### Continue Forward
+### Install HedgeHog Controller
 
 Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.
 
