@@ -1299,7 +1299,7 @@ specify users to be configured on the switches in the following format:</p>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operator</span>
 </span></code></pre></div>
 <p>Where <code>name</code> is the username, <code>password</code> is the password hash created with <code>openssl passwd -5</code> command, and <code>role</code> is
-the role of the user, one of <code>admin</code> or <code>operator</code> (read-only access to <code>sonic-cli</code> command on the switches).</p>
+the role of the user, one of <code>admin</code> or <code>operator</code> (read-only access to <code>sonic-cli</code> command on the switches). In order to avoid conflicts, do not use the following usernames: <code>operator</code>,<code>hhagent</code>,<code>netops</code>.</p>
 <h2 id="forward-switch-metrics-and-logs">Forward switch metrics and logs</h2>
 <p>There is an option to enable Grafana Alloy on all switches to forward metrics and logs to the configured targets using
 Prometheus Remote-Write API and Loki API. If those APIs are available from Control Node(s), but not from the switches,
@@ -1352,7 +1352,7 @@ sensors, BGP neighbors, LLDP neighbors, and more. Logs include agent logs.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 27, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 26, 2024</span>
       
         <br>
         Created:

@@ -569,6 +569,33 @@ You're not viewing the latest version.
     Install Control Node
   </a>
   
+    <nav class="md-nav" aria-label="Install Control Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connected-instructions" class="md-nav__link">
+    Connected Instructions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#air-gapped-instructions" class="md-nav__link">
+    Air Gapped Instructions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-hedgehog-controller" class="md-nav__link">
+    Install HedgeHog Controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1277,6 +1304,33 @@ You're not viewing the latest version.
     Install Control Node
   </a>
   
+    <nav class="md-nav" aria-label="Install Control Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connected-instructions" class="md-nav__link">
+    Connected Instructions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#air-gapped-instructions" class="md-nav__link">
+    Air Gapped Instructions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-hedgehog-controller" class="md-nav__link">
+    Install HedgeHog Controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1363,34 +1417,83 @@ file and can be passed using the <code>--config</code> flag.</p>
 </ul>
 <p>More details on configuring the Fabric are available in the <a href="../config/">Configuration</a> section.</p>
 <h2 id="install-control-node">Install Control Node</h2>
-<p>Control Node installation is fully air-gapped and doesn't require Internet access. This control node should be given a static IP address. Either a lease or statically assigned. </p>
-<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO</a> and boot into it (using IPMI attaching media, USB
-stick or any other way).</p>
-<p>Once you've booted into the Flatcar installer, upload the file <code>ignition.json</code> built during the previous step to the
+<h3 id="connected-instructions">Connected Instructions</h3>
+<p>This control node should be given a static IP address. Either a lease or statically assigned. </p>
+<ol>
+<li>
+<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO ~400MiB</a></p>
+</li>
+<li>
+<p>Bios boot the control node using the ISO, via virtual media, USB, or other way.</p>
+</li>
+<li>
+<p>Once the control node has booted it will auto login to a shell</p>
+</li>
+<li>
+<p>Upload the file <code>ignition.json</code> built during the previous step to the
 system and run the Flatcar installation:</p>
+</li>
+</ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>flatcar-install<span class="w"> </span>-d<span class="w"> </span>/dev/sda<span class="w"> </span>-i<span class="w"> </span>ignition.json
 </span></code></pre></div>
 <p>Where <code>/dev/sda</code> is a disk you want to install Control Node to and <code>ignition.json</code> is the <code>control-os/ignition.json</code>
-file from previous step uploaded to the Flatcar installer.</p>
+file from previous step uploaded to the Flatcar installer. This installer reaches out to the publically available images to download, verify and install flatcar to the given disk.</p>
 <p>The installation is finished when you see a message similar to the following:</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
 </span></code></pre></div>
+<p><a href="#install-hedgehog-controller">Move on to the next step</a></p>
+<h3 id="air-gapped-instructions">Air Gapped Instructions</h3>
+<p>Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above.</p>
+<ol>
+<li>
+<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO ~400MiB</a> and bios boot into it (using IPMI attaching media, USB
+stick or any other way).</p>
+</li>
+<li>
+<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_image.bin.bz2">latest stable Flatcar Container Linux Image ~500MiB</a> and copy that file to media that can be attached to the control node.</p>
+</li>
+<li>
+<p>Copy the <code>control-os/ignition.json</code> file to the media from the above step.</p>
+</li>
+<li>
+<p>Bios boot the control node using the iso from above.</p>
+</li>
+<li>
+<p>Once the control node has booted, it will auto-login to a shell.</p>
+</li>
+<li>
+<p>Attach the media containing both the container image file and the ignition file to the booted control node.</p>
+</li>
+<li>
+<p>Uncompress the image <code>bunzip -d ./path/to/flatcar_production_image.bin.bz2</code>, if you want to keep the compressed image use the <code>-k</code> flag.</p>
+</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>flatcar-install<span class="w"> </span>-d<span class="w"> </span>/dev/sda<span class="w"> </span>-i<span class="w"> </span>ignition.json<span class="w"> </span>-f<span class="w"> </span>flatcar_production_image.bin
+</span></code></pre></div>
+<p>Where <code>/dev/sda</code> is a disk you want to install Control Node to and <code>ignition.json</code> is the <code>control-os/ignition.json</code>
+file from previous step uploaded to the Flatcar installer. By providing an image to the installer, no public internet connections will be attemtped.</p>
+<p>The installation is finished when you see a message similar to the following:</p>
+<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
+</span></code></pre></div>
+<a href="#install-hedgehog-controller">Move on to the next step</a></p>
+<h3 id="install-hedgehog-controller">Install HedgeHog Controller</h3>
 <p>Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.</p>
 <p>At that point, you should get into the installed Flatcar Linux using the dev or provided credentials with user <code>core</code>
 and you can now install Hedgehog Open Network Fabric on it. Download <code>control-install.tgz</code> to the just installed Control
 Node (for example, by using scp) and run it.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-install.tgz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>control-install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>run
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-install.tgz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>control-install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>run
 </span></code></pre></div>
 <p>The command prints the logs generated while installing Fabric (including logs from the Kubernetes cluster, miscellaneous
 OCI registry misc components, and more). At the end, you should observe lines similar to the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>...
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>01:34:45 INF Running name=reloader-image op=&quot;push fabricator/reloader:v1.0.40&quot;
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>01:34:47 INF Running name=reloader-chart op=&quot;push fabricator/charts/reloader:1.0.40&quot;
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>01:34:47 INF Running name=reloader-install op=&quot;file /var/lib/rancher/k3s/server/manifests/hh-reloader-install.yaml&quot;
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>01:34:47 INF Running name=reloader-wait op=&quot;wait deployment/reloader-reloader&quot;
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>deployment.apps/reloader-reloader condition met
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>01:35:15 INF Done took=3m39.586394608s
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>...
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>01:34:45 INF Running name=reloader-image op=&quot;push fabricator/reloader:v1.0.40&quot;
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>01:34:47 INF Running name=reloader-chart op=&quot;push fabricator/charts/reloader:1.0.40&quot;
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>01:34:47 INF Running name=reloader-install op=&quot;file /var/lib/rancher/k3s/server/manifests/hh-reloader-install.yaml&quot;
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>01:34:47 INF Running name=reloader-wait op=&quot;wait deployment/reloader-reloader&quot;
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>deployment.apps/reloader-reloader condition met
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>01:35:15 INF Done took=3m39.586394608s
 </span></code></pre></div>
 <p>At that point, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all preinstalled
 as part of the Control Node installer.</p>
@@ -1402,7 +1505,7 @@ provisioned from the Control Node.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 1, 2024</span>
       
         <br>
         Created:
