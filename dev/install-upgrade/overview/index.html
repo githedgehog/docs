@@ -587,8 +587,8 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#continue-forward" class="md-nav__link">
-    Continue Forward
+  <a href="#install-hedgehog-controller" class="md-nav__link">
+    Install HedgeHog Controller
   </a>
   
 </li>
@@ -1322,8 +1322,8 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#continue-forward" class="md-nav__link">
-    Continue Forward
+  <a href="#install-hedgehog-controller" class="md-nav__link">
+    Install HedgeHog Controller
   </a>
   
 </li>
@@ -1442,9 +1442,9 @@ file from previous step uploaded to the Flatcar installer. This installer reache
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
 </span></code></pre></div>
-<p><a href="#continue-forward">Move on to the next step</a></p>
+<p><a href="#install-hedgehog-controller">Move on to the next step</a></p>
 <h3 id="air-gapped-instructions">Air Gapped Instructions</h3>
-<p>Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above you need to install </p>
+<p>Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above.</p>
 <ol>
 <li>
 <p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO ~400MiB</a> and bios boot into it (using IPMI attaching media, USB
@@ -1477,8 +1477,8 @@ file from previous step uploaded to the Flatcar installer. By providing an image
 <p><div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
 </span></code></pre></div>
-<a href="#continue-forward">Move on to the next step</a></p>
-<h3 id="continue-forward">Continue Forward</h3>
+<a href="#install-hedgehog-controller">Move on to the next step</a></p>
+<h3 id="install-hedgehog-controller">Install HedgeHog Controller</h3>
 <p>Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.</p>
 <p>At that point, you should get into the installed Flatcar Linux using the dev or provided credentials with user <code>core</code>
 and you can now install Hedgehog Open Network Fabric on it. Download <code>control-install.tgz</code> to the just installed Control
