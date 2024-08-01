@@ -65,14 +65,18 @@ More details on configuring the Fabric are available in the [Configuration](./co
 
 ## Install Control Node
 
-Control Node installation is fully air-gapped and doesn't require Internet access. This control node should be given a static IP address. Either a lease or statically assigned. 
+### Connected Instructions
+This control node should be given a static IP address. Either a lease or statically assigned. 
 
-Download the [latest stable Flatcar Container Linux ISO][Flatcar ISO] and boot into it (using IPMI attaching media, USB
-stick or any other way).
+1. Download the [latest stable Flatcar Container Linux ISO ~400MiB][Flatcar ISO]
 
 [Flatcar ISO]: https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso
 
-Once you've booted into the Flatcar installer, upload the file `ignition.json` built during the previous step to the
+1. Bios boot the control node using the ISO, via virtual media, USB, or other way.
+
+1. Once the control node has booted it will auto login to a shell
+
+1. Upload the file `ignition.json` built during the previous step to the
 system and run the Flatcar installation:
 
 ```bash
@@ -80,7 +84,7 @@ sudo flatcar-install -d /dev/sda -i ignition.json
 ```
 
 Where `/dev/sda` is a disk you want to install Control Node to and `ignition.json` is the `control-os/ignition.json`
-file from previous step uploaded to the Flatcar installer.
+file from previous step uploaded to the Flatcar installer. This installer reaches out to the publically available images to download, verify and install flatcar to the given disk.
 
 The installation is finished when you see a message similar to the following:
 
@@ -88,6 +92,46 @@ The installation is finished when you see a message similar to the following:
 Installing Ignition config ignition.json...
 Success! Flatcar Container Linux stable 3510.2.6 is installed on /dev/sda
 ```
+
+[Move on to the next step](#continue-forward)
+
+### Air Gapped Instructions
+Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above you need to install 
+
+1. Download the [latest stable Flatcar Container Linux ISO ~400MiB][Flatcar ISO] and bios boot into it (using IPMI attaching media, USB
+stick or any other way).
+
+[Flatcar ISO]: https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso
+
+1. Download the [latest stable Flatcar Container Linux Image ~500MiB][Flatcar Image] and copy that file to media that can be attached to the control node.
+[Flatcar Image]: https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_image.bin.bz2
+
+1. Copy the `control-os/ignition.json` file to the media from the above step.
+
+1. Bios boot the control node using the iso from above.
+
+1. Once the control node has booted, it will auto-login to a shell.
+
+1. Attach the media containing both the container image file and the ignition file to the booted control node.
+
+1. Uncompress the image `bunzip -d ./path/to/flatcar_production_image.bin.bz2`, if you want to keep the compressed image use the `-k` flag.
+
+```bash
+sudo flatcar-install -d /dev/sda -i ignition.json -f flatcar_production_image.bin
+```
+
+Where `/dev/sda` is a disk you want to install Control Node to and `ignition.json` is the `control-os/ignition.json`
+file from previous step uploaded to the Flatcar installer. By providing an image to the installer, no public internet connections will be attemtped.
+
+The installation is finished when you see a message similar to the following:
+
+```shell
+Installing Ignition config ignition.json...
+Success! Flatcar Container Linux stable 3510.2.6 is installed on /dev/sda
+```
+[Move on to the next step](#continue-forward)
+
+### Continue Forward
 
 Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.
 
