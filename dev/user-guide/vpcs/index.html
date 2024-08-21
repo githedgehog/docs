@@ -1450,7 +1450,7 @@ resources with support for multiple subnets, each with user-provided VLANs and o
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which VPCs could communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC could communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets could communicate to each other</span>
 </span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
@@ -1571,7 +1571,7 @@ namespaces with non-overlapping VLAN ranges.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 5, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 21, 2024</span>
       
         <br>
         Created:
