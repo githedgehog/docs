@@ -42,7 +42,7 @@ spec:
       subnet: 10.10.100.0/24
       vlan: 1100
 
-  permit: # Defines which VPCs could communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
+  permit: # Defines which subnets of the current VPC could communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
     - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets could communicate to each other
     - [subnet-4, subnet-5] # Possible to define multiple lists
 
