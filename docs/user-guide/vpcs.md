@@ -25,7 +25,13 @@ spec:
         range: # Optionally, start/end range could be specified, otherwise all available IPs are used
           start: 10.10.1.10
           end: 10.10.1.99
-        pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported
+        options: # Optional, additional DHCP options to enable for DHCP server, only available when enable is true
+          pxeURL: tftp://10.10.10.99/bootfilename # PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported
+          dnsServers: # (optional) configure DNS servers
+            - 1.1.1.1
+          timeServers: # (optional) configure Time (NTP) Servers
+            - 1.1.1.1
+          interfaceMTU: 1500 # (optional) configure the MTU (default is 9036); doesn't affect the actual MTU of the switch interfaces
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
       gateway: 10.10.1.1 # User-defined gateway (optional, default is .1)
       vlan: 1001 # User-defined VLAN from VLAN namespace
