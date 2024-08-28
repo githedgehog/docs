@@ -1380,6 +1380,13 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#vpcdhcpoptions" class="md-nav__link">
+    VPCDHCPOptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vpcdhcprange" class="md-nav__link">
     VPCDHCPRange
   </a>
@@ -2581,6 +2588,13 @@ You're not viewing the latest version.
           <li class="md-nav__item">
   <a href="#vpcdhcp" class="md-nav__link">
     VPCDHCP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcpoptions" class="md-nav__link">
+    VPCDHCPOptions
   </a>
   
 </li>
@@ -4604,6 +4618,24 @@ Not intended to be modified by the user.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>dnsServers</code> <em>string array</em></td>
+<td>DNSservers (optional) to configure Domain Name Servers for this particular segment such as: 10.10.10.1, 10.10.10.2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>timeServers</code> <em>string array</em></td>
+<td>TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>interfaceMTU</code> <em>integer</em></td>
+<td>InterfaceMTU (optional) is the MTU setting that the dhcp server will send to the clients. It is dependent on the client to honor this option.</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="dhcpsubnetstatus">DHCPSubnetStatus</h4>
@@ -5278,8 +5310,48 @@ resources with support for multiple subnets each with user-provided VLANs and on
 <td></td>
 </tr>
 <tr>
+<td><code>options</code> <em><a href="#vpcdhcpoptions">VPCDHCPOptions</a></em></td>
+<td>Options (optional) is the DHCP options for the subnet if DHCP server is enabled</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcdhcpoptions">VPCDHCPOptions</h4>
+<p>VPCDHCPOptions defines the DHCP options for the subnet if DHCP server is enabled</p>
+<p><em>Appears in:</em>
+- <a href="#vpcdhcp">VPCDHCP</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td><code>pxeURL</code> <em>string</em></td>
 <td>PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>dnsServers</code> <em>string array</em></td>
+<td>DNSservers (optional) to configure Domain Name Servers for this particular segment such as: 10.10.10.1, 10.10.10.2</td>
+<td></td>
+<td>Optional: {} <br /></td>
+</tr>
+<tr>
+<td><code>timeServers</code> <em>string array</em></td>
+<td>TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2</td>
+<td></td>
+<td>Optional: {} <br /></td>
+</tr>
+<tr>
+<td><code>interfaceMTU</code> <em>integer</em></td>
+<td>InterfaceMTU (optional) is the MTU setting that the dhcp server will send to the clients. It is dependent on the client to honor this option.</td>
 <td></td>
 <td></td>
 </tr>
@@ -7181,7 +7253,7 @@ SwitchGroup objects.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 28, 2024</span>
       
         <br>
         Created:
