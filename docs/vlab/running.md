@@ -168,6 +168,9 @@ Line `VM installed name=control-1` from the installer's output means that the in
 has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
 provisioned.
 
+> **_NOTE:_** SONiC system bootstrap may take reasonable time. It's heavily relies on the host disk and CPU performance, and parallel VM setup
+may lead to performance degradation.
+
 ## Configuring VLAB VMs
 
 By default, all test server VMs are isolated and have no connectivity to the host or the Internet. You can configure
