@@ -1,18 +1,18 @@
 # Connections
 
-The `Connection` object represents logical and physical connections between any devices in the Fabric (`Switch`,
-`Server` and `External` objects). It's needed to define all connections between the devices in the Wiring Diagram.
+`Connection` objects represent logical and physical connections between the devices in the Fabric (`Switch`,
+`Server` and `External` objects) and are needed to define all the connections in the Wiring Diagram.
 
-All connections referencing some switch and device ports. Only port naming defined by switch profiles can be used in
-the wiring diagram for the switches, NOS (or any other) port names aren't supported. Server ports aren't validated by
+All connections reference switch or server ports. Only port names defined by switch profiles can be used in
+the wiring diagram for the switches. NOS (or any other) port names aren't supported. Currently, server ports aren't validated by
 the Fabric API other than for uniqueness. See the [Switch Profiles and Port Naming](../user-guide/profiles.md) section
 for more details.
 
-There are multiple types of connections.
+There are several types of connections.
 
-## Server connections (user-facing)
+## Workload server connections
 
-Server connections are used to connect workload servers to the switches.
+Server connections are used to connect workload servers to switches.
 
 ### Unbundled
 
@@ -114,7 +114,7 @@ the Fabric features.
 
 ### Fabric
 
-A Fabric Connections is used between specific spine and leaf, it covers all actual wires between a single pair.
+A Fabric Connection is used between a specific pair of spine and leaf switches, representing all of the wires between them.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -225,7 +225,7 @@ Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or
 
 ### StaticExternal
 
-StaticExternal connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
+`StaticExternal` connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
 them to specific switch ports.
 
 ```yaml

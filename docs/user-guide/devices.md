@@ -1,15 +1,15 @@
 # Switches and Servers
 
-All devices in the Hedgehog Fabric are divided into two groups: switches and servers, represented by the corresponding
-`Switch` and `Server` objects in the API. These objects are needed to define all participants of the Fabric and their
-roles in the Wiring Diagram as well as [Connections](./connections.md) between them.
+All devices in a Hedgehog Fabric are divided into two groups: switches and servers, represented by the corresponding
+`Switch` and `Server` objects in the API. These objects are needed to define all of the participants of the Fabric and their
+roles in the Wiring Diagram, together with `Connection` objects (see [Connections](./connections.md)).
 
 ## Switches
 
 Switches are the main building blocks of the Fabric. They are represented by `Switch` objects in the API. These objects
 consist of basic metadata like name, description, location, role, as well as port group speeds, port breakouts, ASN,
-IP addresses, and more. Additionally, it contains a reference to the `SwitchProfile` object that defines the switch
-model and capabilities, more details can be found in the [Switch Profiles and Port Naming](./profiles.md) section.
+IP addresses, and more. Additionally, a `Switch` contains a reference to a `SwitchProfile` object that defines the switch
+model and capabilities. More details can be found in the [Switch Profiles and Port Naming](./profiles.md) section.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2
@@ -39,7 +39,7 @@ spec:
   vlanNamespaces: # Defines which VLANs could be used to attach servers
   - default
   vtepIP: 172.30.12.100/32
-  groups: # Defines which groups the switch belongs to
+  groups: # Defines which groups the switch belongs to, by referring to SwitchGroup objects
   - some-group
   redundancy: # Optional field to define that switch belongs to the redundancy group
     group: eslag-1 # Name of the redundancy group
@@ -63,7 +63,7 @@ Redundancy groups are used to define the redundancy between switches. It's a reg
 switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). A switch can only belong to a single redundancy
 group.
 
-MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
+MCLAG is only supported for pairs of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
 groups can be used in the fabric simultaneously.
 
 Connections with types `mclag` and `eslag` are used to define the servers connections to switches. They are only

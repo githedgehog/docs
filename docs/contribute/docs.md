@@ -63,7 +63,7 @@ Where you can add pages by file name like `index.md` and page title will be take
 
 More details in the [MkDocs Pages plugin](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin).
 
-### Abbreaviations
+### Abbreviations
 
 You can find abbreviations in `includes/abbreviations.md` file. You can add various abbreviations there and all usages of the defined words in the documentation will get a highlight.
 

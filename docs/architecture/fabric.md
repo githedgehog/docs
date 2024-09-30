@@ -60,7 +60,7 @@ describe how VPCs are actually implemented in the network to ensure a private vi
   attached subnets and import routes from its peered VPCs. The BGP instance in the tenant VRFs does not establish
   neighbor relationships and is purely used to advertise locally attached routes into the VPC (all VRFs with the same
   L3VNI) across leaves in the network.
-* A VPC can have multuple subnets. Each subnet in the VPC is modeled as a VLAN on the switch. The VLAN is only locally
+* A VPC can have multiple subnets. Each subnet in the VPC is modeled as a VLAN on the switch. The VLAN is only locally
   significant and a given subnet might have different VLANs on different leaves on the network. A globally significant
   VNI is assigned to each subnet. This VNI is used to extend the subnet across different leaves in the network and
   provides a view of single stretched L2 domain if the applications need it.
@@ -77,7 +77,7 @@ describe how VPCs are actually implemented in the network to ensure a private vi
 To enable communication between 2 different VPCs, one needs to configure a VPC peering policy. The Hedgehog Fabric
 supports two different peering modes.
 
-* Local Peering: A local peering directly imports routers from the other VPC locally. This is achieved by a simple
+* Local Peering: A local peering directly imports routes from another VPC locally. This is achieved by a simple
   import route from the peer VPC. In case there are no locally attached workloads to the peer VPC the fabric
   automatically creates a stub VPC for peering and imports routes from it. This allows VPCs to peer with each other
   without the need for a dedicated peering leaf. If a local peering is done for a pair of VPCs which have locally
