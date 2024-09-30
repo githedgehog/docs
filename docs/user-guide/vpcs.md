@@ -2,8 +2,8 @@
 
 ## VPC
 
-A Virtual Private Cloud (VPC) is similar to a public cloud VPC. It provides an isolated private network for the
-resources with support for multiple subnets, each with user-provided VLANs and on-demand DHCP.
+A Virtual Private Cloud (VPC) is similar to a public cloud VPC. It provides an isolated private network with support for multiple subnets,
+each with user-defined VLANs and optional DHCP services.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -12,8 +12,8 @@ metadata:
   name: vpc-1
   namespace: default
 spec:
-  ipv4Namespace: default # Limits to which subnets could be used by VPC to guarantee non-overlapping IPv4 ranges
-  vlanNamespace: default # Limits to which switches VPC could be attached to guarantee non-overlapping VLANs
+  ipv4Namespace: default # Limits which subnets can the VPC use to guarantee non-overlapping IPv4 ranges
+  vlanNamespace: default # Limits which Vlan Ids can the VPC use to guarantee non-overlapping VLANs
 
   defaultIsolated: true # Sets default behavior for the current VPC subnets to be isolated
   defaultRestricted: true # Sets default behavior for the current VPC subnets to be restricted
@@ -48,8 +48,8 @@ spec:
       subnet: 10.10.100.0/24
       vlan: 1100
 
-  permit: # Defines which subnets of the current VPC could communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
-    - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets could communicate to each other
+  permit: # Defines which subnets of the current VPC can communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
+    - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets can communicate to each other
     - [subnet-4, subnet-5] # Possible to define multiple lists
 
   staticRoutes: # Optional, static routes to be added to the VPC
@@ -68,11 +68,12 @@ allowed by permit lists.
 
 _Restricted subnet_ means that all hosts in the subnet are isolated from each other within the subnet.
 
-A Permit list is defined as a list of subnets that could communicate with each other.
+A Permit list contains a list. Every element of the list is a set of subnets that can communicate with each other.
 
-### Third-party DHCP server
 
-In case you use a third-party DHCP server by configuring `spec.subnets.<subnet>.dhcp.relay`, additional information is
+### Third-party DHCP server configuration
+
+In case you use a third-party DHCP server, by configuring `spec.subnets.<subnet>.dhcp.relay`, additional information is
 added to the DHCP packet forwarded to the DHCP server to make it possible to identify the VPC and subnet. This
 information is added under the RelayAgentInfo (option 82) in the DHCP packet. The relay sets two suboptions in the
 packet:
@@ -98,7 +99,7 @@ metadata:
 spec:
   connection: server-1--mclag--s5248-01--s5248-02 # Connection name representing the server port(s)
   subnet: vpc-1/default # VPC subnet name
-  nativeVLAN: true # Optional, if true the port will be configured as a native VLAN port (untagged)
+  nativeVLAN: true # (Optional) if true, the port will be configured as a native VLAN port (untagged)
 ```
 
 ## VPCPeering
@@ -108,7 +109,7 @@ A VPCPeering enables VPC-to-VPC connectivity. There are two types of VPC peering
 * Local: peering is implemented on the same switches where VPCs are attached
 * Remote: peering is implemented on the border/mixed leaves defined by the `SwitchGroup` object
 
-VPC peering is only possible between VPCs attached to the same IPv4 namespace.
+VPC peering is only possible between VPCs attached to the same IPv4 namespace (see [IPv4Namespace](#ipv4namespace))
 
 ### Local VPC peering
 
@@ -145,7 +146,6 @@ It's possible to specify which specific subnets of the peering VPCs could commun
 field.
 
 ```yaml
-```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
 kind: VPCPeering
 metadata:
@@ -165,8 +165,8 @@ spec:
 
 ## IPv4Namespace
 
-An IPv4Namespace defines non-overlapping VLAN ranges for attaching servers. Each switch belongs to a list of VLAN
-namespaces with non-overlapping VLAN ranges.
+An `IPv4Namespace` defines a set of (non-overlapping) IPv4 address ranges available for use by VPC subnets.
+Each VPC belongs to a specific IPv4 namespace. Therefore, its subnet prefixes must be from that IPv4 namespace.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1alpha2
@@ -175,13 +175,14 @@ metadata:
   name: default
   namespace: default
 spec:
-  subnets: # List of the subnets that VPCs can pick their subnets from
+  subnets: # List of prefixes that VPCs can pick their subnets from
   - 10.10.0.0/16
 ```
 
 ## VLANNamespace
 
-A VLANNamespace defines non-overlapping IPv4 ranges for VPC subnets. Each VPC belongs to a specific IPv4 namespace.
+A `VLANNamespace` defines a set of VLAN ranges available for attaching servers to switches. Each switch can belong to one or more
+disjoint VLANNamespaces.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1alpha2

@@ -29,9 +29,9 @@ systems.
 
 Wiring Diagram consists of the following resources:
 
-* "Devices": describes any device in the Fabric
+* "Devices": describe *any* device in the Fabric and can be of two types:
     * __Switch__: configuration of the switch, containing for example: port group speeds, port breakouts, switch IP/ASN
-    * __Server__: any physical server attached to the Fabric including Control Nodes
+    * __Server__: *any* physical server attached to the Fabric including Control Nodes
 * __Connection__: *any* logical connection for devices
     * usually it's a connection between two or more ports on two different devices
     * for example: MCLAG Peer Link, Unbundled/MCLAG server connections, Fabric connection between spine and leaf
@@ -41,8 +41,8 @@ Wiring Diagram consists of the following resources:
 ### User-facing API
 
 * VPC API
-    * __VPC__: Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the
-      resources, with support for multiple subnets, each with user-provided VLANs and on-demand DHCP
+    * __VPC__: Virtual Private Cloud, similar to a public cloud VPC, provides an isolated private network for the
+      resources, with support for multiple subnets, each with user-defined VLANs and optional DHCP service
     * __VPCAttachment__: represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding
     * __VPCPeering__: enables VPC-to-VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leaves)
 * External API
@@ -96,5 +96,5 @@ Control plane and switch agent.
     * Additionally, it's running the admission webhook for Hedgehog's CRD APIs
 * The Agent is watching for the corresponding Agent CRD in Kubernetes API
     * It applies the changes and saves the new configuration locally
-    * It reports some status and information back to the API
+    * It reports status and information back to the API
     * It can perform reinstallation and reboot of SONiC
