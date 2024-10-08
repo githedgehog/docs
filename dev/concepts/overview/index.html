@@ -1381,9 +1381,9 @@ systems.</p>
 <h3 id="wiring-diagram-api">Wiring Diagram API</h3>
 <p>Wiring Diagram consists of the following resources:</p>
 <ul>
-<li>"Devices": describes any device in the Fabric<ul>
+<li>"Devices": describe <em>any</em> device in the Fabric and can be of two types:<ul>
 <li><strong>Switch</strong>: configuration of the switch, containing for example: port group speeds, port breakouts, switch IP/ASN</li>
-<li><strong>Server</strong>: any physical server attached to the Fabric including Control Nodes</li>
+<li><strong>Server</strong>: <em>any</em> physical server attached to the Fabric including Control Nodes</li>
 </ul>
 </li>
 <li><strong>Connection</strong>: <em>any</em> logical connection for devices<ul>
@@ -1397,8 +1397,8 @@ systems.</p>
 <h3 id="user-facing-api">User-facing API</h3>
 <ul>
 <li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> API<ul>
-<li><strong><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></strong>: Virtual Private Cloud, similar to the public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it provides an isolated private network for the
-  resources, with support for multiple subnets, each with user-provided VLANs and on-demand DHCP</li>
+<li><strong><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></strong>: Virtual Private Cloud, similar to a public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, provides an isolated private network for the
+  resources, with support for multiple subnets, each with user-defined VLANs and optional DHCP service</li>
 <li><strong><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></strong>: represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignment to the Connection object which means exact server port to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> binding</li>
 <li><strong><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></strong>: enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leaves)</li>
 </ul>
@@ -1465,7 +1465,7 @@ systems.</p>
 </li>
 <li>The Agent is watching for the corresponding Agent CRD in Kubernetes API<ul>
 <li>It applies the changes and saves the new configuration locally</li>
-<li>It reports some status and information back to the API</li>
+<li>It reports status and information back to the API</li>
 <li>It can perform reinstallation and reboot of SONiC</li>
 </ul>
 </li>
@@ -1476,7 +1476,7 @@ systems.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
       
         <br>
         Created:

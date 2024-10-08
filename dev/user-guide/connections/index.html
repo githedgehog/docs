@@ -749,11 +749,11 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#server-connections-user-facing" class="md-nav__link">
-    Server connections (user-facing)
+  <a href="#workload-server-connections" class="md-nav__link">
+    Workload server connections
   </a>
   
-    <nav class="md-nav" aria-label="Server connections (user-facing)">
+    <nav class="md-nav" aria-label="Workload server connections">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1333,11 +1333,11 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#server-connections-user-facing" class="md-nav__link">
-    Server connections (user-facing)
+  <a href="#workload-server-connections" class="md-nav__link">
+    Workload server connections
   </a>
   
-    <nav class="md-nav" aria-label="Server connections (user-facing)">
+    <nav class="md-nav" aria-label="Workload server connections">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1465,15 +1465,15 @@ You're not viewing the latest version.
 
 
 <h1 id="connections">Connections</h1>
-<p>The <code>Connection</code> object represents logical and physical connections between any devices in the Fabric (<code>Switch</code>,
-<code>Server</code> and <code>External</code> objects). It's needed to define all connections between the devices in the Wiring Diagram.</p>
-<p>All connections referencing some switch and device ports. Only port naming defined by switch profiles can be used in
-the wiring diagram for the switches, NOS (or any other) port names aren't supported. Server ports aren't validated by
+<p><code>Connection</code> objects represent logical and physical connections between the devices in the Fabric (<code>Switch</code>,
+<code>Server</code> and <code>External</code> objects) and are needed to define all the connections in the Wiring Diagram.</p>
+<p>All connections reference switch or server ports. Only port names defined by switch profiles can be used in
+the wiring diagram for the switches. NOS (or any other) port names aren't supported. Currently, server ports aren't validated by
 the Fabric API other than for uniqueness. See the <a href="../profiles/">Switch Profiles and Port Naming</a> section
 for more details.</p>
-<p>There are multiple types of connections.</p>
-<h2 id="server-connections-user-facing">Server connections (user-facing)</h2>
-<p>Server connections are used to connect workload servers to the switches.</p>
+<p>There are several types of connections.</p>
+<h2 id="workload-server-connections">Workload server connections</h2>
+<p>Server connections are used to connect workload servers to switches.</p>
 <h3 id="unbundled">Unbundled</h3>
 <p>Unbundled server connections are used to connect servers to a single switch using a single port.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
@@ -1555,7 +1555,7 @@ required.</p>
 <p>Switch connections are used to connect switches to each other and provide any needed "service" connectivity to implement
 the Fabric features.</p>
 <h3 id="fabric">Fabric</h3>
-<p>A Fabric Connections is used between specific spine and leaf, it covers all actual wires between a single pair.</p>
+<p>A Fabric Connection is used between a specific pair of spine and leaf switches, representing all of the wires between them.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1648,7 +1648,7 @@ attached to the same switch), which is caused by a hardware limitation of the cu
 <p>Connections in this section provide connectivity to the outside world. For example, they can be connections to the
 Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or AAA services.</p>
 <h3 id="staticexternal">StaticExternal</h3>
-<p>StaticExternal connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
+<p><code>StaticExternal</code> connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
 them to specific switch ports.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
@@ -1696,7 +1696,7 @@ communities as well as granularly controlling what gets advertised and which rou
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
       
         <br>
         Created:

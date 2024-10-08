@@ -784,8 +784,8 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#third-party-dhcp-server" class="md-nav__link">
-    Third-party DHCP server
+  <a href="#third-party-dhcp-server-configuration" class="md-nav__link">
+    Third-party DHCP server configuration
   </a>
   
 </li>
@@ -1321,8 +1321,8 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#third-party-dhcp-server" class="md-nav__link">
-    Third-party DHCP server
+  <a href="#third-party-dhcp-server-configuration" class="md-nav__link">
+    Third-party DHCP server configuration
   </a>
   
 </li>
@@ -1412,16 +1412,16 @@ You're not viewing the latest version.
 
 <h1 id="vpcs-and-namespaces">VPCs and Namespaces</h1>
 <h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
-<p>A Virtual Private Cloud (<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>) is similar to a public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. It provides an isolated private network for the
-resources with support for multiple subnets, each with user-provided VLANs and on-demand DHCP.</p>
+<p>A Virtual Private Cloud (<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>) is similar to a public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. It provides an isolated private network with support for multiple subnets,
+each with user-defined VLANs and optional DHCP services.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPC</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits to which subnets could be used by VPC to guarantee non-overlapping IPv4 ranges</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">vlanNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits to which switches VPC could be attached to guarantee non-overlapping VLANs</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits which subnets can the VPC use to guarantee non-overlapping IPv4 ranges</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">vlanNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits which Vlan Ids can the VPC use to guarantee non-overlapping VLANs</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">defaultIsolated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Sets default behavior for the current VPC subnets to be isolated</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">defaultRestricted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Sets default behavior for the current VPC subnets to be restricted</span>
@@ -1456,8 +1456,8 @@ resources with support for multiple subnets, each with user-provided VLANs and o
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC could communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets could communicate to each other</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
 </span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
 </span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
 </span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC</span>
@@ -1471,9 +1471,9 @@ isolated subnets. The permit list is applied on top of the isolated flag and doe
 <p><em>Isolated subnet</em> means that the subnet has no connectivity with other subnets within the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, but it could still be
 allowed by permit lists.</p>
 <p><em>Restricted subnet</em> means that all hosts in the subnet are isolated from each other within the subnet.</p>
-<p>A Permit list is defined as a list of subnets that could communicate with each other.</p>
-<h3 id="third-party-dhcp-server">Third-party DHCP server</h3>
-<p>In case you use a third-party DHCP server by configuring <code>spec.subnets.&lt;subnet&gt;.dhcp.relay</code>, additional information is
+<p>A Permit list contains a list. Every element of the list is a set of subnets that can communicate with each other.</p>
+<h3 id="third-party-dhcp-server-configuration">Third-party DHCP server configuration</h3>
+<p>In case you use a third-party DHCP server, by configuring <code>spec.subnets.&lt;subnet&gt;.dhcp.relay</code>, additional information is
 added to the DHCP packet forwarded to the DHCP server to make it possible to identify the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and subnet. This
 information is added under the RelayAgentInfo (option 82) in the DHCP packet. The relay sets two suboptions in the
 packet:</p>
@@ -1495,7 +1495,7 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">connection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-1--mclag--s5248-01--s5248-02</span><span class="w"> </span><span class="c1"># Connection name representing the server port(s)</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1/default</span><span class="w"> </span><span class="c1"># VPC subnet name</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">nativeVLAN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Optional, if true the port will be configured as a native VLAN port (untagged)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">nativeVLAN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># (Optional) if true, the port will be configured as a native VLAN port (untagged)</span>
 </span></code></pre></div>
 <h2 id="vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></h2>
 <p>A <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity. There are two types of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering:</p>
@@ -1503,7 +1503,7 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 <li>Local: peering is implemented on the same switches where VPCs are attached</li>
 <li>Remote: peering is implemented on the border/mixed leaves defined by the <code>SwitchGroup</code> object</li>
 </ul>
-<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering is only possible between VPCs attached to the same IPv4 namespace.</p>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering is only possible between VPCs attached to the same IPv4 namespace (see <a href="#ipv4namespace">IPv4Namespace</a>)</p>
 <h3 id="local-vpc-peering">Local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering</h3>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPCPeering</span>
@@ -1530,37 +1530,37 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 <h3 id="subnet-filtering">Subnet filtering</h3>
 <p>It's possible to specify which specific subnets of the peering VPCs could communicate to each other using the <code>permit</code>
 field.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">```</span><span class="l l-Scalar l-Scalar-Plain">yaml</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPCPeering</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--vpc-2</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># subnet-1 and subnet-2 of vpc-1 could communicate to subnet-3 of vpc-2 as well as subnet-4 of vpc-2 could communicate to subnet-5 and subnet-6 of vpc-2</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vpc-1</span><span class="p">:</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">]</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vpc-1</span><span class="p">:</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">]</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-6</span><span class="p p-Indicator">]</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPCPeering</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--vpc-2</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># subnet-1 and subnet-2 of vpc-1 could communicate to subnet-3 of vpc-2 as well as subnet-4 of vpc-2 could communicate to subnet-5 and subnet-6 of vpc-2</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-6</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <h2 id="ipv4namespace">IPv4Namespace</h2>
-<p>An IPv4Namespace defines non-overlapping VLAN ranges for attaching servers. Each switch belongs to a list of VLAN
-namespaces with non-overlapping VLAN ranges.</p>
+<p>An <code>IPv4Namespace</code> defines a set of (non-overlapping) IPv4 address ranges available for use by <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.
+Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to a specific IPv4 namespace. Therefore, its subnet prefixes must be from that IPv4 namespace.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1alpha2</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4Namespace</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="c1"># List of the subnets that VPCs can pick their subnets from</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span><span class="w"> </span><span class="c1"># List of prefixes that VPCs can pick their subnets from</span>
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.0/16</span>
 </span></code></pre></div>
 <h2 id="vlannamespace">VLANNamespace</h2>
-<p>A VLANNamespace defines non-overlapping IPv4 ranges for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets. Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belongs to a specific IPv4 namespace.</p>
+<p>A <code>VLANNamespace</code> defines a set of VLAN ranges available for attaching servers to switches. Each switch can belong to one or more
+disjoint VLANNamespaces.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VLANNamespace</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1577,7 +1577,7 @@ namespaces with non-overlapping VLAN ranges.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 28, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
       
         <br>
         Created:

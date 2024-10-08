@@ -1289,14 +1289,14 @@ You're not viewing the latest version.
 
 
 <h1 id="switches-and-servers">Switches and Servers</h1>
-<p>All devices in the Hedgehog Fabric are divided into two groups: switches and servers, represented by the corresponding
-<code>Switch</code> and <code>Server</code> objects in the API. These objects are needed to define all participants of the Fabric and their
-roles in the Wiring Diagram as well as <a href="../connections/">Connections</a> between them.</p>
+<p>All devices in a Hedgehog Fabric are divided into two groups: switches and servers, represented by the corresponding
+<code>Switch</code> and <code>Server</code> objects in the API. These objects are needed to define all of the participants of the Fabric and their
+roles in the Wiring Diagram, together with <code>Connection</code> objects (see <a href="../connections/">Connections</a>).</p>
 <h2 id="switches">Switches</h2>
 <p>Switches are the main building blocks of the Fabric. They are represented by <code>Switch</code> objects in the API. These objects
 consist of basic metadata like name, description, location, role, as well as port group speeds, port breakouts, ASN,
-IP addresses, and more. Additionally, it contains a reference to the <code>SwitchProfile</code> object that defines the switch
-model and capabilities, more details can be found in the <a href="../profiles/">Switch Profiles and Port Naming</a> section.</p>
+IP addresses, and more. Additionally, a <code>Switch</code> contains a reference to a <code>SwitchProfile</code> object that defines the switch
+model and capabilities. More details can be found in the <a href="../profiles/">Switch Profiles and Port Naming</a> section.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1alpha2</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1324,7 +1324,7 @@ model and capabilities, more details can be found in the <a href="../profiles/">
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="nt">vlanNamespaces</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which VLANs could be used to attach servers</span>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="nt">vtepIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.12.100/32</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="nt">groups</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which groups the switch belongs to</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="nt">groups</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which groups the switch belongs to, by referring to SwitchGroup objects</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some-group</span>
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional field to define that switch belongs to the redundancy group</span>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eslag-1</span><span class="w"> </span><span class="c1"># Name of the redundancy group</span>
@@ -1342,7 +1342,7 @@ model and capabilities, more details can be found in the <a href="../profiles/">
 <p>Redundancy groups are used to define the redundancy between switches. It's a regular <code>SwitchGroup</code> used by multiple
 switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). A switch can only belong to a single redundancy
 group.</p>
-<p>MCLAG is only supported for pair of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
+<p>MCLAG is only supported for pairs of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
 groups can be used in the fabric simultaneously.</p>
 <p>Connections with types <code>mclag</code> and <code>eslag</code> are used to define the servers connections to switches. They are only
 supported if the switch belongs to a redundancy group with the corresponding type.</p>
@@ -1416,7 +1416,7 @@ links between switches. For more details, see <a href="../connections/">Connecti
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 5, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
       
         <br>
         Created:

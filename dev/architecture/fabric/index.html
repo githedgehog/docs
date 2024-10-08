@@ -1389,7 +1389,7 @@ describe how VPCs are actually implemented in the network to ensure a private vi
   attached subnets and import routes from its peered VPCs. The BGP instance in the tenant VRFs does not establish
   neighbor relationships and is purely used to advertise locally attached routes into the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (all VRFs with the same
   L3VNI) across leaves in the network.</li>
-<li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can have multuple subnets. Each subnet in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VLAN on the switch. The VLAN is only locally
+<li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can have multiple subnets. Each subnet in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VLAN on the switch. The VLAN is only locally
   significant and a given subnet might have different VLANs on different leaves on the network. A globally significant
   VNI is assigned to each subnet. This VNI is used to extend the subnet across different leaves in the network and
   provides a view of single stretched L2 domain if the applications need it.</li>
@@ -1405,7 +1405,7 @@ describe how VPCs are actually implemented in the network to ensure a private vi
 <p>To enable communication between 2 different VPCs, one needs to configure a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering policy. The Hedgehog Fabric
 supports two different peering modes.</p>
 <ul>
-<li>Local Peering: A local peering directly imports routers from the other <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> locally. This is achieved by a simple
+<li>Local Peering: A local peering directly imports routes from another <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> locally. This is achieved by a simple
   import route from the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. In case there are no locally attached workloads to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> the fabric
   automatically creates a stub <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> for peering and imports routes from it. This allows VPCs to peer with each other
   without the need for a dedicated peering leaf. If a local peering is done for a pair of VPCs which have locally
@@ -1427,7 +1427,7 @@ supports two different peering modes.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
       
         <br>
         Created:
