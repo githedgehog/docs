@@ -2,6 +2,7 @@
 
 - Fast SSDs for system/root as well as Kubernetes and container runtime folders are required for stable work
 - SSDs are mandatory for Control Nodes
+- 10 GbE port for connection to management network
 - Minimal (non-HA) setup is a single Control Node
 - (Future) Full (HA) setup is at least 3 Control Nodes
 - (Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more
