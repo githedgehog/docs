@@ -9,22 +9,35 @@
     use of on-demand DHCP for multiple IPv4/VLAN namespaces and overlapping IP ranges, and it adds DHCP leases
     into the Fabric API
 
+```yaml
+spec:
+    config
+    ...
+        fabric:
+          mode: spine-leaf
+          includeONIE: true
+
+```
+
 For more information about how to use `hhfab init`, run `hhfab init --help`.
 
 ## Configure switch users
 
-It's currently only possible by using a config yaml file for the `hhfab init -c <config-file.yaml>` command. You can
+It's currently only possible by using a yaml configuration file for the `hhfab init -c <config-file.yaml>` command. You can
 specify users to be configured on the switches in the following format:
 
 ```yaml
-config:
+spec:
+    config
     ...
-    fabric:
+        fabric:
         ...
-        switchUsers:
-          - name: test
+        defaultSwitchUsers:
+            admin:
+            role: admin
             password: $5$oj/NxDtFw3eTyini$VHwdjWXSNYRxlFMu.1S5ZlGJbUF/CGmCAZIBroJlax4
-            role: operator
+            authorizedKeys:
+              - "ssh-ed25519 THISisAkeYFOrSShiNGtoHoSTs"
 ```
 
 Where `name` is the username, `password` is the password hash created with `openssl passwd -5` command, and `role` is
@@ -40,45 +53,44 @@ access the configured targets. It could be done by passing `--control-proxy=true
 Metrics includes port speeds, counters, errors, operational status, transceivers, fans, power supplies, temperature
 sensors, BGP neighbors, LLDP neighbors, and more. Logs include agent logs.
 
-Configuring the exporters and targets is currently only possible by using a config yaml file for the
+Configuring the exporters and targets is currently only possible by using a yaml configuration file for the
 `hhfab init -c <config-file.yaml>` command using the following format:
 
 ```yaml
-config:
-    ...
-    fabric:
-        ...
+spec:
+  config:
+      ...
+      defaultAlloyConfig:
+        agentScrapeIntervalSeconds: 120
+        unixScrapeIntervalSeconds: 120
+        unixExporterEnabled: true
         controlProxy: true # (optional) same as passing --control-proxy=true to hhfab init
-        alloy:
-            agentScrapeIntervalSeconds: 120
-            controlProxyURL: http://172.30.1.1:31028
-            lokiTargets:
-                grafana_cloud: # target name, multiple targets can be configured
-                    basicAuth: # optional
-                        password: "<password>"
-                        username: "<username>"
-                    labels: # labels to be added to all logs
-                        env: env-1
-                    url: https://logs-prod-021.grafana.net/loki/api/v1/push
-                    useControlProxy: true # if the Loki API is not available from the switches directly, use the Control Node as a proxy
-            prometheusTargets:
-                grafana_cloud: # target name, multiple targets can be configured
-                    basicAuth: # optional
-                        password: "<password>"
-                        username: "<username>"
-                    labels: # labels to be added to all metrics
-                        env: env-1
-                    sendIntervalSeconds: 120
-                    url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
-                    useControlProxy: true # if the Loki API is not available from the switches directly, use the Control Node as a proxy
-            unixExporterCollectors: # list of node-exporter collectors to enable, https://grafana.com/docs/alloy/latest/reference/components/prometheus.exporter.unix/#collectors-list
-                - cpu
-                - filesystem
-                - loadavg
-                - meminfo
-            unixExporterEnabled: true
-            unixScrapeIntervalSeconds: 120
-            collectSyslogEnabled: true # collect /var/log/syslog on switches and forward to the lokiTargets
+        controlProxyURL: http://172.30.1.1:31028
+        lokiTargets:
+          grafana_cloud: # target name, multiple targets can be configured
+              basicAuth: # optional
+                  password: "<password>"
+                  username: "<username>"
+              labels: # labels to be added to all logs
+                  env: env-1
+              url: https://logs-prod-021.grafana.net/loki/api/v1/push
+              useControlProxy: true # if the Loki API is not available from the switches directly, use the Control Node as a proxy
+        prometheusTargets:
+          grafana_cloud: # target name, multiple targets can be configured
+              basicAuth: # optional
+                  password: "<password>"
+                  username: "<username>"
+              labels: # labels to be added to all metrics
+                  env: env-1
+              sendIntervalSeconds: 120
+              url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
+              useControlProxy: true # if the Loki API is not available from the switches directly, use the Control Node as a proxy
+              unixExporterCollectors: # list of node-exporter collectors to enable, https://grafana.com/docs/alloy/latest/reference/components/prometheus.exporter.unix/#collectors-list
+                  - cpu
+                  - filesystem
+                  - loadavg
+                  - meminfo
+              collectSyslogEnabled: true # collect /var/log/syslog on switches and forward to the lokiTargets
 ```
 
 For additional options, see the `AlloyConfig` [struct in Fabric repo](https://github.com/githedgehog/fabric/blob/master/api/meta/alloy.go).
