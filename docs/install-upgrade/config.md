@@ -1,49 +1,17 @@
 # Fabric Configuration
+## Overview
+The `fab.yaml` file is the configuration file for the fabric. It supplies the configuration of the users, their credentials, logging, telemetry, and other non wiring related settings. The `fab.yaml` file is composed of multiple yaml documents inside of a single file. Per the yamls spec 3 hyphens (`---`) on a single line separate the end of one document from the beginning of the next. There are two yaml documents in the `fab.yaml` file. For more information about how to use `hhfab init`, run `hhfab init --help`. 
 
-* `--fabric-mode <mode-name` (`collapsed-core` or `spine-leaf`) - Fabric mode to use, default is `spine-leaf`; in case
-    of `collapsed-core` mode, there will be no VXLAN configured and only 2 switches will be used
-* `--ntp-servers <servers>`- Comma-separated list of NTP servers to use, default is
-    `time.cloudflare.com,time1.google.com,time2.google.com,time3.google.com,time4.google.com`, it'll be used for both
-    control nodes and switches
-* `--dhcpd <mode-name>` (`isc` or `hedgehog`) - DHCP server to use, default is `isc`; `hedgehog` DHCP server enables
-    use of on-demand DHCP for multiple IPv4/VLAN namespaces and overlapping IP ranges, and it adds DHCP leases
-    into the Fabric API
+## Fabric 
 
-```yaml
-spec:
-    config
-    ...
-        fabric:
-          mode: spine-leaf
-          includeONIE: true
+The fabric yaml object has 4 objects:
 
-```
+- `mode` - either `spine-leaf` or `collapsed-core`
+- `includeONIE` - defaults to true
+- `defaultSwitchUsers` - the admin and operator credentials for SONiC.
+- `defaultAlloyConfig` - The configuration details for telemetry of switch information
 
-For more information about how to use `hhfab init`, run `hhfab init --help`.
-
-## Configure switch users
-
-It's currently only possible by using a yaml configuration file for the `hhfab init -c <config-file.yaml>` command. You can
-specify users to be configured on the switches in the following format:
-
-```yaml
-spec:
-    config
-    ...
-        fabric:
-        ...
-        defaultSwitchUsers:
-            admin:
-            role: admin
-            password: $5$oj/NxDtFw3eTyini$VHwdjWXSNYRxlFMu.1S5ZlGJbUF/CGmCAZIBroJlax4
-            authorizedKeys:
-              - "ssh-ed25519 THISisAkeYFOrSShiNGtoHoSTs"
-```
-
-Where `name` is the username, `password` is the password hash created with `openssl passwd -5` command, and `role` is
-the role of the user, one of `admin` or `operator` (read-only access to `sonic-cli` command on the switches). In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
-
-## Forward switch metrics and logs
+### Forward switch metrics and logs
 
 There is an option to enable Grafana Alloy on all switches to forward metrics and logs to the configured targets using
 Prometheus Remote-Write API and Loki API. If those APIs are available from Control Node(s), but not from the switches,
@@ -94,3 +62,124 @@ spec:
 ```
 
 For additional options, see the `AlloyConfig` [struct in Fabric repo](https://github.com/githedgehog/fabric/blob/master/api/meta/alloy.go).
+
+### Configure switch users
+
+It's currently only possible by using a yaml configuration file for the `hhfab init -c <config-file.yaml>` command. You can specify users to be configured on the switches in the following format:
+```yaml
+spec:
+    config:
+      control:
+        defaultUser: # user 'core' on all control nodes
+          password: "hashhashhashhashhash" # password hash
+          authorizedKeys:
+            - "ssh-ed25519 SecREKeyJumblE"
+
+        fabric:
+          mode: spine-leaf # "spine-leaf" or "collapsed-core"
+          
+          defaultSwitchUsers: 
+            admin: # at least one user with name 'admin' and role 'admin'
+              role: admin
+              #password: "$5$8nAYPGcl4..." # password hash
+              #authorizedKeys: # optional SSH authorized keys
+              #  - "ssh-ed25519 AAAAC3Nza..."
+            op: # optional read-only user
+              role: operator
+              #password: "$5$8nAYPGcl4..." # password hash
+              #authorizedKeys: # optional SSH authorized keys
+              #  - "ssh-ed25519 AAAAC3Nza..."
+
+```
+The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
+
+## Control Node
+This is the yaml document configure the control node:
+```yaml
+apiVersion: fabricator.githedgehog.com/v1beta1
+kind: ControlNode
+metadata:
+  name: control-1
+  namespace: fab
+spec:
+  bootstrap:
+   disk: "/dev/sda" # disk to install OS on, e.g. "sda" or "nvme0n1"
+  external:
+    interface: enp2s0 # interface for external
+    ip:	dhcp # IP address for external interface
+  management:
+    interface: enp2s1 # interface for management
+
+# Currently only one ControlNode is supported
+```
+The **management** interface is for the control node to manage the fabric switches, *not* end-user management of the control node. For end user management of the control node specify the **external** interface name.
+
+## Complete Example File
+```yaml
+apiVersion: fabricator.githedgehog.com/v1beta1
+kind: Fabricator
+metadata:
+  name: default
+  namespace: fab
+spec:
+  config:
+    control:
+      tlsSAN: # IPs and DNS names that will be used to access API
+        - "env-2.l.hhdev.io"
+
+      defaultUser: # user 'core' on all control nodes
+        password: "hash..." # password hash
+        authorizedKeys:
+          - "ssh-ed25519 hash..."
+
+    fabric:
+      mode: spine-leaf # "spine-leaf" or "collapsed-core"
+      includeONIE: true
+      defaultSwitchUsers:
+        admin: # at least one user with name 'admin' and role 'admin'
+          role: admin
+          password: "hash..." # password hash
+          authorizedKeys:
+            - "ssh-ed25519 hash..."
+        op: # optional read-only user
+          role: operator
+          password: "hash..." # password hash
+          authorizedKeys:
+            - "ssh-ed25519 hash..."
+
+      defaultAlloyConfig:
+        agentScrapeIntervalSeconds: 120
+        unixScrapeIntervalSeconds: 120
+        unixExporterEnabled: true
+        collectSyslogEnabled: true
+        lokiTargets:
+          lab:
+            url: http://url.io:3100/loki/api/v1/push
+            useControlProxy: true
+            labels:
+              descriptive: name
+        prometheusTargets:
+          lab:
+            url: http://url.io:9100/api/v1/push
+            useControlProxy: true
+            labels:
+              descriptive: name
+            sendIntervalSeconds: 120
+
+---
+apiVersion: fabricator.githedgehog.com/v1beta1
+kind: ControlNode
+metadata:
+  name: control-1
+  namespace: fab
+spec:
+  bootstrap:
+    disk: "/dev/sda" # disk to install OS on, e.g. "sda" or "nvme0n1"
+  external:
+    interface: eno2 # interface for external
+    ip: dhcp # IP address for external interface
+  management:
+    interface: eno1
+
+# Currently only one ControlNode is supported
+```
