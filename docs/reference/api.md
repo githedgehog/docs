@@ -1,15 +1,15 @@
 # API Reference
 
 ## Packages
-- [agent.githedgehog.com/v1alpha2](#agentgithedgehogcomv1alpha2)
-- [dhcp.githedgehog.com/v1alpha2](#dhcpgithedgehogcomv1alpha2)
-- [vpc.githedgehog.com/v1alpha2](#vpcgithedgehogcomv1alpha2)
-- [wiring.githedgehog.com/v1alpha2](#wiringgithedgehogcomv1alpha2)
+- [agent.githedgehog.com/v1beta1](#agentgithedgehogcomv1beta1)
+- [dhcp.githedgehog.com/v1beta1](#dhcpgithedgehogcomv1beta1)
+- [vpc.githedgehog.com/v1beta1](#vpcgithedgehogcomv1beta1)
+- [wiring.githedgehog.com/v1beta1](#wiringgithedgehogcomv1beta1)
 
 
-## agent.githedgehog.com/v1alpha2
+## agent.githedgehog.com/v1beta1
 
-Package v1alpha2 contains API Schema definitions for the agent v1alpha2 API group. This is the internal API group
+Package v1beta1 contains API Schema definitions for the agent v1beta1 API group. This is the internal API group
 for the switch and control node agents. Not intended to be modified by the user.
 
 ### Resource Types
@@ -28,6 +28,12 @@ _Underlying type:_ _string_
 _Appears in:_
 - [SwitchStateInterface](#switchstateinterface)
 
+| Field | Description |
+| --- | --- |
+| `` |  |
+| `up` |  |
+| `down` |  |
+| `testing` |  |
 
 
 #### Agent
@@ -47,9 +53,9 @@ Switch object.
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `agent.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `agent.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Agent` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `status` _[AgentStatus](#agentstatus)_ | Status is the observed state of the Agent |  |  |
 
 
@@ -70,13 +76,13 @@ _Appears in:_
 | `version` _string_ | Current running agent version |  |  |
 | `installID` _string_ | ID of the agent installation, used to track NOS re-installs |  |  |
 | `runID` _string_ | ID of the agent run, used to track NOS reboots |  |  |
-| `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
-| `lastAttemptTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ | Time of the last attempt to apply configuration |  |  |
+| `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
+| `lastAttemptTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ | Time of the last attempt to apply configuration |  |  |
 | `lastAttemptGen` _integer_ | Generation of the last attempt to apply configuration |  |  |
-| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
+| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
 | `lastAppliedGen` _integer_ | Generation of the last successful configuration application |  |  |
 | `state` _[SwitchState](#switchstate)_ | Detailed switch state updated with each heartbeat |  |  |
-| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#condition-v1-meta) array_ | Conditions of the agent, includes readiness marker for use with kubectl wait |  |  |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#condition-v1-meta) array_ | Conditions of the agent, includes readiness marker for use with kubectl wait |  |  |
 
 
 #### BGPMessages
@@ -128,6 +134,15 @@ _Underlying type:_ _string_
 _Appears in:_
 - [SwitchStateBGPNeighbor](#switchstatebgpneighbor)
 
+| Field | Description |
+| --- | --- |
+| `` |  |
+| `idle` |  |
+| `connect` |  |
+| `active` |  |
+| `openSent` |  |
+| `openConfirm` |  |
+| `established` |  |
 
 
 #### BGPPeerType
@@ -141,6 +156,11 @@ _Underlying type:_ _string_
 _Appears in:_
 - [SwitchStateBGPNeighbor](#switchstatebgpneighbor)
 
+| Field | Description |
+| --- | --- |
+| `` |  |
+| `internal` |  |
+| `external` |  |
 
 
 #### OperStatus
@@ -154,6 +174,16 @@ _Underlying type:_ _string_
 _Appears in:_
 - [SwitchStateInterface](#switchstateinterface)
 
+| Field | Description |
+| --- | --- |
+| `` |  |
+| `up` |  |
+| `down` |  |
+| `testing` |  |
+| `unknown` |  |
+| `dormant` |  |
+| `notPresent` |  |
+| `lowerLayerDown` |  |
 
 
 #### SwitchState
@@ -193,11 +223,11 @@ _Appears in:_
 | `connectionsDropped` _integer_ |  |  |  |
 | `enabled` _boolean_ |  |  |  |
 | `establishedTransitions` _integer_ |  |  |  |
-| `lastEstablished` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ |  |  |  |
-| `lastRead` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ |  |  |  |
+| `lastEstablished` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ |  |  |  |
+| `lastRead` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ |  |  |  |
 | `lastResetReason` _string_ |  |  |  |
-| `lastResetTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ |  |  |  |
-| `lastWrite` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ |  |  |  |
+| `lastResetTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ |  |  |  |
+| `lastWrite` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ |  |  |  |
 | `localAS` _integer_ |  |  |  |
 | `messages` _[BGPMessages](#bgpmessages)_ |  |  |  |
 | `peerAS` _integer_ |  |  |  |
@@ -375,7 +405,7 @@ _Appears in:_
 | `adminStatus` _[AdminStatus](#adminstatus)_ |  |  |  |
 | `operStatus` _[OperStatus](#operstatus)_ |  |  |  |
 | `mac` _string_ |  |  |  |
-| `lastChanged` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ |  |  |  |
+| `lastChanged` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ |  |  |  |
 | `speed` _string_ |  |  |  |
 | `counters` _[SwitchStateInterfaceCounters](#switchstateinterfacecounters)_ |  |  |  |
 | `transceiver` _[SwitchStateTransceiver](#switchstatetransceiver)_ |  |  |  |
@@ -400,7 +430,7 @@ _Appears in:_
 | `inErrors` _integer_ |  |  |  |
 | `inPktsPerSecond` _float_ |  |  |  |
 | `inUtilization` _integer_ |  |  |  |
-| `lastClear` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ |  |  |  |
+| `lastClear` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ |  |  |  |
 | `outBitsPerSecond` _float_ |  |  |  |
 | `outDiscards` _integer_ |  |  |  |
 | `outErrors` _integer_ |  |  |  |
@@ -495,7 +525,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `direction` _string_ |  |  |  |
 | `speed` _float_ |  |  |  |
-| `presense` _boolean_ |  |  |  |
+| `presence` _boolean_ |  |  |  |
 | `status` _boolean_ |  |  |  |
 
 
@@ -518,7 +548,7 @@ _Appears in:_
 | `outputCurrent` _float_ |  |  |  |
 | `outputPower` _float_ |  |  |  |
 | `outputVoltage` _float_ |  |  |  |
-| `presense` _boolean_ |  |  |  |
+| `presence` _boolean_ |  |  |  |
 | `status` _boolean_ |  |  |  |
 
 
@@ -575,9 +605,9 @@ _Appears in:_
 
 
 
-## dhcp.githedgehog.com/v1alpha2
+## dhcp.githedgehog.com/v1beta1
 
-Package v1alpha2 contains API Schema definitions for the dhcp v1alpha2 API group. It is the primary internal API
+Package v1beta1 contains API Schema definitions for the dhcp v1beta1 API group. It is the primary internal API
 group for the intended Hedgehog DHCP server configuration and storing leases as well as making them available to the
 end user through API. Not intended to be modified by the user.
 
@@ -600,7 +630,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `ip` _string_ | Allocated IP address |  |  |
-| `expiry` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#time-v1-meta)_ | Expiry time of the lease |  |  |
+| `expiry` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ | Expiry time of the lease |  |  |
 | `hostname` _string_ | Hostname from DHCP request |  |  |
 
 
@@ -618,9 +648,9 @@ Not intended to be modified by the user.
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `dhcp.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `dhcp.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `DHCPSubnet` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[DHCPSubnetSpec](#dhcpsubnetspec)_ | Spec is the desired state of the DHCPSubnet |  |  |
 | `status` _[DHCPSubnetStatus](#dhcpsubnetstatus)_ | Status is the observed state of the DHCPSubnet |  |  |
 
@@ -644,11 +674,12 @@ _Appears in:_
 | `startIP` _string_ | Start IP from the CIDRBlock to allocate IPs, such as 10.10.10.10 |  |  |
 | `endIP` _string_ | End IP from the CIDRBlock to allocate IPs, such as 10.10.10.99 |  |  |
 | `vrf` _string_ | VRF name to identify specific VPC (will be added to DHCP packets by DHCP relay in suboption 151), such as "VrfVvpc-1" as it's named on switch |  |  |
-| `circuitID` _string_ | VLAN ID to identify specific subnet withing the VPC, such as "Vlan1000" as it's named on switch |  |  |
+| `circuitID` _string_ | VLAN ID to identify specific subnet within the VPC, such as "Vlan1000" as it's named on switch |  |  |
 | `pxeURL` _string_ | PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported |  |  |
 | `dnsServers` _string array_ | DNSservers (optional) to configure Domain Name Servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  |  |
 | `timeServers` _string array_ | TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  |  |
 | `interfaceMTU` _integer_ | InterfaceMTU (optional) is the MTU setting that the dhcp server will send to the clients. It is dependent on the client to honor this option. |  |  |
+| `defaultURL` _string_ | DefaultURL (optional) is the option 114 "default-url" to be sent to the clients |  |  |
 
 
 #### DHCPSubnetStatus
@@ -668,9 +699,9 @@ _Appears in:_
 
 
 
-## vpc.githedgehog.com/v1alpha2
+## vpc.githedgehog.com/v1beta1
 
-Package v1alpha2 contains API Schema definitions for the vpc v1alpha2 API group. It is public API group for the VPCs
+Package v1beta1 contains API Schema definitions for the vpc v1beta1 API group. It is public API group for the VPCs
 and Externals APIs. Intended to be used by the user.
 
 ### Resource Types
@@ -698,9 +729,9 @@ worry about the details of how external system is attached to the Fabric.
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `External` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ExternalSpec](#externalspec)_ | Spec is the desired state of the External |  |  |
 | `status` _[ExternalStatus](#externalstatus)_ | Status is the observed state of the External |  |  |
 
@@ -718,9 +749,9 @@ Effectively it represents BGP peering between the switch and external system inc
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `ExternalAttachment` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ExternalAttachmentSpec](#externalattachmentspec)_ | Spec is the desired state of the ExternalAttachment |  |  |
 | `status` _[ExternalAttachmentStatus](#externalattachmentstatus)_ | Status is the observed state of the ExternalAttachment |  |  |
 
@@ -756,7 +787,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `external` _string_ | External is the name of the External object this attachment belongs to |  |  |
-| `connection` _string_ | Connection is the name of the Connection object this attachment belongs to (essentialy the name of the switch/port) |  |  |
+| `connection` _string_ | Connection is the name of the Connection object this attachment belongs to (essentially the name of the switch/port) |  |  |
 | `switch` _[ExternalAttachmentSwitch](#externalattachmentswitch)_ | Switch is the switch port configuration for the external attachment |  |  |
 | `neighbor` _[ExternalAttachmentNeighbor](#externalattachmentneighbor)_ | Neighbor is the BGP neighbor configuration for the external attachment |  |  |
 
@@ -803,9 +834,9 @@ ExternalPeering is the Schema for the externalpeerings API
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `ExternalPeering` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ExternalPeeringSpec](#externalpeeringspec)_ | Spec is the desired state of the ExternalPeering |  |  |
 | `status` _[ExternalPeeringStatus](#externalpeeringstatus)_ | Status is the observed state of the ExternalPeering |  |  |
 
@@ -942,7 +973,7 @@ _Appears in:_
 
 
 
-IPv4Namespace represents a namespace for VPC subnets allocation. All VPC subnets withing a single IPv4Namespace are
+IPv4Namespace represents a namespace for VPC subnets allocation. All VPC subnets within a single IPv4Namespace are
 non-overlapping. Users can create multiple IPv4Namespaces to allocate same VPC subnets.
 
 
@@ -951,9 +982,9 @@ non-overlapping. Users can create multiple IPv4Namespaces to allocate same VPC s
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `IPv4Namespace` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[IPv4NamespaceSpec](#ipv4namespacespec)_ | Spec is the desired state of the IPv4Namespace |  |  |
 | `status` _[IPv4NamespaceStatus](#ipv4namespacestatus)_ | Status is the observed state of the IPv4Namespace |  |  |
 
@@ -1000,9 +1031,9 @@ resources with support for multiple subnets each with user-provided VLANs and on
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VPC` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCSpec](#vpcspec)_ | Spec is the desired state of the VPC |  |  |
 | `status` _[VPCStatus](#vpcstatus)_ | Status is the observed state of the VPC |  |  |
 
@@ -1019,9 +1050,9 @@ VPCAttachment is the Schema for the vpcattachments API
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VPCAttachment` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCAttachmentSpec](#vpcattachmentspec)_ | Spec is the desired state of the VPCAttachment |  |  |
 | `status` _[VPCAttachmentStatus](#vpcattachmentstatus)_ | Status is the observed state of the VPCAttachment |  |  |
 
@@ -1090,8 +1121,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `pxeURL` _string_ | PXEURL (optional) to identify the pxe server to use to boot hosts connected to this segment such as http://10.10.10.99/bootfilename or tftp://10.10.10.99/bootfilename, http query strings are not supported |  |  |
-| `dnsServers` _string array_ | DNSservers (optional) to configure Domain Name Servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  | Optional: {} <br /> |
-| `timeServers` _string array_ | TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  | Optional: {} <br /> |
+| `dnsServers` _string array_ | DNSservers (optional) to configure Domain Name Servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  | Optional: \{\} <br /> |
+| `timeServers` _string array_ | TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  | Optional: \{\} <br /> |
 | `interfaceMTU` _integer_ | InterfaceMTU (optional) is the MTU setting that the dhcp server will send to the clients. It is dependent on the client to honor this option. |  |  |
 
 
@@ -1147,9 +1178,9 @@ Minimal example of the VPC peering showing vpc-1 to vpc-2 peering with all subne
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `vpc.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VPCPeering` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCPeeringSpec](#vpcpeeringspec)_ | Spec is the desired state of the VPCPeering |  |  |
 | `status` _[VPCPeeringStatus](#vpcpeeringstatus)_ | Status is the observed state of the VPCPeering |  |  |
 
@@ -1259,9 +1290,9 @@ _Appears in:_
 
 
 
-## wiring.githedgehog.com/v1alpha2
+## wiring.githedgehog.com/v1beta1
 
-Package v1alpha2 contains API Schema definitions for the wiring v1alpha2 API group. It is public API group mainly for
+Package v1beta1 contains API Schema definitions for the wiring v1beta1 API group. It is public API group mainly for
 the underlay definition including Switches, Server, wiring between them and etc. Intended to be used by the user.
 
 ### Resource Types
@@ -1287,8 +1318,6 @@ BasePortName defines the full name of the switch port
 _Appears in:_
 - [ConnExternalLink](#connexternallink)
 - [ConnFabricLinkSwitch](#connfabriclinkswitch)
-- [ConnMgmtLinkServer](#connmgmtlinkserver)
-- [ConnMgmtLinkSwitch](#connmgmtlinkswitch)
 - [ConnStaticExternalLinkSwitch](#connstaticexternallinkswitch)
 - [ServerToSwitchLink](#servertoswitchlink)
 - [SwitchToSwitchLink](#switchtoswitchlink)
@@ -1395,7 +1424,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
-| `ip` _string_ | IP is the IP address of the switch side of the fabric link (switch port configuration) |  | Pattern: `^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$` <br /> |
+| `ip` _string_ | IP is the IP address of the switch side of the fabric link (switch port configuration) |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$` <br /> |
 
 
 #### ConnMCLAG
@@ -1432,75 +1461,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `peerLinks` _[SwitchToSwitchLink](#switchtoswitchlink) array_ | PeerLinks is the list of peer links between the switches, used to pass server traffic between switch |  | MinItems: 1 <br /> |
 | `sessionLinks` _[SwitchToSwitchLink](#switchtoswitchlink) array_ | SessionLinks is the list of session links between the switches, used only to pass MCLAG control plane and BGP<br />traffic between switches |  | MinItems: 1 <br /> |
-
-
-#### ConnMgmt
-
-
-
-ConnMgmt defines the management connection (single control node/server to a single switch with a single link)
-
-
-
-_Appears in:_
-- [ConnectionSpec](#connectionspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `link` _[ConnMgmtLink](#connmgmtlink)_ |  |  |  |
-
-
-#### ConnMgmtLink
-
-
-
-ConnMgmtLink defines the management connection link
-
-
-
-_Appears in:_
-- [ConnMgmt](#connmgmt)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `server` _[ConnMgmtLinkServer](#connmgmtlinkserver)_ | Server is the server side of the management link |  |  |
-| `switch` _[ConnMgmtLinkSwitch](#connmgmtlinkswitch)_ | Switch is the switch side of the management link |  |  |
-
-
-#### ConnMgmtLinkServer
-
-
-
-ConnMgmtLinkServer defines the server side of the management link
-
-
-
-_Appears in:_
-- [ConnMgmtLink](#connmgmtlink)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
-| `ip` _string_ | IP is the IP address of the server side of the management link (control node port configuration) |  | Pattern: `^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$` <br /> |
-| `mac` _string_ | MAC is an optional MAC address of the control node port for the management link, if specified will be used to<br />create a "virtual" link with the connection names on the control node |  |  |
-
-
-#### ConnMgmtLinkSwitch
-
-
-
-ConnMgmtLinkSwitch defines the switch side of the management link
-
-
-
-_Appears in:_
-- [ConnMgmtLink](#connmgmtlink)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
-| `ip` _string_ | IP is the IP address of the switch side of the management link (switch port configuration) |  | Pattern: `^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$` <br /> |
-| `oniePortName` _string_ | ONIEPortName is an optional ONIE port name of the switch side of the management link that's only used by the IPv6 Link Local discovery |  |  |
 
 
 #### ConnStaticExternal
@@ -1550,8 +1510,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
-| `ip` _string_ | IP is the IP address of the switch side of the static external connection link (switch port configuration) |  | Pattern: `^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}/([1-2]?[0-9]|3[0-2])$` <br /> |
-| `nextHop` _string_ | NextHop is the next hop IP address for static routes that will be created for the subnets |  | Pattern: `^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$` <br /> |
+| `ip` _string_ | IP is the IP address of the switch side of the static external connection link (switch port configuration) |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$` <br /> |
+| `nextHop` _string_ | NextHop is the next hop IP address for static routes that will be created for the subnets |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}$` <br /> |
 | `subnets` _string array_ | Subnets is the list of subnets that will get static routes using the specified next hop |  |  |
 | `vlan` _integer_ | VLAN is the optional VLAN ID to be configured on the switch port |  |  |
 
@@ -1606,9 +1566,9 @@ in a single Connection object.
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `wiring.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Connection` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ConnectionSpec](#connectionspec)_ | Spec is the desired state of the Connection |  |  |
 | `status` _[ConnectionStatus](#connectionstatus)_ | Status is the observed state of the Connection |  |  |
 
@@ -1628,7 +1588,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `unbundled` _[ConnUnbundled](#connunbundled)_ | Unbundled defines the unbundled connection (no port channel, single server to a single switch with a single link) |  |  |
 | `bundled` _[ConnBundled](#connbundled)_ | Bundled defines the bundled connection (port channel, single server to a single switch with multiple links) |  |  |
-| `management` _[ConnMgmt](#connmgmt)_ | Management defines the management connection (single control node/server to a single switch with a single link) |  |  |
 | `mclag` _[ConnMCLAG](#connmclag)_ | MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links) |  |  |
 | `eslag` _[ConnESLAG](#conneslag)_ | ESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links) |  |  |
 | `mclagDomain` _[ConnMCLAGDomain](#connmclagdomain)_ | MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing |  |  |
@@ -1670,43 +1629,6 @@ _Appears in:_
 
 
 
-#### Location
-
-
-
-Location defines the geographical position of the device in a datacenter
-
-
-
-_Appears in:_
-- [SwitchSpec](#switchspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `location` _string_ |  |  |  |
-| `aisle` _string_ |  |  |  |
-| `row` _string_ |  |  |  |
-| `rack` _string_ |  |  |  |
-| `slot` _string_ |  |  |  |
-
-
-#### LocationSig
-
-
-
-LocationSig contains signatures for the location UUID as well as the device location itself
-
-
-
-_Appears in:_
-- [SwitchSpec](#switchspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `sig` _string_ |  |  |  |
-| `uuidSig` _string_ |  |  |  |
-
-
 #### Server
 
 
@@ -1719,9 +1641,9 @@ Server is the Schema for the servers API
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `wiring.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Server` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ServerSpec](#serverspec)_ | Spec is desired state of the server |  |  |
 | `status` _[ServerStatus](#serverstatus)_ | Status is the observed state of the server |  |  |
 
@@ -1758,7 +1680,6 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `type` _[ServerType](#servertype)_ | Type is the type of server, could be control for control nodes or default (empty string) for everything else |  | Enum: [control] <br /> |
 | `description` _string_ | Description is a description of the server |  |  |
 | `profile` _string_ | Profile is the profile of the server, name of the ServerProfile object to be used for this server, currently not used by the Fabric |  |  |
 
@@ -1796,20 +1717,6 @@ _Appears in:_
 | `switch` _[BasePortName](#baseportname)_ | Switch is the switch side of the connection |  |  |
 
 
-#### ServerType
-
-_Underlying type:_ _string_
-
-ServerType is the type of server, could be control for control nodes or default (empty string) for everything else
-
-_Validation:_
-- Enum: [control]
-
-_Appears in:_
-- [ServerSpec](#serverspec)
-
-
-
 #### Switch
 
 
@@ -1822,11 +1729,28 @@ Switch is the Schema for the switches API
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `wiring.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Switch` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[SwitchSpec](#switchspec)_ | Spec is desired state of the switch |  |  |
 | `status` _[SwitchStatus](#switchstatus)_ | Status is the observed state of the switch |  |  |
+
+
+#### SwitchBoot
+
+
+
+
+
+
+
+_Appears in:_
+- [SwitchSpec](#switchspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `serial` _string_ | Identify switch by serial number |  |  |
+| `mac` _string_ | Identify switch by MAC address of the management port |  |  |
 
 
 #### SwitchGroup
@@ -1841,9 +1765,9 @@ SwitchGroup is the marker API object to group switches together, switch can belo
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `wiring.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `SwitchGroup` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[SwitchGroupSpec](#switchgroupspec)_ | Spec is the desired state of the SwitchGroup |  |  |
 | `status` _[SwitchGroupStatus](#switchgroupstatus)_ | Status is the observed state of the SwitchGroup |  |  |
 
@@ -1886,9 +1810,9 @@ SwitchProfile represents switch capabilities and configuration
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `wiring.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `SwitchProfile` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[SwitchProfileSpec](#switchprofilespec)_ |  |  |  |
 | `status` _[SwitchProfileStatus](#switchprofilestatus)_ |  |  |  |
 
@@ -2058,6 +1982,8 @@ _Appears in:_
 | `ports` _object (keys:string, values:[SwitchProfilePort](#switchprofileport))_ | Ports defines the switch port configuration |  |  |
 | `portGroups` _object (keys:string, values:[SwitchProfilePortGroup](#switchprofileportgroup))_ | PortGroups defines the switch port group configuration |  |  |
 | `portProfiles` _object (keys:string, values:[SwitchProfilePortProfile](#switchprofileportprofile))_ | PortProfiles defines the switch port profile configuration |  |  |
+| `nosType` _[NOSType](#nostype)_ | NOSType defines the NOS type to be used for the switch |  |  |
+| `platform` _string_ | Platform is what expected to be request by ONIE and displayed in the NOS |  |  |
 
 
 #### SwitchProfileStatus
@@ -2106,6 +2032,13 @@ _Validation:_
 _Appears in:_
 - [SwitchSpec](#switchspec)
 
+| Field | Description |
+| --- | --- |
+| `spine` |  |
+| `server-leaf` |  |
+| `border-leaf` |  |
+| `mixed-leaf` |  |
+| `virtual-edge` |  |
 
 
 #### SwitchSpec
@@ -2121,11 +2054,9 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `role` _[SwitchRole](#switchrole)_ | Role is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf |  | Enum: [spine server-leaf border-leaf mixed-leaf virtual-edge] <br />Required: {} <br /> |
+| `role` _[SwitchRole](#switchrole)_ | Role is the role of the switch, could be spine, server-leaf or border-leaf or mixed-leaf |  | Enum: [spine server-leaf border-leaf mixed-leaf virtual-edge] <br />Required: \{\} <br /> |
 | `description` _string_ | Description is a description of the switch |  |  |
 | `profile` _string_ | Profile is the profile of the switch, name of the SwitchProfile object to be used for this switch, currently not used by the Fabric |  |  |
-| `location` _[Location](#location)_ | Location is the location of the switch, it is used to generate the location UUID and location signature |  |  |
-| `locationSig` _[LocationSig](#locationsig)_ | LocationSig is the location signature for the switch |  |  |
 | `groups` _string array_ | Groups is a list of switch groups the switch belongs to |  |  |
 | `redundancy` _[SwitchRedundancy](#switchredundancy)_ | Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used both for MCLAG and ESLAG connections |  |  |
 | `vlanNamespaces` _string array_ | VLANNamespaces is a list of VLAN namespaces the switch is part of, their VLAN ranges could not overlap |  |  |
@@ -2137,6 +2068,7 @@ _Appears in:_
 | `portSpeeds` _object (keys:string, values:string)_ | PortSpeeds is a map of port speeds, key is the port name, value is the speed |  |  |
 | `portBreakouts` _object (keys:string, values:string)_ | PortBreakouts is a map of port breakouts, key is the port name, value is the breakout configuration, such as "1/55: 4x25G" |  |  |
 | `portAutoNegs` _object (keys:string, values:boolean)_ | PortAutoNegs is a map of port auto negotiation, key is the port name, value is true or false |  |  |
+| `boot` _[SwitchBoot](#switchboot)_ | Boot is the boot/provisioning information of the switch |  |  |
 
 
 #### SwitchStatus
@@ -2182,9 +2114,9 @@ VLANNamespace is the Schema for the vlannamespaces API
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `apiVersion` _string_ | `wiring.githedgehog.com/v1alpha2` | | |
+| `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VLANNamespace` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VLANNamespaceSpec](#vlannamespacespec)_ | Spec is the desired state of the VLANNamespace |  |  |
 | `status` _[VLANNamespaceStatus](#vlannamespacestatus)_ | Status is the observed state of the VLANNamespace |  |  |
 
