@@ -7,7 +7,7 @@
 
 * A machine with access to the Internet to use Fabricator and build installer
 * An 8 GB USB flash drive, if you are not using virtual media
-* Have a machine to function as the Fabric Control Node.[System Requirements](./requirements.md)) as well as IPMI access to it to install
+* Have a machine to function as the Fabric Control Node. [System Requirements](./requirements.md) as well as IPMI access to it to install
   the OS.
 * Have a management switch with at least 1 10GbE port
 * Have enough [Supported Switches](./supported-devices.md) for your Fabric
@@ -35,20 +35,21 @@ The main steps to install Fabric are:
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
 ## Build Control Node configuration and Installer
-Hedgehog has created a command line utility, called `hhfab`, that will help generate the wiring diagram, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a disk. 
+Hedgehog has created a command line utility, called `hhfab`, that will help generate the wiring diagram, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media.
 
 ### HHFAB commands to make a bootable image
 1. `hhfab init --wiring wiring-lab.yaml`
 1. edit the `fab.yaml` file for your needs
     1. ensure the correct boot disk (eg `/dev/sda`) and control node NIC names are supplied
 1. `hhfab validate`
-1. `hhfab build --usb`
+1. `hhfab build`
 
-The installer for the fabric will be generated in `$WORKDIR/result`. This installation image is 7.5 GB in size.
+The installer for the fabric will be generated in `$WORKDIR/result/`. This installation image is 7.5 GB in size. It is named control-1-usb.img
 
 ### Burn USB image to disk
 !!! warning ""
     This will erase data on the usb disk.
+
 - Insert the usb to your machine
 - Identify the path to your usb stick for example `/dev/sdc`
 - Issue the command to write the image to the usb drive
@@ -72,6 +73,8 @@ This control node should be given a static IP address. Either a lease or statica
 
 1. Once the install is complete the system will automatically reboot
 
+1. After the system has shutdown but before it boots up, remove the usb image from the system. Doing this during the uefi boot screen is acceptable.
+
 1. Upon booting into the freshly installed system, the fabric installation will automatically begin
     1. Optionally this can be monitored with `journalctl -f -u fabric-install.service`
 
@@ -80,6 +83,11 @@ This control node should be given a static IP address. Either a lease or statica
 
 
 [Move on to the next step](#fabric-manages-switches)
+
+
+### Configure Management Network
+
+The control node is dual homed. It has a 10GbE interface that connects to the managment network. The other link called `external` in the `fab.yaml` file is for the customer to access the control node.
 
 ### Fabric Manages Switches
 
