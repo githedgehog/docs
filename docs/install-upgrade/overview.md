@@ -39,14 +39,14 @@ Hedgehog has created a command line utility, called `hhfab`, that will help gene
 
 ### HHFAB commands to make a bootable image
 1. `hhfab init --wiring wiring-lab.yaml`
-1. edit the `fab.yaml` file for your needs
-    1. ensure the correct boot disk (eg `/dev/sda`) and control node NIC names are supplied
+1. The `init` command will generate a `fab.yaml` file, edit the `fab.yaml` file for your needs
+    1. ensure the correct boot disk (e.g. `/dev/sda`) and control node NIC names are supplied
 1. `hhfab validate`
 1. `hhfab build`
 
-The installer for the fabric will be generated in `$WORKDIR/result/`. This installation image is 7.5 GB in size. It is named control-1-usb.img
+The installer for the fabric will be generated in `$WORKDIR/result/`. This installation image is 7.5 GB in size. It is named control-1-usb.img. Once the image is created, it can be written to a USB drive, or mounted via virtual media.
 
-### Burn USB image to disk
+### Write USB image to disk
 !!! warning ""
     This will erase data on the usb disk.
 
@@ -64,30 +64,28 @@ This control node should be given a static IP address. Either a lease or statica
 
 1. Configure the server to use UEFI boot **without** secure boot
 
-1. Attach the image to the server either by inserting via USB, or attaching via virtual media. 
+1. Attach the image to the server either by inserting via USB, or attaching via virtual media
 
-1. Select boot off of the attached media, after this step the process is **automated**. The remaining steps are for your knowledge
+1. Select boot off of the attached media, the installation process is **automated**
 
 1. Once the control node has booted it will auto login and begin the installation process
     1. Optionally use ` journalctl -f -u flatcar-install.service` to monitor progress
 
 1. Once the install is complete the system will automatically reboot
 
-1. After the system has shutdown but before it boots up, remove the usb image from the system. Doing this during the uefi boot screen is acceptable.
+1. After the system has shutdown but before the boot up process reaches the operating system, **remove the usb image from the system**. Removal this during the uefi boot screen is acceptable.
 
-1. Upon booting into the freshly installed system, the fabric installation will automatically begin
+1. Upon booting into the freshly installed system, the fabric installation will **automatically begin**
+    1. If the insecure `--dev` flag was passed to `hhfab init` the password for the `core` user is `HHFab.Admin!`, the switches have two users created `admin` and `op`. `admin` has administrator privileges and password `HHFab.Admin!`, the op user is a read only, non sudo user with password, `HHFab.Op!`.
     1. Optionally this can be monitored with `journalctl -f -u fabric-install.service`
 
 1. The install is complete when the log emits "Control Node installation complete"
     1. Additionally the systemctl status will show `inactive (dead)` indicating that the executable has finished
 
 
-[Move on to the next step](#fabric-manages-switches)
-
-
 ### Configure Management Network
 
-The control node is dual homed. It has a 10GbE interface that connects to the managment network. The other link called `external` in the `fab.yaml` file is for the customer to access the control node.
+The control node is dual homed. It has a 10GbE interface that connects to the managment network. The other link called `external` in the `fab.yaml` file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a dhcp and small http server. The management network shall not be accessible to machine or devices not associated with the fabric.
 
 ### Fabric Manages Switches
 
