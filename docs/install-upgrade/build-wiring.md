@@ -29,7 +29,7 @@ OPTIONS:
 ```
 
 ## Design Discussion
-This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric. This discussion starts with the primary building block of your design, a VPC.
+This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric.
 
 ### VPC
 
