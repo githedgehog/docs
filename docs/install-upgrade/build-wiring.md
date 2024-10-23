@@ -59,18 +59,14 @@ VPCs need VPC Peerings to talk to each other. VPC Peerings come in two varieties
 
 #### Local VPC Peering
 
-When the VPCs that need to communicate are both on the same switch. An example would be if your database and web front end servers are in the same rack and are able to be physically cabled to the same switch.
+When there is no dedicated border/peering switch available in the fabric we can use local VPC peering. This kind of peering tries to send traffic between the two VPC's on the switch where either of the VPC's has workloads attached. Due to limitation in the Sonic network operating system this kind of peering bandwidth is limited to the number of VPC loopbacks you have selected while initializing the fabric.
 
 #### Remote VPC Peering
 
-When the VPCs that need to communicate are on different switches. An example would be if your storage and compute servers are in opposite ends of the data center and need to be cabled to different switches.
+Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the VPC's are not present. This kind of peering allows peer traffic between different VPC's at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.
 
 
+#### VPC Loopback
 
-## Design Examples
+A VPC loopback is a physical cable with both ends plugged into the same switch, suggested but  not required to be the adjacent ports. This loopback allows two different VPCs to communicate with each other.
 
-### TODO - show the wiring diagram for a leaf-spine
-
-### TODO - show how to connect to an AWS cloud connection
-
-### TODO - show how to connect to a provider ISP like equinix``
