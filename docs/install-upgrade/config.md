@@ -7,7 +7,7 @@ The `fab.yaml` file is the configuration file for the fabric. It supplies the co
 The fabric yaml object has 4 objects:
 
 - `mode` - either `spine-leaf` or `collapsed-core`
-- `includeONIE` - defaults to true
+- `includeONIE` - defaults to `true`
 - `defaultSwitchUsers` - the admin and operator credentials for SONiC.
 - `defaultAlloyConfig` - The configuration details for telemetry of switch information
 
