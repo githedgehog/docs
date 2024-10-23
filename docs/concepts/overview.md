@@ -12,7 +12,6 @@ Hedgehog Fabric consists of the following components:
 
 * Fabricator - special tool to install and configure Fabric, or to run virtual labs
 * Control Node - one or more Kubernetes nodes in a single cluster running Fabric software:
-    * Das Boot - set of services providing switch boot and installation
     * Fabric Controller - main control plane component that manages Fabric resources
 * Fabric Kubectl plugin (Fabric CLI) - kubectl plugin to manage Fabric resources in an easy way
 * Fabric Agent - runs on every switch and manages switch configuration
@@ -67,24 +66,6 @@ Installer builder and VLAB.
     * Upgrades handling for everything starting Control Node OS
     * Installation progress, status and retries
     * Disaster recovery and backups
-
-## Das Boot
-
-Switch boot and installation.
-
-* Seeder
-    * Actual switch provisioning
-    * ONIE on a switch discovers Control Node using LLDP
-    * Loads and runs Hedgehog's multi-stage installer
-        * Network configuration and identity setup
-        * Performs device registration
-        * Hedgehog identity partition gets created on the switch
-        * Downloads SONiC installer and runs it
-        * Downloads Agent and its config and installs to the switch
-* Registration Controller
-    * Device identity and registration
-* Actual SONiC installers
-* Miscellaneous: rsyslog/ntp
 
 ## Fabric
 
