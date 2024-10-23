@@ -51,9 +51,9 @@ The installer for the fabric will be generated in `$WORKDIR/result/`. This insta
 !!! warning ""
     This will erase data on the USB disk.
 
-- Insert the usb to your machine
-- Identify the path to your USB stick, for example: `/dev/sdc`
-- Issue the command to write the image to the USB drive
+1. Insert the usb to your machine
+1. Identify the path to your USB stick, for example: `/dev/sdc`
+1. Issue the command to write the image to the USB drive
     - `sudo dd if=/path/to/control-os/img of=/dev/sdc bs=4k status=progress`
 
 There are utilities that assist this process such as [etcher](https://etcher.balena.io/).
