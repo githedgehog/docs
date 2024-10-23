@@ -44,7 +44,7 @@ Hedgehog has created a command line utility, called `hhfab`, that helps generate
 1. `hhfab validate`
 1. `hhfab build`
 
-The installer for the fabric is generated in `$WORKDIR/result/`. This installation image is named `control-1-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
+The installer for the fabric is generated in `$WORKDIR/result/`. This installation image is named `control-1-install-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
 
 ### Write USB Image to Disk
 
@@ -54,7 +54,7 @@ The installer for the fabric is generated in `$WORKDIR/result/`. This installati
 1. Insert the usb to your machine
 1. Identify the path to your USB stick, for example: `/dev/sdc`
 1. Issue the command to write the image to the USB drive
-    - `sudo dd if=/path/to/control-os/img of=/dev/sdc bs=4k status=progress`
+    - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
 
 There are utilities that assist this process such as [etcher](https://etcher.balena.io/).
 

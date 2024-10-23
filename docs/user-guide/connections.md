@@ -197,27 +197,6 @@ spec:
         port: s5248-01/Ethernet19
 ```
 
-## Management
-
-Management connections define connections to the Control Node.
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: control-1--mgmt--s5248-01-front
-  namespace: default
-spec:
-  management:
-    link: # Defines a single link between a control node and a switch
-      server:
-        ip: 172.30.20.0/31
-        port: control-1/enp2s1
-      switch:
-        ip: 172.30.20.1/31
-        port: s5248-01/Ethernet0
-```
-
 ## Connecting Fabric to the outside world
 
 Connections in this section provide connectivity to the outside world. For example, they can be connections to the
