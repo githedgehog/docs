@@ -57,7 +57,7 @@ with the following configuration:
 Each `External` should be bound to some VPC IP Namespace, otherwise prefixes overlap may happen.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: External
 metadata:
   name: default--5835
@@ -72,7 +72,7 @@ spec:
 A `Connection` of type `external` is used to identify the switch port on Border leaf that is cabled with an Edge device.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: # specified or generated
@@ -90,7 +90,7 @@ bound to a `Connection` with type `external` and they specify an optional `vlan`
 particular Edge peering.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: ExternalAttachment
 metadata:
   name: #
@@ -113,7 +113,7 @@ To allow a specific VPC to have access to Edge devices, bind the VPC to a specif
 an `External Peering` object.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: ExternalPeering
 metadata:
   name: # Name of ExternalPeering
@@ -171,7 +171,7 @@ the Border Leaf `switchBorder` that has a cable connecting it to an Edge device 
 ```
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: External
 metadata:
   name: HedgeEdge
@@ -190,7 +190,7 @@ Connection should be specified in the `wiring` diagram.
 ###
 ### switchBorder--external--HedgeEdge
 ###
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: switchBorder--external--HedgeEdge
@@ -206,7 +206,7 @@ spec:
 Specified in `wiring` diagram
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: ExternalAttachment
 metadata:
   name: switchBorder--HedgeEdge
@@ -224,7 +224,7 @@ spec:
 #### ExternalPeering
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: ExternalPeering
 metadata:
   name: vpc-1--HedgeEdge
