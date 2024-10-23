@@ -32,6 +32,7 @@ The main steps to install Fabric are:
     1. Connect management switch to Fabric control node
     1. Connect 1GbE Management port of switches to management switch
 1. Prepare supported switches
+    1. Ensure switch serial numbers and / or management interface mac addresses are recorded in wiring diagram
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
 ## Build Control Node configuration and Installer
