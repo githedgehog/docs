@@ -7,7 +7,7 @@ roles in the Wiring Diagram, together with `Connection` objects (see [Connection
 ## Switches
 
 Switches are the main building blocks of the Fabric. They are represented by `Switch` objects in the API. These objects
-consist of basic metadata like name, description, location, role, as well as port group speeds, port breakouts, ASN,
+consist of basic metadata like name, description, role, as well as port group speeds, port breakouts, ASN,
 IP addresses, and more. Additionally, a `Switch` contains a reference to a `SwitchProfile` object that defines the switch
 model and capabilities. More details can be found in the [Switch Profiles and Port Naming](./profiles.md) section.
 
@@ -22,11 +22,6 @@ spec:
   asn: 65101 # ASN of the switch
   description: leaf-1
   ip: 172.30.10.100/32 # Switch IP that will be accessible from the Control Node
-  location:
-    location: gen--default--s5248-01
-  locationSig:
-    sig: <undefined>
-    uuidSig: <undefined>
   portBreakouts: # Configures port breakouts for the switch, see the SwitchProfile for available options
     E1/55: 4x25G
   portGroupSpeeds: # Configures port group speeds for the switch, see the SwitchProfile for available options
@@ -122,20 +117,6 @@ In case of MCLAG it's required to have a special connection with type `mclag-dom
 links between switches. For more details, see [Connections](./connections.md).
 
 ## Servers
-
-Servers include both control nodes and user's workload servers.
-
-Control Node:
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Server
-metadata:
-  name: control-1
-  namespace: default
-spec:
-  type: control # Type of the server, one of control or "" (empty) for regular workload server
-```
 
 Regular workload server:
 
