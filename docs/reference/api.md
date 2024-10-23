@@ -38,8 +38,6 @@ _Appears in:_
 
 #### Agent
 
-
-
 Agent is an internal API object used by the controller to pass all relevant information to the agent running on a
 specific switch in order to fully configure it and manage its lifecycle. It is not intended to be used directly by
 users. Spec of the object isn't user-editable, it is managed by the controller. Status of the object is updated by
