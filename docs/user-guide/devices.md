@@ -12,7 +12,7 @@ IP addresses, and more. Additionally, a `Switch` contains a reference to a `Swit
 model and capabilities. More details can be found in the [Switch Profiles and Port Naming](./profiles.md) section.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Switch
 metadata:
   name: s5248-01
@@ -49,7 +49,7 @@ spec:
 The `SwitchGroup` is just a marker at that point and doesn't have any configuration options.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: SwitchGroup
 metadata:
   name: border
@@ -75,14 +75,14 @@ switches using the `redundancy` field.
 Example of switch configured for ESLAG:
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: SwitchGroup
 metadata:
   name: eslag-1
   namespace: default
 spec: {}
 ---
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Switch
 metadata:
   name: s5248-03
@@ -98,14 +98,14 @@ spec:
 And example of switch configured for MCLAG:
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: SwitchGroup
 metadata:
   name: mclag-1
   namespace: default
 spec: {}
 ---
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Switch
 metadata:
   name: s5248-01
@@ -128,7 +128,7 @@ Servers include both control nodes and user's workload servers.
 Control Node:
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Server
 metadata:
   name: control-1
@@ -140,7 +140,7 @@ spec:
 Regular workload server:
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Server
 metadata:
   name: server-1

@@ -19,7 +19,7 @@ Server connections are used to connect workload servers to switches.
 Unbundled server connections are used to connect servers to a single switch using a single port.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: server-4--unbundled--s5248-02
@@ -38,7 +38,7 @@ spec:
 Bundled server connections are used to connect servers to a single switch using multiple ports (port channel, LAG).
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: server-3--bundled--s5248-01
@@ -64,7 +64,7 @@ and a Connection with type `mclag-domain` between them. MCLAG switches should al
 `spec.VTEPIP`.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: server-1--mclag--s5248-01--s5248-02
@@ -89,7 +89,7 @@ should belong to the same redundancy group with type `eslag`, but contrary to th
 required.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: server-1--eslag--s5248-01--s5248-02
@@ -117,7 +117,7 @@ the Fabric features.
 A Fabric Connection is used between a specific pair of spine and leaf switches, representing all of the wires between them.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: s5232-01--fabric--s5248-01
@@ -146,7 +146,7 @@ configured as an MCLAG, pair which requires them to be in a single redundancy gr
 type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and `spec.VTEPIP`.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: s5248-01--mclag-domain--s5248-02
@@ -179,7 +179,7 @@ VPC-Loopback connections are required in order to implement a workaround for the
 attached to the same switch), which is caused by a hardware limitation of the currently supported switches.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: s5248-01--vpc-loopback
@@ -202,7 +202,7 @@ spec:
 Management connections define connections to the Control Node.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: control-1--mgmt--s5248-01-front
@@ -229,7 +229,7 @@ Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or
 them to specific switch ports.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: third-party-dhcp-server--static-external--s5248-04
@@ -265,7 +265,7 @@ Connection to external systems, such as edge/provider routers using BGP peering 
 communities as well as granularly controlling what gets advertised and which routes are accepted.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: s5248-03--external--5835
