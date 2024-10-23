@@ -7,9 +7,11 @@ roles in the Wiring Diagram, together with `Connection` objects (see [Connection
 ## Switches
 
 Switches are the main building blocks of the Fabric. They are represented by `Switch` objects in the API. These objects
-consist of basic metadata like name, description, role, as well as port group speeds, port breakouts, ASN,
+consist of basic metadata like name, description, role, serial, management port mac, as well as port group speeds, port breakouts, ASN,
 IP addresses, and more. Additionally, a `Switch` contains a reference to a `SwitchProfile` object that defines the switch
 model and capabilities. More details can be found in the [Switch Profiles and Port Naming](./profiles.md) section.
+
+In order for the fabric to manage a switch the profile needs to include either the `serial` or `mac` need to be defined in the YAML doc.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1beta1
@@ -18,6 +20,8 @@ metadata:
   name: s5248-01
   namespace: default
 spec:
+  boot:
+    serial: XYZPDQ1234
   profile: dell-s5248f-on # Mandatory reference to the SwitchProfile object defining the switch model and capabilities
   asn: 65101 # ASN of the switch
   description: leaf-1
