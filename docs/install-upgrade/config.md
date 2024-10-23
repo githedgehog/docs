@@ -94,6 +94,9 @@ spec:
 ```
 The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
+### NTP and DHCP
+The control node uses public ntp servers from cloudflare and google by default. The control node runs a dhcp server on the management network.
+
 ## Control Node
 The control node is the host that manages all the switches, runs k3s, and serves images. This is the YAML document configure the control node:
 ```yaml
@@ -126,7 +129,11 @@ spec:
   config:
     control:
       tlsSAN: # IPs and DNS names to access API
-        - "env-2.l.hhdev.io"
+        - "customer.site.io"
+
+      ntpServers:
+      - time.cloudflare.com
+      - time1.google.com
 
       defaultUser: # user 'core' on all control nodes
         password: "hash..." # password hash
