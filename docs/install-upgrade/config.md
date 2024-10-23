@@ -65,7 +65,8 @@ For additional options, see the `AlloyConfig` [struct in Fabric repo](https://gi
 
 ### Configure switch users
 
-It's currently only possible by using a yaml configuration file for the `hhfab init -c <config-file.yaml>` command. You can specify users to be configured on the switches in the following format:
+Configuring switch users is currently only possible by using a yaml configuration file for the `hhfab init -c <config-file.yaml>` command. You can specify users to be configured on the switches in the following format:
+
 ```yaml
 spec:
     config:
@@ -124,7 +125,7 @@ metadata:
 spec:
   config:
     control:
-      tlsSAN: # IPs and DNS names that will be used to access API
+      tlsSAN: # IPs and DNS names to access API
         - "env-2.l.hhdev.io"
 
       defaultUser: # user 'core' on all control nodes

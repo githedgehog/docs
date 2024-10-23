@@ -55,7 +55,7 @@ Fabric connections serve as connections between switches, they form the fabric o
 
 ### VPC Peering
 
-This is what is needed for VPCs to talk to each other. There are two varieties local and remote.
+VPCs need VPC Peerings to talk to each other. VPC Peerings come in two varieties: local and remote.
 
 #### Local VPC Peering
 
