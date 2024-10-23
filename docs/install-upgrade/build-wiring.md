@@ -5,7 +5,7 @@
 
 ## Overview
 
-A wiring diagram is a yaml file that is a digital representation of your network. You can find more yaml level details in the User Guide section [switch features and port naming](../user-guide/profiles.md) and the [api](../reference/api.md). It's mandatory to for all switches to reference a `SwitchProfile` in the `spec.profile` of the `Switch` object. Only port naming defined by switch profiles could be used in the wiring diagram, NOS (or any other) port names aren't supported.
+A wiring diagram is a YAML file that is a digital representation of your network. You can find more YAML level details in the User Guide section [switch features and port naming](../user-guide/profiles.md) and the [api](../reference/api.md). It's mandatory to for all switches to reference a `SwitchProfile` in the `spec.profile` of the `Switch` object. Only port naming defined by switch profiles could be used in the wiring diagram, NOS (or any other) port names aren't supported.
 
 In the meantime, to have a look at working wiring diagram for Hedgehog Fabric, run the sample generator that produces
 VLAB-compatible wiring diagrams:
@@ -33,7 +33,7 @@ This section is meant to help the reader understand how to assemble the primitiv
 
 ### VPC
 
-A VPC allows for isolation at layer 3. This is the main building block for users when creating their architecture. Hosts inside of a VPC will see each other but nothing else. The hosts inside of a VPC will likely need to connect to other VPCs or the outside world. To communicate between two VPC a *peering* will need to be created. A VPC can be a logical separation of workloads. By separating these workloads additional controls are available. The logical separation doesn't have to be the traditional database, web, and compute layers it could be development teams who need isolation, it could tenants inside of an office building, or any separation that allows for better control of the network. Once your VPCs are decided, the rest of the fabric will come together. With the VPCs decided traffic can be prioritized, security can be put into place, and the wiring can begin. The fabric allows for the VPC to exist beyond a single switch, which gives flexibility when the physical world meets the digital.
+A VPC allows for isolation at layer 3. This is the main building block for users when creating their architecture. Hosts inside of a VPC belong to the same broadcast domain and can communicate with each other. The hosts inside of a VPC will likely need to connect to other VPCs or the outside world. To communicate between two VPC a *peering* will need to be created. A VPC can be a logical separation of workloads. By separating these workloads additional controls are available. The logical separation doesn't have to be the traditional database, web, and compute layers it could be development teams who need isolation, it could tenants inside of an office building, or any separation that allows for better control of the network. Once your VPCs are decided, the rest of the fabric will come together. With the VPCs decided traffic can be prioritized, security can be put into place, and the wiring can begin. The fabric allows for the VPC to exist beyond a single switch, which gives flexibility when the physical world meets the digital.
 
 ### Connection
 
@@ -41,12 +41,12 @@ A connection represents the physical wires in your data center. They connect swi
 
 #### Server Connections
 
-A server connection will require server side configuration as the Fabric configuration abilities do not reach into the end hosts. A server connection can be one of: 
+A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (MLAG, Bundle, etc).The configuration of the actual server needs to be done by the server administrator. The server name is not validated by the fabric and is used as metadata to identify the connection. A server connection can be one of: 
 
-- *Unbundled* - a single cable going from switch to server
-- *Bundled* - two or more cables going to a single switch, the server needs to configured for this, Fabric handles the switch
-- *MCLAG* -  two cables going to two different switches, also called dual homing. The switches will need a fabric link between them
-- *ESLAG* - two to four cables going to different switches, also called multi-homing. If four links are used there will be four switches connected to a single server with four NIC ports
+- *Unbundled* - A single cable connecting switch to server.
+- *Bundled* - Two or more cables going to a single switch, a LAG or similar.
+- *MCLAG* -  Two cables going to two different switches, also called dual homing. The switches will need a fabric link between them.
+- *ESLAG* - Two to four cables going to different switches, also called multi-homing. If four links are used there will need to be four switches connected to a single server with four NIC ports.
 
 #### Fabric Connections
 
@@ -73,4 +73,4 @@ When the VPCs that need to communicate are on different switches. An example wou
 
 ### TODO - show how to connect to an AWS cloud connection
 
-### TODO - show how to connect to a provider ISP like equinix
+### TODO - show how to connect to a provider ISP like equinix``

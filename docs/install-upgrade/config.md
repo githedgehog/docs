@@ -9,7 +9,7 @@ The fabric YAML object has 4 objects:
 - `mode` - either `spine-leaf` or `collapsed-core`
 - `includeONIE` - defaults to `true`
 - `defaultSwitchUsers` - the admin and operator credentials for SONiC.
-- `defaultAlloyConfig` - The configuration details for telemetry of switch information
+- `defaultAlloyConfig` - the configuration details for telemetry of switch information
 
 ### Forward switch metrics and logs
 
@@ -95,7 +95,7 @@ spec:
 The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
 ## Control Node
-This is the YAML document configure the control node:
+The control node is the host that manages all the switches, runs k3s, and serves images. This is the YAML document configure the control node:
 ```yaml
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: ControlNode
@@ -113,7 +113,7 @@ spec:
 
 # Currently only one ControlNode is supported
 ```
-The **management** interface is for the control node to manage the fabric switches, *not* end-user management of the control node. For end user management of the control node specify the **external** interface name.
+The **management** interface is for the control node to manage the fabric switches, *not* end-user management of the control node. For end-user management of the control node specify the **external** interface name.
 
 ## Complete Example File
 ```yaml
