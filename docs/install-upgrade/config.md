@@ -32,8 +32,6 @@ spec:
         agentScrapeIntervalSeconds: 120
         unixScrapeIntervalSeconds: 120
         unixExporterEnabled: true
-        controlProxy: true # (optional) same as passing --control-proxy=true to hhfab init
-        controlProxyURL: http://172.30.1.1:31028
         lokiTargets:
           grafana_cloud: # target name, multiple targets can be configured
               basicAuth: # optional
