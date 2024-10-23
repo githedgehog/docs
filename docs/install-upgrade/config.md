@@ -1,10 +1,10 @@
 # Fabric Configuration
 ## Overview
-The `fab.yaml` file is the configuration file for the fabric. It supplies the configuration of the users, their credentials, logging, telemetry, and other non wiring related settings. The `fab.yaml` file is composed of multiple yaml documents inside of a single file. Per the yamls spec 3 hyphens (`---`) on a single line separate the end of one document from the beginning of the next. There are two yaml documents in the `fab.yaml` file. For more information about how to use `hhfab init`, run `hhfab init --help`. 
+The `fab.yaml` file is the configuration file for the fabric. It supplies the configuration of the users, their credentials, logging, telemetry, and other non wiring related settings. The `fab.yaml` file is composed of multiple YAML documents inside of a single file. Per the yamls spec 3 hyphens (`---`) on a single line separate the end of one document from the beginning of the next. There are two YAML documents in the `fab.yaml` file. For more information about how to use `hhfab init`, run `hhfab init --help`.
 
 ## Fabric 
 
-The fabric yaml object has 4 objects:
+The fabric YAML object has 4 objects:
 
 - `mode` - either `spine-leaf` or `collapsed-core`
 - `includeONIE` - defaults to `true`
@@ -21,7 +21,7 @@ access the configured targets. It could be done by passing `--control-proxy=true
 Metrics includes port speeds, counters, errors, operational status, transceivers, fans, power supplies, temperature
 sensors, BGP neighbors, LLDP neighbors, and more. Logs include agent logs.
 
-Configuring the exporters and targets is currently only possible by using a yaml configuration file for the
+Configuring the exporters and targets is currently only possible by using a YAML configuration file for the
 `hhfab init -c <config-file.yaml>` command using the following format:
 
 ```yaml
@@ -65,7 +65,7 @@ For additional options, see the `AlloyConfig` [struct in Fabric repo](https://gi
 
 ### Configure switch users
 
-Configuring switch users is currently only possible by using a yaml configuration file for the `hhfab init -c <config-file.yaml>` command. You can specify users to be configured on the switches in the following format:
+Configuring switch users is currently only possible by using a YAML configuration file for the `hhfab init -c <config-file.yaml>` command. You can specify users to be configured on the switches in the following format:
 
 ```yaml
 spec:
@@ -95,7 +95,7 @@ spec:
 The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
 ## Control Node
-This is the yaml document configure the control node:
+This is the YAML document configure the control node:
 ```yaml
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: ControlNode
