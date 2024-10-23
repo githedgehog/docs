@@ -23,7 +23,7 @@ The main steps to install Fabric are:
 
 1. Install `hhfab` on the machines with access to the Internet
     1. [Prepare Wiring Diagram](./build-wiring.md)
-    1. [Select Fabric Configuration](./config.md) // TODO - section on dhcp or ntp servers, the FAB.yaml
+    1. [Select Fabric Configuration](./config.md)
     1. [Build Control Node configuration and installer](#build-control-node-configuration-and-installer)
 1. [Install Control Node](#install-control-node)
     1. Insert USB with control-os image into Fabric Control Node
@@ -93,7 +93,7 @@ Now that the install has finished, you can start interacting with the Fabric usi
 
 At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps: 
 - enter `k9s` at the command prompt
-- use the arrow keys to select the boot pod TODO (use the specific name)
+- use the arrow keys to select the pod named `fabric-boot`
 - the logs of the pod will be displayed showing the DHCP lease process
 - use the switches screen of `k9s` to see the heartbeat column to verify the connection between switch and controller.
     - to see the switches type `:switches` (like a vim command) into `k9s`
