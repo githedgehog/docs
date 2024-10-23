@@ -35,7 +35,7 @@ The main steps to install Fabric are:
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
 ## Build Control Node configuration and Installer
-Hedgehog has created a command line utility, called `hhfab`, that will help generate the wiring diagram, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media.
+Hedgehog has created a command line utility, called `hhfab`, that helps generate the wiring diagram, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media.
 
 ### HHFAB commands to make a bootable image
 1. `hhfab init --wiring wiring-lab.yaml`
