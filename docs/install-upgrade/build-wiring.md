@@ -50,7 +50,7 @@ A server connection will require server side configuration as the Fabric configu
 
 #### Fabric Connections
 
-These serve as connection between switches, their beautiful weave comprises the fabric of the network.
+Fabric connections serve as connections between switches, they form the fabric of the network.
 
 
 ### VPC Peering
