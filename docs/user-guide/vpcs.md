@@ -6,7 +6,7 @@ A Virtual Private Cloud (VPC) is similar to a public cloud VPC. It provides an i
 each with user-defined VLANs and optional DHCP services.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPC
 metadata:
   name: vpc-1
@@ -91,7 +91,7 @@ It basically leads to the VPC being available on the specific server port(s) on 
 VPC could be attached to a switch that is part of the VLAN namespace used by the VPC.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPCAttachment
 metadata:
   name: vpc-1-server-1--mclag--s5248-01--s5248-02
@@ -114,7 +114,7 @@ VPC peering is only possible between VPCs attached to the same IPv4 namespace (s
 ### Local VPC peering
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPCPeering
 metadata:
   name: vpc-1--vpc-2
@@ -128,7 +128,7 @@ spec:
 ### Remote VPC peering
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPCPeering
 metadata:
   name: vpc-1--vpc-2
@@ -146,7 +146,7 @@ It's possible to specify which specific subnets of the peering VPCs could commun
 field.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPCPeering
 metadata:
   name: vpc-1--vpc-2
@@ -169,7 +169,7 @@ An `IPv4Namespace` defines a set of (non-overlapping) IPv4 address ranges availa
 Each VPC belongs to a specific IPv4 namespace. Therefore, its subnet prefixes must be from that IPv4 namespace.
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: IPv4Namespace
 metadata:
   name: default
@@ -185,7 +185,7 @@ A `VLANNamespace` defines a set of VLAN ranges available for attaching servers t
 disjoint VLANNamespaces.
 
 ```yaml
-apiVersion: wiring.githedgehog.com/v1alpha2
+apiVersion: wiring.githedgehog.com/v1beta1
 kind: VLANNamespace
 metadata:
   name: default

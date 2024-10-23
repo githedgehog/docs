@@ -302,7 +302,7 @@ NAME      SUBNETS           AGE
 default   ["10.0.0.0/16"]   24m
 
 core@control-1 ~ $ cat <<EOF > ipns-2.yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: IPv4Namespace
 metadata:
   name: ipns-2
@@ -327,7 +327,7 @@ Now we can create `vpc-3` with the same subnet as `vpc-1` (but in the different 
 
 ```console
 core@control-1 ~ $ cat <<EOF > vpc-3.yaml
-apiVersion: vpc.githedgehog.com/v1alpha2
+apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPC
 metadata:
   name: vpc-3
