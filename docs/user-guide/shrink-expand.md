@@ -3,7 +3,7 @@
 This section provides a brief overview of how to add or remove switches within the fabric using Hedgehog Fabric API, and
 how to manage connections between them.
 
-Manipulating API objects is done with the assumption that target devices are correctly cabeled and connected.
+Manipulating API objects is done with the assumption that target devices are correctly cabled and connected.
 
 This article uses terms that can be found in the [Hedgehog Concepts](../concepts/overview.md), the [User
 Guide](overview.md) documentation, and the [Fabric API](../reference/api.md) reference.
@@ -11,7 +11,7 @@ Guide](overview.md) documentation, and the [Fabric API](../reference/api.md) ref
 ### Add a switch to the existing fabric
 
 In order to be added to the Hedgehog Fabric, a switch should have a corresponding `Switch` object. An example on how to define
-this object is available in the [User Guilde](devices.md).
+this object is available in the [User Guild](devices.md).
 
 !!! note
     If the`Switch` will be used in `ESLAG` or `MCLAG` groups, appropriate groups should exist. Redundancy groups should
@@ -22,12 +22,10 @@ connections may differ based on the `Switch` role given to the device. For more 
 section](connections.md).
 
 !!! note
-    If the switch is facing a Control Node Connection on the front-panel port, the switch port should be described in a
-    `Management` connection.
-
-!!! note
-    Switch devices should be booted in `ONIE` or `HONIE` installation mode to install SONiC OS and configure the Fabric
+    Switch devices should be booted in `ONIE` installation mode to install SONiC OS and configure the Fabric
     Agent.
+
+Ensure the management port of the switch is connected to fabric management network.
 
 ### Remove a switch from the existing fabric
 

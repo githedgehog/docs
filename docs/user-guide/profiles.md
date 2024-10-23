@@ -81,6 +81,3 @@ the example above. Omitting the breakout number is allowed for the first breakou
 `E1/55/1`. The breakout ports are always consecutive numbers independent of the lanes allocation and other
 implementation details.
 
-### Management ports
-
-Not configurable, no port profile, only used for connecting the switch to the control node.

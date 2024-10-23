@@ -282,11 +282,6 @@ For connections, use:
 ```console
 core@control-1 ~ $ kubectl get connection
 NAME                                 TYPE           AGE
-control-1--mgmt--leaf-01             management     6h11m
-control-1--mgmt--leaf-02             management     6h11m
-control-1--mgmt--leaf-03             management     6h11m
-control-1--mgmt--spine-01            management     6h11m
-control-1--mgmt--spine-02            management     6h11m
 leaf-01--mclag-domain--leaf-02       mclag-domain   6h11m
 leaf-01--vpc-loopback                vpc-loopback   6h11m
 leaf-02--vpc-loopback                vpc-loopback   6h11m

@@ -1870,7 +1870,6 @@ _Appears in:_
 | `label` _string_ | Label defines the physical port label you can see on the actual switch |  |  |
 | `group` _string_ | If port isn't directly manageable, group defines the group it belongs to, exclusive with profile |  |  |
 | `profile` _string_ | If port is directly configurable, profile defines the profile it belongs to, exclusive with group |  |  |
-| `management` _boolean_ | Management defines if port is a management port, it's a special case and it can't have a group or profile |  |  |
 | `oniePortName` _string_ | OniePortName defines the ONIE port name for management ports only |  |  |
 
 
