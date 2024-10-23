@@ -44,7 +44,7 @@ Hedgehog has created a command line utility, called `hhfab`, that helps generate
 1. `hhfab validate`
 1. `hhfab build`
 
-The installer for the fabric will be generated in `$WORKDIR/result/`. This installation image is 7.5 GB in size. It is named control-1-usb.img. Once the image is created, it can be written to a USB drive, or mounted via virtual media.
+The installer for the fabric is generated in `$WORKDIR/result/`. This installation image is named `control-1-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
 
 ### Write USB Image to Disk
 
