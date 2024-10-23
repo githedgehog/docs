@@ -29,8 +29,8 @@ The main steps to install Fabric are:
     1. Insert USB with control-os image into Fabric Control Node
     1. Boot the node off the USB to initiate the installation
 1. Prepare Management Network
-    1. Connect switch to Fabric control node
-    1. Connect 1GbE Management ports of switches to control switch
+    1. Connect management switch to Fabric control node
+    1. Connect 1GbE Management port of switches to management switch
 1. Prepare supported switches
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
