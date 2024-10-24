@@ -5,53 +5,59 @@ before running VLAB.
 
 ## Initialize VLAB
 
-First, initialize Fabricator for the VLAB by running `hhfab init --preset vlab` (or `-p vlab`). This command supports
-several customization options that are listed in the output of `hhfab init --help`. To tune the topology used for the
-VLAB, you can use the `--fabric-mode` (or `-m`) flag to choose between `spine-leaf` (default) and `collapsed-core`
-topologies. You can also configure the number of spines, leafs, connections, and so on. For example, flags
-`--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively.
-
-By default, the command creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each
-spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC
-Loopback workaround.
+First, initialize Fabricator  by running `hhfab init --dev`. This command supports several customization options that are listed in the output of `hhfab init --help`. 
 
 ```console
-ubuntu@docs:~$ hhfab init -p vlab
-01:17:44 INF Generating wiring from gen flags
-01:17:44 INF Building wiring diagram fabricMode=spine-leaf chainControlLink=false controlLinksCount=0
-01:17:44 INF                     >>> spinesCount=2 fabricLinksCount=2
-01:17:44 INF                     >>> mclagLeafsCount=2 orphanLeafsCount=1
-01:17:44 INF                     >>> mclagSessionLinks=2 mclagPeerLinks=2
-01:17:44 INF                     >>> vpcLoopbacks=2
-01:17:44 WRN Wiring is not hydrated, hydrating reason="error validating wiring: ASN not set for switch leaf-01"
-01:17:44 INF Initialized preset=vlab fabricMode=spine-leaf config=.hhfab/config.yaml wiring=.hhfab/wiring.yaml
+ubuntu@docs:~$ hhfab init --dev
+11:26:52 INF Hedgehog Fabricator version=v0.30.0                                                                                                                                                                       
+11:26:52 INF Generated initial config                                                                                                                                                                                  
+11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml                                                                                                                                    
+11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include 
+```
+## VLAB Topology
+
+By default, the command creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`. 
+
+```console
+ubuntu@docs:~$ hhfab vlab gen
+21:27:16 INF Hedgehog Fabricator version=v0.30.0                                                                                                                                                                       
+21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf                                                                                                                                                        
+21:27:16 INF >>> spinesCount=2 fabricLinksCount=2                                                                                                                                                                      
+21:27:16 INF >>> eslagLeafGroups=2                                                                                                                                                                                     
+21:27:16 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2                                                                                                                                                
+21:27:16 INF >>> orphanLeafsCount=1 vpcLoopbacks=2                                                                                                                                                                     
+21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1                                                                                                                                     
+21:27:16 INF Generated wiring file name=vlab.generated.yaml 
 ```
 
+### Collapsed Core
+If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`.
 Or if you want to run Collapsed Core topology with 2 MCLAG switches:
 
 ```console
-ubuntu@docs:~$ hhfab init -p vlab -m collapsed-core
-01:20:07 INF Generating wiring from gen flags
-01:20:07 INF Building wiring diagram fabricMode=collapsed-core chainControlLink=false controlLinksCount=0
-01:20:07 INF                     >>> mclagLeafsCount=2 orphanLeafsCount=0
-01:20:07 INF                     >>> mclagSessionLinks=2 mclagPeerLinks=2
-01:20:07 INF                     >>> vpcLoopbacks=2
-01:20:07 WRN Wiring is not hydrated, hydrating reason="error validating wiring: ASN not set for switch leaf-01"
-01:20:07 INF Initialized preset=vlab fabricMode=collapsed-core config=.hhfab/config.yaml wiring=.hhfab/wiring.yaml
+ubuntu@docs:~$ hhfab vlab gen
+11:39:02 INF Hedgehog Fabricator version=v0.30.0
+11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core
+11:39:02 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
+11:39:02 INF >>> orphanLeafsCount=0 vpcLoopbacks=2
+11:39:02 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+11:39:02 INF Generated wiring file name=vlab.generated.yaml
+
 ```
 
+### Custom Spine Leaf
 Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:
 
 ```console
-ubuntu@docs:~$ hhfab init -p vlab --mclag-leafs-count 4 --orphan-leafs-count 2
-01:21:53 INF Generating wiring from gen flags
-01:21:53 INF Building wiring diagram fabricMode=spine-leaf chainControlLink=false controlLinksCount=0
-01:21:53 INF                     >>> spinesCount=2 fabricLinksCount=2
-01:21:53 INF                     >>> mclagLeafsCount=4 orphanLeafsCount=2
-01:21:53 INF                     >>> mclagSessionLinks=2 mclagPeerLinks=2
-01:21:53 INF                     >>> vpcLoopbacks=2
-01:21:53 WRN Wiring is not hydrated, hydrating reason="error validating wiring: ASN not set for switch leaf-01"
-01:21:53 INF Initialized preset=vlab fabricMode=spine-leaf config=.hhfab/config.yaml wiring=.hhfab/wiring.yaml
+ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2
+11:41:06 INF Hedgehog Fabricator version=v0.30.0
+11:41:06 INF Building VLAB wiring diagram fabricMode=spine-leaf
+11:41:06 INF >>> spinesCount=2 fabricLinksCount=2
+11:41:06 INF >>> eslagLeafGroups=""
+11:41:06 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
+11:41:06 INF >>> orphanLeafsCount=2 vpcLoopbacks=2
+11:41:06 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+11:41:06 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 Additionally, you can pass extra Fabric configuration items using flags on `init` command or by passing a configuration
@@ -61,112 +67,57 @@ Once you have initialized the VLAB, download the artifacts and build the install
 automatically downloads all required artifacts from the OCI registry and builds the installer and all other
 prerequisites for running the VLAB.
 
-## Build the installer and VLAB
+## Build the Installer and Start VLAB
 
-```console
-ubuntu@docs:~$ hhfab build
-01:23:33 INF Building component=base
-01:23:33 WRN Attention! Development mode enabled - this is not secure! Default users and keys will be created.
-...
-01:23:33 INF Building component=control-os
-01:23:33 INF Building component=k3s
-01:23:33 INF Downloading name=m.l.hhdev.io:31000/githedgehog/k3s:v1.27.4-k3s1 to=.hhfab/control-install
-Copying k3s-airgap-images-amd64.tar.gz  187.36 MiB / 187.36 MiB   ⠙   0.00 b/s done
-Copying k3s                               56.50 MiB / 56.50 MiB   ⠙   0.00 b/s done
-01:23:35 INF Building component=zot
-01:23:35 INF Downloading name=m.l.hhdev.io:31000/githedgehog/zot:v1.4.3 to=.hhfab/control-install
-Copying zot-airgap-images-amd64.tar.gz  19.24 MiB / 19.24 MiB   ⠸   0.00 b/s done
-01:23:35 INF Building component=misc
-01:23:35 INF Downloading name=m.l.hhdev.io:31000/githedgehog/fabricator/k9s:v0.27.4 to=.hhfab/control-install
-Copying k9s  57.75 MiB / 57.75 MiB   ⠼   0.00 b/s done
-...
-01:25:40 INF Planned bundle=control-install name=fabric-api-chart op="push fabric/charts/fabric-api:v0.23.0"
-01:25:40 INF Planned bundle=control-install name=fabric-image op="push fabric/fabric:v0.23.0"
-01:25:40 INF Planned bundle=control-install name=fabric-chart op="push fabric/charts/fabric:v0.23.0"
-01:25:40 INF Planned bundle=control-install name=fabric-agent-seeder op="push fabric/agent/x86_64:latest"
-01:25:40 INF Planned bundle=control-install name=fabric-agent op="push fabric/agent:v0.23.0"
-...
-01:25:40 INF Recipe created bundle=control-install actions=67
-01:25:40 INF Creating recipe bundle=server-install
-01:25:40 INF Planned bundle=server-install name=toolbox op="file /opt/hedgehog/toolbox.tar"
-01:25:40 INF Planned bundle=server-install name=toolbox-load op="exec ctr"
-01:25:40 INF Planned bundle=server-install name=hhnet op="file /opt/bin/hhnet"
-01:25:40 INF Recipe created bundle=server-install actions=3
-01:25:40 INF Building done took=2m6.813384532s
-01:25:40 INF Packing bundle=control-install target=control-install.tgz
-01:25:45 INF Packing bundle=server-install target=server-install.tgz
-01:25:45 INF Packing done took=5.67007384s
-```
-
-As soon as the build has completed, you can run the VLAB using `hhfab vlab up`. This command automatically starts all
-VMs and runs the installers on the control node and test servers. It takes some time for all VMs to come up and for the
-installer to finish. You can monitor progress in the output. If you stop the command, it will stop all VMs, and you can
-re-run it to get VMs back up and running.
-
-## Run VMs and installers
-
+In VLAB the build and run step are combined into one command for simplicity, `hhfab vlab up`. For successive runs use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. This command does not return, it runs as long as the VLAB is up. This is done so that shutdown is a simple `ctrl + c`.
 ```console
 ubuntu@docs:~$ hhfab vlab up
-01:29:13 INF Starting VLAB server... basedir=.hhfab/vlab-vms vm-size="" dry-run=false
-01:29:13 INF VM id=0 name=control-1 type=control
-01:29:13 INF VM id=1 name=server-01 type=server
-01:29:13 INF VM id=2 name=server-02 type=server
-01:29:13 INF VM id=3 name=server-03 type=server
-01:29:13 INF VM id=4 name=server-04 type=server
-01:29:13 INF VM id=5 name=server-05 type=server
-01:29:13 INF VM id=6 name=server-06 type=server
-01:29:13 INF VM id=7 name=leaf-01 type=switch-vs
-01:29:13 INF VM id=8 name=leaf-02 type=switch-vs
-01:29:13 INF VM id=9 name=leaf-03 type=switch-vs
-01:29:13 INF VM id=10 name=spine-01 type=switch-vs
-01:29:13 INF VM id=11 name=spine-02 type=switch-vs
-01:29:13 INF Total VM resources cpu="38 vCPUs" ram="36352 MB" disk="410 GB"
-...
-01:29:13 INF Preparing VM id=0 name=control-1 type=control
-01:29:13 INF Copying files  from=.hhfab/control-os/ignition.json to=.hhfab/vlab-vms/control-1/ignition.json
-01:29:13 INF Copying files  from=.hhfab/vlab-files/flatcar.img to=.hhfab/vlab-vms/control-1/os.img
- 947.56 MiB / 947.56 MiB [==========================================================] 5.13 GiB/s done
-01:29:14 INF Copying files  from=.hhfab/vlab-files/flatcar_efi_code.fd to=.hhfab/vlab-vms/control-1/efi_code.fd
-01:29:14 INF Copying files  from=.hhfab/vlab-files/flatcar_efi_vars.fd to=.hhfab/vlab-vms/control-1/efi_vars.fd
-01:29:14 INF Resizing VM image (may require sudo password) name=control-1
-01:29:17 INF Initializing TPM name=control-1
-...
-01:29:46 INF Installing VM name=control-1 type=control
-01:29:46 INF Installing VM name=server-01 type=server
-01:29:46 INF Installing VM name=server-02 type=server
-01:29:46 INF Installing VM name=server-03 type=server
-01:29:47 INF Installing VM name=server-04 type=server
-01:29:47 INF Installing VM name=server-05 type=server
-01:29:47 INF Installing VM name=server-06 type=server
-01:29:49 INF Running VM id=0 name=control-1 type=control
-01:29:49 INF Running VM id=1 name=server-01 type=server
-01:29:49 INF Running VM id=2 name=server-02 type=server
-01:29:49 INF Running VM id=3 name=server-03 type=server
-01:29:50 INF Running VM id=4 name=server-04 type=server
-01:29:50 INF Running VM id=5 name=server-05 type=server
-01:29:50 INF Running VM id=6 name=server-06 type=server
-01:29:50 INF Running VM id=7 name=leaf-01 type=switch-vs
-01:29:50 INF Running VM id=8 name=leaf-02 type=switch-vs
-01:29:51 INF Running VM id=9 name=leaf-03 type=switch-vs
-01:29:51 INF Running VM id=10 name=spine-01 type=switch-vs
-01:29:51 INF Running VM id=11 name=spine-02 type=switch-vs
-...
-01:30:41 INF VM installed name=server-06 type=server installer=server-install
-01:30:41 INF VM installed name=server-01 type=server installer=server-install
-01:30:41 INF VM installed name=server-02 type=server installer=server-install
-01:30:41 INF VM installed name=server-04 type=server installer=server-install
-01:30:41 INF VM installed name=server-03 type=server installer=server-install
-01:30:41 INF VM installed name=server-05 type=server installer=server-install
-...
-01:31:04 INF Running installer on VM name=control-1 type=control installer=control-install
-...
-01:35:15 INF Done took=3m39.586394608s
-01:35:15 INF VM installed name=control-1 type=control installer=control-install
-```
+11:48:22 INF Hedgehog Fabricator version=v0.30.0
+11:48:22 INF Wiring hydrated successfully mode=if-not-present
+11:48:22 INF VLAB config created file=vlab/config.yaml
+11:48:22 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog
+11:48:22 INF Building installer control=control-1
+11:48:22 INF Adding recipe bin to installer control=control-1
+11:48:24 INF Adding k3s and tools to installer control=control-1
+11:48:25 INF Adding zot to installer control=control-1
+11:48:25 INF Adding cert-manager to installer control=control-1
+11:48:26 INF Adding config and included wiring to installer control=control-1
+11:48:26 INF Adding airgap artifacts to installer control=control-1
+11:48:36 INF Archiving installer path=/home/ubuntu/result/control-1-install.tgz control=control-1
+11:48:45 INF Creating ignition path=/home/ubuntu/result/control-1-install.ign control=control-1
+11:48:46 INF Taps and bridge are ready count=8
+11:48:46 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog
+11:48:46 INF Preparing new vm=control-1 type=control
+11:48:51 INF Preparing new vm=server-01 type=server
+11:48:52 INF Preparing new vm=server-02 type=server
+11:48:54 INF Preparing new vm=server-03 type=server
+11:48:55 INF Preparing new vm=server-04 type=server
+11:48:57 INF Preparing new vm=server-05 type=server
+11:48:58 INF Preparing new vm=server-06 type=server
+11:49:00 INF Preparing new vm=server-07 type=server
+11:49:01 INF Preparing new vm=server-08 type=server
+11:49:03 INF Preparing new vm=server-09 type=server
+11:49:04 INF Preparing new vm=server-10 type=server
+11:49:05 INF Preparing new vm=leaf-01 type=switch
+11:49:06 INF Preparing new vm=leaf-02 type=switch
+11:49:06 INF Preparing new vm=leaf-03 type=switch
+11:49:06 INF Preparing new vm=leaf-04 type=switch
+11:49:06 INF Preparing new vm=leaf-05 type=switch
+11:49:06 INF Preparing new vm=spine-01 type=switch
+11:49:06 INF Preparing new vm=spine-02 type=switch
+11:49:06 INF Starting VMs count=18 cpu="54 vCPUs" ram="49664 MB" disk="550 GB"
+11:49:59 INF Uploading control install vm=control-1 type=control                                                                                                                                                       
+11:53:39 INF Running control install vm=control-1 type=control                                                                                                                                                         
+11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.30.0 vm=control-1                                                                                                                     
+11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1                                                                                                                              
+12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1                                                                                                                             
+12:00:32 INF Control node is ready vm=control-1 type=control                                                                                                                                                           
+12:00:32 INF All VMs are ready  
 
-Line `VM installed name=control-1` from the installer's output means that the installer has finished. After this line
+```
+When the message `INF Control node is ready vm=control-1 type=control` from the installer's output means that the installer has finished. After this line
 has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
-provisioned.
+provisioned. See [Accessing the Vlab](#accessing-the-vlab).
 
 ## Configuring VLAB VMs
 
@@ -175,10 +126,6 @@ enable connectivity using `hhfab vlab up --restrict-servers=false` to allow the 
 the host. When you enable connectivity, VMs get a default route pointing to the host, which means that in case of the
 VPC peering you need to configure test server VMs to use the VPC attachment as a default route (or just some specific
 subnets).
-
-Additionally, you can configure the size of all VMs using `hhfab vlab up --vm-size <size>`. The flag allows you to
-choose from one of the presets (compact, default, full and huge) to get the control, switch, and server VMs of different
-sizes.
 
 ## Default credentials
 
@@ -314,7 +261,7 @@ default   6h12m
 
 ## Reset VLAB
 
-To reset VLAB and start over just remove the `.hhfab` directory and run `hhfab init` again.
+To reset VLAB and start over directory and run `hhfab init -f` which will force overwrite your existing configuration, `fab.yaml`.
 
 ## Next steps
 
