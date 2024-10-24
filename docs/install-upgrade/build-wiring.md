@@ -28,6 +28,29 @@ OPTIONS:
    --help, -h  show help
 ```
 
+### Sample Switch Configuration
+```yaml
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: ds3000-02
+spec:
+  boot:
+    serial: ABC123XYZ
+  role: server-leaf
+  description: leaf-2
+  profile: celestica-ds3000
+  portBreakouts:
+    E1/1: 4x10G
+    E1/2: 4x10G
+    E1/17: 4x25G
+    E1/18: 4x25G
+    E1/32: 4x25G
+  redundancy:
+    group: mclag-1
+    type: mclag
+```
+
 ## Design Discussion
 This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric.
 

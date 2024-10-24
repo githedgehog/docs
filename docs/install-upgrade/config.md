@@ -1,8 +1,27 @@
 # Fabric Configuration
 ## Overview
-The `fab.yaml` file is the configuration file for the fabric. It supplies the configuration of the users, their credentials, logging, telemetry, and other non wiring related settings. The `fab.yaml` file is composed of multiple YAML documents inside of a single file. Per the yamls spec 3 hyphens (`---`) on a single line separate the end of one document from the beginning of the next. There are two YAML documents in the `fab.yaml` file. For more information about how to use `hhfab init`, run `hhfab init --help`.
+The `fab.yaml` file is the configuration file for the fabric. It supplies the configuration of the users, their credentials, logging, telemetry, and other non wiring related settings. The `fab.yaml` file is composed of multiple YAML documents inside of a single file. Per the YAML spec 3 hyphens (`---`) on a single line separate the end of one document from the beginning of the next. There are two YAML documents in the `fab.yaml` file. For more information about how to use `hhfab init`, run `hhfab init --help`.
 
-## Fabric 
+
+## Typical HHFAB workflows
+
+### HHFAB for VLAB
+For a VLAB user, the typical workflow with hhfab is:
+1. `hhfab init --dev`
+1. `hhfab vlab gen`
+1. `hhfab vlab up --kill-stale`
+
+The above workflow will get a user up and running with a spine-leaf VLAB. The `--kill-stale` option is supplied as its harmless on the first run and stops a lot of problems from happening with an successive run.
+
+### HHFAB for Physical Machines
+
+1. `hhfab init -c fab.yaml -w wiring-file.yaml -w extra-wiring-file.yaml`
+1. `hhfab validate`
+1. `hhfab build`
+
+After the above workflow a user will have a .img file suitable for installing the control node, then bringing up the switches which comprise the fabric.
+
+## Fab.yaml
 
 The fabric YAML object has 4 objects:
 
@@ -21,8 +40,7 @@ access the configured targets. It could be done by passing `--control-proxy=true
 Metrics includes port speeds, counters, errors, operational status, transceivers, fans, power supplies, temperature
 sensors, BGP neighbors, LLDP neighbors, and more. Logs include agent logs.
 
-Configuring the exporters and targets is currently only possible by using a YAML configuration file for the
-`hhfab init -c <config-file.yaml>` command using the following format:
+Configuring the exporters and targets is currently only possible by editing the `fab.yaml` configuration file. An example configuration is provided below:
 
 ```yaml
 spec:
@@ -63,7 +81,7 @@ For additional options, see the `AlloyConfig` [struct in Fabric repo](https://gi
 
 ### Configure switch users
 
-Configuring switch users is currently only possible by using a YAML configuration file for the `hhfab init -c <config-file.yaml>` command. You can specify users to be configured on the switches in the following format:
+Configuring switch users is done either passing `--default-password-hash` to `hhfab init` or editing the resulting `fab.yaml` file emitted by `hhfab init`. You can specify users to be configured on the switches in the following format:
 
 ```yaml
 spec:
@@ -93,7 +111,7 @@ spec:
 The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
 ### NTP and DHCP
-The control node uses public ntp servers from cloudflare and google by default. The control node runs a dhcp server on the management network.
+The control node uses public ntp servers from cloudflare and google by default. The control node runs a dhcp server on the management network. See the [example file](#complete-example-file).
 
 ## Control Node
 The control node is the host that manages all the switches, runs k3s, and serves images. This is the YAML document configure the control node:
