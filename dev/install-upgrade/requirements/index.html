@@ -584,6 +584,20 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#control-node" class="md-nav__link">
+    Control Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-band-management-network" class="md-nav__link">
+    Out of Band Management Network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
     Non-HA (minimal) setup - 1 Control Node
   </a>
@@ -644,26 +658,6 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Fabric Configuration
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update (prepare switch)
   </span>
   
 
@@ -1245,6 +1239,20 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#control-node" class="md-nav__link">
+    Control Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-band-management-network" class="md-nav__link">
+    Out of Band Management Network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
     Non-HA (minimal) setup - 1 Control Node
   </a>
@@ -1289,13 +1297,17 @@ You're not viewing the latest version.
 
 
 <h1 id="system-requirements">System Requirements</h1>
+<h2 id="control-node">Control Node</h2>
 <ul>
 <li>Fast SSDs for system/root as well as Kubernetes and container runtime folders are required for stable work</li>
 <li>SSDs are mandatory for Control Nodes</li>
+<li>10 GbE port for connection to management network</li>
 <li>Minimal (non-HA) setup is a single Control Node</li>
 <li>(Future) Full (HA) setup is at least 3 Control Nodes</li>
 <li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more</li>
 </ul>
+<h2 id="out-of-band-management-network">Out of Band Management Network</h2>
+<p>In order to provision and manage the switches that comprise the fabric, an out of band switch must also be installed. This network is to be used exclusively by the control node and the fabric switches, no other access is permitted. This switch is not manged by the fabric. It is recommended that this switch have at least a 10GbE port and that port connect to the control node.</p>
 <h2 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h2>
 <ul>
 <li>Control Node runs non-HA Kubernetes Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it</li>
@@ -1396,7 +1408,7 @@ You're not viewing the latest version.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2024</span>
       
         <br>
         Created:

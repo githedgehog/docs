@@ -404,13 +404,6 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#das-boot" class="md-nav__link">
-    Das Boot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fabric" class="md-nav__link">
     Fabric
   </a>
@@ -678,26 +671,6 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Fabric Configuration
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update (prepare switch)
   </span>
   
 
@@ -1320,13 +1293,6 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#das-boot" class="md-nav__link">
-    Das Boot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fabric" class="md-nav__link">
     Fabric
   </a>
@@ -1365,7 +1331,6 @@ manage Fabric resources.</p>
 <ul>
 <li>Fabricator - special tool to install and configure Fabric, or to run virtual labs</li>
 <li>Control Node - one or more Kubernetes nodes in a single cluster running Fabric software:<ul>
-<li>Das Boot - set of services providing switch boot and installation</li>
 <li>Fabric Controller - main control plane component that manages Fabric resources</li>
 </ul>
 </li>
@@ -1431,29 +1396,6 @@ systems.</p>
 </ul>
 </li>
 </ul>
-<h2 id="das-boot">Das Boot</h2>
-<p>Switch boot and installation.</p>
-<ul>
-<li>Seeder<ul>
-<li>Actual switch provisioning</li>
-<li>ONIE on a switch discovers Control Node using LLDP</li>
-<li>Loads and runs Hedgehog's multi-stage installer<ul>
-<li>Network configuration and identity setup</li>
-<li>Performs device registration</li>
-<li>Hedgehog identity partition gets created on the switch</li>
-<li>Downloads SONiC installer and runs it</li>
-<li>Downloads Agent and its config and installs to the switch</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Registration Controller<ul>
-<li>Device identity and registration</li>
-</ul>
-</li>
-<li>Actual SONiC installers</li>
-<li>Miscellaneous: rsyslog/ntp</li>
-</ul>
 <h2 id="fabric">Fabric</h2>
 <p>Control plane and switch agent.</p>
 <ul>
@@ -1476,7 +1418,7 @@ systems.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2024</span>
       
         <br>
         Created:

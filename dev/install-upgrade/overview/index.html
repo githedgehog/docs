@@ -551,16 +551,36 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#main-steps" class="md-nav__link">
-    Main steps
+  <a href="#overview-of-install-process" class="md-nav__link">
+    Overview of Install Process
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
-    Build Control Node configuration and installer
+    Build Control Node configuration and Installer
   </a>
+  
+    <nav class="md-nav" aria-label="Build Control Node configuration and Installer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hhfab-commands-to-make-a-bootable-image" class="md-nav__link">
+    HHFAB commands to make a bootable image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-usb-image-to-disk" class="md-nav__link">
+    Write USB Image to Disk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -573,22 +593,15 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#connected-instructions" class="md-nav__link">
-    Connected Instructions
+  <a href="#configure-management-network" class="md-nav__link">
+    Configure Management Network
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#air-gapped-instructions" class="md-nav__link">
-    Air Gapped Instructions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-hedgehog-controller" class="md-nav__link">
-    Install HedgeHog Controller
+  <a href="#fabric-manages-switches" class="md-nav__link">
+    Fabric Manages Switches
   </a>
   
 </li>
@@ -678,26 +691,6 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Fabric Configuration
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update (prepare switch)
   </span>
   
 
@@ -1286,16 +1279,36 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#main-steps" class="md-nav__link">
-    Main steps
+  <a href="#overview-of-install-process" class="md-nav__link">
+    Overview of Install Process
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
-    Build Control Node configuration and installer
+    Build Control Node configuration and Installer
   </a>
+  
+    <nav class="md-nav" aria-label="Build Control Node configuration and Installer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hhfab-commands-to-make-a-bootable-image" class="md-nav__link">
+    HHFAB commands to make a bootable image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-usb-image-to-disk" class="md-nav__link">
+    Write USB Image to Disk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1308,22 +1321,15 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#connected-instructions" class="md-nav__link">
-    Connected Instructions
+  <a href="#configure-management-network" class="md-nav__link">
+    Configure Management Network
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#air-gapped-instructions" class="md-nav__link">
-    Air Gapped Instructions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-hedgehog-controller" class="md-nav__link">
-    Install HedgeHog Controller
+  <a href="#fabric-manages-switches" class="md-nav__link">
+    Fabric Manages Switches
   </a>
   
 </li>
@@ -1362,16 +1368,17 @@ You're not viewing the latest version.
 </div>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li>Have a machine with access to the Internet to use Fabricator and build installer</li>
-<li>Have a machine to install Fabric Control Node on with enough NICs to connect to at least one switch using Front Panel
-  ports and enough CPU and RAM (see <a href="../requirements/">System Requirements</a>) as well as IPMI access to it to install
-  the OS</li>
-<li>Have enough <a href="../supported-devices/">Supported Switches</a> for your Fabric</li>
+<li>A machine with access to the Internet to use Fabricator and build installer</li>
+<li>An 8 GB USB flash drive, if you are not using virtual media</li>
+<li>Have a machine to function as the Fabric Control Node. <a href="../requirements/">System Requirements</a> as well as IPMI access to it to install
+  the OS.</li>
+<li>A management switch with at least 1 10GbE port</li>
+<li>Enough <a href="../supported-devices/">Supported Switches</a> for your Fabric</li>
 </ul>
-<h2 id="main-steps">Main steps</h2>
-<p>This chapter is dedicated to the Hedgehog Fabric installation on bare-metal control node(s) and switches, their
-preparation and configuration.</p>
-<p>Get <code>hhfab</code> installed following instructions from the <a href="../../getting-started/download/">Download</a> section.</p>
+<h2 id="overview-of-install-process">Overview of Install Process</h2>
+<p>This section is dedicated to the Hedgehog Fabric installation on bare-metal control node(s) and switches, their
+preparation and configuration. To install the vlab see <a href="../../vlab/overview/">Vlab Overview</a>.</p>
+<p>Download and install <code>hhfab</code> following instructions from the <a href="../../getting-started/download/">Download</a> section.</p>
 <p>The main steps to install Fabric are:</p>
 <ol>
 <li>Install <code>hhfab</code> on the machines with access to the Internet<ol>
@@ -1381,131 +1388,99 @@ preparation and configuration.</p>
 </ol>
 </li>
 <li><a href="#install-control-node">Install Control Node</a><ol>
-<li>Install Flatcar Linux on the Control Node</li>
-<li>Upload and run Control Node installer on the Control Node</li>
+<li>Insert USB with control-os image into Fabric Control Node</li>
+<li>Boot the node off the USB to initiate the installation</li>
+</ol>
+</li>
+<li>Prepare Management Network<ol>
+<li>Connect management switch to Fabric control node</li>
+<li>Connect 1GbE Management port of switches to management switch</li>
 </ol>
 </li>
 <li>Prepare supported switches<ol>
-<li><a href="../onie-update/">Install Hedgehog ONIE (HONIE) on them</a></li>
-<li>Reboot them into ONIE Install Mode to have them automatically provisioned</li>
+<li>Ensure switch serial numbers and / or management interface mac addresses are recorded in wiring diagram</li>
+<li>Boot them into ONIE Install Mode to have them automatically provisioned</li>
 </ol>
 </li>
 </ol>
-<h2 id="build-control-node-configuration-and-installer">Build Control Node configuration and installer</h2>
-<p>It's the only step that requires Internet access, to download artifacts and build the installer.</p>
-<p>Once you've prepared the Wiring Diagram, initialize Fabricator by running <code>hhfab init</code> command and passing optional
-configuration into it as well as wiring diagram file(s) as flags. Additionally, there are a lot of customizations
-available as flags, e.g. to setup default credentials, keys and etc. For more details on the command invocation,
-refer to <code>hhfab init --help</code>.</p>
-<p>The <code>--dev</code> option activates the development mode which enables default credentials and keys for the Control
-Node and switches:</p>
-<ul>
-<li>Default user with passwordless sudo for the Control Node and test servers is <code>core</code> with password <code>HHFab.Admin!</code>.</li>
-<li>Admin user with full access and passwordless sudo for the switches is <code>admin</code> with password <code>HHFab.Admin!</code>.</li>
-<li>Read-only, non-sudo user with access only to the switch CLI for the switches is <code>op</code> with password <code>HHFab.Op!</code>.</li>
+<h2 id="build-control-node-configuration-and-installer">Build Control Node configuration and Installer</h2>
+<p>Hedgehog has created a command line utility, called <code>hhfab</code>, that helps generate the wiring diagram and fabric configuration, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media. The first <code>hhfab</code> command to run is <code>hhfab init</code>. This will generate the main configuration file, <code>fab.yaml</code>. <code>fab.yaml</code> is responsible for almost every configuration of the fabric with the exception of the wiring. Each command and subcommand have usage messages, simply supply the <code>-h</code> flag to your command or sub command to see the available options. For example <code>hhfab vlab -h</code> and <code>hhfab vlab gen -h</code>.</p>
+<h3 id="hhfab-commands-to-make-a-bootable-image">HHFAB commands to make a bootable image</h3>
+<ol>
+<li><code>hhfab init --wiring wiring-lab.yaml</code></li>
+<li>The <code>init</code> command generates a <code>fab.yaml</code> file, edit the <code>fab.yaml</code> file for your needs<ol>
+<li>ensure the correct boot disk (e.g. <code>/dev/sda</code>) and control node NIC names are supplied</li>
+</ol>
+</li>
+<li><code>hhfab validate</code></li>
+<li><code>hhfab build</code></li>
+</ol>
+<p>The installer for the fabric is generated in <code>$CWD/result/</code>. This installation image is named <code>control-1-install-usb.img</code> and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.</p>
+<h3 id="write-usb-image-to-disk">Write USB Image to Disk</h3>
+<div class="admonition warning">
+<p>This will erase data on the USB disk.</p>
+</div>
+<ol>
+<li>Insert the USB to your machine</li>
+<li>Identify the path to your USB stick, for example: <code>/dev/sdc</code></li>
+<li>Issue the command to write the image to the USB drive<ul>
+<li><code>sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress</code></li>
 </ul>
-<p>Alternatively, you can pass your own credentials and keys using <code>--authorized-key</code> and <code>--control-password-hash</code> flags.
-Generate a password hash with command <code>openssl passwd -5</code>. Further customization items are available in the config
-file and can be passed using the <code>--config</code> flag.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>hhfab<span class="w"> </span>init<span class="w"> </span>--preset<span class="w"> </span>lab<span class="w"> </span>--dev<span class="w"> </span>--wiring<span class="w"> </span>file1.yaml<span class="w"> </span>--wiring<span class="w"> </span>file2.yaml
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>hhfab<span class="w"> </span>build
-</span></code></pre></div>
-<p>As a result, you will get the following files in the <code>.hhfab</code> directory or the one you've passed using <code>--basedir</code> flag:</p>
-<ul>
-<li><code>control-os/ignition.json</code> - ignition config for the Control Node to get OS installed</li>
-<li><code>control-install.tgz</code> - installer for the Control Node, it will be uploaded to the Control Node and run there</li>
-</ul>
-<p>More details on configuring the Fabric are available in the <a href="../config/">Configuration</a> section.</p>
+</li>
+</ol>
+<p>There are utilities that assist this process such as <a href="https://etcher.balena.io/">etcher</a>.</p>
 <h2 id="install-control-node">Install Control Node</h2>
-<h3 id="connected-instructions">Connected Instructions</h3>
 <p>This control node should be given a static IP address. Either a lease or statically assigned. </p>
 <ol>
 <li>
-<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO ~400MiB</a></p>
+<p>Configure the server to use UEFI boot <strong>without</strong> secure boot</p>
 </li>
 <li>
-<p>Bios boot the control node using the ISO, via virtual media, USB, or other way.</p>
+<p>Attach the image to the server either by inserting via USB, or attaching via virtual media</p>
 </li>
 <li>
-<p>Once the control node has booted it will auto login to a shell</p>
+<p>Select boot off of the attached media, the installation process is <strong>automated</strong></p>
 </li>
 <li>
-<p>Upload the file <code>ignition.json</code> built during the previous step to the
-system and run the Flatcar installation:</p>
-</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>flatcar-install<span class="w"> </span>-d<span class="w"> </span>/dev/sda<span class="w"> </span>-i<span class="w"> </span>ignition.json
-</span></code></pre></div>
-<p>Where <code>/dev/sda</code> is a disk you want to install Control Node to and <code>ignition.json</code> is the <code>control-os/ignition.json</code>
-file from previous step uploaded to the Flatcar installer. This installer reaches out to the publically available images to download, verify and install flatcar to the given disk.</p>
-<p>The installation is finished when you see a message similar to the following:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
-</span></code></pre></div>
-<p><a href="#install-hedgehog-controller">Move on to the next step</a></p>
-<h3 id="air-gapped-instructions">Air Gapped Instructions</h3>
-<p>Control Node installation is fully air-gapped and doesn't require Internet access. A static IP is still needed as command and control communications between the switches and controller use IP. The instructions are similar to above.</p>
+<p>Once the control node has booted, it logs in automatically and begins the installation process</p>
 <ol>
-<li>
-<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_iso_image.iso">latest stable Flatcar Container Linux ISO ~400MiB</a> and bios boot into it (using IPMI attaching media, USB
-stick or any other way).</p>
+<li>Optionally use <code>journalctl -f -u flatcar-install.service</code> to monitor progress</li>
+</ol>
 </li>
 <li>
-<p>Download the <a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_image.bin.bz2">latest stable Flatcar Container Linux Image ~500MiB</a> and copy that file to media that can be attached to the control node.</p>
+<p>Once the installation is complete, the system automatically reboots.</p>
 </li>
 <li>
-<p>Copy the <code>control-os/ignition.json</code> file to the media from the above step.</p>
+<p>After the system has shutdown but before the boot up process reaches the operating system, <strong>remove the USB image from the system</strong>. Removal during the UEFI boot screen is acceptable.</p>
 </li>
 <li>
-<p>Bios boot the control node using the iso from above.</p>
+<p>Upon booting into the freshly installed system, the fabric installation will <strong>automatically begin</strong></p>
+<ol>
+<li>If the insecure <code>--dev</code> flag was passed to <code>hhfab init</code> the password for the <code>core</code> user is <code>HHFab.Admin!</code>, the switches have two users created <code>admin</code> and <code>op</code>. <code>admin</code> has administrator privileges and password <code>HHFab.Admin!</code>, whereas the <code>op</code> user is a read-only, non-sudo user with password <code>HHFab.Op!</code>.</li>
+<li>Optionally this can be monitored with <code>journalctl -f -u fabric-install.service</code></li>
+</ol>
 </li>
 <li>
-<p>Once the control node has booted, it will auto-login to a shell.</p>
-</li>
-<li>
-<p>Attach the media containing both the container image file and the ignition file to the booted control node.</p>
-</li>
-<li>
-<p>Uncompress the image <code>bunzip -d ./path/to/flatcar_production_image.bin.bz2</code>, if you want to keep the compressed image use the <code>-k</code> flag.</p>
+<p>The install is complete when the log emits "Control Node installation complete". Additionally, the systemctl status will show <code>inactive (dead)</code> indicating that the executable has finished.</p>
 </li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>flatcar-install<span class="w"> </span>-d<span class="w"> </span>/dev/sda<span class="w"> </span>-i<span class="w"> </span>ignition.json<span class="w"> </span>-f<span class="w"> </span>flatcar_production_image.bin
-</span></code></pre></div>
-<p>Where <code>/dev/sda</code> is a disk you want to install Control Node to and <code>ignition.json</code> is the <code>control-os/ignition.json</code>
-file from previous step uploaded to the Flatcar installer. By providing an image to the installer, no public internet connections will be attemtped.</p>
-<p>The installation is finished when you see a message similar to the following:</p>
-<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Installing<span class="w"> </span>Ignition<span class="w"> </span>config<span class="w"> </span>ignition.json...
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Success!<span class="w"> </span>Flatcar<span class="w"> </span>Container<span class="w"> </span>Linux<span class="w"> </span>stable<span class="w"> </span><span class="m">3510</span>.2.6<span class="w"> </span>is<span class="w"> </span>installed<span class="w"> </span>on<span class="w"> </span>/dev/sda
-</span></code></pre></div>
-<a href="#install-hedgehog-controller">Move on to the next step</a></p>
-<h3 id="install-hedgehog-controller">Install HedgeHog Controller</h3>
-<p>Once the installation is finished, reboot the machine and wait for it to boot into the installed Flatcar Linux.</p>
-<p>At that point, you should get into the installed Flatcar Linux using the dev or provided credentials with user <code>core</code>
-and you can now install Hedgehog Open Network Fabric on it. Download <code>control-install.tgz</code> to the just installed Control
-Node (for example, by using scp) and run it.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-install.tgz<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>control-install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>run
-</span></code></pre></div>
-<p>The command prints the logs generated while installing Fabric (including logs from the Kubernetes cluster, miscellaneous
-OCI registry misc components, and more). At the end, you should observe lines similar to the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>...
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>01:34:45 INF Running name=reloader-image op=&quot;push fabricator/reloader:v1.0.40&quot;
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>01:34:47 INF Running name=reloader-chart op=&quot;push fabricator/charts/reloader:1.0.40&quot;
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>01:34:47 INF Running name=reloader-install op=&quot;file /var/lib/rancher/k3s/server/manifests/hh-reloader-install.yaml&quot;
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>01:34:47 INF Running name=reloader-wait op=&quot;wait deployment/reloader-reloader&quot;
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>deployment.apps/reloader-reloader condition met
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>01:35:15 INF Done took=3m39.586394608s
-</span></code></pre></div>
-<p>At that point, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all preinstalled
-as part of the Control Node installer.</p>
-<p>You can now get HONIE installed on your switches and reboot them into ONIE Install Mode to have them automatically
-provisioned from the Control Node.</p>
+<h3 id="configure-management-network">Configure Management Network</h3>
+<p>The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called <code>external</code> in the <code>fab.yaml</code> file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric.</p>
+<h3 id="fabric-manages-switches">Fabric Manages Switches</h3>
+<p>Now that the install has finished, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all pre-installed as part of the Control Node installer.</p>
+<p>At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps: 
+- enter <code>k9s</code> at the command prompt
+- use the arrow keys to select the pod named <code>fabric-boot</code>
+- the logs of the pod will be displayed showing the DHCP lease process
+- use the switches screen of <code>k9s</code> to see the heartbeat column to verify the connection between switch and controller.
+    - to see the switches type <code>:switches</code> (like a vim command) into <code>k9s</code></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 1, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
       
         <br>
         Created:

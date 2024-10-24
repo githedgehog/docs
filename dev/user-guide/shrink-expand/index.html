@@ -592,26 +592,6 @@ You're not viewing the latest version.
 
               
             
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../install-upgrade/onie-update/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ONIE Update (prepare switch)
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1277,12 +1257,12 @@ You're not viewing the latest version.
 <h1 id="fabric-shrinkexpand">Fabric Shrink/Expand</h1>
 <p>This section provides a brief overview of how to add or remove switches within the fabric using Hedgehog Fabric API, and
 how to manage connections between them.</p>
-<p>Manipulating API objects is done with the assumption that target devices are correctly cabeled and connected.</p>
+<p>Manipulating API objects is done with the assumption that target devices are correctly cabled and connected.</p>
 <p>This article uses terms that can be found in the <a href="../../concepts/overview/">Hedgehog Concepts</a>, the <a href="../overview/">User
 Guide</a> documentation, and the <a href="../../reference/api/">Fabric API</a> reference.</p>
 <h3 id="add-a-switch-to-the-existing-fabric">Add a switch to the existing fabric</h3>
 <p>In order to be added to the Hedgehog Fabric, a switch should have a corresponding <code>Switch</code> object. An example on how to define
-this object is available in the <a href="../devices/">User Guilde</a>.</p>
+this object is available in the <a href="../devices/">User Guild</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If the<code>Switch</code> will be used in <code>ESLAG</code> or <code>MCLAG</code> groups, appropriate groups should exist. Redundancy groups should
@@ -1293,14 +1273,10 @@ connections may differ based on the <code>Switch</code> role given to the device
 section</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If the switch is facing a Control Node Connection on the front-panel port, the switch port should be described in a
-<code>Management</code> connection.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Switch devices should be booted in <code>ONIE</code> or <code>HONIE</code> installation mode to install SONiC OS and configure the Fabric
+<p>Switch devices should be booted in <code>ONIE</code> installation mode to install SONiC OS and configure the Fabric
 Agent.</p>
 </div>
+<p>Ensure the management port of the switch is connected to fabric management network.</p>
 <h3 id="remove-a-switch-from-the-existing-fabric">Remove a switch from the existing fabric</h3>
 <p>Before you decommission a switch from the Hedgehog Fabric, several preparation steps are necessary.</p>
 <div class="admonition warning">
@@ -1322,7 +1298,7 @@ recommended to reapply <code>hh-wiring.yaml</code> after changing its internals.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2024</span>
       
         <br>
         Created:
