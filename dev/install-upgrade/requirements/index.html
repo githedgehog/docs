@@ -584,13 +584,6 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#control-node" class="md-nav__link">
-    Control Node
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#out-of-band-management-network" class="md-nav__link">
     Out of Band Management Network
   </a>
@@ -598,16 +591,36 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#control-node" class="md-nav__link">
+    Control Node
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
     Non-HA (minimal) setup - 1 Control Node
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#future-ha-setup-3-control-nodes-per-node" class="md-nav__link">
     (Future) HA setup - 3+ Control Nodes (per node)
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-control-node-configuration" class="md-nav__link">
+    Reference Control Node Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1239,13 +1252,6 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#control-node" class="md-nav__link">
-    Control Node
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#out-of-band-management-network" class="md-nav__link">
     Out of Band Management Network
   </a>
@@ -1253,16 +1259,36 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#control-node" class="md-nav__link">
+    Control Node
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#non-ha-minimal-setup-1-control-node" class="md-nav__link">
     Non-HA (minimal) setup - 1 Control Node
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#future-ha-setup-3-control-nodes-per-node" class="md-nav__link">
     (Future) HA setup - 3+ Control Nodes (per node)
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-control-node-configuration" class="md-nav__link">
+    Reference Control Node Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1297,18 +1323,19 @@ You're not viewing the latest version.
 
 
 <h1 id="system-requirements">System Requirements</h1>
+<h2 id="out-of-band-management-network">Out of Band Management Network</h2>
+<p>In order to provision and manage the switches that comprise the fabric, an out of band switch must also be installed. This network is to be used exclusively by the control node and the fabric switches, no other access is permitted. This switch (or switches) is not managed by the fabric. It is recommended that this switch have at least a 10GbE port and that port connect to the control node.</p>
 <h2 id="control-node">Control Node</h2>
 <ul>
-<li>Fast SSDs for system/root as well as Kubernetes and container runtime folders are required for stable work</li>
-<li>SSDs are mandatory for Control Nodes</li>
-<li>10 GbE port for connection to management network</li>
+<li>Fast SSDs for system/root is mandatory for Control Nodes</li>
+<li>NVMe SSDs are recommended</li>
+<li>DRAM-less NAND SSDs are not supported (e.g. Crucial BX500)</li>
+<li>10 GbE port for connection to management network is recommended</li>
 <li>Minimal (non-HA) setup is a single Control Node</li>
 <li>(Future) Full (HA) setup is at least 3 Control Nodes</li>
 <li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more</li>
 </ul>
-<h2 id="out-of-band-management-network">Out of Band Management Network</h2>
-<p>In order to provision and manage the switches that comprise the fabric, an out of band switch must also be installed. This network is to be used exclusively by the control node and the fabric switches, no other access is permitted. This switch is not manged by the fabric. It is recommended that this switch have at least a 10GbE port and that port connect to the control node.</p>
-<h2 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h2>
+<h3 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h3>
 <ul>
 <li>Control Node runs non-HA Kubernetes Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it</li>
 <li>Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments</li>
@@ -1324,22 +1351,22 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td>CPU</td>
-<td>4</td>
+<td>6</td>
 <td>8</td>
 </tr>
 <tr>
 <td>RAM</td>
-<td>12 GB</td>
 <td>16 GB</td>
+<td>32 GB</td>
 </tr>
 <tr>
 <td>Disk</td>
-<td>100 GB</td>
+<td>150 GB</td>
 <td>250 GB</td>
 </tr>
 </tbody>
 </table>
-<h2 id="future-ha-setup-3-control-nodes-per-node">(Future) HA setup - 3+ Control Nodes (per node)</h2>
+<h3 id="future-ha-setup-3-control-nodes-per-node">(Future) HA setup - 3+ Control Nodes (per node)</h3>
 <ul>
 <li>Each Control Node runs part of the HA Kubernetes Control Plane installation with Hedgehog Fabric Control Plane on top
   of it in HA mode as well</li>
@@ -1356,26 +1383,33 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td>CPU</td>
-<td>4</td>
+<td>6</td>
 <td>8</td>
 </tr>
 <tr>
 <td>RAM</td>
-<td>12 GB</td>
 <td>16 GB</td>
+<td>32 GB</td>
 </tr>
 <tr>
 <td>Disk</td>
-<td>100 GB</td>
+<td>150 GB</td>
 <td>250 GB</td>
 </tr>
 </tbody>
 </table>
+<h3 id="reference-control-node-configuration">Reference Control Node Configuration</h3>
+<ul>
+<li>AMD EPYC 4344P (8C/16T, 3.8 GHz, 32 MB L3, 65W, single socket)</li>
+<li>32 GB DDR5-4800 ECC UDIMM (2 x 16 GB)</li>
+<li>Micron 7450 MAX 400GB NVMe</li>
+</ul>
 <h2 id="device-participating-in-the-hedgehog-fabric-eg-switch">Device participating in the Hedgehog Fabric (e.g. switch)</h2>
 <ul>
 <li>(Future) Each participating device is part of the Kubernetes cluster, so it runs Kubernetes kubelet</li>
 <li>Additionally, it runs the Hedgehog Fabric Agent that controls devices configuration</li>
 </ul>
+<p>Following resources should be available on a device to run in the Hedgehog Fabric (after other software such as SONiC usage):</p>
 <table>
 <thead>
 <tr>
@@ -1408,7 +1442,7 @@ You're not viewing the latest version.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
       
         <br>
         Created:

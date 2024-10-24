@@ -1368,16 +1368,16 @@ You're not viewing the latest version.
 </div>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li>A machine with access to the Internet to use Fabricator and build installer</li>
-<li>An 8 GB USB flash drive, if you are not using virtual media</li>
+<li>A machine with access to the Internet to use Fabricator and build installer with at least 8 GB RAM and 25 GB of disk space</li>
+<li>An 16 GB USB flash drive, if you are not using virtual media</li>
 <li>Have a machine to function as the Fabric Control Node. <a href="../requirements/">System Requirements</a> as well as IPMI access to it to install
   the OS.</li>
-<li>A management switch with at least 1 10GbE port</li>
+<li>A management switch with at least 1 10GbE port is recommended</li>
 <li>Enough <a href="../supported-devices/">Supported Switches</a> for your Fabric</li>
 </ul>
 <h2 id="overview-of-install-process">Overview of Install Process</h2>
 <p>This section is dedicated to the Hedgehog Fabric installation on bare-metal control node(s) and switches, their
-preparation and configuration. To install the vlab see <a href="../../vlab/overview/">Vlab Overview</a>.</p>
+preparation and configuration. To install the VLAB see <a href="../../vlab/overview/">VLAB Overview</a>.</p>
 <p>Download and install <code>hhfab</code> following instructions from the <a href="../../getting-started/download/">Download</a> section.</p>
 <p>The main steps to install Fabric are:</p>
 <ol>
@@ -1398,7 +1398,7 @@ preparation and configuration. To install the vlab see <a href="../../vlab/overv
 </ol>
 </li>
 <li>Prepare supported switches<ol>
-<li>Ensure switch serial numbers and / or management interface mac addresses are recorded in wiring diagram</li>
+<li>Ensure switch serial numbers and / or first management interface MAC addresses are recorded in wiring diagram</li>
 <li>Boot them into ONIE Install Mode to have them automatically provisioned</li>
 </ol>
 </li>
@@ -1430,7 +1430,7 @@ preparation and configuration. To install the vlab see <a href="../../vlab/overv
 </ol>
 <p>There are utilities that assist this process such as <a href="https://etcher.balena.io/">etcher</a>.</p>
 <h2 id="install-control-node">Install Control Node</h2>
-<p>This control node should be given a static IP address. Either a lease or statically assigned. </p>
+<p>This control node should be given a static IP address. Either a lease or statically assigned.</p>
 <ol>
 <li>
 <p>Configure the server to use UEFI boot <strong>without</strong> secure boot</p>
@@ -1468,7 +1468,7 @@ preparation and configuration. To install the vlab see <a href="../../vlab/overv
 <p>The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called <code>external</code> in the <code>fab.yaml</code> file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric.</p>
 <h3 id="fabric-manages-switches">Fabric Manages Switches</h3>
 <p>Now that the install has finished, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all pre-installed as part of the Control Node installer.</p>
-<p>At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps: 
+<p>At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
 - enter <code>k9s</code> at the command prompt
 - use the arrow keys to select the pod named <code>fabric-boot</code>
 - the logs of the pod will be displayed showing the DHCP lease process
