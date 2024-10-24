@@ -1,5 +1,29 @@
 # Release notes
 
+## Beta-1
+
+### Device support
+
+- Celestica DS4000 as a spine
+
+### SONiC
+
+- Broadcom SONiC 4.4.0 support
+
+### Fabric provisioning, management
+
+- Out-of-band management network connectivity
+- Deprecated support for in-band management network connectivity, chain boot, and front-panel boot until further notice
+- Automatic zero touch switch provisioning [ ZTP ] is based on the serial number or the first management interface MAC address
+- Full support for airgap installations and upgrades by default
+- Self-contained USB image generation for control node installation
+- Automated in-place upgrades for control node(s) moving forward
+
+## API
+
+- API version v1beta1
+- Guaranteed backward compatibility moving forward
+
 ## Alpha-7
 
 ### Device Support

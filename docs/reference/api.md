@@ -38,6 +38,8 @@ _Appears in:_
 
 #### Agent
 
+
+
 Agent is an internal API object used by the controller to pass all relevant information to the agent running on a
 specific switch in order to fully configure it and manage its lifecycle. It is not intended to be used directly by
 users. Spec of the object isn't user-editable, it is managed by the controller. Status of the object is updated by
@@ -1868,6 +1870,7 @@ _Appears in:_
 | `label` _string_ | Label defines the physical port label you can see on the actual switch |  |  |
 | `group` _string_ | If port isn't directly manageable, group defines the group it belongs to, exclusive with profile |  |  |
 | `profile` _string_ | If port is directly configurable, profile defines the profile it belongs to, exclusive with group |  |  |
+| `management` _boolean_ | Management defines if port is a management port, it's a special case and it can't have a group or profile |  |  |
 | `oniePortName` _string_ | OniePortName defines the ONIE port name for management ports only |  |  |
 
 
