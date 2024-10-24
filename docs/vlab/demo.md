@@ -1,5 +1,7 @@
 # Demo on VLAB
 
+## Goals
+
 The goal of this demo is to show how to use VPCs, attach and peer them and run test connectivity between the servers.
 Examples are based on the default VLAB topology.
 
@@ -142,7 +144,7 @@ You can use `hhfab vlab ssh` on the host to SSH into the test servers and config
 both `server-01` (MCLAG attached to both `leaf-01` and `leaf-02`) we need to configure a bond with a VLAN on top of it
 and for the `server-05` (single-homed unbundled attached to `leaf-03`) we need to configure just a VLAN and they both
 will get an IP address from the DHCP server. You can use the `ip` command to configure networking on the servers or use
-the little helper preinstalled by Fabricator on test servers, `hhnet`.
+the little helper pre-installed by Fabricator on test servers, `hhnet`.
 
 For `server-01`:
 
