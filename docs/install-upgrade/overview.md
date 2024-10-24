@@ -9,8 +9,8 @@
 * An 8 GB USB flash drive, if you are not using virtual media
 * Have a machine to function as the Fabric Control Node. [System Requirements](./requirements.md) as well as IPMI access to it to install
   the OS.
-* Have a management switch with at least 1 10GbE port
-* Have enough [Supported Switches](./supported-devices.md) for your Fabric
+* A management switch with at least 1 10GbE port
+* Enough [Supported Switches](./supported-devices.md) for your Fabric
 
 ## Overview of Install Process
 
