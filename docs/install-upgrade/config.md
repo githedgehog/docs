@@ -6,7 +6,9 @@ The `fab.yaml` file is the configuration file for the fabric. It supplies the co
 ## Typical HHFAB workflows
 
 ### HHFAB for VLAB
+
 For a VLAB user, the typical workflow with hhfab is:
+
 1. `hhfab init --dev`
 1. `hhfab vlab gen`
 1. `hhfab vlab up --kill-stale`
