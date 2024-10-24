@@ -36,7 +36,8 @@ The main steps to install Fabric are:
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
 ## Build Control Node configuration and Installer
-Hedgehog has created a command line utility, called `hhfab`, that helps generate the wiring diagram, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media.
+Hedgehog has created a command line utility, called `hhfab`, that helps generate the wiring diagram and fabric configuration, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media.
+
 
 ### HHFAB commands to make a bootable image
 1. `hhfab init --wiring wiring-lab.yaml`
@@ -45,14 +46,14 @@ Hedgehog has created a command line utility, called `hhfab`, that helps generate
 1. `hhfab validate`
 1. `hhfab build`
 
-The installer for the fabric is generated in `$WORKDIR/result/`. This installation image is named `control-1-install-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
+The installer for the fabric is generated in `$CWD/result/`. This installation image is named `control-1-install-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
 
 ### Write USB Image to Disk
 
 !!! warning ""
     This will erase data on the USB disk.
 
-1. Insert the usb to your machine
+1. Insert the USB to your machine
 1. Identify the path to your USB stick, for example: `/dev/sdc`
 1. Issue the command to write the image to the USB drive
     - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
