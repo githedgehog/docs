@@ -5,17 +5,17 @@
 
 ## Prerequisites
 
-* A machine with access to the Internet to use Fabricator and build installer
-* An 8 GB USB flash drive, if you are not using virtual media
+* A machine with access to the Internet to use Fabricator and build installer with at least 8 GB RAM and 25 GB of disk space
+* An 16 GB USB flash drive, if you are not using virtual media
 * Have a machine to function as the Fabric Control Node. [System Requirements](./requirements.md) as well as IPMI access to it to install
   the OS.
-* A management switch with at least 1 10GbE port
+* A management switch with at least 1 10GbE port is recommended
 * Enough [Supported Switches](./supported-devices.md) for your Fabric
 
 ## Overview of Install Process
 
 This section is dedicated to the Hedgehog Fabric installation on bare-metal control node(s) and switches, their
-preparation and configuration. To install the vlab see [Vlab Overview](../vlab/overview.md).
+preparation and configuration. To install the VLAB see [VLAB Overview](../vlab/overview.md).
 
 Download and install `hhfab` following instructions from the [Download](../getting-started/download.md) section.
 
@@ -32,7 +32,7 @@ The main steps to install Fabric are:
     1. Connect management switch to Fabric control node
     1. Connect 1GbE Management port of switches to management switch
 1. Prepare supported switches
-    1. Ensure switch serial numbers and / or management interface mac addresses are recorded in wiring diagram
+    1. Ensure switch serial numbers and / or first management interface MAC addresses are recorded in wiring diagram
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
 ## Build Control Node configuration and Installer
@@ -63,7 +63,7 @@ There are utilities that assist this process such as [etcher](https://etcher.bal
 
 ## Install Control Node
 
-This control node should be given a static IP address. Either a lease or statically assigned. 
+This control node should be given a static IP address. Either a lease or statically assigned.
 
 1. Configure the server to use UEFI boot **without** secure boot
 
@@ -93,7 +93,7 @@ The control node is dual-homed. It has a 10GbE interface that connects to the ma
 
 Now that the install has finished, you can start interacting with the Fabric using `kubectl`, `kubectl fabric` and `k9s`, all pre-installed as part of the Control Node installer.
 
-At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps: 
+At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
 - enter `k9s` at the command prompt
 - use the arrow keys to select the pod named `fabric-boot`
 - the logs of the pod will be displayed showing the DHCP lease process

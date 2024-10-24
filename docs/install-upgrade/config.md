@@ -11,11 +11,20 @@ For a VLAB user, the typical workflow with hhfab is:
 
 1. `hhfab init --dev`
 1. `hhfab vlab gen`
-1. `hhfab vlab up --kill-stale`
+1. `hhfab vlab up`
 
-The above workflow will get a user up and running with a spine-leaf VLAB. The `--kill-stale` option is supplied as its harmless on the first run and stops a lot of problems from happening with an successive run.
+The above workflow will get a user up and running with a spine-leaf VLAB.
 
 ### HHFAB for Physical Machines
+
+It's possible to start from scratch:
+
+1. `hhfab init` (see different flags to cusomize initial configuration)
+1. Adjust the `fab.yaml` file to your needs
+1. `hhfab validate`
+1. `hhfab build`
+
+Or import existing config and wiring files:
 
 1. `hhfab init -c fab.yaml -w wiring-file.yaml -w extra-wiring-file.yaml`
 1. `hhfab validate`
@@ -25,12 +34,63 @@ After the above workflow a user will have a .img file suitable for installing th
 
 ## Fab.yaml
 
-The fabric YAML object has 4 objects:
+### Configure control node and switch users
 
-- `mode` - either `spine-leaf` or `collapsed-core`
-- `includeONIE` - defaults to `true`
-- `defaultSwitchUsers` - the admin and operator credentials for SONiC.
-- `defaultAlloyConfig` - the configuration details for telemetry of switch information
+Configuring control node and switch users is done either passing `--default-password-hash` to `hhfab init` or editing the resulting `fab.yaml` file emitted by `hhfab init`. You can specify users to be configured on the control node(s) and switches in the following format:
+
+```yaml
+spec:
+    config:
+      control:
+        defaultUser: # user 'core' on all control nodes
+          password: "hashhashhashhashhash" # password hash
+          authorizedKeys:
+            - "ssh-ed25519 SecREKeyJumblE"
+
+        fabric:
+          mode: spine-leaf # "spine-leaf" or "collapsed-core"
+
+          defaultSwitchUsers:
+            admin: # at least one user with name 'admin' and role 'admin'
+              role: admin
+              #password: "$5$8nAYPGcl4..." # password hash
+              #authorizedKeys: # optional SSH authorized keys
+              #  - "ssh-ed25519 AAAAC3Nza..."
+            op: # optional read-only user
+              role: operator
+              #password: "$5$8nAYPGcl4..." # password hash
+              #authorizedKeys: # optional SSH authorized keys
+              #  - "ssh-ed25519 AAAAC3Nza..."
+
+```
+
+Control node(s) user is always named `core`.
+
+The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
+
+### NTP and DHCP
+The control node uses public ntp servers from cloudflare and google by default. The control node runs a dhcp server on the management network. See the [example file](#complete-example-file).
+
+## Control Node
+The control node is the host that manages all the switches, runs k3s, and serves images. This is the YAML document configure the control node:
+```yaml
+apiVersion: fabricator.githedgehog.com/v1beta1
+kind: ControlNode
+metadata:
+  name: control-1
+  namespace: fab
+spec:
+  bootstrap:
+   disk: "/dev/sda" # disk to install OS on, e.g. "sda" or "nvme0n1"
+  external:
+    interface: enp2s0 # interface for external
+    ip:	dhcp # IP address for external interface
+  management:
+    interface: enp2s1 # interface for management
+
+# Currently only one ControlNode is supported
+```
+The **management** interface is for the control node to manage the fabric switches, *not* end-user management of the control node. For end-user management of the control node specify the **external** interface name.
 
 ### Forward switch metrics and logs
 
@@ -81,62 +141,8 @@ spec:
 
 For additional options, see the `AlloyConfig` [struct in Fabric repo](https://github.com/githedgehog/fabric/blob/master/api/meta/alloy.go).
 
-### Configure switch users
-
-Configuring switch users is done either passing `--default-password-hash` to `hhfab init` or editing the resulting `fab.yaml` file emitted by `hhfab init`. You can specify users to be configured on the switches in the following format:
-
-```yaml
-spec:
-    config:
-      control:
-        defaultUser: # user 'core' on all control nodes
-          password: "hashhashhashhashhash" # password hash
-          authorizedKeys:
-            - "ssh-ed25519 SecREKeyJumblE"
-
-        fabric:
-          mode: spine-leaf # "spine-leaf" or "collapsed-core"
-          
-          defaultSwitchUsers: 
-            admin: # at least one user with name 'admin' and role 'admin'
-              role: admin
-              #password: "$5$8nAYPGcl4..." # password hash
-              #authorizedKeys: # optional SSH authorized keys
-              #  - "ssh-ed25519 AAAAC3Nza..."
-            op: # optional read-only user
-              role: operator
-              #password: "$5$8nAYPGcl4..." # password hash
-              #authorizedKeys: # optional SSH authorized keys
-              #  - "ssh-ed25519 AAAAC3Nza..."
-
-```
-The role of the user,`operator` is read-only access to `sonic-cli` command on the switches. In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
-
-### NTP and DHCP
-The control node uses public ntp servers from cloudflare and google by default. The control node runs a dhcp server on the management network. See the [example file](#complete-example-file).
-
-## Control Node
-The control node is the host that manages all the switches, runs k3s, and serves images. This is the YAML document configure the control node:
-```yaml
-apiVersion: fabricator.githedgehog.com/v1beta1
-kind: ControlNode
-metadata:
-  name: control-1
-  namespace: fab
-spec:
-  bootstrap:
-   disk: "/dev/sda" # disk to install OS on, e.g. "sda" or "nvme0n1"
-  external:
-    interface: enp2s0 # interface for external
-    ip:	dhcp # IP address for external interface
-  management:
-    interface: enp2s1 # interface for management
-
-# Currently only one ControlNode is supported
-```
-The **management** interface is for the control node to manage the fabric switches, *not* end-user management of the control node. For end-user management of the control node specify the **external** interface name.
-
 ## Complete Example File
+
 ```yaml
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: Fabricator

@@ -8,7 +8,7 @@
 A wiring diagram is a YAML file that is a digital representation of your network. You can find more YAML level details in the User Guide section [switch features and port naming](../user-guide/profiles.md) and the [api](../reference/api.md). It's mandatory for all switches to reference a `SwitchProfile` in the `spec.profile` of the `Switch` object. Only port naming defined by switch profiles could be used in the wiring diagram, NOS (or any other) port names aren't supported.
 
 In the meantime, to have a look at working wiring diagram for Hedgehog Fabric, run the sample generator that produces
-VLAB-compatible wiring diagrams:
+working wiring diagrams:
 
 ```console
 ubuntu@sl-dev:~$ hhfab sample -h
@@ -26,6 +26,33 @@ COMMANDS:
 
 OPTIONS:
    --help, -h  show help
+```
+
+Or you can generate a wiring diagram for a VLAB environment with flags to customize number of switches, links, servers, etc.:
+
+```console
+ubuntu@sl-dev:~$ hhfab vlab gen --help
+NAME:
+   hhfab vlab generate - generate VLAB wiring diagram
+
+USAGE:
+   hhfab vlab generate [command options]
+
+OPTIONS:
+   --bundled-servers value      number of bundled servers to generate for switches (only for one of the second switch in the redundancy group or orphan switch) (default: 1)
+   --eslag-leaf-groups value    eslag leaf groups (comma separated list of number of ESLAG switches in each group, should be 2-4 per group, e.g. 2,4,2 for 3 groups with 2, 4 and 2 switches)
+   --eslag-servers value        number of ESLAG servers to generate for ESLAG switches (default: 2)
+   --fabric-links-count value   number of fabric links if fabric mode is spine-leaf (default: 0)
+   --help, -h                   show help
+   --mclag-leafs-count value    number of mclag leafs (should be even) (default: 0)
+   --mclag-peer-links value     number of mclag peer links for each mclag leaf (default: 0)
+   --mclag-servers value        number of MCLAG servers to generate for MCLAG switches (default: 2)
+   --mclag-session-links value  number of mclag session links for each mclag leaf (default: 0)
+   --no-switches                do not generate any switches (default: false)
+   --orphan-leafs-count value   number of orphan leafs (default: 0)
+   --spines-count value         number of spines if fabric mode is spine-leaf (default: 0)
+   --unbundled-servers value    number of unbundled servers to generate for switches (only for one of the first switch in the redundancy group or orphan switch) (default: 1)
+   --vpc-loopbacks value        number of vpc loopbacks for each switch (default: 0)
 ```
 
 ### Sample Switch Configuration
@@ -64,7 +91,7 @@ A connection represents the physical wires in your data center. They connect swi
 
 #### Server Connections
 
-A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (MLAG, Bundle, etc).The configuration of the actual server needs to be done by the server administrator. The server name is not validated by the fabric and is used as metadata to identify the connection. A server connection can be one of: 
+A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (MLAG, Bundle, etc). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:
 
 - *Unbundled* - A single cable connecting switch to server.
 - *Bundled* - Two or more cables going to a single switch, a LAG or similar.

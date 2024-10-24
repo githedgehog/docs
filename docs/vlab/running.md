@@ -5,29 +5,29 @@ before running VLAB.
 
 ## Initialize VLAB
 
-First, initialize Fabricator  by running `hhfab init --dev`. This command supports several customization options that are listed in the output of `hhfab init --help`. 
+First, initialize Fabricator  by running `hhfab init --dev`. This command supports several customization options that are listed in the output of `hhfab init --help`.
 
 ```console
 ubuntu@docs:~$ hhfab init --dev
-11:26:52 INF Hedgehog Fabricator version=v0.30.0                                                                                                                                                                       
-11:26:52 INF Generated initial config                                                                                                                                                                                  
-11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml                                                                                                                                    
-11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include 
+11:26:52 INF Hedgehog Fabricator version=v0.30.0
+11:26:52 INF Generated initial config
+11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
+11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include
 ```
 ## VLAB Topology
 
-By default, the command creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`. 
+By default, the command creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
-21:27:16 INF Hedgehog Fabricator version=v0.30.0                                                                                                                                                                       
-21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf                                                                                                                                                        
-21:27:16 INF >>> spinesCount=2 fabricLinksCount=2                                                                                                                                                                      
-21:27:16 INF >>> eslagLeafGroups=2                                                                                                                                                                                     
-21:27:16 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2                                                                                                                                                
-21:27:16 INF >>> orphanLeafsCount=1 vpcLoopbacks=2                                                                                                                                                                     
-21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1                                                                                                                                     
-21:27:16 INF Generated wiring file name=vlab.generated.yaml 
+21:27:16 INF Hedgehog Fabricator version=v0.30.0
+21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf
+21:27:16 INF >>> spinesCount=2 fabricLinksCount=2
+21:27:16 INF >>> eslagLeafGroups=2
+21:27:16 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
+21:27:16 INF >>> orphanLeafsCount=1 vpcLoopbacks=2
+21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+21:27:16 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 ### Collapsed Core
@@ -106,18 +106,18 @@ ubuntu@docs:~$ hhfab vlab up
 11:49:06 INF Preparing new vm=spine-01 type=switch
 11:49:06 INF Preparing new vm=spine-02 type=switch
 11:49:06 INF Starting VMs count=18 cpu="54 vCPUs" ram="49664 MB" disk="550 GB"
-11:49:59 INF Uploading control install vm=control-1 type=control                                                                                                                                                       
-11:53:39 INF Running control install vm=control-1 type=control                                                                                                                                                         
-11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.30.0 vm=control-1                                                                                                                     
-11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1                                                                                                                              
-12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1                                                                                                                             
-12:00:32 INF Control node is ready vm=control-1 type=control                                                                                                                                                           
-12:00:32 INF All VMs are ready  
+11:49:59 INF Uploading control install vm=control-1 type=control
+11:53:39 INF Running control install vm=control-1 type=control
+11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.30.0 vm=control-1
+11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1
+12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1
+12:00:32 INF Control node is ready vm=control-1 type=control
+12:00:32 INF All VMs are ready
 
 ```
 When the message `INF Control node is ready vm=control-1 type=control` from the installer's output means that the installer has finished. After this line
 has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
-provisioned. See [Accessing the Vlab](#accessing-the-vlab).
+provisioned. See [Accessing the VLAB](#accessing-the-vlab).
 
 ## Configuring VLAB VMs
 
