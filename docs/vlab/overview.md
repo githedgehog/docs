@@ -81,9 +81,9 @@ curl -fsSL https://i.hhdev.io/oras | bash
 ```
 
 ### HHFAB
-A github access token is required to download `hhfab`, please submit a ticket using the [Hedgehog Support Portal](https://support.githedgehog.com/). Once obtained, use the token to log into the Github container registry:
+A github access token is required to download `hhfab`, please submit a ticket using the [Hedgehog Support Portal](https://support.githedgehog.com/). Once obtained, use the provided username and token to log into the Github container registry:
 ```bash
-docker login ghcr.io --username Your_Username --password gh_token_goes_here
+docker login ghcr.io --username provided_username --password provided_token
 ```
 Hedgehog maintains a utility to install and configure VLAB, called `hhfab`. To install:
 ```bash
