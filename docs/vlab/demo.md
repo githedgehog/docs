@@ -86,6 +86,118 @@ graph TD
     L1 & L2 & L2 & L3 & L4 & L5 <----> S1 & S2
 ```
 
+## Utility based VPC creation
+
+### Setup VPCs
+`hhfab vlab` includes a utility to create VPCs in vlab. This utility is a `hhfab vlab` sub-command. `hhfab vlab setup-vpcs`.
+
+```console
+NAME:
+   hhfab vlab setup-vpcs - setup VPCs and VPCAttachments for all servers and configure networking on them
+
+USAGE:
+   hhfab vlab setup-vpcs [command options]
+
+OPTIONS:
+   --dns-servers value, --dns value [ --dns-servers value, --dns value ]    DNS servers for VPCs advertised by DHCP
+   --force-clenup, -f                                                       start with removing all existing VPCs and VPCAttachments (default: false)
+   --help, -h                                                               show help
+   --interface-mtu value, --mtu value                                       interface MTU for VPCs advertised by DHCP (default: 0)
+   --ipns value                                                             IPv4 namespace for VPCs (default: "default")
+   --name value, -n value                                                   name of the VM or HW to access
+   --servers-per-subnet value, --servers value                              number of servers per subnet (default: 1)
+   --subnets-per-vpc value, --subnets value                                 number of subnets per VPC (default: 1)
+   --time-servers value, --ntp value [ --time-servers value, --ntp value ]  Time servers for VPCs advertised by DHCP
+   --vlanns value                                                           VLAN namespace for VPCs (default: "default")
+   --wait-switches-ready, --wait                                            wait for switches to be ready before and after configuring VPCs and VPCAttachments (default: true)
+
+   Global options:
+
+   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
+   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
+   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
+   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
+```
+
+### Setup Peering
+`hhfab vlab` includes a utility to create VPC peerings in VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab setup-peerings`.
+
+```console
+NAME:
+   hhfab vlab setup-peerings - setup VPC and External Peerings per requests (remove all if empty)
+
+USAGE:
+   Setup test scenario with VPC/External Peerings by specifying requests in the format described below.
+
+   Example command:
+
+   $ hhfab vlab setup-peerings 1+2 2+4:r=border 1~as5835 2~as5835:subnets=sub1,sub2:prefixes=0.0.0.0/0,22.22.22.0/24
+
+   Which will produce:
+   1. VPC peering between vpc-01 and vpc-02
+   2. Remote VPC peering between vpc-02 and vpc-04 on switch group named border
+   3. External peering for vpc-01 with External as5835 with default vpc subnet and any routes from external permitted
+   4. External peering for vpc-02 with External as5835 with subnets sub1 and sub2 exposed from vpc-02 and default route
+      from external permitted as well any route that belongs to 22.22.22.0/24
+
+   VPC Peerings:
+
+   1+2 -- VPC peering between vpc-01 and vpc-02
+   demo-1+demo-2 -- VPC peering between demo-1 and demo-2
+   1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
+   1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
+   1+2:remote=border -- same as above
+
+   External Peerings:
+
+   1~as5835 -- external peering for vpc-01 with External as5835
+   1~ -- external peering for vpc-1 with external if only one external is present for ipv4 namespace of vpc-01, allowing
+     default subnet and any route from external
+   1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-1 with auth external with default vpc subnet and
+     default route from external permitted
+   1~as5835:subnets=default,other:prefixes=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same but with more details
+   1~as5835:s=default,other:p=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same as above
+
+OPTIONS:
+   --help, -h                     show help
+   --name value, -n value         name of the VM or HW to access
+   --wait-switches-ready, --wait  wait for switches to be ready before before and after configuring peerings (default: true)
+
+   Global options:
+
+   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
+   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
+   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
+   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
+```
+
+### Test Connectivity
+`hhfab vlab` includes a utility to test connectivity between servers inside VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab test-connectivity`.
+
+```console
+NAME:
+   hhfab vlab test-connectivity - test connectivity between all servers
+
+USAGE:
+   hhfab vlab test-connectivity [command options]
+
+OPTIONS:
+   --curls value                  number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
+   --help, -h                     show help
+   --iperfs value                 seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
+   --iperfs-speed value           minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 7000)
+   --name value, -n value         name of the VM or HW to access
+   --pings value                  number of pings to send between each pair of servers (0 to disable) (default: 5)
+   --wait-switches-ready, --wait  wait for switches to be ready before testing connectivity (default: true)
+
+   Global options:
+
+   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
+   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
+   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
+   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
+
+```
 ## Manual VPC creation
 ### Creating and attaching VPCs
 
@@ -294,118 +406,6 @@ From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
     3 packets transmitted, 3 received, +3 duplicates, 0% packet loss, time 2003ms
     rtt min/avg/max/mdev = 6.987/8.720/9.595/1.226 ms
     ```
-## Utility based VPC creation
-
-### Setup VPCs
-`hhfab vlab` includes a utility to create VPCs in vlab. This utility is a `hhfab vlab` sub-command. `hhfab vlab setup-vpcs`.
-
-```console
-NAME:
-   hhfab vlab setup-vpcs - setup VPCs and VPCAttachments for all servers and configure networking on them
-
-USAGE:
-   hhfab vlab setup-vpcs [command options]
-
-OPTIONS:
-   --dns-servers value, --dns value [ --dns-servers value, --dns value ]    DNS servers for VPCs advertised by DHCP
-   --force-clenup, -f                                                       start with removing all existing VPCs and VPCAttachments (default: false)
-   --help, -h                                                               show help
-   --interface-mtu value, --mtu value                                       interface MTU for VPCs advertised by DHCP (default: 0)
-   --ipns value                                                             IPv4 namespace for VPCs (default: "default")
-   --name value, -n value                                                   name of the VM or HW to access
-   --servers-per-subnet value, --servers value                              number of servers per subnet (default: 1)
-   --subnets-per-vpc value, --subnets value                                 number of subnets per VPC (default: 1)
-   --time-servers value, --ntp value [ --time-servers value, --ntp value ]  Time servers for VPCs advertised by DHCP
-   --vlanns value                                                           VLAN namespace for VPCs (default: "default")
-   --wait-switches-ready, --wait                                            wait for switches to be ready before and after configuring VPCs and VPCAttachments (default: true)
-
-   Global options:
-
-   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
-   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
-   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
-```
-
-### Setup Peering
-`hhfab vlab` includes a utility to create VPC peerings in VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab setup-peerings`.
-
-```console
-NAME:
-   hhfab vlab setup-peerings - setup VPC and External Peerings per requests (remove all if empty)
-
-USAGE:
-   Setup test scenario with VPC/External Peerings by specifying requests in the format described below.
-
-   Example command:
-
-   $ hhfab vlab setup-peerings 1+2 2+4:r=border 1~as5835 2~as5835:subnets=sub1,sub2:prefixes=0.0.0.0/0,22.22.22.0/24
-
-   Which will produce:
-   1. VPC peering between vpc-01 and vpc-02
-   2. Remote VPC peering between vpc-02 and vpc-04 on switch group named border
-   3. External peering for vpc-01 with External as5835 with default vpc subnet and any routes from external permitted
-   4. External peering for vpc-02 with External as5835 with subnets sub1 and sub2 exposed from vpc-02 and default route
-      from external permitted as well any route that belongs to 22.22.22.0/24
-
-   VPC Peerings:
-
-   1+2 -- VPC peering between vpc-01 and vpc-02
-   demo-1+demo-2 -- VPC peering between demo-1 and demo-2
-   1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
-   1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
-   1+2:remote=border -- same as above
-
-   External Peerings:
-
-   1~as5835 -- external peering for vpc-01 with External as5835
-   1~ -- external peering for vpc-1 with external if only one external is present for ipv4 namespace of vpc-01, allowing
-     default subnet and any route from external
-   1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-1 with auth external with default vpc subnet and
-     default route from external permitted
-   1~as5835:subnets=default,other:prefixes=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same but with more details
-   1~as5835:s=default,other:p=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same as above
-
-OPTIONS:
-   --help, -h                     show help
-   --name value, -n value         name of the VM or HW to access
-   --wait-switches-ready, --wait  wait for switches to be ready before before and after configuring peerings (default: true)
-
-   Global options:
-
-   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
-   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
-   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
-```
-
-### Test Connectivity
-`hhfab vlab` includes a utility to test connectivity between servers inside VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab test-connectivity`.
-
-```console
-NAME:
-   hhfab vlab test-connectivity - test connectivity between all servers
-
-USAGE:
-   hhfab vlab test-connectivity [command options]
-
-OPTIONS:
-   --curls value                  number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
-   --help, -h                     show help
-   --iperfs value                 seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
-   --iperfs-speed value           minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 7000)
-   --name value, -n value         name of the VM or HW to access
-   --pings value                  number of pings to send between each pair of servers (0 to disable) (default: 5)
-   --wait-switches-ready, --wait  wait for switches to be ready before testing connectivity (default: true)
-
-   Global options:
-
-   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
-   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
-   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
-
-```
 
 ## Using VPCs with overlapping subnets
 
