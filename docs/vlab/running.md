@@ -5,7 +5,7 @@ before running VLAB.
 
 ## Initialize VLAB
 
-First, initialize Fabricator  by running `hhfab init --dev`. This command supports several customization options that are listed in the output of `hhfab init --help`.
+First, initialize Fabricator  by running `hhfab init --dev`.This command create the `fab.yaml` file, which is the main configuration file for the fabric. This command supports several customization options that are listed in the output of `hhfab init --help`.
 
 ```console
 ubuntu@docs:~$ hhfab init --dev
@@ -16,7 +16,7 @@ ubuntu@docs:~$ hhfab init --dev
 ```
 ## VLAB Topology
 
-By default, the command creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
+By default, `hhfab init` creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
@@ -32,8 +32,7 @@ ubuntu@docs:~$ hhfab vlab gen
 [Click Here](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
 
 ### Collapsed Core
-If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`.
-Or if you want to run Collapsed Core topology with 2 MCLAG switches:
+If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`:
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
@@ -70,7 +69,7 @@ prerequisites for running the VLAB.
 
 ## Build the Installer and Start VLAB
 
-In VLAB the build and run step are combined into one command for simplicity, `hhfab vlab up`. For successive runs use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. This command does not return, it runs as long as the VLAB is up. This is done so that shutdown is a simple `ctrl + c`.
+To build and start the virtual machines use `hhfab vlab up`. For successive runs use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. `hhfab vlab up` runs in the foreground and does not return. Running in the foreground makes stopping all VLAB vms a simple `ctrl + c`.
 ```console
 ubuntu@docs:~$ hhfab vlab up
 11:48:22 INF Hedgehog Fabricator version=v0.30.0
@@ -165,14 +164,14 @@ Basedir:        .hhfab/vlab-vms/control-1
 Fabricator creates default users and keys for you to login into the control node and test servers as well as for the
 SONiC Virtual Switches.
 
-Default user with passwordless sudo for the control node and test servers is `core` with password `HHFab.Admin!`.
-Admin user with full access and passwordless sudo for the switches is `admin` with password `HHFab.Admin!`.
-Read-only, non-sudo user with access only to the switch CLI for the switches is `op` with password `HHFab.Op!`.
+The default user with password-less sudo for the control node and test servers is `core` with password `HHFab.Admin!`.
+The admin user with full access and password-less sudo for the switches is `admin` with password `HHFab.Admin!`.
+The read-only, non-sudo user with access to the switch CLI is `op` with password `HHFab.Op!`.
 
 
-## Manage the VLAB Network
-On the control node you have access to kubectl, Fabric CLI, and k9s to manage the Fabric. You can find information
-about the switches provisioning by running `kubectl get agents -o wide`. It usually takes about 10-15 minutes for the
+## Use Kubectl to Interact with the Fabric
+On the control node you have access to kubectl, Fabric CLI, and k9s to manage the Fabric. To view information
+about the switches run `kubectl get agents -o wide`. After the control node is available it usually takes about 10-15 minutes for the
 switches to get installed.
 
 After the switches are provisioned, the command returns something like this:
@@ -264,7 +263,7 @@ default   6h12m
 
 ## Reset VLAB
 
-To reset VLAB and start over directory and run `hhfab init -f` which will force overwrite your existing configuration, `fab.yaml`.
+If VLAB is currently running, press `ctrl + c` to stop it. To reset VLAB and start over run `hhfab init -f` which will force overwrite your existing configuration in `fab.yaml`.
 
 ## Next steps
 
