@@ -231,9 +231,6 @@ graph TD
     S3
     S4
     end
-
-
-
 ```
 The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in VPC 2, travels to the switch, travels out the first loopback port, into the second loopback port, and finally out the port destined for VPC 1.
 
