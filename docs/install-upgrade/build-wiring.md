@@ -136,8 +136,7 @@ graph TD
     TS3[Server3]
     TS4[Server4]
 
-    S1 ---- L1 & L2 & L3 & L4 & L5 & L6 & L7
-    S2 ---- L1 & L2 & L3 & L4 & L5 & L6 & L7
+    S1 & S2 ---- L1 & L2 & L3 & L4 & L5 & L6 & L7
     L1 <-- Bundled --> TS1
     L1 <-- Bundled --> TS1
     L1 <-- Unbundled --> TS2
@@ -189,14 +188,9 @@ graph TD
     TS3[Server3]
     TS4[Server4]
 
-    S1 <--> L1
-    S1 <--> L2
-    S2 <--> L1
-    S2 <--> L2
-    L1 <--> TS1 
-    L1 <--> TS2 
-    L2 <--> TS3
-    L2 <--> TS4
+    S1 & S2 <--> L1 & L2
+    L1 <--> TS1 & TS2
+    L2 <--> TS3 & TS4
 
 
     subgraph VPC 1
@@ -215,19 +209,18 @@ graph TD
 When there is no dedicated border/peering switch available in the fabric we can use local VPC peering. This kind of peering tries sends traffic between the two VPC's on the switch where either of the VPC's has workloads attached. Due to limitation in the Sonic network operating system this kind of peering bandwidth is limited to the number of VPC loopbacks you have selected while initializing the fabric. Traffic between the VPCs will use the loopback interface, the bandwidth of this connection will be equal to the bandwidth of port used in the loopback.
 
 ``` mermaid
-flowchart TD
+graph TD
+
     L1([Leaf 1])
     S1[Server1]
     S2[Server2]
     S3[Server3]
     S4[Server4]
 
-    L1 <-.loopback.-> L1;
-    L1 <-.-> S1;
-    L1 <--> S2;
-    L1 <-.-> S3;
-    L1 <--> S4;
-
+    L1 <-.2,loopback.-> L1;
+    L1 <-.3.-> S1;
+    L1 <--> S2 & S4;
+    L1 <-.1.-> S3;
 
     subgraph VPC 1
     S1
@@ -238,6 +231,9 @@ flowchart TD
     S3
     S4
     end
+
+
+
 ```
 
 
