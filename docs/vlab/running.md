@@ -29,6 +29,7 @@ ubuntu@docs:~$ hhfab vlab gen
 21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 21:27:16 INF Generated wiring file name=vlab.generated.yaml
 ```
+[Click Here](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
 
 ### Collapsed Core
 If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`.
@@ -119,7 +120,7 @@ When the message `INF Control node is ready vm=control-1 type=control` from the 
 has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
 provisioned. See [Accessing the VLAB](#accessing-the-vlab).
 
-## Configuring VLAB VMs
+## Enable Outside connectivity from VLAB VMs
 
 By default, all test server VMs are isolated and have no connectivity to the host or the Internet. You can configure
 enable connectivity using `hhfab vlab up --restrict-servers=false` to allow the test servers to access the Internet and
@@ -127,14 +128,6 @@ the host. When you enable connectivity, VMs get a default route pointing to the 
 VPC peering you need to configure test server VMs to use the VPC attachment as a default route (or just some specific
 subnets).
 
-## Default credentials
-
-Fabricator creates default users and keys for you to login into the control node and test servers as well as for the
-SONiC Virtual Switches.
-
-Default user with passwordless sudo for the control node and test servers is `core` with password `HHFab.Admin!`.
-Admin user with full access and passwordless sudo for the switches is `admin` with password `HHFab.Admin!`.
-Read-only, non-sudo user with access only to the switch CLI for the switches is `op` with password `HHFab.Op!`.
 
 ## Accessing the VLAB
 
@@ -167,7 +160,17 @@ Name:           control-1
 Ready:          true
 Basedir:        .hhfab/vlab-vms/control-1
 ```
+### Default credentials
 
+Fabricator creates default users and keys for you to login into the control node and test servers as well as for the
+SONiC Virtual Switches.
+
+Default user with passwordless sudo for the control node and test servers is `core` with password `HHFab.Admin!`.
+Admin user with full access and passwordless sudo for the switches is `admin` with password `HHFab.Admin!`.
+Read-only, non-sudo user with access only to the switch CLI for the switches is `op` with password `HHFab.Op!`.
+
+
+## Manage the VLAB Network
 On the control node you have access to kubectl, Fabric CLI, and k9s to manage the Fabric. You can find information
 about the switches provisioning by running `kubectl get agents -o wide`. It usually takes about 10-15 minutes for the
 switches to get installed.
@@ -192,7 +195,7 @@ applied. `CurrentG` shows the generation of the configuration the switch is supp
 At that point Fabric is ready and you can use `kubectl` and `kubectl fabric` to manage the Fabric. You can find more
 about managing the Fabric in the [Running Demo](demo.md) and [User Guide](../user-guide/overview.md) sections.
 
-## Getting main Fabric objects
+### Getting main Fabric objects
 
 You can list the main Fabric objects by running `kubectl get` on the control node. You can find more details about
 using the Fabric in the [User Guide](../user-guide/overview.md), [Fabric API](../reference/api.md) and
