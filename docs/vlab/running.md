@@ -29,7 +29,7 @@ ubuntu@docs:~$ hhfab vlab gen
 21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 21:27:16 INF Generated wiring file name=vlab.generated.yaml
 ```
-[Click Here](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
+You can jump [to the instructions](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
 
 ### Collapsed Core
 If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`:
