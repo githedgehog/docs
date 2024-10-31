@@ -20,8 +20,9 @@ metadata:
   name: s5248-01
   namespace: default
 spec:
-  boot:
+  boot: # at least one of the serial or mac needs to be defined
     serial: XYZPDQ1234
+    mac: 00:11:22:33:44:55 # Usually the first management port MAC address
   profile: dell-s5248f-on # Mandatory reference to the SwitchProfile object defining the switch model and capabilities
   asn: 65101 # ASN of the switch
   description: leaf-1
