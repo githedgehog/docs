@@ -5,7 +5,7 @@ before running VLAB.
 
 ## Initialize VLAB
 
-First, initialize Fabricator  by running `hhfab init --dev`.This command create the `fab.yaml` file, which is the main configuration file for the fabric. This command supports several customization options that are listed in the output of `hhfab init --help`.
+First, initialize Fabricator by running `hhfab init --dev`. This command creates the `fab.yaml` file, which is the main configuration file for the fabric. This command supports several customization options that are listed in the output of `hhfab init --help`.
 
 ```console
 ubuntu@docs:~$ hhfab init --dev
@@ -69,7 +69,7 @@ prerequisites for running the VLAB.
 
 ## Build the Installer and Start VLAB
 
-To build and start the virtual machines use `hhfab vlab up`. For successive runs use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. `hhfab vlab up` runs in the foreground and does not return. Running in the foreground makes stopping all VLAB vms a simple `ctrl + c`.
+To build and start the virtual machines, use `hhfab vlab up`. For successive runs, use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. `hhfab vlab up` runs in the foreground and does not return, which allows you to stop all VLAB VMs by simply pressing `Ctrl + C`.
 ```console
 ubuntu@docs:~$ hhfab vlab up
 11:48:22 INF Hedgehog Fabricator version=v0.30.0
@@ -263,7 +263,7 @@ default   6h12m
 
 ## Reset VLAB
 
-If VLAB is currently running, press `ctrl + c` to stop it. To reset VLAB and start over run `hhfab init -f` which will force overwrite your existing configuration in `fab.yaml`.
+If VLAB is currently running, press `Ctrl + C` to stop it. To reset VLAB and start over run `hhfab init -f`. This option forces the process to overwrite your existing configuration in `fab.yaml`.
 
 ## Next steps
 
