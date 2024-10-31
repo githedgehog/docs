@@ -58,7 +58,7 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
-### QEMU/KVM
+### Qemu/KVM
 ```bash
 sudo apt install -y qemu-kvm swtpm-tools tpm2-tools socat
 sudo usermod -aG kvm $USER
@@ -74,15 +74,15 @@ INFO: /dev/kvm exists
 KVM acceleration can be used
 ```
 
-### ORAS
+### Oras
 
-For convenience Hedgehog provides a script to install ORAS:
+For convenience Hedgehog provides a script to install `oras`:
 
 ```bash
 curl -fsSL https://i.hhdev.io/oras | bash
 ```
 
-### HHFAB
+### Hhfab
 
 A github access token is required to download `hhfab`, please submit a ticket using the [Hedgehog Support Portal](https://support.githedgehog.com/). Once obtained, use the provided username and token to log into the Github container registry:
 
