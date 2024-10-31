@@ -12,7 +12,7 @@ After that you will be provided with the credentials to access the software on [
 In order to use the software, log in to the registry using the following command:
 
 ```bash
-docker login ghcr.io
+docker login ghcr.io --username provided_user_name --password provided_token_string
 ```
 
 ## Downloading hhfab
