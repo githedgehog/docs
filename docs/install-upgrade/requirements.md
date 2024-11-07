@@ -7,12 +7,21 @@ In order to provision and manage the switches that comprise the fabric, an out o
 ## Control Node
 
 - Fast SSDs for system/root is mandatory for Control Nodes
-  - NVMe SSDs are recommended
-  - DRAM-less NAND SSDs are not supported (e.g. Crucial BX500)
+    - NVMe SSDs are recommended
+    - DRAM-less NAND SSDs are not supported (e.g. Crucial BX500)
 - 10 GbE port for connection to management network is recommended
 - Minimal (non-HA) setup is a single Control Node
 - (Future) Full (HA) setup is at least 3 Control Nodes
 - (Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more
+
+In internal testing Hedgehog uses a server with the following specifications:
+
+- CPU - AMD EPYC 4344P 
+- Memory - 32 GiB DDR5 ECC 4800MT/s
+- Storage - PCIe Gen 4 NVMe M.2 400GB
+- Network - AOC-STG-i4S Intel X710-BM1 controller
+- Motherboard - H13SAE-MF
+
 
 ### Non-HA (minimal) setup - 1 Control Node
 
