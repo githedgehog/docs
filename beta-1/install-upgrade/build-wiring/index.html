@@ -397,7 +397,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Overview
+    VLAB Overview
   </span>
   
 
@@ -1500,7 +1500,26 @@ working wiring diagrams:</p>
 <h2 id="design-discussion">Design Discussion</h2>
 <p>This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric.</p>
 <h3 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h3>
-<p>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> allows for isolation at layer 3. This is the main building block for users when creating their architecture. Hosts inside of a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belong to the same broadcast domain and can communicate with each other, if desired a single <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can be configured with multiple broadcast domains. The hosts inside of a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> will likely need to connect to other VPCs or the outside world. To communicate between two <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> a <em>peering</em> will need to be created. A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can be a logical separation of workloads. By separating these workloads additional controls are available. The logical separation doesn't have to be the traditional database, web, and compute layers it could be development teams who need isolation, it could be tenants inside of an office building, or any separation that allows for better control of the network. Once your VPCs are decided, the rest of the fabric will come together. With the VPCs decided traffic can be prioritized, security can be put into place, and the wiring can begin. The fabric allows for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to span more than a than one switch, which provides great flexibility, for instance workload mobility.</p>
+<p>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> allows for isolation at layer 3. This is the main building block for users when creating their architecture. Hosts inside of a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> belong to the same broadcast domain and can communicate with each other, if desired a single <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can be configured with multiple broadcast domains. The hosts inside of a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> will likely need to connect to other VPCs or the outside world. To communicate between two <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> a <em>peering</em> will need to be created. A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can be a logical separation of workloads. By separating these workloads additional controls are available. The logical separation doesn't have to be the traditional database, web, and compute layers it could be development teams who need isolation, it could be tenants inside of an office building, or any separation that allows for better control of the network. Once your VPCs are decided, the rest of the fabric will come together. With the VPCs decided traffic can be prioritized, security can be put into place, and the wiring can begin. The fabric allows for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to span more than one switch, which provides great flexibility.</p>
+<pre class="mermaid"><code>graph TD
+    L1([Leaf 1])
+    L2([Leaf 2])
+    S1["Server 1
+      10.7.71.1"]
+    S2["Server 2
+      172.16.2.31"]
+    S3["Server 3
+       192.168.18.85"]
+
+    L1 &lt;--&gt; S1
+    L1 &lt;--&gt; S2
+    L2 &lt;--&gt; S3
+
+    subgraph VPC 1
+    S1
+    S2
+    S3
+    end</code></pre>
 <h3 id="connection">Connection</h3>
 <p>A connection represents the physical wires in your data center. They connect switches to other switches or switches to servers.</p>
 <h4 id="server-connections">Server Connections</h4>
@@ -1511,14 +1530,141 @@ working wiring diagrams:</p>
 <li><em>MCLAG</em> -  Two cables going to two different switches, also called dual homing. The switches will need a fabric link between them.</li>
 <li><em>ESLAG</em> - Two to four cables going to different switches, also called multi-homing. If four links are used there will need to be four switches connected to a single server with four NIC ports.</li>
 </ul>
+<pre class="mermaid"><code>graph TD
+    S1([Spine 1])
+    S2([Spine 2])
+    L1([Leaf 1])
+    L2([Leaf 2])
+    L3([Leaf 3])
+    L4([Leaf 4])
+    L5([Leaf 5])
+    L6([Leaf 6])
+    L7([Leaf 7])
+
+    TS1[Server1]
+    TS2[Server2]
+    TS3[Server3]
+    TS4[Server4]
+
+    S1 &amp; S2 ---- L1 &amp; L2 &amp; L3 &amp; L4 &amp; L5 &amp; L6 &amp; L7
+    L1 &lt;-- Bundled --&gt; TS1
+    L1 &lt;-- Bundled --&gt; TS1
+    L1 &lt;-- Unbundled --&gt; TS2
+    L2 &lt;-- MCLAG --&gt; TS3
+    L3 &lt;-- MCLAG --&gt; TS3
+    L4 &lt;-- ESLAG --&gt; TS4
+    L5 &lt;-- ESLAG --&gt; TS4
+    L6 &lt;-- ESLAG --&gt; TS4
+    L7 &lt;-- ESLAG --&gt; TS4
+
+    subgraph VPC 1
+    TS1
+    TS2
+    TS3
+    TS4
+    end
+
+    subgraph MCLAG
+    L2
+    L3
+    end
+
+    subgraph ESLAG
+    L3
+    L4
+    L5
+    L6
+    L7
+    end
+</code></pre>
 <h4 id="fabric-connections">Fabric Connections</h4>
 <p>Fabric connections serve as connections between switches, they form the fabric of the network.</p>
 <h3 id="vpc-peering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
 <p>VPCs need <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings to talk to each other. <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings come in two varieties: local and remote.</p>
+<pre class="mermaid"><code>graph TD
+    S1([Spine 1])
+    S2([Spine 2])
+    L1([Leaf 1])
+    L2([Leaf 2])
+    TS1[Server1]
+    TS2[Server2]
+    TS3[Server3]
+    TS4[Server4]
+
+    S1 &amp; S2 &lt;--&gt; L1 &amp; L2
+    L1 &lt;--&gt; TS1 &amp; TS2
+    L2 &lt;--&gt; TS3 &amp; TS4
+
+
+    subgraph VPC 1
+    TS1
+    TS2
+    end
+
+    subgraph VPC 2
+    TS3
+    TS4
+    end</code></pre>
 <h4 id="local-vpc-peering">Local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h4>
 <p>When there is no dedicated border/peering switch available in the fabric we can use local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering. This kind of peering tries sends traffic between the two <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s on the switch where either of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s has workloads attached. Due to limitation in the Sonic network operating system this kind of peering bandwidth is limited to the number of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopbacks you have selected while initializing the fabric. Traffic between the VPCs will use the loopback interface, the bandwidth of this connection will be equal to the bandwidth of port used in the loopback.</p>
+<p><pre class="mermaid"><code>graph TD
+
+    L1([Leaf 1])
+    S1[Server1]
+    S2[Server2]
+    S3[Server3]
+    S4[Server4]
+
+    L1 &lt;-.2,loopback.-&gt; L1;
+    L1 &lt;-.3.-&gt; S1;
+    L1 &lt;--&gt; S2 &amp; S4;
+    L1 &lt;-.1.-&gt; S3;
+
+    subgraph VPC 1
+    S1
+    S2
+    end
+
+    subgraph VPC 2
+    S3
+    S4
+    end</code></pre>
+The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2, travels to the switch, travels out the first loopback port, into the second loopback port, and finally out the port destined for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1.</p>
 <h4 id="remote-vpc-peering">Remote <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h4>
 <p>Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s are not present. This kind of peering allows peer traffic between different <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.</p>
+<p><pre class="mermaid"><code>graph TD
+    S1([Spine 1])
+    S2([Spine 2])
+    L1([Leaf 1])
+    L2([Leaf 2])
+    L3([Leaf 3])
+    TS1[Server1]
+    TS2[Server2]
+    TS3[Server3]
+    TS4[Server4]
+
+    S1 &lt;-.5.-&gt; L1;
+    S1 &lt;-.2.-&gt; L2;
+    S1 &lt;-.3,4.-&gt; L3;
+    S2 &lt;--&gt; L1;
+    S2 &lt;--&gt; L2;
+    S2 &lt;--&gt; L3;
+    L1 &lt;-.6.-&gt; TS1;
+    L1 &lt;--&gt; TS2;
+    L2 &lt;--&gt; TS3;
+    L2 &lt;-.1.-&gt; TS4;
+
+
+    subgraph VPC 1
+    TS1
+    TS2
+    end
+
+    subgraph VPC 2
+    TS3
+    TS4
+    end</code></pre>
+The dotted line in the diagram shows the traffic flow for remote peering. The traffic could take a different path because of ECMP. It is important to note that Leaf 3 cannot have any servers from <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1 or <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2 on it, but it can have a  different <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attached to it.</p>
 <h4 id="vpc-loopback"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Loopback</h4>
 <p>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback is a physical cable with both ends plugged into the same switch, suggested but not required to be the adjacent ports. This loopback allows two different VPCs to communicate with each other. This is due to a Broadcom limitation.</p>
 
@@ -1527,7 +1673,7 @@ working wiring diagrams:</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2024</span>
       
         <br>
         Created:

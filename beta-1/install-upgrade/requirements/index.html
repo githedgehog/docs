@@ -397,7 +397,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Overview
+    VLAB Overview
   </span>
   
 
@@ -1327,13 +1327,23 @@ You're not viewing the latest version.
 <p>In order to provision and manage the switches that comprise the fabric, an out of band switch must also be installed. This network is to be used exclusively by the control node and the fabric switches, no other access is permitted. This switch (or switches) is not managed by the fabric. It is recommended that this switch have at least a 10GbE port and that port connect to the control node.</p>
 <h2 id="control-node">Control Node</h2>
 <ul>
-<li>Fast SSDs for system/root is mandatory for Control Nodes</li>
+<li>Fast SSDs for system/root is mandatory for Control Nodes<ul>
 <li>NVMe SSDs are recommended</li>
 <li>DRAM-less NAND SSDs are not supported (e.g. Crucial BX500)</li>
+</ul>
+</li>
 <li>10 GbE port for connection to management network is recommended</li>
 <li>Minimal (non-HA) setup is a single Control Node</li>
 <li>(Future) Full (HA) setup is at least 3 Control Nodes</li>
 <li>(Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more</li>
+</ul>
+<p>In internal testing Hedgehog uses a server with the following specifications:</p>
+<ul>
+<li>CPU - AMD EPYC 4344P </li>
+<li>Memory - 32 GiB DDR5 ECC 4800MT/s</li>
+<li>Storage - PCIe Gen 4 NVMe M.2 400GB</li>
+<li>Network - AOC-STG-i4S Intel X710-BM1 controller</li>
+<li>Motherboard - H13SAE-MF</li>
 </ul>
 <h3 id="non-ha-minimal-setup-1-control-node">Non-HA (minimal) setup - 1 Control Node</h3>
 <ul>
@@ -1442,7 +1452,7 @@ You're not viewing the latest version.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2024</span>
       
         <br>
         Created:
