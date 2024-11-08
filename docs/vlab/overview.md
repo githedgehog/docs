@@ -20,7 +20,7 @@ You can find more information about getting `hhfab` in the [download](../getting
 Currently, it's only tested on Ubuntu 22.04 LTS, but should work on any Linux distribution with QEMU/KVM support and fairly
 up-to-date packages.
 
-The following packages needs to be installed: `qemu-kvm swtpm-tools tpm2-tools socat`. Docker is also required, to login
+The following packages needs to be installed: `qemu-kvm socat`. Docker is also required, to login
 into the OCI registry.
 
 By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can
