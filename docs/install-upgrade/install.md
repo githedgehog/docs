@@ -1,8 +1,5 @@
 # Install Fabric
 
-!!! warning ""
-    Under construction.
-
 ## Prerequisites
 
 * A machine with access to the Internet to use Fabricator and build installer with at least 8 GB RAM and 25 GB of disk space
