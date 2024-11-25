@@ -6,7 +6,7 @@ Ensure the hardware that is to be used for the control node meets the [system re
 Beta-1 uses the RJ-45 management ports of the switches instead of front panel ports. A simple management network will need to be in place and cabled before the install of Beta-1. The control node will run a DHCP server on this network and must be the sole DHCP server. Do not co-mingle other services or equipment on this network, it is for the exclusive use of the control node and switches.
 
 ## Install Switch Vendor ONIE
-Beta-1 uses the switch vendor onie for installation of the NOS. The latest vendor provided version of ONIE is recommended to be installed.
+Beta-1 uses the switch vendor ONIE for installation of the NOS. The latest vendor provided version of ONIE is recommended to be installed. Hedgehog ONIE **must not** be used.
 
 
 ## Changes to the Wiring Diagram
