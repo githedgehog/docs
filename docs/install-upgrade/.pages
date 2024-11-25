@@ -1,5 +1,5 @@
 nav:
-  - Overview: overview.md
+  - Install: overview.md
   - Supported Devices: supported-devices.md
   - System Requirements: requirements.md
   - Build Wiring Diagram: build-wiring.md

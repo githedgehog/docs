@@ -11,4 +11,4 @@ You can read more about its [concepts](concepts/overview.md) and [architecture](
 documentation.
 
 You can find out how to [download](getting-started/download.md) and try the Fabric on the self-hosted
-[fully virtualized lab](vlab/overview.md) or on [hardware](install-upgrade/overview.md).
+[fully virtualized lab](vlab/overview.md) or on [hardware](install-upgrade/install.md).
