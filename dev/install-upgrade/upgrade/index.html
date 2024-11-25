@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/overview/">
+        <link rel="canonical" href="https://docs.githedgehog.com/dev/install-upgrade/upgrade/">
       
       
-        <link rel="prev" href="../../vlab/demo/">
+        <link rel="prev" href="../config/">
       
       
-        <link rel="next" href="../supported-devices/">
+        <link rel="next" href="../../user-guide/overview/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Overview - Open Network Fabric</title>
+        <title>Upgrade - Open Network Fabric</title>
       
     
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-fabric" class="md-skip">
+        <a href="#upgrading-from-alpha-7-to-beta-1" class="md-skip">
           Skip to content
         </a>
       
@@ -153,7 +153,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Upgrade
             
           </span>
         </div>
@@ -496,125 +496,17 @@ You're not viewing the latest version.
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Overview
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Overview
+    Install
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview-of-install-process" class="md-nav__link">
-    Overview of Install Process
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
-    Build Control Node configuration and Installer
-  </a>
-  
-    <nav class="md-nav" aria-label="Build Control Node configuration and Installer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hhfab-commands-to-make-a-bootable-image" class="md-nav__link">
-    HHFAB commands to make a bootable image
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-usb-image-to-disk" class="md-nav__link">
-    Write USB Image to Disk
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-control-node" class="md-nav__link">
-    Install Control Node
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Control Node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configure-management-network" class="md-nav__link">
-    Configure Management Network
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fabric-manages-switches" class="md-nav__link">
-    Fabric Manages Switches
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -695,6 +587,108 @@ You're not viewing the latest version.
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Upgrade
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#control-node" class="md-nav__link">
+    Control Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-network" class="md-nav__link">
+    Management Network
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-switch-vendor-onie" class="md-nav__link">
+    Install Switch Vendor ONIE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes-to-the-wiring-diagram" class="md-nav__link">
+    Changes to the Wiring Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-the-control-node" class="md-nav__link">
+    Install The Control Node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-nos-using-onie-nos-install-option" class="md-nav__link">
+    Install NOS using ONIE NOS Install Option
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1272,70 +1266,44 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#control-node" class="md-nav__link">
+    Control Node
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#overview-of-install-process" class="md-nav__link">
-    Overview of Install Process
+  <a href="#management-network" class="md-nav__link">
+    Management Network
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
-    Build Control Node configuration and Installer
+  <a href="#install-switch-vendor-onie" class="md-nav__link">
+    Install Switch Vendor ONIE
   </a>
-  
-    <nav class="md-nav" aria-label="Build Control Node configuration and Installer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hhfab-commands-to-make-a-bootable-image" class="md-nav__link">
-    HHFAB commands to make a bootable image
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-usb-image-to-disk" class="md-nav__link">
-    Write USB Image to Disk
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-control-node" class="md-nav__link">
-    Install Control Node
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Control Node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configure-management-network" class="md-nav__link">
-    Configure Management Network
+  <a href="#changes-to-the-wiring-diagram" class="md-nav__link">
+    Changes to the Wiring Diagram
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#fabric-manages-switches" class="md-nav__link">
-    Fabric Manages Switches
+      
+        <li class="md-nav__item">
+  <a href="#install-the-control-node" class="md-nav__link">
+    Install The Control Node
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#install-nos-using-onie-nos-install-option" class="md-nav__link">
+    Install NOS using ONIE NOS Install Option
+  </a>
   
 </li>
       
@@ -1354,7 +1322,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/overview.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/upgrade.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -1362,129 +1330,37 @@ You're not viewing the latest version.
   
 
 
-<h1 id="install-fabric">Install Fabric</h1>
-<div class="admonition warning">
-<p>Under construction.</p>
-</div>
-<h2 id="prerequisites">Prerequisites</h2>
+<h1 id="upgrading-from-alpha-7-to-beta-1">Upgrading from Alpha-7 to Beta-1</h1>
+<h2 id="control-node">Control Node</h2>
+<p>Ensure the hardware that is to be used for the control node meets the <a href="../requirements/#control-node">system requirements</a>. The upgrade process is destructive of the host, so ensure all data needed is removed from the selected server before the upgrade is started.</p>
+<h2 id="management-network">Management Network</h2>
+<p>Beta-1 uses the RJ-45 management ports of the switches instead of front panel ports. A simple management network will need to be in place and cabled before the install of Beta-1. The control node will run a DHCP server on this network and must be the sole DHCP server. Do not co-mingle other services or equipment on this network, it is for the exclusive use of the control node and switches.</p>
+<h2 id="install-switch-vendor-onie">Install Switch Vendor ONIE</h2>
+<p>Beta-1 uses the switch vendor ONIE for installation of the NOS. The latest vendor provided version of ONIE is recommended to be installed. Hedgehog ONIE <strong>must not</strong> be used.</p>
+<h2 id="changes-to-the-wiring-diagram">Changes to the Wiring Diagram</h2>
 <ul>
-<li>A machine with access to the Internet to use Fabricator and build installer with at least 8 GB RAM and 25 GB of disk space</li>
-<li>An 16 GB USB flash drive, if you are not using virtual media</li>
-<li>Have a machine to function as the Fabric Control Node. <a href="../requirements/">System Requirements</a> as well as IPMI access to it to install
-  the OS.</li>
-<li>A management switch with at least 1 10GbE port is recommended</li>
-<li>Enough <a href="../supported-devices/">Supported Switches</a> for your Fabric</li>
+<li>All API versions changed from <code>v1alpha2</code> to <code>v1beta1</code></li>
+<li><code>Server[control=true]</code> object type was removed and replaced with <code>ControlNode</code> object in the <code>fabricator.githedgehog.com/v1beta1</code> API (.spec.control field removed), <code>Server</code> object only describes workload server now</li>
+<li>All initial configuration is mainly still available using the <code>hhfab init</code> flags but now configurable in the <code>fab.yaml</code> file it creates and available in the runtime in the <code>Fabricator</code> object in the <code>fabricator.githedgehog.com/v1beta1</code> API</li>
+<li><code>Connection[type=management]</code> object removed, relevant information is now present on the <code>ControlNode</code> object in the form of the management interface and its config, switches are always connected using management port</li>
+<li><code>.spec.location</code> remove from <code>Switch</code> object</li>
+<li><code>.spec.boot</code> added to <code>Switch</code> object with <code>mac</code> and <code>serial</code> fields, at least <strong>one</strong> of them is required to identify switch for installation</li>
 </ul>
-<h2 id="overview-of-install-process">Overview of Install Process</h2>
-<p>This section is dedicated to the Hedgehog Fabric installation on bare-metal control node(s) and switches, their
-preparation and configuration. To install the VLAB see <a href="../../vlab/overview/">VLAB Overview</a>.</p>
-<p>Download and install <code>hhfab</code> following instructions from the <a href="../../getting-started/download/">Download</a> section.</p>
-<p>The main steps to install Fabric are:</p>
-<ol>
-<li>Install <code>hhfab</code> on the machines with access to the Internet<ol>
-<li><a href="../build-wiring/">Prepare Wiring Diagram</a></li>
-<li><a href="../config/">Select Fabric Configuration</a></li>
-<li><a href="#build-control-node-configuration-and-installer">Build Control Node configuration and installer</a></li>
-</ol>
-</li>
-<li><a href="#install-control-node">Install Control Node</a><ol>
-<li>Insert USB with control-os image into Fabric Control Node</li>
-<li>Boot the node off the USB to initiate the installation</li>
-</ol>
-</li>
-<li>Prepare Management Network<ol>
-<li>Connect management switch to Fabric control node</li>
-<li>Connect 1GbE Management port of switches to management switch</li>
-</ol>
-</li>
-<li>Prepare supported switches<ol>
-<li>Ensure switch serial numbers and / or first management interface MAC addresses are recorded in wiring diagram</li>
-<li>Boot them into ONIE Install Mode to have them automatically provisioned</li>
-</ol>
-</li>
-</ol>
-<h2 id="build-control-node-configuration-and-installer">Build Control Node configuration and Installer</h2>
-<p>Hedgehog has created a command line utility, called <code>hhfab</code>, that helps generate the wiring diagram and fabric configuration, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media. The first <code>hhfab</code> command to run is <code>hhfab init</code>. This will generate the main configuration file, <code>fab.yaml</code>. <code>fab.yaml</code> is responsible for almost every configuration of the fabric with the exception of the wiring. Each command and subcommand have usage messages, simply supply the <code>-h</code> flag to your command or sub command to see the available options. For example <code>hhfab vlab -h</code> and <code>hhfab vlab gen -h</code>.</p>
-<h3 id="hhfab-commands-to-make-a-bootable-image">HHFAB commands to make a bootable image</h3>
-<ol>
-<li><code>hhfab init --wiring wiring-lab.yaml</code></li>
-<li>The <code>init</code> command generates a <code>fab.yaml</code> file, edit the <code>fab.yaml</code> file for your needs<ol>
-<li>ensure the correct boot disk (e.g. <code>/dev/sda</code>) and control node NIC names are supplied</li>
-</ol>
-</li>
-<li><code>hhfab validate</code></li>
-<li><code>hhfab build</code></li>
-</ol>
-<p>The installer for the fabric is generated in <code>$CWD/result/</code>. This installation image is named <code>control-1-install-usb.img</code> and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.</p>
-<h3 id="write-usb-image-to-disk">Write USB Image to Disk</h3>
-<div class="admonition warning">
-<p>This will erase data on the USB disk.</p>
-</div>
-<ol>
-<li>Insert the USB to your machine</li>
-<li>Identify the path to your USB stick, for example: <code>/dev/sdc</code></li>
-<li>Issue the command to write the image to the USB drive<ul>
-<li><code>sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress</code></li>
-</ul>
-</li>
-</ol>
-<p>There are utilities that assist this process such as <a href="https://etcher.balena.io/">etcher</a>.</p>
-<h2 id="install-control-node">Install Control Node</h2>
-<p>This control node should be given a static IP address. Either a lease or statically assigned.</p>
-<ol>
-<li>
-<p>Configure the server to use UEFI boot <strong>without</strong> secure boot</p>
-</li>
-<li>
-<p>Attach the image to the server either by inserting via USB, or attaching via virtual media</p>
-</li>
-<li>
-<p>Select boot off of the attached media, the installation process is <strong>automated</strong></p>
-</li>
-<li>
-<p>Once the control node has booted, it logs in automatically and begins the installation process</p>
-<ol>
-<li>Optionally use <code>journalctl -f -u flatcar-install.service</code> to monitor progress</li>
-</ol>
-</li>
-<li>
-<p>Once the installation is complete, the system automatically reboots.</p>
-</li>
-<li>
-<p>After the system has shutdown but before the boot up process reaches the operating system, <strong>remove the USB image from the system</strong>. Removal during the UEFI boot screen is acceptable.</p>
-</li>
-<li>
-<p>Upon booting into the freshly installed system, the fabric installation will <strong>automatically begin</strong></p>
-<ol>
-<li>If the insecure <code>--dev</code> flag was passed to <code>hhfab init</code> the password for the <code>core</code> user is <code>HHFab.Admin!</code>, the switches have two users created <code>admin</code> and <code>op</code>. <code>admin</code> has administrator privileges and password <code>HHFab.Admin!</code>, whereas the <code>op</code> user is a read-only, non-sudo user with password <code>HHFab.Op!</code>.</li>
-<li>Optionally this can be monitored with <code>journalctl -f -u fabric-install.service</code></li>
-</ol>
-</li>
-<li>
-<p>The install is complete when the log emits "Control Node installation complete". Additionally, the systemctl status will show <code>inactive (dead)</code> indicating that the executable has finished.</p>
-</li>
-</ol>
-<h3 id="configure-management-network">Configure Management Network</h3>
-<p>The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called <code>external</code> in the <code>fab.yaml</code> file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric.</p>
-<h3 id="fabric-manages-switches">Fabric Manages Switches</h3>
-<p>Now that the install has finished, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all pre-installed as part of the Control Node installer.</p>
-<p>At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
-- enter <code>k9s</code> at the command prompt
-- use the arrow keys to select the pod named <code>fabric-boot</code>
-- the logs of the pod will be displayed showing the DHCP lease process
-- use the switches screen of <code>k9s</code> to see the heartbeat column to verify the connection between switch and controller.
-    - to see the switches type <code>:switches</code> (like a vim command) into <code>k9s</code></p>
+<h2 id="install-the-control-node">Install The Control Node</h2>
+<p>Follow the <a href="../install/#build-control-node-configuration-and-installer">instructions</a> for installing the Beta-1 Fabric on a control node.</p>
+<h2 id="install-nos-using-onie-nos-install-option">Install NOS using ONIE NOS Install Option</h2>
+<p>As the switches boot up, select the ONIE option from the grub screen. From there select the "NOS Install" option. The install option will cause the switch to begin searching for installation media, this media is supplied by the control node.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 25, 2024</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 25, 2024</span>
       
     
   </small>
