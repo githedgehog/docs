@@ -50,5 +50,5 @@ curl -fsSL https://i.hhdev.io/oras | bash
 
 * [Concepts](../concepts/overview.md)
 * [Virtual LAB](../vlab/overview.md)
-* [Installation](../install-upgrade/overview.md)
+* [Installation](../install-upgrade/install.md)
 * [User guide](../user-guide/overview.md)
