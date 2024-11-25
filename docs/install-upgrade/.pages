@@ -1,6 +1,8 @@
 nav:
-  - Overview: overview.md
+  - Install: install.md
   - Supported Devices: supported-devices.md
   - System Requirements: requirements.md
   - Build Wiring Diagram: build-wiring.md
   - Fabric Configuration: config.md
+  - ...
+  - Upgrade: upgrade.md
