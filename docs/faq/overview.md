@@ -20,10 +20,10 @@ graph TD
     L2([Leaf 2])
     L3([Leaf 3])
     L4([Leaf 4])
-    WS1@{ shape: procs, label: "Worload Servers" }
-    WS2@{ shape: procs, label: "Worload Servers" }
-    WS3@{ shape: procs, label: "Worload Servers" }
-    WS4@{ shape: procs, label: "Worload Servers" }
+    WS1[[Worload Servers]]
+    WS2[[Worload Servers]]
+    WS3[[Worload Servers]]
+    WS4[[Worload Servers]]
 
     S1 & S2 & S3 ---- L1 & L2 & L3 & L4 
     L1 ---- WS1
@@ -45,9 +45,9 @@ graph TD
     A1[Access 1]
     A2[Access 2]
     A3[Access 3]
-    WS1@{ shape: procs, label: "Worload Servers" }
-    WS2@{ shape: procs, label: "Worload Servers" }
-    WS3@{ shape: procs, label: "Worload Servers" }
+    WS1[[Worload Servers]]
+    WS2[[Worload Servers]]
+    WS3[[Worload Servers]]
 
     CG1 ---- AG1 & AG2 & AG3
     CG2 ---- AG1 & AG2 & AG3
