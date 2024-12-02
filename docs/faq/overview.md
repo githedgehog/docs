@@ -8,7 +8,7 @@ The Hedgehog Fabric is managed via Kubernetes objects and custom resource defini
 
 ## What are the advantages of a spine-leaf architecture?
 
-A spine-leaf architecture is designed to facilitate traffic that is passing between servers inside of a data center, other architectures like core-access-aggregation are setup to facilitate traffic moving in and out of the data center. A spine-leaf architecture provides multiple paths between nodes which allows for router maintenance and resilience in the case of failures. The spine-leaf architecture allows allows for multiple points of egress via border leaf nodes. In a spine-leaf architecture the unit of connection is a layer 3 route. There are robust tools, queueing algorithms and hardware available to manage network traffic at layer 3. To manage the distribution of routes to switches inside the fabric a protocol such as  BGP, OSPF, or IS-IS is used. 
+A spine-leaf architecture is designed to facilitate traffic that is passing between servers inside of a data center, other architectures like core-access-aggregation are setup to facilitate traffic moving in and out of the data center. A spine-leaf architecture provides multiple paths between nodes which allows for router maintenance and resilience in the case of failures. The spine-leaf architecture allows for multiple points of egress via border leaf nodes. In a spine-leaf architecture the unit of connection is a layer 3 route. There are robust tools, queueing algorithms and hardware available to manage network traffic at layer 3. To manage the distribution of routes to switches inside the fabric a protocol such as BGP, OSPF, or IS-IS is used. 
 
 ### Spine Leaf Architecture Diagram
 ```mermaid
@@ -32,7 +32,7 @@ graph TD
     L4 ---- WS4
 
 ```
-In the above diagram Leaf and Spine routers, servers inside of a virtual private cloud can be attached to any leaf. In order for the servers to communicate routes are applied to leaf nodes and traffic that needs to pass from leaf 1 to leaf 2 could travel via any spine. The leaf uses [ECMP](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) to decide which spine to use. An [EVPN](https://en.wikipedia.org/wiki/Ethernet_VPN) technology ensures that servers inside of a VPC are reachable at layer2 regardless of which leaf they are attached to the fabric. 
+The above diagram contains a Leaf and Spine routers. Servers inside of a virtual private cloud can be attached to any leaf. In order for the servers to communicate routes are applied to leaf nodes and traffic that needs to pass from leaf 1 to leaf 2 could travel via any spine. The leaf uses [ECMP](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) to decide which spine to use. An [EVPN](https://en.wikipedia.org/wiki/Ethernet_VPN) technology ensures that servers inside of a VPC are reachable at layer 2 regardless of which leaf they are attached to in the fabric. 
 
 ### Core Access Aggregation Diagram
 ```mermaid
@@ -62,7 +62,7 @@ graph TD
     A3 ---- WS3
 
 ```
-In the diagram above, the Access switches are a isolated and or managed by layer 2 constructs like ACLs, bridging, and VLANs. the Aggregation routers are where layer 2 traffic is promoted to layer 3. The core routers handle layer 3 traffic only. Often some form of Spanning Tree Protocol is used to avoid loops in the layer 2 domain. Loops would cripple the network as layer 2 often relies on Broadcast / Flooding for discovery. While there are multiple paths out from the workload servers to the core they are often not passing traffic due to the Spanning Tree Protocol, these disable links are shown as dotted lines.
+In the diagram above, the Access switches are isolated or managed by layer-2 constructs like ACLs, bridging, and VLANs. The Aggregation routers are where layer-2 traffic is promoted to layer 3. The core routers handle layer-3 traffic only. Often some form of Spanning Tree Protocol is used to avoid loops in the layer-2 domain. Loops would cripple the network as layer 2 often relies on Broadcast/Flooding for discovery. While there are multiple paths out from the workload servers to the core they are often not passing traffic due to the Spanning Tree Protocol, these disable links are shown as dotted lines.
 
 ## What does it mean to manage my network with Kubernetes?
 
