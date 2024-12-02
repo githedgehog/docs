@@ -1377,6 +1377,7 @@ data plane or performance testing, or for production use.</p>
 <p>In the VLAB all switches start as empty VMs with only the ONIE image on them, and they go through the whole discovery,
 boot and installation process like on real hardware.</p>
 <h2 id="hhfab">HHFAB</h2>
+<p>Hedgehog maintains a utility to install and configure VLAB, called <code>hhfab</code>, aka Fabricator.</p>
 <p>The <code>hhfab</code> CLI provides a special command <code>vlab</code> to manage the virtual labs. It allows you to run sets of virtual
 machines to simulate the Fabric infrastructure including control node, switches, test servers and it automatically runs
 the installer to get Fabric up and running.</p>
@@ -1452,7 +1453,6 @@ sure that you have at least allocated RAM and disk space for all VMs.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/oras<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </span></code></pre></div>
 <h3 id="hhfab_1">Hhfab</h3>
-<p>Hedgehog maintains a utility to install and configure VLAB, called <code>hhfab</code>.</p>
 <p>You need a GitHub access token to download <code>hhfab</code>, please submit a ticket using the <a href="https://support.githedgehog.com/">Hedgehog Support Portal</a>. Once in possession of the credentials, use the provided username and token to log into the GitHub container registry:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>login<span class="w"> </span>ghcr.io<span class="w"> </span>--username<span class="w"> </span>provided_username<span class="w"> </span>--password<span class="w"> </span>provided_token
 </span></code></pre></div>
@@ -1469,7 +1469,7 @@ sure that you have at least allocated RAM and disk space for all VMs.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 8, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2024</span>
       
         <br>
         Created:
