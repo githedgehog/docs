@@ -3,7 +3,8 @@ site_url: https://docs.githedgehog.com/
 site_description: Hedgehog Open Network Fabric Documentation
 site_author: Hedgehog Authors
 copyright:
-  Copyright &copy; 2023 Hedgehog
+  Copyright &copy; 2024 Hedgehog
+  &#x25cf;
   <a href="#__consent">Change cookie settings</a>
 
 theme:
@@ -24,6 +25,7 @@ theme:
     - navigation.expand
     - toc.follow
     - navigation.top
+    - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
