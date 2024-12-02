@@ -167,19 +167,25 @@ the Border Leaf `switchBorder` that has a cable connecting it to an Edge device 
 #### External
 
 ```console
-# hhfctl external create --name HedgeEdge --ipns default --in 65102:5000 --out 5000:65102
+# kubectl fabric external create --name hedgeedge --ipns default --in 65102:5000 --out 5000:65102
 ```
 
 ```yaml
-apiVersion: vpc.githedgehog.com/v1beta1
-kind: External
-metadata:
-  name: HedgeEdge
-  namespace: default
-spec:
-  inboundCommunity: 65102:5000
-  ipv4Namespace: default
-  outboundCommunity: 5000:65102
+- apiVersion: vpc.githedgehog.com/v1beta1
+  kind: External
+  metadata:
+    creationTimestamp: "2024-11-26T21:24:32Z"
+    generation: 1
+    labels:
+      fabric.githedgehog.com/ipv4ns: default
+    name: hedgeedge
+    namespace: default
+    resourceVersion: "57628"
+    uid: a0662988-73d0-45b3-afc0-0d009cd91ebd
+  spec:
+    inboundCommunity: 65102:5000
+    ipv4Namespace: default
+    outboundCommunity: 5000:6510
 ```
 
 #### Connection

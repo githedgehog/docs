@@ -11,7 +11,7 @@ Guide](overview.md) documentation, and the [Fabric API](../reference/api.md) ref
 ### Add a switch to the existing fabric
 
 In order to be added to the Hedgehog Fabric, a switch should have a corresponding `Switch` object. An example on how to define
-this object is available in the [User Guild](devices.md).
+this object is available in the [User Guide](devices.md).
 
 !!! note
     If the`Switch` will be used in `ESLAG` or `MCLAG` groups, appropriate groups should exist. Redundancy groups should

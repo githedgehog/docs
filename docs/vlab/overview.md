@@ -9,6 +9,8 @@ boot and installation process like on real hardware.
 
 ## HHFAB
 
+Hedgehog maintains a utility to install and configure VLAB, called `hhfab`, aka Fabricator.
+
 The `hhfab` CLI provides a special command `vlab` to manage the virtual labs. It allows you to run sets of virtual
 machines to simulate the Fabric infrastructure including control node, switches, test servers and it automatically runs
 the installer to get Fabric up and running.
@@ -83,8 +85,6 @@ curl -fsSL https://i.hhdev.io/oras | bash
 ```
 
 ### Hhfab
-
-Hedgehog maintains a utility to install and configure VLAB, called `hhfab`.
 
 You need a GitHub access token to download `hhfab`, please submit a ticket using the [Hedgehog Support Portal](https://support.githedgehog.com/). Once in possession of the credentials, use the provided username and token to log into the GitHub container registry:
 

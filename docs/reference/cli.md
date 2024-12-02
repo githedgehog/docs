@@ -12,21 +12,22 @@ be done using `kubectl`.
 ```bash
 core@control-1 ~ $ kubectl fabric
 NAME:
-   hhfctl - Hedgehog Fabric user client
+   kubectl fabric - Hedgehog Fabric API kubectl plugin
 
 USAGE:
-   hhfctl [global options] command [command options] [arguments...]
+   kubectl fabric [global options] command [command options]
 
 VERSION:
-   v0.23.0
+   v0.53.1
 
 COMMANDS:
-   vpc                VPC commands
-   switch, sw, agent  Switch/Agent commands
-   connection, conn   Connection commands
-   switchgroup, sg    SwitchGroup commands
-   external           External commands
-   help, h            Shows a list of commands or help for one command
+   vpc               VPC commands
+   switch, sw        Switch commands
+   connection, conn  Connection commands
+   switchgroup, sg   SwitchGroup commands
+   external, ext     External commands
+   inspect, i        Inspect Fabric API Objects and Primitives
+   help, h           Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --verbose, -v  verbose output (includes debug) (default: true)
