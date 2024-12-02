@@ -1,1 +1,26 @@
-[{"version": "beta-1", "title": "beta-1", "aliases": ["latest"]}, {"version": "alpha-7", "title": "alpha-7", "aliases": []}, {"version": "alpha-6", "title": "alpha-6", "aliases": []}, {"version": "dev", "title": "dev", "aliases": ["master"]}]
+[
+  {
+    "version": "beta-1",
+    "title": "beta-1",
+    "aliases": [
+      "latest"
+    ]
+  },
+  {
+    "version": "alpha-7",
+    "title": "alpha-7",
+    "aliases": []
+  },
+  {
+    "version": "alpha-6",
+    "title": "alpha-6",
+    "aliases": []
+  },
+  {
+    "version": "dev",
+    "title": "dev",
+    "aliases": [
+      "master"
+    ]
+  }
+]
