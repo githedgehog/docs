@@ -8,10 +8,11 @@ The Hedgehog Fabric is managed via Kubernetes objects and custom resource defini
 
 ## What are the advantages of a spine-leaf architecture?
 
-A spine-leaf architecture is designed to facilitate traffic that is passing between servers inside of a data center, other architectures like core-access-aggregation are setup to facilitate traffic moving in and out of the data center. A spine-leaf architecture provides multiple paths between nodes which allows for router maintenance and resilience in the case of failures. The spine-leaf architecture allows for multiple points of egress via border leaf nodes. In a spine-leaf architecture the unit of connection is a layer 3 route. There are robust tools, queueing algorithms and hardware available to manage network traffic at layer 3. To manage the distribution of routes to switches inside the fabric a protocol such as BGP, OSPF, or IS-IS is used. 
+A spine-leaf architecture is designed to facilitate traffic that is passing between servers inside of a data center. By contrast, other architectures like core-access-aggregation facilitate traffic moving in and out of the data center. A spine-leaf architecture provides multiple paths between nodes which allows for router maintenance and resilience in the case of failures. The spine-leaf architecture allows for multiple points of egress via border leaf nodes. In a spine-leaf architecture the unit of connection is a layer 3 route. There are robust tools, queueing algorithms and hardware available to manage network traffic at layer 3. To manage the distribution of routes to switches inside the fabric a protocol such as BGP, OSPF, or IS-IS is used. 
 
 ### Spine Leaf Architecture Diagram
-The below diagram contains a Leaf and Spine routers. Servers inside of a virtual private cloud can be attached to any leaf. In order for the servers to communicate routes are applied to leaf nodes and traffic that needs to pass from leaf 1 to leaf 2 could travel via any spine. The leaf uses [ECMP](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) to decide which spine to use. An [EVPN](https://en.wikipedia.org/wiki/Ethernet_VPN) technology ensures that servers inside of a VPC are reachable at layer 2 regardless of which leaf they are attached to in the fabric. 
+
+The following diagram contains Leaf and Spine routers. Servers inside of a virtual private cloud can be attached to any leaf. To allow the servers to communicate, routes are applied to leaf nodes. The traffic passing from leaf 1 to leaf 2 can travel via any spine: the leaf uses [ECMP](https://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) to decide which spine to use. [EVPN](https://en.wikipedia.org/wiki/Ethernet_VPN) ensures that servers inside of a VPC are reachable at layer 2 regardless of which leaf they are attached to in the Fabric. 
 
 ```mermaid
 graph TD
@@ -75,6 +76,6 @@ For example, if the administrator of a Kubernetes cluster wants to create a new 
 
 With the Hedgehog Fabric, the same principles apply to managing network resources. Administrators create a YAML file to configure a VPC. The YAML file describes the IP address range for the private cloud, for example the `192.168.0.0/16` space. It also describes any VLANs that the private cloud needs. After the desired options are in the file, administrators can push the configuration to the switch with a mere `kubectl apply -f vpc1.yaml`, and within a few seconds the switch configuration is live.
 
+## What is a Virtual Private Cloud (VPC)?
 
-## What is a Virtual Private Cloud (VPC)
-A VPC is [layer 3](https://en.wikipedia.org/wiki/Network_layer) logical isolation inside of a network. To isolate the servers a [VRF](https://en.wikipedia.org/wiki/Virtual_routing_and_forwarding) is used. A VRF allows for multiple routing tables to exist at the same time on a switch. To isolate one VPC from another there is simply no route between them.
+A VPC provides [layer 3](https://en.wikipedia.org/wiki/Network_layer) logical isolation inside of a network. To isolate the servers, a [VRF](https://en.wikipedia.org/wiki/Virtual_routing_and_forwarding) is used. A VRF allows for multiple routing tables to exist at the same time on a switch. Each VPC is isolated from the others because there is simply no route between them.
