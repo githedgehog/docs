@@ -8,6 +8,7 @@ User Guide [switch features and port naming](../user-guide/profiles.md).
 * Celestica DS3000
 * Celestica DS4000
 * Dell S5232F-ON
+* Dell Z9332F-ON
 * Edgecore DCS204 (AS7726-32X)
 * Edgecore DCS501 (AS7712-32X-EC)
 * Supermicro SSE-C4632SB
