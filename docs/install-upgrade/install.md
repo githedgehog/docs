@@ -41,19 +41,29 @@ Hedgehog has created a command line utility, called `hhfab`, that helps generate
 1. The `init` command generates a `fab.yaml` file, edit the `fab.yaml` file for your needs
     1. ensure the correct boot disk (e.g. `/dev/sda`) and control node NIC names are supplied
 1. `hhfab validate`
-1. `hhfab build`
+1. `hhfab build --mode iso`
+    1. There are two options for the format of the bootable media. ISO and IMG. An ISO is best suited to use with IPMI based virtual media. The img file is designed for writing to a removable USB drive.
 
-The installer for the fabric is generated in `$CWD/result/`. This installation image is named `control-1-install-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
+The installer for the fabric is generated in `$CWD/result/`. This installation image is named `control-1-install-usb.iso` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
 
 ### Write USB Image to Disk
 
 !!! warning ""
     This will erase data on the USB disk.
 
+### Steps for Linux
 1. Insert the USB to your machine
 1. Identify the path to your USB stick, for example: `/dev/sdc`
 1. Issue the command to write the image to the USB drive
-    - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
+    - `sudo dd if=control-1-install-usb.iso of=/dev/sdc bs=4k status=progress`
+
+### Steps for MacOS
+1. Plug the drive into the computer
+1. Open the terminal
+1. Identify the drive using `diskutil list`
+1. Unmount the disk `diskutil unmount disk5`, the disk is specific to your environment
+1. Write the image to the disk: `sudo dd if=./control-1-install-usb.iso of=/dev/disk5 bs=4k status=progress`
+
 
 There are utilities that assist this process such as [etcher](https://etcher.balena.io/).
 
@@ -84,7 +94,36 @@ This control node should be given a static IP address. Either a lease or statica
 
 ### Configure Management Network
 
-The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called `external` in the `fab.yaml` file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric.
+The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called `external` in the `fab.yaml` file is for the customer to access the control node via their building IT network. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric. The following diagram illustrates 3 networks for the control node. A "Local IT"  network that is used for command and control or IPMI. The other network is exclusive to Hedgehog, the best solution is a dedicated network switch, but a private exclusive vlan is potentially workable.
+```mermaid
+graph LR
+
+N1[IPMI]
+N2[SSH access to Operating system]
+N3[HH Exclusive Network]
+C1[Control Node]
+S1([Spine 1])
+S2([Spine 1])
+L1([Leaf 1])
+L2([Leaf 2])
+L3([Leaf 3])
+L4([Leaf 4])
+
+subgraph itnet [Local IT Network]
+N1 <--> C1
+N2 <--> C1
+end
+
+subgraph hhnet [HH Network Mangement]
+C1 <--> N3
+end
+
+S1 & S2 <--> L1 & L2 & L3 & L4
+
+hhnet <-->  S1 & S2 & L1 & L2 & L3 & L4
+
+```
+
 
 ### Fabric Manages Switches
 
