@@ -7,7 +7,7 @@ This documentation is done using [MkDocs](https://www.mkdocs.org) with multiple 
 In order to contribute to the documentation, you'll need to have Git and Docker installed on your machine as well as any editor of your choice, preferably supporting Markdown preview. You can run the preview server using following command:
 
 ``` bash
-make serve
+just serve
 ```
 
 Now you can open continuously updated preview of your edits in browser at [http://127.0.0.1:8000](http://127.0.0.1:8000). Pages will be automatically updated while you're editing.
@@ -15,7 +15,7 @@ Now you can open continuously updated preview of your edits in browser at [http:
 Additionally you can run
 
 ```bash
-make build
+just build
 ```
 
 to make sure that your changes will be built correctly and doesn't break documentation.
