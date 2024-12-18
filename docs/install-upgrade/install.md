@@ -101,17 +101,15 @@ This control node should be given a static IP address. Either a lease or statica
 
 ### Configure Management Network
 
-The control node is dual-homed.  It has a 10GbE interface that connects to the management network 
-of the switches that comprise the fabric called `mangement` in the `fab.yam called `mangement` in the
- `fab.yamll. The other link called `external` in the `fab.yaml` file is for the customer to access
- the control node via their local IT network. The management network is for the command and control of the 
-switches that comprise the fabric. The management network can be a simple broadcast domain with 
-layer 2 connectivity. The control node will run a DHCP and a small http server. The management 
-network is not accessible to machines or devices not associated with the fabric, it is a private, 
-exclusive network.
-
-The `external` network is meant to give ssh access to the host operating system for
-for ssh access to the control node operating system. 
+The control node is dual-homed; the two networks it connects to are called respectively `management`
+and `external` in the `fab.yaml` file.
+The `management` network is for the command and control of the switches that comprise the fabric. It
+can be a simple broadcast domain with layer 2 connectivity. The management network is not accessible
+to machines or devices not associated with the fabric; it is a private, exclusive network. The control
+node has a 10GbE interface that connects to the management network, and it runs a DHCP and a small http
+server.
+The `external` network on the other hand is for the customer to access the control node via their local
+IT network. It is meant to give ssh access to the control node host operating system.
 
 ### Fabric Manages Switches
 
