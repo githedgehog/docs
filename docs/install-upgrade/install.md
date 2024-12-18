@@ -101,44 +101,17 @@ This control node should be given a static IP address. Either a lease or statica
 
 ### Configure Management Network
 
-The control node is dual-homed. It has a 10GbE interface that connects to the management network. 
-The other link called `external` in the `fab.yaml` file is for the customer to access the control 
-node via their local IT network. The management network is for the command and control of the 
+The control node is dual-homed.  It has a 10GbE interface that connects to the management network 
+of the switches that comprise the fabric called `mangement` in the `fab.yam called `mangement` in the
+ `fab.yamll. The other link called `external` in the `fab.yaml` file is for the customer to access
+ the control node via their local IT network. The management network is for the command and control of the 
 switches that comprise the fabric. The management network can be a simple broadcast domain with 
 layer 2 connectivity. The control node will run a DHCP and a small http server. The management 
-network is not accessible to machines or devices not associated with the fabric. The following 
-diagram illustrates 3 network connections for the control node. A "Local IT"  network that is used 
-for IPMI and ssh access to the control node operating system. The other network is exclusive to 
-the control node, the best solution is a dedicated network switch, but a private exclusive vlan is
-potentially workable.
+network is not accessible to machines or devices not associated with the fabric, it is a private, 
+exclusive network.
 
-```mermaid
-flowchart LR
-
-S1([Spine 1])
-S2([Spine 1])
-L1([Leaf 1])
-L2([Leaf 2])
-L3([Leaf 3])
-L4([Leaf 4])
-
-subgraph ctrlnet [Fabric Control Network]
-    C1[Control Node]
-end
-
-subgraph localnet [Local IT Network]
-    N1[IPMI]
-    N2[SSH access to operating system]
-    N1 <--> C1
-    N2 <--> C1
-end
-
-
-S1 & S2 <--> L1 & L2 & L3 & L4
-
-ctrlnet <-..->  S1 & S2 & L1 & L2 & L3 & L4
-
-```
+The `external` network is meant to give ssh access to the host operating system for
+for ssh access to the control node operating system. 
 
 ### Fabric Manages Switches
 
