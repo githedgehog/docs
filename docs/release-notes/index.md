@@ -13,6 +13,13 @@
 - CLI for exporting Fabricator configs
 - Automated update mechanism from B1 release, including airgap support
 
+### Software versions
+
+- fabricator/hhfab: v0.32.1
+- fabric: v0.58.0
+- broadcom sonic: 4.4.0
+- flatcar: v4081.2.0
+- k8s (k3s): v1.31.1-k3s1
 
 ## Beta-1
 
