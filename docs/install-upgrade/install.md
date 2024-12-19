@@ -57,13 +57,15 @@ The installer for the fabric is generated in `$CWD/result/`. This installation i
 !!! warning ""
     This will erase data on the USB disk.
 
-### Steps for Linux
+=== "Linux"
+
 1. Insert the USB to your machine
 1. Identify the path to your USB stick, for example: `/dev/sdc`
 1. Issue the command to write the image to the USB drive
     - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
 
-### Steps for MacOS
+=== "macOS"
+
 1. Plug the drive into the computer
 1. Open the terminal
 1. Identify the drive using `diskutil list`
