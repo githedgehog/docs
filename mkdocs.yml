@@ -15,6 +15,7 @@ theme:
   features:
     - announce.dismiss
     - content.action.edit
+    - content.tabs.link
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
