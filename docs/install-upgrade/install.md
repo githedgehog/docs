@@ -48,8 +48,7 @@ command to see the available options. For example `hhfab vlab -h` and `hhfab vla
     1. ensure the correct boot disk (e.g. `/dev/sda`) and control node NIC names are supplied
 1. `hhfab validate`
 1. `hhfab build --mode iso`
-    1. There are two options for the format of the bootable media: ISO and USB. An ISO is best suited to use with IPMI based
-       virtual media. The USB file is designed for writing to a removable USB drive. ISO is the default.
+    1. An ISO is best suited to use with IPMI based virtual media. If desired an IMG file suitable for writing to a USB drive, can be created by passing the `--mode usb` option. ISO is the default.
 
 The installer for the fabric is generated in `$CWD/result/`. This installation image is named `control-1-install-usb.iso` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
 
