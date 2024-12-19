@@ -57,19 +57,20 @@ The installer for the fabric is generated in `$CWD/result/`. This installation i
 !!! warning ""
     This will erase data on the USB disk.
 
-### Steps for Linux
-1. Insert the USB to your machine
-1. Identify the path to your USB stick, for example: `/dev/sdc`
-1. Issue the command to write the image to the USB drive
-    - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
+=== "Linux"
 
-### Steps for MacOS
-1. Plug the drive into the computer
-1. Open the terminal
-1. Identify the drive using `diskutil list`
-1. Unmount the disk `diskutil unmount disk5`, the disk is specific to your environment
-1. Write the image to the disk: `sudo dd if=./control-1-install-usb.img of=/dev/disk5 bs=4k status=progress`
+    1. Insert the USB to your machine
+    1. Identify the path to your USB stick, for example: `/dev/sdc`
+    1. Issue the command to write the image to the USB drive
+        - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
 
+=== "macOS"
+
+    1. Plug the drive into the computer
+    1. Open the terminal
+    1. Identify the drive using `diskutil list`
+    1. Unmount the disk `diskutil unmount disk5`, the disk is specific to your environment
+    1. Write the image to the disk: `sudo dd if=./control-1-install-usb.img of=/dev/disk5 bs=4k status=progress`
 
 There are utilities that assist this process such as [etcher](https://etcher.balena.io/).
 
