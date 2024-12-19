@@ -33,7 +33,13 @@ The main steps to install Fabric are:
     1. Boot them into ONIE Install Mode to have them automatically provisioned
 
 ## Build Control Node configuration and Installer
-Hedgehog has created a command line utility, called `hhfab`, that helps generate the wiring diagram and fabric configuration, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media. The first `hhfab` command to run is `hhfab init`. This will generate the main configuration file, `fab.yaml`. `fab.yaml` is responsible for almost every configuration of the fabric with the exception of the wiring. Each command and subcommand have usage messages, simply supply the `-h` flag to your command or sub command to see the available options. For example `hhfab vlab -h` and `hhfab vlab gen -h`.
+Hedgehog has created a command line utility, called `hhfab`, that helps generate the wiring diagram and fabric configuration,
+validate the supplied configurations, and generate an installation image (.img or .iso) suitable 
+for writing to a USB flash drive or mounting via IPMI virtual media. The first `hhfab` command to
+run is `hhfab init`. This will generate the main configuration file, `fab.yaml`. `fab.yaml` is 
+responsible for almost every configuration of the fabric with the exception of the wiring. Each 
+command and subcommand have usage messages, simply supply the `-h` flag to your command or sub 
+command to see the available options. For example `hhfab vlab -h` and `hhfab vlab gen -h`.
 
 ### HHFAB commands to make a bootable image
 
@@ -41,19 +47,29 @@ Hedgehog has created a command line utility, called `hhfab`, that helps generate
 1. The `init` command generates a `fab.yaml` file, edit the `fab.yaml` file for your needs
     1. ensure the correct boot disk (e.g. `/dev/sda`) and control node NIC names are supplied
 1. `hhfab validate`
-1. `hhfab build`
+1. `hhfab build --mode iso`
+    1. An ISO is best suited to use with IPMI based virtual media. If desired an IMG file suitable for writing to a USB drive, can be created by passing the `--mode usb` option. ISO is the default.
 
-The installer for the fabric is generated in `$CWD/result/`. This installation image is named `control-1-install-usb.img` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
+The installer for the fabric is generated in `$CWD/result/`. This installation image is named `control-1-install-usb.iso` and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.
 
 ### Write USB Image to Disk
 
 !!! warning ""
     This will erase data on the USB disk.
 
+### Steps for Linux
 1. Insert the USB to your machine
 1. Identify the path to your USB stick, for example: `/dev/sdc`
 1. Issue the command to write the image to the USB drive
     - `sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress`
+
+### Steps for MacOS
+1. Plug the drive into the computer
+1. Open the terminal
+1. Identify the drive using `diskutil list`
+1. Unmount the disk `diskutil unmount disk5`, the disk is specific to your environment
+1. Write the image to the disk: `sudo dd if=./control-1-install-usb.img of=/dev/disk5 bs=4k status=progress`
+
 
 There are utilities that assist this process such as [etcher](https://etcher.balena.io/).
 
@@ -84,7 +100,16 @@ This control node should be given a static IP address. Either a lease or statica
 
 ### Configure Management Network
 
-The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called `external` in the `fab.yaml` file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric.
+The control node is dual-homed: it connects to two different networks, which are called
+`management` and `external`, respectively, in the `fab.yaml` file.
+The `management` network is for controlling the switches that comprise the fabric. It
+can be a simple broadcast domain with layer 2 connectivity. The management network is
+not accessible to machines or devices not associated with the fabric; it is a private,
+exclusive network. The control node connects to the management network via a 10 GbE
+interface. It runs a DHCP server, as well as a small HTTP server.
+
+The `external` network allows the user to access the control node via their local
+IT network. It provides SSH access to the host operating system on the control node.
 
 ### Fabric Manages Switches
 
