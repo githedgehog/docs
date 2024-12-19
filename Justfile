@@ -38,4 +38,4 @@ _alias := if branch_current == branch_latest { "latest" } else if branch_current
   echo "Release '{{_release}}' alias '{{_alias}}'"
 
 # Deploy docs site (versioned) to publish branch
-deploy release=_release alias=_alias: (_run "mike deploy -b publish -u" release alias)
+deploy release=_release alias=_alias: (_run "mike deploy -b publish --alias-type=copy -u" release alias)
