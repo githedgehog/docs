@@ -592,24 +592,6 @@ You're not viewing the latest version.
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#steps-for-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for Linux
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#steps-for-macos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for MacOS
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1413,24 +1395,6 @@ You're not viewing the latest version.
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#steps-for-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for Linux
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#steps-for-macos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps for MacOS
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1556,7 +1520,9 @@ command to see the available options. For example <code>hhfab vlab -h</code> and
 <div class="admonition warning">
 <p>This will erase data on the USB disk.</p>
 </div>
-<h3 id="steps-for-linux">Steps for Linux</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux</label><label for="__tabbed_1_2">macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <ol>
 <li>Insert the USB to your machine</li>
 <li>Identify the path to your USB stick, for example: <code>/dev/sdc</code></li>
@@ -1565,7 +1531,8 @@ command to see the available options. For example <code>hhfab vlab -h</code> and
 </ul>
 </li>
 </ol>
-<h3 id="steps-for-macos">Steps for MacOS</h3>
+</div>
+<div class="tabbed-block">
 <ol>
 <li>Plug the drive into the computer</li>
 <li>Open the terminal</li>
@@ -1573,6 +1540,9 @@ command to see the available options. For example <code>hhfab vlab -h</code> and
 <li>Unmount the disk <code>diskutil unmount disk5</code>, the disk is specific to your environment</li>
 <li>Write the image to the disk: <code>sudo dd if=./control-1-install-usb.img of=/dev/disk5 bs=4k status=progress</code></li>
 </ol>
+</div>
+</div>
+</div>
 <p>There are utilities that assist this process such as <a href="https://etcher.balena.io/">etcher</a>.</p>
 <h2 id="install-control-node">Install Control Node</h2>
 <p>This control node should be given a static IP address. Either a lease or statically assigned.</p>
@@ -1852,7 +1822,7 @@ IT network. It provides SSH access to the host operating system on the control n
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.tabs.link", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.expand", "toc.follow", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
