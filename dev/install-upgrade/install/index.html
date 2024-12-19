@@ -592,6 +592,24 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#steps-for-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps for Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps for MacOS
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1395,6 +1413,24 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#steps-for-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps for Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps for MacOS
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1495,7 +1531,13 @@ preparation and configuration. To install the VLAB see <a href="../../vlab/overv
 </li>
 </ol>
 <h2 id="build-control-node-configuration-and-installer">Build Control Node configuration and Installer</h2>
-<p>Hedgehog has created a command line utility, called <code>hhfab</code>, that helps generate the wiring diagram and fabric configuration, validate the supplied configurations, and generate an installation image (.img) suitable for writing to a USB flash drive or mounting via IPMI virtual media. The first <code>hhfab</code> command to run is <code>hhfab init</code>. This will generate the main configuration file, <code>fab.yaml</code>. <code>fab.yaml</code> is responsible for almost every configuration of the fabric with the exception of the wiring. Each command and subcommand have usage messages, simply supply the <code>-h</code> flag to your command or sub command to see the available options. For example <code>hhfab vlab -h</code> and <code>hhfab vlab gen -h</code>.</p>
+<p>Hedgehog has created a command line utility, called <code>hhfab</code>, that helps generate the wiring diagram and fabric configuration,
+validate the supplied configurations, and generate an installation image (.img or .iso) suitable 
+for writing to a USB flash drive or mounting via IPMI virtual media. The first <code>hhfab</code> command to
+run is <code>hhfab init</code>. This will generate the main configuration file, <code>fab.yaml</code>. <code>fab.yaml</code> is 
+responsible for almost every configuration of the fabric with the exception of the wiring. Each 
+command and subcommand have usage messages, simply supply the <code>-h</code> flag to your command or sub 
+command to see the available options. For example <code>hhfab vlab -h</code> and <code>hhfab vlab gen -h</code>.</p>
 <h3 id="hhfab-commands-to-make-a-bootable-image">HHFAB commands to make a bootable image</h3>
 <ol>
 <li><code>hhfab init --wiring wiring-lab.yaml</code></li>
@@ -1504,13 +1546,17 @@ preparation and configuration. To install the VLAB see <a href="../../vlab/overv
 </ol>
 </li>
 <li><code>hhfab validate</code></li>
-<li><code>hhfab build</code></li>
+<li><code>hhfab build --mode iso</code><ol>
+<li>An ISO is best suited to use with IPMI based virtual media. If desired an IMG file suitable for writing to a USB drive, can be created by passing the <code>--mode usb</code> option. ISO is the default.</li>
 </ol>
-<p>The installer for the fabric is generated in <code>$CWD/result/</code>. This installation image is named <code>control-1-install-usb.img</code> and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.</p>
+</li>
+</ol>
+<p>The installer for the fabric is generated in <code>$CWD/result/</code>. This installation image is named <code>control-1-install-usb.iso</code> and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.</p>
 <h3 id="write-usb-image-to-disk">Write USB Image to Disk</h3>
 <div class="admonition warning">
 <p>This will erase data on the USB disk.</p>
 </div>
+<h3 id="steps-for-linux">Steps for Linux</h3>
 <ol>
 <li>Insert the USB to your machine</li>
 <li>Identify the path to your USB stick, for example: <code>/dev/sdc</code></li>
@@ -1518,6 +1564,14 @@ preparation and configuration. To install the VLAB see <a href="../../vlab/overv
 <li><code>sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress</code></li>
 </ul>
 </li>
+</ol>
+<h3 id="steps-for-macos">Steps for MacOS</h3>
+<ol>
+<li>Plug the drive into the computer</li>
+<li>Open the terminal</li>
+<li>Identify the drive using <code>diskutil list</code></li>
+<li>Unmount the disk <code>diskutil unmount disk5</code>, the disk is specific to your environment</li>
+<li>Write the image to the disk: <code>sudo dd if=./control-1-install-usb.img of=/dev/disk5 bs=4k status=progress</code></li>
 </ol>
 <p>There are utilities that assist this process such as <a href="https://etcher.balena.io/">etcher</a>.</p>
 <h2 id="install-control-node">Install Control Node</h2>
@@ -1556,7 +1610,15 @@ preparation and configuration. To install the VLAB see <a href="../../vlab/overv
 </li>
 </ol>
 <h3 id="configure-management-network">Configure Management Network</h3>
-<p>The control node is dual-homed. It has a 10GbE interface that connects to the management network. The other link called <code>external</code> in the <code>fab.yaml</code> file is for the customer to access the control node. The management network is for the command and control of the switches that comprise the fabric. This management network can be a simple broadcast domain with layer 2 connectivity. The control node will run a DHCP and small http servers. The management network is not accessible to machines or devices not associated with the fabric.</p>
+<p>The control node is dual-homed: it connects to two different networks, which are called
+<code>management</code> and <code>external</code>, respectively, in the <code>fab.yaml</code> file.
+The <code>management</code> network is for controlling the switches that comprise the fabric. It
+can be a simple broadcast domain with layer 2 connectivity. The management network is
+not accessible to machines or devices not associated with the fabric; it is a private,
+exclusive network. The control node connects to the management network via a 10 GbE
+interface. It runs a DHCP server, as well as a small HTTP server.</p>
+<p>The <code>external</code> network allows the user to access the control node via their local
+IT network. It provides SSH access to the host operating system on the control node.</p>
 <h3 id="fabric-manages-switches">Fabric Manages Switches</h3>
 <p>Now that the install has finished, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all pre-installed as part of the Control Node installer.</p>
 <p>At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
@@ -1587,7 +1649,7 @@ preparation and configuration. To install the VLAB see <a href="../../vlab/overv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 19, 2024</span>
   </span>
 
     
