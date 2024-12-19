@@ -1,5 +1,19 @@
 # Release notes
 
+## 24.09
+
+### Device Support
+
+- Dell Z9332 as a spine-only switch
+
+### Fabric Lifecycle Management
+
+- Installer ISO builder for zero-touch control node installation
+- CLI for exporting Wiring Diagram
+- CLI for exporting Fabricator configs
+- Automated update mechanism from B1 release, including airgap support
+
+
 ## Beta-1
 
 ### Device support
