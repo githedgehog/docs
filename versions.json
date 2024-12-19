@@ -2,9 +2,7 @@
   {
     "version": "beta-1",
     "title": "beta-1",
-    "aliases": [
-      "latest"
-    ]
+    "aliases": []
   },
   {
     "version": "alpha-7",
@@ -21,6 +19,13 @@
     "title": "dev",
     "aliases": [
       "master"
+    ]
+  },
+  {
+    "version": "v24.09",
+    "title": "v24.09",
+    "aliases": [
+      "latest"
     ]
   }
 ]
