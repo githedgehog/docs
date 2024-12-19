@@ -22,10 +22,15 @@
     ]
   },
   {
-    "version": "v24.09",
-    "title": "v24.09",
+    "version": "24.09",
+    "title": "24.09",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "v24.09",
+    "title": "v24.09",
+    "aliases": []
   }
 ]
