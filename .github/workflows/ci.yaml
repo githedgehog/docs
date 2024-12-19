@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - release/*
+      - release/2*
   pull_request:
   workflow_dispatch:
     inputs:
@@ -27,8 +27,11 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Setup Just
+        uses: extractions/setup-just@v2
+
       - name: Build docs
-        run: make build
+        run: just build
 
       - name: Deploy preview to Netlify
         uses: nwtgck/actions-netlify@v2
@@ -46,13 +49,13 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 5
 
-      - name: Build versioned docs
-        # TODO support publishing non-dev versions
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      - name: Publish versioned docs
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release/2'))
         env:
           PUSH_TOKEN: ${{ secrets.GH_DEPLOY_PUSH_TOKEN }}
         run: |
-          make deploy RELEASE=dev ALIAS=master
+          just deploy
+          just list
           git push https://$PUSH_TOKEN@github.com/${{ github.repository }} publish
 
       - name: Setup tmate session for debug
