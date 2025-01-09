@@ -31,12 +31,6 @@ Ensure the management port of the switch is connected to fabric management netwo
 
 Before you decommission a switch from the Hedgehog Fabric, several preparation steps are necessary.
 
-!!! warning
-    Currently the `Wiring` diagram used for initial deployment is saved in
-    `/var/lib/rancher/k3s/server/manifests/hh-wiring.yaml` on the `Control` node. Fabric will sustain objects within the
-    original wiring diagram. In order to remove any object, first remove the dedicated API objects from this file. It is
-    recommended to reapply `hh-wiring.yaml` after changing its internals.
-
 * If the `Switch` is a `Leaf` switch (including `Mixed` and `Border` leaf configurations), remove all `VPCAttachments` bound to all switches `Connections`.
 * If the `Switch` was used for `ExternalPeering`, remove all `ExternalAttachment` objects that are bound to the `Connections` of the `Switch`.
 * Remove all connections of the `Switch`.
