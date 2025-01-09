@@ -22,16 +22,23 @@ connections may differ based on the `Switch` role given to the device. For more 
 section](connections.md).
 
 !!! note
-    Switch devices should be booted in `ONIE` installation mode to install SONiC OS and configure the Fabric
+    Switch devices need to be booted in `ONIE` installation mode to install SONiC OS and configure the Fabric
     Agent.
 
 Ensure the management port of the switch is connected to fabric management network.
 
 ### Remove a switch from the existing fabric
 
-Before you decommission a switch from the Hedgehog Fabric, several preparation steps are necessary.
+Before you decommission a switch from the Hedgehog Fabric, several preliminary steps are necessary.
 
 * If the `Switch` is a `Leaf` switch (including `Mixed` and `Border` leaf configurations), remove all `VPCAttachments` bound to all switches `Connections`.
 * If the `Switch` was used for `ExternalPeering`, remove all `ExternalAttachment` objects that are bound to the `Connections` of the `Switch`.
 * Remove all connections of the `Switch`.
 * At last, remove the `Switch` and `Agent` objects.
+
+### Replace a switch from the existing fabric
+
+To replace a switch in the fabric, you do not need to remove and re-add it. Instead:
+
+* Edit the existing switch object to update the `MAC` address or `Serial` number of the new hardware.
+* Reinstall the switch, following the boot `ONIE` process used when it was first added to the fabric.
