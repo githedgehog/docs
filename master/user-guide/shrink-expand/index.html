@@ -860,6 +860,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#replace-a-switch-from-the-existing-fabric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replace a switch from the existing fabric
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1322,6 +1331,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#replace-a-switch-from-the-existing-fabric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replace a switch from the existing fabric
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1364,24 +1382,23 @@ connections may differ based on the <code>Switch</code> role given to the device
 section</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Switch devices should be booted in <code>ONIE</code> installation mode to install SONiC OS and configure the Fabric
+<p>Switch devices need to be booted in <code>ONIE</code> installation mode to install SONiC OS and configure the Fabric
 Agent.</p>
 </div>
 <p>Ensure the management port of the switch is connected to fabric management network.</p>
 <h3 id="remove-a-switch-from-the-existing-fabric">Remove a switch from the existing fabric</h3>
-<p>Before you decommission a switch from the Hedgehog Fabric, several preparation steps are necessary.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Currently the <code>Wiring</code> diagram used for initial deployment is saved in
-<code>/var/lib/rancher/k3s/server/manifests/hh-wiring.yaml</code> on the <code>Control</code> node. Fabric will sustain objects within the
-original wiring diagram. In order to remove any object, first remove the dedicated API objects from this file. It is
-recommended to reapply <code>hh-wiring.yaml</code> after changing its internals.</p>
-</div>
+<p>Before you decommission a switch from the Hedgehog Fabric, several preliminary steps are necessary.</p>
 <ul>
 <li>If the <code>Switch</code> is a <code>Leaf</code> switch (including <code>Mixed</code> and <code>Border</code> leaf configurations), remove all <code>VPCAttachments</code> bound to all switches <code>Connections</code>.</li>
 <li>If the <code>Switch</code> was used for <code>ExternalPeering</code>, remove all <code>ExternalAttachment</code> objects that are bound to the <code>Connections</code> of the <code>Switch</code>.</li>
 <li>Remove all connections of the <code>Switch</code>.</li>
 <li>At last, remove the <code>Switch</code> and <code>Agent</code> objects.</li>
+</ul>
+<h3 id="replace-a-switch-from-the-existing-fabric">Replace a switch from the existing fabric</h3>
+<p>To replace a switch in the fabric, you do not need to remove and re-add it. Instead:</p>
+<ul>
+<li>Edit the existing switch object to update the <code>MAC</code> address or <code>Serial</code> number of the new hardware.</li>
+<li>Reinstall the switch, following the boot <code>ONIE</code> process used when it was first added to the fabric.</li>
 </ul>
 
 
@@ -1405,7 +1422,7 @@ recommended to reapply <code>hh-wiring.yaml</code> after changing its internals.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 9, 2025</span>
   </span>
 
     
