@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.githedgehog.com/dev/reference/cli/">
+        <link rel="canonical" href="https://docs.githedgehog.com/dev/reference/releases/">
       
       
-        <link rel="prev" href="../api/">
+        <link rel="prev" href="../cli/">
       
       
-        <link rel="next" href="../releases/">
+        <link rel="next" href="../profiles/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Fabric CLI - Open Network Fabric</title>
+        <title>Release Naming - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fabric-cli" class="md-skip">
+        <a href="#release-naming" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fabric CLI
+              Release Naming
             
           </span>
         </div>
@@ -922,6 +922,27 @@ You're not viewing the latest version.
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -934,68 +955,7 @@ You're not viewing the latest version.
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Fabric CLI
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Fabric CLI
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vpc" class="md-nav__link">
-    <span class="md-ellipsis">
-      VPC
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../releases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1004,6 +964,7 @@ You're not viewing the latest version.
   
 
       </a>
+      
     </li>
   
 
@@ -1289,23 +1250,6 @@ You're not viewing the latest version.
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vpc" class="md-nav__link">
-    <span class="md-ellipsis">
-      VPC
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1319,7 +1263,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/reference/cli.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/reference/releases.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1327,51 +1271,19 @@ You're not viewing the latest version.
   
 
 
-<h1 id="fabric-cli">Fabric CLI</h1>
-<div class="admonition warning">
-<p>Under construction.</p>
-</div>
-<p>Currently Fabric CLI is represented by a kubectl plugin <code>kubectl-fabric</code> automatically installed on the Control Node.
-It is a wrapper around <code>kubectl</code> and Kubernetes client which allows to manage Fabric resources in a more convenient way.
-Fabric CLI only provides a subset of the functionality available via Fabric API and is focused on simplifying objects
-creation and some manipulation with the already existing objects while main get/list/update operations are expected to
-be done using <code>kubectl</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>NAME:
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>-<span class="w"> </span>Hedgehog<span class="w"> </span>Fabric<span class="w"> </span>API<span class="w"> </span>kubectl<span class="w"> </span>plugin
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>USAGE:
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">   </span>kubectl<span class="w"> </span>fabric<span class="w"> </span><span class="o">[</span>global<span class="w"> </span>options<span class="o">]</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span><span class="nb">command</span><span class="w"> </span>options<span class="o">]</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>VERSION:
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">   </span>v0.53.1
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>COMMANDS:
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">   </span>vpc<span class="w">               </span>VPC<span class="w"> </span>commands
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">   </span>switch,<span class="w"> </span>sw<span class="w">        </span>Switch<span class="w"> </span>commands
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">   </span>connection,<span class="w"> </span>conn<span class="w">  </span>Connection<span class="w"> </span>commands
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">   </span>switchgroup,<span class="w"> </span>sg<span class="w">   </span>SwitchGroup<span class="w"> </span>commands
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">   </span>external,<span class="w"> </span>ext<span class="w">     </span>External<span class="w"> </span>commands
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">   </span>inspect,<span class="w"> </span>i<span class="w">        </span>Inspect<span class="w"> </span>Fabric<span class="w"> </span>API<span class="w"> </span>Objects<span class="w"> </span>and<span class="w"> </span>Primitives
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">   </span>help,<span class="w"> </span>h<span class="w">           </span>Shows<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>commands<span class="w"> </span>or<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>one<span class="w"> </span><span class="nb">command</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>GLOBAL<span class="w"> </span>OPTIONS:
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">   </span>--verbose,<span class="w"> </span>-v<span class="w">  </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>includes<span class="w"> </span>debug<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">   </span>--help,<span class="w"> </span>-h<span class="w">     </span>show<span class="w"> </span><span class="nb">help</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">   </span>--version,<span class="w"> </span>-V<span class="w">  </span>print<span class="w"> </span>the<span class="w"> </span>version
-</span></code></pre></div>
-<h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
-<p>Create <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> named <code>vpc-1</code> with subnet <code>10.0.1.0/24</code> and VLAN <code>1001</code> with DHCP enabled and DHCP range starting from
-<code>10.0.1.10</code> (optional):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>vpc-1<span class="w"> </span>--subnet<span class="w"> </span><span class="m">10</span>.0.1.0/24<span class="w"> </span>--vlan<span class="w"> </span><span class="m">1001</span><span class="w"> </span>--dhcp<span class="w"> </span>--dhcp-start<span class="w"> </span><span class="m">10</span>.0.1.10
-</span></code></pre></div>
-<p>Attach previously created <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> to the server <code>server-01</code> (which is connected to the Fabric using the
-<code>server-01--mclag--leaf-01--leaf-02</code> Connection):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--vpc-subnet<span class="w"> </span>vpc-1/default<span class="w"> </span>--connection<span class="w"> </span>server-01--mclag--leaf-01--leaf-02
-</span></code></pre></div>
-<p>To peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> with another <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (e.g. <code>vpc-2</code>) use the following command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>peer<span class="w"> </span>--vpc<span class="w"> </span>vpc-1<span class="w"> </span>--vpc<span class="w"> </span>vpc-2
-</span></code></pre></div>
+<h1 id="release-naming">Release Naming</h1>
+<p>CalVer-style is used starting with the release in December 2024.</p>
+<p><code>YY.MINOR.PATCH</code> where:</p>
+<ul>
+<li><code>YY</code>: short calendar year (24, 25, 26)</li>
+<li><code>MINOR</code>: zero-padded release number in the calendar year (01, 02, 03) - that's what we'll call an actual release</li>
+<li><code>PATCH</code>: patch number for a specific release (1, 2, 3) - just some bug fixes for a release</li>
+</ul>
+<p>First release of the 2025 is 25.01 and patch releases for it named 25.01.1, 25.01.2, etc (if needed).
+Last release of the 2024 is 24.09, it was originally named B2 (Beta 2).</p>
+<p>API backward compatibility and in-place upgrades are guaranteed starting with the B1 release (Oct 24 2024).
+Some new features may require manual intervention or installation from scratch to get them enabled, in this case, it
+will be explicitly mentioned in the release notes.</p>
 
 
 
@@ -1394,7 +1306,7 @@ be done using <code>kubectl</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 9, 2025</span>
   </span>
 
     
@@ -1404,7 +1316,7 @@ be done using <code>kubectl</code>.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 9, 2025</span>
   </span>
 
     
@@ -1443,7 +1355,7 @@ be done using <code>kubectl</code>.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fabric API">
+          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fabric CLI">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1453,20 +1365,20 @@ be done using <code>kubectl</code>.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Fabric API
+                Fabric CLI
               </div>
             </div>
           </a>
         
         
           
-          <a href="../releases/" class="md-footer__link md-footer__link--next" aria-label="Next: Release Naming">
+          <a href="../profiles/" class="md-footer__link md-footer__link--next" aria-label="Next: Switch Profiles Catalog">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Release Naming
+                Switch Profiles Catalog
               </div>
             </div>
             <div class="md-footer__button md-icon">
