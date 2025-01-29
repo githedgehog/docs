@@ -17,9 +17,9 @@ docker login ghcr.io --username provided_user_name --password provided_token_str
 
 ## Downloading hhfab
 
-Currently `hhfab` is supported on Linux x86/arm64 (tested on Ubuntu 22.04) and MacOS x86/arm64 for building
-installers/upgraders. It may work on Windows WSL2 (with Ubuntu), but it's not tested. For running VLAB only Linux x86
-is currently supported.
+Currently `hhfab` is supported on Linux x86/arm64 (continuously tested on Ubuntu 24.04) and MacOS x86/arm64 (latest
+major release) for building installers/upgraders. It *may* work on Windows WSL2 (with Ubuntu), but it's not tested.
+For running VLAB only Linux x86 is currently supported (continuously tested on Ubuntu 24.04).
 
 All software is published into the OCI registry [GitHub Package](https://ghcr.io) including binaries, container images, or Helm charts.
 Download the latest stable `hhfab` binary from the [GitHub Package](https://ghcr.io) using the following command, it requires ORAS to be installed (see below):

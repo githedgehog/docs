@@ -19,8 +19,8 @@ You can find more information about getting `hhfab` in the [download](../getting
 
 ## System Requirements
 
-Currently, it's only tested on Ubuntu 22.04 LTS, but should work on any Linux distribution with QEMU/KVM support and fairly
-up-to-date packages.
+Currently, it's primarily tested on Ubuntu 24.04 LTS, but should work on any Linux distribution with QEMU/KVM support
+and fairly up-to-date packages.
 
 The following packages needs to be installed: `qemu-kvm socat`. Docker is also required, to login
 into the OCI registry.
@@ -49,7 +49,7 @@ NVMe SSD for VM disks is highly recommended.
 
 ## Installing Prerequisites
 
-To run VLAB, your system needs `docker`,`qemu`,`kvm`, and `hhfab`. On Ubuntu 22.04 LTS you can install all required packages using the following commands:
+To run VLAB, your system needs `docker`,`qemu`,`kvm`, and `hhfab`. On Ubuntu 24.04 LTS you can install all required packages using the following commands:
 
 ### Docker
 
