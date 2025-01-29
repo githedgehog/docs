@@ -1478,8 +1478,8 @@ machines to simulate the Fabric infrastructure including control node, switches,
 the installer to get Fabric up and running.</p>
 <p>You can find more information about getting <code>hhfab</code> in the <a href="../../getting-started/download/">download</a> section.</p>
 <h2 id="system-requirements">System Requirements</h2>
-<p>Currently, it's only tested on Ubuntu 22.04 LTS, but should work on any Linux distribution with QEMU/KVM support and fairly
-up-to-date packages.</p>
+<p>Currently, it's primarily tested on Ubuntu 24.04 LTS, but should work on any Linux distribution with QEMU/KVM support
+and fairly up-to-date packages.</p>
 <p>The following packages needs to be installed: <code>qemu-kvm socat</code>. Docker is also required, to login
 into the OCI registry.</p>
 <p>By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can
@@ -1525,7 +1525,7 @@ which only consists of 2 switches.</p>
 sure that you have at least allocated RAM and disk space for all VMs.</p>
 <p>NVMe SSD for VM disks is highly recommended.</p>
 <h2 id="installing-prerequisites">Installing Prerequisites</h2>
-<p>To run VLAB, your system needs <code>docker</code>,<code>qemu</code>,<code>kvm</code>, and <code>hhfab</code>. On Ubuntu 22.04 LTS you can install all required packages using the following commands:</p>
+<p>To run VLAB, your system needs <code>docker</code>,<code>qemu</code>,<code>kvm</code>, and <code>hhfab</code>. On Ubuntu 24.04 LTS you can install all required packages using the following commands:</p>
 <h3 id="docker">Docker</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.docker.com<span class="w"> </span>-o<span class="w"> </span>install-docker.sh
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>sh<span class="w"> </span>install-docker.sh
@@ -1580,7 +1580,7 @@ sure that you have at least allocated RAM and disk space for all VMs.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 29, 2025</span>
   </span>
 
     
