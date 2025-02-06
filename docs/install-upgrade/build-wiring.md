@@ -1,34 +1,13 @@
 # Build Wiring Diagram
 
-!!! warning ""
-    Under construction.
+!!! note ""
+    This documentation is actively maintained and updated.
 
 ## Overview
 
-A wiring diagram is a YAML file that is a digital representation of your network. You can find more YAML level details in the User Guide section [switch features and port naming](../user-guide/profiles.md) and the [api](../reference/api.md). It's mandatory for all switches to reference a `SwitchProfile` in the `spec.profile` of the `Switch` object. Only port naming defined by switch profiles could be used in the wiring diagram, NOS (or any other) port names aren't supported.
+A wiring diagram expresses your network topology in YAML format, serving as a blueprint for your infrastructure. For detailed YAML specifications, refer to the User Guide section [switch features and port naming](../user-guide/profiles.md) and the [api](../reference/api.md). All switches must reference a `SwitchProfile` in the `spec.profile` of the `Switch` object. Only port names defined by switch profiles can be used in the wiring diagram - NOS (or any other) port names are not supported.
 
-In the meantime, to have a look at working wiring diagram for Hedgehog Fabric, run the sample generator that produces
-working wiring diagrams:
-
-```console
-ubuntu@sl-dev:~$ hhfab sample -h
-
-NAME:
-   hhfab sample - generate sample wiring diagram
-
-USAGE:
-   hhfab sample command [command options]
-
-COMMANDS:
-   spine-leaf, sl      generate sample spine-leaf wiring diagram
-   collapsed-core, cc  generate sample collapsed-core wiring diagram
-   help, h             Shows a list of commands or help for one command
-
-OPTIONS:
-   --help, -h  show help
-```
-
-Or you can generate a wiring diagram for a VLAB environment with flags to customize number of switches, links, servers, etc.:
+To get started with Hedgehog Fabric, you can generate a wiring diagram for a VLAB environment with flags to customize number of switches, links, servers, etc.:
 
 ```console
 ubuntu@sl-dev:~$ hhfab vlab gen --help
@@ -79,13 +58,13 @@ spec:
 ```
 
 ## Design Discussion
-This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric.
+This section helps you understand how to combine the Fabric API primitives into a functional fabric.
 
 ### VPC
 
-A VPC allows for isolation at layer 3. This is the main building block for users when creating their architecture. Hosts inside of a VPC belong to the same broadcast domain and can communicate with each other, if desired a single VPC can be configured with multiple broadcast domains. The hosts inside of a VPC will likely need to connect to other VPCs or the outside world. To communicate between two VPC a *peering* will need to be created. A VPC can be a logical separation of workloads. By separating these workloads additional controls are available. The logical separation doesn't have to be the traditional database, web, and compute layers it could be development teams who need isolation, it could be tenants inside of an office building, or any separation that allows for better control of the network. Once your VPCs are decided, the rest of the fabric will come together. With the VPCs decided traffic can be prioritized, security can be put into place, and the wiring can begin. The fabric allows for the VPC to span more than one switch, which provides great flexibility.
+A VPC enables Layer 3 isolation and serves as the primary building block for network architecture. Hosts within a VPC belong to the same broadcast domain and can communicate with each other. If desired, a single VPC can be configured with multiple broadcast domains. For communication between VPCs, a *peering* connection must be established. VPCs can logically separate workloads, enabling additional controls. This separation isn't limited to traditional database, web, and compute layers - it can accommodate development teams requiring isolation, building tenants, or any other organizational structure that benefits from network control. Once VPCs are defined, you can establish traffic priorities, implement security measures, and plan the physical wiring. The fabric allows VPCs to span multiple switches, providing enhanced flexibility.
 
-``` mermaid
+```mermaid
 graph TD
     L1([Leaf 1])
     L2([Leaf 2])
@@ -96,9 +75,9 @@ graph TD
     S3["Server 3
        192.168.18.85"]
 
-    L1 <--> S1
-    L1 <--> S2
-    L2 <--> S3
+    L1 --- S1
+    L1 --- S2
+    L2 --- S3
 
     subgraph VPC 1
     S1
@@ -108,16 +87,16 @@ graph TD
 ```
 ### Connection
 
-A connection represents the physical wires in your data center. They connect switches to other switches or switches to servers.
+A connection represents the physical cabling in your data center. Connections link switches to other switches or switches to servers.
 
 #### Server Connections
 
-A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (MLAG, Bundle, etc). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:
+A server connection links servers to the fabric. The fabric configures server-facing ports according to the connection type (MLAG, Bundle, etc). Server administrators must handle the configuration of the server side. Server port names serve as metadata to identify connections and are not validated by the fabric. Server connections include:
 
-- *Unbundled* - A single cable connecting switch to server.
-- *Bundled* - Two or more cables going to a single switch, a LAG or similar.
-- *MCLAG* -  Two cables going to two different switches, also called dual homing. The switches will need a fabric link between them.
-- *ESLAG* - Two to four cables going to different switches, also called multi-homing. If four links are used there will need to be four switches connected to a single server with four NIC ports.
+- *Unbundled* - A single cable connecting switch to server
+- *Bundled* - Two or more cables connecting to a single switch (LAG or similar)
+- *MCLAG* - Two cables connecting to two different switches (dual homing), requiring a fabric link between switches
+- *ESLAG* - Two to four cables connecting to different switches (multi-homing), requiring four switches when using four links
 
 ``` mermaid
 graph TD
@@ -170,12 +149,12 @@ graph TD
 ```
 #### Fabric Connections
 
-Fabric connections serve as connections between switches, they form the fabric of the network.
+Fabric connections link switches to form the network fabric.
 
 
 ### VPC Peering
 
-VPCs need VPC Peerings to talk to each other. VPC Peerings come in two varieties: local and remote.
+VPC peering enables communication between VPCs and comes in two forms: local and remote.
 
 ``` mermaid
 graph TD
@@ -206,7 +185,7 @@ graph TD
 
 #### Local VPC Peering
 
-When there is no dedicated border/peering switch available in the fabric we can use local VPC peering. This kind of peering tries sends traffic between the two VPC's on the switch where either of the VPC's has workloads attached. Due to limitation in the Sonic network operating system this kind of peering bandwidth is limited to the number of VPC loopbacks you have selected while initializing the fabric. Traffic between the VPCs will use the loopback interface, the bandwidth of this connection will be equal to the bandwidth of port used in the loopback.
+When no dedicated border/peering switch is available, local VPC peering enables direct communication between VPCs on switches where either VPC has connected workloads. Due to Sonic network operating system limitations, peering bandwidth depends on the number of VPC loopbacks configured during fabric initialization. Traffic uses the loopback interface, with bandwidth matching the loopback port's capacity.
 
 ``` mermaid
 graph TD
@@ -237,7 +216,7 @@ The dotted line in the diagram shows the traffic flow for local peering. The tra
 
 #### Remote VPC Peering
 
-Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the VPC's are not present. This kind of peering allows peer traffic between different VPC's at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.
+Remote peering utilizes a dedicated switch for VPC traffic, implemented either on a border leaf or a switch without VPC presence. This enables line-rate communication between VPCs, limited only by fabric bandwidth. While introducing additional network hops may slightly increase latency, it provides higher throughput capacity.
 
 ``` mermaid
 graph TD
@@ -277,5 +256,5 @@ The dotted line in the diagram shows the traffic flow for remote peering. The tr
 
 #### VPC Loopback
 
-A VPC loopback is a physical cable with both ends plugged into the same switch, suggested but not required to be the adjacent ports. This loopback allows two different VPCs to communicate with each other. This is due to a Broadcom limitation.
+A VPC loopback consists of a physical cable with both ends connected to the same switch, typically using adjacent ports. This configuration enables communication between different VPCs, addressing a Broadcom limitation.
 
