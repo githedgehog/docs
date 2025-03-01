@@ -1020,6 +1020,17 @@ You're not viewing the latest version.
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1029,6 +1040,109 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-node-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Node Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sonic-switch-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      SONiC Switch Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fabric-installation-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Fabric Installation &amp; Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fabric-api-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Fabric API &amp; Resource Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-switch-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Switch Configuration &amp; Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-telemetry-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Telemetry &amp; Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1229,6 +1343,98 @@ You're not viewing the latest version.
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-node-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Node Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sonic-switch-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      SONiC Switch Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fabric-installation-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Fabric Installation &amp; Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fabric-api-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Fabric API &amp; Resource Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-switch-configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Switch Configuration &amp; Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-telemetry-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Telemetry &amp; Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1251,9 +1457,106 @@ You're not viewing the latest version.
 
 
 <h1 id="overview">Overview</h1>
-<div class="admonition warning">
-<p>Under construction.</p>
-</div>
+<p>Hedgehog Open Network Fabric leverages the Kubernetes API to manage its resources. All user-facing APIs are exposed as Kubernetes Custom Resources Definitions (CRDs), allowing users to manage Fabric resources using standard Kubernetes tools.</p>
+<p>To make network switches Kubernetes-aware, the Fabric employs an <strong>Agent</strong> running on each switch. This agent acts as an interface  between the Kubernetes control plane and the switch internal network configuration mechanisms. It continuously syncs desired state from Kubernetes via the Fabric Controller and applies configurations using <strong>gNMI</strong> (gRPC Network Management Interface).</p>
+<h2 id="components">Components</h2>
+<p>Hedgehog Fabric consists of several key components, distributed between the Control Node and the Network devices. The following diagram breaks down the components of a <a href="https://docs.githedgehog.com/latest/architecture/fabric/#collapsed-core">Collapsed Core</a>. Hedgehog components have been highlighted in brown color:</p>
+<pre class="mermaid"><code>graph TD;
+  %% Control Plane
+  subgraph Control Node ["Control Node"]
+    K[Fabric CLI - kubectl plugin]:::ourComponent
+    A[Fabric Controller]:::ourComponent
+    P[Fabric Proxy]:::ourComponent
+  end
+
+  K --&gt;|Interacts via K8s API| A
+  L[Fabricator]:::ourComponent --&gt;|Installs &amp; Configures| A
+  A --&gt;|Kubernetes API| B1
+  B1 --&gt;|Syncs State| A;
+  A --&gt;|Kubernetes API| B2
+  B2 --&gt;|Syncs State| A;
+
+  %% Collapsed Core - Two Switches
+  subgraph SONiC Leaf 2
+    B1[Fabric Agent]:::ourComponent --&gt;|Scraped by| C1[Alloy]:::thirdParty
+    C1 --&gt;|Pushes Logs/Metrics| P
+    D1[gNMI]:::thirdParty
+    E1[Config DB]:::thirdParty
+    I1[ASIC]:::thirdParty
+  end
+
+  subgraph SONiC Leaf 1
+    B2[Fabric Agent]:::ourComponent --&gt;|Scraped by| C2[Alloy]:::thirdParty
+    C2 --&gt;|Pushes Logs/Metrics| P
+    D2[gNMI]:::thirdParty
+    E2[Config DB]:::thirdParty
+    I2[ASIC]:::thirdParty
+  end
+
+  %% Switch Configuration Flow
+  B1 --&gt;|Applies Config| D1
+  B2 --&gt;|Applies Config| D2
+  D1 --&gt;|Writes/Reads| E1
+  D2 --&gt;|Writes/Reads| E2
+  E1 --&gt;|Controls| I1
+  E2 --&gt;|Controls| I2
+
+  %% Logs and Metrics Flow
+  P --&gt;|Forwards Logs/Metrics| M
+  M[LGTM]:::thirdParty
+
+  %% Style definitions for dark mode
+  classDef ourComponent fill:#A67C52,stroke:#805D3B,stroke-width:2px,color:#ffffff;
+  classDef thirdParty fill:#888888,stroke:#666666,stroke-width:1px,color:#000000;
+
+  %% Add a vertical legend
+  subgraph Legend ["Legend"]
+    direction RL
+    HC[Hedgehog]:::ourComponent
+    TPC[Third-Party]:::thirdParty
+  end</code></pre>
+<p>The key components essential for understanding the Fabric architecture are:</p>
+<h3 id="control-node-components">Control Node Components</h3>
+<ul>
+<li><strong>Fabric Controller</strong>: The central control plane component that manages Fabric resources and configurations.</li>
+<li><strong>Fabric CLI (kubectl plugin)</strong>: A <code>kubectl</code> plugin that provides an easy way to manage Fabric resources.</li>
+<li><strong>Fabric Proxy</strong>: A pod responsible for collecting logs and metrics from switches (via Alloy) and forwarding them to an external system.</li>
+<li><strong>Fabricator</strong>: A tool for installing and configuring Fabric, including virtual lab environments.</li>
+</ul>
+<h3 id="sonic-switch-components">SONiC Switch Components</h3>
+<ul>
+<li><strong>Fabric Agent</strong>: Runs on each switch and applies configurations received from the control plane.</li>
+<li><strong>Alloy</strong>: Collects logs and telemetry data from the switch.</li>
+<li><strong>gNMI Interface</strong>: The main configuration API used by the Fabric Agent to interact with the switch.</li>
+<li><strong>Config DB</strong>: The central database in SONiC responsible for maintaining switch configuration.</li>
+<li><strong>ASIC</strong>: The hardware component handling packet forwarding.</li>
+</ul>
+<p>The SONiC architecture presented here is a high-level abstraction, for simplicity.</p>
+<h2 id="architecture-flow">Architecture Flow</h2>
+<h3 id="1-fabric-installation-configuration">1. <strong>Fabric Installation &amp; Configuration</strong></h3>
+<ul>
+<li>The <strong>Fabricator</strong> tool installs and configures Hedgehog Fabric.</li>
+<li>It provisions <strong>Flatcar Linux</strong> for Control Nodes and automatically installs <strong>K3s</strong> (lightweight Kubernetes).</li>
+<li>All components, including their dependencies, are deployed within Kubernetes.</li>
+</ul>
+<h3 id="2-fabric-api-resource-management">2. <strong>Fabric API &amp; Resource Management</strong></h3>
+<ul>
+<li>Hedgehog represents all infrastructure elements as <strong>Fabric resources</strong> using Kubernetes CRDs.</li>
+<li>These CRDs define <strong>switches, servers, control nodes, external systems, and their interconnections</strong>.</li>
+<li>The <strong>Fabric Controller</strong> watches these CRDs and manages configurations accordingly.</li>
+</ul>
+<h3 id="3-switch-configuration-management">3. <strong>Switch Configuration &amp; Management</strong></h3>
+<ul>
+<li>The <strong>Fabric Controller</strong> communicates with the <strong>Fabric Agent</strong> on each switch via the Kubernetes API.</li>
+<li>The <strong>Fabric Agent</strong> applies configurations using the <strong>gNMI</strong> interface, updating the <strong>Config DB</strong>.</li>
+<li>The <strong>Config DB</strong> ensures that all settings are applied to the <strong>ASIC</strong> for packet forwarding.</li>
+</ul>
+<h3 id="4-telemetry-monitoring">4. <strong>Telemetry &amp; Monitoring</strong></h3>
+<ul>
+<li>The <strong>Alloy</strong> agent on the switch collects logs and metrics.</li>
+<li>Logs and metrics are sent to the <strong>Fabric Proxy</strong> running in Kubernetes.</li>
+<li>The <strong>Fabric Proxy</strong> forwards this data to <strong>LGTM</strong>, an external logging and monitoring system.</li>
+</ul>
 
 
 
@@ -1276,7 +1579,7 @@ You're not viewing the latest version.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 27, 2025</span>
   </span>
 
     
