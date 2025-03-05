@@ -1,4 +1,5 @@
 nav:
   - Overview: overview.md
+  - Fabric Management: management.md
   - Fabric Implementation: fabric.md
   - ...
