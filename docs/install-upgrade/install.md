@@ -5,9 +5,13 @@
 * A machine with access to the Internet to use Fabricator and build installer with at least 8 GB RAM and 25 GB of disk space
 * An 16 GB USB flash drive, if you are not using virtual media
 * Have a machine to function as the Fabric Control Node. [System Requirements](./requirements.md) as well as IPMI access to it to install
-  the OS.
+  the OS. Only UEFI is supported.
 * A management switch with at least 1 10GbE port is recommended
 * Enough [Supported Switches](./supported-devices.md) for your Fabric
+
+!!! tip "Control nodes on virtual machines"
+    Running control nodes on virtual machines is possible, although not officially supported. If you use virtual
+    machines, make sure to use UEFI boot.
 
 ## Overview of Install Process
 
@@ -34,11 +38,11 @@ The main steps to install Fabric are:
 
 ## Build Control Node configuration and Installer
 Hedgehog has created a command line utility, called `hhfab`, that helps generate the wiring diagram and fabric configuration,
-validate the supplied configurations, and generate an installation image (.img or .iso) suitable 
+validate the supplied configurations, and generate an installation image (.img or .iso) suitable
 for writing to a USB flash drive or mounting via IPMI virtual media. The first `hhfab` command to
-run is `hhfab init`. This will generate the main configuration file, `fab.yaml`. `fab.yaml` is 
-responsible for almost every configuration of the fabric with the exception of the wiring. Each 
-command and subcommand have usage messages, simply supply the `-h` flag to your command or sub 
+run is `hhfab init`. This will generate the main configuration file, `fab.yaml`. `fab.yaml` is
+responsible for almost every configuration of the fabric with the exception of the wiring. Each
+command and subcommand have usage messages, simply supply the `-h` flag to your command or sub
 command to see the available options. For example `hhfab vlab -h` and `hhfab vlab gen -h`.
 
 ### HHFAB commands to make a bootable image
