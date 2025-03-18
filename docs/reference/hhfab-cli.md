@@ -54,6 +54,7 @@ hhfab init [options]
 ```
 
 **Options:**
+
 - `--registry-repo` – Download artifacts from specific registry repository.
 - `--registry-prefix` – Prepend artifact names with specific prefix.
 - `--config` – Use existing config file.
@@ -80,6 +81,7 @@ hhfab validate [options]
 ```
 
 **Options:**
+
 - `--hydrate-mode` *(default: "if-not-present")* – Set hydrate mode.
 
 ---
@@ -93,6 +95,7 @@ hhfab diagram [options]
 ```
 
 **Options:**
+
 - `--format` *(default: "drawio")* – Diagram format.
 - `--style` *(default: "hedgehog")* – Diagram style.
 
@@ -117,6 +120,7 @@ hhfab build [options]
 ```
 
 **Options:**
+
 - `--mode` *(default: "iso")* – Build mode (iso, qcow2, raw).
 
 ---
@@ -130,6 +134,7 @@ hhfab switch reinstall [options]
 ```
 
 **Options:**
+
 - `--name` – Switch name.
 - `--mode` *(default: "hard-reset")* – Restart mode.
 - `--wait-ready` – Wait until switch is ready.

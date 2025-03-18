@@ -82,6 +82,7 @@ kubectl fabric vpc create --name vpc-1 --subnet 10.0.1.0/24 --vlan 1001 --dhcp -
 
 
 **Options:**
+
 - `--name` – VPC name.
 - `--subnet` – Subnet in CIDR format (**required**).
 - `--vlan` – VLAN ID (**required**).
@@ -99,6 +100,7 @@ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01
 
 
 **Options:**
+
 - `--vpc-subnet` – VPC subnet name (**required**).
 - `--connection` – Connection name (**required**).
 
@@ -111,6 +113,7 @@ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
 
 
 **Options:**
+
 - `--vpc` – VPC names (**required**).
 
 #### `wipe`
@@ -138,6 +141,7 @@ kubectl fabric switch ip --name switch-01
 
 
 **Options:**
+
 - `--name` – Switch name.
 - `--username` – SSH username (default: "admin").
 
@@ -150,6 +154,7 @@ kubectl fabric switch reboot --name switch-01 --yes
 
 
 **Options:**
+
 - `--name` – Switch name.
 - `--yes` – Confirm reboot.
 
@@ -164,6 +169,7 @@ kubectl fabric connection get management
 
 
 **Options:**
+
 - `--type` – Connection type (`management`, `fabric`, `vpc-loopback`).
 
 ---
@@ -177,6 +183,7 @@ kubectl fabric switchgroup create --name sg-01
 
 
 **Options:**
+
 - `--name` – Switch group name.
 
 ---
@@ -190,6 +197,7 @@ kubectl fabric external create --name ext-01 --ipv4-namespace default
 
 
 **Options:**
+
 - `--name` – External name.
 - `--ipv4-namespace` – IPv4 namespace.
 
@@ -204,6 +212,7 @@ kubectl fabric wiring export --vpcs --externals
 
 
 **Options:**
+
 - `--vpcs` – Include VPCs (default: true).
 - `--externals` – Include externals (default: true).
 
@@ -218,6 +227,7 @@ kubectl fabric inspect fabric --output text
 
 
 **Options:**
+
 - `--output` – Output format (`text`, `yaml`, `json`).
 
 ---
