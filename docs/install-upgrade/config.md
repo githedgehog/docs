@@ -19,7 +19,7 @@ The above workflow will get a user up and running with a spine-leaf VLAB.
 
 It's possible to start from scratch:
 
-1. `hhfab init` (see different flags to cusomize initial configuration)
+1. `hhfab init` (see different flags to customize initial configuration)
 1. Adjust the `fab.yaml` file to your needs
 1. `hhfab validate`
 1. `hhfab build`
@@ -38,7 +38,7 @@ After the above workflow a user will have a .img file suitable for installing th
 
 Configuring control node and switch users is done either passing `--default-password-hash` to `hhfab init` or editing the resulting `fab.yaml` file emitted by `hhfab init`. You can specify users to be configured on the control node(s) and switches in the following format:
 
-```yaml
+``` {.yaml .annotation linenums="1"}
 spec:
     config:
       control:
@@ -73,7 +73,7 @@ The control node uses public ntp servers from cloudflare and google by default. 
 
 ## Control Node
 The control node is the host that manages all the switches, runs k3s, and serves images. This is the YAML document configure the control node:
-```yaml
+``` {.yaml .annotation linenums="1"}
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: ControlNode
 metadata:
@@ -104,7 +104,7 @@ sensors, BGP neighbors, LLDP neighbors, and more. Logs include agent logs.
 
 Configuring the exporters and targets is currently only possible by editing the `fab.yaml` configuration file. An example configuration is provided below:
 
-```yaml
+``` {.yaml .annotation linenums="1"}
 spec:
   config:
       ...
@@ -143,7 +143,7 @@ For additional options, see the `AlloyConfig` [struct in Fabric repo](https://gi
 
 ## Complete Example File
 
-```yaml
+``` {.yaml .annotation linenums="1" title="fab.yaml"}
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: Fabricator
 metadata:

@@ -1,7 +1,5 @@
 # Build Wiring Diagram
 
-!!! warning ""
-    Under construction.
 
 ## Overview
 
@@ -56,27 +54,32 @@ OPTIONS:
 ```
 
 ### Sample Switch Configuration
-```yaml
+``` { .yaml .annotate linenums="1" }
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: Switch
 metadata:
   name: ds3000-02
 spec:
-  boot:
-    serial: ABC123XYZ
+  boot: # Serial or MAC can be used
+    serial: ABC123XYZ # alternative  `mac: 34:AD:61:00:02:03` of 1GbE interface
   role: server-leaf
-  description: leaf-2
-  profile: celestica-ds3000
-  portBreakouts:
+  description: rack 5, aisle 3, RU 22
+  profile: celestica-ds3000 # (1)!
+  portBreakouts: # (2)!
     E1/1: 4x10G
     E1/2: 4x10G
     E1/17: 4x25G
     E1/18: 4x25G
     E1/32: 4x25G
-  redundancy:
-    group: mclag-1
-    type: mclag
+  redundancy: # (3)!
+    group: eslag-1
+    type: eslag
 ```
+
+1. See the [list](../reference/profiles.md) of profile names
+2. More information in the [User Guide](../user-guide/profiles.md#port-naming)
+3. Could be MCLAG, ESLAG or nothing, more details in [Redundancy
+   Groups](../user-guide/devices.md#redundnacy-groups)
 
 ## Design Discussion
 This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric.
@@ -279,3 +282,322 @@ The dotted line in the diagram shows the traffic flow for remote peering. The tr
 
 A VPC loopback is a physical cable with both ends plugged into the same switch, suggested but not required to be the adjacent ports. This loopback allows two different VPCs to communicate with each other. This is due to a Broadcom limitation.
 
+## Sample Wiring Diagram
+
+The YAML listing below shows a complete wiring diagram. It illustrates how switches
+from a single vendor can be arranged to form a fabric. There are no IP
+addresses or ASN numbers in this listing, the controller creates those as part
+of creating the fabric. To physically connect this topology, 16 cables are
+needed for the fabric links, 8 cables are needed for the loop back connections.
+Additional cables are needed to connect servers into the fabric. 
+
+``` {.yaml .annotate linenums="1" title="wiring_diagram.yaml"}
+
+#
+# VLANNamespaceList
+#
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: VLANNamespace
+metadata:
+  name: default
+spec:
+  ranges:
+  - from: 1000
+    to: 2999
+#
+# IPv4NamespaceList
+#
+---
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: IPv4Namespace
+metadata:
+  name: default
+spec:
+  subnets:
+  - 10.0.0.0/16
+#
+# SwitchGroupList
+#
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: SwitchGroup
+metadata:
+  name: empty
+spec: {}
+#
+# SwitchList
+#
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: leaf-01
+spec:
+  boot:
+    mac: 0c:20:12:ff:00:00 # CHANGE ME
+  description: leaf-01
+  profile:  celestica-ds3000
+  redundancy: {}
+  role: server-leaf
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: leaf-02
+spec:
+  boot:
+    mac: 0c:20:12:ff:01:00 # CHANGE ME
+  description: leaf-02
+  profile: celestica-ds3000
+  redundancy: {}
+  role: server-leaf
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: leaf-03
+spec:
+  boot:
+    mac: 0c:20:12:ff:02:00 # CHANGE ME
+  description: leaf-03
+  profile: celestica-ds3000
+  redundancy: {}
+  role: server-leaf
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: leaf-04
+spec:
+  boot:
+    mac: 0c:20:12:ff:03:00 # CHANGE ME
+  description: leaf-04
+  profile: celestica-ds3000
+  redundancy: {}
+  role: server-leaf
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: spine-01
+spec:
+  boot:
+    mac: 0c:20:12:ff:05:00 # CHANGE ME
+  description: spine-01
+  profile: celestica-ds4000
+  portBreakouts:
+    E1/1: 4x100G
+    E1/2: 4x100G
+  redundancy: {}
+  role: spine
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Switch
+metadata:
+  name: spine-02
+spec:
+  boot:
+    mac: 0c:20:12:ff:06:00 # CHANGE ME
+  description: spine-02
+  profile: celestica-ds4000
+  portBreakouts:
+    E1/1: 4x100G
+    E1/2: 4x100G
+  redundancy: {}
+  role: spine
+#
+# ConnectionList
+#
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: leaf-01--vpc-loopback
+spec:
+  vpcLoopback:
+    links:
+    - switch1:
+        port: leaf-01/E1/12
+      switch2:
+        port: leaf-01/E1/13
+    - switch1:
+        port: leaf-01/E1/14
+      switch2:
+        port: leaf-01/E1/15
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: leaf-02--vpc-loopback
+spec:
+  vpcLoopback:
+    links:
+    - switch1:
+        port: leaf-02/E1/13
+      switch2:
+        port: leaf-02/E1/14
+    - switch1:
+        port: leaf-02/E1/15
+      switch2:
+        port: leaf-02/E1/16
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: leaf-03--vpc-loopback
+spec:
+  vpcLoopback:
+    links:
+    - switch1:
+        port: leaf-03/E1/8
+      switch2:
+        port: leaf-03/E1/9
+    - switch1:
+        port: leaf-03/E1/10
+      switch2:
+        port: leaf-03/E1/11
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: leaf-04--vpc-loopback
+spec:
+  vpcLoopback:
+    links:
+    - switch1:
+        port: leaf-04/E1/9
+      switch2:
+        port: leaf-04/E1/10
+    - switch1:
+        port: leaf-04/E1/11
+      switch2:
+        port: leaf-04/E1/12
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-01--fabric--leaf-01
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-01/E1/8
+      spine:
+        port: spine-01/E1/1/1
+    - leaf:
+        port: leaf-01/E1/9
+      spine:
+        port: spine-01/E1/2/1
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-01--fabric--leaf-02
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-02/E1/9
+      spine:
+        port: spine-01/E1/1/2
+    - leaf:
+        port: leaf-02/E1/10
+      spine:
+        port: spine-01/E1/2/2
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-01--fabric--leaf-03
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-03/E1/4
+      spine:
+        port: spine-01/E1/1/3
+    - leaf:
+        port: leaf-03/E1/5
+      spine:
+        port: spine-01/E1/2/3
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-01--fabric--leaf-04
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-04/E1/5
+      spine:
+        port: spine-01/E1/1/4
+    - leaf:
+        port: leaf-04/E1/6
+      spine:
+        port: spine-01/E1/2/4
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-02--fabric--leaf-01
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-01/E1/10
+      spine:
+        port: spine-02/E1/1/1
+    - leaf:
+        port: leaf-01/E1/11
+      spine:
+        port: spine-02/E1/2/1
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-02--fabric--leaf-02
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-02/E1/11
+      spine:
+        port: spine-02/E1/1/2
+    - leaf:
+        port: leaf-02/E1/12
+      spine:
+        port: spine-02/E1/2/2
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-02--fabric--leaf-03
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-03/E1/6
+      spine:
+        port: spine-02/E1/1/3
+    - leaf:
+        port: leaf-03/E1/7
+      spine:
+        port: spine-02/E1/2/3
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-02--fabric--leaf-04
+spec:
+  fabric:
+    links:
+    - leaf:
+        port: leaf-04/E1/7
+      spine:
+        port: spine-02/E1/1/4
+    - leaf:
+        port: leaf-04/E1/8
+      spine:
+        port: spine-02/E1/2/4
+```
