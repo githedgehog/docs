@@ -1,0 +1,5 @@
+title: Troubleshooting
+nav:
+  - Overview: overview.md
+  - Boot and Installation Issues:
+      - GRUB Rescue Mode: troubleshooting_grub_rescue.md
