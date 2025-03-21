@@ -6,6 +6,7 @@ In order to provision and manage the switches that comprise the fabric, an out o
 
 ## Control Node
 
+- Only UEFI is supported
 - Fast SSDs for system/root is mandatory for Control Nodes
     - NVMe SSDs are recommended
     - DRAM-less NAND SSDs are not supported (e.g. Crucial BX500)
@@ -16,7 +17,7 @@ In order to provision and manage the switches that comprise the fabric, an out o
 
 In internal testing Hedgehog uses a server with the following specifications:
 
-- CPU - AMD EPYC 4344P 
+- CPU - AMD EPYC 4344P
 - Memory - 32 GiB DDR5 ECC 4800MT/s
 - Storage - PCIe Gen 4 NVMe M.2 400GB
 - Network - AOC-STG-i4S Intel X710-BM1 controller

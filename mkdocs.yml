@@ -1,9 +1,9 @@
 site_name: Open Network Fabric
-site_url: https://docs.githedgehog.com/
+site_url: https://docs.hedgehog.cloud/
 site_description: Hedgehog Open Network Fabric Documentation
 site_author: Hedgehog Authors
 copyright:
-  Copyright &copy; 2024 Hedgehog
+  Copyright &copy; 2025 Hedgehog
   &#x25cf;
   <a href="#__consent">Change cookie settings</a>
 
@@ -49,7 +49,7 @@ theme:
         name: Switch to light mode
 
 extra:
-  homepage: https://docs.githedgehog.com
+  homepage: https://docs.hedgehog.cloud
   version:
     provider: mike
     default: latest
