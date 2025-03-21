@@ -6,7 +6,14 @@ In this workflow, the Kubernetes API Server processes the Fabric Custom Resource
 
 The diagram below illustrates the general workflow for fabric management as well as the interactions between control plane components and the SONiC switches that form the Fabric.
 
-```mermaid
+<div align="center">
+
+```
+
+</div>mermaid
+---
+align: center
+---
 graph TD
 
 %% Define the nodes (General Workflow excludes Git & ArgoCD)
@@ -48,29 +55,30 @@ FA -->|Reports Metrics| Alloy
 Alloy -->|Sends Logs & Metrics| Monitoring
 ```
 
+</div>
+
 ---
 
-## **Management Workflow Overview**
+### Management Workflow Overview
 
 ### **User**
-- **Creates Fabric CR YAMLs** and commits them to version control.
-- **Directly interacts with SONiC switches** via the Fabricator CLI.
-- **Uses [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) and `kubectl fabric`** to interact with the Kubernetes API for fabric resource management.
+**Creates Fabric CR YAMLs** and commits them to version control.
+**Directly interacts with SONiC switches** via the Fabricator CLI.
+**Uses [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) and `kubectl fabric`** to interact with the Kubernetes API for fabric resource management.
 
 ### **Kubernetes API Server (K8S)**
-- Part of [Kubernetes](https://kubernetes.io).
-- Manages Fabric Custom Resources (CRs) and interacts with the **Fabric Controller**.
+Part of [Kubernetes](https://kubernetes.io).
+Manages Fabric Custom Resources (CRs) and interacts with the **Fabric Controller**.
 
 ### **kubectl & kubectl fabric**
-- [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is the standard CLI tool for [Kubernetes](https://kubernetes.io).
-- `kubectl fabric` is a plugin that extends `kubectl` with fabric-specific commands and interacts with the Kubernetes API Server.
+[`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is the standard CLI tool for [Kubernetes](https://kubernetes.io).
+`kubectl fabric` is a plugin that extends `kubectl` with fabric-specific commands and interacts with the Kubernetes API Server.
 
 ### **Fabricator**
-- CLI tool that provides direct interaction with the Kubernetes API.
-- Can apply configurations via **SSH access** (using **K9s**) or by directly managing Fabric CRs with YAML files.
+CLI tool that provides direct interaction with the Kubernetes API.
+Can apply configurations via **SSH access** (using **K9s**) or by directly managing Fabric CRs with YAML files.
 
 ### **K9s**
-- A Kubernetes UI that provides visibility and control over Kubernetes resources, allowing you to manage pods, nodes, services, logs, and Fabric resources efficiently. It includes some helper plugins:
   - **SSH** – SSH into a fabric switch
   - **Serial** – Open a serial connection to a fabric switch
   - **Reboot** – Reboot a fabric switch
@@ -78,12 +86,12 @@ Alloy -->|Sends Logs & Metrics| Monitoring
   - **Reinstall** – Reinstall a fabric switch
 
 ### **SONiC Switch Relevant Components**
-- **Fabric Agent:** Receives configurations from the Fabric Controller and applies them to the SONiC switches via gNMI.
-- **Alloy:** Monitors SONiC and reports metrics.
-- **SONiC Config DB:** Stores and manages switch configuration data.
+**Fabric Agent:** Receives configurations from the Fabric Controller and applies them to the SONiC switches via gNMI.
+**Alloy:** Monitors SONiC and reports metrics.
+**SONiC Config DB:** Stores and manages switch configuration data.
 
 ### **Monitoring**
-- Logs and metrics from SONiC are collected and sent to [Loki](https://grafana.com/oss/loki/) and [Mimir](https://grafana.com/oss/mimir/) for visualization and analysis through [Grafana](https://grafana.com).
+Logs and metrics from SONiC are collected and sent to [Loki](https://grafana.com/oss/loki/) and [Mimir](https://grafana.com/oss/mimir/) for visualization and analysis through [Grafana](https://grafana.com).
 
 ---
 
@@ -91,13 +99,20 @@ Alloy -->|Sends Logs & Metrics| Monitoring
 
 GitOps workflows can be leveraged using [ArgoCD](https://argo-cd.readthedocs.io/en/stable/). This is an alternative approach to show that a Fabric can be used with industry standard tools seamlessly.
 
-- **User Actions:**
+**User Actions:**
   - The user **creates Fabric CR YAMLs** and pushes them to a [Git repository](https://git-scm.com) for version control.
-- **ArgoCD Actions:**
+**ArgoCD Actions:**
   - [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) monitors the Git repository.
   - ArgoCD **pulls the CRs from Git** and applies them to [Kubernetes](https://kubernetes.io) via the Kubernetes API Server.
 
-```mermaid
+<div align="center">
+
+```
+
+</div>mermaid
+---
+align: center
+---
 graph TD
 
 %% Define the nodes (GitOps includes Git & ArgoCD)
@@ -120,3 +135,5 @@ Git -.->|ArgoCD pulls| ArgoCD
 ArgoCD -->|Applies CRs| K8S
 K8S -->|Sends CRDs| FC
 ```
+
+</div>
