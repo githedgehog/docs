@@ -80,7 +80,7 @@ spec:
   external:
     link:
       switch:
-        port: # SwitchName/EthernetXXX
+        port: ds3000/E1/1
 ```
 
 ### External Attachment
@@ -159,8 +159,8 @@ spec:
 ## Examples
 
 This example shows how to peer with the `External` object with name `HedgeEdge`, given a Fabric VPC with name `vpc-1` on
-the Border Leaf `switchBorder` that has a cable connecting it to an Edge device on the port `Ethernet42`. Specifying
-`vpc-1` is required to receive any prefixes advertised from the `External`.
+the Border Leaf `switchBorder` that has a cable connecting it to an Edge device
+on the port `E1/2`. Specifying `vpc-1` is required to receive any prefixes advertised from the `External`.
 
 ### Fabric API configuration
 
@@ -204,7 +204,7 @@ spec:
   external:
     link:
       switch:
-        port: switchBorder/Ethernet42
+        port: switchBorder/E1/2
 ```
 
 #### ExternalAttachment
@@ -257,7 +257,7 @@ Interface configuration:
 ```yaml
 interface Ethernet2.100
  encapsulation dot1q vlan-id 100
- description switchBorder--Ethernet42
+ description switchBorder--E1/2
  no shutdown
  ip vrf forwarding VrfHedge
  ip address 100.100.0.6/24

@@ -30,7 +30,7 @@ spec:
       server:
         port: server-4/enp2s1
       switch:
-        port: s5248-02/Ethernet3
+        port: s5248-02/E1/1
 ```
 
 ### Bundled
@@ -49,11 +49,11 @@ spec:
     - server:
         port: server-3/enp2s1
       switch:
-        port: s5248-01/Ethernet3
+        port: s5248-01/E1/1
     - server:
         port: server-3/enp2s2
       switch:
-        port: s5248-01/Ethernet4
+        port: s5248-01/E1/2
 ```
 
 ### MCLAG
@@ -75,11 +75,11 @@ spec:
     - server:
         port: server-1/enp2s1
       switch:
-        port: s5248-01/Ethernet1
+        port: s5248-01/E1/1
     - server:
         port: server-1/enp2s2
       switch:
-        port: s5248-02/Ethernet1
+        port: s5248-02/E1/1
 ```
 
 ### ESLAG
@@ -100,11 +100,11 @@ spec:
     - server:
         port: server-1/enp2s1
       switch:
-        port: s5248-01/Ethernet1
+        port: s5248-01/E1/1
     - server:
         port: server-1/enp2s2
       switch:
-        port: s5248-02/Ethernet1
+        port: s5248-02/E1/1
 ```
 
 ## Switch connections (fabric-facing)
@@ -127,16 +127,16 @@ spec:
     links: # Defines multiple links between a spine-leaf pair of switches with IP addresses
     - leaf:
         ip: 172.30.30.1/31
-        port: s5248-01/Ethernet48
+        port: s5248-01/E1/18
       spine:
         ip: 172.30.30.0/31
-        port: s5232-01/Ethernet0
+        port: s5232-01/E1/1
     - leaf:
         ip: 172.30.30.3/31
-        port: s5248-01/Ethernet56
+        port: s5248-01/E1/16
       spine:
         ip: 172.30.30.2/31
-        port: s5232-01/Ethernet4
+        port: s5232-01/E1/2
 ```
 
 ### MCLAG-Domain
@@ -155,22 +155,22 @@ spec:
   mclagDomain:
     peerLinks: # Defines multiple links between a pair of MCLAG switches for Peer link
     - switch1:
-        port: s5248-01/Ethernet72
+        port: s5248-01/E1/12
       switch2:
-        port: s5248-02/Ethernet72
+        port: s5248-02/E1/12
     - switch1:
-        port: s5248-01/Ethernet73
+        port: s5248-01/E1/13
       switch2:
-        port: s5248-02/Ethernet73
+        port: s5248-02/E1/13
     sessionLinks: # Defines multiple links between a pair of MCLAG switches for Session link
     - switch1:
-        port: s5248-01/Ethernet74
+        port: s5248-01/E1/14
       switch2:
-        port: s5248-02/Ethernet74
+        port: s5248-02/E1/14
     - switch1:
-        port: s5248-01/Ethernet75
+        port: s5248-01/E1/15
       switch2:
-        port: s5248-02/Ethernet75
+        port: s5248-02/E1/15
 ```
 
 ### VPC-Loopback
@@ -188,13 +188,13 @@ spec:
   vpcLoopback:
     links: # Defines multiple loopbacks on a single switch
     - switch1:
-        port: s5248-01/Ethernet16
+        port: s5248-01/E1/16
       switch2:
-        port: s5248-01/Ethernet17
+        port: s5248-01/E1/17
     - switch1:
-        port: s5248-01/Ethernet18
+        port: s5248-01/E1/18
       switch2:
-        port: s5248-01/Ethernet19
+        port: s5248-01/E1/19
 ```
 
 ## Connecting Fabric to the outside world
@@ -217,7 +217,7 @@ spec:
   staticExternal:
     link:
       switch:
-        port: s5248-04/Ethernet1 # Switch port to use
+        port: s5248-04/E1/1 # Switch port to use
         ip: 172.30.50.5/24 # IP address that will be assigned to the switch port
         vlan: 1005 # Optional VLAN ID to use for the switch port; if 0, no VLAN is configured
         subnets: # List of subnets to route to the switch port using static routes and next hop
@@ -253,5 +253,5 @@ spec:
   external:
     link: # Defines a single link between a switch and an external system
       switch:
-        port: s5248-03/Ethernet3
+        port: s5248-03/E1/3
 ```
