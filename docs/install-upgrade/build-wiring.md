@@ -292,7 +292,6 @@ needed for the fabric links, 8 cables are needed for the loop back connections.
 Additional cables are needed to connect servers into the fabric. 
 
 ``` {.yaml .annotate linenums="1" title="wiring_diagram.yaml"}
-
 #
 # VLANNamespaceList
 #
