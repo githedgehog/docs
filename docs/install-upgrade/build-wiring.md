@@ -61,7 +61,8 @@ metadata:
   name: ds3000-02
 spec:
   boot: # Serial or MAC can be used
-    serial: ABC123XYZ # alternative  `mac: 34:AD:61:00:02:03` of 1GbE interface
+    serial: ABC123XYZ
+    mac: 34:AD:61:00:02:03 # Usually the first management port MAC address
   role: server-leaf
   description: rack 5, aisle 3, RU 22
   profile: celestica-ds3000 # (1)!
@@ -286,7 +287,7 @@ A VPC loopback is a physical cable with both ends plugged into the same switch, 
 
 The YAML listing below shows a complete wiring diagram. It illustrates how switches
 from a single vendor can be arranged to form a fabric. There are no IP
-addresses or ASN numbers in this listing, the controller creates those as part
+addresses or ASN numbers in this listing, the `hhfab build` step creates those as part
 of creating the fabric. To physically connect this topology, 16 cables are
 needed for the fabric links, 8 cables are needed for the loop back connections.
 Additional cables are needed to connect servers into the fabric. 
