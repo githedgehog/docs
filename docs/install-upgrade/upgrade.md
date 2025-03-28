@@ -5,30 +5,33 @@
 Starting with Beta-1 release and onwards, the upgrade process is more streamlined and fully automated. The control node
 is upgraded in place and the agents/switches is upgraded using the control node.
 
-In order to apply the upgrade, the following steps need to be followed:
+In order to apply the upgrade, use the following instructions:
 
-- use the `hhfab` directory from the initial deployment or init the new one using the configs from the running installation
-- run `hhfab build --mode=manual` to generate fully self-contained (airgap) upgrade package
-  - for control node named `control-1` it will be `result/control-1-install.tgz`
-- upload it to the control node (e.g. using `scp`)
-- unpack and run `hhfab-recipe control upgrade` from the resulting directory
+1. use the `hhfab` directory from the initial deployment or init the new one
+  using the configs from the running installation, [see
+below](#init-hhfab-dir-from-the-running-installation)
+1. run `hhfab build --mode=manual` to generate fully self-contained (airgap)
+   upgrade package for control node named `control-1` it will be `result/control-1-install.tgz`
+1. upload it to the control node (e.g. using `scp`)
+1. unpack and run `hhfab-recipe upgrade control` from the resulting directory
 
 ```bash
-tar xzf control-1-install.tgz
-cd control-1-install
-./hhfab-recipe control upgrade
+tar xzf control-1-install.tgz;
+cd control-1-install;
+sudo ./hhfab-recipe upgrade control;
 ```
 
-It'll do all necessary steps to upgrade the control node and the agents/switches. Resulting version could be checked
-using `kubectl -n fab get fab/default -o=jsonpath='{.status.versions.fabricator.controller}'` and compare to the
-fabricator version in the release notes.
+It'll do all necessary steps to upgrade the control node and the
+agents/switches. The upgrade will cause the control node to **reboot**. The
+resulting version can be checked using `kubectl -n fab get fab/default -o=jsonpath='{.status.versions.fabricator.controller}'`
+and compare to the fabricator version in the release notes.
 
 Upgrade process is idempotent and can be run multiple times without any issues.
 
 ### Init hhfab dir from the running installation
 
 If the original `hhfab` directory is no longer available, it is possible to export the current configuration from the
-running installation and init the new `hhfab` directory with it.
+running controller and init the new `hhfab` directory with it.
 
 ```bash
 # on a control node
