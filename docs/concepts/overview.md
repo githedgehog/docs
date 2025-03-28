@@ -51,16 +51,17 @@ Wiring Diagram consists of the following resources:
 
 ## Fabricator
 
-Installer builder and VLAB.
+Creates installation media.
 
-* Installer builder based on a preset (currently: `vlab` for virtual and `lab` for physical)
-    * Main input: Wiring Diagram
-    * All input artifacts coming from OCI registry
-    * Always full airgap (everything running from private registry)
+* Features of fabricator:
+    * Inputs: [Wiring Diagram](../install-upgrade/build-wiring.md) and
+      [Config](../install-upgrade/config.md)
+    * All input artifacts delivered via OCI registry
+    * Capable of full airgap (everything running from private registry)
+      installation
     * Flatcar Linux for Control Node, generated `ignition.json`
     * Automatic K3s installation and private registry setup
     * All components and their dependencies running in Kubernetes
-* Integrated Virtual Lab (VLAB) management
 * Future:
     * In-cluster (control) Operator to manage all components
     * Upgrades handling for everything starting Control Node OS

@@ -43,7 +43,7 @@ for writing to a USB flash drive or mounting via IPMI virtual media. The first `
 run is `hhfab init`. This will generate the main configuration file, `fab.yaml`. `fab.yaml` is
 responsible for almost every configuration of the fabric with the exception of the wiring. Each
 command and subcommand have usage messages, simply supply the `-h` flag to your command or sub
-command to see the available options. For example `hhfab vlab -h` and `hhfab vlab gen -h`.
+command to see the available options. For example `hhfab init -h`.
 
 ### HHFAB commands to make a bootable image
 
