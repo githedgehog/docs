@@ -5,38 +5,29 @@
 Starting with Beta-1 release and onwards, the upgrade process is more streamlined and fully automated. The control node
 is upgraded in place and the agents/switches is upgraded using the control node.
 
-In order to apply the upgrade, the following steps need to be followed:
+In order to apply the upgrade, use the following instructions:
 
-- use the `hhfab` directory from the initial deployment or init the new one using the configs from the running installation
-- run `hhfab build --mode=manual` to generate fully self-contained (airgap) upgrade package
-  - for control node named `control-1` it will be `result/control-1-install.tgz`
-- upload it to the control node (e.g. using `scp`)
-- unpack and run `hhfab-recipe control upgrade` from the resulting directory
+1. Generate the current configuration of your fabric:
+    1. On a control node: `kubectl hhfab config export > fab.yaml`
+1. On the node with the new version of `hhfab`:
+    1. `hhfab init -c fab.yaml -f`, using the fab.yaml from the previous step
+    1. run `hhfab build --mode=manual` to generate fully self-contained (airgap) upgrade package; for a control node named `control-1`, it will be `result/control-1-install.tgz`
+1. upload it to the control node (e.g. using `scp`)
+1. unpack and run `hhfab-recipe upgrade` from the resulting directory
 
 ```bash
 tar xzf control-1-install.tgz
 cd control-1-install
-./hhfab-recipe control upgrade
+sudo ./hhfab-recipe upgrade
 ```
 
-It'll do all necessary steps to upgrade the control node and the agents/switches. Resulting version could be checked
-using `kubectl -n fab get fab/default -o=jsonpath='{.status.versions.fabricator.controller}'` and compare to the
-fabricator version in the release notes.
+The upgrade will do all necessary steps to upgrade the control node and the
+agents/switches. The upgrade process will prompt the user to **reboot**, as part of
+upgrading Flatcar on the control node. To validate that the version has been deployed,
+run `kubectl -n fab get fab/default -o=jsonpath='{.status.versions.fabricator.controller}'`
+and compare to the fabricator version in the release notes.
 
 Upgrade process is idempotent and can be run multiple times without any issues.
-
-### Init hhfab dir from the running installation
-
-If the original `hhfab` directory is no longer available, it is possible to export the current configuration from the
-running installation and init the new `hhfab` directory with it.
-
-```bash
-# on a control node
-kubectl hhfab config export > fab.yaml
-
-# on a node with internet access using the exported config
-hhfab init -c fab.yaml
-```
 
 ## Upgrade from Alpha-7 to Beta-1
 
