@@ -61,7 +61,7 @@ spec:
 MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
 Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type `mclag`
 and a Connection with type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and
-`spec.VTEPIP`.
+`spec.VTEPIP`. The server interfaces should be configured for 802.3ad LACP.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1beta1
@@ -86,7 +86,7 @@ spec:
 
 ESLAG server connections are used to connect servers to the 2-4 switches using multiple ports (Multi-homing). Switches
 should belong to the same redundancy group with type `eslag`, but contrary to the MCLAG case, no other configuration is
-required.
+required. The server interfaces should be configured for 802.3ad LACP.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1beta1
