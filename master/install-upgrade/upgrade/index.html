@@ -658,21 +658,6 @@ You're not viewing the latest version.
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Upgrades from Beta-1 onwards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#init-hhfab-dir-from-the-running-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Init hhfab dir from the running installation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1365,21 +1350,6 @@ You're not viewing the latest version.
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Upgrades from Beta-1 onwards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#init-hhfab-dir-from-the-running-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Init hhfab dir from the running installation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1478,31 +1448,30 @@ You're not viewing the latest version.
 <h2 id="upgrades-from-beta-1-onwards">Upgrades from Beta-1 onwards</h2>
 <p>Starting with Beta-1 release and onwards, the upgrade process is more streamlined and fully automated. The control node
 is upgraded in place and the agents/switches is upgraded using the control node.</p>
-<p>In order to apply the upgrade, the following steps need to be followed:</p>
-<ul>
-<li>use the <code>hhfab</code> directory from the initial deployment or init the new one using the configs from the running installation</li>
-<li>run <code>hhfab build --mode=manual</code> to generate fully self-contained (airgap) upgrade package</li>
-<li>for control node named <code>control-1</code> it will be <code>result/control-1-install.tgz</code></li>
+<p>In order to apply the upgrade, use the following instructions:</p>
+<ol>
+<li>Generate the current configuration of your fabric:<ol>
+<li>On a control node: <code>kubectl hhfab config export &gt; fab.yaml</code></li>
+</ol>
+</li>
+<li>On the node with the new version of <code>hhfab</code>:<ol>
+<li><code>hhfab init -c fab.yaml -f</code>, using the fab.yaml from the previous step</li>
+<li>run <code>hhfab build --mode=manual</code> to generate fully self-contained (airgap) upgrade package; for a control node named <code>control-1</code>, it will be <code>result/control-1-install.tgz</code></li>
+</ol>
+</li>
 <li>upload it to the control node (e.g. using <code>scp</code>)</li>
-<li>unpack and run <code>hhfab-recipe control upgrade</code> from the resulting directory</li>
-</ul>
+<li>unpack and run <code>hhfab-recipe upgrade</code> from the resulting directory</li>
+</ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tar<span class="w"> </span>xzf<span class="w"> </span>control-1-install.tgz
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>control-1-install
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>./hhfab-recipe<span class="w"> </span>control<span class="w"> </span>upgrade
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>./hhfab-recipe<span class="w"> </span>upgrade
 </span></code></pre></div>
-<p>It'll do all necessary steps to upgrade the control node and the agents/switches. Resulting version could be checked
-using <code>kubectl -n fab get fab/default -o=jsonpath='{.status.versions.fabricator.controller}'</code> and compare to the
-fabricator version in the release notes.</p>
+<p>The upgrade will do all necessary steps to upgrade the control node and the
+agents/switches. The upgrade process will prompt the user to <strong>reboot</strong>, as part of
+upgrading Flatcar on the control node. To validate that the version has been deployed,
+run <code>kubectl -n fab get fab/default -o=jsonpath='{.status.versions.fabricator.controller}'</code>
+and compare to the fabricator version in the release notes.</p>
 <p>Upgrade process is idempotent and can be run multiple times without any issues.</p>
-<h3 id="init-hhfab-dir-from-the-running-installation">Init hhfab dir from the running installation</h3>
-<p>If the original <code>hhfab</code> directory is no longer available, it is possible to export the current configuration from the
-running installation and init the new <code>hhfab</code> directory with it.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># on a control node</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>kubectl<span class="w"> </span>hhfab<span class="w"> </span>config<span class="w"> </span><span class="nb">export</span><span class="w"> </span>&gt;<span class="w"> </span>fab.yaml
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># on a node with internet access using the exported config</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>hhfab<span class="w"> </span>init<span class="w"> </span>-c<span class="w"> </span>fab.yaml
-</span></code></pre></div>
 <h2 id="upgrade-from-alpha-7-to-beta-1">Upgrade from Alpha-7 to Beta-1</h2>
 <h3 id="control-node">Control Node</h3>
 <p>Ensure the hardware that is to be used for the control node meets the <a href="../requirements/#control-node">system requirements</a>. The upgrade process is destructive of the host, so ensure all data needed is removed from the selected server before the upgrade is started.</p>
@@ -1545,7 +1514,7 @@ running installation and init the new <code>hhfab</code> directory with it.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 19, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 28, 2025</span>
   </span>
 
     
