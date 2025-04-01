@@ -14,6 +14,27 @@ There are several types of connections.
 
 Server connections are used to connect workload servers to switches.
 
+### Server Side Bonding Configuration
+To Bond two or more interfaces on a Linux host, use the [bonding
+driver](https://www.kernel.org/doc/html/latest/networking/bonding.html).
+Bonding requires a cooperation between the NICs and the switches. SONiC
+currently supports the 802.3ad LACP standard. Consult your distributions
+documentation for how to configure a bond using their utilities. To create a
+non-persistent bond using the `ip` utility:
+```bash
+sudo ip link add bond0 type bond miimon 100 mode 802.3ad
+sudo ip link set eno1 down
+sudo ip link set eno2 down
+sudo ip link set eno1 master bond0
+sudo ip link set eno2 master bond0
+sudo ip link set bond0 up
+```
+To view additional details about the bond: 
+*  `cat /proc/net/bonding/bond0`
+*  `ip -s -d link show dev bond0`
+
+
+
 ### Unbundled
 
 Unbundled server connections are used to connect servers to a single switch using a single port.
