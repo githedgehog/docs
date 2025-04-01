@@ -35,7 +35,7 @@ spec:
 
 ### Bundled
 
-Bundled server connections are used to connect servers to a single switch using multiple ports (port channel, LAG).
+Bundled server connections are used to connect servers to a single switch using multiple ports (port channel, LAG). The server interfaces should be configured for 802.3ad LACP.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1beta1
