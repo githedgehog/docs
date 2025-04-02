@@ -75,7 +75,8 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `version` _string_ | Current running agent version |  |  |
 | `installID` _string_ | ID of the agent installation, used to track NOS re-installs |  |  |
-| `runID` _string_ | ID of the agent run, used to track NOS reboots |  |  |
+| `runID` _string_ | ID of the agent run, used to track agent restarts |  |  |
+| `bootID` _string_ | ID for the NOS boot, used to track NOS reboots |  |  |
 | `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
 | `lastAttemptTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta)_ | Time of the last attempt to apply configuration |  |  |
 | `lastAttemptGen` _integer_ | Generation of the last attempt to apply configuration |  |  |
@@ -478,7 +479,7 @@ _Appears in:_
 | `buildCommit` _string_ | NOS build commit |  |  |
 | `buildDate` _string_ | NOS build date |  |  |
 | `builtBy` _string_ | NOS build user |  |  |
-| `configDbVersion` _string_ | NOS config DB version, such as "version_4_2_1" |  |  |
+| `configDBVersion` _string_ | NOS config DB version, such as "version_4_2_1" |  |  |
 | `distributionVersion` _string_ | Distribution version, such as "Debian 10.13" |  |  |
 | `hardwareVersion` _string_ | Hardware version, such as "X01" |  |  |
 | `hwskuVersion` _string_ | Hwsku version, such as "DellEMC-S5248f-P-25G-DPB" |  |  |
@@ -507,7 +508,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `fans` _object (keys:string, values:[SwitchStatePlatformFan](#switchstateplatformfan))_ |  |  |  |
 | `psus` _object (keys:string, values:[SwitchStatePlatformPSU](#switchstateplatformpsu))_ |  |  |  |
-| `temperature` _object (keys:string, values:[SwitchStatePlatformTemperature](#switchstateplatformtemperature))_ |  |  |  |
+| `temperatures` _object (keys:string, values:[SwitchStatePlatformTemperature](#switchstateplatformtemperature))_ |  |  |  |
 
 
 #### SwitchStatePlatformFan
@@ -600,8 +601,6 @@ _Appears in:_
 | `vendorPart` _string_ |  |  |  |
 | `vendorOUI` _string_ |  |  |  |
 | `vendorRev` _string_ |  |  |  |
-
-
 
 
 
@@ -1318,13 +1317,14 @@ BasePortName defines the full name of the switch port
 _Appears in:_
 - [ConnExternalLink](#connexternallink)
 - [ConnFabricLinkSwitch](#connfabriclinkswitch)
+- [ConnGatewayLinkGateway](#conngatewaylinkgateway)
 - [ConnStaticExternalLinkSwitch](#connstaticexternallinkswitch)
 - [ServerToSwitchLink](#servertoswitchlink)
 - [SwitchToSwitchLink](#switchtoswitchlink)
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
+| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
 
 
 #### ConnBundled
@@ -1414,16 +1414,50 @@ _Appears in:_
 
 
 
-ConnFabricLinkSwitch defines the switch side of the fabric link
+ConnFabricLinkSwitch defines the switch side of the fabric (or gateway) link
 
 
 
 _Appears in:_
 - [FabricLink](#fabriclink)
+- [GatewayLink](#gatewaylink)
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
+| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
+| `ip` _string_ | IP is the IP address of the switch side of the fabric link (switch port configuration) |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$` <br /> |
+
+
+#### ConnGateway
+
+
+
+ConnGateway defines the gateway connection (single spine to a single gateway with at least one link)
+
+
+
+_Appears in:_
+- [ConnectionSpec](#connectionspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `links` _[GatewayLink](#gatewaylink) array_ | Links is the list of spine to gateway links |  | MinItems: 1 <br /> |
+
+
+#### ConnGatewayLinkGateway
+
+
+
+ConnGatewayLinkGateway defines the gateway side of the gateway link
+
+
+
+_Appears in:_
+- [GatewayLink](#gatewaylink)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
 | `ip` _string_ | IP is the IP address of the switch side of the fabric link (switch port configuration) |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$` <br /> |
 
 
@@ -1509,7 +1543,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
+| `port` _string_ | Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object. |  |  |
 | `ip` _string_ | IP is the IP address of the switch side of the static external connection link (switch port configuration) |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$` <br /> |
 | `nextHop` _string_ | NextHop is the next hop IP address for static routes that will be created for the subnets |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}$` <br /> |
 | `subnets` _string array_ | Subnets is the list of subnets that will get static routes using the specified next hop |  |  |
@@ -1592,6 +1626,7 @@ _Appears in:_
 | `eslag` _[ConnESLAG](#conneslag)_ | ESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links) |  |  |
 | `mclagDomain` _[ConnMCLAGDomain](#connmclagdomain)_ | MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing |  |  |
 | `fabric` _[ConnFabric](#connfabric)_ | Fabric defines the fabric connection (single spine to a single leaf with at least one link) |  |  |
+| `gateway` _[ConnGateway](#conngateway)_ | Gateway defines the gateway connection (single spine to a single gateway with at least one link) |  |  |
 | `vpcLoopback` _[ConnVPCLoopback](#connvpcloopback)_ | VPCLoopback defines the VPC loopback connection (multiple port pairs on a single switch) for automated workaround |  |  |
 | `external` _[ConnExternal](#connexternal)_ | External defines the external connection (single switch to a single external device with a single link) |  |  |
 | `staticExternal` _[ConnStaticExternal](#connstaticexternal)_ | StaticExternal defines the static external connection (single switch to a single external device with a single link) |  |  |
@@ -1625,6 +1660,23 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `spine` _[ConnFabricLinkSwitch](#connfabriclinkswitch)_ | Spine is the spine side of the fabric link |  |  |
 | `leaf` _[ConnFabricLinkSwitch](#connfabriclinkswitch)_ | Leaf is the leaf side of the fabric link |  |  |
+
+
+#### GatewayLink
+
+
+
+GatewayLink defines the gateway connection link
+
+
+
+_Appears in:_
+- [ConnGateway](#conngateway)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `spine` _[ConnFabricLinkSwitch](#connfabriclinkswitch)_ | Spine is the spine side of the gateway link |  |  |
+| `gateway` _[ConnGatewayLinkGateway](#conngatewaylinkgateway)_ | Gateway is the gateway side of the gateway link |  |  |
 
 
 
@@ -2038,7 +2090,6 @@ _Appears in:_
 | `server-leaf` |  |
 | `border-leaf` |  |
 | `mixed-leaf` |  |
-| `virtual-edge` |  |
 
 
 #### SwitchSpec
@@ -2069,6 +2120,7 @@ _Appears in:_
 | `portBreakouts` _object (keys:string, values:string)_ | PortBreakouts is a map of port breakouts, key is the port name, value is the breakout configuration, such as "1/55: 4x25G" |  |  |
 | `portAutoNegs` _object (keys:string, values:boolean)_ | PortAutoNegs is a map of port auto negotiation, key is the port name, value is true or false |  |  |
 | `boot` _[SwitchBoot](#switchboot)_ | Boot is the boot/provisioning information of the switch |  |  |
+| `enableAllPorts` _boolean_ | EnableAllPorts is a flag to enable all ports on the switch regardless of them being used or not |  |  |
 
 
 #### SwitchStatus
