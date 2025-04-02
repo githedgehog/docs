@@ -80,7 +80,7 @@ spec:
 1. See the [list](../reference/profiles.md) of profile names
 2. More information in the [User Guide](../user-guide/profiles.md#port-naming)
 3. Could be MCLAG, ESLAG or nothing, more details in [Redundancy
-   Groups](../user-guide/devices.md#redundnacy-groups)
+   Groups](../user-guide/devices.md#redundancy-groups)
 
 ## Design Discussion
 This section is meant to help the reader understand how to assemble the primitives presented by the Fabric API into a functional fabric.
