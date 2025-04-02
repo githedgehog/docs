@@ -1,5 +1,33 @@
 # Release notes
 
+## 25.01
+
+### Highlights
+
+- Broadcom SONiC 4.4.2 support
+- Support for Celestica DS4101 as a spine
+- Fabric agent is periodically enforcing the switch configuration
+- All nodes (e.g. control node) and switches are automatically configured to use NTP server from the control node
+- User can choose to enable all switch ports by default by setting `enableAllPorts` to `true` on the Switch object
+- Control node OS (Flatcar) and K8s are now automatically upgraded
+
+### Tools
+
+- `kubectl fabric inspect` now supports LLDP and BGP neighbors inspection
+    - it shows expected and actual values observed on a switches
+    - use `--strict` flag to make inspect fail if expected neighbors are not matching
+- `kubectl fabric switch reboot` is more reliable now and we'll retry if it fails
+- `kubectl fabric switch reinstall` now handles ONIE grub as well and reboots switch into ONIE NOS Install mode
+- `hhfab diagram` can now generate Draw.io, Graphviz (dot) and Mermaid diagrams
+
+### Software versions
+
+- fabricator/hhfab: v0.36.1
+- fabric: v0.71.6
+- broadcom sonic: 4.4.2
+- flatcar: v4152.2.0
+- k8s (k3s): v1.32.1-k3s1
+
 ## 24.09
 
 ### Device Support
@@ -40,7 +68,7 @@
 - Self-contained USB image generation for control node installation
 - Automated in-place upgrades for control node(s) moving forward
 
-## API
+### API
 
 - API version v1beta1
 - Guaranteed backward compatibility moving forward
