@@ -31,7 +31,7 @@ jobs:
         uses: extractions/setup-just@v2
 
       - name: Build docs
-        run: just build
+        run: just build --strict
 
       - name: Deploy preview to Netlify
         uses: nwtgck/actions-netlify@v2
