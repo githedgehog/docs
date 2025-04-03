@@ -14,13 +14,17 @@ After `hhfab` has been [downloaded](../getting-started/download.md):
 
 1. `hhfab init`(see different flags to customize initial configuration)
 1. Adjust the `fab.yaml` file to your needs
+1. Build your [wiring diagram](build-wiring.md)
 1. `hhfab validate`
+1. (optionally) `hhfab diagram`
 1. `hhfab build`
 
 Or import existing `fab.yaml` and wiring files:
 
 1. `hhfab init -c fab.yaml -w wiring-file.yaml -w extra-wiring-file.yaml`
 1. `hhfab validate`
+1. Build your [wiring diagram](build-wiring.md)
+1. (optionally) `hhfab diagram`
 1. `hhfab build`
 
 After the above workflow a user will have a .img file suitable for installing the control node, then bringing up the switches which comprise the fabric.

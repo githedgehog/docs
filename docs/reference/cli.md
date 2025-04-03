@@ -9,7 +9,7 @@ Fabric CLI only provides a subset of the functionality available via Fabric API 
 creation and some manipulation with the already existing objects while main get/list/update operations are expected to
 be done using `kubectl`.
 
-```bash
+```console
 core@control-1 ~ $ kubectl fabric
 NAME:
    kubectl fabric - Hedgehog Fabric API kubectl plugin
@@ -18,7 +18,7 @@ USAGE:
    kubectl fabric [global options] command [command options]
 
 VERSION:
-   v0.53.1
+   v0.71.6
 
 COMMANDS:
    vpc               VPC commands
@@ -26,6 +26,7 @@ COMMANDS:
    connection, conn  Connection commands
    switchgroup, sg   SwitchGroup commands
    external, ext     External commands
+   wiring            general wiring diagram helpers
    inspect, i        Inspect Fabric API Objects and Primitives
    help, h           Shows a list of commands or help for one command
 
@@ -55,4 +56,36 @@ To peer VPC with another VPC (e.g. `vpc-2`) use the following command:
 
 ```bash
 core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
+```
+
+## Inspect
+
+The `kubectl fabric inspect` feature is a text representation the stats of the
+relevant sub-command.
+
+```bash
+core@control-1 ~ $ kubectl fabric inspect
+NAME:
+   kubectl fabric inspect - Inspect Fabric API Objects and Primitives
+
+USAGE:
+   kubectl fabric inspect [command options]
+
+COMMANDS:
+   fabric                  Inspect Fabric (overall control nodes and switches overview incl. status, serials, etc.)
+   switch                  Inspect Switch (status, used ports, counters, etc.)
+   port, switchport        Inspect Switch Port (connection if used in one, counters, VPC and External attachments, etc.)
+   server                  Inspect Server (connection if used in one, VPC attachments, etc.)
+   connection, conn        Inspect Connection (incl. VPC and External attachments, Loobpback Workaround usage, etc.)
+   vpc, subnet, vpcsubnet  Inspect VPC/VPCSubnet (incl. where is it attached and what's reachable from it)
+   bgp                     Inspect BGP neighbors
+   lldp                    Inspect LLDP neighbors
+   ip                      Inspect IP Address (incl. IPv4Namespace, VPCSubnet and DHCPLease or External/StaticExternal usage)
+   mac                     Inspect MAC Address (incl. switch ports and DHCP leases)
+   access                  Inspect access between pair of IPs, Server names or VPCSubnets (everything except external IPs will be translated to VPCSubnets)
+   help, h                 Shows a list of commands or help for one command
+
+OPTIONS:
+   --verbose, -v  verbose output (includes debug) (default: true)
+   --help, -h     show help
 ```
