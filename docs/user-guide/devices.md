@@ -24,9 +24,9 @@ spec:
     serial: XYZPDQ1234
     mac: 00:11:22:33:44:55 # Usually the first management port MAC address
   profile: dell-s5248f-on # Mandatory reference to the SwitchProfile object defining the switch model and capabilities
-  asn: 65101 # ASN of the switch
+  asn: 65101 # ASN of the switch. User provided if exapanding the fabric.
   description: leaf-1
-  ip: 172.30.10.100/32 # Switch IP that will be accessible from the Control Node
+  ip: 172.30.0.8/21 # Switch IP that will be accessible from the Control Node, if expanding the fabric, IP is user-supplied
   portBreakouts: # Configures port breakouts for the switch, see the SwitchProfile for available options
     E1/55: 4x25G
   portGroupSpeeds: # Configures port group speeds for the switch, see the SwitchProfile for available options

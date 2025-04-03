@@ -9,7 +9,7 @@ First, initialize Fabricator by running `hhfab init --dev`. This command creates
 
 ```console
 ubuntu@docs:~$ hhfab init --dev
-11:26:52 INF Hedgehog Fabricator version=v0.30.0
+11:26:52 INF Hedgehog Fabricator version=v0.36.1
 11:26:52 INF Generated initial config
 11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
 11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include
@@ -20,7 +20,7 @@ By default, `hhfab init` creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf w
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
-21:27:16 INF Hedgehog Fabricator version=v0.30.0
+21:27:16 INF Hedgehog Fabricator version=v0.36.1
 21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf
 21:27:16 INF >>> spinesCount=2 fabricLinksCount=2
 21:27:16 INF >>> eslagLeafGroups=2
@@ -36,7 +36,7 @@ If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
-11:39:02 INF Hedgehog Fabricator version=v0.30.0
+11:39:02 INF Hedgehog Fabricator version=v0.36.1
 11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core
 11:39:02 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
 11:39:02 INF >>> orphanLeafsCount=0 vpcLoopbacks=2
@@ -50,7 +50,7 @@ Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG lea
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2
-11:41:06 INF Hedgehog Fabricator version=v0.30.0
+11:41:06 INF Hedgehog Fabricator version=v0.36.1
 11:41:06 INF Building VLAB wiring diagram fabricMode=spine-leaf
 11:41:06 INF >>> spinesCount=2 fabricLinksCount=2
 11:41:06 INF >>> eslagLeafGroups=""
@@ -72,7 +72,7 @@ prerequisites for running the VLAB.
 To build and start the virtual machines, use `hhfab vlab up`. For successive runs, use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. `hhfab vlab up` runs in the foreground and does not return, which allows you to stop all VLAB VMs by simply pressing `Ctrl + C`.
 ```console
 ubuntu@docs:~$ hhfab vlab up
-11:48:22 INF Hedgehog Fabricator version=v0.30.0
+11:48:22 INF Hedgehog Fabricator version=v0.36.1
 11:48:22 INF Wiring hydrated successfully mode=if-not-present
 11:48:22 INF VLAB config created file=vlab/config.yaml
 11:48:22 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog
@@ -108,7 +108,7 @@ ubuntu@docs:~$ hhfab vlab up
 11:49:06 INF Starting VMs count=18 cpu="54 vCPUs" ram="49664 MB" disk="550 GB"
 11:49:59 INF Uploading control install vm=control-1 type=control
 11:53:39 INF Running control install vm=control-1 type=control
-11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.30.0 vm=control-1
+11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.36.1 vm=control-1
 11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1
 12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1
 12:00:32 INF Control node is ready vm=control-1 type=control

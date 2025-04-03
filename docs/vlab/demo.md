@@ -100,7 +100,7 @@ USAGE:
 
 OPTIONS:
    --dns-servers value, --dns value [ --dns-servers value, --dns value ]    DNS servers for VPCs advertised by DHCP
-   --force-clenup, -f                                                       start with removing all existing VPCs and VPCAttachments (default: false)
+   --force-cleanup, -f                                                      start with removing all existing VPCs and VPCAttachments (default: false)
    --help, -h                                                               show help
    --interface-mtu value, --mtu value                                       interface MTU for VPCs advertised by DHCP (default: 0)
    --ipns value                                                             IPv4 namespace for VPCs (default: "default")
@@ -143,7 +143,7 @@ USAGE:
    VPC Peerings:
 
    1+2 -- VPC peering between vpc-01 and vpc-02
-   demo-1+demo-2 -- VPC peering between demo-1 and demo-2
+   demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
    1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
    1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
    1+2:remote=border -- same as above
@@ -161,7 +161,7 @@ USAGE:
 OPTIONS:
    --help, -h                     show help
    --name value, -n value         name of the VM or HW to access
-   --wait-switches-ready, --wait  wait for switches to be ready before before and after configuring peerings (default: true)
+   --wait-switches-ready, --wait  wait for switches to be ready before and after configuring peerings (default: true)
 
    Global options:
 
@@ -176,19 +176,21 @@ OPTIONS:
 
 ```
 NAME:
-   hhfab vlab test-connectivity - test connectivity between all servers
+   hhfab vlab test-connectivity - test connectivity between servers
 
 USAGE:
    hhfab vlab test-connectivity [command options]
 
 OPTIONS:
-   --curls value                  number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
-   --help, -h                     show help
-   --iperfs value                 seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
-   --iperfs-speed value           minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 7000)
-   --name value, -n value         name of the VM or HW to access
-   --pings value                  number of pings to send between each pair of servers (0 to disable) (default: 5)
-   --wait-switches-ready, --wait  wait for switches to be ready before testing connectivity (default: true)
+   --curls value                                                          number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
+   --destination value, --dst value [ --destination value, --dst value ]  server to use as destination for connectivity tests (default: all servers)
+   --help, -h                                                             show help
+   --iperfs value                                                         seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
+   --iperfs-speed value                                                   minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 8200)
+   --name value, -n value                                                 name of the VM or HW to access
+   --pings value                                                          number of pings to send between each pair of servers (0 to disable) (default: 5)
+   --source value, --src value [ --source value, --src value ]            server to use as source for connectivity tests (default: all servers)
+   --wait-switches-ready, --wait                                          wait for switches to be ready before testing connectivity (default: true)
 
    Global options:
 
@@ -196,7 +198,6 @@ OPTIONS:
    --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
    --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
    --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
-
 ```
 ## Manual VPC creation
 ### Creating and attaching VPCs

@@ -28,10 +28,10 @@ Download the latest stable `hhfab` binary from the [GitHub Package](https://ghcr
 curl -fsSL https://i.hhdev.io/hhfab | bash
 ```
 
-Or download a specific version (e.g. beta-1) using the following command:
+Or download a specific version (e.g. 24.09) using the following command:
 
 ```bash
-curl -fsSL https://i.hhdev.io/hhfab | VERSION=beta-1 bash
+curl -fsSL https://i.hhdev.io/hhfab | VERSION=24.09 bash
 ```
 
 Use the `VERSION` environment variable to specify the version of the software to download. By default, the latest stable
