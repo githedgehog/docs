@@ -1678,6 +1678,24 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#conngateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConnGateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conngatewaylinkgateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConnGatewayLinkGateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#connmclag" class="md-nav__link">
     <span class="md-ellipsis">
       ConnMCLAG
@@ -1771,6 +1789,15 @@ You're not viewing the latest version.
   <a href="#fabriclink" class="md-nav__link">
     <span class="md-ellipsis">
       FabricLink
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaylink" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayLink
     </span>
   </a>
   
@@ -2109,7 +2136,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Switch Profiles Catalog
+    Switch Catalog
   </span>
   
 
@@ -3134,6 +3161,24 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#conngateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConnGateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conngatewaylinkgateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConnGatewayLinkGateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#connmclag" class="md-nav__link">
     <span class="md-ellipsis">
       ConnMCLAG
@@ -3227,6 +3272,15 @@ You're not viewing the latest version.
   <a href="#fabriclink" class="md-nav__link">
     <span class="md-ellipsis">
       FabricLink
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaylink" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayLink
     </span>
   </a>
   
@@ -3643,7 +3697,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 <tr>
 <td><code>runID</code> <em>string</em></td>
-<td>ID of the agent run, used to track NOS reboots</td>
+<td>ID of the agent run, used to track agent restarts</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>bootID</code> <em>string</em></td>
+<td>ID for the NOS boot, used to track NOS reboots</td>
 <td></td>
 <td></td>
 </tr>
@@ -4672,7 +4732,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>configDbVersion</code> <em>string</em></td>
+<td><code>configDBVersion</code> <em>string</em></td>
 <td>NOS config DB version, such as "version_4_2_1"</td>
 <td></td>
 <td></td>
@@ -4771,7 +4831,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>temperature</code> <em>object (keys:string, values:<a href="#switchstateplatformtemperature">SwitchStatePlatformTemperature</a>)</em></td>
+<td><code>temperatures</code> <em>object (keys:string, values:<a href="#switchstateplatformtemperature">SwitchStatePlatformTemperature</a>)</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -6216,6 +6276,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <p><em>Appears in:</em>
 - <a href="#connexternallink">ConnExternalLink</a>
 - <a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a>
+- <a href="#conngatewaylinkgateway">ConnGatewayLinkGateway</a>
 - <a href="#connstaticexternallinkswitch">ConnStaticExternalLinkSwitch</a>
 - <a href="#servertoswitchlink">ServerToSwitchLink</a>
 - <a href="#switchtoswitchlink">SwitchToSwitchLink</a></p>
@@ -6231,7 +6292,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
 <td></td>
 <td></td>
 </tr>
@@ -6366,9 +6427,10 @@ the underlay definition including Switches, Server, wiring between them and etc.
 </tbody>
 </table>
 <h4 id="connfabriclinkswitch">ConnFabricLinkSwitch</h4>
-<p>ConnFabricLinkSwitch defines the switch side of the fabric link</p>
+<p>ConnFabricLinkSwitch defines the switch side of the fabric (or gateway) link</p>
 <p><em>Appears in:</em>
-- <a href="#fabriclink">FabricLink</a></p>
+- <a href="#fabriclink">FabricLink</a>
+- <a href="#gatewaylink">GatewayLink</a></p>
 <table>
 <thead>
 <tr>
@@ -6381,7 +6443,57 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the switch side of the fabric link (switch port configuration)</td>
+<td></td>
+<td>Pattern: <code>^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$</code> <br /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="conngateway">ConnGateway</h4>
+<p>ConnGateway defines the gateway connection (single spine to a single gateway with at least one link)</p>
+<p><em>Appears in:</em>
+- <a href="#connectionspec">ConnectionSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code> <em><a href="#gatewaylink">GatewayLink</a> array</em></td>
+<td>Links is the list of spine to gateway links</td>
+<td></td>
+<td>MinItems: 1 <br /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="conngatewaylinkgateway">ConnGatewayLinkGateway</h4>
+<p>ConnGatewayLinkGateway defines the gateway side of the gateway link</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaylink">GatewayLink</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
 <td></td>
 <td></td>
 </tr>
@@ -6522,7 +6634,7 @@ redundancy group and allows to use MCLAG connections to connect servers in a mul
 <tbody>
 <tr>
 <td><code>port</code> <em>string</em></td>
-<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/Ethernet1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
+<td>Port defines the full name of the switch port in the format of "device/port", such as "spine-1/E1/1".<br />SONiC port name is used as a port name and switch name should be same as the name of the Switch object.</td>
 <td></td>
 <td></td>
 </tr>
@@ -6702,6 +6814,12 @@ in a single Connection object.</p>
 <td></td>
 </tr>
 <tr>
+<td><code>gateway</code> <em><a href="#conngateway">ConnGateway</a></em></td>
+<td>Gateway defines the gateway connection (single spine to a single gateway with at least one link)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>vpcLoopback</code> <em><a href="#connvpcloopback">ConnVPCLoopback</a></em></td>
 <td>VPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) for automated workaround</td>
 <td></td>
@@ -6748,6 +6866,34 @@ in a single Connection object.</p>
 <tr>
 <td><code>leaf</code> <em><a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a></em></td>
 <td>Leaf is the leaf side of the fabric link</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaylink">GatewayLink</h4>
+<p>GatewayLink defines the gateway connection link</p>
+<p><em>Appears in:</em>
+- <a href="#conngateway">ConnGateway</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spine</code> <em><a href="#connfabriclinkswitch">ConnFabricLinkSwitch</a></em></td>
+<td>Spine is the spine side of the gateway link</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gateway</code> <em><a href="#conngatewaylinkgateway">ConnGatewayLinkGateway</a></em></td>
+<td>Gateway is the gateway side of the gateway link</td>
 <td></td>
 <td></td>
 </tr>
@@ -7450,10 +7596,6 @@ SwitchGroup objects.</p>
 <td><code>mixed-leaf</code></td>
 <td></td>
 </tr>
-<tr>
-<td><code>virtual-edge</code></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <h4 id="switchspec">SwitchSpec</h4>
@@ -7557,6 +7699,12 @@ SwitchGroup objects.</p>
 <tr>
 <td><code>boot</code> <em><a href="#switchboot">SwitchBoot</a></em></td>
 <td>Boot is the boot/provisioning information of the switch</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>enableAllPorts</code> <em>boolean</em></td>
+<td>EnableAllPorts is a flag to enable all ports on the switch regardless of them being used or not</td>
 <td></td>
 <td></td>
 </tr>
@@ -7687,7 +7835,7 @@ SwitchGroup objects.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 2, 2025</span>
   </span>
 
     

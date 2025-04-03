@@ -531,17 +531,6 @@ You're not viewing the latest version.
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Supported Devices
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -551,43 +540,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#spine" class="md-nav__link">
-    <span class="md-ellipsis">
-      Spine
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#leaf" class="md-nav__link">
-    <span class="md-ellipsis">
-      Leaf
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1008,7 +960,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Switch Profiles Catalog
+    Switch Catalog
   </span>
   
 
@@ -1277,32 +1229,6 @@ You're not viewing the latest version.
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#spine" class="md-nav__link">
-    <span class="md-ellipsis">
-      Spine
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#leaf" class="md-nav__link">
-    <span class="md-ellipsis">
-      Leaf
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1325,29 +1251,94 @@ You're not viewing the latest version.
 
 
 <h1 id="supported-devices">Supported Devices</h1>
-<p>You can find detailed information about devices in the <a href="../../reference/profiles/">Switch Profiles Catalog</a> and in the
+<p>You can find detailed information about devices in the <a href="../../reference/profiles/">Switch Catalog</a> and in the
 User Guide <a href="../../user-guide/profiles/">switch features and port naming</a>.</p>
-<h2 id="spine">Spine</h2>
+<table>
+<thead>
+<tr>
+<th>Switch</th>
+<th>Supported Roles</th>
+<th>Silicon</th>
+<th>Ports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Celestica DS3000 (Seastone2)</td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 1xSFP28-10G</td>
+</tr>
+<tr>
+<td>Celestica DS4000 (Silverstone2)</td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH3</td>
+<td>32xQSFPDD-400G, 1xSFP28-10G</td>
+</tr>
+<tr>
+<td>Celestica DS4101 (Greystone)</td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH4G</td>
+<td>32xOSFP-2x400G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td>Dell S5232F-ON</td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td>Dell S5248F-ON</td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>48xSFP28-25G, 8xQSFP28-100G</td>
+</tr>
+<tr>
+<td>Dell Z9332F-ON</td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH3</td>
+<td>32xQSFPDD-400G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td>Edgecore DCS203 (AS7326-56X)</td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 2.0T</td>
+<td>48xSFP28-25G, 8xQSFP28-100G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td>Edgecore DCS204 (AS7726-32X)</td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td>Edgecore DCS501 (AS7712-32X)</td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH</td>
+<td>32xQSFP28-100G</td>
+</tr>
+<tr>
+<td>Edgecore EPS203 (AS4630-54NPE)</td>
+<td><strong>limited-leaf</strong></td>
+<td>Broadcom TD3-X3</td>
+<td>36xRJ45-2.5G, 12xRJ45-10G, 4xSFP28-25G, 2xQSFP28-100G</td>
+</tr>
+<tr>
+<td>Supermicro SSE-C4632SB</td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 1xSFP28-10G</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul>
-<li>Celestica DS3000</li>
-<li>Celestica DS4000</li>
-<li>Dell S5232F-ON</li>
-<li>Dell Z9332F-ON</li>
-<li>Edgecore DCS204 (AS7726-32X)</li>
-<li>Edgecore DCS501 (AS7712-32X-EC)</li>
-<li>Supermicro SSE-C4632SB</li>
+<li>Switches that support <strong>leaf</strong> role could be used for the collapsed-core topology as well</li>
+<li>Switches with <strong>limited-leaf</strong> role does not support some leaf features and are not supported in the
+  collapsed-core topology</li>
 </ul>
-<h2 id="leaf">Leaf</h2>
-<p>(could be used for collapsed-core)</p>
-<ul>
-<li>Celestica DS3000</li>
-<li>Dell S5232F-ON</li>
-<li>Dell S5248F-ON</li>
-<li>Edgecore DCS203 (AS7326-56X)</li>
-<li>Edgecore DCS204 (AS7726-32X)</li>
-<li>Edgecore EPS203 (AS4630-54NPE)</li>
-<li>Supermicro SSE-C4632SB</li>
-</ul>
+</div>
 
 
 
@@ -1370,7 +1361,7 @@ User Guide <a href="../../user-guide/profiles/">switch features and port naming<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 12, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 2, 2025</span>
   </span>
 
     

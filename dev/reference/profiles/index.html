@@ -26,7 +26,7 @@
     
     
       
-        <title>Switch Profiles Catalog - Open Network Fabric</title>
+        <title>Switch Catalog - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#switch-profiles-catalog" class="md-skip">
+        <a href="#switch-catalog" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Switch Profiles Catalog
+              Switch Catalog
             
           </span>
         </div>
@@ -959,7 +959,7 @@ You're not viewing the latest version.
           
   
   <span class="md-ellipsis">
-    Switch Profiles Catalog
+    Switch Catalog
   </span>
   
 
@@ -970,7 +970,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Switch Profiles Catalog
+    Switch Catalog
   </span>
   
 
@@ -1004,6 +1004,15 @@ You're not viewing the latest version.
   <a href="#celestica-ds4000" class="md-nav__link">
     <span class="md-ellipsis">
       Celestica DS4000
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#celestica-ds4101" class="md-nav__link">
+    <span class="md-ellipsis">
+      Celestica DS4101
     </span>
   </a>
   
@@ -1383,6 +1392,15 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#celestica-ds4101" class="md-nav__link">
+    <span class="md-ellipsis">
+      Celestica DS4101
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dell-s5232f-on" class="md-nav__link">
     <span class="md-ellipsis">
       Dell S5232F-ON
@@ -1486,11 +1504,102 @@ You're not viewing the latest version.
   
 
 
-<h1 id="switch-profiles-catalog">Switch Profiles Catalog</h1>
-<p>The following is a list of all supported switches. Please, make sure to use the version of documentation that matches your environment to get an
-up-to-date list of supported switches, their features and port naming scheme.</p>
+<h1 id="switch-catalog">Switch Catalog</h1>
+<p>The following is a list of all supported switches with their supported capabilities and configuration. Please, make sure
+to use the version of documentation that matches your environment to get an up-to-date list of supported switches, their
+features and port naming scheme.</p>
+<table>
+<thead>
+<tr>
+<th>Switch</th>
+<th>Supported Roles</th>
+<th>Silicon</th>
+<th>Ports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#celestica-ds3000">Celestica DS3000 (Seastone2)</a></td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 1xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#celestica-ds4000">Celestica DS4000 (Silverstone2)</a></td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH3</td>
+<td>32xQSFPDD-400G, 1xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#celestica-ds4101">Celestica DS4101 (Greystone)</a></td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH4G</td>
+<td>32xOSFP-2x400G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#dell-s5232f-on">Dell S5232F-ON</a></td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#dell-s5248f-on">Dell S5248F-ON</a></td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>48xSFP28-25G, 8xQSFP28-100G</td>
+</tr>
+<tr>
+<td><a href="#dell-z9332f-on">Dell Z9332F-ON</a></td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH3</td>
+<td>32xQSFPDD-400G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#edgecore-dcs203">Edgecore DCS203 (AS7326-56X)</a></td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 2.0T</td>
+<td>48xSFP28-25G, 8xQSFP28-100G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#edgecore-dcs204">Edgecore DCS204 (AS7726-32X)</a></td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 2xSFP28-10G</td>
+</tr>
+<tr>
+<td><a href="#edgecore-dcs501">Edgecore DCS501 (AS7712-32X)</a></td>
+<td><strong>spine</strong></td>
+<td>Broadcom TH</td>
+<td>32xQSFP28-100G</td>
+</tr>
+<tr>
+<td><a href="#edgecore-eps203">Edgecore EPS203 (AS4630-54NPE)</a></td>
+<td><strong>limited-leaf</strong></td>
+<td>Broadcom TD3-X3</td>
+<td>36xRJ45-2.5G, 12xRJ45-10G, 4xSFP28-25G, 2xQSFP28-100G</td>
+</tr>
+<tr>
+<td><a href="#supermicro-sse-c4632sb">Supermicro SSE-C4632SB</a></td>
+<td><strong>spine</strong>, <strong>leaf</strong></td>
+<td>Broadcom TD3-X7 3.2T</td>
+<td>32xQSFP28-100G, 1xSFP28-10G</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>Switches that support <strong>leaf</strong> role could be used for the collapsed-core topology as well</li>
+<li>Switches with <strong>limited-leaf</strong> role does not support some leaf features and are not supported in the
+  collapsed-core topology</li>
+</ul>
+</div>
 <h2 id="celestica-ds3000">Celestica DS3000</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>celestica-ds3000</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>celestica-ds3000</strong></p>
+<p>Other names: Celestica Seastone2</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X7 3.2T</strong></p>
+<p>Ports Summary: <strong>32xQSFP28-100G, 1xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -1786,7 +1895,11 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="celestica-ds4000">Celestica DS4000</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>celestica-ds4000</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>celestica-ds4000</strong></p>
+<p>Other names: Celestica Silverstone2</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong></p>
+<p>Switch Silicon: <strong>Broadcom TH3</strong></p>
+<p>Ports Summary: <strong>32xQSFPDD-400G, 1xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
@@ -2081,8 +2194,319 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tr>
 </tbody>
 </table>
+<h2 id="celestica-ds4101">Celestica DS4101</h2>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>celestica-ds4101</strong></p>
+<p>Other names: Celestica Greystone</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong></p>
+<p>Switch Silicon: <strong>Broadcom TH4G</strong></p>
+<p>Ports Summary: <strong>32xOSFP-2x400G, 2xSFP28-10G</strong></p>
+<p><strong>Supported features:</strong></p>
+<ul>
+<li>Subinterfaces: false</li>
+<li>VXLAN: false</li>
+<li>ACLs: true</li>
+</ul>
+<p><strong>Available Ports:</strong></p>
+<p>Label column is a port label on a physical switch.</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Label</th>
+<th>Type</th>
+<th>Group</th>
+<th>Default</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td></td>
+<td>Management</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E1/1</td>
+<td>1</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/2</td>
+<td>2</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/3</td>
+<td>3</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/4</td>
+<td>4</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/5</td>
+<td>5</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/6</td>
+<td>6</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/7</td>
+<td>7</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/8</td>
+<td>8</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/9</td>
+<td>9</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/10</td>
+<td>10</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/11</td>
+<td>11</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/12</td>
+<td>12</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/13</td>
+<td>13</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/14</td>
+<td>14</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/15</td>
+<td>15</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/16</td>
+<td>16</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/17</td>
+<td>17</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/18</td>
+<td>18</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/19</td>
+<td>19</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/20</td>
+<td>20</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/21</td>
+<td>21</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/22</td>
+<td>22</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/23</td>
+<td>23</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/24</td>
+<td>24</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/25</td>
+<td>25</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/26</td>
+<td>26</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/27</td>
+<td>27</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/28</td>
+<td>28</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/29</td>
+<td>29</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/30</td>
+<td>30</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/31</td>
+<td>31</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/32</td>
+<td>32</td>
+<td>Breakout</td>
+<td></td>
+<td>2x400G</td>
+<td>1x100G, 1x200G, 1x400G, 2x100G, 2x200G, 2x400G, 2x40G, 4x100G, 4x200G, 4x50G, 8x100G, 8x10G, 8x25G, 8x50G</td>
+</tr>
+<tr>
+<td>E1/33</td>
+<td>M1</td>
+<td>Direct</td>
+<td></td>
+<td>10G</td>
+<td>1G, 10G</td>
+</tr>
+<tr>
+<td>E1/34</td>
+<td>M2</td>
+<td>Direct</td>
+<td></td>
+<td>10G</td>
+<td>1G, 10G</td>
+</tr>
+</tbody>
+</table>
 <h2 id="dell-s5232f-on">Dell S5232F-ON</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>dell-s5232f-on</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>dell-s5232f-on</strong></p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X7 3.2T</strong></p>
+<p>Ports Summary: <strong>32xQSFP28-100G, 2xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -2386,7 +2810,10 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="dell-s5248f-on">Dell S5248F-ON</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>dell-s5248f-on</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>dell-s5248f-on</strong></p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X7 3.2T</strong></p>
+<p>Ports Summary: <strong>48xSFP28-25G, 8xQSFP28-100G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -2866,7 +3293,10 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="dell-z9332f-on">Dell Z9332F-ON</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>dell-z9332f-on</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>dell-z9332f-on</strong></p>
+<p><strong>Supported roles</strong>: <strong>spine</strong></p>
+<p>Switch Silicon: <strong>Broadcom TH3</strong></p>
+<p>Ports Summary: <strong>32xQSFPDD-400G, 2xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
@@ -3170,8 +3600,11 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="edgecore-dcs203">Edgecore DCS203</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>edgecore-dcs203</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>edgecore-dcs203</strong></p>
 <p>Other names: Edgecore AS7326-56X</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X7 2.0T</strong></p>
+<p>Ports Summary: <strong>48xSFP28-25G, 8xQSFP28-100G, 2xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -3667,8 +4100,11 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="edgecore-dcs204">Edgecore DCS204</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>edgecore-dcs204</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>edgecore-dcs204</strong></p>
 <p>Other names: Edgecore AS7726-32X</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X7 3.2T</strong></p>
+<p>Ports Summary: <strong>32xQSFP28-100G, 2xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -3972,8 +4408,11 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="edgecore-dcs501">Edgecore DCS501</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>edgecore-dcs501</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>edgecore-dcs501</strong></p>
 <p>Other names: Edgecore AS7712-32X</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong></p>
+<p>Switch Silicon: <strong>Broadcom TH</strong></p>
+<p>Ports Summary: <strong>32xQSFP28-100G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
@@ -4261,8 +4700,11 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="edgecore-eps203">Edgecore EPS203</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>edgecore-eps203</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>edgecore-eps203</strong></p>
 <p>Other names: Edgecore AS4630-54NPE</p>
+<p><strong>Supported roles</strong>: <strong>limited-leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X3</strong></p>
+<p>Ports Summary: <strong>36xRJ45-2.5G, 12xRJ45-10G, 4xSFP28-25G, 2xQSFP28-100G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
@@ -4726,7 +5168,10 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="supermicro-sse-c4632sb">Supermicro SSE-C4632SB</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>supermicro-sse-c4632sb</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>supermicro-sse-c4632sb</strong></p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>Broadcom TD3-X7 3.2T</strong></p>
+<p>Ports Summary: <strong>32xQSFP28-100G, 1xSFP28-10G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -5022,7 +5467,11 @@ up-to-date list of supported switches, their features and port naming scheme.</p
 </tbody>
 </table>
 <h2 id="virtual-switch">Virtual Switch</h2>
-<p>Profile Name (to use in switch.spec.profile): <strong>vs</strong></p>
+<p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>vs</strong></p>
+<p>This is a virtual switch profile. It's for testing/demo purpose only with limited features and performance.</p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf</strong></p>
+<p>Switch Silicon: <strong>vs</strong></p>
+<p>Ports Summary: <strong>48xSFP28-25G, 8xQSFP28-100G</strong></p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
@@ -5523,7 +5972,7 @@ up-to-date list of supported switches, their features and port naming scheme.</p
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 27, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 2, 2025</span>
   </span>
 
     
