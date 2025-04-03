@@ -11,13 +11,15 @@ In order to apply the upgrade, use the following instructions:
     1. On a control node: `kubectl hhfab config export > fab.yaml`
 1. On the node with the new version of `hhfab`:
     1. `hhfab init -c fab.yaml -f`, using the fab.yaml from the previous step
-    1. run `hhfab build --mode=manual` to generate fully self-contained (airgap) upgrade package; for a control node named `control-1`, it will be `result/control-1-install.tgz`
+    1. run `hhfab build --mode=manual` to generate fully self-contained
+       (airgap) upgrade package; for a control node named `control-1`, it will
+       be `result/control--control-1--install.tgz`
 1. upload it to the control node (e.g. using `scp`)
 1. unpack and run `hhfab-recipe upgrade` from the resulting directory
 
 ```bash
-tar xzf control-1-install.tgz
-cd control-1-install
+tar xzf control--control-1--install.tgz
+cd control--control-1--install
 sudo ./hhfab-recipe upgrade
 ```
 
