@@ -1,3 +1,5 @@
 nav:
   - Fabric API: api.md
+  - Fabric CLI: cli.md
+  - Fabricator CLI: hhfab-cli.md
   - ...
