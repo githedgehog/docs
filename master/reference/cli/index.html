@@ -958,6 +958,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#inspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1283,6 +1292,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#inspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1315,29 +1333,30 @@ It is a wrapper around <code>kubectl</code> and Kubernetes client which allows t
 Fabric CLI only provides a subset of the functionality available via Fabric API and is focused on simplifying objects
 creation and some manipulation with the already existing objects while main get/list/update operations are expected to
 be done using <code>kubectl</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>NAME:
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>-<span class="w"> </span>Hedgehog<span class="w"> </span>Fabric<span class="w"> </span>API<span class="w"> </span>kubectl<span class="w"> </span>plugin
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">NAME:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">   kubectl fabric - Hedgehog Fabric API kubectl plugin</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>USAGE:
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">   </span>kubectl<span class="w"> </span>fabric<span class="w"> </span><span class="o">[</span>global<span class="w"> </span>options<span class="o">]</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span><span class="nb">command</span><span class="w"> </span>options<span class="o">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">USAGE:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="go">   kubectl fabric [global options] command [command options]</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>VERSION:
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">   </span>v0.53.1
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="go">VERSION:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="go">   v0.71.6</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>COMMANDS:
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">   </span>vpc<span class="w">               </span>VPC<span class="w"> </span>commands
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">   </span>switch,<span class="w"> </span>sw<span class="w">        </span>Switch<span class="w"> </span>commands
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">   </span>connection,<span class="w"> </span>conn<span class="w">  </span>Connection<span class="w"> </span>commands
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">   </span>switchgroup,<span class="w"> </span>sg<span class="w">   </span>SwitchGroup<span class="w"> </span>commands
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">   </span>external,<span class="w"> </span>ext<span class="w">     </span>External<span class="w"> </span>commands
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">   </span>inspect,<span class="w"> </span>i<span class="w">        </span>Inspect<span class="w"> </span>Fabric<span class="w"> </span>API<span class="w"> </span>Objects<span class="w"> </span>and<span class="w"> </span>Primitives
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">   </span>help,<span class="w"> </span>h<span class="w">           </span>Shows<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>commands<span class="w"> </span>or<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>one<span class="w"> </span><span class="nb">command</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>GLOBAL<span class="w"> </span>OPTIONS:
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">   </span>--verbose,<span class="w"> </span>-v<span class="w">  </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>includes<span class="w"> </span>debug<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">   </span>--help,<span class="w"> </span>-h<span class="w">     </span>show<span class="w"> </span><span class="nb">help</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">   </span>--version,<span class="w"> </span>-V<span class="w">  </span>print<span class="w"> </span>the<span class="w"> </span>version
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="go">COMMANDS:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="go">   vpc               VPC commands</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="go">   switch, sw        Switch commands</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="go">   connection, conn  Connection commands</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="go">   switchgroup, sg   SwitchGroup commands</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="go">   external, ext     External commands</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="go">   wiring            general wiring diagram helpers</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="go">   inspect, i        Inspect Fabric API Objects and Primitives</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="go">   help, h           Shows a list of commands or help for one command</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="go">GLOBAL OPTIONS:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="go">   --verbose, -v  verbose output (includes debug) (default: true)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="go">   --help, -h     show help</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="go">   --version, -V  print the version</span>
 </span></code></pre></div>
 <h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
 <p>Create <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> named <code>vpc-1</code> with subnet <code>10.0.1.0/24</code> and VLAN <code>1001</code> with DHCP enabled and DHCP range starting from
@@ -1350,6 +1369,34 @@ be done using <code>kubectl</code>.</p>
 </span></code></pre></div>
 <p>To peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> with another <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (e.g. <code>vpc-2</code>) use the following command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>peer<span class="w"> </span>--vpc<span class="w"> </span>vpc-1<span class="w"> </span>--vpc<span class="w"> </span>vpc-2
+</span></code></pre></div>
+<h2 id="inspect">Inspect</h2>
+<p>The <code>kubectl fabric inspect</code> feature is a text representation the stats of the
+relevant sub-command.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>NAME:
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">   </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>-<span class="w"> </span>Inspect<span class="w"> </span>Fabric<span class="w"> </span>API<span class="w"> </span>Objects<span class="w"> </span>and<span class="w"> </span>Primitives
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>USAGE:
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">   </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span><span class="o">[</span><span class="nb">command</span><span class="w"> </span>options<span class="o">]</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>COMMANDS:
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">   </span>fabric<span class="w">                  </span>Inspect<span class="w"> </span>Fabric<span class="w"> </span><span class="o">(</span>overall<span class="w"> </span>control<span class="w"> </span>nodes<span class="w"> </span>and<span class="w"> </span>switches<span class="w"> </span>overview<span class="w"> </span>incl.<span class="w"> </span>status,<span class="w"> </span>serials,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">   </span>switch<span class="w">                  </span>Inspect<span class="w"> </span>Switch<span class="w"> </span><span class="o">(</span>status,<span class="w"> </span>used<span class="w"> </span>ports,<span class="w"> </span>counters,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">   </span>port,<span class="w"> </span>switchport<span class="w">        </span>Inspect<span class="w"> </span>Switch<span class="w"> </span>Port<span class="w"> </span><span class="o">(</span>connection<span class="w"> </span><span class="k">if</span><span class="w"> </span>used<span class="w"> </span><span class="k">in</span><span class="w"> </span>one,<span class="w"> </span>counters,<span class="w"> </span>VPC<span class="w"> </span>and<span class="w"> </span>External<span class="w"> </span>attachments,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">   </span>server<span class="w">                  </span>Inspect<span class="w"> </span>Server<span class="w"> </span><span class="o">(</span>connection<span class="w"> </span><span class="k">if</span><span class="w"> </span>used<span class="w"> </span><span class="k">in</span><span class="w"> </span>one,<span class="w"> </span>VPC<span class="w"> </span>attachments,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">   </span>connection,<span class="w"> </span>conn<span class="w">        </span>Inspect<span class="w"> </span>Connection<span class="w"> </span><span class="o">(</span>incl.<span class="w"> </span>VPC<span class="w"> </span>and<span class="w"> </span>External<span class="w"> </span>attachments,<span class="w"> </span>Loobpback<span class="w"> </span>Workaround<span class="w"> </span>usage,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">   </span>vpc,<span class="w"> </span>subnet,<span class="w"> </span>vpcsubnet<span class="w">  </span>Inspect<span class="w"> </span>VPC/VPCSubnet<span class="w"> </span><span class="o">(</span>incl.<span class="w"> </span>where<span class="w"> </span>is<span class="w"> </span>it<span class="w"> </span>attached<span class="w"> </span>and<span class="w"> </span>what<span class="err">&#39;</span>s<span class="w"> </span>reachable<span class="w"> </span>from<span class="w"> </span>it<span class="o">)</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">   </span>bgp<span class="w">                     </span>Inspect<span class="w"> </span>BGP<span class="w"> </span>neighbors
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">   </span>lldp<span class="w">                    </span>Inspect<span class="w"> </span>LLDP<span class="w"> </span>neighbors
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">   </span>ip<span class="w">                      </span>Inspect<span class="w"> </span>IP<span class="w"> </span>Address<span class="w"> </span><span class="o">(</span>incl.<span class="w"> </span>IPv4Namespace,<span class="w"> </span>VPCSubnet<span class="w"> </span>and<span class="w"> </span>DHCPLease<span class="w"> </span>or<span class="w"> </span>External/StaticExternal<span class="w"> </span>usage<span class="o">)</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">   </span>mac<span class="w">                     </span>Inspect<span class="w"> </span>MAC<span class="w"> </span>Address<span class="w"> </span><span class="o">(</span>incl.<span class="w"> </span>switch<span class="w"> </span>ports<span class="w"> </span>and<span class="w"> </span>DHCP<span class="w"> </span>leases<span class="o">)</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">   </span>access<span class="w">                  </span>Inspect<span class="w"> </span>access<span class="w"> </span>between<span class="w"> </span>pair<span class="w"> </span>of<span class="w"> </span>IPs,<span class="w"> </span>Server<span class="w"> </span>names<span class="w"> </span>or<span class="w"> </span>VPCSubnets<span class="w"> </span><span class="o">(</span>everything<span class="w"> </span>except<span class="w"> </span>external<span class="w"> </span>IPs<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>translated<span class="w"> </span>to<span class="w"> </span>VPCSubnets<span class="o">)</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">   </span>help,<span class="w"> </span>h<span class="w">                 </span>Shows<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>commands<span class="w"> </span>or<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>one<span class="w"> </span><span class="nb">command</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>OPTIONS:
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">   </span>--verbose,<span class="w"> </span>-v<span class="w">  </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>includes<span class="w"> </span>debug<span class="o">)</span><span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">   </span>--help,<span class="w"> </span>-h<span class="w">     </span>show<span class="w"> </span><span class="nb">help</span>
 </span></code></pre></div>
 
 
@@ -1373,7 +1420,7 @@ be done using <code>kubectl</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
   </span>
 
     

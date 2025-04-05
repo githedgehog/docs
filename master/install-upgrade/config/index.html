@@ -1488,13 +1488,17 @@ how to use <code>hhfab init</code>, run <code>hhfab init --help</code>.</p>
 <ol>
 <li><code>hhfab init</code>(see different flags to customize initial configuration)</li>
 <li>Adjust the <code>fab.yaml</code> file to your needs</li>
+<li>Build your <a href="../build-wiring/">wiring diagram</a></li>
 <li><code>hhfab validate</code></li>
+<li>(optionally) <code>hhfab diagram</code></li>
 <li><code>hhfab build</code></li>
 </ol>
 <p>Or import existing <code>fab.yaml</code> and wiring files:</p>
 <ol>
 <li><code>hhfab init -c fab.yaml -w wiring-file.yaml -w extra-wiring-file.yaml</code></li>
 <li><code>hhfab validate</code></li>
+<li>Build your <a href="../build-wiring/">wiring diagram</a></li>
+<li>(optionally) <code>hhfab diagram</code></li>
 <li><code>hhfab build</code></li>
 </ol>
 <p>After the above workflow a user will have a .img file suitable for installing the control node, then bringing up the switches which comprise the fabric.</p>

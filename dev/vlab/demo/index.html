@@ -1612,7 +1612,7 @@ consists of 2 switches.</p>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>OPTIONS:
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   --dns-servers value, --dns value [ --dns-servers value, --dns value ]    DNS servers for VPCs advertised by DHCP
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   --force-clenup, -f                                                       start with removing all existing VPCs and VPCAttachments (default: false)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   --force-cleanup, -f                                                      start with removing all existing VPCs and VPCAttachments (default: false)
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   --help, -h                                                               show help
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   --interface-mtu value, --mtu value                                       interface MTU for VPCs advertised by DHCP (default: 0)
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>   --ipns value                                                             IPv4 namespace for VPCs (default: &quot;default&quot;)
@@ -1652,7 +1652,7 @@ consists of 2 switches.</p>
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>   VPC Peerings:
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
 </span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>   1+2 -- VPC peering between vpc-01 and vpc-02
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>   demo-1+demo-2 -- VPC peering between demo-1 and demo-2
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>   demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
 </span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>   1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
 </span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>   1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
 </span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>   1+2:remote=border -- same as above
@@ -1670,7 +1670,7 @@ consists of 2 switches.</p>
 </span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>OPTIONS:
 </span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>   --help, -h                     show help
 </span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>   --name value, -n value         name of the VM or HW to access
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>   --wait-switches-ready, --wait  wait for switches to be ready before before and after configuring peerings (default: true)
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>   --wait-switches-ready, --wait  wait for switches to be ready before and after configuring peerings (default: true)
 </span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
 </span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>   Global options:
 </span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
@@ -1682,26 +1682,28 @@ consists of 2 switches.</p>
 <h3 id="test-connectivity">Test Connectivity</h3>
 <p><code>hhfab vlab</code> includes a utility to test connectivity between servers inside VLAB. This utility is a <code>hhfab vlab</code> sub-command. <code>hhfab vlab test-connectivity</code>.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NAME:
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   hhfab vlab test-connectivity - test connectivity between all servers
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   hhfab vlab test-connectivity - test connectivity between servers
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>USAGE:
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>   hhfab vlab test-connectivity [command options]
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>OPTIONS:
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   --curls value                  number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>   --help, -h                     show help
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   --iperfs value                 seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   --iperfs-speed value           minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 7000)
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   --name value, -n value         name of the VM or HW to access
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>   --pings value                  number of pings to send between each pair of servers (0 to disable) (default: 5)
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   --wait-switches-ready, --wait  wait for switches to be ready before testing connectivity (default: true)
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>   Global options:
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   --curls value                                                          number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>   --destination value, --dst value [ --destination value, --dst value ]  server to use as destination for connectivity tests (default: all servers)
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>   --help, -h                                                             show help
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>   --iperfs value                                                         seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   --iperfs-speed value                                                   minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 8200)
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>   --name value, -n value                                                 name of the VM or HW to access
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>   --pings value                                                          number of pings to send between each pair of servers (0 to disable) (default: 5)
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>   --source value, --src value [ --source value, --src value ]            server to use as source for connectivity tests (default: all servers)
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>   --wait-switches-ready, --wait                                          wait for switches to be ready before testing connectivity (default: true)
 </span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: &quot;/home/ubuntu/.hhfab-cache&quot;) [$HHFAB_CACHE_DIR]
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: &quot;/home/ubuntu&quot;) [$HHFAB_WORK_DIR]
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>   Global options:
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: &quot;/home/ubuntu/.hhfab-cache&quot;) [$HHFAB_CACHE_DIR]
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: &quot;/home/ubuntu&quot;) [$HHFAB_WORK_DIR]
 </span></code></pre></div>
 <h2 id="manual-vpc-creation">Manual <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> creation</h2>
 <h3 id="creating-and-attaching-vpcs">Creating and attaching VPCs</h3>
@@ -1945,7 +1947,7 @@ Now we can create <code>vpc-3</code> with the same subnet as <code>vpc-1</code> 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
   </span>
 
     

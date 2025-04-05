@@ -828,6 +828,21 @@ You're not viewing the latest version.
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Add a switch to the existing fabric">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expanding-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1299,6 +1314,21 @@ You're not viewing the latest version.
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Add a switch to the existing fabric">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expanding-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1350,12 +1380,112 @@ how to manage connections between them.</p>
 Guide</a> documentation, and the <a href="../../reference/api/">Fabric API</a> reference.</p>
 <h3 id="add-a-switch-to-the-existing-fabric">Add a switch to the existing fabric</h3>
 <p>In order to be added to the Hedgehog Fabric, a switch should have a corresponding <code>Switch</code> object. An example on how to define
-this object is available in the <a href="../devices/">User Guide</a>.</p>
+this object is available in the <a href="../devices/">User Guide</a>. If the switch is
+being added to an existing fabric the user needs to supply the ASN, and IPv4
+address for the switch. For a leaf switch, increment the largest ASN by one. If
+a spine is being added, it shares the same ASN as the existing spines. For an
+IPv4 address increment the largest IP by one, keep the same netmask.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If the<code>Switch</code> will be used in <code>ESLAG</code> or <code>MCLAG</code> groups, appropriate groups should exist. Redundancy groups should
 be specified in the <code>Switch</code> object before creation.</p>
 </div>
+<h4 id="expanding-example">Expanding Example</h4>
+<p>A good place to start expanding the fabric is to extract the YAML configuration
+for a switch in the role (spine or leaf) that matches the switch to be added.
+A good starting point is to take the highest numbered or most recently added
+switch of the matching role and increment the IP addresses and numbers by 1.</p>
+<ol>
+<li>on a control node: <code>kubectl get switch/leaf-05 -o yaml &gt; new_switch.yaml</code></li>
+<li>Edit new resulting YAML file</li>
+</ol>
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">new_switch.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>apiVersion: wiring.githedgehog.com/v1beta1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>kind: Switch
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>metadata:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>  creationTimestamp: &quot;2025-04-03T20:44:26Z&quot;
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>  generation: 1
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>  labels:
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>    fabric.githedgehog.com/profile: vs
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>    vlanns.fabric.githedgehog.com/default: &quot;true&quot;
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>  name: leaf-05
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>  namespace: default
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>  resourceVersion: &quot;3557&quot;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>  uid: 04de1762-3c51-4a2d-a9ce-5882494a81c3
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>spec:
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>  asn: 65104
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>  boot:
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a>    mac: 0c:20:12:ff:04:00
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>  description: VS-05
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>  ip: 172.30.0.12/21
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>  profile: vs
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>  protocolIP: 172.30.8.6/32
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a>  redundancy: {}
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>  role: server-leaf
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>  vlanNamespaces:
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>  - default
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>  vtepIP: 172.30.12.3/32
+</span></code></pre></div></td></tr></table></div>
+1. The file contains extra information as the switch is currently deployed. To add a new switch remove the unneeded information.
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">new_switch.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>apiVersion: wiring.githedgehog.com/v1beta1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>kind: Switch
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>metadata:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>  name: leaf-05 # CHANGE ME
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>  namespace: default
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>spec:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>  asn: 65104 # CHANGE ME
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>  boot:
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>    mac: 0c:20:12:ff:04:00 # CHANGE ME
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>  description:  row 5, rack c, u 25 # CHANGE ME
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>  ip: 172.30.0.12/21 # INCREMENT / CHANGE ME
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>  profile: ds4000 # MATCH TO YOUR NEEDS
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>  protocolIP: 172.30.8.6/32 # INCREMENT / CHANGE ME
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>  redundancy: {} # MATCH TO YOUR NEEDS
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>  role: server-leaf # MATCH TO YOUR NEEDS
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>  vtepIP: 172.30.12.4/32 # INCREMENT / CHANGE ME
+</span></code></pre></div></td></tr></table></div>
+1. On the control node: <code>kubectl apply -f new_switch.yaml</code></p>
+<ul>
+<li>The file can be used to remove the new switch, <code>kubectl delete -f new_switch.yaml</code> if needed</li>
+</ul>
 <p>After the <code>Switch</code> object has been created, you can define and create dedicated device <code>Connections</code>. The types of the
 connections may differ based on the <code>Switch</code> role given to the device. For more details, refer to <a href="../connections/">Connections
 section</a>.</p>
@@ -1401,7 +1531,7 @@ Agent.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 9, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
   </span>
 
     

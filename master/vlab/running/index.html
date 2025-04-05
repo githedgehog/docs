@@ -1546,7 +1546,7 @@ before running VLAB.</p>
 <h2 id="initialize-vlab">Initialize VLAB</h2>
 <p>First, initialize Fabricator by running <code>hhfab init --dev</code>. This command creates the <code>fab.yaml</code> file, which is the main configuration file for the fabric. This command supports several customization options that are listed in the output of <code>hhfab init --help</code>.</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>init<span class="w"> </span>--dev
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">11:26:52 INF Hedgehog Fabricator version=v0.30.0</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">11:26:52 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">11:26:52 INF Generated initial config</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include</span>
@@ -1554,7 +1554,7 @@ before running VLAB.</p>
 <h2 id="vlab-topology">VLAB Topology</h2>
 <p>By default, <code>hhfab init</code> creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback workaround. To generate the preceding topology, <code>hhfab vlab gen</code>. You can also configure the number of spines, leafs, connections, and so on. For example, flags <code>--spines-count</code> and <code>--mclag-leafs-count</code> allow you to set the number of spines and MCLAG leaves, respectively. For complete options, <code>hhfab vlab gen -h</code>.</p>
 <p><div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">21:27:16 INF Hedgehog Fabricator version=v0.30.0</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">21:27:16 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">21:27:16 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">21:27:16 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
@@ -1567,7 +1567,7 @@ You can jump <a href="#build-the-installer-and-start-vlab">to the instructions</
 <h3 id="collapsed-core">Collapsed Core</h3>
 <p>If a Collapsed Core topology is desired, after the <code>hhfab init --dev</code> step, edit the resulting <code>fab.yaml</code> file and change the <code>mode: spine-leaf</code> to <code>mode: collapsed-core</code>:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">11:39:02 INF Hedgehog Fabricator version=v0.30.0</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">11:39:02 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">11:39:02 INF &gt;&gt;&gt; orphanLeafsCount=0 vpcLoopbacks=2</span>
@@ -1577,7 +1577,7 @@ You can jump <a href="#build-the-installer-and-start-vlab">to the instructions</
 <h3 id="custom-spine-leaf">Custom Spine Leaf</h3>
 <p>Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mclag-leafs-count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--orphan-leafs-count<span class="w"> </span><span class="m">2</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">11:41:06 INF Hedgehog Fabricator version=v0.30.0</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">11:41:06 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">11:41:06 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">11:41:06 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">11:41:06 INF &gt;&gt;&gt; eslagLeafGroups=&quot;&quot;</span>
@@ -1594,7 +1594,7 @@ prerequisites for running the VLAB.</p>
 <h2 id="build-the-installer-and-start-vlab">Build the Installer and Start VLAB</h2>
 <p>To build and start the virtual machines, use <code>hhfab vlab up</code>. For successive runs, use the <code>--kill-stale</code> flag to ensure that any virtual machines from a previous run are gone. <code>hhfab vlab up</code> runs in the foreground and does not return, which allows you to stop all VLAB VMs by simply pressing <code>Ctrl + C</code>.
 <div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>up
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">11:48:22 INF Hedgehog Fabricator version=v0.30.0</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">11:48:22 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">11:48:22 INF Wiring hydrated successfully mode=if-not-present</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">11:48:22 INF VLAB config created file=vlab/config.yaml</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">11:48:22 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog</span>
@@ -1630,7 +1630,7 @@ prerequisites for running the VLAB.</p>
 </span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="go">11:49:06 INF Starting VMs count=18 cpu=&quot;54 vCPUs&quot; ram=&quot;49664 MB&quot; disk=&quot;550 GB&quot;</span>
 </span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="go">11:49:59 INF Uploading control install vm=control-1 type=control</span>
 </span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="go">11:53:39 INF Running control install vm=control-1 type=control</span>
-</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.30.0 vm=control-1</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.36.1 vm=control-1</span>
 </span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1</span>
 </span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="go">12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1</span>
 </span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="go">12:00:32 INF Control node is ready vm=control-1 type=control</span>
@@ -1778,7 +1778,7 @@ using the Fabric in the <a href="../../user-guide/overview/">User Guide</a>, <a 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 31, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
   </span>
 
     
