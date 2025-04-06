@@ -62,7 +62,7 @@ newgrp docker
 
 ### Qemu/KVM
 ```bash
-sudo apt install -y qemu-kvm swtpm-tools tpm2-tools socat
+sudo apt install -y qemu-kvm socat
 sudo usermod -aG kvm $USER
 newgrp kvm
 kvm-ok
