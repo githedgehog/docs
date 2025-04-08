@@ -44,6 +44,7 @@ spec:
   redundancy: # Optional field to define that switch belongs to the redundancy group
     group: eslag-1 # Name of the redundancy group
     type: eslag # Type of the redundancy group, one of mclag or eslag
+  enableAllPorts: true # Optional field to enable all ports on the switch by default
 ```
 
 The `SwitchGroup` is just a marker at that point and doesn't have any configuration options.
