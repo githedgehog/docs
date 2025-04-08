@@ -12,10 +12,15 @@
     ]
   },
   {
-    "version": "24.09",
-    "title": "24.09",
+    "version": "25.01",
+    "title": "25.01",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "24.09",
+    "title": "24.09",
+    "aliases": []
   }
 ]
