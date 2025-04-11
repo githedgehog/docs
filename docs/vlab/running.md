@@ -16,18 +16,19 @@ ubuntu@docs:~$ hhfab init --dev
 ```
 ## VLAB Topology
 
-By default, `hhfab init` creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
+By default, `hhfab init` creates 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. It will also generate a VM to emulate an [External](../user-guide/external.md) device and two connections to it from the ESLAG leaves. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
-21:27:16 INF Hedgehog Fabricator version=v0.36.1
-21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf
-21:27:16 INF >>> spinesCount=2 fabricLinksCount=2
-21:27:16 INF >>> eslagLeafGroups=2
-21:27:16 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
-21:27:16 INF >>> orphanLeafsCount=1 vpcLoopbacks=2
-21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-21:27:16 INF Generated wiring file name=vlab.generated.yaml
+10:38:06 INF Hedgehog Fabricator version=v0.36.1
+10:38:06 INF Building VLAB wiring diagram fabricMode=spine-leaf
+10:38:06 INF >>> spinesCount=2 fabricLinksCount=2
+10:38:06 INF >>> eslagLeafGroups=2
+10:38:06 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
+10:38:06 INF >>> orphanLeafsCount=1 vpcLoopbacks=2
+10:38:06 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+10:38:06 INF >>> externalCount=1 externalMclagConnCount=0 externalEslagConnCount=2 externalOrphanConnCount=0
+10:38:06 INF Generated wiring file name=vlab.generated.yaml
 ```
 You can jump [to the instructions](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
 
@@ -36,28 +37,29 @@ If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
-11:39:02 INF Hedgehog Fabricator version=v0.36.1
-11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core
-11:39:02 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
-11:39:02 INF >>> orphanLeafsCount=0 vpcLoopbacks=2
-11:39:02 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-11:39:02 INF Generated wiring file name=vlab.generated.yaml
-
+11:21:02 INF Hedgehog Fabricator version=v0.36.1
+11:21:02 INF Building VLAB wiring diagram fabricMode=collapsed-core
+11:21:02 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
+11:21:02 INF >>> orphanLeafsCount=0 vpcLoopbacks=2
+11:21:02 INF >>> mclagServers=2 eslagServers=0 unbundledServers=1 bundledServers=1
+11:21:02 INF >>> externalCount=1 externalMclagConnCount=2 externalEslagConnCount=0 externalOrphanConnCount=0
+11:21:02 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 ### Custom Spine Leaf
-Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:
+Or you can run custom topology with 2 spines, 4 MCLAG leaves, 2 non-LAG leaves and no externals using flags:
 
 ```console
-ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2
-11:41:06 INF Hedgehog Fabricator version=v0.36.1
-11:41:06 INF Building VLAB wiring diagram fabricMode=spine-leaf
-11:41:06 INF >>> spinesCount=2 fabricLinksCount=2
-11:41:06 INF >>> eslagLeafGroups=""
-11:41:06 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
-11:41:06 INF >>> orphanLeafsCount=2 vpcLoopbacks=2
-11:41:06 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-11:41:06 INF Generated wiring file name=vlab.generated.yaml
+ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2 --externals 0
+12:03:39 INF Hedgehog Fabricator version=v0.36.1
+12:03:39 INF Building VLAB wiring diagram fabricMode=spine-leaf
+12:03:39 INF >>> spinesCount=2 fabricLinksCount=2
+12:03:39 INF >>> eslagLeafGroups=""
+12:03:39 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
+12:03:39 INF >>> orphanLeafsCount=2 vpcLoopbacks=2
+12:03:39 INF >>> mclagServers=2 eslagServers=0 unbundledServers=1 bundledServers=1
+12:03:39 INF >>> externalCount=0 externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=0
+12:03:39 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 Additionally, you can pass extra Fabric configuration items using flags on `init` command or by passing a configuration
