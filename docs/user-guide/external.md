@@ -61,11 +61,16 @@ apiVersion: vpc.githedgehog.com/v1beta1
 kind: External
 metadata:
   name: default--5835
+  annotations:
+    type.hhfab.githedgehog.com: hw  # Tells Fabric that this is a physical device
 spec:
   ipv4Namespace: # VPC IP Namespace
   inboundCommunity: # BGP Standard Community of routes from Edge devices
   outboundCommunity: # BGP Standard Community required to be assigned on prefixes advertised from Fabric
 ```
+
+!!! note
+    In a [VLAB](../vlab/overview.md) environment only, if the `hw` type annotation is not included, Fabric will emulate this external with an FRR VM.
 
 ### Connection
 
@@ -76,12 +81,17 @@ apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: # specified or generated
+  annotations:
+    type.hhfab.githedgehog.com: hw # Tells fabric that this is a physical link
 spec:
   external:
     link:
       switch:
         port: ds3000/E1/1
 ```
+
+!!! note
+    In a [VLAB](../vlab/overview.md) environment only, if the `hw` type annotation is not included, Fabric will add a virtual link to the virtual external VM.
 
 ### External Attachment
 
@@ -174,18 +184,13 @@ on the port `E1/2`. Specifying `vpc-1` is required to receive any prefixes adver
 - apiVersion: vpc.githedgehog.com/v1beta1
   kind: External
   metadata:
-    creationTimestamp: "2024-11-26T21:24:32Z"
-    generation: 1
-    labels:
-      fabric.githedgehog.com/ipv4ns: default
     name: hedgeedge
-    namespace: default
-    resourceVersion: "57628"
-    uid: a0662988-73d0-45b3-afc0-0d009cd91ebd
+    annotations:
+      type.hhfab.githedgehog.com: hw
   spec:
-    inboundCommunity: 65102:5000
     ipv4Namespace: default
-    outboundCommunity: 5000:6510
+    inboundCommunity: 65102:5000
+    outboundCommunity: 5000:65102
 ```
 
 #### Connection
@@ -200,6 +205,8 @@ apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
   name: switchBorder--external--HedgeEdge
+  annotations:
+    type.hhfab.githedgehog.com: hw
 spec:
   external:
     link:
