@@ -479,7 +479,7 @@ _Appears in:_
 | `buildCommit` _string_ | NOS build commit |  |  |
 | `buildDate` _string_ | NOS build date |  |  |
 | `builtBy` _string_ | NOS build user |  |  |
-| `configDbVersion` _string_ | NOS config DB version, such as "version_4_2_1" |  |  |
+| `configDBVersion` _string_ | NOS config DB version, such as "version_4_2_1" |  |  |
 | `distributionVersion` _string_ | Distribution version, such as "Debian 10.13" |  |  |
 | `hardwareVersion` _string_ | Hardware version, such as "X01" |  |  |
 | `hwskuVersion` _string_ | Hwsku version, such as "DellEMC-S5248f-P-25G-DPB" |  |  |
@@ -508,7 +508,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `fans` _object (keys:string, values:[SwitchStatePlatformFan](#switchstateplatformfan))_ |  |  |  |
 | `psus` _object (keys:string, values:[SwitchStatePlatformPSU](#switchstateplatformpsu))_ |  |  |  |
-| `temperature` _object (keys:string, values:[SwitchStatePlatformTemperature](#switchstateplatformtemperature))_ |  |  |  |
+| `temperatures` _object (keys:string, values:[SwitchStatePlatformTemperature](#switchstateplatformtemperature))_ |  |  |  |
 
 
 #### SwitchStatePlatformFan
@@ -601,8 +601,6 @@ _Appears in:_
 | `vendorPart` _string_ |  |  |  |
 | `vendorOUI` _string_ |  |  |  |
 | `vendorRev` _string_ |  |  |  |
-
-
 
 
 
@@ -2031,6 +2029,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `displayName` _string_ | DisplayName defines the human-readable name of the switch |  |  |
 | `otherNames` _string array_ | OtherNames defines alternative names for the switch |  |  |
+| `switchSilicon` _string_ | SwitchSilicon defines the switch silicon name |  |  |
 | `features` _[SwitchProfileFeatures](#switchprofilefeatures)_ | Features defines the features supported by the switch |  |  |
 | `config` _[SwitchProfileConfig](#switchprofileconfig)_ | Config defines the switch-specific configuration options |  |  |
 | `ports` _object (keys:string, values:[SwitchProfilePort](#switchprofileport))_ | Ports defines the switch port configuration |  |  |
@@ -2092,7 +2091,6 @@ _Appears in:_
 | `server-leaf` |  |
 | `border-leaf` |  |
 | `mixed-leaf` |  |
-| `virtual-edge` |  |
 
 
 #### SwitchSpec
