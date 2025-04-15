@@ -1,5 +1,9 @@
 # Release notes
 
+!!! note
+    Please consult [this page](../known-issues/known-issues.md) for a list of current limitations
+    of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
+
 ## 25.01
 
 ### Highlights
