@@ -51,7 +51,21 @@ K8S -->|Sends CRDs| FC
 
 ### **kubectl & kubectl fabric**
 - [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is the standard CLI tool for [Kubernetes](https://kubernetes.io).
-- `kubectl fabric` is a plugin that extends `kubectl` with fabric-specific commands and interacts with the Kubernetes API Server.
+- `kubectl fabric` is a plugin that extends `kubectl` with fabric-specific commands and interacts with the Kubernetes API Server. It supports the following commands:
+    - **vpc** – Manage VPCs: create, attach, peer, or wipe all related resources
+    - **switch** – Manage switches: IP, SSH, serial, reboot, reinstall
+    - **connection** – View connections: management, fabric, vpc-loopback
+    - **switchgroup** – Create SwitchGroups
+    - **external** – Manage external BGP peers and VPC peering
+    - **wiring** – Export fabric wiring diagrams
+    - **inspect** – Inspect and troubleshoot fabric resources:
+        - `fabric` – Overview of control nodes and switches
+        - `switch`, `port` – Status, counters, and usage
+        - `server`, `connection` – VPC/external attachments and link details
+        - `vpc` – Subnet attachments and reachability
+        - `bgp`, `lldp` – Neighbor status checks
+        - `ip`, `mac` – Lookup usage across the fabric
+        - `access` – Check reachability between VPCs, servers, and IPs
 
 ### **Fabricator**
 - CLI tool that provides direct interaction with the Kubernetes API.
