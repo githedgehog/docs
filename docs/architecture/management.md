@@ -68,11 +68,10 @@ FC -->|Watches CRDs| K8S
         - `access` – Check reachability between VPCs, servers, and IPs
 
 ### **Fabricator**
-- CLI tool that provides direct interaction with the Kubernetes API.
-- Can apply configurations via **SSH access** (using **K9s**) or by directly managing Fabric CRs with YAML files.
+- Using the **hhfab** CLI you can **SSH** the control node and use **K9s** or **kubectl** and **kubectl fabric** to manage or monitor Fabric API objects.
 
 ### **K9s**
-- A Kubernetes UI that provides visibility and control over Kubernetes resources, allowing you to manage pods, nodes, services, logs, and Fabric resources efficiently. It includes some helper plugins:
+- K9s is a terminal based Kubernetes UI that provides visibility and control over Kubernetes resources, allowing you to manage pods, nodes, services, logs, and Fabric resources efficiently. It includes some helper plugins:
     - **SSH** – SSH into a fabric switch
     - **Serial** – Open a serial connection to a fabric switch
     - **Reboot** – Reboot a fabric switch
