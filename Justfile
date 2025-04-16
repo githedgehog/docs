@@ -14,7 +14,7 @@ _run +cmd:
   docker run -q --pull=always --rm -v $(pwd):/docs -p 8000:8000 {{image}} {{cmd}}
 
 # Build docs site (unversioned)
-build: (_run "mkdocs build")
+build *opts: (_run "mkdocs build" opts)
 
 # Clean generated docs site
 clean:
