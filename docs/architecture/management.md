@@ -24,17 +24,20 @@ subgraph ControlNode["Control Node"]
   K8S[Kubernetes API Server]
   FC[Fabric Controller]
   K9s[K9s]
+  KubectlK3s[kubectl]
   KubectlFabric["kubectl fabric"]
 end
 
 %% Define the relationships
-Kubectl -.->|Direct kubectl commands| K8S
+Kubectl -.->|Sends CRs and queries| K8S
+KubectlK3s -.->|Sends CRs and queries| K8S
+KubectlK3s -.->|Invokes| KubectlFabric
+User -.->|SSH Control| KubectlK3s
 User -.->|SSH Control| K9s
 User -.->|CLI| Kubectl
-User -.->|SSH Control| KubectlFabric
-KubectlFabric -->|Interacts with| K8S
-K9s -->|UI Manages| K8S
-FC -->|Watches CRDs| K8S
+KubectlFabric -->|Applies/inspects CRs| K8S
+K9s -->|Reads/writes CRs via API| K8S
+FC -->|Watches CRs| K8S
 ```
 
 ---
@@ -44,6 +47,7 @@ FC -->|Watches CRDs| K8S
 ### **User**
 - **Creates Fabric CR YAMLs** and applies them through standard Kubernetes resource management.
 - **Uses [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) and `kubectl fabric`** to interact with the Kubernetes API for fabric resource management.
+    - Can use their **own `kubectl` installation** or the one pre-installed on the control node as part of [k3s](https://k3s.io).
 
 ### **Kubernetes API Server (K8S)**
 - Part of [Kubernetes](https://kubernetes.io).
@@ -117,7 +121,7 @@ Git -.->|GitOps pulls| GitOps
 GitOps -->|Applies CRs| K8S
 %% Keep rel with empty text to keep layout
 K8S -->| | FC
-FC -->|Watches CRDs| K8S
+FC -->|Watches CRs| K8S
 %% Style the original arrow invisible
 linkStyle 5 stroke:none,fill:none;
 ```
