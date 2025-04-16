@@ -1,4 +1,4 @@
 nav:
-  - Fabric API: api.md
-  - Fabricator API: include-fab-api.md
+  - Fabric API: fabric-api.md
+  - Fabricator API: fab-api.md
   - ...
