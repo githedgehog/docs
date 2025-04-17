@@ -8,7 +8,8 @@
 
 ### Highlights
 
-- Broadcom SONiC 4.4.2 support
+- Broadcom SONiC 4.4.2 support (see [upgrade
+  SONiC](../install-upgrade/upgrade.md#upgrade-sonic)) for instructions
 - Support for Celestica DS4101 as a spine
 - Fabric agent is periodically enforcing the switch configuration
 - All nodes (e.g. control node) and switches are automatically configured to use NTP server from the control node
