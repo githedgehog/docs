@@ -25,9 +25,12 @@ and fairly up-to-date packages.
 The following packages needs to be installed: `qemu-kvm socat`. Docker is also required, to login
 into the OCI registry.
 
-By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can
-choose to run the default Collapsed Core topology using flag `--fabric-mode collapsed-core` (or `-m collapsed-core`)
-which only consists of 2 switches.
+By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves,
+2 ESLAG leaves and 1 non-LAG leaf, plus a virtual external device. Optionally, you can
+choose to run the default Collapsed Core topology using flag `--fabric-mode collapsed-core`
+(or `-m collapsed-core`) which only consists of 2 switches and the virtual external.
+You can also fine tune how many switches, servers and externals are generated via
+command line parameters; see `hhfab vlab gen --help` for all the available options.
 
 You can calculate the system requirements based on the allocated resources to the VMs using the following table:
 
@@ -36,11 +39,12 @@ You can calculate the system requirements based on the allocated resources to th
 | Control Node | 6 | 6GB | 100GB |
 | Test Server | 2 | 768MB | 10GB |
 | Switch | 4 | 5GB | 50GB |
+| Virtual External | 4 | 5GB | 50GB |
 
 These numbers give approximately the following requirements for the default topologies:
 
-* Spine-Leaf: 38 vCPUs, 36352 MB, 410 GB disk
-* Collapsed Core: 22 vCPUs, 19456 MB, 240 GB disk
+* Spine-Leaf: 50 vCPUs, 44544 MB, 500 GB disk
+* Collapsed Core: 26 vCPUs, 24576 MB, 290 GB disk
 
 Usually, none of the VMs will reach 100% utilization of the allocated resources, but as a rule of thumb you should make
 sure that you have at least allocated RAM and disk space for all VMs.
