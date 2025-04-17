@@ -31,6 +31,9 @@ and compare to the fabricator version in the release notes.
 
 Upgrade process is idempotent and can be run multiple times without any issues.
 
+Check the [release notes](../release-notes/index.md) for your version to see if a [SONiC
+Upgrade](#upgrade-sonic) is available.
+
 ## Upgrade from Alpha-7 to Beta-1
 
 ### Control Node
@@ -57,5 +60,25 @@ Beta-1 uses the switch vendor ONIE for installation of the NOS. The latest vendo
 ### Install The Control Node
 Follow the [instructions](install.md#build-control-node-configuration-and-installer) for installing the Beta-1 Fabric on a control node.
 
-### Install NOS using ONIE NOS Install Option
-As the switches boot up, select the ONIE option from the grub screen. From there select the "NOS Install" option. The install option will cause the switch to begin searching for installation media, this media is supplied by the control node.
+## Install SONiC using ONIE 
+
+As the switches boot up, select the `ONIE` option from the grub screen. From
+there select the `ONIE: Install OS` option. In the grub boot menu the asterisk
+(`*`) character functions as an indicator of the option that would be executed
+if the `enter` key was pressed. For example to enter the `ONIE` menu it would
+appear as `*ONIE` on the screen. The install option will cause the switch to 
+begin searching for installation media, this media is supplied by the control node.
+
+## Upgrade SONiC
+
+Occasionally some fabric upgrades will include upgrades to the SONiC Network
+Operating System. Upgrading SONiC will cause the switch to not pass traffic
+during the upgrade process. For that reason, SONiC is not upgraded
+automatically and the user is encouraged to schedule a maintenance window for
+the upgrade. 
+
+To upgrade a switch on an existing deployment use the command `kubectl fabric
+switch reinstall --name switch-name`. The switch will be gracefully shutdown,
+and reboot into the `ONIE` boot environment for reinstallation. After the
+switch boots the hedgehog agent will automatically restore the configuration
+and traffic will resume without user intervention. 
