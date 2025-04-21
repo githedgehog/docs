@@ -35,7 +35,17 @@ curl -fsSL https://i.hhdev.io/hhfab | VERSION=24.09 bash
 ```
 
 Use the `VERSION` environment variable to specify the version of the software to download. By default, the latest stable
-release is downloaded. You can pick a specific release series (e.g. `alpha-2`) or a specific release.
+release is downloaded. You can pick a specific release series (e.g. `25.01`) or a specific release.
+
+The default location for `hhfab` installation is `/usr/local/bin`. The location
+can be changed by setting the `INSTALL_DIR` environment variable that is
+provided to the `hhfab` install script. Changing the installation directory is
+necessary if these commands are being run on the control node, `/usr` is not
+writable.
+
+```bash
+curl -fsSL https://i.hhdev.io/hhfab | INSTALL_DIR=. bash
+```
 
 ### Installing ORAS
 
