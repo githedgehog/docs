@@ -1455,11 +1455,18 @@ Download the latest stable <code>hhfab</code> binary from the <a href="https://g
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/hhfab<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">VERSION</span><span class="o">=</span><span class="m">24</span>.09<span class="w"> </span>bash
 </span></code></pre></div>
 <p>Use the <code>VERSION</code> environment variable to specify the version of the software to download. By default, the latest stable
-release is downloaded. You can pick a specific release series (e.g. <code>alpha-2</code>) or a specific release.</p>
+release is downloaded. You can pick a specific release series (e.g. <code>25.01</code>) or a specific release.</p>
+<p>The default location for <code>hhfab</code> installation is <code>/usr/local/bin</code>. The location
+can be changed by setting the <code>INSTALL_DIR</code> environment variable that is
+provided to the <code>hhfab</code> install script. Changing the installation directory is
+necessary if these commands are being run on the control node, <code>/usr</code> is not
+writable.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/hhfab<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">INSTALL_DIR</span><span class="o">=</span>.<span class="w"> </span>bash
+</span></code></pre></div>
 <h3 id="installing-oras">Installing ORAS</h3>
 <p>The download script requires <a href="https://oras.land/">ORAS</a> to be installed. ORAS is used to download the binary from the
 OCI registry and can be installed using following command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/oras<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://i.hhdev.io/oras<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </span></code></pre></div>
 <h2 id="next-steps">Next steps</h2>
 <ul>
@@ -1490,7 +1497,7 @@ OCI registry and can be installed using following command:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 21, 2025</span>
   </span>
 
     
