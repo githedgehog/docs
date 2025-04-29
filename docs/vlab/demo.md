@@ -264,7 +264,7 @@ For `server-01`:
 
 ```
 core@server-01 ~ $ hhnet cleanup
-core@server-01 ~ $ hhnet bond 1001 enp2s1 enp2s2
+core@server-01 ~ $ hhnet bond 1001 layer2+3 enp2s1 enp2s2
 10.0.1.10/24
 core@server-01 ~ $ ip a
 ...
@@ -288,7 +288,7 @@ And for `server-02`:
 
 ```
 core@server-02 ~ $ hhnet cleanup
-core@server-02 ~ $ hhnet bond 1002 enp2s1 enp2s2
+core@server-02 ~ $ hhnet bond 1002 layer2+3 enp2s1 enp2s2
 10.0.2.10/24
 core@server-02 ~ $ ip a
 ...
@@ -307,6 +307,10 @@ core@server-02 ~ $ ip a
     inet6 fe80::5c10:b1ff:fef7:d04c/64 scope link
        valid_lft forever preferred_lft forever
 ```
+
+!!! note
+    While `hhnet` will apply any bond hash policy supported by `ip`, we recommend using either
+    `layer2+3` or `layer2`, which are fully 802.3ad compliant.
 
 ### Testing connectivity before peering
 
