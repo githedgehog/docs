@@ -2,6 +2,7 @@ nav:
   - overview.md
   - devices.md
   - connections.md
+  - host-settings.md
   - vpcs.md
   - external.md
   - shrink-expand.md
