@@ -12,7 +12,8 @@ There are several types of connections.
 
 ## Workload server connections
 
-Server connections are used to connect workload servers to switches.
+Server connections are used to connect workload servers to switches. For
+settings on the server side, see [end host settings](host-settings.md)
 
 ### Unbundled
 
