@@ -29,9 +29,143 @@ ubuntu@docs:~$ hhfab vlab gen
 21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 21:27:16 INF Generated wiring file name=vlab.generated.yaml
 ```
+
+The default spine-leaf topology with 2 spines, 2 MCLAG leaves, and 1 non-MCLAG leaf:
+
+```mermaid
+graph TD
+
+%% Style definitions
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Spines[ ]
+	direction LR
+	subgraph Spine_01_Group [ ]
+		direction TB
+		Spine_01["spine-01<br>spine"]
+	end
+	subgraph Spine_02_Group [ ]
+		direction TB
+		Spine_02["spine-02<br>spine"]
+	end
+end
+
+subgraph Leaves[ ]
+	direction LR
+	subgraph MCLAG [MCLAG]
+		direction LR
+		Leaf_01["leaf-01<br>server-leaf"]
+		Leaf_02["leaf-02<br>server-leaf"]
+	end
+
+	subgraph ESLAG [ESLAG]
+		direction LR
+		Leaf_03["leaf-03<br>server-leaf"]
+		Leaf_04["leaf-04<br>server-leaf"]
+	end
+
+	Leaf_05["leaf-05<br>server-leaf"]
+end
+
+subgraph Servers[ ]
+	direction TB
+	Server_03["server-03"]
+	Server_01["server-01"]
+	Server_02["server-02"]
+	Server_04["server-04"]
+	Server_07["server-07"]
+	Server_05["server-05"]
+	Server_06["server-06"]
+	Server_08["server-08"]
+	Server_09["server-09"]
+	Server_10["server-10"]
+end
+
+%% Connections
+
+%% Spine_01 -> Leaves
+Spine_01 ---|"E1/8↔E1/1<br>E1/9↔E1/2"| Leaf_01
+Spine_01 ---|"E1/10↔E1/4<br>E1/9↔E1/3"| Leaf_02
+Spine_01 ---|"E1/4↔E1/5<br>E1/5↔E1/6"| Leaf_03
+Spine_01 ---|"E1/4↔E1/9<br>E1/5↔E1/10"| Leaf_05
+Spine_01 ---|"E1/5↔E1/7<br>E1/6↔E1/8"| Leaf_04
+
+%% Spine_02 -> Leaves
+Spine_02 ---|"E1/11↔E1/3<br>E1/12↔E1/4"| Leaf_02
+Spine_02 ---|"E1/7↔E1/7<br>E1/8↔E1/8"| Leaf_04
+Spine_02 ---|"E1/11↔E1/2<br>E1/10↔E1/1"| Leaf_01
+Spine_02 ---|"E1/6↔E1/5<br>E1/7↔E1/6"| Leaf_03
+Spine_02 ---|"E1/7↔E1/10<br>E1/6↔E1/9"| Leaf_05
+
+%% Leaves -> Servers
+Leaf_01 ---|"enp2s1↔E1/6"| Server_02
+Leaf_01 ---|"enp2s1↔E1/7"| Server_03
+Leaf_01 ---|"enp2s1↔E1/5"| Server_01
+
+Leaf_02 ---|"enp2s2↔E1/5"| Server_01
+Leaf_02 ---|"enp2s2↔E1/6"| Server_02
+Leaf_02 ---|"enp2s1↔E1/7<br>enp2s2↔E1/8"| Server_04
+
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
+Leaf_03 ---|"enp2s1↔E1/2"| Server_06
+Leaf_03 ---|"enp2s1↔E1/3"| Server_07
+
+Leaf_04 ---|"enp2s2↔E1/2"| Server_06
+Leaf_04 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_08
+Leaf_04 ---|"enp2s2↔E1/1"| Server_05
+
+Leaf_05 ---|"enp2s1↔E1/1"| Server_09
+Leaf_05 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_10
+
+subgraph Legend["Network Connection Types"]
+	direction LR
+
+	%% Create invisible nodes for the start and end of each line
+	L1(( )) --- |"Fabric Links"| L2(( ))
+	L3(( )) --- |"MCLAG Server Links"| L4(( ))
+	L5(( )) --- |"Bundled Server Links"| L6(( ))
+	L7(( )) --- |"Unbundled Server Links"| L8(( ))
+	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+end
+
+class Spine_01,Spine_02 spine
+class Leaf_01,Leaf_02,Leaf_03,Leaf_04,Leaf_05 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_07,Server_05,Server_06,Server_08,Server_09,Server_10 server
+class MCLAG mclag
+class ESLAG eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,1,2,3,4,5,6,7,8,9 stroke:#CC3333,stroke-width:4px
+linkStyle 10,12,13,14 stroke:#99CCFF,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 15,20,23 stroke:#66CC66,stroke-width:4px
+linkStyle 16,17,19,21 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 11,18,22 stroke:#999999,stroke-width:2px
+linkStyle 24 stroke:#B85450,stroke-width:2px
+linkStyle 25 stroke:#6C8EBF,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 26 stroke:#82B366,stroke-width:2px
+linkStyle 27 stroke:#000000,stroke-width:2px
+linkStyle 28 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+
+%% Make subgraph containers invisible
+style Spines fill:none,stroke:none
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none
+style Spine_01_Group fill:none,stroke:none
+style Spine_02_Group fill:none,stroke:none
+```
+
 You can jump [to the instructions](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
 
 ### Collapsed Core
+
 If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`:
 
 ```console
@@ -42,7 +176,75 @@ ubuntu@docs:~$ hhfab vlab gen
 11:39:02 INF >>> orphanLeafsCount=0 vpcLoopbacks=2
 11:39:02 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 11:39:02 INF Generated wiring file name=vlab.generated.yaml
+```
 
+The collapsed core topology with 2 MCLAG leaves:
+
+```mermaid
+graph TD
+
+%% Style definitions
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Leaves[ ]
+	direction LR
+	subgraph MCLAG [MCLAG]
+		direction LR
+		Leaf_01["leaf-01<br>server-leaf"]
+		Leaf_02["leaf-02<br>server-leaf"]
+	end
+
+end
+
+subgraph Servers[ ]
+	direction TB
+	Server_03["server-03"]
+	Server_01["server-01"]
+	Server_02["server-02"]
+	Server_04["server-04"]
+end
+
+%% Connections
+
+%% Leaves -> Servers
+Leaf_01 ---|"enp2s1↔E1/6"| Server_02
+Leaf_01 ---|"enp2s1↔E1/7"| Server_03
+Leaf_01 ---|"enp2s1↔E1/5"| Server_01
+
+Leaf_02 ---|"enp2s2↔E1/6"| Server_02
+Leaf_02 ---|"enp2s1↔E1/7<br>enp2s2↔E1/8"| Server_04
+Leaf_02 ---|"enp2s2↔E1/5"| Server_01
+
+subgraph Legend["Network Connection Types"]
+	direction LR
+
+	%% Create invisible nodes for the start and end of each line
+	L3(( )) --- |"MCLAG Server Links"| L4(( ))
+	L5(( )) --- |"Bundled Server Links"| L6(( ))
+	L7(( )) --- |"Unbundled Server Links"| L8(( ))
+end
+
+class Leaf_01,Leaf_02 leaf
+class Server_03,Server_01,Server_02,Server_04 server
+class MCLAG mclag
+class L3,L4,L5,L6,L7,L8 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,2,3 stroke:#99CCFF,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 4 stroke:#66CC66,stroke-width:4px
+linkStyle 1 stroke:#999999,stroke-width:2px
+linkStyle 5 stroke:#6C8EBF,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 6 stroke:#82B366,stroke-width:2px
+linkStyle 7 stroke:#000000,stroke-width:2px
+
+%% Make subgraph containers invisible
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none
 ```
 
 ### Custom Spine Leaf
