@@ -399,7 +399,8 @@ about managing the Fabric in the [Running Demo](demo.md) and [User Guide](../use
 ### Getting main Fabric objects
 
 You can list the main Fabric objects by running `kubectl get` on the control node. You can find more details about
-using the Fabric in the [User Guide](../user-guide/overview.md), [Fabric API](../reference/api.md) and
+using the Fabric in the [User Guide](../user-guide/overview.md), [Fabric
+API](../reference/fabric-api.md) and
 [Fabric CLI](../reference/cli.md) sections.
 
 For example, to get the list of switches, run:

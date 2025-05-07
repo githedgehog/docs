@@ -6,7 +6,7 @@ how to manage connections between them.
 Manipulating API objects is done with the assumption that target devices are correctly cabled and connected.
 
 This article uses terms that can be found in the [Hedgehog Concepts](../concepts/overview.md), the [User
-Guide](overview.md) documentation, and the [Fabric API](../reference/api.md) reference.
+Guide](overview.md) documentation, and the [Fabric API](../reference/fabric-api.md) reference.
 
 ### Add a switch to the existing fabric
 

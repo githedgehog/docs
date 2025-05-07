@@ -31,7 +31,9 @@ After the above workflow a user will have a .img file suitable for installing th
 
 ## Complete Example File
 
-The following example outlines a comprehensive Fabricator configuration. You can find further configuration details in the Fabricator [API Reference](../../reference/include-fab-api/).
+The following example outlines a comprehensive Fabricator configuration. You
+can find further configuration details in the Fabricator [API
+Reference](../reference/fab-api.md).
 
 ``` { .yaml .annotate title="fab.yaml" linenums="1"} 
 apiVersion: fabricator.githedgehog.com/v1beta1
