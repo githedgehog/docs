@@ -1614,7 +1614,7 @@ before running VLAB.</p>
 </span></code></pre></div>
 <h2 id="vlab-topology">VLAB Topology</h2>
 <p>By default, <code>hhfab init</code> creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback workaround. To generate the preceding topology, <code>hhfab vlab gen</code>. You can also configure the number of spines, leafs, connections, and so on. For example, flags <code>--spines-count</code> and <code>--mclag-leafs-count</code> allow you to set the number of spines and MCLAG leaves, respectively. For complete options, <code>hhfab vlab gen -h</code>.</p>
-<p><div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">21:27:16 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">21:27:16 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
@@ -1624,7 +1624,135 @@ before running VLAB.</p>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">21:27:16 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">21:27:16 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
-You can jump <a href="#build-the-installer-and-start-vlab">to the instructions</a> to start VLAB, or see the next section for customizing the topology.</p>
+<p>The default spine-leaf topology with 2 spines, 2 MCLAG leaves, and 1 non-MCLAG leaf:</p>
+<pre class="mermaid"><code>graph TD
+
+%% Style definitions
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Spines[ ]
+    direction LR
+    subgraph Spine_01_Group [ ]
+        direction TB
+        Spine_01["spine-01&lt;br&gt;spine"]
+    end
+    subgraph Spine_02_Group [ ]
+        direction TB
+        Spine_02["spine-02&lt;br&gt;spine"]
+    end
+end
+
+subgraph Leaves[ ]
+    direction LR
+    subgraph MCLAG [MCLAG]
+        direction LR
+        Leaf_01["leaf-01&lt;br&gt;server-leaf"]
+        Leaf_02["leaf-02&lt;br&gt;server-leaf"]
+    end
+
+    subgraph ESLAG [ESLAG]
+        direction LR
+        Leaf_03["leaf-03&lt;br&gt;server-leaf"]
+        Leaf_04["leaf-04&lt;br&gt;server-leaf"]
+    end
+
+    Leaf_05["leaf-05&lt;br&gt;server-leaf"]
+end
+
+subgraph Servers[ ]
+    direction TB
+    Server_03["server-03"]
+    Server_01["server-01"]
+    Server_02["server-02"]
+    Server_04["server-04"]
+    Server_07["server-07"]
+    Server_05["server-05"]
+    Server_06["server-06"]
+    Server_08["server-08"]
+    Server_09["server-09"]
+    Server_10["server-10"]
+end
+
+%% Connections
+
+%% Spine_01 -&gt; Leaves
+Spine_01 ---|"E1/8↔E1/1&lt;br&gt;E1/9↔E1/2"| Leaf_01
+Spine_01 ---|"E1/10↔E1/4&lt;br&gt;E1/9↔E1/3"| Leaf_02
+Spine_01 ---|"E1/4↔E1/5&lt;br&gt;E1/5↔E1/6"| Leaf_03
+Spine_01 ---|"E1/4↔E1/9&lt;br&gt;E1/5↔E1/10"| Leaf_05
+Spine_01 ---|"E1/5↔E1/7&lt;br&gt;E1/6↔E1/8"| Leaf_04
+
+%% Spine_02 -&gt; Leaves
+Spine_02 ---|"E1/11↔E1/3&lt;br&gt;E1/12↔E1/4"| Leaf_02
+Spine_02 ---|"E1/7↔E1/7&lt;br&gt;E1/8↔E1/8"| Leaf_04
+Spine_02 ---|"E1/11↔E1/2&lt;br&gt;E1/10↔E1/1"| Leaf_01
+Spine_02 ---|"E1/6↔E1/5&lt;br&gt;E1/7↔E1/6"| Leaf_03
+Spine_02 ---|"E1/7↔E1/10&lt;br&gt;E1/6↔E1/9"| Leaf_05
+
+%% Leaves -&gt; Servers
+Leaf_01 ---|"enp2s1↔E1/6"| Server_02
+Leaf_01 ---|"enp2s1↔E1/7"| Server_03
+Leaf_01 ---|"enp2s1↔E1/5"| Server_01
+
+Leaf_02 ---|"enp2s2↔E1/5"| Server_01
+Leaf_02 ---|"enp2s2↔E1/6"| Server_02
+Leaf_02 ---|"enp2s1↔E1/7&lt;br&gt;enp2s2↔E1/8"| Server_04
+
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
+Leaf_03 ---|"enp2s1↔E1/2"| Server_06
+Leaf_03 ---|"enp2s1↔E1/3"| Server_07
+
+Leaf_04 ---|"enp2s2↔E1/2"| Server_06
+Leaf_04 ---|"enp2s1↔E1/3&lt;br&gt;enp2s2↔E1/4"| Server_08
+Leaf_04 ---|"enp2s2↔E1/1"| Server_05
+
+Leaf_05 ---|"enp2s1↔E1/1"| Server_09
+Leaf_05 ---|"enp2s1↔E1/2&lt;br&gt;enp2s2↔E1/3"| Server_10
+
+subgraph Legend["Network Connection Types"]
+    direction LR
+
+    %% Create invisible nodes for the start and end of each line
+    L1(( )) --- |"Fabric Links"| L2(( ))
+    L3(( )) --- |"MCLAG Server Links"| L4(( ))
+    L5(( )) --- |"Bundled Server Links"| L6(( ))
+    L7(( )) --- |"Unbundled Server Links"| L8(( ))
+    L9(( )) --- |"ESLAG Server Links"| L10(( ))
+end
+
+class Spine_01,Spine_02 spine
+class Leaf_01,Leaf_02,Leaf_03,Leaf_04,Leaf_05 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_07,Server_05,Server_06,Server_08,Server_09,Server_10 server
+class MCLAG mclag
+class ESLAG eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,1,2,3,4,5,6,7,8,9 stroke:#CC3333,stroke-width:4px
+linkStyle 10,12,13,14 stroke:#99CCFF,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 15,20,23 stroke:#66CC66,stroke-width:4px
+linkStyle 16,17,19,21 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 11,18,22 stroke:#999999,stroke-width:2px
+linkStyle 24 stroke:#B85450,stroke-width:2px
+linkStyle 25 stroke:#6C8EBF,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 26 stroke:#82B366,stroke-width:2px
+linkStyle 27 stroke:#000000,stroke-width:2px
+linkStyle 28 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+
+%% Make subgraph containers invisible
+style Spines fill:none,stroke:none
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none
+style Spine_01_Group fill:none,stroke:none
+style Spine_02_Group fill:none,stroke:none</code></pre>
+<p>You can jump <a href="#build-the-installer-and-start-vlab">to the instructions</a> to start VLAB, or see the next section for customizing the topology.</p>
 <h3 id="collapsed-core">Collapsed Core</h3>
 <p>If a Collapsed Core topology is desired, after the <code>hhfab init --dev</code> step, edit the resulting <code>fab.yaml</code> file and change the <code>mode: spine-leaf</code> to <code>mode: collapsed-core</code>:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
@@ -1635,6 +1763,71 @@ You can jump <a href="#build-the-installer-and-start-vlab">to the instructions</
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">11:39:02 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
+<p>The collapsed core topology with 2 MCLAG leaves:</p>
+<pre class="mermaid"><code>graph TD
+
+%% Style definitions
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Leaves[ ]
+    direction LR
+    subgraph MCLAG [MCLAG]
+        direction LR
+        Leaf_01["leaf-01&lt;br&gt;server-leaf"]
+        Leaf_02["leaf-02&lt;br&gt;server-leaf"]
+    end
+
+end
+
+subgraph Servers[ ]
+    direction TB
+    Server_03["server-03"]
+    Server_01["server-01"]
+    Server_02["server-02"]
+    Server_04["server-04"]
+end
+
+%% Connections
+
+%% Leaves -&gt; Servers
+Leaf_01 ---|"enp2s1↔E1/6"| Server_02
+Leaf_01 ---|"enp2s1↔E1/7"| Server_03
+Leaf_01 ---|"enp2s1↔E1/5"| Server_01
+
+Leaf_02 ---|"enp2s2↔E1/6"| Server_02
+Leaf_02 ---|"enp2s1↔E1/7&lt;br&gt;enp2s2↔E1/8"| Server_04
+Leaf_02 ---|"enp2s2↔E1/5"| Server_01
+
+subgraph Legend["Network Connection Types"]
+    direction LR
+
+    %% Create invisible nodes for the start and end of each line
+    L3(( )) --- |"MCLAG Server Links"| L4(( ))
+    L5(( )) --- |"Bundled Server Links"| L6(( ))
+    L7(( )) --- |"Unbundled Server Links"| L8(( ))
+end
+
+class Leaf_01,Leaf_02 leaf
+class Server_03,Server_01,Server_02,Server_04 server
+class MCLAG mclag
+class L3,L4,L5,L6,L7,L8 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,2,3 stroke:#99CCFF,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 4 stroke:#66CC66,stroke-width:4px
+linkStyle 1 stroke:#999999,stroke-width:2px
+linkStyle 5 stroke:#6C8EBF,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 6 stroke:#82B366,stroke-width:2px
+linkStyle 7 stroke:#000000,stroke-width:2px
+
+%% Make subgraph containers invisible
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none</code></pre>
 <h3 id="custom-spine-leaf">Custom Spine Leaf</h3>
 <p>Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mclag-leafs-count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--orphan-leafs-count<span class="w"> </span><span class="m">2</span>
@@ -1839,7 +2032,7 @@ using the Fabric in the <a href="../../user-guide/overview/">User Guide</a>, <a 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2025</span>
   </span>
 
     
