@@ -21,7 +21,7 @@ clean:
   rm -rf site
 
 # Serve docs site (unversioned, watches for changes)
-serve: (_run "mkdocs serve -a 0.0.0.0:8000")
+serve: (_run "mkdocs serve --strict -a 0.0.0.0:8000")
 
 # List published versions
 list: (_run "mike list -b publish")

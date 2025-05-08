@@ -6,7 +6,7 @@
 A wiring diagram is a YAML file that is a digital representation of your
 network. You can find more YAML level details in the User Guide section [switch
 features and port naming](../user-guide/profiles.md) and the
-[api](../reference/api.md). It's mandatory for all switches to reference a
+[api](../reference/fabric-api.md). It's mandatory for all switches to reference a
 `SwitchProfile` in the `spec.profile` of the `Switch` object. Only port naming
 defined by switch profiles could be used in the wiring diagram, NOS (or any
 other) port names aren't supported. An complete example wiring diagram is
