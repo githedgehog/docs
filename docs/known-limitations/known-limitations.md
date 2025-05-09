@@ -7,6 +7,9 @@ working hard to address:
 * [Configuration not allowed when port is member of PortChannel](#configuration-not-allowed-when-port-is-member-of-portchannel)
 * [VPC local peering can cause the agent to fail if subinterfaces are not supported on the switch](#vpc-local-peering-can-cause-the-agent-to-fail-if-subinterfaces-are-not-supported-on-the-switch)
 * [External peering over a connection originating from an MCLAG switch can fail](#external-peering-over-a-connection-originating-from-an-mclag-switch-can-fail)
+
+The following are limitations affecting older versions of the Fabric:
+
 * [MCLAG leaf with no surviving spine connection will blackhole traffic](#mclag-leaf-with-no-surviving-spine-connection-will-blackhole-traffic)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
@@ -96,6 +99,8 @@ No connectivity from the workload server(s) in the VPC towards the prefix routed
 
 Connect your externals to non-MCLAG switches instead.
 
+## Known limitations of older versions of Fabric
+
 ### MCLAG leaf with no surviving spine connection will blackhole traffic
 
 When a leaf switch in an MCLAG pair loses all of its uplink connections to the spines and the
@@ -112,3 +117,7 @@ from the affected leaf towards the spines are down.
 #### Known workarounds
 
 None.
+
+#### Last affected Fabric version
+
+The last affected version is `v25.01`.
