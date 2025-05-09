@@ -52,7 +52,7 @@ spec:
     - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets can communicate to each other
     - [subnet-4, subnet-5] # Possible to define multiple lists
 
-  staticRoutes: # Optional, static routes to be added to the VPC
+  staticRoutes: # Optional, static routes to be added to the VPC. Will not be exported when peering
     - prefix: 10.100.0.0/24 # Destination prefix
       nextHops: # Next hop IP addresses
         - 10.200.0.0
@@ -109,7 +109,9 @@ A VPCPeering enables VPC-to-VPC connectivity. There are two types of VPC peering
 * Local: peering is implemented on the same switches where VPCs are attached
 * Remote: peering is implemented on the border/mixed leaves defined by the `SwitchGroup` object
 
-VPC peering is only possible between VPCs attached to the same IPv4 namespace (see [IPv4Namespace](#ipv4namespace))
+VPC peering is only possible between VPCs attached to the same IPv4 namespace (see [IPv4Namespace](#ipv4namespace)).
+
+Note that static routes defined within a VPC will not be exported to other VPC peers.
 
 ### Local VPC peering
 
