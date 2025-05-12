@@ -1228,13 +1228,13 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2501" class="md-nav__link">
+  <a href="#2502" class="md-nav__link">
     <span class="md-ellipsis">
-      25.01
+      25.02
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="25.01">
+    <nav class="md-nav" aria-label="25.02">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1256,7 +1256,58 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#software-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2501" class="md-nav__link">
+    <span class="md-ellipsis">
+      25.01
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25.01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#highlights_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Highlights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-versions_1" class="md-nav__link">
     <span class="md-ellipsis">
       Software versions
     </span>
@@ -1298,7 +1349,7 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-versions_1" class="md-nav__link">
+  <a href="#software-versions_2" class="md-nav__link">
     <span class="md-ellipsis">
       Software versions
     </span>
@@ -1552,13 +1603,13 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2501" class="md-nav__link">
+  <a href="#2502" class="md-nav__link">
     <span class="md-ellipsis">
-      25.01
+      25.02
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="25.01">
+    <nav class="md-nav" aria-label="25.02">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1580,7 +1631,58 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#software-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2501" class="md-nav__link">
+    <span class="md-ellipsis">
+      25.01
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25.01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#highlights_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Highlights
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-versions_1" class="md-nav__link">
     <span class="md-ellipsis">
       Software versions
     </span>
@@ -1622,7 +1724,7 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-versions_1" class="md-nav__link">
+  <a href="#software-versions_2" class="md-nav__link">
     <span class="md-ellipsis">
       Software versions
     </span>
@@ -1784,8 +1886,46 @@ You're not viewing the latest version.
 <p>Please consult <a href="../known-limitations/known-limitations/">this page</a> for a list of current limitations
 of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.</p>
 </div>
-<h2 id="2501">25.01</h2>
+<h2 id="2502">25.02</h2>
 <h3 id="highlights">Highlights</h3>
+<ul>
+<li>Celestica DS5000 support as a spine and limited leaf<ul>
+<li>Limited leaf means that <a href="../install-upgrade/build-wiring/#local-vpc-peering">local peering</a> is not supported and
+  externals could only be attached without VLANs due to the lack of subinterfaces support</li>
+</ul>
+</li>
+<li>MCLAG link state tracking is now enabled (shutdown server-facing MCLAG port channels if no spine uplinks are up)</li>
+</ul>
+<h3 id="tools">Tools</h3>
+<ul>
+<li>(Experimental) support dump could be created by running <code>kubectl hhfab support dump</code><ul>
+<li>Note: As this is an experimental feature, it may be unstable or subject to change in future releases</li>
+<li>It includes all regularly requested data from the K8s API, controller logs, etc.</li>
+</ul>
+</li>
+<li><code>kubectl fabric switch ssh</code> now accepts <code>--run</code> to pass command to run on the switch</li>
+<li>k9s now allows to use <code>l</code> (lowercase <code>L</code> shortcut) to open the switch agent logs (works for both switches and agents)</li>
+<li>SSH Agent Forwarding could be used to avoid typing the switch password each time for <code>kubectl fabric</code> or <code>k9s</code><ul>
+<li>For more details, see <a href="https://www.ssh.com/academy/ssh/agent">SSH Agent Forwarding documentation</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="other">Other</h3>
+<ul>
+<li>IPv4 and VLAN namespaces are now mutable</li>
+<li>MCLAG and ESLAG connections could be created with a single port</li>
+<li>Flatcar and K8s updates</li>
+</ul>
+<h3 id="software-versions">Software versions</h3>
+<ul>
+<li>fabricator/hhfab: v0.38.1</li>
+<li>fabric: v0.75.3</li>
+<li>broadcom sonic: 4.4.2</li>
+<li>flatcar: v4152.2.3</li>
+<li>k8s (k3s): v1.32.4-k3s1</li>
+</ul>
+<h2 id="2501">25.01</h2>
+<h3 id="highlights_1">Highlights</h3>
 <ul>
 <li>Broadcom SONiC 4.4.2 support (see <a href="../install-upgrade/upgrade/#upgrade-sonic">upgrade
   SONiC</a>) for instructions</li>
@@ -1795,7 +1935,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <li>User can choose to enable all switch ports by default by setting <code>enableAllPorts</code> to <code>true</code> on the Switch object</li>
 <li>Control node OS (Flatcar) and K8s are now automatically upgraded</li>
 </ul>
-<h3 id="tools">Tools</h3>
+<h3 id="tools_1">Tools</h3>
 <ul>
 <li><code>kubectl fabric inspect</code> now supports LLDP and BGP neighbors inspection<ul>
 <li>it shows expected and actual values observed on a switches</li>
@@ -1806,7 +1946,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <li><code>kubectl fabric switch reinstall</code> now handles ONIE grub as well and reboots switch into ONIE NOS Install mode</li>
 <li><code>hhfab diagram</code> can now generate Draw.io, Graphviz (dot) and Mermaid diagrams</li>
 </ul>
-<h3 id="software-versions">Software versions</h3>
+<h3 id="software-versions_1">Software versions</h3>
 <ul>
 <li>fabricator/hhfab: v0.36.1</li>
 <li>fabric: v0.71.6</li>
@@ -1826,7 +1966,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <li>CLI for exporting Fabricator configs</li>
 <li>Automated update mechanism from B1 release, including airgap support</li>
 </ul>
-<h3 id="software-versions_1">Software versions</h3>
+<h3 id="software-versions_2">Software versions</h3>
 <ul>
 <li>fabricator/hhfab: v0.32.1</li>
 <li>fabric: v0.58.0</li>
@@ -2214,7 +2354,7 @@ and managed by the Fabric</p>
 <li>Max <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopbacks per switch: 500</li>
 <li>[ <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback workarounds per switch are needed for local peering when both VPCs are attached to the switch or for external peering with <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attached on the same switch that is peering with external ]</li>
 </ul>
-<h3 id="software-versions_2">Software versions</h3>
+<h3 id="software-versions_3">Software versions</h3>
 <ul>
 <li>Fabric: v0.23.0</li>
 <li>Das-boot: v0.11.4</li>
@@ -2368,7 +2508,7 @@ and managed by the Fabric</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 12, 2025</span>
   </span>
 
     
