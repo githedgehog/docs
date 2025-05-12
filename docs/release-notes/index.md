@@ -4,6 +4,39 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
 
+## 25.02
+
+### Highlights
+
+- Celestica DS5000 support as a spine and limited leaf
+    - Limited leaf means that [local peering](../install-upgrade/build-wiring/#local-vpc-peering) is not supported and
+      externals could only be attached without VLANs due to the lack of subinterfaces support
+- MCLAG link state tracking is now enabled (shutdown server-facing MCLAG port channels if no spine uplinks are up)
+
+### Tools
+
+- (Experimental) support dump could be created by running `kubectl hhfab support dump`
+    - Note: As this is an experimental feature, it may be unstable or subject to change in future releases
+    - It includes all regularly requested data from the K8s API, controller logs, etc.
+- `kubectl fabric switch ssh` now accepts `--run` to pass command to run on the switch
+- k9s now allows to use `l` (lowercase `L` shortcut) to open the switch agent logs (works for both switches and agents)
+- SSH Agent Forwarding could be used to avoid typing the switch password each time for `kubectl fabric` or `k9s`
+    - For more details, see [SSH Agent Forwarding documentation](https://www.ssh.com/academy/ssh/agent)
+
+### Other
+
+- IPv4 and VLAN namespaces are now mutable
+- MCLAG and ESLAG connections could be created with a single port
+- Flatcar and K8s updates
+
+### Software versions
+
+- fabricator/hhfab: v0.38.1
+- fabric: v0.75.3
+- broadcom sonic: 4.4.2
+- flatcar: v4152.2.3
+- k8s (k3s): v1.32.4-k3s1
+
 ## 25.01
 
 ### Highlights
