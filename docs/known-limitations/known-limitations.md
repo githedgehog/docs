@@ -104,6 +104,9 @@ EVPN routes. This leads to blackholing of traffic for endpoints connected to the
 isolated leaf, as the rest of the fabric no longer has reachability information for
 those endpoints, even though the MCLAG peering session is up.
 
+!!! note
+    This issue is fixed in release 25.02.
+
 #### Diagnosing this issue
 
 Traffic destined for endpoints connected to the leaf is blackholed. All BGP sessions
