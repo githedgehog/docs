@@ -140,10 +140,10 @@ API](https://prometheus.io/docs/specs/prw/remote_write_spec/) and Loki API. Metr
 errors, operational status, transceivers, fans, power supplies, temperature
 sensors, BGP neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
 logs. Modify the URL as needed, instead of `/api/v1/push` it could be
-`/api/v1/write` check the documentation for the data provider.
+`/api/v1/write`; check the documentation for the data provider.
 
 Switches push telemetry data through a proxy running in a pod on the control
-node. Switches to not have direct access to the internet. Configure the control node to be able to reach and resolve the location
+node. Switches do not have direct access to the Internet. Configure the control node to be able to reach and resolve the location
 of the Prometheus and Loki servers.
 
 Telemetry can be enabled after installation of the fabric. Open the following
