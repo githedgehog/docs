@@ -3,7 +3,7 @@
 The `fab.yaml` file is the configuration file for the fabric. It supplies
 the configuration of the users, their credentials, logging, telemetry, and 
 other non wiring related settings. The `fab.yaml` file is composed of multiple 
-YAML documents inside of a single file. Per the YAML spec 3 hyphens (`---`) on 
+YAML objects inside of a single file. Per the YAML spec 3 hyphens (`---`) on 
 a single line separate the end of one object from the beginning of the next. 
 There are two YAML objects in the `fab.yaml` file. For more information about 
 how to use `hhfab init`, run `hhfab init --help`.
@@ -118,7 +118,7 @@ file emitted by `hhfab init`.  The default username on the control node is
 There are two users on the switches, `admin` and `operator`. The `operator` user has
 read-only access to `sonic-cli` command on the switches. The `admin` user has
 broad administrative power on the switch. 
-In order to avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
+To avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
 ### NTP and DHCP
 The control node uses public NTP servers from Cloudflare and Google by default.
@@ -138,7 +138,13 @@ Alloy](https://grafana.com/docs/alloy/latest/) on all switches to forward metric
 [Prometheus Remote-Write
 API](https://prometheus.io/docs/specs/prw/remote_write_spec/) and Loki API. Metrics includes port speeds, counters, 
 errors, operational status, transceivers, fans, power supplies, temperature
-sensors, BGP neighbors, LLDP neighbors, and more. Logs include Hedgehog agent logs.
+sensors, BGP neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
+logs. Modify the URL as needed, instead of `/api/v1/push` it could be
+`/api/v1/write` check the documentation for the data provider.
+
+Switches push telemetry data through a proxy running in a pod on the control
+node. Switches to not have direct access to the internet. Configure the control node to be able to reach and resolve the location
+of the Prometheus and Loki servers.
 
 Telemetry can be enabled after installation of the fabric. Open the following
 YAML file in an editor on the control node. Modify the fields as needed. Logs
@@ -161,6 +167,7 @@ spec:
               labels: # labels to be added to all logs
                   env: env-1
               url: https://logs-prod-021.grafana.net/loki/api/v1/push
+              useControlProxy: true
         prometheusTargets:
           grafana_cloud: # target name, multiple targets can be configured
               basicAuth: # optional
@@ -170,6 +177,7 @@ spec:
                   env: env-1
               sendIntervalSeconds: 120
               url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
+              useControlProxy: true
         unixExporterCollectors: # list of node-exporter collectors to enable, https://grafana.com/docs/alloy/latest/reference/components/prometheus.exporter.unix/#collectors-list
         - cpu
         - filesystem
