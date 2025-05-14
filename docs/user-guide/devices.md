@@ -35,7 +35,7 @@ spec:
   portSpeeds: # Configures port speeds for the switch, see the SwitchProfile for available options
     E1/1: 25G
   protocolIP: 172.30.11.100/32 # Used as BGP router ID
-  role: server-leaf # Role of the switch, one of server-leaf, border-leaf and mixed-leaf
+  role: server-leaf # Role of the switch, one of: spine, server-leaf, border-leaf or mixed-leaf
   vlanNamespaces: # Defines which VLANs could be used to attach servers
   - default
   vtepIP: 172.30.12.100/32
