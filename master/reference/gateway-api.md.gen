@@ -35,6 +35,39 @@ Gateway is the Schema for the gateways API.
 | `status` _[GatewayStatus](#gatewaystatus)_ |  |  |  |
 
 
+#### GatewayBGPNeighbor
+
+
+
+GatewayBGPNeighbor defines the configuration for a BGP neighbor
+
+
+
+_Appears in:_
+- [GatewaySpec](#gatewayspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `ip` _string_ | IP is the IP address of the BGP neighbor |  |  |
+| `asn` _integer_ | ASN is the remote ASN of the BGP neighbor |  |  |
+
+
+#### GatewayInterface
+
+
+
+GatewayInterface defines the configuration for a gateway interface
+
+
+
+_Appears in:_
+- [GatewaySpec](#gatewayspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `ip` _string_ | IP is the IP address to assign to the interface |  |  |
+
+
 #### GatewaySpec
 
 
@@ -45,7 +78,14 @@ GatewaySpec defines the desired state of Gateway.
 
 _Appears in:_
 - [Gateway](#gateway)
+- [GatewayAgentSpec](#gatewayagentspec)
 
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `protocolIP` _string_ | ProtocolIP is used as a loopback IP and BGP Router ID |  |  |
+| `asn` _integer_ | ASN is the ASN of the gateway |  |  |
+| `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
+| `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
 
 
 #### GatewayStatus
@@ -324,6 +364,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
+| `gateway` _[GatewaySpec](#gatewayspec)_ |  |  |  |
 | `vpcs` _object (keys:string, values:[VPCInfoData](#vpcinfodata))_ |  |  |  |
 | `peerings` _object (keys:string, values:[PeeringSpec](#peeringspec))_ |  |  |  |
 
