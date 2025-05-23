@@ -9,7 +9,7 @@ nav:
   - Reference: reference
   - Architecture: architecture
   - Troubleshooting: troubleshooting
-  - Known Issues: known-issues
+  - Known Limitations: known-limitations
   - FAQ: faq
   - ...
   - release-notes
