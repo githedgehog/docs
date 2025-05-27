@@ -1,5 +1,7 @@
 # Overview
 
+This section provides an architectural understanding of Hedgehog Open Network Fabric, explaining its components and their relationships.
+
 Hedgehog Open Network Fabric leverages the Kubernetes API to manage its resources. All user-facing APIs are exposed as Kubernetes Custom Resources Definitions (CRDs), allowing users to manage Fabric resources using standard Kubernetes tools.
 
 To make network switches Kubernetes-aware, the Fabric employs an **Agent** running on each switch. This agent acts as an interface  between the Kubernetes control plane and the switch internal network configuration mechanisms. It continuously syncs desired state from Kubernetes via the Fabric Controller and applies configurations using **gNMI** (gRPC Network Management Interface).
