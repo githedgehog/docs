@@ -42,18 +42,18 @@ FC -->|Watches CRs| K8S
 
 ---
 
-## **Management Workflow Overview**
+## Management Workflow Overview
 
-### **User**
+### User
 - **Creates Fabric CR YAMLs** and applies them through standard Kubernetes resource management.
 - **Uses [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) and `kubectl fabric`** to interact with the Kubernetes API for fabric resource management.
     - Can use their **own `kubectl` installation** or the one pre-installed on the control node as part of [k3s](https://k3s.io).
 
-### **Kubernetes API Server (K8S)**
+### Kubernetes API Server (K8S)
 - Part of [Kubernetes](https://kubernetes.io).
 - Manages Fabric Custom Resources (CRs) and interacts with the **Fabric Controller**.
 
-### **kubectl & kubectl fabric**
+### kubectl & kubectl fabric
 - [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is the standard CLI tool for [Kubernetes](https://kubernetes.io).
 - `kubectl fabric` is a plugin that extends `kubectl` with fabric-specific commands and interacts with the Kubernetes API Server. It supports the following commands:
     - **vpc** – Manage VPCs: create, attach, peer, or wipe all related resources
@@ -71,10 +71,10 @@ FC -->|Watches CRs| K8S
         - `ip`, `mac` – Lookup usage across the fabric
         - `access` – Check reachability between VPCs, servers, and IPs
 
-### **Fabricator**
+### Fabricator
 - Using the **hhfab** CLI you can **SSH** the control node and use **K9s** or **kubectl** and **kubectl fabric** to manage or monitor Fabric API objects.
 
-### **K9s**
+### K9s
 - K9s is a terminal based Kubernetes UI that provides visibility and control over Kubernetes resources, allowing you to manage pods, nodes, services, logs, and Fabric resources efficiently. It includes some helper plugins:
     - **SSH** – SSH into a fabric switch
     - **Serial** – Open a serial connection to a fabric switch
@@ -84,7 +84,7 @@ FC -->|Watches CRs| K8S
 
 ---
 
-## **GitOps Integration**
+## GitOps Integration
 
 GitOps is a continuous deployment approach where the desired state of a Kubernetes cluster is stored in Git. A GitOps controller monitors this repository and ensures the actual cluster state matches the declared state, using the Kubernetes API.
 
