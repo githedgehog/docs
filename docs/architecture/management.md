@@ -4,7 +4,7 @@ This section focuses on operational aspects of Hedgehog Fabric, explaining avail
 
 The installation of a Hedgehog Fabric deployment is carried out using Fabricator (hhfab CLI). Once deployed, ongoing operations are managed via the [Kubernetes](https://kubernetes.io) CLI, [`kubectl`](https://kubernetes.io/docs/reference/kubectl/).
 
-In this workflow, the Kubernetes API Server processes the Fabric Custom Resources (CRs) and forwards them to the Fabric Controller. The Fabric Controller then translates these high-level network intents into concrete network configurations and manages their application to the underlying infrastructure. The Controller continuously monitors the state of the network resources, ensuring they match the desired state defined in the CRs.
+In this workflow, the Kubernetes API Server stores and serves the Fabric Custom Resources (CRs), which define high-level network intents. The Fabric Controller watches the API for changes to these CRs, translates them into concrete network configurations, and applies them to the underlying infrastructure. The Controller continuously monitors the actual state of the network resources to ensure they match the desired state defined in the CRs.
 
 In this workflow, the user interacts with the Kubernetes API Server by creating or modifying Fabric Custom Resources (CRs). The Fabric Controller watches the Kubernetes API for changes to these CRs. Upon detecting a change, the Controller translates the high-level network intent into concrete configurations and applies them to the fabric switches.
 
