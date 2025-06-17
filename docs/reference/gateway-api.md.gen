@@ -48,6 +48,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
+| `source` _string_ | Source is the source interface for the BGP neighbor configuration |  |  |
 | `ip` _string_ | IP is the IP address of the BGP neighbor |  |  |
 | `asn` _integer_ | ASN is the remote ASN of the BGP neighbor |  |  |
 
@@ -65,7 +66,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `ip` _string_ | IP is the IP address to assign to the interface |  |  |
+| `ips` _string array_ | IPs is the list of IP address to assign to the interface |  |  |
 
 
 #### GatewaySpec
@@ -84,6 +85,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `protocolIP` _string_ | ProtocolIP is used as a loopback IP and BGP Router ID |  |  |
 | `vtepIP` _string_ | VTEP IP to be used by the gateway |  |  |
+| `vtepMAC` _string_ | VTEP MAC address to be used by the gateway |  |  |
 | `asn` _integer_ | ASN is the ASN of the gateway |  |  |
 | `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
 | `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
