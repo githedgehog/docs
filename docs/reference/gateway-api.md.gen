@@ -67,6 +67,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `ips` _string array_ | IPs is the list of IP address to assign to the interface |  |  |
+| `mtu` _integer_ | MTU for the interface |  |  |
 
 
 #### GatewaySpec
