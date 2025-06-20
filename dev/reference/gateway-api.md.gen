@@ -88,6 +88,7 @@ _Appears in:_
 | `vtepIP` _string_ | VTEP IP to be used by the gateway |  |  |
 | `vtepMAC` _string_ | VTEP MAC address to be used by the gateway |  |  |
 | `asn` _integer_ | ASN is the ASN of the gateway |  |  |
+| `vtepMTU` _integer_ | VTEPMTU is the MTU for the VTEP interface |  |  |
 | `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
 | `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
 
