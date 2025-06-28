@@ -206,6 +206,7 @@ _Appears in:_
 | `bgpNeighbors` _object (keys:string, values:[map[string]SwitchStateBGPNeighbor](#map[string]switchstatebgpneighbor))_ | State of all BGP neighbors (VRF -> neighbor address -> state) |  |  |
 | `platform` _[SwitchStatePlatform](#switchstateplatform)_ | State of the switch platform (fans, PSUs, sensors) |  |  |
 | `criticalResources` _[SwitchStateCRM](#switchstatecrm)_ | State of the critical resources (ACLs, routes, etc.) |  |  |
+| `roce` _boolean_ | State of the roce configuration |  |  |
 
 
 #### SwitchStateBGPNeighbor
@@ -634,6 +635,23 @@ _Appears in:_
 | `hostname` _string_ | Hostname from DHCP request |  |  |
 
 
+#### DHCPRoute
+
+
+
+
+
+
+
+_Appears in:_
+- [DHCPSubnetSpec](#dhcpsubnetspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `destination` _string_ | Destination is the destination prefix for the route |  |  |
+| `gateway` _string_ | Gateway is the gateway IP address for the route |  |  |
+
+
 #### DHCPSubnet
 
 
@@ -681,6 +699,9 @@ _Appears in:_
 | `timeServers` _string array_ | TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  |  |
 | `interfaceMTU` _integer_ | InterfaceMTU (optional) is the MTU setting that the dhcp server will send to the clients. It is dependent on the client to honor this option. |  |  |
 | `defaultURL` _string_ | DefaultURL (optional) is the option 114 "default-url" to be sent to the clients |  |  |
+| `l3Mode` _boolean_ | L3 mode is used to indicate that this subnet is for a VPC in L3 mode meaning that /32 should be advertised to the clients |  |  |
+| `disableDefaultRoute` _boolean_ | Disable default route advertisement in DHCP |  |  |
+| `advertisedRoutes` _[DHCPRoute](#dhcproute) array_ | AdvertisedRoutes (optional) is a list of custom routes to advertise in DHCP |  |  |
 
 
 #### DHCPSubnetStatus
@@ -1126,6 +1147,8 @@ _Appears in:_
 | `timeServers` _string array_ | TimeServers (optional) NTP server addresses to configure for time servers for this particular segment such as: 10.10.10.1, 10.10.10.2 |  | Optional: \{\} <br /> |
 | `interfaceMTU` _integer_ | InterfaceMTU (optional) is the MTU setting that the dhcp server will send to the clients. It is dependent on the client to honor this option. |  |  |
 | `leaseTimeSeconds` _integer_ | Lease time in seconds, such as 3600 |  |  |
+| `disableDefaultRoute` _boolean_ | Disable default route advertisement. For L3VNI VPCs, a classless static route to the VPC subnet<br />will be advertised if this option is enabled. |  |  |
+| `advertisedRoutes` _[VPCDHCPRoute](#vpcdhcproute) array_ | Advertise custom routes to the clients via the classless static route option. If non-empty,<br />and unless the disable default route flag is enabled, a default route via the VPC gateway<br />will be added automatically. |  | Optional: \{\} <br /> |
 
 
 #### VPCDHCPRange
@@ -1143,6 +1166,41 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `start` _string_ | Start is the start IP address of the DHCP range |  |  |
 | `end` _string_ | End is the end IP address of the DHCP range |  |  |
+
+
+#### VPCDHCPRoute
+
+
+
+
+
+
+
+_Appears in:_
+- [VPCDHCPOptions](#vpcdhcpoptions)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `destination` _string_ | Destination is the destination prefix for the route |  |  |
+| `gateway` _string_ | Gateway is the gateway IP address for the route |  |  |
+
+
+#### VPCMode
+
+_Underlying type:_ _string_
+
+VPCMode defines how VPCs are implemented on the switches
+
+
+
+_Appears in:_
+- [VPCSpec](#vpcspec)
+
+| Field | Description |
+| --- | --- |
+| `` | L2VNI: L2VPN EVPN with VRF per VPC and L2VNI per VPC subnet<br /> |
+| `l3vni` | L3VNI: L2VPN EVPN with VRF per VPC and only L3VNI per VPC, hosts should have /32 IP addresses in the VPC subnets<br /> |
+| `l3flat` | (EXPERIMENTAL) L3Flat: All VPCs are configured within default VRF and ACLs are used for isolation and VPC peerings, hosts should have /32 IP addresses in the VPC subnets<br /> |
 
 
 #### VPCPeer
@@ -1231,6 +1289,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
+| `mode` _[VPCMode](#vpcmode)_ | Mode is the VPC mode that defines how the VPCs are configured on the switches |  |  |
 | `subnets` _object (keys:string, values:[VPCSubnet](#vpcsubnet))_ | Subnets is the list of VPC subnets to configure |  |  |
 | `ipv4Namespace` _string_ | IPv4Namespace is the name of the IPv4Namespace this VPC belongs to (if not specified, "default" is used) |  |  |
 | `vlanNamespace` _string_ | VLANNamespace is the name of the VLANNamespace this VPC belongs to (if not specified, "default" is used) |  |  |
@@ -1902,8 +1961,12 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `subinterfaces` _boolean_ | Subinterfaces defines if switch supports subinterfaces |  |  |
-| `vxlan` _boolean_ | VXLAN defines if switch supports VXLANs |  |  |
 | `acls` _boolean_ | ACLs defines if switch supports ACLs |  |  |
+| `l2vni` _boolean_ | L2VNI defines if switch supports L2 VNIs |  |  |
+| `l3vni` _boolean_ | L3VNI defines if switch supports L3 VNIs |  |  |
+| `roce` _boolean_ | RoCE defines if switch supports RoCEv2 over VXLAN and related features used by the fabric |  |  |
+| `mclag` _boolean_ | MCLAG defines if switch supports MCLAG (with VXLAN) |  |  |
+| `eslag` _boolean_ | ESLAG defines if switch supports ESLAG (ESI multi-homing) |  |  |
 
 
 #### SwitchProfilePort
@@ -2034,6 +2097,7 @@ _Appears in:_
 | `otherNames` _string array_ | OtherNames defines alternative names for the switch |  |  |
 | `switchSilicon` _string_ | SwitchSilicon defines the switch silicon name |  |  |
 | `features` _[SwitchProfileFeatures](#switchprofilefeatures)_ | Features defines the features supported by the switch |  |  |
+| `notes` _string_ | Notes is a free-form field for any additional information about the switch |  |  |
 | `config` _[SwitchProfileConfig](#switchprofileconfig)_ | Config defines the switch-specific configuration options |  |  |
 | `ports` _object (keys:string, values:[SwitchProfilePort](#switchprofileport))_ | Ports defines the switch port configuration |  |  |
 | `portGroups` _object (keys:string, values:[SwitchProfilePortGroup](#switchprofileportgroup))_ | PortGroups defines the switch port group configuration |  |  |
@@ -2125,6 +2189,7 @@ _Appears in:_
 | `portAutoNegs` _object (keys:string, values:boolean)_ | PortAutoNegs is a map of port auto negotiation, key is the port name, value is true or false |  |  |
 | `boot` _[SwitchBoot](#switchboot)_ | Boot is the boot/provisioning information of the switch |  |  |
 | `enableAllPorts` _boolean_ | EnableAllPorts is a flag to enable all ports on the switch regardless of them being used or not |  |  |
+| `roce` _boolean_ | RoCE is a flag to enable RoCEv2 support on the switch which includes lossless queues and QoS configuration |  |  |
 
 
 #### SwitchStatus

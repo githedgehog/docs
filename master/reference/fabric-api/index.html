@@ -1252,6 +1252,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#dhcproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dhcpsubnet" class="md-nav__link">
     <span class="md-ellipsis">
       DHCPSubnet
@@ -1528,6 +1537,24 @@ You're not viewing the latest version.
   <a href="#vpcdhcprange" class="md-nav__link">
     <span class="md-ellipsis">
       VPCDHCPRange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCDHCPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCMode
     </span>
   </a>
   
@@ -2776,6 +2803,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#dhcproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dhcpsubnet" class="md-nav__link">
     <span class="md-ellipsis">
       DHCPSubnet
@@ -3052,6 +3088,24 @@ You're not viewing the latest version.
   <a href="#vpcdhcprange" class="md-nav__link">
     <span class="md-ellipsis">
       VPCDHCPRange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCDHCPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCMode
     </span>
   </a>
   
@@ -4053,6 +4107,12 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <tr>
 <td><code>criticalResources</code> <em><a href="#switchstatecrm">SwitchStateCRM</a></em></td>
 <td>State of the critical resources (ACLs, routes, etc.)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>roce</code> <em>boolean</em></td>
+<td>State of the roce configuration</td>
 <td></td>
 <td></td>
 </tr>
@@ -5202,6 +5262,33 @@ end user through API. Not intended to be modified by the user.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="dhcproute">DHCPRoute</h4>
+<p><em>Appears in:</em>
+- <a href="#dhcpsubnetspec">DHCPSubnetSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>destination</code> <em>string</em></td>
+<td>Destination is the destination prefix for the route</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gateway</code> <em>string</em></td>
+<td>Gateway is the gateway IP address for the route</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="dhcpsubnet">DHCPSubnet</h4>
 <p>DHCPSubnet is the configuration (spec) for the Hedgehog DHCP server and storage for the leases (status). It's
 primary internal API group, but it makes allocated IPs / leases information available to the end user through API.
@@ -5337,6 +5424,24 @@ Not intended to be modified by the user.</p>
 <tr>
 <td><code>defaultURL</code> <em>string</em></td>
 <td>DefaultURL (optional) is the option 114 "default-url" to be sent to the clients</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>l3Mode</code> <em>boolean</em></td>
+<td>L3 mode is used to indicate that this subnet is for a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> in L3 mode meaning that /32 should be advertised to the clients</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disableDefaultRoute</code> <em>boolean</em></td>
+<td>Disable default route advertisement in DHCP</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>advertisedRoutes</code> <em><a href="#dhcproute">DHCPRoute</a> array</em></td>
+<td>AdvertisedRoutes (optional) is a list of custom routes to advertise in DHCP</td>
 <td></td>
 <td></td>
 </tr>
@@ -6065,6 +6170,18 @@ resources with support for multiple subnets each with user-provided VLANs and on
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>disableDefaultRoute</code> <em>boolean</em></td>
+<td>Disable default route advertisement. For L3VNI VPCs, a classless static route to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet<br />will be advertised if this option is enabled.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>advertisedRoutes</code> <em><a href="#vpcdhcproute">VPCDHCPRoute</a> array</em></td>
+<td>Advertise custom routes to the clients via the classless static route option. If non-empty,<br />and unless the disable default route flag is enabled, a default route via the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> gateway<br />will be added automatically.</td>
+<td></td>
+<td>Optional: {} <br /></td>
+</tr>
 </tbody>
 </table>
 <h4 id="vpcdhcprange">VPCDHCPRange</h4>
@@ -6092,6 +6209,60 @@ resources with support for multiple subnets each with user-provided VLANs and on
 <td>End is the end IP address of the DHCP range</td>
 <td></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcdhcproute">VPCDHCPRoute</h4>
+<p><em>Appears in:</em>
+- <a href="#vpcdhcpoptions">VPCDHCPOptions</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>destination</code> <em>string</em></td>
+<td>Destination is the destination prefix for the route</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gateway</code> <em>string</em></td>
+<td>Gateway is the gateway IP address for the route</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcmode">VPCMode</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p>VPCMode defines how VPCs are implemented on the switches</p>
+<p><em>Appears in:</em>
+- <a href="#vpcspec">VPCSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>``</td>
+<td>L2VNI: L2VPN EVPN with VRF per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and L2VNI per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet<br /></td>
+</tr>
+<tr>
+<td><code>l3vni</code></td>
+<td>L3VNI: L2VPN EVPN with VRF per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and only L3VNI per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, hosts should have /32 IP addresses in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets<br /></td>
+</tr>
+<tr>
+<td><code>l3flat</code></td>
+<td>(EXPERIMENTAL) L3Flat: All VPCs are configured within default VRF and ACLs are used for isolation and <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings, hosts should have /32 IP addresses in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets<br /></td>
 </tr>
 </tbody>
 </table>
@@ -6213,6 +6384,12 @@ At least one subnet is required.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>mode</code> <em><a href="#vpcmode">VPCMode</a></em></td>
+<td>Mode is the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode that defines how the VPCs are configured on the switches</td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td><code>subnets</code> <em>object (keys:string, values:<a href="#vpcsubnet">VPCSubnet</a>)</em></td>
 <td>Subnets is the list of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets to configure</td>
@@ -7323,14 +7500,38 @@ in a single Connection object.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>vxlan</code> <em>boolean</em></td>
-<td>VXLAN defines if switch supports VXLANs</td>
+<td><code>acls</code> <em>boolean</em></td>
+<td>ACLs defines if switch supports ACLs</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>acls</code> <em>boolean</em></td>
-<td>ACLs defines if switch supports ACLs</td>
+<td><code>l2vni</code> <em>boolean</em></td>
+<td>L2VNI defines if switch supports L2 VNIs</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>l3vni</code> <em>boolean</em></td>
+<td>L3VNI defines if switch supports L3 VNIs</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>roce</code> <em>boolean</em></td>
+<td>RoCE defines if switch supports RoCEv2 over VXLAN and related features used by the fabric</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>mclag</code> <em>boolean</em></td>
+<td>MCLAG defines if switch supports MCLAG (with VXLAN)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>eslag</code> <em>boolean</em></td>
+<td>ESLAG defines if switch supports ESLAG (ESI multi-homing)</td>
 <td></td>
 <td></td>
 </tr>
@@ -7580,6 +7781,12 @@ Only one of Profile or Group can be set</p>
 <td></td>
 </tr>
 <tr>
+<td><code>notes</code> <em>string</em></td>
+<td>Notes is a free-form field for any additional information about the switch</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>config</code> <em><a href="#switchprofileconfig">SwitchProfileConfig</a></em></td>
 <td>Config defines the switch-specific configuration options</td>
 <td></td>
@@ -7793,6 +8000,12 @@ SwitchGroup objects.</p>
 <tr>
 <td><code>enableAllPorts</code> <em>boolean</em></td>
 <td>EnableAllPorts is a flag to enable all ports on the switch regardless of them being used or not</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>roce</code> <em>boolean</em></td>
+<td>RoCE is a flag to enable RoCEv2 support on the switch which includes lossless queues and QoS configuration</td>
 <td></td>
 <td></td>
 </tr>

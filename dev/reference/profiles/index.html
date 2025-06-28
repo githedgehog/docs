@@ -1618,7 +1618,7 @@ features and port naming scheme.</p>
 </tr>
 <tr>
 <td><a href="#celestica-ds5000">Celestica DS5000 (Moonstone)</a></td>
-<td><strong>spine</strong>, <strong>limited-leaf</strong></td>
+<td><strong>spine</strong>, <strong>leaf (l3-only)</strong></td>
 <td>Broadcom TH5</td>
 <td>64xOSFP-800G, 2xSFP28-25G</td>
 </tr>
@@ -1660,7 +1660,7 @@ features and port naming scheme.</p>
 </tr>
 <tr>
 <td><a href="#edgecore-eps203">Edgecore EPS203 (AS4630-54NPE)</a></td>
-<td><strong>limited-leaf</strong></td>
+<td><strong>leaf (limited)</strong></td>
 <td>Broadcom TD3-X3</td>
 <td>36xRJ45-2.5G, 12xRJ45-10G, 4xSFP28-25G, 2xQSFP28-100G</td>
 </tr>
@@ -1676,7 +1676,8 @@ features and port naming scheme.</p>
 <p class="admonition-title">Note</p>
 <ul>
 <li>Switches that support <strong>leaf</strong> role could be used for the collapsed-core topology as well</li>
-<li>Switches with <strong>limited-leaf</strong> role does not support some leaf features and are not supported in the
+<li>Switches with <strong>leaf (l3-only)</strong> role only support L3 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> modes</li>
+<li>Switches with <strong>leaf (limited)</strong> role does not support some leaf features and are not supported in the
   collapsed-core topology</li>
 </ul>
 </div>
@@ -1689,8 +1690,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -1989,8 +1994,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
-<li>VXLAN: false</li>
 <li>ACLs: true</li>
+<li>L2VNI: false</li>
+<li>L3VNI: false</li>
+<li>RoCE: true</li>
+<li>MCLAG: false</li>
+<li>ESLAG: false</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -2289,8 +2298,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
-<li>VXLAN: false</li>
 <li>ACLs: true</li>
+<li>L2VNI: false</li>
+<li>L3VNI: false</li>
+<li>RoCE: true</li>
+<li>MCLAG: false</li>
+<li>ESLAG: false</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -2591,14 +2604,19 @@ features and port naming scheme.</p>
 <h2 id="celestica-ds5000">Celestica DS5000</h2>
 <p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>celestica-ds5000</strong></p>
 <p>Other names: Celestica Moonstone</p>
-<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>limited-leaf</strong></p>
+<p><strong>Supported roles</strong>: <strong>spine</strong>, <strong>leaf (l3-only)</strong></p>
 <p>Switch Silicon: <strong>Broadcom TH5</strong></p>
 <p>Ports Summary: <strong>64xOSFP-800G, 2xSFP28-25G</strong></p>
+<p>Notes: Doesn't support non-L3 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> modes due to the lack of L2VNI support.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
-<li>Subinterfaces: false</li>
-<li>VXLAN: true</li>
+<li>Subinterfaces: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: false</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: false</li>
+<li>ESLAG: false</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -3160,8 +3178,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -3467,8 +3489,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -3950,8 +3976,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
-<li>VXLAN: false</li>
 <li>ACLs: true</li>
+<li>L2VNI: false</li>
+<li>L3VNI: false</li>
+<li>RoCE: true</li>
+<li>MCLAG: false</li>
+<li>ESLAG: false</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -4258,8 +4288,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -4758,8 +4792,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -5066,8 +5104,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
-<li>VXLAN: false</li>
 <li>ACLs: true</li>
+<li>L2VNI: false</li>
+<li>L3VNI: false</li>
+<li>RoCE: false</li>
+<li>MCLAG: false</li>
+<li>ESLAG: false</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -5352,14 +5394,19 @@ features and port naming scheme.</p>
 <h2 id="edgecore-eps203">Edgecore EPS203</h2>
 <p>Profile Name (to use in switch object <code>.spec.profile</code>): <strong>edgecore-eps203</strong></p>
 <p>Other names: Edgecore AS4630-54NPE</p>
-<p><strong>Supported roles</strong>: <strong>limited-leaf</strong></p>
+<p><strong>Supported roles</strong>: <strong>leaf (limited)</strong></p>
 <p>Switch Silicon: <strong>Broadcom TD3-X3</strong></p>
 <p>Ports Summary: <strong>36xRJ45-2.5G, 12xRJ45-10G, 4xSFP28-25G, 2xQSFP28-100G</strong></p>
+<p>Notes: Doesn't support StaticExternals and ExternalAttachments with VLANs due to the lack of subinterfaces support.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: false</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: false</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -5825,8 +5872,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: true</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -6125,8 +6176,12 @@ features and port naming scheme.</p>
 <p><strong>Supported features:</strong></p>
 <ul>
 <li>Subinterfaces: true</li>
-<li>VXLAN: true</li>
 <li>ACLs: false</li>
+<li>L2VNI: true</li>
+<li>L3VNI: true</li>
+<li>RoCE: true</li>
+<li>MCLAG: true</li>
+<li>ESLAG: true</li>
 </ul>
 <p><strong>Available Ports:</strong></p>
 <p>Label column is a port label on a physical switch.</p>
@@ -6558,7 +6613,7 @@ features and port naming scheme.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 15, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 28, 2025</span>
   </span>
 
     
