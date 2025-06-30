@@ -1915,6 +1915,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#switchecmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchECMP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#switchgroup" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchGroup
@@ -3460,6 +3469,15 @@ You're not viewing the latest version.
   <a href="#switchboot" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchBoot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchecmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchECMP
     </span>
   </a>
   
@@ -7361,6 +7379,28 @@ in a single Connection object.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="switchecmp">SwitchECMP</h4>
+<p>SwitchECMP is a struct that defines the ECMP configuration for the switch</p>
+<p><em>Appears in:</em>
+- <a href="#switchspec">SwitchSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>roceQPN</code> <em>boolean</em></td>
+<td>RoCEQPN is a flag to enable RoCE QPN hashing</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="switchgroup">SwitchGroup</h4>
 <p>SwitchGroup is the marker API object to group switches together, switch can belong to multiple groups</p>
 <table>
@@ -7532,6 +7572,12 @@ in a single Connection object.</p>
 <tr>
 <td><code>eslag</code> <em>boolean</em></td>
 <td>ESLAG defines if switch supports ESLAG (ESI multi-homing)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ecmpRoCEQPN</code> <em>boolean</em></td>
+<td>ECMPRoCEQPN defines if switch supports ECMP QPN hashing</td>
 <td></td>
 <td></td>
 </tr>
@@ -8012,6 +8058,12 @@ SwitchGroup objects.</p>
 <tr>
 <td><code>roce</code> <em>boolean</em></td>
 <td>RoCE is a flag to enable RoCEv2 support on the switch which includes lossless queues and QoS configuration</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ecmp</code> <em><a href="#switchecmp">SwitchECMP</a></em></td>
+<td>ECMP is the ECMP configuration for the switch</td>
 <td></td>
 <td></td>
 </tr>
