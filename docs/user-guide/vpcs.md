@@ -14,6 +14,7 @@ metadata:
 spec:
   ipv4Namespace: default # Limits which subnets can the VPC use to guarantee non-overlapping IPv4 ranges
   vlanNamespace: default # Limits which Vlan Ids can the VPC use to guarantee non-overlapping VLANs
+  mode: ""  # Empty string is the default meaning l2vni, other option is l3vni
 
   defaultIsolated: true # Sets default behavior for the current VPC subnets to be isolated
   defaultRestricted: true # Sets default behavior for the current VPC subnets to be restricted
@@ -197,3 +198,61 @@ spec:
   - from: 1000
     to: 2999
 ```
+
+## Mode
+
+VPCs can operate in two modes: L2VNI and L3VNI. L2VNI is the default mode of
+operation and represents the conventional functionality. L3VNI is designed
+for switches that lack the hardware support for L2VNI.
+
+### L2VNI Mode
+
+This is the conventional multi-tenant network virtualization mode. It is the
+default option for VPCs.
+
+
+### L3VNI Mode
+
+In L3VNI mode, the switches are configured to exclusively route unicast traffic.
+This enables multi-tenancy inside of a fabric, even with switches of mixed
+capabilities. The [DS5000](../reference/profiles.md#celestica-ds5000) is an
+L3-only leaf and VPCs attached to this switch must be in L3VNI mode. VPCs in
+L3VNI mode are not able to use switches configured for ESLAG.
+
+Without broadcast traffic, each end host needs to have a full /32 address for
+its address (e.g., `10.10.0.5/32`, not `10.10.0.5/24`). The host also
+needs to emit traffic containing its IP-to-MAC mapping before the network will be
+able to route traffic to it, as there is no MAC learning.
+
+The DHCP server included with the Fabric has been updated to support L3VNI
+mode. When a VPC is using the included DHCP server and is in L3VNI mode,
+the DHCP server will send a DHCP lease with a short duration, so that the DHCP client will immediately request a new
+lease. The DHCP renewal traffic allows the network to detect the host and redistribute the route via BGP. 
+Subsequent lease requests will use the configured lease duration.
+
+If a user elects to use their own DHCP server or statically assign IP addresses, it
+is recommended that the user set the following `sysctl` values on the end hosts:
+
+```console
+net.ipv4.conf.default.arp_notify=1
+net.ipv4.conf.default.arp_announce=1
+```
+
+#### Example Route Output
+
+If the fabric DHCP server is enabled and serving a default route:
+
+```console
+user@server ~$ ip route
+default via 10.10.0.1 dev enp2s1.1000 proto dhcp src 10.10.0.4 metric 1024
+10.10.0.1 dev enp2s1.1000 proto dhcp scope link src 10.10.0.4 metric 1024 # Route for VPC subnet gateway
+```
+If the fabric DHCP server is enabled and not serving a default route:
+
+```console
+user@server ~$ ip route
+10.10.0.1/24 via 10.10.0.1 dev enp2s1.1000 proto dhcp src 10.10.0.4 metric 1024 # Route for VPC subnet gateway
+10.10.0.1 dev enp2s1.1000 proto dhcp scope link src 10.10.0.4 metric 1024
+```
+
+

@@ -13,3 +13,9 @@
 *[RDMA]: Remote Direct Memory Access
 *[ECMP]: Equal-cost Multi-path Routing
 *[QPN]: Queue Pair Number
+*[VXLAN]: Virtual Extensible LAN, a tunneling protocol that enables network virtualization
+*[L2VNI]: Layer 2 virtual network identifier, part of VXLAN
+*[L3VNI]: Layer 3 virtual network identifier, part of VXLAN
+*[ASIC]: Application Specific Integrated Circuit, the heart of a network switch.
+*[DHCP]: Dynamic Host Configuration Protocol
+*[BGP]: Border Gateway Protocol
