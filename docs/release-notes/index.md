@@ -4,6 +4,37 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
 
+## 25.03
+
+### Highlights
+
+- RoCE v2 (RDMA over Converged Ethernet version 2) support
+    - Pre-configured lossless buffers with the corresponding QoS configuration including ECN (Explicit Congestion
+      Notification) and PFC (Priority Flow Control)
+    - ECMP RoCE QPN (Queue Pair Number) hashing support for even traffic distribution
+- Celestica DS5000 is now supported as a leaf while using L3VNI VPC mode (in addition to the full spine role support)
+- Loopback Workaround (VPCLoopback Connections) is no longer required for local peering
+
+### Other
+
+- Support for Broadcom SONiC 4.5.0 (see [upgrade SONiC](../install-upgrade/upgrade.md#upgrade-sonic)) for instructions
+- New L3VNI VPC mode that only uses L3VNI on the switches allowing TH5 switches to play the leaf role while fully
+  supporting multi-tenancy (VPCs) and external peering
+    - Regular (L2VNI) VPC mode requires support for both L2VNI and L3VNI on the switches
+- Included DHCP server is more configurable now
+    - It is now possible to disable the default route advertisement and to advertise custom routes
+    - The DHCP lease time is now configurable (default is 1 hour)
+- Interface queues and WRED ECN counters are now collected and available through the `inspect port` commands and
+  Prometheus integration
+
+### Software versions
+
+- fabricator/hhfab: v0.40.0
+- fabric: v0.81.1
+- broadcom sonic: 4.5.0
+- flatcar: v4152.2.3
+- k8s (k3s): v1.32.4-k3s1
+
 ## 25.02
 
 ### Highlights
