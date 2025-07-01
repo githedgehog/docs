@@ -652,6 +652,48 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#upgrades-removing-loopback-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrades removing loopback connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upgrades removing loopback connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fresh-installs-of-2503" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fresh installs of 25.03
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrades-to-2503" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrades to 25.03
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beyond-2503" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beyond 25.03
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgrades-from-beta-1-onwards" class="md-nav__link">
     <span class="md-ellipsis">
       Upgrades from Beta-1 onwards
@@ -1415,6 +1457,48 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#upgrades-removing-loopback-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrades removing loopback connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upgrades removing loopback connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fresh-installs-of-2503" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fresh installs of 25.03
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrades-to-2503" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrades to 25.03
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beyond-2503" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beyond 25.03
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgrades-from-beta-1-onwards" class="md-nav__link">
     <span class="md-ellipsis">
       Upgrades from Beta-1 onwards
@@ -1525,6 +1609,66 @@ You're not viewing the latest version.
 
 
 <h1 id="upgrade">Upgrade</h1>
+<h2 id="upgrades-removing-loopback-connections">Upgrades removing loopback connections</h2>
+<p>Starting with Fabric 25.03 and Broadcom SONiC 4.5.0, loopback connections are no longer
+required for local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering. A feature flag has been created to assist in a
+smooth removal process, <code>loopbackWorkaroundDisable</code>, which takes a boolean
+value.</p>
+<h3 id="fresh-installs-of-2503">Fresh installs of 25.03</h3>
+<p>Users in a greenfield environment installing version 25.03 of the Fabric will
+see that <code>hhfab init</code> will supply the needed option. For users who are
+generating configuration in another way ensure that
+<code>loopbackWorkaroundDisable: true</code> is inside <code>.spec.config.fabric</code> of the
+Fabricator object.</p>
+<h3 id="upgrades-to-2503">Upgrades to 25.03</h3>
+<p>For users upgrading to version 25.03 follow the steps:</p>
+<ol>
+<li>
+<p>Upgrade to 25.03 using steps from <a href="#upgrades-from-beta-1-onwards">previous
+   versions</a></p>
+</li>
+<li>
+<p>Ensure all switch agents are on v0.80.0 (or greater)</p>
+<ul>
+<li><code>kubectl get agents</code> to see the version</li>
+</ul>
+</li>
+<li>
+<p>Upgrade the switch operating systems to 4.5.0</p>
+<ul>
+<li>the switch reinstall feature of k9s is very useful for this purpose</li>
+</ul>
+</li>
+<li>
+<p>Confirm all the switches are up and running SONiC 4.5.0</p>
+<ul>
+<li><code>kubectl get agents -o wide</code>, look at the Software column</li>
+</ul>
+</li>
+<li>
+<p>Run the command to patch the fabricator object </p>
+<ul>
+<li><code>kubectl patch -n fab --type merge fabricator/default -p '{"spec":{"config":{"fabric":{"loopbackWorkaroundDisable":true}}}}'</code></li>
+</ul>
+</li>
+<li>
+<p>Ensure that all agents have converged:</p>
+<ul>
+<li><code>kubectl get agents -o wide</code>, ensure that columns <code>currentg</code> equals <code>appliedg</code></li>
+</ul>
+</li>
+<li>
+<p>Now the loopback connections can be removed from the logical wiring:</p>
+<ul>
+<li><code>kubectl get connections | grep loopback</code></li>
+<li><code>kubectl delete connections/leaf-03--vpc-loopback</code></li>
+</ul>
+</li>
+<li>Finally, unplug loopback cables as needed</li>
+</ol>
+<h3 id="beyond-2503">Beyond 25.03</h3>
+<p>Starting in 25.04 the presence of <code>loopbackWorkaroundDisable: true</code> will be required
+in order for updates to take place.</p>
 <h2 id="upgrades-from-beta-1-onwards">Upgrades from Beta-1 onwards</h2>
 <p>Starting with Beta-1 release and onwards, the upgrade process is more streamlined and fully automated. The control node
 is upgraded in place and the agents/switches is upgraded using the control node.</p>
@@ -1614,7 +1758,7 @@ and traffic will resume without user intervention. </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
   </span>
 
     

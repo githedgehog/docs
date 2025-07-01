@@ -1659,11 +1659,15 @@ ssh onto the switch (let's call it <code>s5248-01</code>) and do:</p>
 </span></code></pre></div>
 <h3 id="vpc-local-peering-can-cause-the-agent-to-fail-if-subinterfaces-are-not-supported-on-the-switch"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> local peering can cause the agent to fail if subinterfaces are not supported on the switch</h3>
 <p>As explained in the <a href="../../architecture/fabric/#vpc-peering">Architecture page</a>, to workaround
-limitations in SONiC, a peering between two VPCs (or a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and an <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>) which are both
+limitations in older versions of SONiC, a peering between two VPCs (or a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and an <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>) which are both
 attached to the peering switch is implemented over a pair of loopback interfaces.
 This workaround requires subinterface support on the switch where the peering is being
 instantiated. If the affected switch does not meet this requirement, the agent will fail
 to apply the desired configuration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting from Fabric version 25.03, the loopback workaround is no longer needed.</p>
+</div>
 <h4 id="diagnosing-this-issue_1">Diagnosing this issue</h4>
 <p>The applied generation of the affected agent reported by kubectl will not
 converge to the last desired generation. Additionally, the agent logs on the switch 
@@ -1672,7 +1676,8 @@ converge to the last desired generation. Additionally, the agent logs on the swi
 <p><code>time=2025-02-04T13:37:58.796Z level=ERROR msg=Failed err="failed to run agent: failed to process agent config from k8s: failed to process agent config loaded from k8s: failed to apply actions: GNMI set request failed: gnmi set request failed: rpc error: code = InvalidArgument desc = SubInterfaces are not supported"</code></p>
 </blockquote>
 <h4 id="known-workarounds_2">Known workarounds</h4>
-<p>Configure remote <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> instead of local peering in any instance where both
+<p>If possible, <a href="../../install-upgrade/upgrade/#upgrades-to-2503">upgrade to 25.03 and disable the loopback workaround</a>.
+Alternatively, configure remote <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> instead of local peering in any instance where both
 peering elements are locally attached and the target switch does not support subinterfaces.
 You can double-check whether your switch model meets this requirement by looking at the
 <a href="../../reference/profiles/">Switch Profiles Catalog</a> entry for it.</p>
@@ -1708,7 +1713,7 @@ be dropped with a Destination Unreachable error.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 9, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
   </span>
 
     
