@@ -26,8 +26,8 @@ The following packages needs to be installed: `qemu-kvm socat`. Docker is also r
 into the OCI registry.
 
 By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf. Optionally, you can
-choose to run the default Collapsed Core topology using flag `--fabric-mode collapsed-core` (or `-m collapsed-core`)
-which only consists of 2 switches.
+choose to run the default Collapsed Core topology (deprecated) using flag `--fabric-mode collapsed-core`
+(or `-m collapsed-core`) which only consists of 2 switches.
 
 You can calculate the system requirements based on the allocated resources to the VMs using the following table:
 

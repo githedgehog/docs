@@ -1,11 +1,11 @@
 # Fabric Configuration
 ## Overview
 The `fab.yaml` file is the configuration file for the fabric. It supplies
-the configuration of the users, their credentials, logging, telemetry, and 
-other non wiring related settings. The `fab.yaml` file is composed of multiple 
-YAML objects inside of a single file. Per the YAML spec 3 hyphens (`---`) on 
-a single line separate the end of one object from the beginning of the next. 
-There are two YAML objects in the `fab.yaml` file. For more information about 
+the configuration of the users, their credentials, logging, telemetry, and
+other non wiring related settings. The `fab.yaml` file is composed of multiple
+YAML objects inside of a single file. Per the YAML spec 3 hyphens (`---`) on
+a single line separate the end of one object from the beginning of the next.
+There are two YAML objects in the `fab.yaml` file. For more information about
 how to use `hhfab init`, run `hhfab init --help`.
 
 ## HHFAB workflow
@@ -35,7 +35,7 @@ The following example outlines a comprehensive Fabricator configuration. You
 can find further configuration details in the Fabricator [API
 Reference](../reference/fab-api.md).
 
-``` { .yaml .annotate title="fab.yaml" linenums="1"} 
+``` { .yaml .annotate title="fab.yaml" linenums="1"}
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: Fabricator
 metadata:
@@ -57,7 +57,7 @@ spec:
           - "ssh-ed25519 key..." # generate ssh key with ssh-keygen
 
     fabric:
-      mode: spine-leaf # "spine-leaf" or "collapsed-core"
+      mode: spine-leaf # "spine-leaf" or "collapsed-core" (deprecated)
       includeONIE: true
       defaultSwitchUsers:
         admin: # at least one user with name 'admin' and role 'admin'
@@ -109,15 +109,15 @@ spec:
 ### Configure Control Node and Switch Users
 
 #### Control Node Users
-Configuring control node and switch users is done either passing 
-`--default-password-hash` to `hhfab init` or editing the resulting `fab.yaml` 
+Configuring control node and switch users is done either passing
+`--default-password-hash` to `hhfab init` or editing the resulting `fab.yaml`
 file emitted by `hhfab init`.  The default username on the control node is
 `core`.
 
 #### Switch Users
 There are two users on the switches, `admin` and `operator`. The `operator` user has
 read-only access to `sonic-cli` command on the switches. The `admin` user has
-broad administrative power on the switch. 
+broad administrative power on the switch.
 To avoid conflicts, do not use the following usernames: `operator`,`hhagent`,`netops`.
 
 ### NTP and DHCP
@@ -126,9 +126,9 @@ The control node runs a DHCP server on the management network. See the [example
 file](#complete-example-file).
 
 ### Control Node
-The control node is the host that manages all the switches, runs k3s, and serves images. 
-The **management** interface is for the control node to manage the fabric 
-switches, *not* end-user management of the control node. For end-user 
+The control node is the host that manages all the switches, runs k3s, and serves images.
+The **management** interface is for the control node to manage the fabric
+switches, *not* end-user management of the control node. For end-user
 management of the control node specify the **external** interface name.
 
 ### Telemetry
@@ -136,7 +136,7 @@ management of the control node specify the **external** interface name.
 There is an option to enable [Grafana
 Alloy](https://grafana.com/docs/alloy/latest/) on all switches to forward metrics and logs to the configured targets using
 [Prometheus Remote-Write
-API](https://prometheus.io/docs/specs/prw/remote_write_spec/) and Loki API. Metrics includes port speeds, counters, 
+API](https://prometheus.io/docs/specs/prw/remote_write_spec/) and Loki API. Metrics includes port speeds, counters,
 errors, operational status, transceivers, fans, power supplies, temperature
 sensors, BGP neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
 logs. Modify the URL as needed, instead of `/api/v1/push` it could be

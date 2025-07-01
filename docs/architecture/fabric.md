@@ -14,6 +14,11 @@ The Hedgehog Fabric currently supports two underlay network topologies.
 
 ### Collapsed Core
 
+!!! warning
+    Collapsed Core is deprecated starting from 25.03 release and will be removed in a future releases. It'll be replaced
+    by a new mesh topology that will work in a similar way to the spine-leaf topology but with leaf switches directly
+    connected to each other.
+
 A collapsed core topology is just a pair of switches connected in a MCLAG configuration with no other network elements.
 All workloads attach to these two switches.
 
