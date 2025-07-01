@@ -5,7 +5,7 @@
 A Virtual Private Cloud (VPC) is similar to a public cloud VPC. It provides an isolated private network with support for multiple subnets,
 each with user-defined VLANs and optional DHCP services.
 
-```yaml
+```{.yaml .annotate linenums="1" title="vpc.yaml"}
 apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPC
 metadata:
@@ -33,6 +33,13 @@ spec:
           timeServers: # (optional) configure Time (NTP) Servers
             - 1.1.1.1
           interfaceMTU: 1500 # (optional) configure the MTU (default is 9036); doesn't affect the actual MTU of the switch interfaces
+          leaseTimeSeconds: 3600 # The default duration of a DHCP lease
+          disableDefaultRoute: false # set to true if the fabric DHCP server should not manage the default route on the end host
+          advertisedRoutes: # Array of routes to be sent to each host in this subnet
+            - destination: 10.12.10.0/24
+              gateway: 10.10.1.2
+            - destination: 10.13.10.0/24
+              gateway: 10.10.1.3
       subnet: 10.10.1.0/24 # User-defined subnet from ipv4 namespace
       gateway: 10.10.1.1 # User-defined gateway (optional, default is .1)
       vlan: 1001 # User-defined VLAN from VLAN namespace
@@ -71,10 +78,28 @@ _Restricted subnet_ means that all hosts in the subnet are isolated from each ot
 
 A Permit list contains a list. Every element of the list is a set of subnets that can communicate with each other.
 
+### DHCP Server
+
+The included DHCP server sets the option for the default route pointing to the gateway
+address of the VPC. If the default route of the end hosts should not be managed by the fabric
+DHCP server, add `disableDefaultRoute: true` to the DHCP subnet spec inside of the VPC.
+
+If additional routes are to be distributed to the end hosts inside of a VPC add
+them as a YAML array in the DHCP subnet spec. A full list of options for the
+DHCP spec can be found in [the Fabric API reference](../reference/fabric-api.md#dhcpsubnetspec).
+
+Distributing additional routes via DHCP is independent of the
+`disableDefaultRoute` setting. A user can distribute routes via the fabric DHCP
+server even if the `disableDefaultRoute` is set to `true`. The additional
+routes are advertised via DHCP option 121.
+
+If the `disableDefaultRoute` is set to `true`, and the VPC is `mode: l3vni` the
+fabric DHCP server will send routes to the end hosts so that they can reach
+other hosts inside of the VPC via the VPC gateway.
 
 ### Third-party DHCP server configuration
 
-In case you use a third-party DHCP server, by configuring `spec.subnets.<subnet>.dhcp.relay`, additional information is
+To use a third-party DHCP server, configure `spec.subnets.<subnet>.dhcp.relay`. Additional information is
 added to the DHCP packet forwarded to the DHCP server to make it possible to identify the VPC and subnet. This
 information is added under the RelayAgentInfo (option 82) in the DHCP packet. The relay sets two suboptions in the
 packet:
