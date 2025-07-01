@@ -58,11 +58,14 @@ s5248-01(config-if-Ethernet1)# no shutdown
 ### VPC local peering can cause the agent to fail if subinterfaces are not supported on the switch
 
 As explained in the [Architecture page](../architecture/fabric.md#vpc-peering), to workaround
-limitations in SONiC, a peering between two VPCs (or a VPC and an External) which are both
+limitations in older versions of SONiC, a peering between two VPCs (or a VPC and an External) which are both
 attached to the peering switch is implemented over a pair of loopback interfaces.
 This workaround requires subinterface support on the switch where the peering is being
 instantiated. If the affected switch does not meet this requirement, the agent will fail
 to apply the desired configuration.
+
+!!! note
+    Starting from Fabric version 25.03, the loopback workaround is no longer needed.
 
 #### Diagnosing this issue
 
@@ -74,7 +77,8 @@ converge to the last desired generation. Additionally, the agent logs on the swi
 
 #### Known workarounds
 
-Configure remote VPCPeering instead of local peering in any instance where both
+If possible, [upgrade to 25.03 and disable the loopback workaround](../install-upgrade/upgrade.md#upgrades-to-2503).
+Alternatively, configure remote VPCPeering instead of local peering in any instance where both
 peering elements are locally attached and the target switch does not support subinterfaces.
 You can double-check whether your switch model meets this requirement by looking at the
 [Switch Profiles Catalog](../reference/profiles.md) entry for it.
