@@ -1,7 +1,7 @@
 # Upgrade
 
 ## Upgrades removing loopback connections
-With Fabric 25.03 and Broadcom SONiC 4.5.0 loopback connections are no longer
+Starting with Fabric 25.03 and Broadcom SONiC 4.5.0, loopback connections are no longer
 required for local VPC peering. A feature flag has been created to assist in a
 smooth removal process, `loopbackWorkaroundDisable`, which takes a boolean
 value.
@@ -19,7 +19,8 @@ Fabricator object.
 
 For users upgrading to version 25.03 follow the steps:
 
-0. Upgrade to 25.03 using steps from previous versions
+0. Upgrade to 25.03 using steps from [previous
+   versions](#upgrades-from-beta-1-onwards)
 
 0. Ensure all switch agents are on v0.80.0 (or greater)
     * `kubectl get agents` to see the version
@@ -34,13 +35,12 @@ For users upgrading to version 25.03 follow the steps:
     * `kubectl patch -n fab --type merge fabricator/default -p '{"spec":{"config":{"fabric":{"loopbackWorkaroundDisable":true}}}}'`
 
 0. Ensure that all agents have converged:
-    * `kubectl get agents -o wide`, ensure that columns currentg == appliedg
+    * `kubectl get agents -o wide`, ensure that columns `currentg` equals `appliedg`
 
-0. Now the loopback connections are able to be removed, logically then
-   physically
+0. Now the loopback connections can be removed from the logical wiring:
     * `kubectl get connections | grep loopback`
     * `kubectl delete connections/leaf-03--vpc-loopback`
-0. Unplug cables as needed
+0. Finally, unplug loopback cables as needed
 
 
 ### Beyond 25.03
