@@ -1539,11 +1539,11 @@ You're not viewing the latest version.
 <h1 id="fabric-configuration">Fabric Configuration</h1>
 <h2 id="overview">Overview</h2>
 <p>The <code>fab.yaml</code> file is the configuration file for the fabric. It supplies
-the configuration of the users, their credentials, logging, telemetry, and 
-other non wiring related settings. The <code>fab.yaml</code> file is composed of multiple 
-YAML objects inside of a single file. Per the YAML spec 3 hyphens (<code>---</code>) on 
-a single line separate the end of one object from the beginning of the next. 
-There are two YAML objects in the <code>fab.yaml</code> file. For more information about 
+the configuration of the users, their credentials, logging, telemetry, and
+other non wiring related settings. The <code>fab.yaml</code> file is composed of multiple
+YAML objects inside of a single file. Per the YAML spec 3 hyphens (<code>---</code>) on
+a single line separate the end of one object from the beginning of the next.
+There are two YAML objects in the <code>fab.yaml</code> file. For more information about
 how to use <code>hhfab init</code>, run <code>hhfab init --help</code>.</p>
 <h2 id="hhfab-workflow">HHFAB workflow</h2>
 <p>After <code>hhfab</code> has been <a href="../../getting-started/download/">downloaded</a>:</p>
@@ -1656,7 +1656,7 @@ Reference</a>.</p>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;ssh-ed25519</span><span class="nv"> </span><span class="s">key...&quot;</span><span class="w"> </span><span class="c1"># generate ssh key with ssh-keygen</span>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-leaf</span><span class="w"> </span><span class="c1"># &quot;spine-leaf&quot; or &quot;collapsed-core&quot;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-leaf</span><span class="w"> </span><span class="c1"># &quot;spine-leaf&quot; or &quot;collapsed-core&quot; (deprecated)</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">      </span><span class="nt">includeONIE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">      </span><span class="nt">defaultSwitchUsers</span><span class="p">:</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">        </span><span class="nt">admin</span><span class="p">:</span><span class="w"> </span><span class="c1"># at least one user with name &#39;admin&#39; and role &#39;admin&#39;</span>
@@ -1706,29 +1706,29 @@ Reference</a>.</p>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="configure-control-node-and-switch-users">Configure Control Node and Switch Users</h3>
 <h4 id="control-node-users">Control Node Users</h4>
-<p>Configuring control node and switch users is done either passing 
-<code>--default-password-hash</code> to <code>hhfab init</code> or editing the resulting <code>fab.yaml</code> 
+<p>Configuring control node and switch users is done either passing
+<code>--default-password-hash</code> to <code>hhfab init</code> or editing the resulting <code>fab.yaml</code>
 file emitted by <code>hhfab init</code>.  The default username on the control node is
 <code>core</code>.</p>
 <h4 id="switch-users">Switch Users</h4>
 <p>There are two users on the switches, <code>admin</code> and <code>operator</code>. The <code>operator</code> user has
 read-only access to <code>sonic-cli</code> command on the switches. The <code>admin</code> user has
-broad administrative power on the switch. 
+broad administrative power on the switch.
 To avoid conflicts, do not use the following usernames: <code>operator</code>,<code>hhagent</code>,<code>netops</code>.</p>
 <h3 id="ntp-and-dhcp">NTP and <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr></h3>
 <p>The control node uses public NTP servers from Cloudflare and Google by default.
 The control node runs a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server on the management network. See the <a href="#complete-example-file">example
 file</a>.</p>
 <h3 id="control-node">Control Node</h3>
-<p>The control node is the host that manages all the switches, runs k3s, and serves images. 
-The <strong>management</strong> interface is for the control node to manage the fabric 
-switches, <em>not</em> end-user management of the control node. For end-user 
+<p>The control node is the host that manages all the switches, runs k3s, and serves images.
+The <strong>management</strong> interface is for the control node to manage the fabric
+switches, <em>not</em> end-user management of the control node. For end-user
 management of the control node specify the <strong>external</strong> interface name.</p>
 <h3 id="telemetry">Telemetry</h3>
 <p>There is an option to enable <a href="https://grafana.com/docs/alloy/latest/">Grafana
 Alloy</a> on all switches to forward metrics and logs to the configured targets using
 <a href="https://prometheus.io/docs/specs/prw/remote_write_spec/">Prometheus Remote-Write
-API</a> and Loki API. Metrics includes port speeds, counters, 
+API</a> and Loki API. Metrics includes port speeds, counters,
 errors, operational status, transceivers, fans, power supplies, temperature
 sensors, <abbr title="Border Gateway Protocol">BGP</abbr> neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
 logs. Modify the URL as needed, instead of <code>/api/v1/push</code> it could be
@@ -1830,7 +1830,7 @@ cloud.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 14, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
   </span>
 
     
