@@ -1715,9 +1715,9 @@ file emitted by <code>hhfab init</code>.  The default username on the control no
 read-only access to <code>sonic-cli</code> command on the switches. The <code>admin</code> user has
 broad administrative power on the switch. 
 To avoid conflicts, do not use the following usernames: <code>operator</code>,<code>hhagent</code>,<code>netops</code>.</p>
-<h3 id="ntp-and-dhcp">NTP and DHCP</h3>
+<h3 id="ntp-and-dhcp">NTP and <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr></h3>
 <p>The control node uses public NTP servers from Cloudflare and Google by default.
-The control node runs a DHCP server on the management network. See the <a href="#complete-example-file">example
+The control node runs a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server on the management network. See the <a href="#complete-example-file">example
 file</a>.</p>
 <h3 id="control-node">Control Node</h3>
 <p>The control node is the host that manages all the switches, runs k3s, and serves images. 
@@ -1730,7 +1730,7 @@ Alloy</a> on all switches to forward metrics and logs to the configured targets 
 <a href="https://prometheus.io/docs/specs/prw/remote_write_spec/">Prometheus Remote-Write
 API</a> and Loki API. Metrics includes port speeds, counters, 
 errors, operational status, transceivers, fans, power supplies, temperature
-sensors, BGP neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
+sensors, <abbr title="Border Gateway Protocol">BGP</abbr> neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
 logs. Modify the URL as needed, instead of <code>/api/v1/push</code> it could be
 <code>/api/v1/write</code>; check the documentation for the data provider.</p>
 <p>Switches push telemetry data through a proxy running in a pod on the control

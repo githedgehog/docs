@@ -1591,7 +1591,7 @@ You're not viewing the latest version.
 <li><strong>Alloy</strong>: Collects logs and telemetry data from the switch.</li>
 <li><strong>gNMI Interface</strong>: The main configuration API used by the Fabric Agent to interact with the switch.</li>
 <li><strong>Config DB</strong>: The central database in SONiC responsible for maintaining switch configuration.</li>
-<li><strong>ASIC</strong>: The hardware component handling packet forwarding.</li>
+<li><strong><abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr></strong>: The hardware component handling packet forwarding.</li>
 </ul>
 <p>The SONiC architecture presented here is a high-level abstraction, for simplicity.</p>
 <h2 id="architecture-flow">Architecture Flow</h2>
@@ -1611,7 +1611,7 @@ You're not viewing the latest version.
 <ul>
 <li>The <strong>Fabric Controller</strong> communicates with the <strong>Fabric Agent</strong> on each switch via the Kubernetes API.</li>
 <li>The <strong>Fabric Agent</strong> applies configurations using the <strong>gNMI</strong> interface, updating the <strong>Config DB</strong>.</li>
-<li>The <strong>Config DB</strong> ensures that all settings are applied to the <strong>ASIC</strong> for packet forwarding.</li>
+<li>The <strong>Config DB</strong> ensures that all settings are applied to the <strong><abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr></strong> for packet forwarding.</li>
 </ul>
 <h3 id="4-telemetry-monitoring">4. <strong>Telemetry &amp; Monitoring</strong></h3>
 <ul>

@@ -1473,7 +1473,7 @@ You're not viewing the latest version.
 <h1 id="hedgehog-network-fabric">Hedgehog Network Fabric</h1>
 <p>The Hedgehog Open Network Fabric is an open-source network architecture that provides connectivity between virtual and
 physical workloads and provides a way to achieve network isolation between different groups of workloads using standard
-BGP EVPN and VXLAN technology. The fabric provides a standard Kubernetes interface to manage the elements in the
+<abbr title="Border Gateway Protocol">BGP</abbr> EVPN and <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> technology. The fabric provides a standard Kubernetes interface to manage the elements in the
 physical network and provides a mechanism to configure virtual networks and define attachments to these virtual networks.
 The Hedgehog Fabric provides isolation between different groups of workloads by placing them in different virtual
 networks called <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s. To achieve this, it defines different abstractions starting from the physical network where
@@ -1486,7 +1486,7 @@ All workloads attach to these two switches.</p>
 <p><a class="glightbox" href="../fabric-collapsedcore.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../fabric-collapsedcore.png" /></a></p>
 <p>The leaves in this setup are configured to be in a MCLAG pair and servers can either be connected to both switches as
 a MCLAG port channel or as orphan ports connected to only one switch. Both the leaves peer to external networks using
-BGP and act as gateway for workloads attached to them. The configuration of the underlay in the collapsed core is very
+<abbr title="Border Gateway Protocol">BGP</abbr> and act as gateway for workloads attached to them. The configuration of the underlay in the collapsed core is very
 simple and is ideal for very small deployments.</p>
 <h3 id="spine-leaf">Spine-Leaf</h3>
 <p>A spine-leaf topology is a standard Clos network with workloads attaching to leaf switches and the spines providing
@@ -1499,8 +1499,8 @@ underlay network.</p>
 <h2 id="overlay-network">Overlay Network</h2>
 <p>The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
 and data plane traffic between different virtual networks and the underlay network. Virtualization is achieved in the
-Hedgehog Fabric by encapsulating workload traffic over VXLAN tunnels that are source and terminated on the leaf switches
-in the network. The fabric uses BGP-EVPN/VXLAN to enable the creation and management of virtual networks on top of the
+Hedgehog Fabric by encapsulating workload traffic over <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> tunnels that are source and terminated on the leaf switches
+in the network. The fabric uses <abbr title="Border Gateway Protocol">BGP</abbr>-EVPN/<abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> to enable the creation and management of virtual networks on top of the
 physical one. The fabric supports multiple virtual networks over the same underlay network to support multi-tenancy.
 Each virtual network in the Hedgehog Fabric is identified by a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following subsections contain a high-level
 overview of how VPCs are implemented in the Hedgehog Fabric and its associated objects.</p>
@@ -1510,20 +1510,20 @@ describe how VPCs are actually implemented in the network to ensure a private vi
 <ul>
 <li>Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VRF on each switch where there are <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attachments defined for this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The VRF is allocated
   its own VNI. The VRF is local to each switch and the VNI is global for the entire fabric. By mapping the VRF to a VNI
-  and configuring an EVPN instance in each VRF, a shared L3VNI is established across the entire fabric. All VRFs
+  and configuring an EVPN instance in each VRF, a shared <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> is established across the entire fabric. All VRFs
   participating in this VNI can freely communicate with each other without the need for a policy. A VLAN is allocated
   for each VRF which functions as an IRB VLAN for the VRF.</li>
-<li>The VRF created on each switch corresponding to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> configures a BGP instance with EVPN to advertise its locally
-  attached subnets and import routes from its peered VPCs. The BGP instance in the tenant VRFs does not establish
+<li>The VRF created on each switch corresponding to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> configures a <abbr title="Border Gateway Protocol">BGP</abbr> instance with EVPN to advertise its locally
+  attached subnets and import routes from its peered VPCs. The <abbr title="Border Gateway Protocol">BGP</abbr> instance in the tenant VRFs does not establish
   neighbor relationships and is purely used to advertise locally attached routes into the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (all VRFs with the same
-  L3VNI) across leaves in the network.</li>
+  <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr>) across leaves in the network.</li>
 <li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can have multiple subnets. Each subnet in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VLAN on the switch. The VLAN is only locally
   significant and a given subnet might have different VLANs on different leaves on the network. A globally significant
   VNI is assigned to each subnet. This VNI is used to extend the subnet across different leaves in the network and
   provides a view of single stretched L2 domain if the applications need it.</li>
-<li>The Hedgehog Fabric has a built-in DHCP server which will automatically assign IP addresses to each workload depending
-  on the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it belongs to. This is achieved by configuring a DHCP relay on each of the server facing VLANs. The DHCP
-  server is accessible through the underlay network and is shared by all VPCs in the fabric. The inbuilt DHCP server is
+<li>The Hedgehog Fabric has a built-in <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server which will automatically assign IP addresses to each workload depending
+  on the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it belongs to. This is achieved by configuring a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> relay on each of the server facing VLANs. The <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>
+  server is accessible through the underlay network and is shared by all VPCs in the fabric. The inbuilt <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server is
   capable of identifying the source <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> of the request and assigning IP addresses from a pool allocated to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> at
   creation.</li>
 <li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> by default cannot communicate to anyone outside the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and specific peering rules are required to allow
@@ -1544,7 +1544,7 @@ supports two different peering modes.</p>
 <li>Remote Peering: Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
   point for the 2 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s in the fabric. The set of switches to be used for peering is determined by configuration in the
   peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
-  the peering switch advertise default routes into their specific VRFs identified by the L3VNI. All traffic that does
+  the peering switch advertise default routes into their specific VRFs identified by the <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr>. All traffic that does
   not belong to the VPCs is forwarded to the peering switch which has routes to the other VPCs and gets forwarded from
   there. The bandwidth limitation that exists in the local peering solution is solved here as the bandwidth between the
   two VPCs is determined by the fabric cross section bandwidth.</li>

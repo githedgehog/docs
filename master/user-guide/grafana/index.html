@@ -1485,13 +1485,13 @@ described in <a href="../../install-upgrade/config/#telemetry">Fabric Config</a>
 <li><strong>env</strong> (Label: Env): <code>label_values(env)</code> - Environment to monitor</li>
 <li><strong>node</strong> (Label: Switch): <code>label_values(hostname)</code> - Switch Name</li>
 <li><strong>vrf</strong> (Label: VRF): <code>label_values(vrf)</code> - VRF name (Multi-value)</li>
-<li><strong>neighbor</strong> (Label: Neighbor): <code>label_values(neighbor)</code> - BGP Neighbor IP address(Multi-value)</li>
+<li><strong>neighbor</strong> (Label: Neighbor): <code>label_values(neighbor)</code> - <abbr title="Border Gateway Protocol">BGP</abbr> Neighbor IP address(Multi-value)</li>
 <li><strong>interface</strong> (Label: Interface): <code>label_values(interface)</code> - Switch Interface name as defined in wiring (Multi-value)</li>
 <li><strong>file</strong> (Label: File): <code>label_valuse(filename)</code> - Name of Logs file to inspect (Loki)</li>
 </ul>
 <h2 id="switch-critical-resources">Switch Critical Resources</h2>
 <p><a class="glightbox" href="../boards/ASIC-Critical-Resourses-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Example" src="../boards/ASIC-Critical-Resourses-stats.png" /></a> </p>
-<p>This table reports usage and capacity of ASIC's programmable resources 
+<p>This table reports usage and capacity of <abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr>'s programmable resources 
 such as:</p>
 <ul>
 <li>ACLs</li>
@@ -1506,9 +1506,9 @@ such as:</p>
 <p><a class="glightbox" href="../boards/BGP-Fabric-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Example" src="../boards/BGP-Fabric-stats.png" /></a> </p>
 <p>Fabric underlay and external peering monitoring. Including reporing for:</p>
 <ul>
-<li>BGP Neighbors</li>
-<li>BGP Session state</li>
-<li>Number of BGP Updates and Prefixes sent/received for each BGP Neighbor</li>
+<li><abbr title="Border Gateway Protocol">BGP</abbr> Neighbors</li>
+<li><abbr title="Border Gateway Protocol">BGP</abbr> Session state</li>
+<li>Number of <abbr title="Border Gateway Protocol">BGP</abbr> Updates and Prefixes sent/received for each <abbr title="Border Gateway Protocol">BGP</abbr> Neighbor</li>
 <li>Keepalive counters</li>
 </ul>
 <p><a href="../boards/grafana_fabric.json">JSON</a></p>
@@ -1527,7 +1527,7 @@ such as:</p>
 <h2 id="logs">Logs</h2>
 <p>System and fabric logs:</p>
 <ul>
-<li>Kernel and BGP logs from Syslog</li>
+<li>Kernel and <abbr title="Border Gateway Protocol">BGP</abbr> logs from Syslog</li>
 <li>Errors in agent and syslog</li>
 <li>Full output of defined file</li>
 </ul>

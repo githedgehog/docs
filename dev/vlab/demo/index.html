@@ -1770,7 +1770,7 @@ consists of 2 switches.</p>
 <h2 id="manual-vpc-creation">Manual <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> creation</h2>
 <h3 id="creating-and-attaching-vpcs">Creating and attaching VPCs</h3>
 <p>You can create and attach VPCs to the VMs using the <code>kubectl fabric vpc</code> command on the Control Node or outside of the
-cluster using the kubeconfig. For example, run the following commands to create 2 VPCs with a single subnet each, a DHCP
+cluster using the kubeconfig. For example, run the following commands to create 2 VPCs with a single subnet each, a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>
 server enabled with its optional IP address range start defined, and to attach them to some of the test servers:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>core@control-1 ~ $ kubectl get conn | grep server
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>server-01--mclag--leaf-01--leaf-02   mclag          5h13m
@@ -1813,7 +1813,7 @@ has been applied.</p>
 <p>You can use <code>hhfab vlab ssh</code> on the host to SSH into the test servers and configure networking there. For example, for
 both <code>server-01</code> (MCLAG attached to both <code>leaf-01</code> and <code>leaf-02</code>) we need to configure a bond with a VLAN on top of it
 and for the <code>server-05</code> (single-homed unbundled attached to <code>leaf-03</code>) we need to configure just a VLAN and they both
-will get an IP address from the DHCP server. You can use the <code>ip</code> command to configure networking on the servers or use
+will get an IP address from the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server. You can use the <code>ip</code> command to configure networking on the servers or use
 the little helper pre-installed by Fabricator on test servers, <code>hhnet</code>.</p>
 <p>For <code>server-01</code>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>core@server-01 ~ $ hhnet cleanup

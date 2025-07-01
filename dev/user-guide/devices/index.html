@@ -1636,10 +1636,10 @@ the counters to ensure that proper end host configuration is achieved. Often
 <abbr title="Remote Direct Memory Access">RDMA</abbr> enabled software bypasses the host software stack. This bypass means that
 configuration with utilities like: <code>nft</code>,<code>iptables</code>, and <code>iproute2</code> will not
 affect <abbr title="Remote Direct Memory Access">RDMA</abbr> traffic leaving the host.</p>
-<p>When <abbr title="RDMA over Converged Etherent">RoCE</abbr> traffic is using VXLAN, the inner packet <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr> information is copied
+<p>When <abbr title="RDMA over Converged Etherent">RoCE</abbr> traffic is using <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr>, the inner packet <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr> information is copied
 to the outer packet at the time of encapsulation. Likewise the outer <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr>
 information is copied to the inner packet when the packet is deencapsulated.
-This process preserves the traffic classification even through a VXLAN tunnel.</p>
+This process preserves the traffic classification even through a <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> tunnel.</p>
 <h4 id="roce-qpn-hashing-mode"><abbr title="RDMA over Converged Etherent">RoCE</abbr> <abbr title="Queue Pair Number">QPN</abbr> Hashing Mode</h4>
 <p><abbr title="RDMA over Converged Etherent">RoCE</abbr> traffic adds another input for hashing of traffic to ensure load
 sharing. The <code>ecmp.roceQPN</code> option will enable the use of the queue pair

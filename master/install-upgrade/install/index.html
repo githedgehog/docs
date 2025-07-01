@@ -1653,15 +1653,15 @@ The <code>management</code> network is for controlling the switches that compris
 can be a simple broadcast domain with layer 2 connectivity. The management network is
 not accessible to machines or devices not associated with the fabric; it is a private,
 exclusive network. The control node connects to the management network via a 10 GbE
-interface. It runs a DHCP server, as well as a small HTTP server.</p>
+interface. It runs a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server, as well as a small HTTP server.</p>
 <p>The <code>external</code> network allows the user to access the control node via their local
 IT network. It provides SSH access to the host operating system on the control node.</p>
 <h3 id="fabric-manages-switches">Fabric Manages Switches</h3>
 <p>Now that the install has finished, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all pre-installed as part of the Control Node installer.</p>
-<p>At this stage, the fabric hands out DHCP addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
+<p>At this stage, the fabric hands out <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
 - enter <code>k9s</code> at the command prompt
 - use the arrow keys to select the pod named <code>fabric-boot</code>
-- the logs of the pod will be displayed showing the DHCP lease process
+- the logs of the pod will be displayed showing the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> lease process
 - use the switches screen of <code>k9s</code> to see the heartbeat column to verify the connection between switch and controller.
     - to see the switches type <code>:switches</code> (like a vim command) into <code>k9s</code></p>
 

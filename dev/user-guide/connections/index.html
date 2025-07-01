@@ -1768,9 +1768,9 @@ attached to the same switch), which is caused by a hardware limitation of the cu
 </span></code></pre></div>
 <h2 id="connecting-fabric-to-the-outside-world">Connecting Fabric to the outside world</h2>
 <p>Connections in this section provide connectivity to the outside world. For example, they can be connections to the
-Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or AAA services.</p>
+Internet, to other networks, or to some other systems such as <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>, NTP, LMA, or AAA services.</p>
 <h3 id="staticexternal">StaticExternal</h3>
-<p><code>StaticExternal</code> connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
+<p><code>StaticExternal</code> connections provide a simple way to connect things like <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> servers directly to the Fabric by connecting
 them to specific switch ports.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
@@ -1799,7 +1799,7 @@ within a specific <abbr title="Virtual Private Cloud, similar to the public clou
 </span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span></code></pre></div>
 <h3 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h3>
-<p>Connection to external systems, such as edge/provider routers using BGP peering and configuring Inbound/Outbound
+<p>Connection to external systems, such as edge/provider routers using <abbr title="Border Gateway Protocol">BGP</abbr> peering and configuring Inbound/Outbound
 communities as well as granularly controlling what gets advertised and which routes are accepted.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>

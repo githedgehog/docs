@@ -1723,14 +1723,14 @@ Border Leaves (or Borders) can connect to several Edge devices.</p>
 <h3 id="connect-border-leaf-to-edge-device">Connect Border Leaf to Edge device</h3>
 <p>In order to distinguish <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic, an Edge device should be able to:</p>
 <ul>
-<li>Set up BGP IPv4 to advertise and receive routes from the Fabric</li>
+<li>Set up <abbr title="Border Gateway Protocol">BGP</abbr> IPv4 to advertise and receive routes from the Fabric</li>
 <li>Connect to a Fabric Border Leaf over VLAN</li>
-<li>Be able to mark egress routes towards the Fabric with BGP Communities</li>
-<li>Be able to filter ingress routes from the Fabric by BGP Communities</li>
+<li>Be able to mark egress routes towards the Fabric with <abbr title="Border Gateway Protocol">BGP</abbr> Communities</li>
+<li>Be able to filter ingress routes from the Fabric by <abbr title="Border Gateway Protocol">BGP</abbr> Communities</li>
 </ul>
 <p>All other filtering and processing of L3 Routed Fabric traffic should be done on the Edge devices.</p>
 <h3 id="control-plane">Control Plane</h3>
-<p>The Fabric shares <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes with Edge devices via BGP. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.</p>
+<p>The Fabric shares <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes with Edge devices via <abbr title="Border Gateway Protocol">BGP</abbr>. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.</p>
 <h3 id="data-plane">Data Plane</h3>
 <p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> L3 routable traffic will be tagged with VLAN and sent to Edge device. Later processing of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic
 (NAT, PBR, etc) should happen on Edge devices.</p>
@@ -1740,11 +1740,11 @@ the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provi
 <h2 id="api-and-implementation">API and implementation</h2>
 <h3 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h3>
 <p>General configuration starts with the specification of <code>External</code> objects. Each object of <code>External</code> type can represent
-a set of Edge devices, or a single BGP instance on Edge device, or any other united Edge entities that can be described
+a set of Edge devices, or a single <abbr title="Border Gateway Protocol">BGP</abbr> instance on Edge device, or any other united Edge entities that can be described
 with the following configuration:</p>
 <ul>
 <li>Name of <code>External</code></li>
-<li>Inbound routes marked with the dedicated BGP community</li>
+<li>Inbound routes marked with the dedicated <abbr title="Border Gateway Protocol">BGP</abbr> community</li>
 <li>Outbound routes marked with the dedicated community</li>
 </ul>
 <p>Each <code>External</code> should be bound to some <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> IP Namespace, otherwise prefixes overlap may happen.</p>
@@ -1770,7 +1770,7 @@ with the following configuration:</p>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ds3000/E1/1</span>
 </span></code></pre></div>
 <h3 id="external-attachment"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Attachment</h3>
-<p><code>External Attachment</code> defines BGP Peering and traffic connectivity between a Border leaf and <code>External</code>. Attachments are
+<p><code>External Attachment</code> defines <abbr title="Border Gateway Protocol">BGP</abbr> Peering and traffic connectivity between a Border leaf and <code>External</code>. Attachments are
 bound to a <code>Connection</code> with type <code>external</code> and they specify an optional <code>vlan</code> that will be used to segregate
 particular Edge peering.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
@@ -1896,7 +1896,7 @@ on the port <code>E1/2</code>. Specifying <code>vpc-1</code> is required to rece
 </span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">      </span><span class="nt">subnets</span><span class="p">:</span>
 </span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span></code></pre></div>
-<h3 id="example-edge-side-bgp-configuration-based-on-sonic-os">Example Edge side BGP configuration based on SONiC OS</h3>
+<h3 id="example-edge-side-bgp-configuration-based-on-sonic-os">Example Edge side <abbr title="Border Gateway Protocol">BGP</abbr> configuration based on SONiC OS</h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Hedgehog does not recommend using the following configuration for production. It is only provided as an example of
@@ -1910,7 +1910,7 @@ Edge Peer configuration.</p>
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip vrf forwarding VrfHedge</span>
 </span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip address 100.100.0.6/24</span>
 </span></code></pre></div>
-<p>BGP configuration:</p>
+<p><abbr title="Border Gateway Protocol">BGP</abbr> configuration:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">!</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="l l-Scalar l-Scalar-Plain">router bgp 65102 vrf VrfHedge</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">log-neighbor-changes</span>

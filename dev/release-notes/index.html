@@ -1959,20 +1959,20 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <li><abbr title="Equal-cost Multi-path Routing">ECMP</abbr> <abbr title="RDMA over Converged Etherent">RoCE</abbr> <abbr title="Queue Pair Number">QPN</abbr> (Queue Pair Number) hashing support for even traffic distribution</li>
 </ul>
 </li>
-<li>Celestica DS5000 is now supported as a leaf while using L3VNI <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode (in addition to the full spine role support)</li>
+<li>Celestica DS5000 is now supported as a leaf while using <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode (in addition to the full spine role support)</li>
 <li>Loopback Workaround (VPCLoopback Connections) is no longer required for local peering</li>
 </ul>
 <h3 id="other">Other</h3>
 <ul>
 <li>Support for Broadcom SONiC 4.5.0 (see <a href="../install-upgrade/upgrade/#upgrade-sonic">upgrade SONiC</a>) for instructions</li>
-<li>New L3VNI <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode that only uses L3VNI on the switches allowing TH5 switches to play the leaf role while fully
+<li>New <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode that only uses <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> on the switches allowing TH5 switches to play the leaf role while fully
   supporting multi-tenancy (VPCs) and external peering<ul>
-<li>Regular (L2VNI) <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode requires support for both L2VNI and L3VNI on the switches</li>
+<li>Regular (<abbr title="Layer 2 virtual network identifier, part of VXLAN">L2VNI</abbr>) <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> mode requires support for both <abbr title="Layer 2 virtual network identifier, part of VXLAN">L2VNI</abbr> and <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> on the switches</li>
 </ul>
 </li>
-<li>Included DHCP server is more configurable now<ul>
+<li>Included <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server is more configurable now<ul>
 <li>It is now possible to disable the default route advertisement and to advertise custom routes</li>
-<li>The DHCP lease time is now configurable (default is 1 hour)</li>
+<li>The <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> lease time is now configurable (default is 1 hour)</li>
 </ul>
 </li>
 <li>Interface queues and WRED ECN counters are now collected and available through the <code>inspect port</code> commands and
@@ -2037,7 +2037,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 </ul>
 <h3 id="tools_1">Tools</h3>
 <ul>
-<li><code>kubectl fabric inspect</code> now supports LLDP and BGP neighbors inspection<ul>
+<li><code>kubectl fabric inspect</code> now supports LLDP and <abbr title="Border Gateway Protocol">BGP</abbr> neighbors inspection<ul>
 <li>it shows expected and actual values observed on a switches</li>
 <li>use <code>--strict</code> flag to make inspect fail if expected neighbors are not matching</li>
 </ul>
@@ -2157,7 +2157,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <li>Connection (incl. <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> attachments, Loobpback Workaround usage, etc.)</li>
 <li><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>/VPCSubnet (incl. where is it attached and what's reachable from it)</li>
 <li>IP Address (incl. IPv4Namespace, VPCSubnet and DHCPLease or <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>/StaticExternal usage)</li>
-<li>MAC Address (incl. switch ports and DHCP leases)</li>
+<li>MAC Address (incl. switch ports and <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> leases)</li>
 <li>Access between pair of IPs, Server names or VPCSubnets (everything except external IPs will be translated to VPCSubnets)</li>
 </ul>
 <h1 id="observability">Observability</h1>
@@ -2182,7 +2182,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <li>port and interface status and counters</li>
 <li>transceiver state</li>
 <li>environmental information (temperature, fans, psu, etc.)</li>
-<li>BGP state and counters</li>
+<li><abbr title="Border Gateway Protocol">BGP</abbr> state and counters</li>
 </ul>
 </li>
 <li>
@@ -2229,7 +2229,7 @@ and managed by the Fabric</p>
 </ul>
 <h3 id="bugs-fixed">Bugs fixed</h3>
 <ul>
-<li>DHCP service assigning IP multiple times if restarted in between</li>
+<li><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> service assigning IP multiple times if restarted in between</li>
 <li>Remote peering was configured as a local</li>
 </ul>
 <h2 id="alpha-5">Alpha-5</h2>
@@ -2249,9 +2249,9 @@ and managed by the Fabric</p>
 </ul>
 </li>
 </ul>
-<h3 id="dhcppxe-boot-support-for-multi-homed-connections">DHCP/PXE boot support for multi-homed connections</h3>
+<h3 id="dhcppxe-boot-support-for-multi-homed-connections"><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>/PXE boot support for multi-homed connections</h3>
 <ul>
-<li>PXE URL support for on-demand DHCP service</li>
+<li>PXE URL support for on-demand <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> service</li>
 <li>LACP link (MCLAG and ESLAG) fallback allows support of one of the links without the use of a host-level bond</li>
 </ul>
 <h3 id="improvements">Improvements</h3>
@@ -2267,7 +2267,7 @@ and managed by the Fabric</p>
 </ul>
 <h3 id="host-connectivity-dual-homing-improvements">Host connectivity dual homing improvements</h3>
 <ul>
-<li>ESI for VXLAN-based BGP EVPN</li>
+<li>ESI for <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr>-based <abbr title="Border Gateway Protocol">BGP</abbr> EVPN</li>
 <li>Support in Fabric and VLAB</li>
 <li>Host connectivity Redundancy Groups</li>
 <li>Groups LEAF switches to provide multi-homed connectivity to the Fabric</li>
@@ -2330,17 +2330,17 @@ and managed by the Fabric</p>
 <h3 id="multiple-ipv4-namespaces">Multiple IPv4 namespaces</h3>
 <ul>
 <li>Support for multiple overlapping IPv4 addresses in the Fabric</li>
-<li>Integrated with on-demand DHCP Service (see below)</li>
+<li>Integrated with on-demand <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Service (see below)</li>
 <li>All IPv4 addresses within a given <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> must be unique</li>
 <li>Only VPCs with non-overlapping IPv4 subnets can peer within the Fabric</li>
 <li>An external NAT device is required for peering of VPCs with overlapping subnets</li>
 </ul>
-<h3 id="hedgehog-fabric-dhcp-and-ipam-service">Hedgehog Fabric DHCP and IPAM Service</h3>
+<h3 id="hedgehog-fabric-dhcp-and-ipam-service">Hedgehog Fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> and IPAM Service</h3>
 <ul>
-<li>Custom DHCP server executing in the controllers</li>
+<li>Custom <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server executing in the controllers</li>
 <li>Multiple IPv4 namespaces with overlapping subnets</li>
 <li>Multiple VLAN namespaces with overlapping VLAN ranges</li>
-<li>DHCP leases exposed through the Fabric API</li>
+<li><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> leases exposed through the Fabric API</li>
 <li>Available for VLAB as well as the Fabric</li>
 </ul>
 <h3 id="hedgehog-fabric-ntp-service">Hedgehog Fabric NTP Service</h3>
@@ -2351,11 +2351,11 @@ and managed by the Fabric</p>
 </ul>
 <h3 id="staticexternal-connections">StaticExternal connections</h3>
 <ul>
-<li>Directly connect external infrastructure services (such as NTP, DHCP, DNS) to the Fabric</li>
-<li>No BGP is required, just automatically configured  static routes</li>
+<li>Directly connect external infrastructure services (such as NTP, <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>, DNS) to the Fabric</li>
+<li>No <abbr title="Border Gateway Protocol">BGP</abbr> is required, just automatically configured  static routes</li>
 </ul>
-<h3 id="dhcp-relay-to-3rd-party-dhcp-service">DHCP Relay to 3rd party DHCP service</h3>
-<p>Support for 3rd party DHCP server (DHCP Relay config) through the API</p>
+<h3 id="dhcp-relay-to-3rd-party-dhcp-service"><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Relay to 3rd party <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> service</h3>
+<p>Support for 3rd party <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server (<abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Relay config) through the API</p>
 <h2 id="alpha-2">Alpha-2</h2>
 <h3 id="controller">Controller</h3>
 <p>A single controller. No controller redundancy.</p>
@@ -2413,7 +2413,7 @@ and managed by the Fabric</p>
 <h3 id="underlay-configuration">Underlay configuration:</h3>
 <p>Port speed, port group speed, port breakouts are configurable through the API</p>
 <h3 id="vpc-overlay-implementation"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (overlay) Implementation</h3>
-<p>VXLAN-based BGP eVPN.</p>
+<p><abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr>-based <abbr title="Border Gateway Protocol">BGP</abbr> eVPN.</p>
 <h3 id="multi-subnet-vpcs">Multi-subnet VPCs</h3>
 <p>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> consists of subnets, each with a user-specified VLAN for external host/server connectivity.</p>
 <h3 id="multiple-ip-address-namespaces">Multiple IP address namespaces</h3>
@@ -2431,8 +2431,8 @@ and managed by the Fabric</p>
 <p>No NAT function is supported for external peering.</p>
 <h3 id="host-connectivity">Host connectivity</h3>
 <p>Servers can be attached as Unbundled, Bundled (LAG) and MCLAG</p>
-<h3 id="dhcp-service">DHCP Service</h3>
-<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is provided with an optional DHCP service with simple IPAM</p>
+<h3 id="dhcp-service"><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Service</h3>
+<p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is provided with an optional <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> service with simple IPAM</p>
 <h3 id="local-vpc-peering-loopbacks">Local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering loopbacks</h3>
 <p>To enable local inter-vpc peering that allows routing of traffic between VPCs, local loopbacks are required to overcome silicon limitations.</p>
 <h3 id="scale">Scale</h3>
@@ -2507,9 +2507,9 @@ and managed by the Fabric</p>
 </ul>
 </li>
 <li>
-<p>DHCP Service:</p>
+<p><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Service:</p>
 <ul>
-<li>A simple DHCP server for assigning IP addresses to hosts connecting to the fabric, optimized for use with <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> overlay.</li>
+<li>A simple <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server for assigning IP addresses to hosts connecting to the fabric, optimized for use with <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> overlay.</li>
 </ul>
 </li>
 <li>
@@ -2521,7 +2521,7 @@ and managed by the Fabric</p>
 <li>
 <p>Underlay:</p>
 <ul>
-<li>A simple single-VRF network with a BGP control plane.  IPv4 support only.</li>
+<li>A simple single-VRF network with a <abbr title="Border Gateway Protocol">BGP</abbr> control plane.  IPv4 support only.</li>
 </ul>
 </li>
 <li>
