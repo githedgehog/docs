@@ -13,7 +13,7 @@ model and capabilities. More details can be found in the [Switch Profiles and Po
 
 In order for the fabric to manage a switch the profile needs to include either the `serial` or `mac` need to be defined in the YAML doc.
 
-```yaml
+```{.yaml .annotate linenums="1" title="Switch.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: Switch
 metadata:
@@ -45,11 +45,62 @@ spec:
     group: eslag-1 # Name of the redundancy group
     type: eslag # Type of the redundancy group, one of mclag or eslag
   enableAllPorts: true # Optional field to enable all ports on the switch by default
+  portAutoNegs: # Used for rj45 copper ports, and 800G ports
+    E1/18: true
+    E1/19: false
+  roce: false # Lossless queues, RoCEv2 and related QoS configurations
+  ecmp:
+    roceQPN: false # ECMP RoCE QPN hashing
 ```
+
+### RDMA over Converged Ethernet (RoCE) version 2
+RDMA over converged ethernet (RoCE) allows for RDMA communication over conventional
+ethernet devices. RoCE isn't available on every switch, check the [switch
+catalog](../reference/profiles.md) for `RoCE: true`. Enabling RoCE on a switch
+requires the switch to reboot in order to configure the hardware and associated
+queues. Once a switch is in RoCE mode the port breakouts are unable to be
+changed. 
+!!! warning
+    Users are advised to set the port breakouts as desired, and confirm
+    the link is up before enabling RoCE.
+
+#### RoCE Lossless mode
+
+When enabling RoCE on a switch, the buffers inside the switch are configured to
+be lossless, and ingress traffic is classified based on the DSCP value inside
+the IP packet header.
+
+|Purpose | DSCP Values | Traffic Class|
+| ---    | ---         | --- |
+|RDMA    |  24  |  3  |
+|RDMA    |  26  |  3  |
+|Congestion Notification |  48  |  6  |
+| unknown |  all others  |  0  |
+
+The counters associated with the traffic classes are viewable using the
+`kubectl fabric inspect` command. Users are advised to test traffic and track
+the counters to ensure that proper end host configuration is achieved. Often
+RDMA enabled software bypasses the host software stack which obviates
+configuration with standard `iproute2` utilities.
+
+When RoCE traffic is using VXLAN, the inner packet DSCP information is copied
+to the outer packet at the time of encapsulation. Likewise the outer DSCP
+information is copied to the inner packet when the packet is deencapsulated.
+The copying of this information maintains the traffic classification even
+through a VXLAN tunnel.
+
+#### RoCE QPN Hashing Mode
+
+RoCE traffic adds another input for hashing of traffic to ensure load
+sharing. The `ecmp.roceQPN` option will enable the use of the queue pair
+number as part of the hashing calculation. It is recommended that RoCE
+users also enable this `ecmp` setting.
+
+## Switch Groups
 
 The `SwitchGroup` is just a marker at that point and doesn't have any configuration options.
 
-```yaml
+```{.yaml .annotate linenums="1" title="SwitchGroup.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: SwitchGroup
 metadata:
@@ -75,7 +126,7 @@ switches using the `redundancy` field.
 
 Example of switch configured for ESLAG:
 
-```yaml
+```{.yaml .annotate linenums="1" title="SwitchGroup-Switch-example.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: SwitchGroup
 metadata:
@@ -98,7 +149,7 @@ spec:
 
 And example of switch configured for MCLAG:
 
-```yaml
+```{.yaml .annotate linenums="1" title="MCLAG-switchgroup.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: SwitchGroup
 metadata:
@@ -126,7 +177,7 @@ links between switches. For more details, see [Connections](./connections.md).
 
 Regular workload server:
 
-```yaml
+```{.yaml .annotate linenums="1" title="Server.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: Server
 metadata:
