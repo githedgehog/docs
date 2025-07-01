@@ -12,3 +12,4 @@
 *[DSCP]: Differentiated Services Code Point, 6 bits in IP packet header
 *[RDMA]: Remote Direct Memory Access
 *[ECMP]: Equal-cost Multi-path Routing
+*[QPN]: Queue Pair Number
