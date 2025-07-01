@@ -820,6 +820,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#dhcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCP Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#third-party-dhcp-server-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Third-party DHCP server configuration
@@ -1497,6 +1506,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#dhcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCP Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#third-party-dhcp-server-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Third-party DHCP server configuration
@@ -1654,58 +1672,122 @@ You're not viewing the latest version.
 <h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
 <p>A Virtual Private Cloud (<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>) is similar to a public cloud <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. It provides an isolated private network with support for multiple subnets,
 each with user-defined VLANs and optional <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> services.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPC</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits which subnets can the VPC use to guarantee non-overlapping IPv4 ranges</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">vlanNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits which Vlan Ids can the VPC use to guarantee non-overlapping VLANs</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">  </span><span class="c1"># Empty string is the default meaning l2vni, other option is l3vni</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">defaultIsolated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Sets default behavior for the current VPC subnets to be isolated</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">defaultRestricted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Sets default behavior for the current VPC subnets to be restricted</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="c1"># Each subnet is named, &quot;default&quot; subnet isn&#39;t required, but actively used by CLI</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># On-demand DHCP server</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optionally, start/end range could be specified, otherwise all available IPs are used</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">          </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.10</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">          </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.99</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, additional DHCP options to enable for DHCP server, only available when enable is true</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="nt">pxeURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tftp://10.10.10.99/bootfilename</span><span class="w"> </span><span class="c1"># PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">          </span><span class="nt">dnsServers</span><span class="p">:</span><span class="w"> </span><span class="c1"># (optional) configure DNS servers</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">          </span><span class="nt">timeServers</span><span class="p">:</span><span class="w"> </span><span class="c1"># (optional) configure Time (NTP) Servers</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">          </span><span class="nt">interfaceMTU</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1500</span><span class="w"> </span><span class="c1"># (optional) configure the MTU (default is 9036); doesn&#39;t affect the actual MTU of the switch interfaces</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.0/24</span><span class="w"> </span><span class="c1"># User-defined subnet from ipv4 namespace</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.1</span><span class="w"> </span><span class="c1"># User-defined gateway (optional, default is .1)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1001</span><span class="w"> </span><span class="c1"># User-defined VLAN from VLAN namespace</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">isolated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Makes subnet isolated from other subnets within the VPC (doesn&#39;t affect VPC peering)</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">restricted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Causes all hosts in the subnet to be isolated from each other</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="nt">thrird-party-dhcp</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="nt">relay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.100/24</span><span class="w"> </span><span class="c1"># Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.10.2.0/24&quot;</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1002</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="nt">another-subnet</span><span class="p">:</span><span class="w"> </span><span class="c1"># Minimal configuration is just a name, subnet and VLAN</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC. Will not be exported when peering</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.100.0.0/24</span><span class="w"> </span><span class="c1"># Destination prefix</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">      </span><span class="nt">nextHops</span><span class="p">:</span><span class="w"> </span><span class="c1"># Next hop IP addresses</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.200.0.0</span>
-</span></code></pre></div>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">vpc.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPC</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits which subnets can the VPC use to guarantee non-overlapping IPv4 ranges</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="nt">vlanNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"> </span><span class="c1"># Limits which Vlan Ids can the VPC use to guarantee non-overlapping VLANs</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">  </span><span class="c1"># Empty string is the default meaning l2vni, other option is l3vni</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="nt">defaultIsolated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Sets default behavior for the current VPC subnets to be isolated</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="nt">defaultRestricted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Sets default behavior for the current VPC subnets to be restricted</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="c1"># Each subnet is named, &quot;default&quot; subnet isn&#39;t required, but actively used by CLI</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">        </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># On-demand DHCP server</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">        </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optionally, start/end range could be specified, otherwise all available IPs are used</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">          </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.10</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">          </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.99</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">        </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, additional DHCP options to enable for DHCP server, only available when enable is true</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">          </span><span class="nt">pxeURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tftp://10.10.10.99/bootfilename</span><span class="w"> </span><span class="c1"># PXEURL (optional) to identify the PXE server to use to boot hosts; HTTP query strings are not supported</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">          </span><span class="nt">dnsServers</span><span class="p">:</span><span class="w"> </span><span class="c1"># (optional) configure DNS servers</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">          </span><span class="nt">timeServers</span><span class="p">:</span><span class="w"> </span><span class="c1"># (optional) configure Time (NTP) Servers</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">          </span><span class="nt">interfaceMTU</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1500</span><span class="w"> </span><span class="c1"># (optional) configure the MTU (default is 9036); doesn&#39;t affect the actual MTU of the switch interfaces</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">          </span><span class="nt">leaseTimeSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w"> </span><span class="c1"># The default duration of a DHCP lease</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">          </span><span class="nt">disableDefaultRoute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># set to true if the fabric DHCP server should not manage the default route on the end host</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">          </span><span class="nt">advertisedRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Array of routes to be sent to each host in this subnet</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">destination</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.12.10.0/24</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.2</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">destination</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.13.10.0/24</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.3</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.0/24</span><span class="w"> </span><span class="c1"># User-defined subnet from ipv4 namespace</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">      </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.1.1</span><span class="w"> </span><span class="c1"># User-defined gateway (optional, default is .1)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1001</span><span class="w"> </span><span class="c1"># User-defined VLAN from VLAN namespace</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">      </span><span class="nt">isolated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Makes subnet isolated from other subnets within the VPC (doesn&#39;t affect VPC peering)</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">      </span><span class="nt">restricted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Causes all hosts in the subnet to be isolated from each other</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="nt">thrird-party-dhcp</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">        </span><span class="nt">relay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.100/24</span><span class="w"> </span><span class="c1"># Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.10.2.0/24&quot;</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1002</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="w">    </span><span class="nt">another-subnet</span><span class="p">:</span><span class="w"> </span><span class="c1"># Minimal configuration is just a name, subnet and VLAN</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC. Will not be exported when peering</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.100.0.0/24</span><span class="w"> </span><span class="c1"># Destination prefix</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">      </span><span class="nt">nextHops</span><span class="p">:</span><span class="w"> </span><span class="c1"># Next hop IP addresses</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.200.0.0</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="isolated-and-restricted-subnets-permit-lists">Isolated and restricted subnets, permit lists</h3>
 <p>Subnets can be isolated and restricted, with the ability to define permit lists to allow communication between specific
 isolated subnets. The permit list is applied on top of the isolated flag and doesn't affect <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering.</p>
@@ -1713,8 +1795,22 @@ isolated subnets. The permit list is applied on top of the isolated flag and doe
 allowed by permit lists.</p>
 <p><em>Restricted subnet</em> means that all hosts in the subnet are isolated from each other within the subnet.</p>
 <p>A Permit list contains a list. Every element of the list is a set of subnets that can communicate with each other.</p>
+<h3 id="dhcp-server"><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Server</h3>
+<p>The included <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server sets the option for the default route pointing to the gateway
+address of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. If the default route of the end hosts should not be managed by the fabric
+<abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server, add <code>disableDefaultRoute: true</code> to the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> subnet spec inside of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.</p>
+<p>If additional routes are to be distributed to the end hosts inside of a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> add
+them as a YAML array in the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> subnet spec. A full list of options for the
+<abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> spec can be found in <a href="../../reference/fabric-api/#dhcpsubnetspec">the Fabric API reference</a>.</p>
+<p>Distributing additional routes via <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> is independent of the
+<code>disableDefaultRoute</code> setting. A user can distribute routes via the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>
+server even if the <code>disableDefaultRoute</code> is set to <code>true</code>. The additional
+routes are advertised via <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> option 121.</p>
+<p>If the <code>disableDefaultRoute</code> is set to <code>true</code>, and the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is <code>mode: l3vni</code> the
+fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server will send routes to the end hosts so that they can reach
+other hosts inside of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> via the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> gateway.</p>
 <h3 id="third-party-dhcp-server-configuration">Third-party <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server configuration</h3>
-<p>In case you use a third-party <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server, by configuring <code>spec.subnets.&lt;subnet&gt;.dhcp.relay</code>, additional information is
+<p>To use a third-party <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server, configure <code>spec.subnets.&lt;subnet&gt;.dhcp.relay</code>. Additional information is
 added to the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> packet forwarded to the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server to make it possible to identify the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and subnet. This
 information is added under the RelayAgentInfo (option 82) in the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> packet. The relay sets two suboptions in the
 packet:</p>
@@ -1873,7 +1969,7 @@ If the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> serv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
   </span>
 
     
