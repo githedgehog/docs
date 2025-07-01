@@ -166,6 +166,11 @@ You can jump [to the instructions](#build-the-installer-and-start-vlab) to start
 
 ### Collapsed Core
 
+!!! warning
+    Collapsed Core is deprecated starting from 25.03 release and will be removed in a future releases. It'll be replaced
+    by a new mesh topology that will work in a similar way to the spine-leaf topology but with leaf switches directly
+    connected to each other.
+
 If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`:
 
 ```console
