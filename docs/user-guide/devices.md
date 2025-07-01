@@ -45,7 +45,7 @@ spec:
     group: eslag-1 # Name of the redundancy group
     type: eslag # Type of the redundancy group, one of mclag or eslag
   enableAllPorts: true # Optional field to enable all ports on the switch by default
-  portAutoNegs: # Used for rj45 copper ports, and 800G ports
+  portAutoNegs: # Used for rj45 copper ports, and 800G ports for link conditioning
     E1/18: true
     E1/19: false
   roce: false # Lossless queues, RoCEv2 and related QoS configurations
@@ -58,8 +58,7 @@ RDMA over converged ethernet (RoCE) allows for RDMA communication over conventio
 ethernet devices. RoCE isn't available on every switch, check the [switch
 catalog](../reference/profiles.md) for `RoCE: true`. Enabling RoCE on a switch
 requires the switch to reboot in order to configure the hardware and associated
-queues. Once a switch is in RoCE mode the port breakouts are unable to be
-changed. 
+queues. Once a switch is in RoCE mode the port breakouts cannot be changed.
 !!! warning
     Users are advised to set the port breakouts as desired, and confirm
     the link is up before enabling RoCE.
@@ -80,14 +79,15 @@ the IP packet header.
 The counters associated with the traffic classes are viewable using the
 `kubectl fabric inspect` command. Users are advised to test traffic and track
 the counters to ensure that proper end host configuration is achieved. Often
-RDMA enabled software bypasses the host software stack which obviates
-configuration with standard `iproute2` utilities.
+RDMA enabled software bypasses the host software stack. This bypass means that
+configuration with utilities like: `nft`,`iptables`, and `iproute2` will not
+affect RDMA traffic leaving the host.
+
 
 When RoCE traffic is using VXLAN, the inner packet DSCP information is copied
 to the outer packet at the time of encapsulation. Likewise the outer DSCP
 information is copied to the inner packet when the packet is deencapsulated.
-The copying of this information maintains the traffic classification even
-through a VXLAN tunnel.
+This process preserves the traffic classification even through a VXLAN tunnel.
 
 #### RoCE QPN Hashing Mode
 
