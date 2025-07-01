@@ -1150,6 +1150,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#switchstateinterfacecountersqueue" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchStateInterfaceCountersQueue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#switchstatelldpneighbor" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchStateLLDPNeighbor
@@ -2704,6 +2713,15 @@ You're not viewing the latest version.
   <a href="#switchstateinterfacecounters" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchStateInterfaceCounters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchstateinterfacecountersqueue" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchStateInterfaceCountersQueue
     </span>
   </a>
   
@@ -4705,6 +4723,12 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
+<td><code>inBits</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>inBitsPerSecond</code> <em>float</em></td>
 <td></td>
 <td></td>
@@ -4741,6 +4765,12 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
+<td><code>outBits</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>outBitsPerSecond</code> <em>float</em></td>
 <td></td>
 <td></td>
@@ -4766,6 +4796,81 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 <tr>
 <td><code>outUtilization</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>queues</code> <em>object (keys:string, values:<a href="#switchstateinterfacecountersqueue">SwitchStateInterfaceCountersQueue</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="switchstateinterfacecountersqueue">SwitchStateInterfaceCountersQueue</h4>
+<p><em>Appears in:</em>
+- <a href="#switchstateinterfacecounters">SwitchStateInterfaceCounters</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>droppedBits</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>droppedPkts</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ecnMarkedBits</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ecnMarkedPkts</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>transmitBits</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>transmitBitsPerSecond</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>transmitPkts</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>transmitPktsPerSecond</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>wredDroppedPkts</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
