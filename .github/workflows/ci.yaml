@@ -21,6 +21,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      statuses: write
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,7 +41,7 @@ jobs:
         run: just build
 
       - name: Deploy preview to Netlify
-        uses: nwtgck/actions-netlify@v2
+        uses: nwtgck/actions-netlify@v3
         if: github.event_name == 'pull_request'
         with:
           publish-dir: ./site
