@@ -19,13 +19,18 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      statuses: write
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
+        uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: ./
           production-deploy: true
