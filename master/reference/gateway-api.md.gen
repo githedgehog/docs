@@ -440,6 +440,10 @@ GatewayAgentStatus defines the observed state of GatewayAgent.
 _Appears in:_
 - [GatewayAgent](#gatewayagent)
 
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
+| `lastAppliedGen` _integer_ | Generation of the last successful configuration application |  |  |
 
 
 #### VPCInfoData
