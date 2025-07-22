@@ -423,7 +423,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `ctrlVersion` _string_ | CtrlVersion is the version of the gateway controller to trigger generation changes on controler upgrade |  |  |
+| `agentVersion` _string_ | AgentVersion is the desired version of the gateway agent to trigger generation changes on controller upgrades |  |  |
 | `gateway` _[GatewaySpec](#gatewayspec)_ |  |  |  |
 | `vpcs` _object (keys:string, values:[VPCInfoData](#vpcinfodata))_ |  |  |  |
 | `peerings` _object (keys:string, values:[PeeringSpec](#peeringspec))_ |  |  |  |
@@ -442,6 +442,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
+| `agentVersion` _string_ | AgentVersion is the version of the gateway agent |  |  |
 | `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
 | `lastAppliedGen` _integer_ | Generation of the last successful configuration application |  |  |
 
