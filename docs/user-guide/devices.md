@@ -83,11 +83,38 @@ RDMA enabled software bypasses the host software stack. This bypass means that
 configuration with utilities like: `nft`,`iptables`, and `iproute2` will not
 affect RDMA traffic leaving the host.
 
+##### Setting DSCP Values
+
+To set the DSCP value of 24 in the `ib_send_bw` utility use `--tclass 96`. A
+sample invocation using this flag is:
+
+``` console
+ib_send_bw --tclass 96 --ib-dev=mlx5_0 --run_infinitely --report_gbits -x 5 10.30.3.2
+```
+
+To set the DSCP value of 24 in `iperf3` use the flag `--dscp 24`, this is a
+client side setting. A sample invocation using this flag is:
+
+``` console
+iperf3 --dscp 24 -c 127.0.0.1
+```
+
+To set the DSCP value of 24 in the
+[NCCL](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html) testing:
+```console
+export NCCL_IB_TC=96
+```
+
+The value of 96 is derived from the integer value 24 bit-shifted left by 2
+places.
+
+##### DSCP bits and VXLAN
 
 When RoCE traffic is using VXLAN, the inner packet DSCP information is copied
 to the outer packet at the time of encapsulation. Likewise the outer DSCP
 information is copied to the inner packet when the packet is deencapsulated.
 This process preserves the traffic classification even through a VXLAN tunnel.
+
 
 #### RoCE QPN Hashing Mode
 
