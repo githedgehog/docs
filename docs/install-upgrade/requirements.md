@@ -2,66 +2,69 @@
 
 ## Out of Band Management Network
 
-In order to provision and manage the switches that comprise the fabric, an out of band switch must also be installed. This network is to be used exclusively by the control node and the fabric switches, no other access is permitted. This switch (or switches) is not managed by the fabric. It is recommended that this switch have at least a 10GbE port and that port connect to the control node.
+In order to provision and manage the switches and gateways that comprise the fabric, an out of band switch must also be
+installed. This network is to be used exclusively by the control node and the fabric switches, no other access is
+permitted. This switch (or switches) is not managed by the fabric. It is recommended that this switch have at least a
+10GbE port and that port connect to the control node.
 
-## Control Node
+## Notes
 
 - Only UEFI is supported
 - Fast SSDs for system/root is mandatory for Control Nodes
     - NVMe SSDs are recommended
     - DRAM-less NAND SSDs are not supported (e.g. Crucial BX500)
 - 10 GbE port for connection to management network is recommended
+- TPM is recommended
 - Minimal (non-HA) setup is a single Control Node
 - (Future) Full (HA) setup is at least 3 Control Nodes
 - (Future) Extra nodes could be used for things like Logging, Monitoring, Alerting stack, and more
 
-In internal testing Hedgehog uses a server with the following specifications:
+## Control Node
 
-- CPU - AMD EPYC 4344P
-- Memory - 32 GiB DDR5 ECC 4800MT/s
-- Storage - PCIe Gen 4 NVMe M.2 400GB
-- Network - AOC-STG-i4S Intel X710-BM1 controller
-- Motherboard - H13SAE-MF
+Minimum system requirements for the fabric deployments under 50 switches:
 
+- CPU - AMD EPYC 4344P (8 cores)
+    - newer generation and/or more cores like 4345P (8 core) or 4465P (12 cores) is good
+- Memory - 2 x 16 GiB DDR5 ECC 5600MHz (exactly 2 channels should be populated)
+- Storage - PCIe Gen 4 NVMe M.2 400GB (e.g. Micron MAX line)
+    - Fast NVMe SSD is required, DRAM-less NAND SSDs are not supported
+- NICs
+    - at least 1 to connect to outside world (ssh to control node, API access, etc), 1G min is okay
+    - at least 1 to connect to the OOB management network
+    - 1G for small deployments (10-15 switches)
+    - 10G is recommended for bigger ones (15+ switches)
+- Redundant PSU is highly recommended
+- Note: many 1U systems are suitable for that but would have non-redundant PSU
 
-### Non-HA (minimal) setup - 1 Control Node
+For the fabric deployments over 50 switches it's required to increase CPU/RAM/Storage:
 
-- Control Node runs non-HA Kubernetes Control Plane installation with non-HA Hedgehog Fabric Control Plane on top of it
-- Not recommended for more then 10 devices participating in the Hedgehog Fabric or production deployments
+- CPU - AMD EPYC 4565P or 4564P (16 cores)
+- Memory - 2 x 32GiB DDR5 ECC 5600MHz (exactly 2 channels should be populated)
+- Storage - PCIe Gen 4 NVMe M.2 800GB (e.g. Micron MAX line)
 
-|      | Minimal | Recommended |
-| ---- | ------- | ----------- |
-| CPU  | 6       | 8           |
-| RAM  | 16 GB   | 32 GB       |
-| Disk | 150 GB  | 250 GB      |
+## Gateway Node
 
-### (Future) HA setup - 3+ Control Nodes (per node)
+Minimum system requirements for bandwidth under 50Gb/s:
 
-- Each Control Node runs part of the HA Kubernetes Control Plane installation with Hedgehog Fabric Control Plane on top
-  of it in HA mode as well
-- Recommended for all cases where more than 10 devices participating in the Hedgehog Fabric
+- CPU - AMD EPYC 4564P (16 cores)
+- Memory - 2 x 32GiB DDR5 ECC 5600MHz (exactly 2 channels should be populated)
+- Storage - PCIe Gen 4 NVMe M.2 400GB (e.g. Micron MAX line)
+    - Fast NVMe SSD is required, DRAM-less NAND SSDs are not supported
+- NICs
+    - at least 1 to connect to the OOB management network (1G is enough)
+    - single NVIDIA ConnectX-6 specifically 2 ports versions to connect to the fabric
+        - crypto-enabled is recommended
+- Redundant PSU is highly recommended
+- Note: many 1U systems are suitable for that but would have non-redundant PSU
 
-|      | Minimal | Recommended |
-| ---- | ------- | ----------- |
-| CPU  | 6       | 8           |
-| RAM  | 16 GB   | 32 GB       |
-| Disk | 150 GB  | 250 GB      |
+Minimum system requirements for more then 50Gb/s bandwidth, up to 200Gb/s:
 
-### Reference Control Node Configuration
-
-- AMD EPYC 4344P (8C/16T, 3.8 GHz, 32 MB L3, 65W, single socket)
-- 32 GB DDR5-4800 ECC UDIMM (2 x 16 GB)
-- Micron 7450 MAX 400GB NVMe
-
-## Device participating in the Hedgehog Fabric (e.g. switch)
-
-- (Future) Each participating device is part of the Kubernetes cluster, so it runs Kubernetes kubelet
-- Additionally, it runs the Hedgehog Fabric Agent that controls devices configuration
-
-Following resources should be available on a device to run in the Hedgehog Fabric (after other software such as SONiC usage):
-
-|      | Minimal | Recommended |
-| ---- | ------- | ----------- |
-| CPU  | 1       | 2           |
-| RAM  | 1 GB    | 1.5 GB      |
-| Disk | 5 GB    | 10 GB       |
+- CPU - AMD EPYC 9355P (32 core)
+- Memory - 12 x 16GB DDR5 6400MHz ECC (exactly 12 channels should be populated)
+- Storage - PCIe Gen 4 NVMe M.2 400GB (e.g. Micron MAX line)
+    - Fast NVMe SSD is required, DRAM-less NAND SSDs are not supported
+- NICs
+    - at least 1 to connect to the OOB management network (1G is enough)
+    - single NVIDIA ConnectX-7 specifically 2x200G versions to connect to the fabric
+        - crypto-enabled is recommended
+- Redundant PSU is highly recommended
