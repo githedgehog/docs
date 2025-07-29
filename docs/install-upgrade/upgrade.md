@@ -31,7 +31,7 @@ For users upgrading to version 25.03 follow the steps:
 0. Confirm all the switches are up and running SONiC 4.5.0
     * `kubectl get agents -o wide`, look at the Software column
 
-0. Run the command to patch the fabricator object 
+0. Run the command to patch the fabricator object
     * `kubectl patch -n fab --type merge fabricator/default -p '{"spec":{"config":{"fabric":{"loopbackWorkaroundDisable":true}}}}'`
 
 0. Ensure that all agents have converged:
@@ -51,7 +51,7 @@ in order for updates to take place.
 ## Upgrades from Beta-1 onwards
 
 Starting with Beta-1 release and onwards, the upgrade process is more streamlined and fully automated. The control node
-is upgraded in place and the agents/switches is upgraded using the control node.
+is upgraded in place and the agents/switches are upgraded using the control node.
 
 In order to apply the upgrade, use the following instructions:
 
@@ -108,13 +108,13 @@ Beta-1 uses the switch vendor ONIE for installation of the NOS. The latest vendo
 ### Install The Control Node
 Follow the [instructions](install.md#build-control-node-configuration-and-installer) for installing the Beta-1 Fabric on a control node.
 
-## Install SONiC using ONIE 
+## Install SONiC using ONIE
 
 As the switches boot up, select the `ONIE` option from the grub screen. From
 there select the `ONIE: Install OS` option. In the grub boot menu the asterisk
 (`*`) character functions as an indicator of the option that would be executed
 if the `enter` key was pressed. For example to enter the `ONIE` menu it would
-appear as `*ONIE` on the screen. The install option will cause the switch to 
+appear as `*ONIE` on the screen. The install option will cause the switch to
 begin searching for installation media, this media is supplied by the control node.
 
 ## Upgrade SONiC
@@ -123,10 +123,10 @@ Occasionally some fabric upgrades will include upgrades to the SONiC Network
 Operating System. Upgrading SONiC will cause the switch to not pass traffic
 during the upgrade process. For that reason, SONiC is not upgraded
 automatically and the user is encouraged to schedule a maintenance window for
-the upgrade. 
+the upgrade.
 
 To upgrade a switch on an existing deployment use the command `kubectl fabric
 switch reinstall --name switch-name`. The switch will be gracefully shutdown,
 and reboot into the `ONIE` boot environment for reinstallation. After the
 switch boots the hedgehog agent will automatically restore the configuration
-and traffic will resume without user intervention. 
+and traffic will resume without user intervention.
