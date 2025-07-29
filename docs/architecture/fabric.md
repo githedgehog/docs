@@ -80,20 +80,17 @@ describe how VPCs are actually implemented in the network to ensure a private vi
 ## VPC Peering
 
 To enable communication between 2 different VPCs, one needs to configure a VPC peering policy. The Hedgehog Fabric
-supports two different peering modes.
+supports two different peering modes:
 
 * Local Peering: A local peering directly imports routes from another VPC locally. This is achieved by a simple
   import route from the peer VPC. In case there are no locally attached workloads to the peer VPC the fabric
   automatically creates a stub VPC for peering and imports routes from it. This allows VPCs to peer with each other
-  without the need for a dedicated peering leaf. If a local peering is done for a pair of VPCs which have locally
-  attached workloads, the fabric automatically allocates a pair of ports on the switch to route traffic between these
-  VRFs using static routes. This is required because of limitations in the underlying platform. The net result of these
-  limitations is that the bandwidth between these 2 VPCs is limited by the bandwidth of the loopback interfaces
-  allocated on the switch. Traffic between the peered VPCs will not leave the switch that connects them.
+  without the need for a dedicated peering leaf. Traffic between the peered VPCs will not leave the switch that connects
+  them.
 * Remote Peering: Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
   point for the 2 VPC's in the fabric. The set of switches to be used for peering is determined by configuration in the
   peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
   the peering switch advertise default routes into their specific VRFs identified by the L3VNI. All traffic that does
   not belong to the VPCs is forwarded to the peering switch which has routes to the other VPCs and gets forwarded from
-  there. The bandwidth limitation that exists in the local peering solution is solved here as the bandwidth between the
-  two VPCs is determined by the fabric cross section bandwidth.
+  there. This peering mode was introduced as a workaround to previous limitations of the fabric; users are recommended
+  to use local peering instead.

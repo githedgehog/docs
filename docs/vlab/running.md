@@ -16,7 +16,7 @@ ubuntu@docs:~$ hhfab init --dev
 ```
 ## VLAB Topology
 
-By default, `hhfab init` creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing VPC loopback workaround. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
+By default, `hhfab init` creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
@@ -25,7 +25,7 @@ ubuntu@docs:~$ hhfab vlab gen
 21:27:16 INF >>> spinesCount=2 fabricLinksCount=2
 21:27:16 INF >>> eslagLeafGroups=2
 21:27:16 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
-21:27:16 INF >>> orphanLeafsCount=1 vpcLoopbacks=2
+21:27:16 INF >>> orphanLeafsCount=1
 21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 21:27:16 INF Generated wiring file name=vlab.generated.yaml
 ```
@@ -178,7 +178,7 @@ ubuntu@docs:~$ hhfab vlab gen
 11:39:02 INF Hedgehog Fabricator version=v0.36.1
 11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core
 11:39:02 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
-11:39:02 INF >>> orphanLeafsCount=0 vpcLoopbacks=2
+11:39:02 INF >>> orphanLeafsCount=0
 11:39:02 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 11:39:02 INF Generated wiring file name=vlab.generated.yaml
 ```
@@ -262,7 +262,7 @@ ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2
 11:41:06 INF >>> spinesCount=2 fabricLinksCount=2
 11:41:06 INF >>> eslagLeafGroups=""
 11:41:06 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
-11:41:06 INF >>> orphanLeafsCount=2 vpcLoopbacks=2
+11:41:06 INF >>> orphanLeafsCount=2
 11:41:06 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
 11:41:06 INF Generated wiring file name=vlab.generated.yaml
 ```
@@ -440,9 +440,6 @@ For connections, use:
 core@control-1 ~ $ kubectl get connection
 NAME                                 TYPE           AGE
 leaf-01--mclag-domain--leaf-02       mclag-domain   6h11m
-leaf-01--vpc-loopback                vpc-loopback   6h11m
-leaf-02--vpc-loopback                vpc-loopback   6h11m
-leaf-03--vpc-loopback                vpc-loopback   6h11m
 server-01--mclag--leaf-01--leaf-02   mclag          6h11m
 server-02--mclag--leaf-01--leaf-02   mclag          6h11m
 server-03--unbundled--leaf-01        unbundled      6h11m

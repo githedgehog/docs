@@ -173,7 +173,7 @@ graph TD
 
 #### Local VPC Peering
 
-When there is no dedicated border/peering switch available in the fabric we can use local VPC peering. This kind of peering tries sends traffic between the two VPC's on the switch where either of the VPC's has workloads attached. Due to limitation in the Sonic network operating system this kind of peering bandwidth is limited to the number of VPC loopbacks you have selected while initializing the fabric. Traffic between the VPCs will use the loopback interface, the bandwidth of this connection will be equal to the bandwidth of port used in the loopback.
+When there is no dedicated border/peering switch available in the fabric we can use local VPC peering. This kind of peering tries to send traffic between the two VPCs on the switch where either of the VPCs has workloads attached.
 
 ``` mermaid
 graph TD
@@ -184,8 +184,7 @@ graph TD
     S3[Server3]
     S4[Server4]
 
-    L1 <-.2,loopback.-> L1;
-    L1 <-.3.-> S1;
+    L1 <-.2.-> S1;
     L1 <--> S2 & S4;
     L1 <-.1.-> S3;
 
@@ -199,12 +198,12 @@ graph TD
     S4
     end
 ```
-The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in VPC 2, travels to the switch, travels out the first loopback port, into the second loopback port, and finally out the port destined for VPC 1.
+The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in VPC 2, travels to the switch, and finally out the port destined for VPC 1.
 
 
 #### Remote VPC Peering
 
-Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the VPC's are not present. This kind of peering allows peer traffic between different VPC's at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.
+Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the VPC's are not present. This kind of peering allows peer traffic between different VPCs at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.
 
 ``` mermaid
 graph TD
@@ -242,18 +241,13 @@ graph TD
 ```
 The dotted line in the diagram shows the traffic flow for remote peering. The traffic could take a different path because of ECMP. It is important to note that Leaf 3 cannot have any servers from VPC 1 or VPC 2 on it, but it can have a  different VPC attached to it.
 
-#### VPC Loopback
-
-A VPC loopback is a physical cable with both ends plugged into the same switch, suggested but not required to be the adjacent ports. This loopback allows two different VPCs to communicate with each other. This is due to a Broadcom limitation.
-
 ## Sample Wiring Diagram
 
 The YAML listing below shows a complete wiring diagram. It illustrates how switches
 from a single vendor can be arranged to form a fabric. There are no IP
 addresses or ASN numbers in this listing, the `hhfab build` step creates those as part
 of creating the fabric. To physically connect this topology, 16 cables are
-needed for the fabric links, 8 cables are needed for the loop back connections.
-Additional cables are needed to connect servers into the fabric. 
+needed for the fabric links. Additional cables are needed to connect servers into the fabric.
 
 ``` {.yaml .annotate linenums="1" title="wiring_diagram.yaml"}
 #
@@ -371,70 +365,6 @@ spec:
 #
 # ConnectionList
 #
----
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: leaf-01--vpc-loopback
-spec:
-  vpcLoopback:
-    links:
-    - switch1:
-        port: leaf-01/E1/12
-      switch2:
-        port: leaf-01/E1/13
-    - switch1:
-        port: leaf-01/E1/14
-      switch2:
-        port: leaf-01/E1/15
----
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: leaf-02--vpc-loopback
-spec:
-  vpcLoopback:
-    links:
-    - switch1:
-        port: leaf-02/E1/13
-      switch2:
-        port: leaf-02/E1/14
-    - switch1:
-        port: leaf-02/E1/15
-      switch2:
-        port: leaf-02/E1/16
----
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: leaf-03--vpc-loopback
-spec:
-  vpcLoopback:
-    links:
-    - switch1:
-        port: leaf-03/E1/8
-      switch2:
-        port: leaf-03/E1/9
-    - switch1:
-        port: leaf-03/E1/10
-      switch2:
-        port: leaf-03/E1/11
----
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: leaf-04--vpc-loopback
-spec:
-  vpcLoopback:
-    links:
-    - switch1:
-        port: leaf-04/E1/9
-      switch2:
-        port: leaf-04/E1/10
-    - switch1:
-        port: leaf-04/E1/11
-      switch2:
-        port: leaf-04/E1/12
 ---
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
