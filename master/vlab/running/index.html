@@ -1614,14 +1614,14 @@ before running VLAB.</p>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include</span>
 </span></code></pre></div>
 <h2 id="vlab-topology">VLAB Topology</h2>
-<p>By default, <code>hhfab init</code> creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links as well as 2 loopbacks per leaf for implementing <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback workaround. To generate the preceding topology, <code>hhfab vlab gen</code>. You can also configure the number of spines, leafs, connections, and so on. For example, flags <code>--spines-count</code> and <code>--mclag-leafs-count</code> allow you to set the number of spines and MCLAG leaves, respectively. For complete options, <code>hhfab vlab gen -h</code>.</p>
+<p>By default, <code>hhfab init</code> creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, <code>hhfab vlab gen</code>. You can also configure the number of spines, leafs, connections, and so on. For example, flags <code>--spines-count</code> and <code>--mclag-leafs-count</code> allow you to set the number of spines and MCLAG leaves, respectively. For complete options, <code>hhfab vlab gen -h</code>.</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">21:27:16 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">21:27:16 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">21:27:16 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">21:27:16 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">21:27:16 INF &gt;&gt;&gt; orphanLeafsCount=1 vpcLoopbacks=2</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">21:27:16 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">21:27:16 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">21:27:16 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
@@ -1766,7 +1766,7 @@ connected to each other.</p>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">11:39:02 INF Hedgehog Fabricator version=v0.36.1</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">11:39:02 INF &gt;&gt;&gt; orphanLeafsCount=0 vpcLoopbacks=2</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">11:39:02 INF &gt;&gt;&gt; orphanLeafsCount=0</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">11:39:02 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
@@ -1843,7 +1843,7 @@ style Servers fill:none,stroke:none</code></pre>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">11:41:06 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">11:41:06 INF &gt;&gt;&gt; eslagLeafGroups=&quot;&quot;</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">11:41:06 INF &gt;&gt;&gt; mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">11:41:06 INF &gt;&gt;&gt; orphanLeafsCount=2 vpcLoopbacks=2</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">11:41:06 INF &gt;&gt;&gt; orphanLeafsCount=2</span>
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">11:41:06 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">11:41:06 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
@@ -1987,21 +1987,18 @@ API</a> and
 <div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>connection
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">NAME                                 TYPE           AGE</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">leaf-01--mclag-domain--leaf-02       mclag-domain   6h11m</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">leaf-01--vpc-loopback                vpc-loopback   6h11m</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">leaf-02--vpc-loopback                vpc-loopback   6h11m</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">leaf-03--vpc-loopback                vpc-loopback   6h11m</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">server-01--mclag--leaf-01--leaf-02   mclag          6h11m</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="go">server-02--mclag--leaf-01--leaf-02   mclag          6h11m</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="go">server-03--unbundled--leaf-01        unbundled      6h11m</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="go">server-04--bundled--leaf-02          bundled        6h11m</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="go">server-05--unbundled--leaf-03        unbundled      6h11m</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="go">server-06--bundled--leaf-03          bundled        6h11m</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="go">spine-01--fabric--leaf-01            fabric         6h11m</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="go">spine-01--fabric--leaf-02            fabric         6h11m</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="go">spine-01--fabric--leaf-03            fabric         6h11m</span>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="go">spine-02--fabric--leaf-01            fabric         6h11m</span>
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="go">spine-02--fabric--leaf-02            fabric         6h11m</span>
-</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="go">spine-02--fabric--leaf-03            fabric         6h11m</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">server-01--mclag--leaf-01--leaf-02   mclag          6h11m</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">server-02--mclag--leaf-01--leaf-02   mclag          6h11m</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">server-03--unbundled--leaf-01        unbundled      6h11m</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">server-04--bundled--leaf-02          bundled        6h11m</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="go">server-05--unbundled--leaf-03        unbundled      6h11m</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="go">server-06--bundled--leaf-03          bundled        6h11m</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="go">spine-01--fabric--leaf-01            fabric         6h11m</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="go">spine-01--fabric--leaf-02            fabric         6h11m</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="go">spine-01--fabric--leaf-03            fabric         6h11m</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="go">spine-02--fabric--leaf-01            fabric         6h11m</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="go">spine-02--fabric--leaf-02            fabric         6h11m</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="go">spine-02--fabric--leaf-03            fabric         6h11m</span>
 </span></code></pre></div>
 <p>For IPv4 and VLAN namespaces, use:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>ipns
@@ -2040,7 +2037,7 @@ API</a> and
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 29, 2025</span>
   </span>
 
     
