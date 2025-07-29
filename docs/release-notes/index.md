@@ -4,6 +4,37 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
 
+## 25.04
+
+!!! note
+    It's only possible to upgrade from 25.03 to 25.04 and requires all switches to run Broadcom SONiC 4.5.0.
+
+### Highlights
+
+- More efficient and reliable Fabric BGP configuration
+    - Only a single L2VPN EVPN neighbor between the pair of leaf and spine switches (instead of per physical link)
+    - BFD (Bidirectional Forwarding Detection) is enabled for physical links between leaf and spine switches for better
+      fault detection and recovery
+    - Only minimally necessary routes are now advertised
+- Externals are now using dedicated VRFs on the switches to provide better isolation and security
+- Switch agent is now collecting more info from the switch about transceivers (e.g. CMIS, laser power, etc.)
+    - Could be accessed via inspect commands (e.g. `kubectl fabric inspect switch -n <switch-name> --ports --transceivers --lasers`)
+- Celestica DS2000 is now supported as a leaf and spine
+    - (Broadcom TD3-X5 2.0T) 48xSFP28-25G, 8xQSFP28-100G
+
+### Other
+
+- Loopback workaround fully deprecated and not configurable anymore
+- Grafana Alloy updated to version v1.9.2
+
+### Software versions
+
+- fabricator/hhfab: v0.41.1
+- fabric: v0.87.3
+- broadcom sonic: 4.5.0
+- flatcar: v4152.2.3
+- k8s (k3s): v1.33.2-k3s1
+
 ## 25.03
 
 ### Highlights
