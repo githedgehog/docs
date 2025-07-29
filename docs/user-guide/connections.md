@@ -176,8 +176,9 @@ spec:
 
 ### VPC-Loopback
 
-VPC-Loopback connections are required in order to implement a workaround for the local VPC peering (when both VPC are
-attached to the same switch), which is caused by a hardware limitation of the currently supported switches.
+In Fabric versions prior to 25.03, VPC-Loopback connections were used for the local VPC peering, i.e.
+when both VPC are attached to the same switch, to work around a limitation of the supported switches.
+That workaround is no longer needed nor configurable; this connection type is deprecated.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1beta1
