@@ -1221,6 +1221,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#switchstatetransceiverchannel" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchStateTransceiverChannel
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2808,6 +2817,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#switchstatetransceiverchannel" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchStateTransceiverChannel
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3955,7 +3973,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>received</code> <em><a href="#bgpmessagescounters">BGPMessagesCounters</a></em></td>
+<td><code>rec</code> <em><a href="#bgpmessagescounters">BGPMessagesCounters</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3982,19 +4000,19 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>capability</code> <em>integer</em></td>
+<td><code>cap</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>keepalive</code> <em>integer</em></td>
+<td><code>keepal</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>notification</code> <em>integer</em></td>
+<td><code>notif</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4006,7 +4024,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>routeRefresh</code> <em>integer</em></td>
+<td><code>rrefresh</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4165,6 +4183,12 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
+<td><code>transceivers</code> <em>object (keys:string, values:<a href="#switchstatetransceiver">SwitchStateTransceiver</a>)</em></td>
+<td>Transceivers state (port -&gt; transceiver state)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>bgpNeighbors</code> <em>object (keys:string, values:<a href="#map[string]switchstatebgpneighbor">map[string]SwitchStateBGPNeighbor</a>)</em></td>
 <td>State of all <abbr title="Border Gateway Protocol">BGP</abbr> neighbors (VRF -&gt; neighbor address -&gt; state)</td>
 <td></td>
@@ -4188,6 +4212,12 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>firmware</code> <em>object (keys:string, values:string)</em></td>
+<td>Firmware versions of the switch</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="switchstatebgpneighbor">SwitchStateBGPNeighbor</h4>
@@ -4204,7 +4234,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>connectionsDropped</code> <em>integer</em></td>
+<td><code>connDropped</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4216,13 +4246,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>establishedTransitions</code> <em>integer</em></td>
+<td><code>estabTrans</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>lastEstablished</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
+<td><code>lastEstab</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4240,7 +4270,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>lastResetTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
+<td><code>lastReset</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4258,7 +4288,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>messages</code> <em><a href="#bgpmessages">BGPMessages</a></em></td>
+<td><code>msgs</code> <em><a href="#bgpmessages">BGPMessages</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4294,13 +4324,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>sessionState</code> <em><a href="#bgpneighborsessionstate">BGPNeighborSessionState</a></em></td>
+<td><code>state</code> <em><a href="#bgpneighborsessionstate">BGPNeighborSessionState</a></em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>shutdownMessage</code> <em>string</em></td>
+<td><code>shutdownMsg</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4327,13 +4357,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>received</code> <em>integer</em></td>
+<td><code>rec</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>receivedPrePolicy</code> <em>integer</em></td>
+<td><code>recPre</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4361,12 +4391,6 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <tbody>
 <tr>
 <td><code>mode</code> <em>string</em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>nosMembers</code> <em>string array</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4696,13 +4720,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>adminStatus</code> <em><a href="#adminstatus">AdminStatus</a></em></td>
+<td><code>admin</code> <em><a href="#adminstatus">AdminStatus</a></em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>operStatus</code> <em><a href="#operstatus">OperStatus</a></em></td>
+<td><code>oper</code> <em><a href="#operstatus">OperStatus</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4714,7 +4738,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>lastChanged</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
+<td><code>change</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4726,13 +4750,19 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>counters</code> <em><a href="#switchstateinterfacecounters">SwitchStateInterfaceCounters</a></em></td>
+<td><code>auto</code> <em>boolean</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>transceiver</code> <em><a href="#switchstatetransceiver">SwitchStateTransceiver</a></em></td>
+<td><code>fec</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>counters</code> <em><a href="#switchstateinterfacecounters">SwitchStateInterfaceCounters</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4759,79 +4789,79 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>inBits</code> <em>integer</em></td>
+<td><code>inb</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inBitsPerSecond</code> <em>float</em></td>
+<td><code>inbps</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inDiscards</code> <em>integer</em></td>
+<td><code>ind</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inErrors</code> <em>integer</em></td>
+<td><code>ine</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inPktsPerSecond</code> <em>float</em></td>
+<td><code>inpbs</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inUtilization</code> <em>integer</em></td>
+<td><code>inu</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>lastClear</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
+<td><code>clear</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#time-v1-meta">Time</a></em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outBits</code> <em>integer</em></td>
+<td><code>outb</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outBitsPerSecond</code> <em>float</em></td>
+<td><code>outbps</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outDiscards</code> <em>integer</em></td>
+<td><code>outd</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outErrors</code> <em>integer</em></td>
+<td><code>oute</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outPktsPerSecond</code> <em>float</em></td>
+<td><code>outpps</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outUtilization</code> <em>integer</em></td>
+<td><code>outu</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4858,55 +4888,55 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>droppedBits</code> <em>integer</em></td>
+<td><code>db</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>droppedPkts</code> <em>integer</em></td>
+<td><code>dp</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>ecnMarkedBits</code> <em>integer</em></td>
+<td><code>ecnb</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>ecnMarkedPkts</code> <em>integer</em></td>
+<td><code>ecnp</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>transmitBits</code> <em>integer</em></td>
+<td><code>b</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>transmitBitsPerSecond</code> <em>integer</em></td>
+<td><code>bps</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>transmitPkts</code> <em>integer</em></td>
+<td><code>p</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>transmitPktsPerSecond</code> <em>integer</em></td>
+<td><code>pps</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>wredDroppedPkts</code> <em>integer</em></td>
+<td><code>wreddp</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4933,19 +4963,19 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>chassisID</code> <em>string</em></td>
+<td><code>chassis</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>systemName</code> <em>string</em></td>
+<td><code>sysName</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>systemDescription</code> <em>string</em></td>
+<td><code>sysDescr</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4957,13 +4987,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>portDescription</code> <em>string</em></td>
+<td><code>portDescr</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>manufacturer</code> <em>string</em></td>
+<td><code>manuf</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4975,7 +5005,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>serialNumber</code> <em>string</em></td>
+<td><code>serial</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5120,7 +5150,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>temperatures</code> <em>object (keys:string, values:<a href="#switchstateplatformtemperature">SwitchStatePlatformTemperature</a>)</em></td>
+<td><code>temps</code> <em>object (keys:string, values:<a href="#switchstateplatformtemperature">SwitchStatePlatformTemperature</a>)</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5141,7 +5171,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>direction</code> <em>string</em></td>
+<td><code>dir</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5180,37 +5210,37 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>inputCurrent</code> <em>float</em></td>
+<td><code>inCurrent</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inputPower</code> <em>float</em></td>
+<td><code>inPower</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>inputVoltage</code> <em>float</em></td>
+<td><code>inVoltage</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outputCurrent</code> <em>float</em></td>
+<td><code>outCurrent</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outputPower</code> <em>float</em></td>
+<td><code>outPower</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>outputVoltage</code> <em>float</em></td>
+<td><code>outVoltage</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5243,7 +5273,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>temperature</code> <em>float</em></td>
+<td><code>temp</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5261,7 +5291,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>criticalHighThreshold</code> <em>float</em></td>
+<td><code>critHighThreshold</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5273,7 +5303,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>criticalLowThreshold</code> <em>float</em></td>
+<td><code>critLowThreshold</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5282,7 +5312,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </table>
 <h4 id="switchstatetransceiver">SwitchStateTransceiver</h4>
 <p><em>Appears in:</em>
-- <a href="#switchstateinterface">SwitchStateInterface</a></p>
+- <a href="#switchstate">SwitchState</a></p>
 <table>
 <thead>
 <tr>
@@ -5294,13 +5324,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>description</code> <em>string</em></td>
+<td><code>descr</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>cableClass</code> <em>string</em></td>
+<td><code>cable</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5312,7 +5342,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>connectorType</code> <em>string</em></td>
+<td><code>connType</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5324,19 +5354,19 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>cableLength</code> <em>float</em></td>
+<td><code>length</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>operStatus</code> <em>string</em></td>
+<td><code>oper</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>temperature</code> <em>float</em></td>
+<td><code>temp</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5348,7 +5378,7 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>serialNumber</code> <em>string</em></td>
+<td><code>serial</code> <em>string</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -5373,6 +5403,69 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 <tr>
 <td><code>vendorRev</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>firmware</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>cmis</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>cmisRev</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>cmisApp</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>channels</code> <em>object (keys:string, values:<a href="#switchstatetransceiverchannel">SwitchStateTransceiverChannel</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="switchstatetransceiverchannel">SwitchStateTransceiverChannel</h4>
+<p><em>Appears in:</em>
+- <a href="#switchstatetransceiver">SwitchStateTransceiver</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>in</code> <em>float</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>out</code> <em>float</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>bias</code> <em>float</em></td>
 <td></td>
 <td></td>
 <td></td>
