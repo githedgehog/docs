@@ -29,8 +29,8 @@
 
 ### Software versions
 
-- fabricator/hhfab: v0.41.1
-- fabric: v0.87.3
+- fabricator/hhfab: v0.41.2
+- fabric: v0.87.4
 - broadcom sonic: 4.5.0
 - flatcar: v4152.2.3
 - k8s (k3s): v1.33.2-k3s1
