@@ -29,7 +29,7 @@
 
 ### Software versions
 
-- fabricator/hhfab: v0.41.2
+- fabricator/hhfab: v0.41.3
 - fabric: v0.87.4
 - broadcom sonic: 4.5.0
 - flatcar: v4152.2.3
