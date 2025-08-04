@@ -71,7 +71,7 @@
 ### Highlights
 
 - Celestica DS5000 support as a spine and limited leaf
-    - Limited leaf means that [local peering](../install-upgrade/build-wiring/#local-vpc-peering) is not supported and
+    - Limited leaf means that [local peering](../install-upgrade/build-wiring.md#local-vpc-peering) is not supported and
       externals could only be attached without VLANs due to the lack of subinterfaces support
 - MCLAG link state tracking is now enabled (shutdown server-facing MCLAG port channels if no spine uplinks are up)
 

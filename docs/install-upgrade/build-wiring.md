@@ -137,8 +137,12 @@ graph TD
 ```
 #### Fabric Connections
 
-Fabric connections serve as connections between switches, they form the fabric of the network.
+Fabric connections serve as connections between spine and leaf switches; they form the fabric of the network.
 
+#### Mesh Connections
+
+Mesh connections directly connect leaf switches with each other; they are useful when creating small mesh
+topologies without spines.
 
 ### VPC Peering
 
@@ -243,8 +247,8 @@ The dotted line in the diagram shows the traffic flow for remote peering. The tr
 
 ## Sample Wiring Diagram
 
-The YAML listing below shows a complete wiring diagram. It illustrates how switches
-from a single vendor can be arranged to form a fabric. There are no IP
+The YAML listing below shows a complete wiring diagram for a spine-leaf topology. It illustrates
+how switches from a single vendor can be arranged to form a fabric. There are no IP
 addresses or ASN numbers in this listing, the `hhfab build` step creates those as part
 of creating the fabric. To physically connect this topology, 16 cables are
 needed for the fabric links. Additional cables are needed to connect servers into the fabric.
