@@ -140,6 +140,40 @@ spec:
         port: s5232-01/E1/2
 ```
 
+### Mesh
+
+A Mesh connection is used between a pair of leaf switches directly connected to each other, without the need
+for a spine switch in between. This can be used to create smaller mesh topologies, or to connect border leaves
+to the fabric when there are no available spine ports.
+
+!!! warning
+    Mesh connections are experimental and not yet recommended for production use.
+
+Here's an example YAML definition of a Mesh connection between two leaves:
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: s5248-03--mesh--s5248-04
+  namespace: default
+spec:
+  mesh:
+    links: # Defines multiple links between a pair of leaf switches with IP addresses
+    - leaf1:
+        ip: 172.30.128.8/31
+        port: s5248-03/E1/55
+      leaf2:
+        ip: 172.30.128.9/31
+        port: s5248-04/E1/55
+    - leaf1:
+        ip: 172.30.128.10/31
+        port: s5248-03/E1/56
+      leaf2:
+        ip: 172.30.128.11/31
+        port: s5248-04/E1/56
+```
+
 ### MCLAG-Domain
 
 MCLAG-Domain connections define a pair of MCLAG switches with Session and Peer link between them. Switches should be

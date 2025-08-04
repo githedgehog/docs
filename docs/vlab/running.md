@@ -9,28 +9,30 @@ First, initialize Fabricator by running `hhfab init --dev`. This command creates
 
 ```console
 ubuntu@docs:~$ hhfab init --dev
-11:26:52 INF Hedgehog Fabricator version=v0.36.1
+11:26:52 INF Hedgehog Fabricator version=v0.41.3
 11:26:52 INF Generated initial config
 11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
 11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include
 ```
 ## VLAB Topology
 
-By default, `hhfab init` creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leafs, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
+### Spine-Leaf
+
+By default, `hhfab vlab gen` creates 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 orphan (non-LAG) leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leaves, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen
-21:27:16 INF Hedgehog Fabricator version=v0.36.1
-21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf
-21:27:16 INF >>> spinesCount=2 fabricLinksCount=2
-21:27:16 INF >>> eslagLeafGroups=2
-21:27:16 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
-21:27:16 INF >>> orphanLeafsCount=1
-21:27:16 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-21:27:16 INF Generated wiring file name=vlab.generated.yaml
+11:37:33 INF Hedgehog Fabricator version=v0.41.1
+11:37:33 INF Building VLAB wiring diagram fabricMode=spine-leaf
+11:37:33 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
+11:37:33 INF >>> eslagLeafGroups=2
+11:37:33 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
+11:37:33 INF >>> orphanLeafsCount=1
+11:37:33 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+11:37:33 INF Generated wiring file name=vlab.generated.yaml
 ```
 
-The default spine-leaf topology with 2 spines, 2 MCLAG leaves, and 1 non-MCLAG leaf:
+The default spine-leaf topology with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 orphan leaf is shown below:
 
 ```mermaid
 graph TD
@@ -164,12 +166,120 @@ style Spine_02_Group fill:none,stroke:none
 
 You can jump [to the instructions](#build-the-installer-and-start-vlab) to start VLAB, or see the next section for customizing the topology.
 
+### Mesh
+
+To run the experimental mesh topology, which does away with spine switches and connects leaves directly to each other,
+use the `--mesh-links-count` flag.
+This flag allows you to specify how many mesh links should be created between each pair of leaves.
+For example, to create a mesh topology with 2 links between each pair of leaves, run:
+
+```console
+ubuntu@docs:~$ hhfab vlab gen --mesh-links-count 2
+13:24:58 INF Hedgehog Fabricator version=v0.41.3
+13:24:58 INF Building VLAB wiring diagram fabricMode=spine-leaf
+13:24:58 INF >>> spinesCount=0 fabricLinksCount=0 meshLinksCount=2
+13:24:58 INF >>> eslagLeafGroups=2
+13:24:58 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
+13:24:58 INF >>> orphanLeafsCount=1
+13:24:58 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+13:24:58 INF Generated wiring file name=vlab.generated.yaml
+```
+
+The default topology generated in this case will have 2 ESLAG leaves and 1 orphan leaf. Below is the corresponding diagram:
+
+```mermaid
+graph TD
+
+%% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Leaves[" "]
+	direction LR
+	subgraph ESLAG [ESLAG]
+		direction LR
+		Leaf_01["leaf-01<br>server-leaf"]
+		Leaf_02["leaf-02<br>server-leaf"]
+	end
+
+	Leaf_03["leaf-03<br>server-leaf"]
+end
+
+subgraph Servers[" "]
+	direction TB
+	Server_03["server-03"]
+	Server_01["server-01"]
+	Server_02["server-02"]
+	Server_04["server-04"]
+	Server_05["server-05"]
+	Server_06["server-06"]
+end
+
+%% Connections
+
+%% Leaves -> Servers
+Leaf_01 ---|"enp2s1↔E1/3"| Server_03
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
+
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
+Leaf_03 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_06
+
+%% Mesh connections
+Leaf_01 ---|"E1/6↔E1/5<br>E1/5↔E1/4"| Leaf_02
+Leaf_02 ---|"E1/6↔E1/7<br>E1/7↔E1/8"| Leaf_03
+Leaf_01 ---|"E1/4↔E1/6<br>E1/5↔E1/7"| Leaf_03
+
+%% External connections
+
+subgraph Legend["Network Connection Types"]
+	direction LR
+	%% Create invisible nodes for the start and end of each line
+	L15(( )) --- |"Mesh Links"| L16(( ))
+	L5(( )) --- |"Bundled Server Links"| L6(( ))
+	L7(( )) --- |"Unbundled Server Links"| L8(( ))
+	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+	P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
+end
+
+class Leaf_01,Leaf_02,Leaf_03 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
+class ESLAG eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2,L15,L16 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 8,9,10 stroke:#0078D4,stroke-width:4px
+linkStyle 5,7 stroke:#66CC66,stroke-width:4px
+linkStyle 1,2,3,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 0,6 stroke:#999999,stroke-width:2px
+linkStyle 11 stroke:#0078D4,stroke-width:2px
+linkStyle 12 stroke:#82B366,stroke-width:2px
+linkStyle 13 stroke:#000000,stroke-width:2px
+linkStyle 14 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 15 stroke:#FFFFFF
+
+%% Make subgraph containers invisible
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none
+```
+
 ### Collapsed Core
 
 !!! warning
-    Collapsed Core is deprecated starting from 25.03 release and will be removed in a future releases. It'll be replaced
-    by a new mesh topology that will work in a similar way to the spine-leaf topology but with leaf switches directly
-    connected to each other.
+    Collapsed Core is deprecated starting from 25.03 release and will be removed in future releases. See the
+    [mesh section](#mesh) above for the currently recommended alternative.
 
 If a Collapsed Core topology is desired, after the `hhfab init --dev` step, edit the resulting `fab.yaml` file and change the `mode: spine-leaf` to `mode: collapsed-core`:
 
@@ -252,19 +362,21 @@ style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
 ```
 
-### Custom Spine Leaf
-Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:
+### Custom Topology
 
+There are many customization options available for the VLAB topology. For a complete list of options, run `hhfab vlab gen -h`.
+
+For example, to generate a VLAB with 4 MCLAG leaves and 2 orphan leaves, you can use the following command:
 ```console
 ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2
-11:41:06 INF Hedgehog Fabricator version=v0.36.1
-11:41:06 INF Building VLAB wiring diagram fabricMode=spine-leaf
-11:41:06 INF >>> spinesCount=2 fabricLinksCount=2
-11:41:06 INF >>> eslagLeafGroups=""
-11:41:06 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
-11:41:06 INF >>> orphanLeafsCount=2
-11:41:06 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-11:41:06 INF Generated wiring file name=vlab.generated.yaml
+14:13:51 INF Hedgehog Fabricator version=v0.41.3
+14:13:51 INF Building VLAB wiring diagram fabricMode=spine-leaf
+14:13:51 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
+14:13:51 INF >>> eslagLeafGroups=""
+14:13:51 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
+14:13:51 INF >>> orphanLeafsCount=2
+14:13:51 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
+14:13:51 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 Additionally, you can pass extra Fabric configuration items using flags on `init` command or by passing a configuration
