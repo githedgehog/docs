@@ -480,6 +480,24 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#spine-leaf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spine-Leaf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#collapsed-core" class="md-nav__link">
     <span class="md-ellipsis">
       Collapsed Core
@@ -489,9 +507,9 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#custom-spine-leaf" class="md-nav__link">
+  <a href="#custom-topology" class="md-nav__link">
     <span class="md-ellipsis">
-      Custom Spine Leaf
+      Custom Topology
     </span>
   </a>
   
@@ -1473,6 +1491,24 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#spine-leaf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spine-Leaf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#collapsed-core" class="md-nav__link">
     <span class="md-ellipsis">
       Collapsed Core
@@ -1482,9 +1518,9 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#custom-spine-leaf" class="md-nav__link">
+  <a href="#custom-topology" class="md-nav__link">
     <span class="md-ellipsis">
-      Custom Spine Leaf
+      Custom Topology
     </span>
   </a>
   
@@ -1608,24 +1644,25 @@ before running VLAB.</p>
 <h2 id="initialize-vlab">Initialize VLAB</h2>
 <p>First, initialize Fabricator by running <code>hhfab init --dev</code>. This command creates the <code>fab.yaml</code> file, which is the main configuration file for the fabric. This command supports several customization options that are listed in the output of <code>hhfab init --help</code>.</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>init<span class="w"> </span>--dev
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">11:26:52 INF Hedgehog Fabricator version=v0.36.1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">11:26:52 INF Hedgehog Fabricator version=v0.41.3</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">11:26:52 INF Generated initial config</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include</span>
 </span></code></pre></div>
 <h2 id="vlab-topology">VLAB Topology</h2>
-<p>By default, <code>hhfab init</code> creates 2 spines, 2 MCLAG leaves and 1 non-MCLAG leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, <code>hhfab vlab gen</code>. You can also configure the number of spines, leafs, connections, and so on. For example, flags <code>--spines-count</code> and <code>--mclag-leafs-count</code> allow you to set the number of spines and MCLAG leaves, respectively. For complete options, <code>hhfab vlab gen -h</code>.</p>
+<h3 id="spine-leaf">Spine-Leaf</h3>
+<p>By default, <code>hhfab vlab gen</code> creates 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 orphan (non-LAG) leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, <code>hhfab vlab gen</code>. You can also configure the number of spines, leaves, connections, and so on. For example, flags <code>--spines-count</code> and <code>--mclag-leafs-count</code> allow you to set the number of spines and MCLAG leaves, respectively. For complete options, <code>hhfab vlab gen -h</code>.</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">21:27:16 INF Hedgehog Fabricator version=v0.36.1</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">21:27:16 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">21:27:16 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">21:27:16 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">21:27:16 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">21:27:16 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">21:27:16 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">21:27:16 INF Generated wiring file name=vlab.generated.yaml</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">11:37:33 INF Hedgehog Fabricator version=v0.41.1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">11:37:33 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">11:37:33 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2 meshLinksCount=0</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">11:37:33 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">11:37:33 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">11:37:33 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">11:37:33 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">11:37:33 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
-<p>The default spine-leaf topology with 2 spines, 2 MCLAG leaves, and 1 non-MCLAG leaf:</p>
+<p>The default spine-leaf topology with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 orphan leaf is shown below:</p>
 <pre class="mermaid"><code>graph TD
 
 %% Style definitions
@@ -1754,21 +1791,121 @@ style Servers fill:none,stroke:none
 style Spine_01_Group fill:none,stroke:none
 style Spine_02_Group fill:none,stroke:none</code></pre>
 <p>You can jump <a href="#build-the-installer-and-start-vlab">to the instructions</a> to start VLAB, or see the next section for customizing the topology.</p>
+<h3 id="mesh">Mesh</h3>
+<p>To run the experimental mesh topology, which does away with spine switches and connects leaves directly to each other,
+use the <code>--mesh-links-count</code> flag.
+This flag allows you to specify how many mesh links should be created between each pair of leaves.
+For example, to create a mesh topology with 2 links between each pair of leaves, run:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mesh-links-count<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">13:24:58 INF Hedgehog Fabricator version=v0.41.3</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">13:24:58 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">13:24:58 INF &gt;&gt;&gt; spinesCount=0 fabricLinksCount=0 meshLinksCount=2</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">13:24:58 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">13:24:58 INF &gt;&gt;&gt; mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">13:24:58 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">13:24:58 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">13:24:58 INF Generated wiring file name=vlab.generated.yaml</span>
+</span></code></pre></div>
+<p>The default topology generated in this case will have 2 ESLAG leaves and 1 orphan leaf. Below is the corresponding diagram:</p>
+<pre class="mermaid"><code>graph TD
+
+%% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Leaves[" "]
+    direction LR
+    subgraph ESLAG [ESLAG]
+        direction LR
+        Leaf_01["leaf-01&lt;br&gt;server-leaf"]
+        Leaf_02["leaf-02&lt;br&gt;server-leaf"]
+    end
+
+    Leaf_03["leaf-03&lt;br&gt;server-leaf"]
+end
+
+subgraph Servers[" "]
+    direction TB
+    Server_03["server-03"]
+    Server_01["server-01"]
+    Server_02["server-02"]
+    Server_04["server-04"]
+    Server_05["server-05"]
+    Server_06["server-06"]
+end
+
+%% Connections
+
+%% Leaves -&gt; Servers
+Leaf_01 ---|"enp2s1↔E1/3"| Server_03
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s1↔E1/3&lt;br&gt;enp2s2↔E1/4"| Server_04
+
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
+Leaf_03 ---|"enp2s1↔E1/2&lt;br&gt;enp2s2↔E1/3"| Server_06
+
+%% Mesh connections
+Leaf_01 ---|"E1/6↔E1/5&lt;br&gt;E1/5↔E1/4"| Leaf_02
+Leaf_02 ---|"E1/6↔E1/7&lt;br&gt;E1/7↔E1/8"| Leaf_03
+Leaf_01 ---|"E1/4↔E1/6&lt;br&gt;E1/5↔E1/7"| Leaf_03
+
+%% External connections
+
+subgraph Legend["Network Connection Types"]
+    direction LR
+    %% Create invisible nodes for the start and end of each line
+    L15(( )) --- |"Mesh Links"| L16(( ))
+    L5(( )) --- |"Bundled Server Links"| L6(( ))
+    L7(( )) --- |"Unbundled Server Links"| L8(( ))
+    L9(( )) --- |"ESLAG Server Links"| L10(( ))
+    P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
+end
+
+class Leaf_01,Leaf_02,Leaf_03 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
+class ESLAG eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2,L15,L16 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 8,9,10 stroke:#0078D4,stroke-width:4px
+linkStyle 5,7 stroke:#66CC66,stroke-width:4px
+linkStyle 1,2,3,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 0,6 stroke:#999999,stroke-width:2px
+linkStyle 11 stroke:#0078D4,stroke-width:2px
+linkStyle 12 stroke:#82B366,stroke-width:2px
+linkStyle 13 stroke:#000000,stroke-width:2px
+linkStyle 14 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 15 stroke:#FFFFFF
+
+%% Make subgraph containers invisible
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none</code></pre>
 <h3 id="collapsed-core">Collapsed Core</h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Collapsed Core is deprecated starting from 25.03 release and will be removed in a future releases. It'll be replaced
-by a new mesh topology that will work in a similar way to the spine-leaf topology but with leaf switches directly
-connected to each other.</p>
+<p>Collapsed Core is deprecated starting from 25.03 release and will be removed in future releases. See the
+<a href="#mesh">mesh section</a> above for the currently recommended alternative.</p>
 </div>
 <p>If a Collapsed Core topology is desired, after the <code>hhfab init --dev</code> step, edit the resulting <code>fab.yaml</code> file and change the <code>mode: spine-leaf</code> to <code>mode: collapsed-core</code>:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">11:39:02 INF Hedgehog Fabricator version=v0.36.1</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">11:39:02 INF &gt;&gt;&gt; orphanLeafsCount=0</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">11:39:02 INF Generated wiring file name=vlab.generated.yaml</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">11:39:02 INF Hedgehog Fabricator version=v0.36.1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">11:39:02 INF Building VLAB wiring diagram fabricMode=collapsed-core</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">11:39:02 INF &gt;&gt;&gt; orphanLeafsCount=0</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">11:39:02 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">11:39:02 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
 <p>The collapsed core topology with 2 MCLAG leaves:</p>
 <pre class="mermaid"><code>graph TD
@@ -1835,18 +1972,19 @@ linkStyle 7 stroke:#000000,stroke-width:2px
 %% Make subgraph containers invisible
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none</code></pre>
-<h3 id="custom-spine-leaf">Custom Spine Leaf</h3>
-<p>Or you can run custom topology with 2 spines, 4 MCLAG leaves and 2 non-MCLAG leaves using flags:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mclag-leafs-count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--orphan-leafs-count<span class="w"> </span><span class="m">2</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">11:41:06 INF Hedgehog Fabricator version=v0.36.1</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">11:41:06 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">11:41:06 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">11:41:06 INF &gt;&gt;&gt; eslagLeafGroups=&quot;&quot;</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">11:41:06 INF &gt;&gt;&gt; mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">11:41:06 INF &gt;&gt;&gt; orphanLeafsCount=2</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">11:41:06 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">11:41:06 INF Generated wiring file name=vlab.generated.yaml</span>
-</span></code></pre></div>
+<h3 id="custom-topology">Custom Topology</h3>
+<p>There are many customization options available for the VLAB topology. For a complete list of options, run <code>hhfab vlab gen -h</code>.</p>
+<p>For example, to generate a VLAB with 4 MCLAG leaves and 2 orphan leaves, you can use the following command:
+<div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mclag-leafs-count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--orphan-leafs-count<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">14:13:51 INF Hedgehog Fabricator version=v0.41.3</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">14:13:51 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">14:13:51 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2 meshLinksCount=0</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">14:13:51 INF &gt;&gt;&gt; eslagLeafGroups=&quot;&quot;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">14:13:51 INF &gt;&gt;&gt; mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go">14:13:51 INF &gt;&gt;&gt; orphanLeafsCount=2</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="go">14:13:51 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="go">14:13:51 INF Generated wiring file name=vlab.generated.yaml</span>
+</span></code></pre></div></p>
 <p>Additionally, you can pass extra Fabric configuration items using flags on <code>init</code> command or by passing a configuration
 file. For more information, refer to the <a href="../../install-upgrade/config/">Fabric Configuration</a> section.</p>
 <p>Once you have initialized the VLAB, download the artifacts and build the installer using <code>hhfab build</code>. This command
@@ -1854,48 +1992,48 @@ automatically downloads all required artifacts from the OCI registry and builds 
 prerequisites for running the VLAB.</p>
 <h2 id="build-the-installer-and-start-vlab">Build the Installer and Start VLAB</h2>
 <p>To build and start the virtual machines, use <code>hhfab vlab up</code>. For successive runs, use the <code>--kill-stale</code> flag to ensure that any virtual machines from a previous run are gone. <code>hhfab vlab up</code> runs in the foreground and does not return, which allows you to stop all VLAB VMs by simply pressing <code>Ctrl + C</code>.
-<div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>up
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">11:48:22 INF Hedgehog Fabricator version=v0.36.1</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">11:48:22 INF Wiring hydrated successfully mode=if-not-present</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">11:48:22 INF VLAB config created file=vlab/config.yaml</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">11:48:22 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">11:48:22 INF Building installer control=control-1</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go">11:48:22 INF Adding recipe bin to installer control=control-1</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="go">11:48:24 INF Adding k3s and tools to installer control=control-1</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="go">11:48:25 INF Adding zot to installer control=control-1</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="go">11:48:25 INF Adding cert-manager to installer control=control-1</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="go">11:48:26 INF Adding config and included wiring to installer control=control-1</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="go">11:48:26 INF Adding airgap artifacts to installer control=control-1</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="go">11:48:36 INF Archiving installer path=/home/ubuntu/result/control-1-install.tgz control=control-1</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="go">11:48:45 INF Creating ignition path=/home/ubuntu/result/control-1-install.ign control=control-1</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="go">11:48:46 INF Taps and bridge are ready count=8</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="go">11:48:46 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="go">11:48:46 INF Preparing new vm=control-1 type=control</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="go">11:48:51 INF Preparing new vm=server-01 type=server</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="go">11:48:52 INF Preparing new vm=server-02 type=server</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="go">11:48:54 INF Preparing new vm=server-03 type=server</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="go">11:48:55 INF Preparing new vm=server-04 type=server</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="go">11:48:57 INF Preparing new vm=server-05 type=server</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="go">11:48:58 INF Preparing new vm=server-06 type=server</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="go">11:49:00 INF Preparing new vm=server-07 type=server</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="go">11:49:01 INF Preparing new vm=server-08 type=server</span>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="go">11:49:03 INF Preparing new vm=server-09 type=server</span>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="go">11:49:04 INF Preparing new vm=server-10 type=server</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="go">11:49:05 INF Preparing new vm=leaf-01 type=switch</span>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="go">11:49:06 INF Preparing new vm=leaf-02 type=switch</span>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="go">11:49:06 INF Preparing new vm=leaf-03 type=switch</span>
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="go">11:49:06 INF Preparing new vm=leaf-04 type=switch</span>
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="go">11:49:06 INF Preparing new vm=leaf-05 type=switch</span>
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="go">11:49:06 INF Preparing new vm=spine-01 type=switch</span>
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="go">11:49:06 INF Preparing new vm=spine-02 type=switch</span>
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="go">11:49:06 INF Starting VMs count=18 cpu=&quot;54 vCPUs&quot; ram=&quot;49664 MB&quot; disk=&quot;550 GB&quot;</span>
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="go">11:49:59 INF Uploading control install vm=control-1 type=control</span>
-</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="go">11:53:39 INF Running control install vm=control-1 type=control</span>
-</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.36.1 vm=control-1</span>
-</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1</span>
-</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="go">12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1</span>
-</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="go">12:00:32 INF Control node is ready vm=control-1 type=control</span>
-</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="go">12:00:32 INF All VMs are ready</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>up
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">11:48:22 INF Hedgehog Fabricator version=v0.36.1</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">11:48:22 INF Wiring hydrated successfully mode=if-not-present</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">11:48:22 INF VLAB config created file=vlab/config.yaml</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">11:48:22 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">11:48:22 INF Building installer control=control-1</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go">11:48:22 INF Adding recipe bin to installer control=control-1</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go">11:48:24 INF Adding k3s and tools to installer control=control-1</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go">11:48:25 INF Adding zot to installer control=control-1</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="go">11:48:25 INF Adding cert-manager to installer control=control-1</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="go">11:48:26 INF Adding config and included wiring to installer control=control-1</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="go">11:48:26 INF Adding airgap artifacts to installer control=control-1</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="go">11:48:36 INF Archiving installer path=/home/ubuntu/result/control-1-install.tgz control=control-1</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="go">11:48:45 INF Creating ignition path=/home/ubuntu/result/control-1-install.ign control=control-1</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="go">11:48:46 INF Taps and bridge are ready count=8</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="go">11:48:46 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="go">11:48:46 INF Preparing new vm=control-1 type=control</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="go">11:48:51 INF Preparing new vm=server-01 type=server</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="go">11:48:52 INF Preparing new vm=server-02 type=server</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="go">11:48:54 INF Preparing new vm=server-03 type=server</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="go">11:48:55 INF Preparing new vm=server-04 type=server</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="go">11:48:57 INF Preparing new vm=server-05 type=server</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="go">11:48:58 INF Preparing new vm=server-06 type=server</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="go">11:49:00 INF Preparing new vm=server-07 type=server</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="go">11:49:01 INF Preparing new vm=server-08 type=server</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="go">11:49:03 INF Preparing new vm=server-09 type=server</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="go">11:49:04 INF Preparing new vm=server-10 type=server</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="go">11:49:05 INF Preparing new vm=leaf-01 type=switch</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="go">11:49:06 INF Preparing new vm=leaf-02 type=switch</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="go">11:49:06 INF Preparing new vm=leaf-03 type=switch</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="go">11:49:06 INF Preparing new vm=leaf-04 type=switch</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="go">11:49:06 INF Preparing new vm=leaf-05 type=switch</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="go">11:49:06 INF Preparing new vm=spine-01 type=switch</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="go">11:49:06 INF Preparing new vm=spine-02 type=switch</span>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="go">11:49:06 INF Starting VMs count=18 cpu=&quot;54 vCPUs&quot; ram=&quot;49664 MB&quot; disk=&quot;550 GB&quot;</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="go">11:49:59 INF Uploading control install vm=control-1 type=control</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="go">11:53:39 INF Running control install vm=control-1 type=control</span>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.36.1 vm=control-1</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="go">11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1</span>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="go">12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="go">12:00:32 INF Control node is ready vm=control-1 type=control</span>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="go">12:00:32 INF All VMs are ready</span>
 </span></code></pre></div>
 When the message <code>INF Control node is ready vm=control-1 type=control</code> from the installer's output means that the installer has finished. After this line
 has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
@@ -1911,27 +2049,27 @@ subnets).</p>
 control node and test servers after the VMs are started. You can use <code>serial</code> to get into the switch VMs while they are
 provisioning and installing the software. After switches are installed you can use <code>ssh</code> to get into them.</p>
 <p>You can select device you want to access or pass the name using the <code>--vm</code> flag.</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>ssh
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">Use the arrow keys to navigate: ↓ ↑ → ←  and / toggles search</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">SSH to VM:</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">  🦔 control-1</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">  server-01</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">  server-02</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go">  server-03</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go">  server-04</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go">  server-05</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="go">  server-06</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="go">  leaf-01</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="go">  leaf-02</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="go">  leaf-03</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="go">  spine-01</span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="go">  spine-02</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="go">----------- VM Details ------------</span>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="go">ID:             0</span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="go">Name:           control-1</span>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="go">Ready:          true</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="go">Basedir:        .hhfab/vlab-vms/control-1</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>ssh
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">Use the arrow keys to navigate: ↓ ↑ → ←  and / toggles search</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">SSH to VM:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">  🦔 control-1</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">  server-01</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="go">  server-02</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">  server-03</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="go">  server-04</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="go">  server-05</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="go">  server-06</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="go">  leaf-01</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="go">  leaf-02</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="go">  leaf-03</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="go">  spine-01</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="go">  spine-02</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="go">----------- VM Details ------------</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="go">ID:             0</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="go">Name:           control-1</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="go">Ready:          true</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="go">Basedir:        .hhfab/vlab-vms/control-1</span>
 </span></code></pre></div>
 <h3 id="default-credentials">Default credentials</h3>
 <p>Fabricator creates default users and keys for you to login into the control node and test servers as well as for the
@@ -1944,13 +2082,13 @@ The read-only, non-sudo user with access to the switch CLI is <code>op</code> wi
 about the switches run <code>kubectl get agents -o wide</code>. After the control node is available it usually takes about 10-15 minutes for the
 switches to get installed.</p>
 <p>After the switches are provisioned, the command returns something like this:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>agents<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">NAME       ROLE          DESCR           HWSKU                      ASIC   HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">leaf-01    server-leaf   VS-01 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     30s         5m5s      4          4          v0.23.0   4.1.1-Enterprise_Base   5m5s      4          10m</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">leaf-02    server-leaf   VS-02 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     27s         3m30s     3          3          v0.23.0   4.1.1-Enterprise_Base   3m30s     3          10m</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">leaf-03    server-leaf   VS-03           DellEMC-S5248f-P-25G-DPB   vs     18s         3m52s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m52s     4          10m</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="go">spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   vs     26s         3m59s     3          3          v0.23.0   4.1.1-Enterprise_Base   3m59s     3          10m</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   vs     19s         3m53s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m53s     4          10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>agents<span class="w"> </span>-o<span class="w"> </span>wide
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">NAME       ROLE          DESCR           HWSKU                      ASIC   HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">leaf-01    server-leaf   VS-01 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     30s         5m5s      4          4          v0.23.0   4.1.1-Enterprise_Base   5m5s      4          10m</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">leaf-02    server-leaf   VS-02 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     27s         3m30s     3          3          v0.23.0   4.1.1-Enterprise_Base   3m30s     3          10m</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">leaf-03    server-leaf   VS-03           DellEMC-S5248f-P-25G-DPB   vs     18s         3m52s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m52s     4          10m</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   vs     26s         3m59s     3          3          v0.23.0   4.1.1-Enterprise_Base   3m59s     3          10m</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   vs     19s         3m53s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m53s     4          10m</span>
 </span></code></pre></div>
 <p>The <code>Heartbeat</code> column shows how long ago the switch has sent the heartbeat to the control node. The <code>Applied</code> column
 shows how long ago the switch has applied the configuration. <code>AppliedG</code> shows the generation of the configuration
@@ -1964,50 +2102,50 @@ using the Fabric in the <a href="../../user-guide/overview/">User Guide</a>, <a 
 API</a> and
 <a href="../../reference/cli/">Fabric CLI</a> sections.</p>
 <p>For example, to get the list of switches, run:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>switch
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">NAME       ROLE          DESCR           GROUPS   LOCATIONUUID                           AGE</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">leaf-01    server-leaf   VS-01 MCLAG 1            5e2ae08a-8ba9-599a-ae0f-58c17cbbac67   6h10m</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">leaf-02    server-leaf   VS-02 MCLAG 1            5a310b84-153e-5e1c-ae99-dff9bf1bfc91   6h10m</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">leaf-03    server-leaf   VS-03                    5f5f4ad5-c300-5ae3-9e47-f7898a087969   6h10m</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">spine-01   spine         VS-04                    3e2c4992-a2e4-594b-bbd1-f8b2fd9c13da   6h10m</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">spine-02   spine         VS-05                    96fbd4eb-53b5-5a4c-8d6a-bbc27d883030   6h10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>switch
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">NAME       ROLE          DESCR           GROUPS   LOCATIONUUID                           AGE</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">leaf-01    server-leaf   VS-01 MCLAG 1            5e2ae08a-8ba9-599a-ae0f-58c17cbbac67   6h10m</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">leaf-02    server-leaf   VS-02 MCLAG 1            5a310b84-153e-5e1c-ae99-dff9bf1bfc91   6h10m</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go">leaf-03    server-leaf   VS-03                    5f5f4ad5-c300-5ae3-9e47-f7898a087969   6h10m</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">spine-01   spine         VS-04                    3e2c4992-a2e4-594b-bbd1-f8b2fd9c13da   6h10m</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go">spine-02   spine         VS-05                    96fbd4eb-53b5-5a4c-8d6a-bbc27d883030   6h10m</span>
 </span></code></pre></div>
 <p>Similarly, to get the list of servers, run:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>server
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">NAME        TYPE      DESCR                        AGE</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">control-1   control   Control node                 6h10m</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">server-01             S-01 MCLAG leaf-01 leaf-02   6h10m</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go">server-02             S-02 MCLAG leaf-01 leaf-02   6h10m</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">server-03             S-03 Unbundled leaf-01       6h10m</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go">server-04             S-04 Bundled leaf-02         6h10m</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="go">server-05             S-05 Unbundled leaf-03       6h10m</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="go">server-06             S-06 Bundled leaf-03         6h10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>server
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">NAME        TYPE      DESCR                        AGE</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">control-1   control   Control node                 6h10m</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">server-01             S-01 MCLAG leaf-01 leaf-02   6h10m</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">server-02             S-02 MCLAG leaf-01 leaf-02   6h10m</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">server-03             S-03 Unbundled leaf-01       6h10m</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">server-04             S-04 Bundled leaf-02         6h10m</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="go">server-05             S-05 Unbundled leaf-03       6h10m</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="go">server-06             S-06 Bundled leaf-03         6h10m</span>
 </span></code></pre></div>
 <p>For connections, use:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>connection
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">NAME                                 TYPE           AGE</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">leaf-01--mclag-domain--leaf-02       mclag-domain   6h11m</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">server-01--mclag--leaf-01--leaf-02   mclag          6h11m</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">server-02--mclag--leaf-01--leaf-02   mclag          6h11m</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">server-03--unbundled--leaf-01        unbundled      6h11m</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">server-04--bundled--leaf-02          bundled        6h11m</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="go">server-05--unbundled--leaf-03        unbundled      6h11m</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="go">server-06--bundled--leaf-03          bundled        6h11m</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="go">spine-01--fabric--leaf-01            fabric         6h11m</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="go">spine-01--fabric--leaf-02            fabric         6h11m</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="go">spine-01--fabric--leaf-03            fabric         6h11m</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="go">spine-02--fabric--leaf-01            fabric         6h11m</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="go">spine-02--fabric--leaf-02            fabric         6h11m</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="go">spine-02--fabric--leaf-03            fabric         6h11m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>connection
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">NAME                                 TYPE           AGE</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">leaf-01--mclag-domain--leaf-02       mclag-domain   6h11m</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">server-01--mclag--leaf-01--leaf-02   mclag          6h11m</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go">server-02--mclag--leaf-01--leaf-02   mclag          6h11m</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go">server-03--unbundled--leaf-01        unbundled      6h11m</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go">server-04--bundled--leaf-02          bundled        6h11m</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="go">server-05--unbundled--leaf-03        unbundled      6h11m</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="go">server-06--bundled--leaf-03          bundled        6h11m</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="go">spine-01--fabric--leaf-01            fabric         6h11m</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="go">spine-01--fabric--leaf-02            fabric         6h11m</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="go">spine-01--fabric--leaf-03            fabric         6h11m</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="go">spine-02--fabric--leaf-01            fabric         6h11m</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="go">spine-02--fabric--leaf-02            fabric         6h11m</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="go">spine-02--fabric--leaf-03            fabric         6h11m</span>
 </span></code></pre></div>
 <p>For IPv4 and VLAN namespaces, use:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>ipns
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">NAME      SUBNETS           AGE</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">default   [&quot;10.0.0.0/16&quot;]   6h12m</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>vlanns
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go">NAME      AGE</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go">default   6h12m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>ipns
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">NAME      SUBNETS           AGE</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">default   [&quot;10.0.0.0/16&quot;]   6h12m</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>vlanns
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="go">NAME      AGE</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="go">default   6h12m</span>
 </span></code></pre></div>
 <h2 id="reset-vlab">Reset VLAB</h2>
 <p>If VLAB is currently running, press <code>Ctrl + C</code> to stop it. To reset VLAB and start over run <code>hhfab init -f</code>. This option forces the process to overwrite your existing configuration in <code>fab.yaml</code>.</p>
@@ -2037,7 +2175,7 @@ API</a> and
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 29, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 4, 2025</span>
   </span>
 
     

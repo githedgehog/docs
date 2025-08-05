@@ -680,6 +680,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#mesh-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mesh Connections
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1521,6 +1530,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#mesh-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mesh Connections
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1737,7 +1755,10 @@ server connections.</p>
     end
 </code></pre>
 <h4 id="fabric-connections">Fabric Connections</h4>
-<p>Fabric connections serve as connections between switches, they form the fabric of the network.</p>
+<p>Fabric connections serve as connections between spine and leaf switches; they form the fabric of the network.</p>
+<h4 id="mesh-connections">Mesh Connections</h4>
+<p>Mesh connections directly connect leaf switches with each other; they are useful when creating small mesh
+topologies without spines.</p>
 <h3 id="vpc-peering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
 <p>VPCs need <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings to talk to each other. <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings come in two varieties: local and remote.</p>
 <pre class="mermaid"><code>graph TD
@@ -1824,8 +1845,8 @@ The dotted line in the diagram shows the traffic flow for local peering. The tra
     end</code></pre>
 The dotted line in the diagram shows the traffic flow for remote peering. The traffic could take a different path because of <abbr title="Equal-cost Multi-path Routing">ECMP</abbr>. It is important to note that Leaf 3 cannot have any servers from <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1 or <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2 on it, but it can have a  different <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attached to it.</p>
 <h2 id="sample-wiring-diagram">Sample Wiring Diagram</h2>
-<p>The YAML listing below shows a complete wiring diagram. It illustrates how switches
-from a single vendor can be arranged to form a fabric. There are no IP
+<p>The YAML listing below shows a complete wiring diagram for a spine-leaf topology. It illustrates
+how switches from a single vendor can be arranged to form a fabric. There are no IP
 addresses or ASN numbers in this listing, the <code>hhfab build</code> step creates those as part
 of creating the fabric. To physically connect this topology, 16 cables are
 needed for the fabric links. Additional cables are needed to connect servers into the fabric.</p>
@@ -2337,7 +2358,7 @@ needed for the fabric links. Additional cables are needed to connect servers int
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 29, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 4, 2025</span>
   </span>
 
     
