@@ -257,7 +257,7 @@ spec:
         ip: 172.30.50.5/24 # IP address that will be assigned to the switch port
         vlan: 1005 # Optional VLAN ID to use for the switch port; if 0, no VLAN is configured
         subnets: # List of subnets to route to the switch port using static routes and next hop
-          - 10.99.0.1/24
+          - 10.99.0.0/24
           - 10.199.0.100/32
         nextHop: 172.30.50.1 # Next hop IP address to use when configuring static routes for the "subnets" list
 ```
