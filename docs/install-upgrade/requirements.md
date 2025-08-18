@@ -9,6 +9,7 @@ permitted. This switch (or switches) is not managed by the fabric. It is recomme
 
 ## Notes
 
+- x86 CPU Architecture
 - Only UEFI is supported
 - Fast SSDs for system/root is mandatory for Control Nodes
     - NVMe SSDs are recommended
