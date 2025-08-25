@@ -5,11 +5,11 @@ allows to build installer for the Hedgehog Fabric, upgrade the existing installa
 
 ## Getting access
 
-Prior to General Availability, access to the full software is limited and requires Design Partner Agreement.
-Please submit a ticket with the request using [Hedgehog Support Portal](https://support.githedgehog.com/).
+The instructions in the [Downloading hhfab](#downloading-hhfab) section below can be used to download the hhfab utility - however, the virtual lab (VLAB) features include assets which require a signed agreement and a authentication token to access. 
 
-After that you will be provided with the credentials to access the software on [GitHub Package](https://ghcr.io).
-In order to use the software, log in to the registry using the following command:
+To access the vlab features, please submit a request on the [Hedgehog Download Page](https://hedgehog.cloud/download) and once approved, you will recieve an email with download instructions.
+
+Once you have recieved the email with your credentials, log in to the registry using the following command:
 
 ```bash
 docker login ghcr.io --username provided_user_name --password provided_token_string
