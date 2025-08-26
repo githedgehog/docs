@@ -16,92 +16,6 @@ Package v1alpha1 contains API Schema definitions for the gateway v1alpha1 API gr
 
 
 
-#### AlloyBasicAuth
-
-
-
-
-
-
-
-_Appears in:_
-- [AlloyPrometheusTarget](#alloyprometheustarget)
-- [AlloyTarget](#alloytarget)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `username` _string_ |  |  |  |
-| `password` _string_ |  |  |  |
-
-
-#### AlloyConfig
-
-
-
-
-
-
-
-_Appears in:_
-- [GatewaySpec](#gatewayspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `dataplaneScrapeIntervalSeconds` _integer_ |  |  |  |
-| `frrScrapeIntervalSeconds` _integer_ |  |  |  |
-| `unixExporterEnabled` _boolean_ |  |  |  |
-| `unixExporterCollectors` _string array_ |  |  |  |
-| `unixScrapeIntervalSeconds` _integer_ |  |  |  |
-| `prometheusTargets` _object (keys:string, values:[AlloyPrometheusTarget](#alloyprometheustarget))_ |  |  |  |
-
-
-#### AlloyPrometheusTarget
-
-
-
-
-
-
-
-_Appears in:_
-- [AlloyConfig](#alloyconfig)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `url` _string_ |  |  |  |
-| `basicAuth` _[AlloyBasicAuth](#alloybasicauth)_ |  |  |  |
-| `bearerToken` _string_ |  |  |  |
-| `labels` _object (keys:string, values:string)_ |  |  |  |
-| `useControlProxy` _boolean_ |  |  |  |
-| `insecureSkipVerify` _boolean_ |  |  |  |
-| `caPEM` _string_ |  |  |  |
-| `certPEM` _string_ |  |  |  |
-| `sendIntervalSeconds` _integer_ |  |  |  |
-
-
-#### AlloyTarget
-
-
-
-
-
-
-
-_Appears in:_
-- [AlloyPrometheusTarget](#alloyprometheustarget)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `url` _string_ |  |  |  |
-| `basicAuth` _[AlloyBasicAuth](#alloybasicauth)_ |  |  |  |
-| `bearerToken` _string_ |  |  |  |
-| `labels` _object (keys:string, values:string)_ |  |  |  |
-| `useControlProxy` _boolean_ |  |  |  |
-| `insecureSkipVerify` _boolean_ |  |  |  |
-| `caPEM` _string_ |  |  |  |
-| `certPEM` _string_ |  |  |  |
-
-
 #### Gateway
 
 
@@ -177,7 +91,6 @@ _Appears in:_
 | `vtepMTU` _integer_ | VTEPMTU is the MTU for the VTEP interface |  |  |
 | `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
 | `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
-| `alloy` _[AlloyConfig](#alloyconfig)_ | Alloy is the Alloy configuration for the gateway |  |  |
 
 
 #### GatewayStatus
