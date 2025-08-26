@@ -6,7 +6,7 @@ allows to build installer for the Hedgehog Fabric, upgrade the existing installa
 ## Getting access
 
 Prior to General Availability, access to the full software is limited and requires Design Partner Agreement.
-Please submit a ticket with the request using [Hedgehog Support Portal](https://support.githedgehog.com/).
+Please submit a request on the [Hedgehog Download Page](https://hedgehog.cloud/download).
 
 After that you will be provided with the credentials to access the software on [GitHub Package](https://ghcr.io).
 In order to use the software, log in to the registry using the following command:
