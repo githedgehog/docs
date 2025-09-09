@@ -362,13 +362,12 @@ style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
 ```
 
-### Smaller Topology
-A default topology in VLAB requires a lot of CPU and RAM. A smaller topology
-can be created with the command below. It is 6 virtual machines, but will
-still allow for traffic to transit a spine.
+### Lightweight Spine-Leaf 
+A default spine-leaf topology in VLAB requests more CPU and RAM than is commonly available. The lightweight
+topology requests 22 vCPUs and 23 GiB of RAM, it is 6 virtual machines, and still allows for traffic to transit a spine.
+The lightweight spine-leaf topology is 2 ESLAG leaves, 1 spine, 1 ESLAG
+Host, and 1 normal host. To launch the lightweight spine-leaf topology use the following command:
 
-To generate a smaller VLAB with 2 ESLAG leaves, 1 Spine,1 ESLAG
-Host, and 1 normal host, use the following command:
 ```console
 ubuntu@docs:~$ hhfab vlab gen --eslag-leaf-groups=2 --spines-count=1 --bundled-servers=0 --eslag-servers=1 --unbundled-servers=1
 20:10:16 INF Hedgehog Fabricator version=v0.42.0
@@ -381,7 +380,7 @@ ubuntu@docs:~$ hhfab vlab gen --eslag-leaf-groups=2 --spines-count=1 --bundled-s
 20:10:16 INF Generated wiring file name=vlab.generated.yaml
 ```
 
-The smaller VLAB topology:
+The lightweight spine-leaf topology looks like this:
 
 ```mermaid
 graph TD
