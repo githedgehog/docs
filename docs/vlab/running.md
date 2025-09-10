@@ -362,22 +362,103 @@ style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
 ```
 
-### Custom Topology
+### Lightweight Spine-Leaf 
+A default spine-leaf topology in VLAB requests more CPU and RAM than is commonly available. The lightweight
+topology requests 22 vCPUs and 23 GiB of RAM, it is 6 virtual machines, and still allows for traffic to transit a spine.
+The lightweight spine-leaf topology is 2 ESLAG leaves, 1 spine, 1 ESLAG
+Host, and 1 normal host. To launch the lightweight spine-leaf topology use the following command:
+
+```console
+ubuntu@docs:~$ hhfab vlab gen --eslag-leaf-groups=2 --spines-count=1 --bundled-servers=0 --eslag-servers=1 --unbundled-servers=1
+20:10:16 INF Hedgehog Fabricator version=v0.42.0
+20:10:16 INF Building VLAB wiring diagram fabricMode=spine-leaf
+20:10:16 INF >>> spinesCount=1 fabricLinksCount=2 meshLinksCount=0
+20:10:16 INF >>> eslagLeafGroups=2
+20:10:16 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
+20:10:16 INF >>> orphanLeafsCount=0
+20:10:16 INF >>> mclagServers=2 eslagServers=1 unbundledServers=1 bundledServers=0
+20:10:16 INF Generated wiring file name=vlab.generated.yaml
+```
+
+The lightweight spine-leaf topology looks like this:
+
+```mermaid
+graph TD
+
+%% Style definitions
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Spines[" "]
+    direction LR
+    subgraph Spine_01_Group [" "]
+        direction TB
+        Spine_01["spine-01<br>spine"]
+    end
+end
+
+subgraph Leaves[" "]
+    direction LR
+    subgraph Eslag_1 ["eslag-1"]
+        direction LR
+        Leaf_01["leaf-01<br>server-leaf"]
+        Leaf_02["leaf-02<br>server-leaf"]
+    end
+
+end
+
+subgraph Servers[" "]
+    direction TB
+    Server_02["server-02"]
+    Server_01["server-01"]
+end
+
+%% Connections
+
+%% Spine_01 -> Leaves
+Spine_01 --- Leaf_01
+Spine_01 --- Leaf_02
+
+%% Leaves -> Servers
+Leaf_01 --- Server_01
+Leaf_01 --- Server_02
+Leaf_02 --- Server_01
+
+subgraph Legend["Network Connection Types"]
+    direction LR
+    %% Create invisible nodes for the start and end of each line
+    L1(( )) --- |"Fabric Links"| L2(( ))
+    L7(( )) --- |"Unbundled Server Links"| L8(( ))
+    L9(( )) --- |"ESLAG Server Links"| L10(( ))
+end
+
+class Spine_01 spine
+class Leaf_01,Leaf_02 leaf
+class Server_02,Server_01 server
+class Eslag_1 eslag
+class L1,L2,L7,L8,L9,L10 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,1 stroke:#CC3333,stroke-width:4px
+linkStyle 2,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 3 stroke:#999999,stroke-width:2px
+linkStyle 5 stroke:#B85450,stroke-width:2px
+linkStyle 6 stroke:#000000,stroke-width:2px
+linkStyle 7 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+
+%% Make subgraph containers invisible
+style Spines fill:none,stroke:none
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none
+style Spine_01_Group fill:none,stroke:none
+```
 
 There are many customization options available for the VLAB topology. For a complete list of options, run `hhfab vlab gen -h`.
-
-For example, to generate a VLAB with 4 MCLAG leaves and 2 orphan leaves, you can use the following command:
-```console
-ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 4 --orphan-leafs-count 2
-14:13:51 INF Hedgehog Fabricator version=v0.41.3
-14:13:51 INF Building VLAB wiring diagram fabricMode=spine-leaf
-14:13:51 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
-14:13:51 INF >>> eslagLeafGroups=""
-14:13:51 INF >>> mclagLeafsCount=4 mclagSessionLinks=2 mclagPeerLinks=2
-14:13:51 INF >>> orphanLeafsCount=2
-14:13:51 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-14:13:51 INF Generated wiring file name=vlab.generated.yaml
-```
 
 Additionally, you can pass extra Fabric configuration items using flags on `init` command or by passing a configuration
 file. For more information, refer to the [Fabric Configuration](../install-upgrade/config.md) section.
