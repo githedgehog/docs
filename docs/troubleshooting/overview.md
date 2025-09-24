@@ -21,7 +21,7 @@ spine-02    Virtual Switch    spine                     000000000    Ready    2/
 ```
 
 The output above is from the virtual testing environment. In a deployment of physical
-swithces, the profile would match the profile of the switch, and the correct
+switches, the profile would match the profile of the switch, and the correct
 serial number would be displayed.
 
 The `GROUP` column will be populated if you have redundancy configured on the
