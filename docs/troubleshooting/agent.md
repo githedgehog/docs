@@ -6,7 +6,6 @@ The agent is a process authored by Hedgehog that creates and enforce the
 switch configurations. To view the status of every switch agent:
 
 ```console
-kubectl get -o wide agent
 core@control-1 ~ $ kubectl get -o wide agents
 NAME           ROLE          DESCR         HWSKU                      ASIC       HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   ROCE   CURRROCE   ECMPQPN   AGE
 as4630-01      server-leaf   leaf-4        Accton-AS4630-54NPE        broadcom   21s         31m       35         35         v0.84.3   4.5.0-Campus            31m       35                                     18d
@@ -37,7 +36,7 @@ can take many forms but it is most often a dedicated switch or private VLAN.
 Ensure that the link on the controller is in the `up` state. Often problems
 in this area are related to the configuration of a private VLAN, or cabling.
 
-#### Starting and Stoping the Agent
+#### Starting and Stopping the Agent
 
 The switch agent is a daemon that is controlled via `systemctl` commands.
 The agent is started automatically at switch bootup time, to stop the agent:
@@ -49,7 +48,8 @@ similarly to start the agent:
 sudo systemctl start hedgehog-agent.service
 ```
 
-Stoping the agent should only be done as part of a debugging.
+Stopping the agent should only be done as part of a debugging, as the agent will
+reapply the configuration on a regular interval.
 
 #### Restoring Agent State
 
@@ -74,6 +74,6 @@ has passed since the last configuration was applied.
 
 ## ROCE, ECMPQPN
 
-The `ROCE` column indicates if the switch is in ROCE mode. To change into ROCE
+The `ROCE` column indicates if the switch is in RoCE mode. To change into RoCE
 mode the switch requires a reboot. The `CURROCE` column will indicate `true` if the
-switch is rebooting as part of the ROCE enablement.
+switch is rebooting as part of the RoCE enablement.
