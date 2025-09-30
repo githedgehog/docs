@@ -1,6 +1,6 @@
 # Physical Links
 
-The physical cables or fibers that connect the switches to eachother and to
+The physical cables or fibers that connect the switches to each other and to
 servers can be monitored with the following commands:
 
 ```console
@@ -33,7 +33,7 @@ E1/1    0: 2.61/1.88 dBm (36.56 mA)    1: 1.07/1.72 dBm (36.56 mA)    2: 1.72/1.
 
 Use flags for more details: -d/--details (e.g. firmware), -p/--ports, -t/--transceivers, -c/--counters, -l/--lasers
 ```
-often a value of `-40dBm` on the transmit or receive side indicates that the
-laser is not on. If supported check the CMIS status of the optic.
+Often a value of `-40dBm` on the transmit or receive side indicates that the
+laser is not on. If supported, check the CMIS status of the optic.
 
 The output of inspect commands can be formatted as: text, json, or yaml.
