@@ -2014,6 +2014,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#switchprofilepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchProfilePipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#switchprofileport" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchProfilePort
@@ -3604,6 +3613,15 @@ You're not viewing the latest version.
   <a href="#switchprofilefeatures" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchProfileFeatures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchprofilepipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchProfilePipeline
     </span>
   </a>
   
@@ -7872,9 +7890,24 @@ in a single Connection object.</p>
 <td></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<h4 id="switchprofilepipeline">SwitchProfilePipeline</h4>
+<p><em>Appears in:</em>
+- <a href="#switchprofilespec">SwitchProfileSpec</a></p>
+<table>
+<thead>
 <tr>
-<td><code>vxlan</code> <em>boolean</em></td>
-<td>Deprecated: use <abbr title="Layer 2 virtual network identifier, part of VXLAN">L2VNI</abbr> and <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> instead as more precise features</td>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxPorts</code> <em>integer</em></td>
+<td>MaxPorts defines the maximum number of ports (breakouts) allowed for the pipeline</td>
 <td></td>
 <td></td>
 </tr>
@@ -7934,6 +7967,12 @@ Only one of Profile or Group can be set</p>
 <tr>
 <td><code>oniePortName</code> <em>string</em></td>
 <td>OniePortName defines the ONIE port name for management ports only</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pipeline</code> <em>string</em></td>
+<td>Pipeline defines the pipeline used by the port, on some platforms multiple ports share the same pipeline</td>
 <td></td>
 <td></td>
 </tr>
@@ -8162,6 +8201,18 @@ Only one of Profile or Group can be set</p>
 <tr>
 <td><code>platform</code> <em>string</em></td>
 <td>Platform is what expected to be request by ONIE and displayed in the NOS</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pipelines</code> <em>object (keys:string, values:<a href="#switchprofilepipeline">SwitchProfilePipeline</a>)</em></td>
+<td>Pipelines defines the switch pipeline configuration</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>maxPorts</code> <em>integer</em></td>
+<td>MaxPorts defines the maximum number of ports (breakouts) allowed for the switch</td>
 <td></td>
 <td></td>
 </tr>
