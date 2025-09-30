@@ -1,7 +1,9 @@
 # Physical Links
 
-The physical cables or fibers that connect the switches to eachother and to
+The physical cables or fibers that connect the switches to each other and to
 servers can be monitored with the following commands:
+
+## Transceivers
 
 ```console
 core@control-1 ~ $ kubectl fabric inspect switch --name ds5000-02 --transceivers
@@ -20,6 +22,8 @@ E1/64    active    OSFP112 2x(400GBASE-CR2-DAC)-1.0M    DAC      NO_SEPARABLE   
 Use flags for more details: -d/--details (e.g. firmware), -p/--ports, -t/--transceivers, -c/--counters, -l/--lasers
 ```
 
+## Lasers
+
 The status of the lasers is also available through the inspect commands:
 
 ```console
@@ -33,7 +37,34 @@ E1/1    0: 2.61/1.88 dBm (36.56 mA)    1: 1.07/1.72 dBm (36.56 mA)    2: 1.72/1.
 
 Use flags for more details: -d/--details (e.g. firmware), -p/--ports, -t/--transceivers, -c/--counters, -l/--lasers
 ```
-often a value of `-40dBm` on the transmit or receive side indicates that the
-laser is not on. If supported check the CMIS status of the optic.
+Often a value of `-40dBm` on the transmit or receive side indicates that the
+laser is not on. If supported, check the CMIS status of the optic.
 
-The output of inspect commands can be formatted as: text, json, or yaml.
+
+## Ports
+
+The inspect command will also show the connections and counters on a specific
+port:
+
+```console
+core@control-1 ~ $ kubectl fabric inspect switchport -n spine-02/E1/1
+Used in Connection spine-02--fabric--leaf-01:
+fabric:
+  links:
+  - leaf:
+      ip: 172.30.128.21/31
+      port: leaf-01/E1/10
+    spine:
+      ip: 172.30.128.20/31
+      port: spine-02/E1/1
+  - leaf:
+      ip: 172.30.128.23/31
+      port: leaf-01/E1/11
+    spine:
+      ip: 172.30.128.22/31
+      port: spine-02/E1/2
+
+Port Counters (↓ In ↑ Out):
+SPEED    UTIL  %         BITS / SEC IN    BITS / SEC OUT    PKTS / SEC IN    PKTS / SEC OUT    CLEAR    ERRORS      DISCARDS
+25G      ↓   0 ↑   0     ↓ 2,432          ↑ 2,224           ↓ 3              ↑ 3               -        ↓ 0 ↑ 0     ↓ 2 ↑ 0
+```

@@ -2,7 +2,7 @@
 
 ## Agent Overview
 
-The agent is a process authored by Hedgehog that creates and enforce the
+The agent is a process authored by Hedgehog that creates and enforces the
 switch configurations. To view the status of every switch agent:
 
 ```console
@@ -16,9 +16,17 @@ s5248-05       server-leaf   leaf-1        DellEMC-S5248f-P-25G-DPB   broadcom  
 ds3000-01      server-leaf   leaf-5        DS3000                     broadcom   10s         23m       37         37         v0.84.3   4.5.0-Enterprise_Base   23m       37                                     18d
 ```
 
-## Heart Beats
+## Heartbeats
 
-### Diagnosing Long or Missing Heart beats
+Heartbeats are messages between the control node and the switches. The purpose
+of sending these messages is to confirm that the switches are reachable and
+responding to the commands of the control node. To check the status of the agent:
+
+```bash
+systemctl status hedgehog-agent.service
+```
+
+### Diagnosing Long or Missing Heartbeats
 
 If the duration between heart beats is greater than 1 minute, one of several
 things could be happening:
@@ -26,19 +34,20 @@ things could be happening:
 * The connection between the switch and the control node is down or misconfigured.
 * The agent isn't running on the switches
 * The agent is stuck trying to apply a configuration
+* The time is not synchronized between the control node and the switches
 
-#### Switch and Controller Connection
+#### Switch and Control Node Connection
 
-The controller serves DHCP to the switches as part of normal operation and
-replies to ONIE requests for NOS install. The controller expects layer 2
-reachability and to be the only DHCP sever in the LAN. This architecture
-can take many forms but it is most often a dedicated switch or private VLAN.
-Ensure that the link on the controller is in the `up` state. Often problems
+The control node serves DHCP to the switches as part of normal operation and
+replies to ONIE requests for NOS install. The control node expects layer 2
+reachability and to be the only DHCP server in the LAN. This architecture
+can take many forms but it is most often a dedicated switch or VLAN.
+Ensure that the link on the control node is in the `up` state. Often problems
 in this area are related to the configuration of a private VLAN, or cabling.
 
 #### Starting and Stopping the Agent
 
-The switch agent is a daemon that is controlled via `systemctl` commands.
+The switch agent is a service that is controlled via `systemctl` commands.
 The agent is started automatically at switch bootup time, to stop the agent:
 ```bash
 sudo systemctl stop hedgehog-agent.service
@@ -48,20 +57,61 @@ similarly to start the agent:
 sudo systemctl start hedgehog-agent.service
 ```
 
-Stopping the agent should only be done as part of a debugging, as the agent will
-reapply the configuration on a regular interval.
+Stopping the agent should only be done as part of debugging, because the agent will
+reapply the configuration on a regular interval during normal operation.
 
 #### Restoring Agent State
 
-If an agent is stuck trying to apply a configuration, the configuration can be
-generated on the control node using `kubectl`, then manually moved to the
-switch. The example below uses the name of a switch for illustrative purposes.
+In some cases, the Switch Agent may become unable to apply  configuration
+changes. If the agent continues to log the same configuration diff for longer
+than five minutes, it can be considered stuck. Before attempting these steps 
+reach out to Hedgehog as this is likely a bug. If an agent is stuck, the 
+configuration can be generated on the control node using `kubectl`, then manually 
+moved to the switch. The example below uses the name of a switch for illustrative purposes.
 
 1. on control node: `kubectl get -o yaml agents/switch-name > agent-config.yaml`
 1. on control node: `scp agent-config.yaml admin@leaf-04:/tmp/agent-config.yaml`
 1. on control node: `ssh admin@leaf-04`
+1. on switch: `sudo systemctl stop hedgehog-agent.service`
 1. on switch: `sudo mv /tmp/agent-config.yaml /etc/sonic/hedgehog/agent-config.yaml`
+1. on switch: `sudo systemctl start hedgehog-agent.service`
 
+If the agent doesn't return to normal functioning after this procedure the next
+step would be to schedule downtime and reboot the switch.
+
+#### Time Synchronization
+
+The control node is configured to use public NTP servers from Google or
+Cloudflare. The control node will also act as an NTP server for the switches.
+
+To check the sync status of the control node, use the `timedatectl`
+command:
+
+```bash
+timedatectl timesync-status
+```
+
+If the time is not correct, view the logs of the NTP pod with:
+
+```bash
+kubectl -n fab logs deployment/ntp
+```
+
+Confirm that the switches are using the control node as their NTP source:
+
+```console
+admin@leaf-01:~$ show ntp 
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+*172.30.0.1      216.239.35.0     2 u  339 1024  377    1.365   +0.276   0.300
+synchronised to NTP server (172.30.0.1) at stratum 3 
+   time correct to within 31 ms
+   polling server every 1024 s
+```
+
+The `*` character next to the remote IP address indicates the switch is
+using the chrony pod as its NTP server. The Hedgehog agent sets the NTP
+configuration on the switch.
 
 ## Applied, AppliedG, and CurrentG
 
@@ -72,8 +122,10 @@ The switch agent will apply the changes and the `CURRENTG` column will equal
 the `APPLIEDG` column. The `APPLIED` column displays the amount of time that
 has passed since the last configuration was applied.
 
-## ROCE, ECMPQPN
+## RoCE, ECMPQPN
 
-The `ROCE` column indicates if the switch is in RoCE mode. To change into RoCE
-mode the switch requires a reboot. The `CURROCE` column will indicate `true` if the
-switch is rebooting as part of the RoCE enablement.
+The `RoCE` column indicates if the user has declared that the switch should be
+in RoCE mode. To change into RoCE mode the switch requires a reboot. The 
+`CURROCE` column indicates `true` if the
+switch is in RoCE mode. The `ECMPQPN` column indicates if the user has declared
+that the switch should have configured ECMP QPN.
