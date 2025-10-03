@@ -22,10 +22,8 @@ features and port naming scheme.
 | [Supermicro SSE-C4632SB](#supermicro-sse-c4632sb) | **spine**, **leaf** | Broadcom TD3-X7 3.2T | 32xQSFP28-100G, 1xSFP28-10G |
 
 !!! note
-    - Switches that support **leaf** role could be used for the collapsed-core topology as well
     - Switches with **leaf (l3-only)** role only support L3 VPC modes
-    - Switches with **leaf (limited)** role does not support some leaf features and are not supported in the
-      collapsed-core topology
+    - Switches with **leaf (limited)** role does not support some leaf features
 
 
 ## Celestica DS2000
@@ -1076,23 +1074,4 @@ Label column is a port label on a physical switch.
 | E1/47 | 47 | Port Group | 12 | 25G | 10G, 25G |
 | E1/48 | 48 | Port Group | 12 | 25G | 10G, 25G |
 
-## Switch Feature Matrix
 
-The following table shows which features are supported by each switch profile:
-
-| Switch Profile | RoCE | QPN | SubIf | L3VNI | L2VNI | ESLAG | MCLAG | ACLs |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| [ds2000](#celestica-ds2000) | :material-close: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [ds3000](#celestica-ds3000) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [ds4000](#celestica-ds4000) | :material-check: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-check: |
-| [ds4101](#celestica-ds4101) | :material-check: | :material-check: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-check: |
-| [ds5000](#celestica-ds5000) | :material-check: | :material-check: | :material-check: | :material-check: | :material-close: | :material-close: | :material-close: | :material-check: |
-| [s5232f](#dell-s5232f-on) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [s5248f](#dell-s5248f-on) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [z9332f](#dell-z9332f-on) | :material-check: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-check: |
-| [dcs203](#edgecore-dcs203) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [dcs204](#edgecore-dcs204) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [dcs501](#edgecore-dcs501) | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-close: | :material-check: |
-| [eps203](#edgecore-eps203) | :material-close: | :material-close: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [c4632sb](#supermicro-sse-c4632sb) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: |
-| [vs](#virtual-switch) | :material-check: | :material-close: | :material-check: | :material-check: | :material-check: | :material-check: | :material-check: | :material-close: |
