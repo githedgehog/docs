@@ -1130,18 +1130,18 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#collapsed-core" class="md-nav__link">
+  <a href="#spine-leaf" class="md-nav__link">
     <span class="md-ellipsis">
-      Collapsed Core
+      Spine-Leaf
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spine-leaf" class="md-nav__link">
+  <a href="#mesh" class="md-nav__link">
     <span class="md-ellipsis">
-      Spine-Leaf
+      Mesh
     </span>
   </a>
   
@@ -1398,18 +1398,18 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#collapsed-core" class="md-nav__link">
+  <a href="#spine-leaf" class="md-nav__link">
     <span class="md-ellipsis">
-      Collapsed Core
+      Spine-Leaf
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spine-leaf" class="md-nav__link">
+  <a href="#mesh" class="md-nav__link">
     <span class="md-ellipsis">
-      Spine-Leaf
+      Mesh
     </span>
   </a>
   
@@ -1480,20 +1480,6 @@ networks called <abbr title="Virtual Private Cloud, similar to the public cloud 
 a set of <code>Connection</code> objects defines how a physical server on the network connects to a physical switch on the fabric.</p>
 <h2 id="underlay-network">Underlay Network</h2>
 <p>The Hedgehog Fabric currently supports two underlay network topologies.</p>
-<h3 id="collapsed-core">Collapsed Core</h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Collapsed Core is deprecated starting from 25.03 release and will be removed in a future releases. It'll be replaced
-by a new mesh topology that will work in a similar way to the spine-leaf topology but with leaf switches directly
-connected to each other.</p>
-</div>
-<p>A collapsed core topology is just a pair of switches connected in a MCLAG configuration with no other network elements.
-All workloads attach to these two switches.</p>
-<p><a class="glightbox" href="../fabric-collapsedcore.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../fabric-collapsedcore.png" /></a></p>
-<p>The leaves in this setup are configured to be in a MCLAG pair and servers can either be connected to both switches as
-a MCLAG port channel or as orphan ports connected to only one switch. Both the leaves peer to external networks using
-<abbr title="Border Gateway Protocol">BGP</abbr> and act as gateway for workloads attached to them. The configuration of the underlay in the collapsed core is very
-simple and is ideal for very small deployments.</p>
 <h3 id="spine-leaf">Spine-Leaf</h3>
 <p>A spine-leaf topology is a standard Clos network with workloads attaching to leaf switches and the spines providing
 connectivity between different leaves.</p>
@@ -1502,6 +1488,9 @@ connectivity between different leaves.</p>
 The underlay network is established using eBGP where each leaf has a separate ASN and peers will all spines in the
 network. <a href="https://datatracker.ietf.org/doc/html/rfc7938">RFC7938</a> was used as the reference for establishing the
 underlay network.</p>
+<h3 id="mesh">Mesh</h3>
+<p>A mesh topology is a flat network where leaf switches peer directly with each other using <abbr title="Border Gateway Protocol">BGP</abbr>. This topology
+is useful for smaller deployments and test environments, where a full spine-leaf topology is not required.</p>
 <h2 id="overlay-network">Overlay Network</h2>
 <p>The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
 and data plane traffic between different virtual networks and the underlay network. Virtualization is achieved in the
@@ -1574,7 +1563,7 @@ supports two different peering modes:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 29, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2025</span>
   </span>
 
     

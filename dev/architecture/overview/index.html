@@ -1522,7 +1522,7 @@ You're not viewing the latest version.
 <p>Hedgehog Open Network Fabric leverages the Kubernetes API to manage its resources. All user-facing APIs are exposed as Kubernetes Custom Resources Definitions (CRDs), allowing users to manage Fabric resources using standard Kubernetes tools.</p>
 <p>To make network switches Kubernetes-aware, the Fabric employs an <strong>Agent</strong> running on each switch. This agent acts as an interface  between the Kubernetes control plane and the switch internal network configuration mechanisms. It continuously syncs desired state from Kubernetes via the Fabric Controller and applies configurations using <strong>gNMI</strong> (gRPC Network Management Interface).</p>
 <h2 id="components">Components</h2>
-<p>Hedgehog Fabric consists of several key components, distributed between the Control Node and the Network devices. The following diagram breaks down the components of a <a href="../fabric/#collapsed-core">Collapsed Core</a>. Hedgehog components have been highlighted in brown color:</p>
+<p>Hedgehog Fabric consists of several key components, distributed between the Control Node and the Network devices. The following diagram breaks down the components of a <a href="../fabric/#mesh">mesh topology</a>. Hedgehog components have been highlighted in brown color:</p>
 <pre class="mermaid"><code>graph TD;
   %% Control Plane
   subgraph Control Node ["Control Node"]
@@ -1538,7 +1538,7 @@ You're not viewing the latest version.
   A --&gt;|Kubernetes API| B2
   B2 --&gt;|Syncs State| A;
 
-  %% Collapsed Core - Two Switches
+  %% Mesh - Two Switches
   subgraph SONiC Leaf 2
     B1[Fabric Agent]:::ourComponent --&gt;|Scraped by| C1[Alloy]:::thirdParty
     C1 --&gt;|Pushes Logs/Metrics| P
@@ -1641,7 +1641,7 @@ You're not viewing the latest version.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2025</span>
   </span>
 
     
