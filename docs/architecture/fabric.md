@@ -12,23 +12,6 @@ a set of `Connection` objects defines how a physical server on the network conne
 
 The Hedgehog Fabric currently supports two underlay network topologies.
 
-### Collapsed Core
-
-!!! warning
-    Collapsed Core is deprecated starting from 25.03 release and will be removed in a future releases. It'll be replaced
-    by a new mesh topology that will work in a similar way to the spine-leaf topology but with leaf switches directly
-    connected to each other.
-
-A collapsed core topology is just a pair of switches connected in a MCLAG configuration with no other network elements.
-All workloads attach to these two switches.
-
-![image](./fabric-collapsedcore.png)
-
-The leaves in this setup are configured to be in a MCLAG pair and servers can either be connected to both switches as
-a MCLAG port channel or as orphan ports connected to only one switch. Both the leaves peer to external networks using
-BGP and act as gateway for workloads attached to them. The configuration of the underlay in the collapsed core is very
-simple and is ideal for very small deployments.
-
 ### Spine-Leaf
 
 A spine-leaf topology is a standard Clos network with workloads attaching to leaf switches and the spines providing
@@ -40,6 +23,11 @@ This kind of topology is useful for bigger deployments and provides all the adva
 The underlay network is established using eBGP where each leaf has a separate ASN and peers will all spines in the
 network. [RFC7938](https://datatracker.ietf.org/doc/html/rfc7938) was used as the reference for establishing the
 underlay network.
+
+### Mesh
+
+A mesh topology is a flat network where leaf switches peer directly with each other using BGP. This topology
+is useful for smaller deployments and test environments, where a full spine-leaf topology is not required.
 
 ## Overlay Network
 

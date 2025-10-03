@@ -6,7 +6,7 @@ To make network switches Kubernetes-aware, the Fabric employs an **Agent** runni
 
 ## Components
 
-Hedgehog Fabric consists of several key components, distributed between the Control Node and the Network devices. The following diagram breaks down the components of a [Collapsed Core](fabric.md#collapsed-core). Hedgehog components have been highlighted in brown color:
+Hedgehog Fabric consists of several key components, distributed between the Control Node and the Network devices. The following diagram breaks down the components of a [mesh topology](fabric.md#mesh). Hedgehog components have been highlighted in brown color:
 
 ``` mermaid
 graph TD;
@@ -24,7 +24,7 @@ graph TD;
   A -->|Kubernetes API| B2
   B2 -->|Syncs State| A;
 
-  %% Collapsed Core - Two Switches
+  %% Mesh - Two Switches
   subgraph SONiC Leaf 2
     B1[Fabric Agent]:::ourComponent -->|Scraped by| C1[Alloy]:::thirdParty
     C1 -->|Pushes Logs/Metrics| P
