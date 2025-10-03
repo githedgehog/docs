@@ -57,7 +57,7 @@ spec:
           - "ssh-ed25519 key..." # generate ssh key with ssh-keygen
 
     fabric:
-      mode: spine-leaf # "spine-leaf" or "collapsed-core" (deprecated)
+      mode: spine-leaf # only mode supported, kept for compatibility
       includeONIE: true
       defaultSwitchUsers:
         admin: # at least one user with name 'admin' and role 'admin'
@@ -193,4 +193,3 @@ kubectl patch -n fab --type merge fabricator/default --patch-file telemetry.yaml
 ```
 
 For additional options, see the `AlloyConfig` [struct in Fabric repo](https://github.com/githedgehog/fabric/blob/master/api/meta/alloy.go).
-
