@@ -70,6 +70,44 @@ _Appears in:_
 | `mtu` _integer_ | MTU for the interface |  |  |
 
 
+#### GatewayLogLevel
+
+_Underlying type:_ _string_
+
+
+
+
+
+_Appears in:_
+- [GatewayLogs](#gatewaylogs)
+
+| Field | Description |
+| --- | --- |
+| `off` |  |
+| `error` |  |
+| `warning` |  |
+| `info` |  |
+| `debug` |  |
+| `trace` |  |
+
+
+#### GatewayLogs
+
+
+
+GatewayLogs defines the configuration for logging levels
+
+
+
+_Appears in:_
+- [GatewaySpec](#gatewayspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `default` _[GatewayLogLevel](#gatewayloglevel)_ |  |  |  |
+| `tags` _object (keys:string, values:[GatewayLogLevel](#gatewayloglevel))_ |  |  |  |
+
+
 #### GatewaySpec
 
 
@@ -91,6 +129,7 @@ _Appears in:_
 | `vtepMTU` _integer_ | VTEPMTU is the MTU for the VTEP interface |  |  |
 | `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
 | `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
+| `logs` _[GatewayLogs](#gatewaylogs)_ | Logs defines the configuration for logging levels |  |  |
 
 
 #### GatewayStatus
