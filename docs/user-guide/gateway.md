@@ -24,12 +24,13 @@ metadata:
   name: vpc-1--vpc-2
   namespace: default
 spec:
-  vpc-1:
-  - expose:
-    - ips: 10.0.0.0/24 # Expose all IP address in the 10.0.0.0/24 CIDR block to vpc-2
-  vpc-2:
-  - expose:
-    - ips: 192.168.0.0/16 # Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1
+  peering:
+    vpc-1:
+      - expose:
+        - ips: 10.0.0.0/24 # Expose all IP address in the 10.0.0.0/24 CIDR block to vpc-2
+    vpc-2:
+      - expose:
+        - ips: 192.168.0.0/16 # Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1
 ```
 
 ### Gateway Peering with stateless NAT
@@ -41,14 +42,15 @@ metadata:
   name: vpc-1--vpc-2
   namespace: default
 spec:
-  vpc-1:
-  - expose:
-    - ips: 10.0.0.0/24 # Expose all IP address in the 10.0.0.0/24 CIDR block to vpc-2
-      as: 10.0.1.0/24  # 10.0.0.0/24 addresses are seen as to 10.0.1.0/24 addresses for vpc-2
-  vpc-2:
-  - expose:
-    - ips: 192.168.0.0/16 # Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1
-    # It is also possible to use an as block here to translate vpc-2 addresses here if desired.
+  peering:
+    vpc-1:
+     - expose:
+        - ips: 10.0.0.0/24 # Expose all IP address in the 10.0.0.0/24 CIDR block to vpc-2
+          as: 10.0.1.0/24  # 10.0.0.0/24 addresses are seen as to 10.0.1.0/24 addresses for vpc-2
+    vpc-2:
+     - expose:
+        - ips: 192.168.0.0/16 # Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1
+          as: 192.168.1.0/24  # 192.168.0.0/16 addresses are seen as to 192.168.1.0/24 addresses for vpc-1
 ```
 
 Stateless NAT blindly translates source and destination IP addresses for all packets that traverse
@@ -63,23 +65,24 @@ metadata:
   name: vpc-1--vpc-2
   namespace: default
 spec:
-  vpc-1:
-  - expose:
-   # Allow 10.0.0.0/24 addresses to talk to vpc-2
-   # Because of stateful NAT, traffic from vpc-2 to vpc-1 is only allowed if there is
-   # a flow table entry created by a traffic initiated from vpc-1 to vpc-2.
-    - ips: 10.0.0.0/24
-      as: 10.0.1.0/32  # but, NAT those addresses using the addresses in 10.0.1.0/31
-      nat:  # Contains the nat configuration
-        stateful:  # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table
-          idleTimeout: 5m # Timeout connections after 5 minutes of inactivity (no packets received)
-  vpc-2:
-  - expose:
-    # Allows traffic from vpc-1 to vpc-2 on these addresses.
-    # Connections must be initiated from vpc-1 to vpc-2 due to flow tracking.
-    - ips: 192.168.0.0/16
-    # Currently, only one VPC of an expose block can use NAT when using stateful NAT.
-    # This restriction will be lifted in a future release.
+  peering:
+    vpc-1:
+     - expose:
+        # Allow 10.0.0.0/24 addresses to talk to vpc-2
+        # Because of stateful NAT, traffic from vpc-2 to vpc-1 is only allowed if there is
+        # a flow table entry created by a traffic initiated from vpc-1 to vpc-2.
+        - ips: 10.0.0.0/24
+          as: 10.0.1.0/32  # but, NAT those addresses using the addresses in 10.0.1.0/31
+          nat:  # Contains the nat configuration
+            stateful:  # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table
+              idleTimeout: 5m # Timeout connections after 5 minutes of inactivity (no packets received)
+    vpc-2:
+      - expose:
+        # Allows traffic from vpc-1 to vpc-2 on these addresses.
+        # Connections must be initiated from vpc-1 to vpc-2 due to flow tracking.
+        - ips: 192.168.0.0/16
+        # Currently, only one VPC of an expose block can use NAT when using stateful NAT.
+        # This restriction will be lifted in a future release.
 ```
 
 Stateful NAT uses a flow table to track established connections.
