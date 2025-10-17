@@ -299,3 +299,5 @@ route-map HedgeOut permit 10
 
 bgp community-list standard HedgeIn permit 5000:65102
 ```
+
+See [Gateway Peering with NAT for External Connections](gateway.md#gateway-peering-with-nat-for-external-connections) for an examples on how to connect to external networks using NAT.
