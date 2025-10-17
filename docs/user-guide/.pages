@@ -9,4 +9,5 @@ nav:
   - profiles.md
   - Telemetry:
     - grafana.md
+    - push_telemetry.md
   - ...
