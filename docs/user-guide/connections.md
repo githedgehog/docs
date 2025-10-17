@@ -291,3 +291,7 @@ spec:
       switch:
         port: s5248-03/E1/3
 ```
+
+## Gateway Connections
+
+Gateways and Gateway Connections are covered in the [Gateway](gateway.md) section.
