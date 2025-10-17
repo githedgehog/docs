@@ -18,12 +18,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 15,
+  "id": 0,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -38,55 +37,58 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 70,
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "lineWidth": 0,
+            "spanNulls": false
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Down"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Up"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "transparent",
+                  "index": 2
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
+                "value": 0
               }
             ]
           },
@@ -96,142 +98,64 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 1
       },
       "id": 11,
+      "maxPerRow": 6,
       "options": {
+        "alignValue": "left",
         "legend": {
-          "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
+        "mergeValues": false,
+        "rowHeight": 0.61,
+        "showValue": "auto",
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
+      "repeat": "interface",
+      "repeatDirection": "h",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_admin_status{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} > bool 0",
+          "expr": "fabric_agent_interface_admin_status{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} == bool 1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "{{interface}}",
+          "legendFormat": "Admin",
           "range": true,
           "refId": "A",
           "useBackend": false
-        }
-      ],
-      "title": "Admin Status",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prom"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bool_on_off"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 1
-      },
-      "id": 12,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
-          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_oper_status{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} > bool 0",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
+          "expr": "fabric_agent_interface_oper_status{hostname=\"$node\", interface=\"$interface\", env=\"$env\"} == bool 1",
+          "hide": false,
           "instant": false,
-          "legendFormat": "{{interface}}",
+          "legendFormat": "Oper",
           "range": true,
-          "refId": "A",
-          "useBackend": false
+          "refId": "B"
         }
       ],
-      "title": "Operational status",
-      "type": "timeseries"
+      "title": "$interface",
+      "type": "state-timeline"
     },
     {
       "collapsed": false,
@@ -249,19 +173,22 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
+      "description": "Transmit packets are positive values\nReceive packets are negative values",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -272,12 +199,16 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -287,21 +218,18 @@
               "mode": "off"
             }
           },
+          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
+                "value": 0
               }
             ]
           },
-          "unit": "short"
+          "unit": "pps"
         },
         "overrides": []
       },
@@ -320,19 +248,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -344,7 +274,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -365,7 +295,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -373,11 +303,13 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -389,11 +321,12 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -410,7 +343,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -437,19 +370,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_pkts_per_second{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_pkts_per_second{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -461,7 +396,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -482,7 +417,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -490,11 +425,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -511,6 +448,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -526,7 +464,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -553,15 +491,17 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -577,7 +517,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -598,19 +538,22 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
+      "description": "Receive bits are negative values\nTransmit bits are positive values",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -622,11 +565,12 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -642,7 +586,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -669,19 +613,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_bits_per_second{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_bits_per_second{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -693,7 +639,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -714,7 +660,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -722,11 +668,13 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -743,6 +691,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -757,7 +706,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -784,19 +734,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_unicast_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_unicast_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -808,7 +760,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -829,7 +781,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -837,11 +789,13 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -858,6 +812,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -873,7 +828,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -900,19 +856,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_discards{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_discards{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -924,11 +882,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_errors{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_errors{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -941,7 +899,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -958,7 +916,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -979,7 +937,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -987,11 +945,13 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1008,6 +968,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1022,7 +983,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1049,19 +1011,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_multicast_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_multicast_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1073,7 +1037,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1094,7 +1058,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1102,11 +1066,13 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1123,6 +1089,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1137,7 +1104,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1164,19 +1132,21 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.0-18940657299.patch2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "fabric_agent_interface_in_broadcast_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"}",
+          "expr": "fabric_agent_interface_in_broadcast_pkts{hostname=\"$node\", interface=~\"$interface\", env=\"$env\"} * -1",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -1188,7 +1158,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1207,27 +1177,24 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "env-1",
-          "value": "env-1"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(env)",
-        "hide": 0,
         "includeAll": false,
         "label": "Env",
-        "multi": false,
         "name": "env",
         "options": [],
         "query": {
@@ -1236,25 +1203,20 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
-          "text": "s5232-01",
-          "value": "s5232-01"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(hostname)",
-        "hide": 0,
         "includeAll": false,
         "label": "Switch",
-        "multi": false,
         "name": "node",
         "options": [],
         "query": {
@@ -1263,26 +1225,18 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(interface)",
-        "hide": 0,
         "includeAll": true,
         "label": "Interface",
         "multi": true,
@@ -1294,20 +1248,31 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 3,
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "label": "Data Source ",
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Interfaces",
   "uid": "a5e5b12d-b340-4753-8f83-af8d54304822",
-  "version": 20,
-  "weekStart": ""
+  "version": 15
 }
