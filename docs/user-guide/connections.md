@@ -1,12 +1,13 @@
 # Connections
 
 `Connection` objects represent logical and physical connections between the devices in the Fabric (`Switch`,
-`Server` and `External` objects) and are needed to define all the connections in the Wiring Diagram.
+`Server`, `Gateway`,  and `External` objects) and are needed to define all the connections in the Wiring Diagram.
 
 All connections reference switch or server ports. Only port names defined by switch profiles can be used in
-the wiring diagram for the switches. NOS (or any other) port names aren't supported. Currently, server ports aren't validated by
+the wiring diagram for the switches. In a Gateway connection the interface name
+on the gateway needs to be accurate. NOS (or any other) port names aren't supported. Currently, server ports aren't validated by
 the Fabric API other than for uniqueness. See the [Switch Profiles and Port Naming](../user-guide/profiles.md) section
-for more details.
+for more details on the switch port names.
 
 There are several types of connections.
 
@@ -292,3 +293,32 @@ spec:
       switch:
         port: s5248-03/E1/3
 ```
+
+## Gateway Connections
+
+### Spine to Gateway Connections
+
+These connection types are for gateway to spine connections. These connections
+will carry the traffic between VPCs that need network services, like NAT. More
+details about the Gateway are in the [Gateway section](gateway.md).
+
+```{.yaml .annotate linenums="1" filename="gw-connection.yaml"}
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-01--gateway--gateway-1
+  namespace: default
+spec:
+  gateway:
+    links:
+    - gateway:
+        ip: 172.30.128.9/31
+        port: gateway-1/enp2s1
+      switch:
+        ip: 172.30.128.8/31
+        port: spine-01/E1/5
+```
+
+### Gateway to External Connections
+
+TODO: give the YAML examples
