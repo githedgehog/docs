@@ -146,50 +146,105 @@ Switches push telemetry data through a proxy running in a pod on the control
 node. Switches do not have direct access to the Internet. Configure the control node to be able to reach and resolve the location
 of the Prometheus and Loki servers.
 
-Telemetry can be enabled after installation of the fabric. Open the following
-YAML file in an editor on the control node. Modify the fields as needed. Logs
-can be pushed to a Grafana instance at the customer environment, or to Grafana
-cloud.
+Telemetry can be enabled after installation of the fabric. There are two YAML
+objects that control the telemetry configuration. The first YAML object
+configures the credentials and  URL for the collectors. The second configures
+which metrics are sent via Grafana Alloy.
 
-```{ .yaml title="telemetry.yaml" linenums="1" }
+#### Credentials
+
+The first object provides the URL and credentials for sending the telemetry.
+This can be obtained from the Grafana cloud dashboard by selecting details on
+the desired stack, then details again on the collector, Prometheus. Be sure to 
+choose the URL for "Remote Write". Use the YAML listing below as a template and
+fill in your, username, token/password, and URL.
+
+```{ .yaml .annotate title="credentials.yaml" linenums="1" }
+spec:
+  config:
+    observability:
+      targets:
+        loki:
+          grafana_cloud: # (1)!
+            basicAuth:
+              password: "insert_password_or_token_here"
+              username: "username"
+            labels: 
+              env: hh-fabric # (2)!
+            url: https://[your-loki-server].grafana.net/loki/api/v1/push
+        prometheus:
+          grafana_cloud: # (3)!
+            basicAuth:
+              password: "insert_password_or_token_here"
+              username: "username"
+            labels:
+              env: hh-fabric
+            url: https://[your-prometheus-server].grafana.net/api/prom/push
+
+```
+
+1. Can be any name of your choosing
+2. Change to match your environment
+3. Can be any name of your choosing
+
+To apply these changes to the fabric use:
+
+``` shell
+kubectl patch -n fab --type merge fabricator/default --patch-file credentials.yaml
+```
+
+
+#### Collecting and Pushing
+
+The second YAML object controls which metrics are sent from the fabric to
+the collectors. By default the full list of telemetry is sent from the fabric to Prometheus and 
+Loki. In the example the metrics are restricted to those matching the regular
+expression, everything else is discarded. 
+
+```{ .yaml .annotate title="config.yaml" linenums="1" }
 spec:
   config:
     fabric:
-      defaultAlloyConfig:
-        agentScrapeIntervalSeconds: 120
-        unixScrapeIntervalSeconds: 120
-        unixExporterEnabled: true
-        lokiTargets:
-          grafana_cloud: # target name, multiple targets can be configured
-              basicAuth: # optional
-                  password: "<password>"
-                  username: "<username>"
-              labels: # labels to be added to all logs
-                  env: env-1
-              url: https://logs-prod-021.grafana.net/loki/api/v1/push
-              useControlProxy: true
-        prometheusTargets:
-          grafana_cloud: # target name, multiple targets can be configured
-              basicAuth: # optional
-                  password: "<password>"
-                  username: "<username>"
-              labels: # labels to be added to all metrics
-                  env: env-1
-              sendIntervalSeconds: 120
-              url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
-              useControlProxy: true
-        unixExporterCollectors: # list of node-exporter collectors to enable, https://grafana.com/docs/alloy/latest/reference/components/prometheus.exporter.unix/#collectors-list
-        - cpu
-        - filesystem
-        - loadavg
-        - meminfo
-        collectSyslogEnabled: true # collect /var/log/syslog on switches and forward to the lokiTargets
+      observability:
+        agent: # (1)!
+          logs: true
+          metrics: true
+          metricsInterval: 60
+          metricsRelabel: # (2)!
+          - action: keep
+            regex: .*(_in_bits|_status|_generation|_temperature|_transceiver).*
+            sourceLabels:
+            - __name__
+        unix: # (3)!
+          metrics: true
+          metricsCollectors:
+          - cpu
+          - loadavg
+          - meminfo
+          - filesystem
+          metricsInterval: 60
+          metricsRelabel: # (4)!
+          - action: keep
+            regex: .*(_load).*
+            sourceLabels:
+            - __name__
+          syslog: true
 ```
 
-To enable the telemetry after install use:
+1. The Hedgehog agent generates information from the ASIC ports and switch
+   configuration
+2. This option mirrors the [prometheus.relabel](https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.relabel) component
+3. Alloy is configured to use the [prometheus.exporter.unix](https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/) component
+4. This option mirrors the [prometheus.relabel](https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.relabel/) component
+
+Users are encouraged to read the [Grafana Alloy
+Docs](https://grafana.com/docs/grafana-cloud/send-data/alloy/tutorials/logs-and-relabeling-basics/)
+on relabeling to ensure the desired metrics are selected. By default all
+metrics are sent to the collectors.
+
+As above, to apply these changes to the fabric use the following command:
 
 ``` shell
-kubectl patch -n fab --type merge fabricator/default --patch-file telemetry.yaml
+kubectl patch -n fab --type merge fabricator/default --patch-file config.yaml
 ```
 
-For additional options, see the `AlloyConfig` [struct in Fabric repo](https://github.com/githedgehog/fabric/blob/master/api/meta/alloy.go).
