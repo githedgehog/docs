@@ -38,7 +38,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Temperature that picked by sensors from different parts of the switch",
       "fieldConfig": {
@@ -118,7 +118,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -138,7 +138,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Fan speed located on PSU and trays.",
       "fieldConfig": {
@@ -218,7 +218,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -239,7 +239,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -318,7 +318,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -333,7 +333,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -354,7 +354,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Temperature of transceiver with DOM support",
       "fieldConfig": {
@@ -434,7 +434,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -461,12 +461,12 @@
       {
         "current": {
           "selected": false,
-          "text": "env-1",
-          "value": "env-1"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(env)",
         "hide": 0,
@@ -488,12 +488,12 @@
       {
         "current": {
           "selected": true,
-          "text": "s5248-01",
-          "value": "s5248-01"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(node_uname_info,hostname)",
         "hide": 0,
@@ -524,7 +524,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(interface)",
         "hide": 0,

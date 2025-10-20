@@ -39,7 +39,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "BGP Neighbor configuration status.",
       "fieldConfig": {
@@ -119,7 +119,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -139,7 +139,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Session State between given node and BGP Neighbor. True if state is Established.",
       "fieldConfig": {
@@ -219,7 +219,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -252,7 +252,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Number of BGP Dropped connections for each neighbor.",
       "fieldConfig": {
@@ -331,7 +331,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -351,7 +351,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Number of route prefixes exported or received from each BGP Neighbor",
       "fieldConfig": {
@@ -430,7 +430,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -446,7 +446,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -467,7 +467,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Number of BGP Route Update messages sent and received from each BPG Neighbor",
       "fieldConfig": {
@@ -546,7 +546,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -562,7 +562,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -583,7 +583,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prom"
+        "uid": "${datasource}"
       },
       "description": "Counter of Keepalive messages between each BG neighbor",
       "fieldConfig": {
@@ -663,7 +663,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -679,7 +679,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -707,12 +707,12 @@
       {
         "current": {
           "selected": false,
-          "text": "env-1",
-          "value": "env-1"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(env)",
         "hide": 0,
@@ -734,12 +734,12 @@
       {
         "current": {
           "selected": false,
-          "text": "s5248-03",
-          "value": "s5248-03"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(hostname)",
         "hide": 0,
@@ -770,7 +770,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(vrf)",
         "hide": 0,
@@ -801,7 +801,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(neighbor)",
         "hide": 0,

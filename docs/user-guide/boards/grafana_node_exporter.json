@@ -23689,8 +23689,8 @@
       {
         "current": {
           "selected": false,
-          "text": "env-1",
-          "value": "env-1"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -23765,8 +23765,8 @@
       {
         "current": {
           "selected": false,
-          "text": "s5232-01",
-          "value": "s5232-01"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
