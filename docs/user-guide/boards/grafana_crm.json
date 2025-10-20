@@ -36,7 +36,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -113,7 +113,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -133,7 +133,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -210,7 +210,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -230,7 +230,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -307,7 +307,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -327,7 +327,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -404,7 +404,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -438,7 +438,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -516,7 +516,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -532,7 +532,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -553,7 +553,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -631,7 +631,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -647,7 +647,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -668,7 +668,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -746,7 +746,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -762,7 +762,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -797,7 +797,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -874,7 +874,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -890,7 +890,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -911,7 +911,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -989,7 +989,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -1005,7 +1005,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -1026,7 +1026,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1104,7 +1104,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -1120,7 +1120,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -1141,7 +1141,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prom"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1219,7 +1219,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -1235,7 +1235,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "prom"
+                "uid": "${datasource}"
               },
               "disableTextWrap": false,
               "editorMode": "builder",
@@ -1267,12 +1267,12 @@
       {
         "current": {
           "selected": false,
-          "text": "env-1",
-          "value": "env-1"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(env)",
         "hide": 0,
@@ -1294,12 +1294,12 @@
       {
         "current": {
           "selected": false,
-          "text": "s5232-01",
-          "value": "s5232-01"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prom"
+          "uid": "${datasource}"
         },
         "definition": "label_values(hostname)",
         "hide": 0,

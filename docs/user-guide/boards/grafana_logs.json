@@ -36,7 +36,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "loki"
+            "uid": "${datasource}"
           },
           "gridPos": {
             "h": 14,
@@ -59,7 +59,7 @@
             {
               "datasource": {
                 "type": "loki",
-                "uid": "loki"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "{filename=\"/var/log/syslog\", env=\"$env\", hostname=\"$node\"} |~ `(?i)ERROR`",
@@ -73,7 +73,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "loki"
+            "uid": "${datasource}"
           },
           "gridPos": {
             "h": 10,
@@ -96,7 +96,7 @@
             {
               "datasource": {
                 "type": "loki",
-                "uid": "loki"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "{filename=\"/var/log/syslog\", env=\"$env\", hostname=\"$node\"} |~ `kernel:`",
@@ -110,7 +110,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "loki"
+            "uid": "${datasource}"
           },
           "gridPos": {
             "h": 13,
@@ -133,7 +133,7 @@
             {
               "datasource": {
                 "type": "loki",
-                "uid": "loki"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "{filename=\"/var/log/syslog\", env=\"$env\", hostname=\"$node\"} |~ `(?i)bgp`",
@@ -185,7 +185,7 @@
             {
               "datasource": {
                 "type": "loki",
-                "uid": "loki"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "{filename=\"/var/log/agent.log\", hostname=\"$node\", env=\"$env\"} |= `ERROR`",
@@ -213,7 +213,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "loki"
+            "uid": "${datasource}"
           },
           "gridPos": {
             "h": 13,
@@ -237,7 +237,7 @@
             {
               "datasource": {
                 "type": "loki",
-                "uid": "loki"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "{env=\"$env\", filename=\"$file\", hostname=\"$node\"} |= ``",
@@ -262,12 +262,12 @@
       {
         "current": {
           "selected": true,
-          "text": "env-1",
-          "value": "env-1"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "loki",
-          "uid": "loki"
+          "uid": "${datasource}"
         },
         "definition": "",
         "hide": 0,
@@ -291,12 +291,12 @@
       {
         "current": {
           "selected": false,
-          "text": "s5248-03",
-          "value": "s5248-03"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "loki",
-          "uid": "loki"
+          "uid": "${datasource}"
         },
         "definition": "",
         "hide": 0,
@@ -325,7 +325,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": "loki"
+          "uid": "${datasource}"
         },
         "definition": "",
         "hide": 0,
