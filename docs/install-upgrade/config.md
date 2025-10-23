@@ -104,6 +104,19 @@ spec:
     interface: eno1
 
 # Currently only one ControlNode is supported
+---
+apiVersion: fabricator.githedgehog.com/v1beta1
+kind: FabNode
+metadata:
+  name: gateway-1
+  namespace: fab
+spec:
+  roles:
+    - gateway
+  bootstrap:
+   disk: "/dev/sda" # disk to install OS on, e.g. "sda" or "nvme0n1"
+  management: # interface that connects gateway to private hh managment network
+    interface: enp2s0
 ```
 
 ### Configure Control Node and Switch Users

@@ -27,8 +27,11 @@ The main steps to install Fabric are:
     1. [Select Fabric Configuration](./config.md)
     1. [Build Control Node configuration and installer](#build-control-node-configuration-and-installer)
 1. [Install Control Node](#install-control-node)
-    1. Insert USB with control-os image into Fabric Control Node
+    1. Attach the ISO with control-os image to the Fabric Control Node
     1. Boot the node off the USB to initiate the installation
+1. [Install Gateway Node](#install-gateway-node)
+    1. Attach the ISO with gateway-os image to the gateway node
+    1. Boot the node off the media to initiate the installation
 1. Prepare Management Network
     1. Connect management switch to Fabric control node
     1. Connect 1GbE Management port of switches to management switch
@@ -126,3 +129,38 @@ At this stage, the fabric hands out DHCP addresses to the switches via the manag
 - the logs of the pod will be displayed showing the DHCP lease process
 - use the switches screen of `k9s` to see the heartbeat column to verify the connection between switch and controller.
     - to see the switches type `:switches` (like a vim command) into `k9s`
+
+## Install Gateway Node
+
+All of the management of the gateway node is provided through the control node. The management
+network of the gateway node should reside on the same management network as the
+switches and control node. As with the control node use the virtual media
+feature of the BMC to attach the bootable ISO to the node. Alternatively a USB
+image is also available, if it can be physically attached to the server.
+
+1. Complete the [installation of the control node.](#install-control-node)
+
+1. Attach the image to the server either by inserting via USB, or attaching via virtual media
+
+1. Configure the server to use UEFI boot **without** secure boot
+
+1. Select boot off of the attached media, the installation process is **automated**
+
+1. Once the gateway node has booted, it logs in automatically and begins the installation process
+    1. Optionally use `journalctl -f -u flatcar-install.service` to monitor progress
+
+1. Once the installation is complete, the system automatically reboots.
+
+1. After the system has shutdown but before the boot up process reaches the operating system, **remove the virtual media from the system**. Removal during the UEFI boot screen is acceptable.
+
+1. Upon booting into the freshly installed system, the gateway installation
+   will **automatically begin**. The gateway node acts as a k3s agent.
+
+1. Confirm that the control node and gateway node are communicating, from the
+   control node:
+```console
+core@control-1 ~ $ kubectl get nodes
+NAME        STATUS   ROLES                AGE    VERSION
+control-1   Ready    control-plane,etcd   2d2h   v1.34.1+k3s1
+gateway-1   Ready    <none>               2d2h   v1.34.1+k3s1
+```

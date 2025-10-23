@@ -367,6 +367,20 @@ spec:
   redundancy: {}
   role: spine
 #
+# GatewayList
+#
+---
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Gateway
+metadata:
+  name: gateway-1
+  namespace: fab
+spec:
+  interfaces:
+    enp2s1: {}
+    enp2s2: {}
+  logs: {}
+#
 # ConnectionList
 #
 ---
@@ -497,4 +511,28 @@ spec:
         port: leaf-04/E1/8
       spine:
         port: spine-02/E1/2/4
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-01--gateway--gateway-1
+spec:
+  gateway:
+    links:
+    - gateway:
+        port: gateway-1/enp2s1
+      switch:
+        port: spine-01/E1/3/1
+---
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: spine-02--gateway--gateway-1
+spec:
+  gateway:
+    links:
+    - gateway:
+        port: gateway-1/enp2s2
+      switch:
+        port: spine-02/E1/3/1
 ```
