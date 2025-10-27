@@ -53,7 +53,7 @@ Minimum system requirements for bandwidth under 50Gb/s:
     - Fast NVMe SSD is required, DRAM-less NAND SSDs are not supported
 - NICs
     - at least 1 to connect to the OOB management network (1G is enough)
-    - single NVIDIA ConnectX-6 specifically 2 ports versions to connect to the fabric
+    - single NVIDIA ConnectX-6Dx specifically 2 port versions to connect to the fabric
         - crypto-enabled is recommended
 - Redundant PSU is highly recommended
 - Note: many 1U systems are suitable for that but would have non-redundant PSU
