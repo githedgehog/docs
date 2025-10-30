@@ -130,6 +130,7 @@ _Appears in:_
 | `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
 | `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
 | `logs` _[GatewayLogs](#gatewaylogs)_ | Logs defines the configuration for logging levels |  |  |
+| `workers` _integer_ | Workers defines the number of worker threads to use for dataplane |  |  |
 
 
 #### GatewayStatus
