@@ -59,21 +59,26 @@ spec:
         - ips:
           - cidr: 10.0.1.0/24 # Expose all IP address in the 10.0.1.0/24 CIDR block to vpc-2
           as:
-          - cidr: 10.11.11.0/24 # Cr
+          - cidr: 10.11.11.0/24
     vpc-2:
       expose:
         - ips:
           - cidr: 10.0.2.0/24
           as:
-          - cidr: 10.22.22.0/24
+          - cidr: 10.22.22.0/25
+          - cidr: 10.22.22.128/25
+
 
 ```
 
-Stateless NAT blindly translates source and destination IP addresses for all packets that traverse
-the peering, but it does not maintain any connection or flow state for the
-connection. The mapping is one for one, to reach `10.0.1.3` on vpc-1 from
-vpc-2, use `10.11.11.3` as the destination address. The `cidr` YAML array under
-`ips` and `as` must be of equal length.
+Stateless NAT translates source and destination IP addresses for all packets that traverse
+the peering, but it does not maintain any flow state for the connection. A 
+one-to-one mapping is established between the addresses exposed in the CIDRs for
+`ips` and the addresses to use represented by the CIDRs in
+`as:` each address from the first group is consistently mapped to a single
+address from the second group. Therefore, the total number of addresses covered
+by the CIDRs YAML array entries from `ips` must be equal to the total number of
+addresses covered by the CIDRs from `as`.
 
 ### Gateway Peering with stateful NAT
 
@@ -93,7 +98,7 @@ spec:
         - ips:
           - cidr: 10.0.0.0/24
           as:
-          - cidr: 10.0.1.0/32  # but, NAT those addresses using the addresses in 10.0.1.0/31
+          - cidr: 10.0.1.0/31  # but, NAT those addresses using the addresses in 10.0.1.0/31
           nat:  # Contains the nat configuration
             stateful:  # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table
               idleTimeout: 5m # Timeout connections after 5 minutes of inactivity (no packets received)
@@ -108,9 +113,11 @@ spec:
 ```
 
 Stateful NAT uses a flow table to track established connections.
-When traffic is initiated from vpc-1 to vpc-2, the flow table is updated with the connection details.
-In the return direction (from `vpc-2` to `vpc-1` in the example below), the flow table is consulted to determine if the packet is part of an established connection.
-If it is, the packet is allowed to pass through the peering.  If it is not, the packet is dropped.
+When traffic is initiated from `vpc-1` to `vpc-2`, the flow table is updated 
+with the connection details. In the return direction (from `vpc-2` to `vpc-1`
+in the example below), the flow table is consulted to determine if the packet
+is part of an established connection. If it is, the packet is allowed to pass 
+through the peering. If it is not, the packet is dropped.
 This behavior allows use of stateful NAT as a simple firewall.
 
 ### Gateway Peering with NAT for External Connections
