@@ -60,6 +60,10 @@ spec:
           - cidr: 10.0.1.0/24 # Expose all IP address in the 10.0.1.0/24 CIDR block to vpc-2
           as:
           - cidr: 10.11.11.0/24
+        - ips:
+          - cidr: 10.0.2.3/32 # Expose the single IP Statless NAT mapping to vpc-2
+          as:
+          - cidr: 10.11.22.3/32
     vpc-2:
       expose:
         - ips:
