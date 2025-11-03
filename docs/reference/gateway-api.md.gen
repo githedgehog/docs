@@ -66,6 +66,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
+| `pci` _string_ | PCI address of the interface (required for DPDK driver), e.g. 0000:00:01.0 |  |  |
 | `ips` _string array_ | IPs is the list of IP address to assign to the interface |  |  |
 | `mtu` _integer_ | MTU for the interface |  |  |
 
