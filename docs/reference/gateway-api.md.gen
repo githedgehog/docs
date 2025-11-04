@@ -67,6 +67,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `pci` _string_ | PCI address of the interface (required for DPDK driver), e.g. 0000:00:01.0 |  |  |
+| `kernel` _string_ | Kernel is the kernel name of the interface to use (required for kernel driver), e.g. enp2s1 |  |  |
 | `ips` _string array_ | IPs is the list of IP address to assign to the interface |  |  |
 | `mtu` _integer_ | MTU for the interface |  |  |
 
