@@ -18,7 +18,7 @@
         <link rel="prev" href="../../architecture/fabric/">
       
       
-        <link rel="next" href="../../known-limitations/known-limitations/">
+        <link rel="next" href="../physical_links/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Troubleshooting - Open Network Fabric</title>
+        <title>Overview - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              Overview
             
           </span>
         </div>
@@ -1103,6 +1103,43 @@ You're not viewing the latest version.
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -1111,15 +1148,104 @@ You're not viewing the latest version.
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Troubleshooting
+    Overview
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-fabric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting the Fabric
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physical_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Physical Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch Agent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1291,6 +1417,23 @@ You're not viewing the latest version.
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-fabric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting the Fabric
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1312,10 +1455,60 @@ You're not viewing the latest version.
   
 
 
-<h1 id="troubleshooting">Troubleshooting</h1>
-<div class="admonition warning">
-<p>Under construction.</p>
-</div>
+<h1 id="overview">Overview</h1>
+<h2 id="inspecting-the-fabric">Inspecting the Fabric</h2>
+<p>The <code>kubectl fabric</code> plugin has an <code>inspect</code> functionality that shows an
+overview of the fabric. <code>kubectl fabric inspect fabric</code> also shows detailed
+information that is useful when diagnosing problems. To run the inspect
+command:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>fabric
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">Switches:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">NAME        PROFILE           ROLE           GROUPS     SERIAL       STATE    GEN    APPLIED          HEARTBEAT</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">leaf-01     Virtual Switch    server-leaf    mclag-1    000000000    Ready    1/1    4 minutes ago    15 seconds ago</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">leaf-02     Virtual Switch    server-leaf    mclag-1    000000000    Ready    1/1    3 minutes ago    19 seconds ago</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="go">leaf-03     Virtual Switch    server-leaf    eslag-1    000000000    Ready    2/2    5 minutes ago    12 seconds ago</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="go">leaf-04     Virtual Switch    server-leaf    eslag-1    000000000    Ready    2/2    3 minutes ago    17 seconds ago</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="go">leaf-05     Virtual Switch    server-leaf               000000000    Ready    2/2    5 minutes ago    9 seconds ago</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="go">spine-01    Virtual Switch    spine                     000000000    Ready    1/1    3 minutes ago    19 seconds ago</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="go">spine-02    Virtual Switch    spine                     000000000    Ready    2/2    4 minutes ago    1 second ago</span>
+</span></code></pre></div>
+<p>The output above is from the virtual testing environment. In a deployment of physical
+switches, the profile would match the profile of the switch, and the correct
+serial number would be displayed.</p>
+<p>The <code>GROUP</code> column will be populated if you have redundancy configured on the
+switches, either MCLAG, or ESLAG.</p>
+<p>The <code>GEN</code> column shows the applied/current generation. If the numbers are equal
+then there are no pending changes for the switches.</p>
+<p>The <code>APPLIED</code> column shows the amount of time since the last change was applied.</p>
+<p>The <code>HEARTBEAT</code> column shows the amount of time since the controller received a
+heartbeat from the switch. In normal operation, the value in this column will be less
+than 60 seconds.</p>
+<p>The output of the commands can also be formatted as json or yaml. To see all the options available use:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>--help
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">NAME:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">   kubectl fabric inspect - Inspect Fabric API Objects and Primitives</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">USAGE:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">   kubectl fabric inspect [command options]</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">COMMANDS:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">   fabric                  Inspect Fabric (overall control nodes and switches overview incl. status, serials, etc.)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="go">   switch                  Inspect Switch (status, used ports, counters, etc.)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="go">   port, switchport        Inspect Switch Port (connection if used in one, counters, VPC and External attachments, etc.)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="go">   server                  Inspect Server (connection if used in one, VPC attachments, etc.)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="go">   connection, conn        Inspect Connection (incl. VPC and External attachments, Loobpback Workaround usage, etc.)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="go">   vpc, subnet, vpcsubnet  Inspect VPC/VPCSubnet (incl. where is it attached and what&#39;s reachable from it)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="go">   bgp                     Inspect BGP neighbors</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="go">   lldp                    Inspect LLDP neighbors</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="go">   ip                      Inspect IP Address (incl. IPv4Namespace, VPCSubnet and DHCPLease or External/StaticExternal usage)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="go">   mac                     Inspect MAC Address (incl. switch ports and DHCP leases)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="go">   access                  Inspect access between pair of IPs, Server names or VPCSubnets (everything except external IPs will be translated to VPCSubnets)</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="go">   help, h                 Shows a list of commands or help for one command</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="go">OPTIONS:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="go">   --verbose, -v  verbose output (includes debug) (default: true)</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="go">   --help, -h     show help</span>
+</span></code></pre></div>
 
 
 
@@ -1338,7 +1531,7 @@ You're not viewing the latest version.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2025</span>
   </span>
 
     
@@ -1404,13 +1597,13 @@ You're not viewing the latest version.
         
         
           
-          <a href="../../known-limitations/known-limitations/" class="md-footer__link md-footer__link--next" aria-label="Next: Known Limitations">
+          <a href="../physical_links/" class="md-footer__link md-footer__link--next" aria-label="Next: Physical Links">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Known Limitations
+                Physical Links
               </div>
             </div>
             <div class="md-footer__button md-icon">

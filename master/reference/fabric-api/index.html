@@ -1297,6 +1297,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#dhcpsubnetstatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCPSubnetStatic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dhcpsubnetstatus" class="md-nav__link">
     <span class="md-ellipsis">
       DHCPSubnetStatus
@@ -1564,6 +1573,15 @@ You're not viewing the latest version.
   <a href="#vpcdhcproute" class="md-nav__link">
     <span class="md-ellipsis">
       VPCDHCPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcpstatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCDHCPStatic
     </span>
   </a>
   
@@ -2368,16 +2386,103 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../troubleshooting/overview/" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Troubleshooting
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/physical_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Physical Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/agent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch Agent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2902,6 +3007,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#dhcpsubnetstatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      DHCPSubnetStatic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dhcpsubnetstatus" class="md-nav__link">
     <span class="md-ellipsis">
       DHCPSubnetStatus
@@ -3169,6 +3283,15 @@ You're not viewing the latest version.
   <a href="#vpcdhcproute" class="md-nav__link">
     <span class="md-ellipsis">
       VPCDHCPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcdhcpstatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCDHCPStatic
     </span>
   </a>
   
@@ -5530,6 +5653,12 @@ end user through API. Not intended to be modified by the user.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>discover</code> <em>boolean</em></td>
+<td>Discover is true if the IP was offered to a client but not yet acked</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="dhcproute">DHCPRoute</h4>
@@ -5712,6 +5841,40 @@ Not intended to be modified by the user.</p>
 <tr>
 <td><code>advertisedRoutes</code> <em><a href="#dhcproute">DHCPRoute</a> array</em></td>
 <td>AdvertisedRoutes (optional) is a list of custom routes to advertise in <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>static</code> <em>object (keys:string, values:<a href="#dhcpsubnetstatic">DHCPSubnetStatic</a>)</em></td>
+<td>Static is a map of static IP assignments for MAC addresses</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onieOnly</code> <em>boolean</em></td>
+<td>ONIEOnly (optional) is a boolean indicating whether this subnet is for ONIE only (check class identifier)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="dhcpsubnetstatic">DHCPSubnetStatic</h4>
+<p>DHCPSubnetStatic represents static IP assignment</p>
+<p><em>Appears in:</em>
+- <a href="#dhcpsubnetspec">DHCPSubnetSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the assigned static IP address</td>
 <td></td>
 <td></td>
 </tr>
@@ -6394,6 +6557,12 @@ resources with support for multiple subnets each with user-provided VLANs and on
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>static</code> <em>object (keys:string, values:<a href="#vpcdhcpstatic">VPCDHCPStatic</a>)</em></td>
+<td>Static is a map of static IP assignments for MAC addresses</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="vpcdhcpoptions">VPCDHCPOptions</h4>
@@ -6504,6 +6673,28 @@ resources with support for multiple subnets each with user-provided VLANs and on
 <tr>
 <td><code>gateway</code> <em>string</em></td>
 <td>Gateway is the gateway IP address for the route</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcdhcpstatic">VPCDHCPStatic</h4>
+<p>VPCDHCPStatic represents static IP assignment</p>
+<p><em>Appears in:</em>
+- <a href="#vpcdhcp">VPCDHCP</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the assigned static IP address</td>
 <td></td>
 <td></td>
 </tr>
@@ -6850,6 +7041,12 @@ the underlay definition including Switches, Server, wiring between them and etc.
 <tr>
 <td><code>mtu</code> <em>integer</em></td>
 <td>MTU is the MTU to be configured on the switch port or port channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fallback</code> <em>boolean</em></td>
+<td>Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link</td>
 <td></td>
 <td></td>
 </tr>

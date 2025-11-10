@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/architecture/fabric/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/troubleshooting/agent/">
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../physical_links/">
       
       
-        <link rel="next" href="../../troubleshooting/overview/">
+        <link rel="next" href="../../known-limitations/known-limitations/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Fabric Implementation - Open Network Fabric</title>
+        <title>Switch Agent - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hedgehog-network-fabric" class="md-skip">
+        <a href="#the-switch-agent" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fabric Implementation
+              Switch Agent
             
           </span>
         </div>
@@ -1013,19 +1013,19 @@ You're not viewing the latest version.
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1039,10 +1039,96 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Implementation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1058,6 +1144,27 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../physical_links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Physical Links
   </span>
   
 
@@ -1087,7 +1194,7 @@ You're not viewing the latest version.
           
   
   <span class="md-ellipsis">
-    Fabric Implementation
+    Switch Agent
   </span>
   
 
@@ -1098,7 +1205,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Fabric Implementation
+    Switch Agent
   </span>
   
 
@@ -1120,28 +1227,65 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#underlay-network" class="md-nav__link">
+  <a href="#agent-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Underlay Network
+      Agent Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Underlay Network">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heartbeats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heartbeats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heartbeats">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#spine-leaf" class="md-nav__link">
+  <a href="#diagnosing-long-or-missing-heartbeats" class="md-nav__link">
     <span class="md-ellipsis">
-      Spine-Leaf
+      Diagnosing Long or Missing Heartbeats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing Long or Missing Heartbeats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#switch-and-control-node-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch and Control Node Connection
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mesh" class="md-nav__link">
+  <a href="#starting-and-stopping-the-agent" class="md-nav__link">
     <span class="md-ellipsis">
-      Mesh
+      Starting and Stopping the Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-agent-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restoring Agent State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Synchronization
     </span>
   </a>
   
@@ -1151,29 +1295,25 @@ You're not viewing the latest version.
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#overlay-network" class="md-nav__link">
+  <a href="#applied-appliedg-and-currentg" class="md-nav__link">
     <span class="md-ellipsis">
-      Overlay Network
+      Applied, AppliedG, and CurrentG
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vpc" class="md-nav__link">
+  <a href="#roce-ecmpqpn" class="md-nav__link">
     <span class="md-ellipsis">
-      VPC
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vpc-peering" class="md-nav__link">
-    <span class="md-ellipsis">
-      VPC Peering
+      RoCE, ECMPQPN
     </span>
   </a>
   
@@ -1183,113 +1323,6 @@ You're not viewing the latest version.
   
 </nav>
       
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Troubleshooting
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            Troubleshooting
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../troubleshooting/overview/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Overview
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../troubleshooting/physical_links/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Physical Links
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../troubleshooting/agent/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Switch Agent
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1475,28 +1508,65 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#underlay-network" class="md-nav__link">
+  <a href="#agent-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Underlay Network
+      Agent Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Underlay Network">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heartbeats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heartbeats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heartbeats">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#spine-leaf" class="md-nav__link">
+  <a href="#diagnosing-long-or-missing-heartbeats" class="md-nav__link">
     <span class="md-ellipsis">
-      Spine-Leaf
+      Diagnosing Long or Missing Heartbeats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing Long or Missing Heartbeats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#switch-and-control-node-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch and Control Node Connection
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mesh" class="md-nav__link">
+  <a href="#starting-and-stopping-the-agent" class="md-nav__link">
     <span class="md-ellipsis">
-      Mesh
+      Starting and Stopping the Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-agent-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restoring Agent State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Synchronization
     </span>
   </a>
   
@@ -1506,29 +1576,25 @@ You're not viewing the latest version.
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#overlay-network" class="md-nav__link">
+  <a href="#applied-appliedg-and-currentg" class="md-nav__link">
     <span class="md-ellipsis">
-      Overlay Network
+      Applied, AppliedG, and CurrentG
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vpc" class="md-nav__link">
+  <a href="#roce-ecmpqpn" class="md-nav__link">
     <span class="md-ellipsis">
-      VPC
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vpc-peering" class="md-nav__link">
-    <span class="md-ellipsis">
-      VPC Peering
+      RoCE, ECMPQPN
     </span>
   </a>
   
@@ -1549,7 +1615,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/architecture/fabric.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/troubleshooting/agent.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1557,77 +1623,103 @@ You're not viewing the latest version.
   
 
 
-<h1 id="hedgehog-network-fabric">Hedgehog Network Fabric</h1>
-<p>The Hedgehog Open Network Fabric is an open-source network architecture that provides connectivity between virtual and
-physical workloads and provides a way to achieve network isolation between different groups of workloads using standard
-<abbr title="Border Gateway Protocol">BGP</abbr> EVPN and <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> technology. The fabric provides a standard Kubernetes interface to manage the elements in the
-physical network and provides a mechanism to configure virtual networks and define attachments to these virtual networks.
-The Hedgehog Fabric provides isolation between different groups of workloads by placing them in different virtual
-networks called <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s. To achieve this, it defines different abstractions starting from the physical network where
-a set of <code>Connection</code> objects defines how a physical server on the network connects to a physical switch on the fabric.</p>
-<h2 id="underlay-network">Underlay Network</h2>
-<p>The Hedgehog Fabric currently supports two underlay network topologies.</p>
-<h3 id="spine-leaf">Spine-Leaf</h3>
-<p>A spine-leaf topology is a standard Clos network with workloads attaching to leaf switches and the spines providing
-connectivity between different leaves.</p>
-<p><a class="glightbox" href="../fabric-spineleaf.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../fabric-spineleaf.png" /></a></p>
-<p>This kind of topology is useful for bigger deployments and provides all the advantages of a typical Clos network.
-The underlay network is established using eBGP where each leaf has a separate ASN and peers will all spines in the
-network. <a href="https://datatracker.ietf.org/doc/html/rfc7938">RFC7938</a> was used as the reference for establishing the
-underlay network.</p>
-<h3 id="mesh">Mesh</h3>
-<p>A mesh topology is a flat network where leaf switches peer directly with each other using <abbr title="Border Gateway Protocol">BGP</abbr>. This topology
-is useful for smaller deployments and test environments, where a full spine-leaf topology is not required.</p>
-<h2 id="overlay-network">Overlay Network</h2>
-<p>The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
-and data plane traffic between different virtual networks and the underlay network. Virtualization is achieved in the
-Hedgehog Fabric by encapsulating workload traffic over <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> tunnels that are source and terminated on the leaf switches
-in the network. The fabric uses <abbr title="Border Gateway Protocol">BGP</abbr>-EVPN/<abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> to enable the creation and management of virtual networks on top of the
-physical one. The fabric supports multiple virtual networks over the same underlay network to support multi-tenancy.
-Each virtual network in the Hedgehog Fabric is identified by a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following subsections contain a high-level
-overview of how VPCs are implemented in the Hedgehog Fabric and its associated objects.</p>
-<h2 id="vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></h2>
-<p>The previous subsections have described what a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is, and how to attach workloads to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following bullet points
-describe how VPCs are actually implemented in the network to ensure a private view the network.</p>
+<h1 id="the-switch-agent">The Switch Agent</h1>
+<h2 id="agent-overview">Agent Overview</h2>
+<p>The agent is a process authored by Hedgehog that creates and enforces the
+switch configurations. To view the status of every switch agent:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>-o<span class="w"> </span>wide<span class="w"> </span>agents
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">NAME           ROLE          DESCR         HWSKU                      ASIC       HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   ROCE   CURRROCE   ECMPQPN   AGE</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">as4630-01      server-leaf   leaf-4        Accton-AS4630-54NPE        broadcom   21s         31m       35         35         v0.84.3   4.5.0-Campus            31m       35                                     18d</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">as7326-01      server-leaf   leaf-2        Accton-AS7326-56X          broadcom   15s         7m12s     46         46         v0.84.3   4.5.0-Enterprise_Base   7m12s     46         true   true                 18d</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">as7712-01      spine         spine-1       Accton-AS7712-32X          broadcom   28s         37m       7          7          v0.84.3   4.5.0-Enterprise_Base   37m       7                                      18d</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="go">as7712-02      spine         spine-2       Accton-AS7712-32X          broadcom   22s         17m       6          6          v0.84.3   4.5.0-Enterprise_Base   17m       6                                      18d</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="go">s5248-05       server-leaf   leaf-1        DellEMC-S5248f-P-25G-DPB   broadcom   16s         85s       38         38         v0.84.3   4.5.0-Enterprise_Base   85s       38         true   true                 18d</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="go">ds3000-01      server-leaf   leaf-5        DS3000                     broadcom   10s         23m       37         37         v0.84.3   4.5.0-Enterprise_Base   23m       37                                     18d</span>
+</span></code></pre></div>
+<h2 id="heartbeats">Heartbeats</h2>
+<p>Heartbeats are messages between the control node and the switches. The purpose
+of sending these messages is to confirm that the switches are reachable and
+responding to the commands of the control node. To check the status of the agent:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>systemctl<span class="w"> </span>status<span class="w"> </span>hedgehog-agent.service
+</span></code></pre></div>
+<h3 id="diagnosing-long-or-missing-heartbeats">Diagnosing Long or Missing Heartbeats</h3>
+<p>If the duration between heart beats is greater than 1 minute, one of several
+things could be happening:</p>
 <ul>
-<li>Each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VRF on each switch where there are <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attachments defined for this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The VRF is allocated
-  its own VNI. The VRF is local to each switch and the VNI is global for the entire fabric. By mapping the VRF to a VNI
-  and configuring an EVPN instance in each VRF, a shared <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> is established across the entire fabric. All VRFs
-  participating in this VNI can freely communicate with each other without the need for a policy. A VLAN is allocated
-  for each VRF which functions as an IRB VLAN for the VRF.</li>
-<li>The VRF created on each switch corresponding to a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> configures a <abbr title="Border Gateway Protocol">BGP</abbr> instance with EVPN to advertise its locally
-  attached subnets and import routes from its peered VPCs. The <abbr title="Border Gateway Protocol">BGP</abbr> instance in the tenant VRFs does not establish
-  neighbor relationships and is purely used to advertise locally attached routes into the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (all VRFs with the same
-  <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr>) across leaves in the network.</li>
-<li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> can have multiple subnets. Each subnet in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> is modeled as a VLAN on the switch. The VLAN is only locally
-  significant and a given subnet might have different VLANs on different leaves on the network. A globally significant
-  VNI is assigned to each subnet. This VNI is used to extend the subnet across different leaves in the network and
-  provides a view of single stretched L2 domain if the applications need it.</li>
-<li>The Hedgehog Fabric has a built-in <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server which will automatically assign IP addresses to each workload depending
-  on the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> it belongs to. This is achieved by configuring a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> relay on each of the server facing VLANs. The <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>
-  server is accessible through the underlay network and is shared by all VPCs in the fabric. The inbuilt <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server is
-  capable of identifying the source <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> of the request and assigning IP addresses from a pool allocated to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> at
-  creation.</li>
-<li>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> by default cannot communicate to anyone outside the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and specific peering rules are required to allow
-  communication to external networks or to other VPCs.</li>
+<li>The connection between the switch and the control node is down or misconfigured.</li>
+<li>The agent isn't running on the switches</li>
+<li>The agent is stuck trying to apply a configuration</li>
+<li>The time is not synchronized between the control node and the switches</li>
 </ul>
-<h2 id="vpc-peering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h2>
-<p>To enable communication between 2 different VPCs, one needs to configure a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering policy. The Hedgehog Fabric
-supports two different peering modes:</p>
-<ul>
-<li>Local Peering: A local peering directly imports routes from another <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> locally. This is achieved by a simple
-  import route from the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. In case there are no locally attached workloads to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> the fabric
-  automatically creates a stub <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> for peering and imports routes from it. This allows VPCs to peer with each other
-  without the need for a dedicated peering leaf. Traffic between the peered VPCs will not leave the switch that connects
-  them.</li>
-<li>Remote Peering: Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
-  point for the 2 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s in the fabric. The set of switches to be used for peering is determined by configuration in the
-  peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
-  the peering switch advertise default routes into their specific VRFs identified by the <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr>. All traffic that does
-  not belong to the VPCs is forwarded to the peering switch which has routes to the other VPCs and gets forwarded from
-  there. This peering mode was introduced as a workaround to previous limitations of the fabric; users are recommended
-  to use local peering instead.</li>
-</ul>
+<h4 id="switch-and-control-node-connection">Switch and Control Node Connection</h4>
+<p>The control node serves <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> to the switches as part of normal operation and
+replies to ONIE requests for NOS install. The control node expects layer 2
+reachability and to be the only <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server in the LAN. This architecture
+can take many forms but it is most often a dedicated switch or VLAN.
+Ensure that the link on the control node is in the <code>up</code> state. Often problems
+in this area are related to the configuration of a private VLAN, or cabling.</p>
+<h4 id="starting-and-stopping-the-agent">Starting and Stopping the Agent</h4>
+<p>The switch agent is a service that is controlled via <code>systemctl</code> commands.
+The agent is started automatically at switch bootup time, to stop the agent:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>hedgehog-agent.service
+</span></code></pre></div>
+similarly to start the agent:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>hedgehog-agent.service
+</span></code></pre></div></p>
+<p>Stopping the agent should only be done as part of debugging, because the agent will
+reapply the configuration on a regular interval during normal operation.</p>
+<h4 id="restoring-agent-state">Restoring Agent State</h4>
+<p>In some cases, the Switch Agent may become unable to apply  configuration
+changes. If the agent continues to log the same configuration diff for longer
+than five minutes, it can be considered stuck. Before attempting these steps 
+reach out to Hedgehog as this is likely a bug. If an agent is stuck, the 
+configuration can be generated on the control node using <code>kubectl</code>, then manually 
+moved to the switch. The example below uses the name of a switch for illustrative purposes.</p>
+<ol>
+<li>on control node: <code>kubectl get -o yaml agents/switch-name &gt; agent-config.yaml</code></li>
+<li>on control node: <code>scp agent-config.yaml admin@leaf-04:/tmp/agent-config.yaml</code></li>
+<li>on control node: <code>ssh admin@leaf-04</code></li>
+<li>on switch: <code>sudo systemctl stop hedgehog-agent.service</code></li>
+<li>on switch: <code>sudo mv /tmp/agent-config.yaml /etc/sonic/hedgehog/agent-config.yaml</code></li>
+<li>on switch: <code>sudo systemctl start hedgehog-agent.service</code></li>
+</ol>
+<p>If the agent doesn't return to normal functioning after this procedure the next
+step would be to schedule downtime and reboot the switch.</p>
+<h4 id="time-synchronization">Time Synchronization</h4>
+<p>The control node is configured to use public NTP servers from Google or
+Cloudflare. The control node will also act as an NTP server for the switches.</p>
+<p>To check the sync status of the control node, use the <code>timedatectl</code>
+command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>timedatectl<span class="w"> </span>timesync-status
+</span></code></pre></div>
+<p>If the time is not correct, view the logs of the NTP pod with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>fab<span class="w"> </span>logs<span class="w"> </span>deployment/ntp
+</span></code></pre></div>
+<p>Confirm that the switches are using the control node as their NTP source:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">admin@leaf-01:~$ </span>show<span class="w"> </span>ntp<span class="w"> </span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">     remote           refid      st t when poll reach   delay   offset  jitter</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">==============================================================================</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">*172.30.0.1      216.239.35.0     2 u  339 1024  377    1.365   +0.276   0.300</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">synchronised to NTP server (172.30.0.1) at stratum 3 </span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="go">   time correct to within 31 ms</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">   polling server every 1024 s</span>
+</span></code></pre></div>
+<p>The <code>*</code> character next to the remote IP address indicates the switch is
+using the chrony pod as its NTP server. The Hedgehog agent sets the NTP
+configuration on the switch.</p>
+<h2 id="applied-appliedg-and-currentg">Applied, AppliedG, and CurrentG</h2>
+<p>Each configuration on the switches is tracked as a generation. The <code>APPLIEDG</code>
+column indicates the generation that is the running configuration on the switch.
+After a change is made, the <code>CURRENTG</code> column will be higher than the <code>APPLIEDG</code>
+The switch agent will apply the changes and the <code>CURRENTG</code> column will equal
+the <code>APPLIEDG</code> column. The <code>APPLIED</code> column displays the amount of time that
+has passed since the last configuration was applied.</p>
+<h2 id="roce-ecmpqpn"><abbr title="RDMA over Converged Etherent">RoCE</abbr>, ECMPQPN</h2>
+<p>The <code>RoCE</code> column indicates if the user has declared that the switch should be
+in <abbr title="RDMA over Converged Etherent">RoCE</abbr> mode. To change into <abbr title="RDMA over Converged Etherent">RoCE</abbr> mode the switch requires a reboot. The 
+<code>CURROCE</code> column indicates <code>true</code> if the
+switch is in <abbr title="RDMA over Converged Etherent">RoCE</abbr> mode. The <code>ECMPQPN</code> column indicates if the user has declared
+that the switch should have configured <abbr title="Equal-cost Multi-path Routing">ECMP</abbr> <abbr title="Queue Pair Number">QPN</abbr>.</p>
 
 
 
@@ -1650,7 +1742,7 @@ supports two different peering modes:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2025</span>
   </span>
 
     
@@ -1660,7 +1752,7 @@ supports two different peering modes:</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 18, 2025</span>
   </span>
 
     
@@ -1699,7 +1791,7 @@ supports two different peering modes:</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+          <a href="../physical_links/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Physical Links">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1709,20 +1801,20 @@ supports two different peering modes:</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Overview
+                Physical Links
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../troubleshooting/overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="../../known-limitations/known-limitations/" class="md-footer__link md-footer__link--next" aria-label="Next: Known Limitations">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                Known Limitations
               </div>
             </div>
             <div class="md-footer__button md-icon">
