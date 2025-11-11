@@ -12,27 +12,29 @@ List of common variables used in Hedgehog Grafana dashboards
 - **neighbor** (Label: Neighbor): `label_values(neighbor)` - BGP Neighbor IP address(Multi-value)
 - **interface** (Label: Interface): `label_values(interface)` - Switch Interface name as defined in wiring (Multi-value)
 - **file** (Label: File): `label_valuse(filename)` - Name of Logs file to inspect (Loki)
+- **datasource** (Label: Data Source)" `prometheus` - Data source for dashboard
+  queries, alternatively `loki` for logging.
 
 ## Switch Critical Resources
 
-![Example](./boards/ASIC-Critical-Resourses-stats.png) 
+![Screenshot of grafana dashboard displaying availability of critical resources of the ASIC.](./boards/ASIC-Critical-Resources-stats.png) 
 
 
 This table reports usage and capacity of ASIC's programmable resources 
 such as:
 
-- ACLs
+- Access control lists
 - IPv4 Routes
 - IPv4 Nexthops
-- IPv4 Neihbours
-- IPMC Table
-- FDB
+- IPv4 Neighbors
+- IP Multicast  Entries
+- MAC Forwarding Database
 
-[JSON](./boards/grafana_crm.json)
+[Critical Resource Stats JSON](./boards/grafana_crm.json)
 
 ## Fabric
 
-![Example](./boards/BGP-Fabric-stats.png) 
+![Screenshot of grafana dashboard displaying line graphs with BGP stats.](./boards/BGP-Fabric-stats.png) 
 
 Fabric underlay and external peering monitoring. Including reporing for:
 
@@ -42,11 +44,11 @@ Fabric underlay and external peering monitoring. Including reporing for:
 - Keepalive counters
 
 
-[JSON](./boards/grafana_fabric.json)
+[Fabric Dashboard JSON](./boards/grafana_fabric.json)
 
 ## Interfaces
 
-![Example](./boards/Interfaces-stats.png) 
+![Screenshot of grafana dashboard showing switch interface counters.](./boards/Interfaces-stats.png) 
 
 
 Switch interfaces monitoring visualization that includes:
@@ -59,9 +61,11 @@ Switch interfaces monitoring visualization that includes:
 - Errors and discards counters
 
 
-[JSON](./boards/grafana_interfaces.json)
+[Switch Interface Dashboard JSON](./boards/grafana_interfaces.json)
 
 ## Logs
+
+![Screenshot of grafana logs explore page.](./boards/Logs-explore.png)
 
 System and fabric logs:
 
@@ -69,12 +73,12 @@ System and fabric logs:
 - Errors in agent and syslog
 - Full output of defined file
 
-[JSON](./boards/grafana_logs.json)
+[Logs Dashboard JSON](./boards/grafana_logs.json)
 
 
 ## Platform
 
-![Example](./boards/Platform-stats.png) 
+![Screenshot of grafana dashboard with temperature gauges.](./boards/Platform-stats.png) 
 
 
 Information from PSU, temperature sensors and fan trays:
@@ -85,12 +89,21 @@ Information from PSU, temperature sensors and fan trays:
 - For transceivers with DOM - optic sensor temperature
 
 
-[JSON](./boards/grafana_platform.json)
+[Platform Dashboard JSON](./boards/grafana_platform.json)
+
+
+## Fabric Agent Stats
+
+![Screenshot of grafana dashboard with state history of fabric agent.](./boards/Fabric-Agent-Stats.png)
+
+Information from the Agent about heartbeats and configuration generation.
+
+[Fabric Agent Dashboard JSON](./boards/grafana_fabric_agent_stats.json)
 
 
 ## Node Exporter
 
-![Example](./boards/NodeFull.png) 
+![Screenshot of grafana standard grafana node exporter dashboard](./boards/NodeFull.png) 
 
 [Grafana Node Exporter Full](https://grafana.com/grafana/dashboards/1860-node-exporter-full/) is an opensource Grafana board that provide
 visualizations for monitoring Linux nodes. In particular case Node Exporter is used to track SONiC OS own stats such as
@@ -101,5 +114,5 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
 ...
 
 
-[JSON](./boards/grafana_node_exporter.json)
+[Node Exporter Dashboard JSON](./boards/grafana_node_exporter.json)
 
