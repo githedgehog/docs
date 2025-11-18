@@ -300,7 +300,8 @@ spec:
 These connection types are for gateway to spine connections. These connections
 will carry the traffic between VPCs that need network services, like NAT. More
 details about the Gateway are in the [Gateway section](gateway.md). In a mesh
-topology the connections will be between gateway and the leaf nodes.
+topology the connections will be between gateway and the leaf nodes. Note that
+gateway is not supported with mesh connections on TH5 leafs.
 
 ```{.yaml .annotate linenums="1" filename="gw-connection.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
@@ -318,9 +319,3 @@ spec:
         ip: 172.30.128.8/31
         port: spine-01/E1/5
 ```
-
-### Gateway to External Connections
-
-!!! warning Under Construction
-
-This section is under construction

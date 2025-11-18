@@ -1,6 +1,7 @@
 # Gateway
 
-Not all network services can be provided by the fabric itself due to limitations with modern switch hardware and software.
+Due to limitations with modern switch hardware and software, the fabric itself
+cannot provide all sorts of network services.
 The Gateway is designed to provide these more sophisticated network services, such as NAT, PAT, firewalling, and others.
 The tradeoff is that while simple [VPC Peerings](vpcs.md#vpcpeering) offer the full cut-through bandwidth of the fabric, gateway services are limited by the traffic handling capability of the gateway nodes.
 
@@ -10,10 +11,11 @@ The tradeoff is that while simple [VPC Peerings](vpcs.md#vpcpeering) offer the f
 Gateway nodes are connected to the fabric by a set of physical connections that are modeled via Connection objects.
 See the section on [Gateway Connections](connections.md#gateway-connections) for connection requirements and example configuration.
 
-When a Gateway Peering is used to connect two VPCs or externals, the gateway nodes will attract traffic to themselves by advertising the appropriate routes to the fabric.
-In turn, the fabric will use these routes to steer traffic to the gateway so that it can apply the configured peering policy.
+When a Gateway Peering is used to connect two VPCs or externals, the gateway nodes attract traffic to themselves by advertising the appropriate routes to the fabric.
+In turn, the fabric uses these routes to steer traffic to the gateway so that
+the gateway can apply the configured peering policy.
 
-Gateway nodes use BGP to advertise routes to the fabric, and the gateway will get its own ASN so it is possible to easily identify gateway advertised routes in the fabric.
+Gateway nodes use BGP to advertise routes to the fabric, and the gateway gets its own ASN so it is possible to easily identify gateway-advertised routes in the fabric.
 
 ```mermaid
 graph TD
@@ -104,11 +106,18 @@ style Servers fill:none,stroke:none
 
 ## Gateway Peering
 
-Just as [VPC Peerings](vpcs.md#vpcpeering) provide VPC to VPC connectivity by way of the switches in the fabric, gateway peerings provide connectivity via the gateway nodes.
+Just as [VPC Peerings](vpcs.md#vpcpeering) provide VPC-to-VPC connectivity by way of the switches in the fabric, gateway peerings provide connectivity via the gateway nodes.
 Gateway services can be inserted between a pair of VPCs or a VPC and an external using a Gateway Peering.
-Each peering can be configured to provide the necessary services for traffic that uses that peering.
+Each peering can be configured to provide the necessary services for traffic
+that uses that peering. Peering the same entities via gateway and fabric
+at the same time results in undefined behaviour. If two entities (VPCs or externals) are already
+peered via the fabric, delete this peering first, then peer them via the
+gateway.
 
 ### Simple Gateway Peering Between VPCs
+
+A simple peering with no services deployed between the VPCs. This traffic will
+transit the gateway node(s).
 
 ```{.yaml .annotate linenums="1" title="gw-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
@@ -128,10 +137,16 @@ spec:
           - cidr: 192.168.0.0/16 # Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1
 ```
 
-A simple peering with no services deployed between the VPCs. This traffic will
-transit the gateway node(s).
+### Gateway Peering with Stateless NAT
 
-### Gateway Peering with stateless NAT
+Stateless NAT translates source and/or destination IP addresses for all packets that traverse
+the peering, but it does not maintain any flow state for the connection. A 
+one-to-one mapping is established between the addresses exposed in the CIDRs for
+`ips` and the addresses to use represented by the CIDRs in
+`as`: each address from the first group is consistently mapped to a single
+address from the second group. Therefore, the total number of addresses covered
+by the CIDRs YAML array entries from `ips` must be equal to the total number of
+addresses covered by the CIDRs from `as`.
 
 ```{.yaml .annotate linenums="1" title="sl-gw-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
@@ -144,34 +159,34 @@ spec:
     vpc-1:
       expose:
         - ips:
-          - cidr: 10.0.1.0/24 # Expose all IP address in the 10.0.1.0/24 CIDR block to vpc-2
+          - cidr: 10.0.1.0/24 # IP addresses in the 10.0.1.0/24 block will be exposed ...
           as:
-          - cidr: 10.11.11.0/24
+          - cidr: 10.11.11.0/24 # as IP addresses in the 10.11.11.0/24 block.
         - ips:
-          - cidr: 10.0.2.3/32 # Expose the single IP Statless NAT mapping to vpc-2
+          - cidr: 10.0.2.3/32 # This single IP address will be reachable...
           as:
-          - cidr: 10.11.22.3/32
+          - cidr: 10.11.22.3/32 # as this IP address in vpc-2.
     vpc-2:
       expose:
         - ips:
-          - cidr: 10.0.2.0/24
+          - cidr: 10.0.2.0/24 # A /24 can be split into two ranges
           as:
-          - cidr: 10.22.22.0/25
+          - cidr: 10.22.22.0/25 # and exposed back to vpc-1.
           - cidr: 10.22.22.128/25
 
 
 ```
 
-Stateless NAT translates source and destination IP addresses for all packets that traverse
-the peering, but it does not maintain any flow state for the connection. A 
-one-to-one mapping is established between the addresses exposed in the CIDRs for
-`ips` and the addresses to use represented by the CIDRs in
-`as:` each address from the first group is consistently mapped to a single
-address from the second group. Therefore, the total number of addresses covered
-by the CIDRs YAML array entries from `ips` must be equal to the total number of
-addresses covered by the CIDRs from `as`.
 
 ### Gateway Peering with Stateful Source NAT
+
+Stateful source NAT uses a flow table to track established connections.
+When traffic is initiated from `vpc-1` to `vpc-2`, the flow table is updated 
+with the connection details. In the return direction (from `vpc-2` to `vpc-1`
+in the following example), the flow table is consulted to determine if the packet
+is part of an established connection. If it is, the packet is allowed to pass 
+through the peering. If it is not, the packet is dropped.
+This behavior allows use of stateful NAT as a simple firewall.
 
 ```{.yaml .annotate linenums="1" title="gw-sf-nat-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
@@ -190,8 +205,10 @@ spec:
           - cidr: 10.0.0.0/24
           as:
           - cidr: 10.0.1.0/31  # but, NAT those addresses using the addresses in 10.0.1.0/31
-          nat:  # Contains the nat configuration
-            stateful:  # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table
+          nat:  # Contains the NAT configuration
+          # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table. 
+          # An entry for the reverse direction will be added too, so that the receiving endpoint in vpc-2 can reply.
+            stateful: 
               idleTimeout: 5m # Timeout connections after 5 minutes of inactivity (no packets received)
     vpc-2:
       expose:
@@ -203,17 +220,10 @@ spec:
         # This restriction will be lifted in a future release.
 ```
 
-Stateful source NAT uses a flow table to track established connections.
-When traffic is initiated from `vpc-1` to `vpc-2`, the flow table is updated 
-with the connection details. In the return direction (from `vpc-2` to `vpc-1`
-in the example below), the flow table is consulted to determine if the packet
-is part of an established connection. If it is, the packet is allowed to pass 
-through the peering. If it is not, the packet is dropped.
-This behavior allows use of stateful NAT as a simple firewall.
 
 ### Gateway Peering with NAT for External Connections
 
 !!! warning "Under Construction"
 
-This section is under construction
+    This section is under construction
 
