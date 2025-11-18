@@ -97,7 +97,7 @@ This control node should be given a static IP address. Either a lease or statica
 
 1. Once the installation is complete, the system automatically reboots.
 
-1. After the system has shutdown but before the boot up process reaches the operating system, **remove the USB image from the system**. Removal during the UEFI boot screen is acceptable.
+1. After the system has shut down but before the boot process reaches the operating system, **remove the USB image from the system**. Removal during the UEFI boot screen is acceptable.
 
 1. Upon booting into the freshly installed system, the fabric installation will **automatically begin**
     1. If the insecure `--dev` flag was passed to `hhfab init` the password for the `core` user is `HHFab.Admin!`, the switches have two users created `admin` and `op`. `admin` has administrator privileges and password `HHFab.Admin!`, whereas the `op` user is a read-only, non-sudo user with password `HHFab.Op!`.
@@ -151,7 +151,7 @@ image is also available, if it can be physically attached to the server.
 
 1. Once the installation is complete, the system automatically reboots
 
-1. After the system has shutdown but before the boot up process reaches the operating system, **remove the virtual media from the system**. Removal during the UEFI boot screen is acceptable
+1. After the system has shut down but before the boot process reaches the operating system, **remove the virtual media from the system**. Removal during the UEFI boot screen is acceptable
 
 1. Upon booting into the freshly installed system, the gateway installation
    will automatically begin. The gateway node acts as a K3S agent
