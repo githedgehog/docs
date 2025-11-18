@@ -221,9 +221,39 @@ spec:
 ```
 
 
-### Gateway Peering with NAT for External Connections
+### Gateway Peering for External Connections
 
-!!! warning "Under Construction"
+The following YAML listings show how to expose a default route to the
+`10.50.2.0/24` subnet inside of `vpc-2`. In this example the name of the
+external is `example-ext`. Assuming this external is representing an ISP this will
+allow hosts inside of the `10.50.2.0/24` to the ISP.
 
-    This section is under construction
+```{.yaml .annotate linenums="1" title="example-external.yaml"}
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: External
+metadata:
+  name: example-ext
+  namespace: default
+spec:
+  inboundCommunity: 65102:5001
+  ipv4Namespace: default
+  outboundCommunity: 5001:65102
 
+```
+
+```{.yaml .annotate linenums="1" title="gw-peer-external.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Peering
+metadata:
+  name: vpc-02--example-ext
+spec:
+  peering:
+    ext.example-ext:
+      expose:
+      - ips:
+        - cidr: 0.0.0.0/0
+    vpc-02:
+      expose:
+      - ips:
+        - cidr: 10.50.2.0/24
+```
