@@ -24,7 +24,7 @@ classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none
-classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+classDef legendBox fill:none,stroke:none,color:#000
 
 %% Network diagram
 
@@ -100,8 +100,6 @@ linkStyle 16 stroke:#6C8EBF,stroke-width:2px
 style Spines fill:none,stroke:none
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
-
-
 ```
 
 ## Gateway Peering
