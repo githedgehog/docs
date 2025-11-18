@@ -60,9 +60,11 @@ _Appears in:_
 | `fabricCtrl` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `fabricBoot` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `fabricDHCP` _[ComponentStatus](#componentstatus)_ |  |  |  |
-| `fabricProxy` _[ComponentStatus](#componentstatus)_ |  |  |  |
+| `controlProxy` _[ComponentStatus](#componentstatus)_ |  |  |  |
+| `controlAlloy` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `gatewayAPI` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `gatewayCtrl` _[ComponentStatus](#componentstatus)_ |  |  |  |
+| `gatewayAlloy` _[ComponentStatus](#componentstatus)_ |  |  |  |
 
 
 #### ControlConfig
@@ -88,6 +90,7 @@ _Appears in:_
 | `dummySubnet` _[Prefix](#prefix)_ |  |  |  |
 | `defaultUser` _[ControlUser](#controluser)_ |  |  |  |
 | `ntpServers` _string array_ |  |  |  |
+| `observability` _[ControlObservability](#controlobservability)_ |  |  |  |
 
 
 #### ControlConfigRegistryUpstream
@@ -232,6 +235,23 @@ _Appears in:_
 
 
 
+#### ControlObservability
+
+
+
+
+
+
+
+_Appears in:_
+- [ControlConfig](#controlconfig)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `kubePodLogs` _boolean_ |  |  |  |
+| `kubeEvents` _boolean_ |  |  |  |
+
+
 #### ControlUser
 
 
@@ -266,6 +286,7 @@ _Appears in:_
 | `registry` _[RegistryConfig](#registryconfig)_ |  |  |  |
 | `fabric` _[FabricConfig](#fabricconfig)_ |  |  |  |
 | `gateway` _[GatewayConfig](#gatewayconfig)_ |  |  |  |
+| `observability` _[ObservabilityConfig](#observabilityconfig)_ |  |  |  |
 
 
 #### FabNode
@@ -384,7 +405,9 @@ _Appears in:_
 | `defaultSwitchUsers` _object (keys:string, values:[SwitchUser](#switchuser))_ |  |  |  |
 | `defaultAlloyConfig` _[AlloyConfig](#alloyconfig)_ |  |  |  |
 | `includeONIE` _boolean_ |  |  |  |
+| `includeCLS` _boolean_ |  |  |  |
 | `disableBFD` _boolean_ |  |  |  |
+| `observability` _[Observability](#observability)_ |  |  |  |
 
 
 #### FabricVersions
@@ -406,9 +429,7 @@ _Appears in:_
 | `boot` _[Version](#version)_ |  |  |  |
 | `agent` _[Version](#version)_ |  |  |  |
 | `ctl` _[Version](#version)_ |  |  |  |
-| `proxyChart` _[Version](#version)_ |  |  |  |
-| `proxy` _[Version](#version)_ |  |  |  |
-| `nos` _object (keys:string, values:[Version](#version))_ |  |  |  |
+| `nos` _object (keys:NOSType, values:[Version](#version))_ |  |  |  |
 | `onie` _object (keys:string, values:[Version](#version))_ |  |  |  |
 
 
@@ -512,6 +533,80 @@ _Appears in:_
 | `enable` _boolean_ |  |  |  |
 | `asn` _integer_ |  |  |  |
 | `mac` _string_ |  |  |  |
+| `observability` _[GatewayObservability](#gatewayobservability)_ |  |  |  |
+
+
+#### GatewayObservability
+
+
+
+
+
+
+
+_Appears in:_
+- [GatewayConfig](#gatewayconfig)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `dataplane` _[GatewayObservabilityDataplane](#gatewayobservabilitydataplane)_ |  |  |  |
+| `frr` _[GatewayObservabilityFRR](#gatewayobservabilityfrr)_ |  |  |  |
+| `unix` _[GatewayObservabilityUnix](#gatewayobservabilityunix)_ |  |  |  |
+
+
+#### GatewayObservabilityDataplane
+
+
+
+
+
+
+
+_Appears in:_
+- [GatewayObservability](#gatewayobservability)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `metrics` _boolean_ |  |  |  |
+| `metricsInterval` _integer_ |  |  |  |
+| `metricsRelabel` _ScrapeRelabelRule array_ |  |  |  |
+
+
+#### GatewayObservabilityFRR
+
+
+
+
+
+
+
+_Appears in:_
+- [GatewayObservability](#gatewayobservability)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `metrics` _boolean_ |  |  |  |
+| `metricsInterval` _integer_ |  |  |  |
+| `metricsRelabel` _ScrapeRelabelRule array_ |  |  |  |
+
+
+#### GatewayObservabilityUnix
+
+
+
+
+
+
+
+_Appears in:_
+- [GatewayObservability](#gatewayobservability)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `metrics` _boolean_ |  |  |  |
+| `metricsInterval` _integer_ |  |  |  |
+| `metricsRelabel` _ScrapeRelabelRule array_ |  |  |  |
+| `metricsCollectors` _string array_ |  |  |  |
 
 
 #### GatewayVersions
@@ -534,6 +629,42 @@ _Appears in:_
 | `frr` _[Version](#version)_ |  |  |  |
 
 
+#### ObservabilityConfig
+
+
+
+
+
+
+
+_Appears in:_
+- [FabConfig](#fabconfig)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `defaults` _[ObservabilityDefaults](#observabilitydefaults)_ |  |  |  |
+| `labels` _object (keys:string, values:string)_ |  |  |  |
+| `targets` _[Targets](#targets)_ |  |  |  |
+
+
+#### ObservabilityDefaults
+
+_Underlying type:_ _string_
+
+
+
+
+
+_Appears in:_
+- [ObservabilityConfig](#observabilityconfig)
+
+| Field | Description |
+| --- | --- |
+| `` |  |
+| `none` |  |
+| `minimal` |  |
+
+
 #### PlatformVersions
 
 
@@ -549,6 +680,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `k3s` _[Version](#version)_ |  |  |  |
 | `zot` _[Version](#version)_ |  |  |  |
+| `zotChart` _[Version](#version)_ |  |  |  |
 | `certManager` _[Version](#version)_ |  |  |  |
 | `k9s` _[Version](#version)_ |  |  |  |
 | `toolbox` _[Version](#version)_ |  |  |  |
@@ -556,6 +688,9 @@ _Appears in:_
 | `ntp` _[Version](#version)_ |  |  |  |
 | `ntpChart` _[Version](#version)_ |  |  |  |
 | `alloy` _[Version](#version)_ |  |  |  |
+| `controlProxy` _[Version](#version)_ |  |  |  |
+| `controlProxyChart` _[Version](#version)_ |  |  |  |
+| `bashCompletion` _[Version](#version)_ |  |  |  |
 
 
 #### RegistryConfig
