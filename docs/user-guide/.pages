@@ -7,7 +7,7 @@ nav:
   - external.md
   - shrink-expand.md
   - profiles.md
-  - Telemetry:
-    - grafana.md
+  - Observability:
     - grafana_config_details.md
+    - grafana.md
   - ...
