@@ -210,31 +210,6 @@ spec:
         port: s5248-02/E1/15
 ```
 
-### VPC-Loopback
-
-In Fabric versions prior to 25.03, VPC-Loopback connections were used for the local VPC peering, i.e.
-when both VPC are attached to the same switch, to work around a limitation of the supported switches.
-That workaround is no longer needed nor configurable; this connection type is deprecated.
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: s5248-01--vpc-loopback
-  namespace: default
-spec:
-  vpcLoopback:
-    links: # Defines multiple loopbacks on a single switch
-    - switch1:
-        port: s5248-01/E1/16
-      switch2:
-        port: s5248-01/E1/17
-    - switch1:
-        port: s5248-01/E1/18
-      switch2:
-        port: s5248-01/E1/19
-```
-
 ## Connecting Fabric to the outside world
 
 Connections in this section provide connectivity to the outside world. For example, they can be connections to the
