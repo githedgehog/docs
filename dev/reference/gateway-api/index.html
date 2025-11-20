@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/user-guide/grafana/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/reference/gateway-api/">
       
       
-        <link rel="prev" href="../profiles/">
+        <link rel="prev" href="../cli/">
       
       
-        <link rel="next" href="../grafana_config_details/">
+        <link rel="next" href="../releases/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Grafana Dashboards - Open Network Fabric</title>
+        <title>Gateway api - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#grafana-dashboards" class="md-skip">
+        <a href="#api-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Grafana Dashboards
+              Gateway api
             
           </span>
         </div>
@@ -631,19 +631,19 @@ You're not viewing the latest version.
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -657,7 +657,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             User Guide
@@ -671,7 +671,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../user-guide/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -692,7 +692,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../devices/" class="md-nav__link">
+      <a href="../../user-guide/devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -713,7 +713,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../connections/" class="md-nav__link">
+      <a href="../../user-guide/connections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -734,7 +734,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../host-settings/" class="md-nav__link">
+      <a href="../../user-guide/host-settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -755,7 +755,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../vpcs/" class="md-nav__link">
+      <a href="../../user-guide/vpcs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -776,7 +776,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../external/" class="md-nav__link">
+      <a href="../../user-guide/external/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -797,7 +797,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../shrink-expand/" class="md-nav__link">
+      <a href="../../user-guide/shrink-expand/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -818,7 +818,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../profiles/" class="md-nav__link">
+      <a href="../../user-guide/profiles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -836,19 +836,19 @@ You're not viewing the latest version.
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
         
           
           <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
@@ -862,7 +862,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_9">
             <span class="md-nav__icon md-icon"></span>
             Telemetry
@@ -873,30 +873,10 @@ You're not viewing the latest version.
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Grafana Dashboards
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../user-guide/grafana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -905,98 +885,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Variables
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#switch-critical-resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      Switch Critical Resources
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fabric
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaces" class="md-nav__link">
-    <span class="md-ellipsis">
-      Interfaces
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#logs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Logs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Platform
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric-agent-stats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fabric Agent Stats
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#node-exporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Node Exporter
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1009,7 +897,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../grafana_config_details/" class="md-nav__link">
+      <a href="../../user-guide/grafana_config_details/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1038,7 +926,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../gateway/" class="md-nav__link">
+      <a href="../../user-guide/gateway/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1063,19 +951,19 @@ You're not viewing the latest version.
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1089,7 +977,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Reference
@@ -1103,7 +991,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../reference/fabric-api/" class="md-nav__link">
+      <a href="../fabric-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1124,7 +1012,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../reference/fab-api/" class="md-nav__link">
+      <a href="../fab-api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1145,7 +1033,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../reference/cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1163,10 +1051,30 @@ You're not viewing the latest version.
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../reference/gateway-api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gateway api
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1175,6 +1083,365 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gatewaygithedgehogcomv1alpha1" class="md-nav__link">
+    <span class="md-ellipsis">
+      gateway.githedgehog.com/v1alpha1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gateway.githedgehog.com/v1alpha1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaybgpneighbor" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayBGPNeighbor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayinterface" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayInterface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayloglevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayLogLevel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaylogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayLogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayprofiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayProfiling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewaySpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaystatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Peering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentryas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntryAs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentryexpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntryExpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentryip" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntryIP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatefulnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatefulNAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatelessnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatelessNAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfospec" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfostatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfosubnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoSubnet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gwintgithedgehogcomv1alpha1" class="md-nav__link">
+    <span class="md-ellipsis">
+      gwint.githedgehog.com/v1alpha1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gwint.githedgehog.com/v1alpha1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frrstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayagent" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayAgent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayagentspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayAgentSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayagentstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayAgentStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaystate" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatus_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfodata" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCStatus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1187,7 +1454,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../reference/releases/" class="md-nav__link">
+      <a href="../releases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1208,7 +1475,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../reference/profiles/" class="md-nav__link">
+      <a href="../profiles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1595,74 +1862,341 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
+  <a href="#packages" class="md-nav__link">
     <span class="md-ellipsis">
-      Variables
+      Packages
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#switch-critical-resources" class="md-nav__link">
+  <a href="#gatewaygithedgehogcomv1alpha1" class="md-nav__link">
     <span class="md-ellipsis">
-      Switch Critical Resources
+      gateway.githedgehog.com/v1alpha1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gateway.githedgehog.com/v1alpha1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gatewaybgpneighbor" class="md-nav__link">
     <span class="md-ellipsis">
-      Fabric
+      GatewayBGPNeighbor
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaces" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gatewayinterface" class="md-nav__link">
     <span class="md-ellipsis">
-      Interfaces
+      GatewayInterface
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#logs" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gatewayloglevel" class="md-nav__link">
     <span class="md-ellipsis">
-      Logs
+      GatewayLogLevel
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#platform" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gatewaylogs" class="md-nav__link">
     <span class="md-ellipsis">
-      Platform
+      GatewayLogs
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric-agent-stats" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gatewayprofiling" class="md-nav__link">
     <span class="md-ellipsis">
-      Fabric Agent Stats
+      GatewayProfiling
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#node-exporter" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gatewayspec" class="md-nav__link">
     <span class="md-ellipsis">
-      Node Exporter
+      GatewaySpec
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaystatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Peering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentryas" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntryAs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentryexpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntryExpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringentryip" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringEntryIP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatefulnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatefulNAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatelessnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatelessNAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfospec" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfostatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfosubnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoSubnet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gwintgithedgehogcomv1alpha1" class="md-nav__link">
+    <span class="md-ellipsis">
+      gwint.githedgehog.com/v1alpha1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gwint.githedgehog.com/v1alpha1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-types_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frrstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayagent" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayAgent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayagentspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayAgentSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewayagentstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayAgentStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaystate" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringstatus_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcinfodata" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCInfoData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpcstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCStatus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1681,7 +2215,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/user-guide/grafana.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/reference/gateway-api.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1689,90 +2223,966 @@ You're not viewing the latest version.
   
 
 
-<h1 id="grafana-dashboards">Grafana Dashboards</h1>
-<p>To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments. Make sure that you've enabled metrics and logs collection for the switches in the Fabric that is
-described in <a href="../../install-upgrade/config/#telemetry">Fabric Config</a> section.</p>
-<h2 id="variables">Variables</h2>
-<p>List of common variables used in Hedgehog Grafana dashboards</p>
+<p>It's an automatically generated reference for the Gateway API.
+You can find latest version in the <a href="https://github.com/githedgehog/gateway/blob/master/docs/api.md">Gateway repository</a>.</p>
+<h1 id="api-reference">API Reference</h1>
+<h2 id="packages">Packages</h2>
 <ul>
-<li><strong>env</strong> (Label: Env): <code>label_values(env)</code> - Environment to monitor</li>
-<li><strong>node</strong> (Label: Switch): <code>label_values(hostname)</code> - Switch Name</li>
-<li><strong>vrf</strong> (Label: VRF): <code>label_values(vrf)</code> - VRF name (Multi-value)</li>
-<li><strong>neighbor</strong> (Label: Neighbor): <code>label_values(neighbor)</code> - <abbr title="Border Gateway Protocol">BGP</abbr> Neighbor IP address(Multi-value)</li>
-<li><strong>interface</strong> (Label: Interface): <code>label_values(interface)</code> - Switch Interface name as defined in wiring (Multi-value)</li>
-<li><strong>file</strong> (Label: File): <code>label_valuse(filename)</code> - Name of Logs file to inspect (Loki)</li>
-<li><strong>datasource</strong> (Label: Data Source)" <code>prometheus</code> - Data source for dashboard
-  queries, alternatively <code>loki</code> for logging.</li>
+<li><a href="#gatewaygithedgehogcomv1alpha1">gateway.githedgehog.com/v1alpha1</a></li>
+<li><a href="#gwintgithedgehogcomv1alpha1">gwint.githedgehog.com/v1alpha1</a></li>
 </ul>
-<h2 id="switch-critical-resources">Switch Critical Resources</h2>
-<p><a class="glightbox" href="../boards/ASIC-Critical-Resources-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard displaying availability of critical resources of the ASIC." src="../boards/ASIC-Critical-Resources-stats.png" /></a> </p>
-<p>This table reports usage and capacity of <abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr>'s programmable resources 
-such as:</p>
+<h2 id="gatewaygithedgehogcomv1alpha1">gateway.githedgehog.com/v1alpha1</h2>
+<p>Package v1alpha1 contains API Schema definitions for the gateway v1alpha1 API group.</p>
+<h3 id="resource-types">Resource Types</h3>
 <ul>
-<li>Access control lists</li>
-<li>IPv4 Routes</li>
-<li>IPv4 Nexthops</li>
-<li>IPv4 Neighbors</li>
-<li>IP Multicast  Entries</li>
-<li>MAC Forwarding Database</li>
+<li><a href="#gateway">Gateway</a></li>
+<li><a href="#peering">Peering</a></li>
+<li><a href="#vpcinfo">VPCInfo</a></li>
 </ul>
-<p><a href="../boards/grafana_crm.json">Critical Resource Stats JSON</a></p>
-<h2 id="fabric">Fabric</h2>
-<p><a class="glightbox" href="../boards/BGP-Fabric-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard displaying line graphs with BGP stats." src="../boards/BGP-Fabric-stats.png" /></a> </p>
-<p>Fabric underlay and external peering monitoring. Including reporing for:</p>
+<h4 id="gateway">Gateway</h4>
+<p>Gateway is the Schema for the gateways API.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>gateway.githedgehog.com/v1alpha1</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Gateway</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#gatewayspec">GatewaySpec</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#gatewaystatus">GatewayStatus</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaybgpneighbor">GatewayBGPNeighbor</h4>
+<p>GatewayBGPNeighbor defines the configuration for a <abbr title="Border Gateway Protocol">BGP</abbr> neighbor</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayspec">GatewaySpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code> <em>string</em></td>
+<td>Source is the source interface for the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor configuration</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the IP address of the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>asn</code> <em>integer</em></td>
+<td>ASN is the remote ASN of the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayinterface">GatewayInterface</h4>
+<p>GatewayInterface defines the configuration for a gateway interface</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayspec">GatewaySpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pci</code> <em>string</em></td>
+<td>PCI address of the interface (required for DPDK driver), e.g. 0000:00:01.0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>kernel</code> <em>string</em></td>
+<td>Kernel is the kernel name of the interface to use (required for kernel driver), e.g. enp2s1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ips</code> <em>string array</em></td>
+<td>IPs is the list of IP address to assign to the interface</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>mtu</code> <em>integer</em></td>
+<td>MTU for the interface</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayloglevel">GatewayLogLevel</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p><em>Appears in:</em>
+- <a href="#gatewaylogs">GatewayLogs</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>off</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>warning</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>trace</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaylogs">GatewayLogs</h4>
+<p>GatewayLogs defines the configuration for logging levels</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayspec">GatewaySpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code> <em><a href="#gatewayloglevel">GatewayLogLevel</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>tags</code> <em>object (keys:string, values:<a href="#gatewayloglevel">GatewayLogLevel</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayprofiling">GatewayProfiling</h4>
+<p><em>Appears in:</em>
+- <a href="#gatewayspec">GatewaySpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayspec">GatewaySpec</h4>
+<p>GatewaySpec defines the desired state of Gateway.</p>
+<p><em>Appears in:</em>
+- <a href="#gateway">Gateway</a>
+- <a href="#gatewayagentspec">GatewayAgentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>protocolIP</code> <em>string</em></td>
+<td>ProtocolIP is used as a loopback IP and <abbr title="Border Gateway Protocol">BGP</abbr> Router ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vtepIP</code> <em>string</em></td>
+<td>VTEP IP to be used by the gateway</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vtepMAC</code> <em>string</em></td>
+<td>VTEP MAC address to be used by the gateway</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>asn</code> <em>integer</em></td>
+<td>ASN is the ASN of the gateway</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vtepMTU</code> <em>integer</em></td>
+<td>VTEPMTU is the MTU for the VTEP interface</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>interfaces</code> <em>object (keys:string, values:<a href="#gatewayinterface">GatewayInterface</a>)</em></td>
+<td>Interfaces is a map of interface names to their configurations</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>neighbors</code> <em><a href="#gatewaybgpneighbor">GatewayBGPNeighbor</a> array</em></td>
+<td>Neighbors is a list of <abbr title="Border Gateway Protocol">BGP</abbr> neighbors</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>logs</code> <em><a href="#gatewaylogs">GatewayLogs</a></em></td>
+<td>Logs defines the configuration for logging levels</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>profiling</code> <em><a href="#gatewayprofiling">GatewayProfiling</a></em></td>
+<td>Profiling defines the configuration for profiling</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>workers</code> <em>integer</em></td>
+<td>Workers defines the number of worker threads to use for dataplane</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaystatus">GatewayStatus</h4>
+<p>GatewayStatus defines the observed state of Gateway.</p>
+<p><em>Appears in:</em>
+- <a href="#gateway">Gateway</a></p>
+<h4 id="peering">Peering</h4>
+<p>Peering is the Schema for the peerings API.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>gateway.githedgehog.com/v1alpha1</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>Peering</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#peeringspec">PeeringSpec</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#peeringstatus">PeeringStatus</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringentry">PeeringEntry</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringspec">PeeringSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expose</code> <em><a href="#peeringentryexpose">PeeringEntryExpose</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringentryas">PeeringEntryAs</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringentryexpose">PeeringEntryExpose</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cidr</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>not</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringentryexpose">PeeringEntryExpose</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringentry">PeeringEntry</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ips</code> <em><a href="#peeringentryip">PeeringEntryIP</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>as</code> <em><a href="#peeringentryas">PeeringEntryAs</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>nat</code> <em><a href="#peeringnat">PeeringNAT</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringentryip">PeeringEntryIP</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringentryexpose">PeeringEntryExpose</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cidr</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>not</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vpcSubnet</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringnat">PeeringNAT</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringentryexpose">PeeringEntryExpose</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stateful</code> <em><a href="#peeringstatefulnat">PeeringStatefulNAT</a></em></td>
+<td>Use connection state tracking when performing NAT</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>stateless</code> <em><a href="#peeringstatelessnat">PeeringStatelessNAT</a></em></td>
+<td>Use connection state tracking when performing NAT, use stateful NAT if omitted</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringspec">PeeringSpec</h4>
+<p>PeeringSpec defines the desired state of Peering.</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayagentspec">GatewayAgentSpec</a>
+- <a href="#peering">Peering</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>peering</code> <em>object (keys:string, values:<a href="#peeringentry">PeeringEntry</a>)</em></td>
+<td>Peerings is a map of peering entries for each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> participating in the peering (keyed by <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> name)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringstatefulnat">PeeringStatefulNAT</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringnat">PeeringNAT</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>idleTimeout</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta">Duration</a></em></td>
+<td>Time since the last packet after which flows are removed from the connection state table</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringstatelessnat">PeeringStatelessNAT</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringnat">PeeringNAT</a></p>
+<h4 id="peeringstatus">PeeringStatus</h4>
+<p>PeeringStatus defines the observed state of Peering.</p>
+<p><em>Appears in:</em>
+- <a href="#peering">Peering</a></p>
+<h4 id="vpcinfo">VPCInfo</h4>
+<p>VPCInfo is the Schema for the vpcinfos API.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>gateway.githedgehog.com/v1alpha1</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>VPCInfo</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#vpcinfospec">VPCInfoSpec</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#vpcinfostatus">VPCInfoStatus</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcinfospec">VPCInfoSpec</h4>
+<p>VPCInfoSpec defines the desired state of VPCInfo.</p>
+<p><em>Appears in:</em>
+- <a href="#vpcinfo">VPCInfo</a>
+- <a href="#vpcinfodata">VPCInfoData</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnets</code> <em>object (keys:string, values:<a href="#vpcinfosubnet">VPCInfoSubnet</a>)</em></td>
+<td>Subnets is a map of all subnets in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (incl. CIDRs, VNIs, etc) keyed by the subnet name</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vni</code> <em>integer</em></td>
+<td>VNI is the VNI for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcinfostatus">VPCInfoStatus</h4>
+<p>VPCInfoStatus defines the observed state of VPCInfo.</p>
+<p><em>Appears in:</em>
+- <a href="#vpcinfo">VPCInfo</a>
+- <a href="#vpcinfodata">VPCInfoData</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>internalID</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcinfosubnet">VPCInfoSubnet</h4>
+<p><em>Appears in:</em>
+- <a href="#vpcinfodata">VPCInfoData</a>
+- <a href="#vpcinfospec">VPCInfoSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cidr</code> <em>string</em></td>
+<td>CIDR is the subnet CIDR block, such as "10.0.0.0/24"</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="gwintgithedgehogcomv1alpha1">gwint.githedgehog.com/v1alpha1</h2>
+<p>Package v1alpha1 contains API Schema definitions for the gwint v1alpha1 API group.</p>
+<h3 id="resource-types_1">Resource Types</h3>
 <ul>
-<li><abbr title="Border Gateway Protocol">BGP</abbr> Neighbors</li>
-<li><abbr title="Border Gateway Protocol">BGP</abbr> Session state</li>
-<li>Number of <abbr title="Border Gateway Protocol">BGP</abbr> Updates and Prefixes sent/received for each <abbr title="Border Gateway Protocol">BGP</abbr> Neighbor</li>
-<li>Keepalive counters</li>
+<li><a href="#gatewayagent">GatewayAgent</a></li>
 </ul>
-<p><a href="../boards/grafana_fabric.json">Fabric Dashboard JSON</a></p>
-<h2 id="interfaces">Interfaces</h2>
-<p><a class="glightbox" href="../boards/Interfaces-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard showing switch interface counters." src="../boards/Interfaces-stats.png" /></a> </p>
-<p>Switch interfaces monitoring visualization that includes:</p>
-<ul>
-<li>Interface Oper/Admin state</li>
-<li>Total input/output packets counter</li>
-<li>Input/output PPS/Bits rate</li>
-<li>Interface utilization</li>
-<li>Counters for Unicast/Broadcast/Multicast packets</li>
-<li>Errors and discards counters</li>
-</ul>
-<p><a href="../boards/grafana_interfaces.json">Switch Interface Dashboard JSON</a></p>
-<h2 id="logs">Logs</h2>
-<p><a class="glightbox" href="../boards/Logs-explore.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana logs explore page." src="../boards/Logs-explore.png" /></a></p>
-<p>System and fabric logs:</p>
-<ul>
-<li>Kernel and <abbr title="Border Gateway Protocol">BGP</abbr> logs from Syslog</li>
-<li>Errors in agent and syslog</li>
-<li>Full output of defined file</li>
-</ul>
-<p><a href="../boards/grafana_logs.json">Logs Dashboard JSON</a></p>
-<h2 id="platform">Platform</h2>
-<p><a class="glightbox" href="../boards/Platform-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard with temperature gauges." src="../boards/Platform-stats.png" /></a> </p>
-<p>Information from PSU, temperature sensors and fan trays:</p>
-<ul>
-<li>Input/output PSU voltage</li>
-<li>Fan speed</li>
-<li>Temperature from switch sensors (CPU, PSU, etc)</li>
-<li>For transceivers with DOM - optic sensor temperature</li>
-</ul>
-<p><a href="../boards/grafana_platform.json">Platform Dashboard JSON</a></p>
-<h2 id="fabric-agent-stats">Fabric Agent Stats</h2>
-<p><a class="glightbox" href="../boards/Fabric-Agent-Stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard with state history of fabric agent." src="../boards/Fabric-Agent-Stats.png" /></a></p>
-<p>Information from the Agent about heartbeats and configuration generation.</p>
-<p><a href="../boards/grafana_fabric_agent_stats.json">Fabric Agent Dashboard JSON</a></p>
-<h2 id="node-exporter">Node Exporter</h2>
-<p><a class="glightbox" href="../boards/NodeFull.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana standard grafana node exporter dashboard" src="../boards/NodeFull.png" /></a> </p>
-<p><a href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/">Grafana Node Exporter Full</a> is an opensource Grafana board that provide
-visualizations for monitoring Linux nodes. In particular case Node Exporter is used to track SONiC OS own stats such as</p>
-<ul>
-<li>Memory/disks usage</li>
-<li>CPU/System utilization</li>
-<li>Networking stats (traffic that hits SONiC interfaces)
-...</li>
-</ul>
-<p><a href="../boards/grafana_node_exporter.json">Node Exporter Dashboard JSON</a></p>
+<h4 id="frrstatus">FRRStatus</h4>
+<p>FRRStatus represents the status of the FRR daemon</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaystate">GatewayState</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lastAppliedGen</code> <em>integer</em></td>
+<td>LastAppliedGen is the generation of the last successful application of a configuration to the FRR</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayagent">GatewayAgent</h4>
+<p>GatewayAgent is the Schema for the gatewayagents API.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>gwint.githedgehog.com/v1alpha1</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>GatewayAgent</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#gatewayagentspec">GatewayAgentSpec</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#gatewayagentstatus">GatewayAgentStatus</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayagentspec">GatewayAgentSpec</h4>
+<p>GatewayAgentSpec defines the desired state of GatewayAgent.</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayagent">GatewayAgent</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agentVersion</code> <em>string</em></td>
+<td>AgentVersion is the desired version of the gateway agent to trigger generation changes on controller upgrades</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gateway</code> <em><a href="#gatewayspec">GatewaySpec</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vpcs</code> <em>object (keys:string, values:<a href="#vpcinfodata">VPCInfoData</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>peerings</code> <em>object (keys:string, values:<a href="#peeringspec">PeeringSpec</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewayagentstatus">GatewayAgentStatus</h4>
+<p>GatewayAgentStatus defines the observed state of GatewayAgent.</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayagent">GatewayAgent</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agentVersion</code> <em>string</em></td>
+<td>AgentVersion is the version of the gateway agent</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastAppliedTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta">Time</a></em></td>
+<td>Time of the last successful configuration application</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastAppliedGen</code> <em>integer</em></td>
+<td>Generation of the last successful configuration application</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>state</code> <em><a href="#gatewaystate">GatewayState</a></em></td>
+<td>State represents collected data from the dataplane API that includes FRR as well</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaystate">GatewayState</h4>
+<p>GatewayState represents collected data from the dataplane API that includes FRR as well</p>
+<p><em>Appears in:</em>
+- <a href="#gatewayagentstatus">GatewayAgentStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lastCollectedTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta">Time</a></em></td>
+<td>LastCollectedTime is the time of the last successful collection of data from the dataplane API</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>frr</code> <em><a href="#frrstatus">FRRStatus</a></em></td>
+<td>FRR is the status of the FRR daemon</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vpcs</code> <em>object (keys:string, values:<a href="#vpcstatus">VPCStatus</a>)</em></td>
+<td>VPCs is the status of the VPCs where key is the vpc (vpcinfo) name</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>peerings</code> <em>object (keys:string, values:<a href="#peeringstatus">PeeringStatus</a>)</em></td>
+<td>Peerings is the status of the VPCs peerings where key is VPC1-&gt;VPC2 and data is for one direction only</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringstatus_1">PeeringStatus</h4>
+<p>PeeringStatus represents the status of a peering between a pair of VPCs in one direction</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaystate">GatewayState</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> <em>integer</em></td>
+<td>Packets is the number of packets sent on the peering</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>b</code> <em>integer</em></td>
+<td>Bytes is the number of bytes sent on the peering</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>d</code> <em>integer</em></td>
+<td>Drops is the number of packets dropped on the peering</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>bps</code> <em>float</em></td>
+<td>BytesPerSecond is the number of bytes sent per second on the peering</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pps</code> <em>float</em></td>
+<td>PktsPerSecond is the number of packets sent per second on the peering</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcinfodata">VPCInfoData</h4>
+<p><em>Appears in:</em>
+- <a href="#gatewayagentspec">GatewayAgentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subnets</code> <em>object (keys:string, values:<a href="#vpcinfosubnet">VPCInfoSubnet</a>)</em></td>
+<td>Subnets is a map of all subnets in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> (incl. CIDRs, VNIs, etc) keyed by the subnet name</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vni</code> <em>integer</em></td>
+<td>VNI is the VNI for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>internalID</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcstatus">VPCStatus</h4>
+<p><em>Appears in:</em>
+- <a href="#gatewaystate">GatewayState</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> <em>integer</em></td>
+<td>Packets is the number of packets sent on the vpc</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>b</code> <em>integer</em></td>
+<td>Bytes is the number of bytes sent on the vpc</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>d</code> <em>integer</em></td>
+<td>Drops is the number of packets dropped on the vpc</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1795,7 +3205,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
   </span>
 
     
@@ -1805,7 +3215,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
   </span>
 
     
@@ -1844,7 +3254,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../profiles/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Switch Profiles and Port Naming">
+          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fabric CLI">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1854,20 +3264,20 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
                 Previous
               </span>
               <div class="md-ellipsis">
-                Switch Profiles and Port Naming
+                Fabric CLI
               </div>
             </div>
           </a>
         
         
           
-          <a href="../grafana_config_details/" class="md-footer__link md-footer__link--next" aria-label="Next: Telemetry Configuration">
+          <a href="../releases/" class="md-footer__link md-footer__link--next" aria-label="Next: Release Naming">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Telemetry Configuration
+                Release Naming
               </div>
             </div>
             <div class="md-footer__button md-icon">
