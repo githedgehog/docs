@@ -168,7 +168,7 @@ You can jump [to the instructions](#build-the-installer-and-start-vlab) to start
 
 ### Mesh
 
-To run the experimental mesh topology, which does away with spine switches and connects leaves directly to each other,
+To run the mesh topology, which does away with spine switches and connects leaves directly to each other,
 use the `--mesh-links-count` flag.
 This flag allows you to specify how many mesh links should be created between each pair of leaves.
 For example, to create a mesh topology with 2 links between each pair of leaves, run:
