@@ -147,7 +147,8 @@ for a spine switch in between. This can be used to create smaller mesh topologie
 to the fabric when there are no available spine ports.
 
 !!! warning
-    Mesh connections are experimental and not yet recommended for production use.
+    Mesh connections have major limitations on TH5-based devices. See the
+    [Known Limitations](../known-limitations/known-limitations.md#mesh-limitations-on-th5-based-devices) section for details.
 
 Here's an example YAML definition of a Mesh connection between two leaves:
 
