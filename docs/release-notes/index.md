@@ -42,6 +42,8 @@ Date: November 20, 2025
 
 ## 25.04
 
+Date: July 31, 2025
+
 !!! note
     It's only possible to upgrade from 25.03 to 25.04 and requires all switches to run Broadcom SONiC 4.5.0.
 
@@ -73,6 +75,8 @@ Date: November 20, 2025
 
 ## 25.03
 
+Date: July 1, 2025
+
 ### Highlights
 
 - RoCE v2 (RDMA over Converged Ethernet version 2) support
@@ -103,6 +107,8 @@ Date: November 20, 2025
 - k8s (k3s): v1.32.4-k3s1
 
 ## 25.02
+
+Date: May 15, 2025
 
 ### Highlights
 
@@ -136,6 +142,8 @@ Date: November 20, 2025
 - k8s (k3s): v1.32.4-k3s1
 
 ## 25.01
+
+Date: April 7, 2025
 
 ### Highlights
 
