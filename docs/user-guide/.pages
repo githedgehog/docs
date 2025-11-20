@@ -8,6 +8,6 @@ nav:
   - shrink-expand.md
   - profiles.md
   - Observability:
-    - grafana_config_details.md
+    - o11y-config.md
     - grafana.md
   - ...
