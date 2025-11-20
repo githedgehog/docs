@@ -275,6 +275,12 @@ style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
 ```
 
+### Gateway
+
+Gateway could be added by adding `--gateway` flag to the `hhfab init` command and it'll be automatically added connected
+to two spines in case of spine-leaf topology or two leafs in case of the mesh topology, number of uplinks could be
+controlled using flags on the `hhfab vlab gen` command.
+
 ### Lightweight Spine-Leaf
 A default spine-leaf topology in VLAB requests more CPU and RAM than is commonly available. The lightweight
 topology requests 22 vCPUs and 23 GiB of RAM, it is 6 virtual machines, and still allows for traffic to transit a spine.
