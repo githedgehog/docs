@@ -36,11 +36,13 @@ You can calculate the system requirements based on the allocated resources to th
 | Control Node | 6 | 6GB | 100GB |
 | Test Server | 2 | 768MB | 10GB |
 | Switch | 4 | 5GB | 50GB |
+| Gateway | 8 | 6GB | 50GB |
 
 These numbers give approximately the following requirements for the default topologies:
 
 * Spine-Leaf: 54 vCPUs, 49664 MB, 550 GB disk
 * Mesh (2 leaves): 22 vCPUs, 19456 MB, 240 GB disk
+* If gateway is enabled it adds 8 vCPUs, 6GB RAM, and 50GB disk
 
 Usually, none of the VMs will reach 100% utilization of the allocated resources, but as a rule of thumb you should make
 sure that you have at least allocated RAM and disk space for all VMs.
