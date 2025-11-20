@@ -1,10 +1,12 @@
 # Gateway
 
-Due to limitations with modern switch hardware and software, the fabric itself
-cannot provide all sorts of network services.
-The Gateway is designed to provide these more sophisticated network services, such as NAT, PAT, firewalling, and others.
-The tradeoff is that while simple [VPC Peerings](vpcs.md#vpcpeering) offer the full cut-through bandwidth of the fabric, gateway services are limited by the traffic handling capability of the gateway nodes.
-
+The Gateway adds advanced network service capabilities to the fabric,
+complementing its fast, scalable connectivity. The fabric delivers efficient,
+cut-through transport between workloads, while the Gateway provides additional
+capabilities such as NAT, PAT, and firewalling. Simple [VPC Peerings](vpcs.md#vpcpeering) use the
+full bandwidth of the fabric, whereas traffic using Gateway services is
+handled through the Gateway nodes, which determine the available throughput.
+Together, they offer both high-performance connectivity and rich network services.
 
 ## Gateway Nodes and Fabric Connectivity
 
