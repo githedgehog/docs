@@ -7,7 +7,7 @@ Alloy](https://grafana.com/docs/alloy/latest/) on all switches to forward metric
 API](https://prometheus.io/docs/specs/prw/remote_write_spec/) and Loki API. Metrics includes port speeds, counters,
 errors, operational status, transceivers, fans, power supplies, temperature
 sensors, BGP neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
-logs. Modify the URL as needed, instead of `/api/v1/push` it could be
+logs, switch syslog, pod logs for all services running in the control node k8s cluster. Modify the URL as needed, instead of `/api/v1/push` it could be
 `/api/v1/write`; check the documentation for the data provider.
 
 Switches push telemetry data through a proxy running in a pod on the control
@@ -33,41 +33,47 @@ advisable. For additional details see the
 [documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
 
 
-## Add Credentials to Fabric
+## Billing
+
+Users are advised to use the regular expressions to limit the amount of data
+sent to grafana cloud as the costs compound quickly.
+
+## Add Credentials
 
 Take the tokens created on grafana cloud and populate them in this YAML file. The username
-is different between prometheus and loki. It is suggested
-Apply the setting below to the  that will allow for telemetry to be pushed to
-the specified Grafana instance:
+is different between prometheus and loki.
+Apply the setting below for telemetry to be pushed to the specified Prometheus and Loki instances:
 
 ```{ .yaml .annotate title="credentials.yaml" linenums="1" }
 spec:
   config:
     observability:
+      labels:
+        env: hh-fabric # (1)!
       targets:
         loki:
-          grafana_cloud: # (1)!
+          grafana_cloud: # (2)!
             basicAuth:
               password: "insert_password_or_token_here"
               username: "1234567"
             labels: 
-              env: hh-fabric # (2)!
+              some: label # (3)!
             url: https://[your-loki-server].grafana.net/loki/api/v1/push
         prometheus:
-          grafana_cloud: # (3)!
+          grafana_cloud: # (4)!
             basicAuth:
               password: "insert_password_or_token_here"
               username: "1234567"
             labels:
-              env: hh-fabric # (4)!
+              some: label
             url: https://[your-prometheus-server].grafana.net/api/prom/push
 
 ```
 
-1. Can be any name of your choosing
-2. Value of "env" in dashboard
-3. Can be any name of your choosing
-4. Value of "env" in dashboard
+1. Common label for all targets, "env" is a well-known label used in dashboards
+2. Can be any name of your choosing
+3. Extra labels applied to a specific target
+4. Can be any name of your choosing
 
 To apply these changes to the fabric use the following command:
 
@@ -75,7 +81,7 @@ To apply these changes to the fabric use the following command:
 kubectl patch -n fab --type merge fabricator/default --patch-file credentials.yaml
 ```
 
-## Gateway Observabiltiy
+## Gateway Observability
 
 ```{ .yaml .annotate title="gateway.yaml" linenums="1" }
 spec:
