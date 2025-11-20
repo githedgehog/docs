@@ -1,4 +1,5 @@
 nav:
   - Fabric API: fabric-api.md
   - Fabricator API: fab-api.md
+  - Gateway API: gateway-api.md
   - ...
