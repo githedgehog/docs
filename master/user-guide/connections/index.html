@@ -893,6 +893,30 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gateway-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gateway Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spine-to-gateway-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spine to Gateway Connections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1089,6 +1113,27 @@ You're not viewing the latest version.
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1750,6 +1795,30 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gateway-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gateway Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spine-to-gateway-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spine to Gateway Connections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1775,11 +1844,12 @@ You're not viewing the latest version.
 
 <h1 id="connections">Connections</h1>
 <p><code>Connection</code> objects represent logical and physical connections between the devices in the Fabric (<code>Switch</code>,
-<code>Server</code> and <code>External</code> objects) and are needed to define all the connections in the Wiring Diagram.</p>
+<code>Server</code>, <code>Gateway</code>,  and <code>External</code> objects) and are needed to define all the connections in the Wiring Diagram.</p>
 <p>All connections reference switch or server ports. Only port names defined by switch profiles can be used in
-the wiring diagram for the switches. NOS (or any other) port names aren't supported. Currently, server ports aren't validated by
+the wiring diagram for the switches. In a Gateway connection the interface name
+on the gateway needs to be accurate. NOS (or any other) port names aren't supported. Currently, server ports aren't validated by
 the Fabric API other than for uniqueness. See the <a href="../profiles/">Switch Profiles and Port Naming</a> section
-for more details.</p>
+for more details on the switch port names.</p>
 <p>There are several types of connections.</p>
 <h2 id="workload-server-connections">Workload server connections</h2>
 <p>Server connections are used to connect workload servers to switches. For
@@ -2015,6 +2085,41 @@ communities as well as granularly controlling what gets advertised and which rou
 </span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
 </span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-03/E1/3</span>
 </span></code></pre></div>
+<h2 id="gateway-connections">Gateway Connections</h2>
+<h3 id="spine-to-gateway-connections">Spine to Gateway Connections</h3>
+<p>These connection types are for gateway to spine connections. These connections
+will carry the traffic between VPCs that need network services, like NAT. More
+details about the Gateway are in the <a href="../gateway/">Gateway section</a>. In a mesh
+topology the connections will be between gateway and the leaf nodes. Note that
+gateway is not supported with mesh connections on TH5 leafs.</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--gateway--gateway-1</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.128.9/31</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1/enp2s1</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.128.8/31</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/5</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -2037,7 +2142,7 @@ communities as well as granularly controlling what gets advertised and which rou
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 18, 2025</span>
   </span>
 
     

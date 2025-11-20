@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/user-guide/grafana/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/user-guide/gateway/">
       
       
-        <link rel="prev" href="../profiles/">
+        <link rel="prev" href="../grafana_config_details/">
       
       
-        <link rel="next" href="../grafana_config_details/">
+        <link rel="next" href="../../reference/fabric-api/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Grafana Dashboards - Open Network Fabric</title>
+        <title>Gateway - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#grafana-dashboards" class="md-skip">
+        <a href="#gateway" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Grafana Dashboards
+              Gateway
             
           </span>
         </div>
@@ -836,19 +836,19 @@ You're not viewing the latest version.
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
         
           
           <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
@@ -862,7 +862,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_9">
             <span class="md-nav__icon md-icon"></span>
             Telemetry
@@ -873,30 +873,10 @@ You're not viewing the latest version.
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Grafana Dashboards
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../grafana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -905,98 +885,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Variables
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#switch-critical-resources" class="md-nav__link">
-    <span class="md-ellipsis">
-      Switch Critical Resources
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fabric
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaces" class="md-nav__link">
-    <span class="md-ellipsis">
-      Interfaces
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#logs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Logs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Platform
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric-agent-stats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fabric Agent Stats
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#node-exporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Node Exporter
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1035,10 +923,30 @@ You're not viewing the latest version.
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../gateway/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gateway
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1047,6 +955,86 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-nodes-and-fabric-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Nodes and Fabric Connectivity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-peering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Peering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gateway Peering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-gateway-peering-between-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Gateway Peering Between VPCs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-peering-with-stateless-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Peering with Stateless NAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-peering-with-stateful-source-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Peering with Stateful Source NAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-peering-for-external-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Peering for External Connections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1574,74 +1562,62 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#variables" class="md-nav__link">
+  <a href="#gateway-nodes-and-fabric-connectivity" class="md-nav__link">
     <span class="md-ellipsis">
-      Variables
+      Gateway Nodes and Fabric Connectivity
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#switch-critical-resources" class="md-nav__link">
+  <a href="#gateway-peering" class="md-nav__link">
     <span class="md-ellipsis">
-      Switch Critical Resources
+      Gateway Peering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gateway Peering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-gateway-peering-between-vpcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Gateway Peering Between VPCs
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gateway-peering-with-stateless-nat" class="md-nav__link">
     <span class="md-ellipsis">
-      Fabric
+      Gateway Peering with Stateless NAT
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#interfaces" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gateway-peering-with-stateful-source-nat" class="md-nav__link">
     <span class="md-ellipsis">
-      Interfaces
+      Gateway Peering with Stateful Source NAT
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#logs" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gateway-peering-for-external-connections" class="md-nav__link">
     <span class="md-ellipsis">
-      Logs
+      Gateway Peering for External Connections
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Platform
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fabric-agent-stats" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fabric Agent Stats
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#node-exporter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Node Exporter
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1660,7 +1636,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/user-guide/grafana.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/user-guide/gateway.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1668,90 +1644,324 @@ You're not viewing the latest version.
   
 
 
-<h1 id="grafana-dashboards">Grafana Dashboards</h1>
-<p>To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments. Make sure that you've enabled metrics and logs collection for the switches in the Fabric that is
-described in <a href="../../install-upgrade/config/#telemetry">Fabric Config</a> section.</p>
-<h2 id="variables">Variables</h2>
-<p>List of common variables used in Hedgehog Grafana dashboards</p>
-<ul>
-<li><strong>env</strong> (Label: Env): <code>label_values(env)</code> - Environment to monitor</li>
-<li><strong>node</strong> (Label: Switch): <code>label_values(hostname)</code> - Switch Name</li>
-<li><strong>vrf</strong> (Label: VRF): <code>label_values(vrf)</code> - VRF name (Multi-value)</li>
-<li><strong>neighbor</strong> (Label: Neighbor): <code>label_values(neighbor)</code> - <abbr title="Border Gateway Protocol">BGP</abbr> Neighbor IP address(Multi-value)</li>
-<li><strong>interface</strong> (Label: Interface): <code>label_values(interface)</code> - Switch Interface name as defined in wiring (Multi-value)</li>
-<li><strong>file</strong> (Label: File): <code>label_valuse(filename)</code> - Name of Logs file to inspect (Loki)</li>
-<li><strong>datasource</strong> (Label: Data Source)" <code>prometheus</code> - Data source for dashboard
-  queries, alternatively <code>loki</code> for logging.</li>
-</ul>
-<h2 id="switch-critical-resources">Switch Critical Resources</h2>
-<p><a class="glightbox" href="../boards/ASIC-Critical-Resources-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard displaying availability of critical resources of the ASIC." src="../boards/ASIC-Critical-Resources-stats.png" /></a> </p>
-<p>This table reports usage and capacity of <abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr>'s programmable resources 
-such as:</p>
-<ul>
-<li>Access control lists</li>
-<li>IPv4 Routes</li>
-<li>IPv4 Nexthops</li>
-<li>IPv4 Neighbors</li>
-<li>IP Multicast  Entries</li>
-<li>MAC Forwarding Database</li>
-</ul>
-<p><a href="../boards/grafana_crm.json">Critical Resource Stats JSON</a></p>
-<h2 id="fabric">Fabric</h2>
-<p><a class="glightbox" href="../boards/BGP-Fabric-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard displaying line graphs with BGP stats." src="../boards/BGP-Fabric-stats.png" /></a> </p>
-<p>Fabric underlay and external peering monitoring. Including reporing for:</p>
-<ul>
-<li><abbr title="Border Gateway Protocol">BGP</abbr> Neighbors</li>
-<li><abbr title="Border Gateway Protocol">BGP</abbr> Session state</li>
-<li>Number of <abbr title="Border Gateway Protocol">BGP</abbr> Updates and Prefixes sent/received for each <abbr title="Border Gateway Protocol">BGP</abbr> Neighbor</li>
-<li>Keepalive counters</li>
-</ul>
-<p><a href="../boards/grafana_fabric.json">Fabric Dashboard JSON</a></p>
-<h2 id="interfaces">Interfaces</h2>
-<p><a class="glightbox" href="../boards/Interfaces-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard showing switch interface counters." src="../boards/Interfaces-stats.png" /></a> </p>
-<p>Switch interfaces monitoring visualization that includes:</p>
-<ul>
-<li>Interface Oper/Admin state</li>
-<li>Total input/output packets counter</li>
-<li>Input/output PPS/Bits rate</li>
-<li>Interface utilization</li>
-<li>Counters for Unicast/Broadcast/Multicast packets</li>
-<li>Errors and discards counters</li>
-</ul>
-<p><a href="../boards/grafana_interfaces.json">Switch Interface Dashboard JSON</a></p>
-<h2 id="logs">Logs</h2>
-<p><a class="glightbox" href="../boards/Logs-explore.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana logs explore page." src="../boards/Logs-explore.png" /></a></p>
-<p>System and fabric logs:</p>
-<ul>
-<li>Kernel and <abbr title="Border Gateway Protocol">BGP</abbr> logs from Syslog</li>
-<li>Errors in agent and syslog</li>
-<li>Full output of defined file</li>
-</ul>
-<p><a href="../boards/grafana_logs.json">Logs Dashboard JSON</a></p>
-<h2 id="platform">Platform</h2>
-<p><a class="glightbox" href="../boards/Platform-stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard with temperature gauges." src="../boards/Platform-stats.png" /></a> </p>
-<p>Information from PSU, temperature sensors and fan trays:</p>
-<ul>
-<li>Input/output PSU voltage</li>
-<li>Fan speed</li>
-<li>Temperature from switch sensors (CPU, PSU, etc)</li>
-<li>For transceivers with DOM - optic sensor temperature</li>
-</ul>
-<p><a href="../boards/grafana_platform.json">Platform Dashboard JSON</a></p>
-<h2 id="fabric-agent-stats">Fabric Agent Stats</h2>
-<p><a class="glightbox" href="../boards/Fabric-Agent-Stats.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana dashboard with state history of fabric agent." src="../boards/Fabric-Agent-Stats.png" /></a></p>
-<p>Information from the Agent about heartbeats and configuration generation.</p>
-<p><a href="../boards/grafana_fabric_agent_stats.json">Fabric Agent Dashboard JSON</a></p>
-<h2 id="node-exporter">Node Exporter</h2>
-<p><a class="glightbox" href="../boards/NodeFull.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana standard grafana node exporter dashboard" src="../boards/NodeFull.png" /></a> </p>
-<p><a href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/">Grafana Node Exporter Full</a> is an opensource Grafana board that provide
-visualizations for monitoring Linux nodes. In particular case Node Exporter is used to track SONiC OS own stats such as</p>
-<ul>
-<li>Memory/disks usage</li>
-<li>CPU/System utilization</li>
-<li>Networking stats (traffic that hits SONiC interfaces)
-...</li>
-</ul>
-<p><a href="../boards/grafana_node_exporter.json">Node Exporter Dashboard JSON</a></p>
+<h1 id="gateway">Gateway</h1>
+<p>The Gateway adds advanced network service capabilities to the fabric,
+complementing its fast, scalable connectivity. The fabric delivers efficient,
+cut-through transport between workloads, while the Gateway provides additional
+capabilities such as NAT, PAT, and firewalling. Simple <a href="../vpcs/#vpcpeering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings</a> use the
+full bandwidth of the fabric, whereas traffic using Gateway services is
+handled through the Gateway nodes, which determine the available throughput.
+Together, they offer both high-performance connectivity and rich network services.</p>
+<h2 id="gateway-nodes-and-fabric-connectivity">Gateway Nodes and Fabric Connectivity</h2>
+<p>Gateway nodes are connected to the fabric by a set of physical connections that are modeled via Connection objects.
+See the section on <a href="../connections/#gateway-connections">Gateway Connections</a> for connection requirements and example configuration.</p>
+<p>When a Gateway Peering is used to connect two VPCs or externals, the gateway nodes attract traffic to themselves by advertising the appropriate routes to the fabric.
+In turn, the fabric uses these routes to steer traffic to the gateway so that
+the gateway can apply the configured peering policy.</p>
+<p>Gateway nodes use <abbr title="Border Gateway Protocol">BGP</abbr> to advertise routes to the fabric, and the gateway gets its own ASN so it is possible to easily identify gateway-advertised routes in the fabric.</p>
+<pre class="mermaid"><code>graph TD
+
+%% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#CC9900,stroke-width:1px,color:#000
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:none,stroke:none,color:#000
+
+%% Network diagram
+
+Gateway_01["Gateway"]
+
+subgraph Spines[" "]
+    direction LR
+    Spine_01["Spine-1"]
+    Spine_02["Spine-2"]
+end
+
+subgraph Leaves[" "]
+    direction LR
+    Leaf_01["Leaf-1"]
+    Leaf_02["Leaf-2"]
+    Leaf_03["Leaf-3"]
+end
+
+subgraph Servers[" "]
+    direction TB
+    Server_01["Server-1"]
+    Server_02["Server-2"]
+    Server_03["Server-3"]
+    Server_04["Server-4"]
+    Server_05["Server-5"]
+    Server_06["Server-6"]
+end
+
+%% Connections
+
+%% Gateway_01 -&gt; Spines
+Gateway_01 --- Spine_01
+Gateway_01 --- Spine_02
+
+Spine_01 --- Leaf_01
+Spine_01 --- Leaf_02
+Spine_01 --- Leaf_03
+Spine_02 --- Leaf_01
+Spine_02 --- Leaf_02
+Spine_02 --- Leaf_03
+
+%% Leaves -&gt; Servers
+Leaf_01 --- Server_01
+Leaf_01 --- Server_02
+Leaf_02 --- Server_03
+Leaf_02 --- Server_04
+Leaf_03 --- Server_05
+Leaf_03 --- Server_06
+
+subgraph Legend["Network Connection Types"]
+    direction LR
+    %% Create invisible nodes for the start and end of each line
+    L1(( )) --- |"Gateway Links"| L2(( ))
+    L7(( )) --- |"Fabric Links"| L8(( ))
+    L9(( )) --- |"Server Links"| L10(( ))
+end
+
+class Gateway_01 gateway
+class Spine_01,Spine_02 spine
+class Leaf_01,Leaf_02,Leaf_03 leaf
+class Server_06,Server_05,Server_04,Server_03,Server_02,Server_01 server
+class L1,L2,L7,L8,L9,L10 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,1 stroke:#CC9900,stroke-width:2px
+linkStyle 2,3,4,5,6,7 stroke:#CC3333,stroke-width:2px
+linkStyle 8,9,10,11,12,13 stroke:#6C8EBF,stroke-width:2px
+linkStyle 14 stroke:#CC9900,stroke-width:2px
+linkStyle 15 stroke:#CC3333,stroke-width:2px
+linkStyle 16 stroke:#6C8EBF,stroke-width:2px
+
+%% Make subgraph containers invisible
+style Spines fill:none,stroke:none
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none</code></pre>
+<h2 id="gateway-peering">Gateway Peering</h2>
+<p>Just as <a href="../vpcs/#vpcpeering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings</a> provide <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity by way of the switches in the fabric, gateway peerings provide connectivity via the gateway nodes.
+Gateway services can be inserted between a pair of VPCs or a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and an external using a Gateway Peering.
+Each peering can be configured to provide the necessary services for traffic
+that uses that peering. Peering the same entities via gateway and fabric
+at the same time results in undefined behaviour. If two entities (VPCs or externals) are already
+peered via the fabric, delete this peering first, then peer them via the
+gateway.</p>
+<h3 id="simple-gateway-peering-between-vpcs">Simple Gateway Peering Between VPCs</h3>
+<p>A simple peering with no services deployed between the VPCs. This traffic will
+transit the gateway node(s).</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gw-peer.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--vpc-2</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/24</span><span class="w"> </span><span class="c1"># Expose all IP address in the 10.0.0.0/24 CIDR block to vpc-2</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.0/16</span><span class="w"> </span><span class="c1"># Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="gateway-peering-with-stateless-nat">Gateway Peering with Stateless NAT</h3>
+<p>Stateless NAT translates source and/or destination IP addresses for all packets that traverse
+the peering, but it does not maintain any flow state for the connection. A 
+one-to-one mapping is established between the addresses exposed in the CIDRs for
+<code>ips</code> and the addresses to use represented by the CIDRs in
+<code>as</code>: each address from the first group is consistently mapped to a single
+address from the second group. Therefore, the total number of addresses covered
+by the CIDRs YAML array entries from <code>ips</code> must be equal to the total number of
+addresses covered by the CIDRs from <code>as</code>.</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">sl-gw-peer.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--sl-nat--vpc-2</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.1.0/24</span><span class="w"> </span><span class="c1"># IP addresses in the 10.0.1.0/24 block will be exposed ...</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">          </span><span class="nt">as</span><span class="p">:</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.11.11.0/24</span><span class="w"> </span><span class="c1"># as IP addresses in the 10.11.11.0/24 block.</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.2.3/32</span><span class="w"> </span><span class="c1"># This single IP address will be reachable...</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">          </span><span class="nt">as</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.11.22.3/32</span><span class="w"> </span><span class="c1"># as this IP address in vpc-2.</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.2.0/24</span><span class="w"> </span><span class="c1"># A /24 can be split into two ranges</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">          </span><span class="nt">as</span><span class="p">:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.22.22.0/25</span><span class="w"> </span><span class="c1"># and exposed back to vpc-1.</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.22.22.128/25</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="gateway-peering-with-stateful-source-nat">Gateway Peering with Stateful Source NAT</h3>
+<p>Stateful source NAT uses a flow table to track established connections.
+When traffic is initiated from <code>vpc-1</code> to <code>vpc-2</code>, the flow table is updated 
+with the connection details. In the return direction (from <code>vpc-2</code> to <code>vpc-1</code>
+in the following example), the flow table is consulted to determine if the packet
+is part of an established connection. If it is, the packet is allowed to pass 
+through the peering. If it is not, the packet is dropped.
+This behavior allows use of stateful NAT as a simple firewall.</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gw-sf-nat-peer.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--sf-nat--vpc-2</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">        </span><span class="c1"># Allow 10.0.0.0/24 addresses to talk to vpc-2</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">        </span><span class="c1"># Because of stateful NAT, traffic from vpc-2 to vpc-1 is only allowed if there is</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">        </span><span class="c1"># a flow table entry created by a traffic initiated from vpc-1 to vpc-2.</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/24</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">          </span><span class="nt">as</span><span class="p">:</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.1.0/31</span><span class="w">  </span><span class="c1"># but, NAT those addresses using the addresses in 10.0.1.0/31</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">          </span><span class="nt">nat</span><span class="p">:</span><span class="w">  </span><span class="c1"># Contains the NAT configuration</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">          </span><span class="c1"># Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table. </span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">          </span><span class="c1"># An entry for the reverse direction will be added too, so that the receiving endpoint in vpc-2 can reply.</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">            </span><span class="nt">stateful</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">              </span><span class="nt">idleTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span><span class="w"> </span><span class="c1"># Timeout connections after 5 minutes of inactivity (no packets received)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">        </span><span class="c1"># Allows traffic from vpc-1 to vpc-2 on these addresses.</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">        </span><span class="c1"># Connections must be initiated from vpc-1 to vpc-2 due to flow tracking.</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.0/16</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">        </span><span class="c1"># Currently, only one VPC of a peering can use stateful NAT.</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">        </span><span class="c1"># This restriction will be lifted in a future release.</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="gateway-peering-for-external-connections">Gateway Peering for <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Connections</h3>
+<p>The following YAML listings show how to expose a default route to the
+<code>10.50.2.0/24</code> subnet inside of <code>vpc-02</code>. In this example the name of the
+external is <code>example-ext</code>. Assuming this external is representing the WAN, this will
+allow hosts inside of the <code>10.50.2.0/24</code> to the WAN. The following is an
+example YAML file to create an external.</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">example-external.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">External</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-ext</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">  </span><span class="nt">inboundCommunity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65102:5001</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">  </span><span class="nt">ipv4Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">  </span><span class="nt">outboundCommunity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5001:65102</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Once the external is created, the gateway can be used to create a peering
+between the external and a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following YAML is an example of this
+configuration. Note that the name of the external is prefixed with <code>ext.</code>.</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gw-peer-external.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-02--example-ext</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="nt">ext.example-ext</span><span class="p">:</span><span class="w"> </span><span class="c1"># NOTE the name of the external is prefixed with &quot;ext.&quot;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="nt">vpc-02</span><span class="p">:</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.50.2.0/24</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -1774,7 +1984,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
   </span>
 
     
@@ -1784,7 +1994,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 17, 2025</span>
   </span>
 
     
@@ -1823,7 +2033,7 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../profiles/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Switch Profiles and Port Naming">
+          <a href="../grafana_config_details/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Telemetry Configuration">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1833,20 +2043,20 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
                 Previous
               </span>
               <div class="md-ellipsis">
-                Switch Profiles and Port Naming
+                Telemetry Configuration
               </div>
             </div>
           </a>
         
         
           
-          <a href="../grafana_config_details/" class="md-footer__link md-footer__link--next" aria-label="Next: Telemetry Configuration">
+          <a href="../../reference/fabric-api/" class="md-footer__link md-footer__link--next" aria-label="Next: Fabric API">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Telemetry Configuration
+                Fabric API
               </div>
             </div>
             <div class="md-footer__button md-icon">

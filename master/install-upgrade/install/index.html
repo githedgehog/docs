@@ -630,6 +630,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#install-gateway-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Gateway Node
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1038,6 +1047,27 @@ You're not viewing the latest version.
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1648,6 +1678,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#install-gateway-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Gateway Node
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1699,8 +1738,13 @@ preparation and configuration. To install the VLAB see <a href="../../vlab/overv
 </ol>
 </li>
 <li><a href="#install-control-node">Install Control Node</a><ol>
-<li>Insert USB with control-os image into Fabric Control Node</li>
+<li>Attach the ISO with control-os image to the Fabric Control Node</li>
 <li>Boot the node off the USB to initiate the installation</li>
+</ol>
+</li>
+<li><a href="#install-gateway-node">Install Gateway Node</a><ol>
+<li>Attach the ISO with gateway-os image to the gateway node</li>
+<li>Boot the node off the media to initiate the installation</li>
 </ol>
 </li>
 <li>Prepare Management Network<ol>
@@ -1786,7 +1830,7 @@ command to see the available options. For example <code>hhfab init -h</code>.</p
 <p>Once the installation is complete, the system automatically reboots.</p>
 </li>
 <li>
-<p>After the system has shutdown but before the boot up process reaches the operating system, <strong>remove the USB image from the system</strong>. Removal during the UEFI boot screen is acceptable.</p>
+<p>After the system has shut down but before the boot process reaches the operating system, <strong>remove the USB image from the system</strong>. Removal during the UEFI boot screen is acceptable.</p>
 </li>
 <li>
 <p>Upon booting into the freshly installed system, the fabric installation will <strong>automatically begin</strong></p>
@@ -1817,6 +1861,51 @@ IT network. It provides SSH access to the host operating system on the control n
 - the logs of the pod will be displayed showing the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> lease process
 - use the switches screen of <code>k9s</code> to see the heartbeat column to verify the connection between switch and controller.
     - to see the switches type <code>:switches</code> (like a vim command) into <code>k9s</code></p>
+<h2 id="install-gateway-node">Install Gateway Node</h2>
+<p>All of the management of the gateway node is provided through the control node. The management
+network of the gateway node should reside on the same management network as the
+switches and control node. As with the control node, use the virtual media
+feature of the BMC to attach the bootable ISO to the node. Alternatively a USB
+image is also available, if it can be physically attached to the server.</p>
+<ol>
+<li>
+<p>Complete the <a href="#install-control-node">installation of the control node</a></p>
+</li>
+<li>
+<p>Attach the image to the server either by inserting via USB, or attaching via virtual media</p>
+</li>
+<li>
+<p>Configure the server to use UEFI boot <strong>without</strong> secure boot</p>
+</li>
+<li>
+<p>Select boot off of the attached media, the installation process is automated</p>
+</li>
+<li>
+<p>Once the gateway node has booted, it logs in automatically and begins the installation process</p>
+<ol>
+<li>Optionally use <code>journalctl -f -u flatcar-install.service</code> to monitor progress</li>
+</ol>
+</li>
+<li>
+<p>Once the installation is complete, the system automatically reboots</p>
+</li>
+<li>
+<p>After the system has shut down but before the boot process reaches the operating system, <strong>remove the virtual media from the system</strong>. Removal during the UEFI boot screen is acceptable</p>
+</li>
+<li>
+<p>Upon booting into the freshly installed system, the gateway installation
+   will automatically begin. The gateway node acts as a K3S agent</p>
+</li>
+<li>
+<p>Confirm that the control node and gateway node are communicating, from the
+   control node, see that the gateway <code>STATUS</code> is <code>Ready</code>:
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">NAME        STATUS   ROLES                AGE    VERSION</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">control-1   Ready    control-plane,etcd   2d2h   v1.34.1+k3s1</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">gateway-1   Ready    &lt;none&gt;               2d2h   v1.34.1+k3s1</span>
+</span></code></pre></div></p>
+</li>
+</ol>
 
 
 
@@ -1839,7 +1928,7 @@ IT network. It provides SSH access to the host operating system on the control n
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 18, 2025</span>
   </span>
 
     
