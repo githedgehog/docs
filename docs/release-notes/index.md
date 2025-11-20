@@ -3,6 +3,42 @@
 !!! note
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
+    
+## 25.05
+
+Date: November 20, 2025
+
+### Highlights
+
+- Experimental Gateway is now available
+  - Allows peering between VPCs as well as between VPC and Externals using a dedicated Gateway node
+  - Supports stateful source NAT and stateless source and destination NAT
+  - Performance depends on hardware, MTU and traffic characteristics
+    - Up to 120 Gb/s multiple streams
+    - Up to 11 Gb/s single stream
+    - Measured using iperf3 in TCP mode with 9000 MTU on test servers with Gateway node running on 24 core CPU and ConnectX-7
+- Mesh topology is now supported
+  - Allows a full mesh of 1-3 switches in a leaf role directly connected to each other without spines
+  - Mesh on TH5 switches is Experimental due to the TH5 limitations: only 2 TH5 switches can be used in a mesh and Gateway is not supported in that case
+- Previously deprecated collapsed core topology is no longer available
+
+### Other
+
+- Updated DHCP server now supports static leases
+- Observability configuration rework
+  - It's now possible to configure what is collected more granularly and it's possible to filter/keep specific metrics
+- Auto patching DS5000 to apply workaround for some optical transceivers failing CMIS
+
+### Software versions
+
+- fabricator/hhfab: v0.43.1
+- fabric: v0.96.2
+  - broadcom sonic: 4.5.0
+- gateway: v0.28.0
+  - dataplane: v0.4.0
+  - frr: v0.3.0 (10.4.1)
+- flatcar: v4230.2.4
+- k8s (k3s): v1.34.1-k3s1
 
 ## 25.04
 
