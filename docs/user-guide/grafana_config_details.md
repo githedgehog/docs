@@ -32,6 +32,7 @@ environment separate tokens for log writing and metric writing might be
 advisable. For additional details see the
 [documentation](https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/)
 
+
 ## Add Credentials to Fabric
 
 Take the tokens created on grafana cloud and populate them in this YAML file. The username
@@ -76,6 +77,35 @@ kubectl patch -n fab --type merge fabricator/default --patch-file credentials.ya
 
 ## Gateway Observabiltiy
 
+```{ .yaml .annotate title="gateway.yaml" linenums="1" }
+spec:
+  config:
+    gateway:
+      observability:
+        dataplane:
+          metrics: true
+          metricsInterval: 60
+        frr:
+          metrics: true
+          metricsInterval: 60
+        unix: # (1)!
+          metrics: true
+          metricsCollectors: # (2)!
+          - cpu
+          - loadavg
+          - meminfo
+          - filesystem
+          metricsInterval: 60
+```
+
+
+1. Alloy is configured to use the [prometheus.exporter.unix](https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/) component
+2. This lists the enabled [collectors](https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/#collectors-list)
+
+To apply these changes to the fabric use the following command:
+``` shell
+kubectl patch -n fab --type merge fabricator/default --patch-file gateway.yaml
+```
 
 ## Fabric Observability
 This example shows how to configure the collection of data from the fabric
