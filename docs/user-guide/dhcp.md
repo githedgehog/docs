@@ -25,7 +25,7 @@ metadata:
   namespace: default
 spec:
   subnets:
-    default:
+    default:  # Subnet name (can be any name you choose)
       subnet: 10.10.1.0/24
       gateway: 10.10.1.1
       vlan: 1001
@@ -119,15 +119,15 @@ spec:
 
 ### Option Details
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `leaseTimeSeconds` | Duration of DHCP lease in seconds | 3600 |
-| `dnsServers` | List of DNS server IP addresses | None |
-| `timeServers` | List of NTP server IP addresses | None |
-| `interfaceMTU` | MTU size for the interface (doesn't affect switch interfaces) | 9036 |
-| `pxeURL` | PXE boot server URL (TFTP only, no HTTP query strings) | None |
-| `disableDefaultRoute` | If true, don't send default route to clients | false |
-| `advertisedRoutes` | Additional static routes sent via DHCP option 121 | None |
+| Option | Description | DHCP Option | Default |
+|--------|-------------|-------------|---------|
+| `leaseTimeSeconds` | Duration of DHCP lease in seconds | Option 51 | 3600 |
+| `dnsServers` | List of DNS server IP addresses | Option 6 | None |
+| `timeServers` | List of NTP server IP addresses | Option 42 | None |
+| `interfaceMTU` | MTU size for the interface (doesn't affect switch interfaces) | Option 26 | 9036 |
+| `pxeURL` | PXE boot server URL (TFTP only, no HTTP query strings) | Option 66/67 | None |
+| `disableDefaultRoute` | If true, don't send default route to clients | Option 3 | false |
+| `advertisedRoutes` | Additional static routes | Option 121 | None |
 
 !!! note "Default Route Behavior"
     - By default, the DHCP server configures the VPC gateway as the default route
@@ -142,12 +142,7 @@ Static leases bind specific MAC addresses to predetermined IP addresses. This is
 - Network equipment that needs fixed IPs
 - Hosts that need IPs outside the dynamic range
 
-Static leases can be configured in two ways:
-
-1. Via VPC YAML - Configure static leases in the VPC subnet definition
-2. Via DHCPSubnet resource - Directly modify the DHCPSubnet resource
-
-### Method 1: Configuring Static Leases via VPC
+Configure static leases in the VPC subnet definition:
 
 ```yaml title="vpc-with-static-leases.yaml"
 apiVersion: vpc.githedgehog.com/v1beta1
@@ -181,87 +176,14 @@ Apply the configuration:
 kubectl apply -f vpc-with-static-leases.yaml
 ```
 
-### Method 2: Configuring Static Leases via DHCPSubnet
-
-For advanced use cases, you can directly edit the DHCPSubnet resource. The DHCPSubnet is automatically created when you enable DHCP on a VPC subnet, with the name format `<vpc-name>--<subnet-name>`.
-
-First, find the DHCPSubnet resource:
-
-```bash
-kubectl get dhcpsubnets.dhcp.githedgehog.com
-```
-
-Example output:
-
-```
-NAME                CIDR           START IP      END IP
-vpc-1--default      10.10.1.0/24   10.10.1.10    10.10.1.99
-```
-
-View the current configuration:
-
-```bash
-kubectl get dhcpsubnets.dhcp.githedgehog.com vpc-1--default -o yaml
-```
-
-Edit the DHCPSubnet to add static leases:
-
-```bash
-kubectl edit dhcpsubnets.dhcp.githedgehog.com vpc-1--default
-```
-
-Add the static leases under `spec.static`:
-
-```yaml
-apiVersion: dhcp.githedgehog.com/v1beta1
-kind: DHCPSubnet
-metadata:
-  name: vpc-1--default
-  namespace: default
-spec:
-  subnet: vpc-1/default
-  cidrBlock: 10.10.1.0/24
-  gateway: 10.10.1.1
-  startIP: 10.10.1.10
-  endIP: 10.10.1.99
-  vrf: VrfVvpc-1
-  circuitID: Vlan1001
-  leaseTimeSeconds: 3600
-  static:                           # Add static leases here
-    "aa:bb:cc:dd:ee:01":
-      ip: 10.10.1.5
-    "aa:bb:cc:dd:ee:02":
-      ip: 10.10.1.6
-    "aa:bb:cc:dd:ee:03":
-      ip: 10.10.1.100
-```
-
-Alternatively, use `kubectl patch`:
-
-```bash
-kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=merge -p '
-{
-  "spec": {
-    "static": {
-      "aa:bb:cc:dd:ee:01": {"ip": "10.10.1.5"},
-      "aa:bb:cc:dd:ee:02": {"ip": "10.10.1.6"}
-    }
-  }
-}'
-```
-
-!!! warning "VPC vs DHCPSubnet Configuration"
-    - Changes made to the VPC YAML will overwrite static leases configured directly in DHCPSubnet
-    - It's recommended to choose one method and stick with it to avoid configuration conflicts
-    - The VPC method is preferred for most use cases as it keeps configuration centralized
+!!! warning "Do Not Edit DHCPSubnet Directly"
+    The VPC is the source of truth for static lease configuration. DHCPSubnet resources are automatically created and managed by the VPC controller. Any changes made directly to DHCPSubnet will be overwritten when the VPC is reconciled.
 
 ## Managing Static Leases
 
 ### Adding a Static Lease
 
-To add a new static lease to an existing VPC:
-
-Method 1: Update VPC YAML
+To add a new static lease to an existing VPC, edit the VPC YAML:
 
 ```bash
 kubectl get vpc vpc-1 -o yaml > vpc-1.yaml
@@ -269,14 +191,20 @@ kubectl get vpc vpc-1 -o yaml > vpc-1.yaml
 kubectl apply -f vpc-1.yaml
 ```
 
-Method 2: Patch DHCPSubnet
+Alternatively, use `kubectl patch` on the VPC:
 
 ```bash
-kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=merge -p '
+kubectl patch vpc vpc-1 --type=merge -p '
 {
   "spec": {
-    "static": {
-      "aa:bb:cc:dd:ee:04": {"ip": "10.10.1.7"}
+    "subnets": {
+      "default": {
+        "dhcp": {
+          "static": {
+            "aa:bb:cc:dd:ee:04": {"ip": "10.10.1.7"}
+          }
+        }
+      }
     }
   }
 }'
@@ -284,35 +212,16 @@ kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=merge -p '
 
 ### Removing a Static Lease
 
-Method 1: Update VPC YAML
-
 Edit the VPC YAML and remove the MAC address entry from `spec.subnets.<subnet>.dhcp.static`, then apply.
-
-Method 2: Patch DHCPSubnet
-
-```bash
-kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=json -p '
-[
-  {
-    "op": "remove",
-    "path": "/spec/static/aa:bb:cc:dd:ee:01"
-  }
-]'
-```
 
 ### Changing a Static IP
 
-To change the IP for an existing MAC address, update the entry:
+To change the IP for an existing MAC address, update the VPC configuration and reapply:
 
 ```bash
-kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=merge -p '
-{
-  "spec": {
-    "static": {
-      "aa:bb:cc:dd:ee:01": {"ip": "10.10.1.15"}
-    }
-  }
-}'
+kubectl get vpc vpc-1 -o yaml > vpc-1.yaml
+# Edit vpc-1.yaml to change the IP for the MAC address
+kubectl apply -f vpc-1.yaml
 ```
 
 After changing a static IP, the client will need to release and renew its DHCP lease:
@@ -320,6 +229,22 @@ After changing a static IP, the client will need to release and renew its DHCP l
 ```bash
 # On the client host
 sudo networkctl reconfigure <interface>
+```
+
+### Temporary Changes via DHCPSubnet
+
+For temporary testing or troubleshooting, you can patch the DHCPSubnet directly. These changes will be overwritten when the VPC is next reconciled:
+
+```bash
+# Temporary add (will be lost on VPC update)
+kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=merge -p '
+{
+  "spec": {
+    "static": {
+      "aa:bb:cc:dd:ee:99": {"ip": "10.10.1.99"}
+    }
+  }
+}'
 ```
 
 ## Third-Party DHCP Servers
