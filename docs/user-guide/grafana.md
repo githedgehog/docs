@@ -30,7 +30,12 @@ such as:
 - IP Multicast  Entries
 - MAC Forwarding Database
 
-[Critical Resource Stats JSON](./boards/grafana_crm.json)
+[Critical Resource Stats Dashboard](https://grafana.com/grafana/dashboards/24413-hedgehog-switch-critical-resources/)
+
+Dashboard ID:
+```
+24413
+```
 
 ## Fabric
 
@@ -44,7 +49,12 @@ Fabric underlay and external peering monitoring. Including reporing for:
 - Keepalive counters
 
 
-[Fabric Dashboard JSON](./boards/grafana_fabric.json)
+[Fabric Dashboard](https://grafana.com/grafana/dashboards/24414-hedgehog-fabric/)
+
+Dashboard ID:
+```
+24414
+```
 
 ## Interfaces
 
@@ -61,7 +71,12 @@ Switch interfaces monitoring visualization that includes:
 - Errors and discards counters
 
 
-[Switch Interface Dashboard JSON](./boards/grafana_interfaces.json)
+[Switch Interface Dashboard](https://grafana.com/grafana/dashboards/24415-hedgehog-switch-interface-counters/)
+
+Dashboard ID:
+```
+24415
+```
 
 ## Logs
 
@@ -73,7 +88,12 @@ System and fabric logs:
 - Errors in agent and syslog
 - Full output of defined file
 
-[Logs Dashboard JSON](./boards/grafana_logs.json)
+[Logs Dashboard](https://grafana.com/grafana/dashboards/24416-hedgehog-fabric-logs/)
+
+Dashboard ID:
+```
+24416
+```
 
 
 ## Platform
@@ -89,7 +109,12 @@ Information from PSU, temperature sensors and fan trays:
 - For transceivers with DOM - optic sensor temperature
 
 
-[Platform Dashboard JSON](./boards/grafana_platform.json)
+[Platform Dashboard](https://grafana.com/grafana/dashboards/24417-hedgehog-fabric-platform-stats/)
+
+Dashboard ID:
+```
+24417
+```
 
 
 ## Fabric Agent Stats
@@ -98,7 +123,12 @@ Information from PSU, temperature sensors and fan trays:
 
 Information from the Agent about heartbeats and configuration generation.
 
-[Fabric Agent Dashboard JSON](./boards/grafana_fabric_agent_stats.json)
+[Fabric Agent Dashboard](https://grafana.com/grafana/dashboards/24389-hedgehog-agent-stats/)
+
+Dashboard ID:
+```
+24389
+```
 
 
 ## Node Exporter
@@ -114,5 +144,10 @@ visualizations for monitoring Linux nodes. In particular case Node Exporter is u
 ...
 
 
-[Node Exporter Dashboard JSON](./boards/grafana_node_exporter.json)
+[Hedgehog Node Exporter Dashboard](https://grafana.com/grafana/dashboards/24419)
+
+Dashboard ID:
+```
+24419
+```
 
