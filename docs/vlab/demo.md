@@ -87,7 +87,7 @@ graph TD
 ## Utility based VPC creation
 
 ### Setup VPCs
-`hhfab vlab` includes a utility to create VPCs in vlab. This utility is a `hhfab vlab` sub-command. `hhfab vlab setup-vpcs`.
+`hhfab vlab` includes a utility to create VPCs in vlab. This utility is a `hhfab vlab` sub-command, `hhfab vlab setup-vpcs`.
 
 ```
 NAME:
@@ -99,14 +99,17 @@ USAGE:
 OPTIONS:
    --dns-servers value, --dns value [ --dns-servers value, --dns value ]    DNS servers for VPCs advertised by DHCP
    --force-cleanup, -f                                                      start with removing all existing VPCs and VPCAttachments (default: false)
+   --hash-policy value, --hash value                                        xmit_hash_policy for bond interfaces on servers [layer2|layer2+3|layer3+4|encap2+3|encap3+4|vlan+srcmac] (default: "layer2+3")
    --help, -h                                                               show help
    --interface-mtu value, --mtu value                                       interface MTU for VPCs advertised by DHCP (default: 0)
    --ipns value                                                             IPv4 namespace for VPCs (default: "default")
+   --keep-peerings, --peerings                                              Do not delete all VPC, External and Gateway peerings before enforcing VPCs (default: false)
    --name value, -n value                                                   name of the VM or HW to access
    --servers-per-subnet value, --servers value                              number of servers per subnet (default: 1)
    --subnets-per-vpc value, --subnets value                                 number of subnets per VPC (default: 1)
    --time-servers value, --ntp value [ --time-servers value, --ntp value ]  Time servers for VPCs advertised by DHCP
    --vlanns value                                                           VLAN namespace for VPCs (default: "default")
+   --vpc-mode value, --mode value                                           VPC mode: empty (l2vni) by default or l3vni, etc
    --wait-switches-ready, --wait                                            wait for switches to be ready before and after configuring VPCs and VPCAttachments (default: true)
 
    Global options:
@@ -118,7 +121,7 @@ OPTIONS:
 ```
 
 ### Setup Peering
-`hhfab vlab` includes a utility to create VPC peerings in VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab setup-peerings`.
+`hhfab vlab` includes a utility to create VPC peerings in VLAB. This utility is a `hhfab vlab` sub-command, `hhfab vlab setup-peerings`.
 
 ```
 NAME:
@@ -141,6 +144,7 @@ USAGE:
    VPC Peerings:
 
    1+2 -- VPC peering between vpc-01 and vpc-02
+   1+2:gw -- same as above but using gateway peering, only valid if gateway is present
    demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
    1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
    1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
@@ -149,6 +153,7 @@ USAGE:
    External Peerings:
 
    1~as5835 -- external peering for vpc-01 with External as5835
+   1~as5835:gw -- same as above but using gateway peering, only valid if gateway is present
    1~ -- external peering for vpc-1 with external if only one external is present for ipv4 namespace of vpc-01, allowing
      default subnet and any route from external
    1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-1 with auth external with default vpc subnet and
@@ -469,3 +474,197 @@ core@control-1 ~ $ kubectl apply -f vpc-3.yaml
 At that point you can setup networking on `server-03` the same as you did for `server-01` and `server-02` in
 [a previous section](#setting-up-networking-on-test-servers). Once you have configured networking, `server-01` and
 `server-03` have IP addresses from the same subnets.
+
+## Gateway peerings and NAT
+
+### Creating simple VPC peering via the gateway
+
+If gateway was [enabled](running.md#gateway) for your VLAB topology, you also have the option of peering VPCs
+via the gateway. One way of doing so is using the [hhfab helpers](#setup-peering). For example, assuming vpc-1
+and vpc-2 were previously created, you can run:
+
+```
+hhfab vlab setup-peerings 1+2:gw
+```
+
+Alternatively, you can create the peering manually in the control node, using the examples in the
+[gateway section of the user guide](../user-guide/gateway.md#gateway-peering) as a base, e.g.:
+
+```
+core@control-1 ~ $ cat <<EOF > vpc-1--vpc-2--gw.yaml
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Peering
+metadata:
+  name: vpc-1--vpc-2
+  namespace: default
+spec:
+  peering:
+    vpc-1:
+      expose:
+        - ips:
+          - cidr: 10.0.1.0/24
+    vpc-2:
+      expose:
+        - ips:
+          - cidr: 10.0.2.0/24
+EOF
+
+core@control-1 ~ $ kubectl create -f vpc-1--vpc-2--gw.yaml
+peering.gateway.githedgehog.com/vpc-1--vpc-2 created
+core@control-1 ~ $
+```
+
+You should now be able to check connectivity using the same methods described previously, e.g.:
+
+```
+core@server-01 ~ $ ping 10.0.2.10
+PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
+64 bytes from 10.0.2.10: icmp_seq=1 ttl=61 time=70.0 ms
+64 bytes from 10.0.2.10: icmp_seq=2 ttl=61 time=11.6 ms
+64 bytes from 10.0.2.10: icmp_seq=3 ttl=61 time=14.0 ms
+^C
+--- 10.0.2.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 11.560/31.852/70.008/26.998 ms
+```
+
+### VPC peering with Stateless NAT
+
+Let's either edit or recreate the previous peering so that it looks like this:
+
+```{.yaml .annotate linenums="1" title="vpc-1--vpc-2--gw.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Peering
+metadata:
+  name: vpc-1--vpc-2
+  namespace: default
+spec:
+  peering:
+    vpc-1:
+      expose:
+        - ips:
+          - cidr: 10.0.1.0/24
+    vpc-2:
+      expose:
+        - ips:
+          - cidr: 10.0.2.0/24
+          as:
+          - cidr: 192.168.2.0/24
+```
+
+If we try pinging server-2 from server-1 using its real IP address, we should now
+observe a failure:
+
+```
+core@server-01 ~ $ ping 10.0.2.10 -c 3 -W 1
+PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
+From 10.0.1.1 icmp_seq=1 Destination Net Unreachable
+From 10.0.1.1 icmp_seq=2 Destination Net Unreachable
+From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
+
+--- 10.0.2.10 ping statistics ---
+3 packets transmitted, 0 received, +3 errors, 100% packet loss, time 2006ms
+```
+
+However, using the translated IP:
+```
+core@server-01 ~ $ ping 192.168.2.10 -c 3 -W 1
+PING 192.168.2.10 (192.168.2.10) 56(84) bytes of data.
+64 bytes from 192.168.2.10: icmp_seq=1 ttl=61 time=13.5 ms
+64 bytes from 192.168.2.10: icmp_seq=2 ttl=61 time=13.1 ms
+64 bytes from 192.168.2.10: icmp_seq=3 ttl=61 time=12.7 ms
+
+--- 192.168.2.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 12.716/13.099/13.460/0.304 ms
+```
+
+And in the other direction this is completely transparent:
+```
+core@server-02 ~ $ ping 10.0.1.10 -c 3 -W 1
+PING 10.0.1.10 (10.0.1.10) 56(84) bytes of data.
+64 bytes from 10.0.1.10: icmp_seq=1 ttl=61 time=29.8 ms
+64 bytes from 10.0.1.10: icmp_seq=2 ttl=61 time=12.2 ms
+64 bytes from 10.0.1.10: icmp_seq=3 ttl=61 time=12.3 ms
+
+--- 10.0.1.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 12.177/18.106/29.826/8.287 ms
+```
+
+### VPC peering with Stateful NAT
+
+Let's change the peering again to use source stateful NAT:
+
+```{.yaml .annotate linenums="1" title="vpc-1--vpc-2--gw.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Peering
+metadata:
+  name: vpc-1--vpc-2
+  namespace: default
+spec:
+  peering:
+    vpc-1:
+      expose:
+        - ips:
+          - cidr: 10.0.1.0/24
+    vpc-2:
+      expose:
+        - ips:
+          - cidr: 10.0.2.0/24
+          as:
+          - cidr: 192.168.5.40/31
+          nat:
+            stateful:
+              idleTimeout: 1m
+```
+
+This time we are not able to ping the server with either its real or
+translated IPs; flows are allowed in reverse direction only if they were initiated
+by the source, up until the idle timeout expires.
+
+```
+core@server-01 ~ $ ping 10.0.2.10 -c 3 -W 1
+PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
+From 10.0.1.1 icmp_seq=1 Destination Net Unreachable
+From 10.0.1.1 icmp_seq=2 Destination Net Unreachable
+From 10.0.1.1 icmp_seq=3 Destination Net Unreachable
+
+--- 10.0.2.10 ping statistics ---
+3 packets transmitted, 0 received, +3 errors, 100% packet loss, time 2004ms
+
+core@server-01 ~ $ ping 192.168.5.40 -c 3 -W 1
+PING 192.168.5.40 (192.168.5.40) 56(84) bytes of data.
+
+--- 192.168.5.40 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2078ms
+```
+
+If we ping from the server attached to the VPC with source NAT, however, things just work:
+
+```
+core@server-02 ~ $ ping 10.0.1.10 -c 3 -W 1
+PING 10.0.1.10 (10.0.1.10) 56(84) bytes of data.
+64 bytes from 10.0.1.10: icmp_seq=1 ttl=61 time=16.3 ms
+64 bytes from 10.0.1.10: icmp_seq=2 ttl=61 time=12.2 ms
+64 bytes from 10.0.1.10: icmp_seq=3 ttl=61 time=11.6 ms
+
+--- 10.0.1.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 11.569/13.358/16.297/2.094 ms
+```
+
+Running tcpdump on the destination server confirms that pings appear to come from the translated IP address:
+
+```
+core@server-01 ~ $ sudo tcpdump -ni bond0.1001 icmp
+dropped privs to pcap
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on bond0.1001, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+10:06:53.855140 IP 192.168.5.40 > 10.0.1.10: ICMP echo request, id 7170, seq 1, length 64
+10:06:53.855205 IP 10.0.1.10 > 192.168.5.40: ICMP echo reply, id 7170, seq 1, length 64
+10:06:54.860640 IP 192.168.5.40 > 10.0.1.10: ICMP echo request, id 7170, seq 2, length 64
+10:06:54.860704 IP 10.0.1.10 > 192.168.5.40: ICMP echo reply, id 7170, seq 2, length 64
+10:06:55.859745 IP 192.168.5.40 > 10.0.1.10: ICMP echo request, id 7170, seq 3, length 64
+10:06:55.859801 IP 10.0.1.10 > 192.168.5.40: ICMP echo reply, id 7170, seq 3, length 64
+```
