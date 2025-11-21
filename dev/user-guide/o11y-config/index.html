@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/user-guide/grafana_config_details/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/user-guide/o11y-config/">
       
       
-        <link rel="prev" href="../grafana/">
+        <link rel="prev" href="../profiles/">
       
       
-        <link rel="next" href="../gateway/">
+        <link rel="next" href="../grafana/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Telemetry Configuration - Open Network Fabric</title>
+        <title>Configuration - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#telemetry-configuration" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Telemetry Configuration
+              Configuration
             
           </span>
         </div>
@@ -855,7 +855,7 @@ You're not viewing the latest version.
             
   
   <span class="md-ellipsis">
-    Telemetry
+    Observability
   </span>
   
 
@@ -865,30 +865,9 @@ You're not viewing the latest version.
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_9">
             <span class="md-nav__icon md-icon"></span>
-            Telemetry
+            Observability
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../grafana/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Grafana Dashboards
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -910,7 +889,7 @@ You're not viewing the latest version.
           
   
   <span class="md-ellipsis">
-    Telemetry Configuration
+    Configuration
   </span>
   
 
@@ -921,7 +900,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Telemetry Configuration
+    Configuration
   </span>
   
 
@@ -943,13 +922,22 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#credentials" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Credentials
+      Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Credentials">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana-cloud-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Cloud Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grafana Cloud Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -967,9 +955,36 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#billing" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration
+      Billing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add Credentials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Observability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fabric Observability
     </span>
   </a>
   
@@ -988,6 +1003,27 @@ You're not viewing the latest version.
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grafana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana Dashboards
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1565,13 +1601,22 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#credentials" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Credentials
+      Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Credentials">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana-cloud-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Cloud Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grafana Cloud Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1589,9 +1634,36 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#billing" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration
+      Billing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add Credentials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Observability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fabric-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fabric Observability
     </span>
   </a>
   
@@ -1621,7 +1693,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/user-guide/grafana_config_details.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/user-guide/o11y-config.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1629,69 +1701,211 @@ You're not viewing the latest version.
   
 
 
-<h1 id="telemetry-configuration">Telemetry Configuration</h1>
-<h2 id="credentials">Credentials</h2>
-<p>Apply the setting to your fabric that will allow for telemetry to be pushed to
-the specified Grafana instance:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>spec:
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  config:
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    observability:
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      targets:
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        loki:
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>          grafana_cloud:
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            basicAuth:
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>              password: token_with_log_write_permission
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>              username: &quot;1234567&quot;
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            labels:
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>              env: production
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            url: https://logs-prod-021.grafana.net/loki/api/v1/push
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        prometheus:
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>          grafana_cloud:
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            basicAuth:
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>              password: token_with_metric_write_permission
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>              username: &quot;1234567&quot;
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>            labels:
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>              env: production
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            url: https://prometheus-prod-36-prod-us-west-0.grafana.net/api/prom/push
-</span></code></pre></div>
+<h1 id="configuration">Configuration</h1>
+<h2 id="overview">Overview</h2>
+<p>There is an option to enable <a href="https://grafana.com/docs/alloy/latest/">Grafana
+Alloy</a> on all switches to forward metrics and logs to the configured targets using
+<a href="https://prometheus.io/docs/specs/prw/remote_write_spec/">Prometheus Remote-Write
+API</a> and Loki API. Metrics includes port speeds, counters,
+errors, operational status, transceivers, fans, power supplies, temperature
+sensors, <abbr title="Border Gateway Protocol">BGP</abbr> neighbors, LLDP neighbors, and more. Logs include Hedgehog agent
+logs, switch syslog, pod logs for all services running in the control node k8s cluster. Modify the URL as needed, instead of <code>/api/v1/push</code> it could be
+<code>/api/v1/write</code>; check the documentation for the data provider.</p>
+<p>Switches push telemetry data through a proxy running in a pod on the control
+node. Switches do not have direct access to the Internet. Configure the control node to be able to reach and resolve the location
+of the Prometheus and Loki servers.</p>
+<p>Telemetry can be enabled after installation of the fabric. There are two YAML
+objects that control the telemetry configuration. The first YAML object
+configures the credentials and  URL for the collectors. The second configures
+which metrics are sent via Grafana Alloy.</p>
+<h2 id="grafana-cloud-configuration">Grafana Cloud Configuration</h2>
 <h3 id="tokens">Tokens</h3>
 <p>Grafana Cloud manages read and write permissions with policies. In order to
-send metrics to the datasources a policy for your realm needs to be created.
+send metrics to the prometheus or loki a policy for your realm needs to be created.
 When creating the policy ensure that it has at least <code>logs:write</code> and <code>metrics:write</code> permission
-selected. After the policy is created, add a token to that policy ensure that
-it is appropriately named and time limited. Once the token is created use it in
-the credentials YAML file. For additional details see the
+selected. After the policy is created, create a token under that policy. Ensure that
+the token is appropriately named and time limited. Depending on your
+environment separate tokens for log writing and metric writing might be
+advisable. For additional details see the
 <a href="https://grafana.com/docs/grafana-cloud/security-and-account-management/authentication-and-permissions/access-policies/">documentation</a></p>
-<h2 id="configuration">Configuration</h2>
-<p>The second yaml section controls what is pushed from the fabric to prometheus</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>spec:
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  config:
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    fabric:
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      observability:
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        agent: 
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>          logs: true
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>          metrics: true
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>          metricsInterval: 60
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>          metricsRelabel: 
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>          - action: keep
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            regex: .*(_resource_|_interface_|_platform_|_bgp_|node_|_heartbeats_|_generation|_status).*
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>            sourceLabels:
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            - __name__
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        unix: 
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>          metrics: true
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>          metricsCollectors:
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>          - cpu
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>          - loadavg
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>          - meminfo
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>          - filesystem
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>          metricsInterval: 60
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>          metricsRelabel: 
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>          - action: keep
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>            regex: .*(_load).*
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>            sourceLabels:
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>            - __name__
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>          syslog: true
+<h2 id="billing">Billing</h2>
+<p>Users are advised to use the regular expressions to limit the amount of data
+sent to grafana cloud as the costs compound quickly.</p>
+<h2 id="add-credentials">Add Credentials</h2>
+<p>Take the tokens created on grafana cloud and populate them in this YAML file. The username
+is different between prometheus and loki.
+Apply the setting below for telemetry to be pushed to the specified Prometheus and Loki instances:</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">credentials.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nt">observability</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hh-fabric</span><span class="w"> </span><span class="c1"># (1)!</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">      </span><span class="nt">targets</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">        </span><span class="nt">loki</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">          </span><span class="nt">grafana_cloud</span><span class="p">:</span><span class="w"> </span><span class="c1"># (2)!</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">            </span><span class="nt">basicAuth</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">              </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;insert_password_or_token_here&quot;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1234567&quot;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">            </span><span class="nt">labels</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">              </span><span class="nt">some</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">label</span><span class="w"> </span><span class="c1"># (3)!</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">            </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://[your-loki-server].grafana.net/loki/api/v1/push</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="nt">prometheus</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">          </span><span class="nt">grafana_cloud</span><span class="p">:</span><span class="w"> </span><span class="c1"># (4)!</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">            </span><span class="nt">basicAuth</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">              </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;insert_password_or_token_here&quot;</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1234567&quot;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">            </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">              </span><span class="nt">some</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">label</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">            </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://[your-prometheus-server].grafana.net/api/prom/push</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>Common label for all targets, "env" is a well-known label used in dashboards</li>
+<li>Can be any name of your choosing</li>
+<li>Extra labels applied to a specific target</li>
+<li>Can be any name of your choosing</li>
+</ol>
+<p>To apply these changes to the fabric use the following command:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>-n<span class="w"> </span>fab<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>fabricator/default<span class="w"> </span>--patch-file<span class="w"> </span>credentials.yaml
 </span></code></pre></div>
+<h2 id="gateway-observability">Gateway Observability</h2>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gateway.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">      </span><span class="nt">observability</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">        </span><span class="nt">dataplane</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">          </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">          </span><span class="nt">metricsInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">        </span><span class="nt">frr</span><span class="p">:</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">          </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">          </span><span class="nt">metricsInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">        </span><span class="nt">unix</span><span class="p">:</span><span class="w"> </span><span class="c1"># (1)!</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">          </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">          </span><span class="nt">metricsCollectors</span><span class="p">:</span><span class="w"> </span><span class="c1"># (2)!</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loadavg</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meminfo</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filesystem</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">          </span><span class="nt">metricsInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>Alloy is configured to use the <a href="https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/">prometheus.exporter.unix</a> component</li>
+<li>This lists the enabled <a href="https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/#collectors-list">collectors</a></li>
+</ol>
+<p>To apply these changes to the fabric use the following command:
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>-n<span class="w"> </span>fab<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>fabricator/default<span class="w"> </span>--patch-file<span class="w"> </span>gateway.yaml
+</span></code></pre></div></p>
+<h2 id="fabric-observability">Fabric Observability</h2>
+<p>This example shows how to configure the collection of data from the fabric
+switches.</p>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">      </span><span class="nt">observability</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">        </span><span class="nt">agent</span><span class="p">:</span><span class="w"> </span><span class="c1"># (1)!</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">          </span><span class="nt">logs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">          </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">          </span><span class="nt">metricsInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">          </span><span class="nt">metricsRelabel</span><span class="p">:</span><span class="w"> </span><span class="c1"># (2)!</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*(_in_bits|_status|_generation|_temperature|_transceiver).*</span><span class="w"> </span><span class="c1"># (3)!</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">            </span><span class="nt">sourceLabels</span><span class="p">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__name__</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">        </span><span class="nt">unix</span><span class="p">:</span><span class="w"> </span><span class="c1"># (4)!</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">          </span><span class="nt">metrics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">          </span><span class="nt">metricsCollectors</span><span class="p">:</span><span class="w"> </span><span class="c1"># (5)!</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cpu</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loadavg</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meminfo</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">filesystem</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">          </span><span class="nt">metricsInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">          </span><span class="nt">metricsRelabel</span><span class="p">:</span><span class="w"> </span><span class="c1"># (6)!</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.*(_load).*</span><span class="w"> </span><span class="c1"># (7)!</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">            </span><span class="nt">sourceLabels</span><span class="p">:</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__name__</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">          </span><span class="nt">syslog</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>The Hedgehog agent generates information from the <abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr> ports and switch
+   configuration</li>
+<li>This option mirrors the <a href="https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.relabel">prometheus.relabel</a> component</li>
+<li>This is a regular expression over all the metric names that come from prometheus</li>
+<li>Alloy is configured to use the <a href="https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/">prometheus.exporter.unix</a> component</li>
+<li>This lists the enabled <a href="https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.exporter.unix/#collectors-list">collectors</a></li>
+<li>This option mirrors the <a href="https://grafana.com/docs/alloy/latest/reference/components/prometheus/prometheus.relabel/">prometheus.relabel</a> component</li>
+<li>Regular expression over the metric names that come the metricsCollectors</li>
+</ol>
+<p>To apply these changes to the fabric use the following command:</p>
+<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>patch<span class="w"> </span>-n<span class="w"> </span>fab<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>fabricator/default<span class="w"> </span>--patch-file<span class="w"> </span>config.yaml
+</span></code></pre></div>
+Users are encouraged to read the <a href="https://grafana.com/docs/grafana-cloud/send-data/alloy/tutorials/logs-and-relabeling-basics/">Grafana Alloy
+Docs</a>
+on relabeling to ensure the desired metrics are selected. By default all
+metrics are sent to the collectors.</p>
 <h2 id="alerting">Alerting</h2>
 <p><a class="glightbox" href="../boards/Alert-Rule.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Screenshot of grafana alerting page" src="../boards/Alert-Rule.png" /></a></p>
 <p>The alert rule queries the increase of the
@@ -1730,7 +1944,7 @@ assist users in creating and configuring alerts.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
   </span>
 
     
@@ -1779,7 +1993,7 @@ assist users in creating and configuring alerts.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../grafana/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Grafana Dashboards">
+          <a href="../profiles/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Switch Profiles and Port Naming">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1789,20 +2003,20 @@ assist users in creating and configuring alerts.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Grafana Dashboards
+                Switch Profiles and Port Naming
               </div>
             </div>
           </a>
         
         
           
-          <a href="../gateway/" class="md-footer__link md-footer__link--next" aria-label="Next: Gateway">
+          <a href="../grafana/" class="md-footer__link md-footer__link--next" aria-label="Next: Grafana Dashboards">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Gateway
+                Grafana Dashboards
               </div>
             </div>
             <div class="md-footer__button md-icon">
