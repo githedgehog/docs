@@ -231,22 +231,6 @@ After changing a static IP, the client will need to release and renew its DHCP l
 sudo networkctl reconfigure <interface>
 ```
 
-### Temporary Changes via DHCPSubnet
-
-For temporary testing or troubleshooting, you can patch the DHCPSubnet directly. These changes will be overwritten when the VPC is next reconciled:
-
-```bash
-# Temporary add (will be lost on VPC update)
-kubectl patch dhcpsubnets.dhcp.githedgehog.com vpc-1--default --type=merge -p '
-{
-  "spec": {
-    "static": {
-      "aa:bb:cc:dd:ee:99": {"ip": "10.10.1.99"}
-    }
-  }
-}'
-```
-
 ## Third-Party DHCP Servers
 
 Instead of using the integrated DHCP server, you can configure DHCP relay to use an external DHCP server:
