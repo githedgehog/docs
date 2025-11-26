@@ -2,4 +2,5 @@ nav:
   - overview.md
   - running.md
   - demo.md
+  - virt-externals.md
   - ...
