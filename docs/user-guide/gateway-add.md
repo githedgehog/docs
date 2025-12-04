@@ -1,6 +1,6 @@
 # Adding Gateway Node
 
-Adding a gateway node to an existing Fabric. Gateway nodes provide advanced network services (NAT, PAT, firewalling) by
+This section covers adding a gateway node to an existing Fabric. Gateway nodes provide advanced network services (NAT, PAT, firewalling) by
 handling traffic between VPCs or between VPCs and externals using Gateway Peerings.
 
 ## Understanding IP Allocation and Hydration
@@ -69,13 +69,22 @@ The management IP provides connectivity to the gateway node for SSH access and c
 
 To safely choose a management IP, check existing allocations:
 
-```bash
-# List all control and gateway nodes with their management IPs
-kubectl get controlnodes -n fab -o yaml | grep "ip:" -A 1
-kubectl get fabnodes -n fab -o yaml | grep "ip:" -A 1
+List all control nodes with their management IPs:
 
-# Check the control VIP
-kubectl get fabricator -n fab -o yaml | grep controlVIP
+```bash
+kubectl get controlnodes -n fab -o custom-columns=NAME:.metadata.name,MGMT_IP:.spec.management.ip,DUMMY_IP:.spec.dummy.ip
+```
+
+List all gateway nodes with their management IPs:
+
+```bash
+kubectl get fabnodes -n fab -o custom-columns=NAME:.metadata.name,MGMT_IP:.spec.management.ip,DUMMY_IP:.spec.dummy.ip
+```
+
+Check the control VIP:
+
+```bash
+kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.control.controlVIP}'
 ```
 
 Example: If management subnet is 172.30.0.0/21 and DHCP starts at 172.30.4.0, choose from 172.30.0.2 through 172.30.3.254
@@ -88,52 +97,50 @@ subnet from the dummy subnet range. The /31 provides a point-to-point link betwe
 
 Verify uniqueness by checking existing allocations:
 
+Check control node dummy IPs:
+
 ```bash
-kubectl get fabnodes -n fab -o yaml | grep "dummy:" -A 1
-kubectl get controlnodes -n fab -o yaml | grep "dummy:" -A 1
+kubectl get controlnodes -n fab -o custom-columns=NAME:.metadata.name,DUMMY_IP:.spec.dummy.ip
+```
+
+Check gateway node dummy IPs:
+
+```bash
+kubectl get fabnodes -n fab -o custom-columns=NAME:.metadata.name,DUMMY_IP:.spec.dummy.ip
 ```
 
 Example: If dummy subnet is 172.30.90.0/24, and control-1 uses 172.30.90.0/31, choose 172.30.90.2/31 for gateway-1.
 
 ### Protocol IP
 
-Unique /32 from protocol subnet:
+Unique /32 from protocol subnet.
 
-```
-Example: 172.30.40.3/32
-```
+Example: 172.30.8.3/32
 
 ### VTEP IP
 
-Unique /32 from VTEP subnet:
+Unique /32 from VTEP subnet.
 
-```
-Example: 172.30.41.3/32
-```
+Example: 172.30.12.3/32
 
 ### Fabric Link IPs
 
-Unique /31 pairs from fabric subnet (one pair per uplink):
+Unique /31 pairs from fabric subnet (one pair per uplink).
 
-```
 Example for two uplinks:
 - Spine-01 link: Switch 172.30.42.0/31, Gateway 172.30.42.1/31
 - Spine-02 link: Switch 172.30.42.2/31, Gateway 172.30.42.3/31
-```
 
-Check existing fabric IPs:
+Check existing gateway connection IPs:
 
 ```bash
-kubectl get connections -o yaml | grep "ip:" | grep -v "vtepIP\|protocolIP"
+kubectl get connections -o custom-columns=NAME:.metadata.name,SWITCH_IP:.spec.gateway.links[0].switch.ip,GW_IP:.spec.gateway.links[0].gateway.ip 2>/dev/null | grep gateway
 ```
 
 ## Step 3: Create Gateway Connections
 
 Gateway connections must be created before the Gateway resource. Connections establish uplinks to Fabric switches and define
 the IP addresses used by gateway interfaces. For spine-leaf topology, connect to spines. For mesh topology, connect to leaves.
-
-!!! note "Mesh Topology Limitation"
-    Gateway connections to TH5 leaf switches are not supported.
 
 Apply the Connection resources to the cluster:
 
@@ -187,7 +194,7 @@ information derived from the Connections.
 First, determine the BGP ASNs of the switches you're connecting to:
 
 ```bash
-kubectl get switches -o yaml | grep -E "name: (leaf|spine)" -A 2 | grep asn
+kubectl get switches -o custom-columns=NAME:.metadata.name,ASN:.spec.asn
 ```
 
 Then apply the Gateway resource:
