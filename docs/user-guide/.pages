@@ -4,6 +4,7 @@ nav:
   - connections.md
   - host-settings.md
   - vpcs.md
+  - dhcp.md
   - external.md
   - shrink-expand.md
   - profiles.md
