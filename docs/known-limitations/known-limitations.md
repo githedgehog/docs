@@ -7,6 +7,7 @@ working hard to address:
 * [Configuration not allowed when port is member of PortChannel](#configuration-not-allowed-when-port-is-member-of-portchannel)
 * [External peering over a connection originating from an MCLAG switch can fail](#external-peering-over-a-connection-originating-from-an-mclag-switch-can-fail)
 * [Mesh limitations on TH5-based devices](#mesh-limitations-on-th5-based-devices)
+* [Breakout and CMIS transceiver initialization issues on DS5000](#breakout-and-cmis-transceiver-initialization-issues-on-ds5000)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
 
