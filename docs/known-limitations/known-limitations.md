@@ -90,3 +90,28 @@ root cause and possible workarounds.
 None. We recommend avoiding mesh topologies on TH5-based devices for the
 time being, with the exception of 2-node topologies without gateway, where
 the above issues would not apply.
+
+### Breakout and CMIS transceiver initialization issues on DS5000
+
+On Celestica DS5000 devices, certain transceivers using the Common Management Interface Specification (CMIS) fail to initialize properly under specific conditions.
+
+CMIS is an open standard for managing high-speed pluggable transceivers, providing a uniform way for the network operating system to interact with and monitor them.
+
+#### Diagnosing the issue
+
+If you breakout a port (for example, changing from 1x800G to 2x400G or 8x100G) while no transceiver is present, and then insert a transceiver afterward, initialization may fail and the transceiver may be missing or appear as failed in SONiC.
+
+This occurs because SONiC did not always correctly reinitialize hardware abstraction for the port after breakout and re-insertion in this scenario, especially affecting CMIS modules.
+
+#### Resolution
+
+- The Hedgehog Fabric agent now automatically patches `/usr/share/sonic/platform/pddf/pddf-device.json` as needed after NOS installation (the patch is indicated by `-hh1` in the description). No user action is required to apply this workaround.
+- A full switch reboot is still required after agent deployment for the patch to take effect.
+- The `REBOOTREQ` column for the agent object in `kubectl` or `k9s` will indicate if a reboot is needed.
+- If you encounter existing transceiver failures (such as after an upgrade), a full power cycle of the switch may still be required in addition to the reboot.
+
+#### Additional guidance
+
+- Prefer inserting transceivers before breaking out ports to avoid the issue altogether, if possible.
+- Always follow any REBOOTREQ status after upgrades or configuration changes.
+- If problems persist, perform a full power cycle as a last resort.
