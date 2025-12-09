@@ -109,7 +109,7 @@ This occurs because SONiC did not always correctly reinitialize hardware abstrac
 - The Hedgehog Fabric agent now automatically patches `/usr/share/sonic/platform/pddf/pddf-device.json` as needed after NOS installation (the patch is indicated by `-hh1` in the description). No user action is required to apply this workaround.
 - A full switch reboot is still required after agent deployment for the patch to take effect.
 - The `REBOOTREQ` column for the agent object in `kubectl` or `k9s` will indicate if a reboot is needed.
-- If you encounter existing transceiver failures (such as after an upgrade), a full power cycle of the switch may still be required in addition to the reboot.
+- If you encounter existing transceiver failures (such as after an upgrade), a full power cycle of the switch, sometimes referred as cold boot, may still be required in addition to the reboot.
 
 #### Additional guidance
 
