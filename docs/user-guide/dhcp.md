@@ -1,6 +1,6 @@
 # DHCP
 
-The Fabric includes an integrated DHCP server that dinamically assigns IP addresses to hosts connected to VPC subnets. The DHCP server supports dynamic IP allocation, static leases, and various configuration options.
+The Fabric includes an integrated DHCP server that dynamically assigns IP addresses to hosts connected to VPC subnets. The DHCP server supports dynamic IP allocation, static leases, and various configuration options.
 
 ## Overview
 
