@@ -92,7 +92,7 @@ spec:
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: ControlNode
 metadata:
-  name: control-1
+  name: control-1 # host name of control node, cannot be changed after install
   namespace: fab
 spec:
   bootstrap:
@@ -108,7 +108,7 @@ spec:
 apiVersion: fabricator.githedgehog.com/v1beta1
 kind: FabNode
 metadata:
-  name: gateway-1
+  name: gateway-1 # host name of gateway node, cannot be changed after install
   namespace: fab
 spec:
   roles:
