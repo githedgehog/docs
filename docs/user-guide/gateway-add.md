@@ -25,7 +25,7 @@ Two types of resources must be created in the running cluster:
 
 Additionally, for building the gateway installer:
 
-3. **FabNode** - Defines the gateway node at the fabricator level (required for `hhfab build --gateways`)
+3. **FabNode** - Defines the gateway node at the fabricator level (required for `hhfab build --gateways`). See [Install Gateway Node](../install-upgrade/install.md#install-gateway-node) for details on installing the bare metal machine.
 
 ## Step 1: Gather Configuration Values
 
@@ -44,13 +44,14 @@ Example configuration:
 ```yaml
 config:
   control:
-    managementSubnet: 172.30.30.0/24
-    dummySubnet: 172.30.50.0/24
+    managementSubnet: 172.30.0.0/21
+    controlVIP: 172.30.0.1
+    dummySubnet: 172.30.90.0/24
   fabric:
-    managementDHCPStart: 172.30.30.10
-    protocolSubnet: 172.30.40.0/24
-    vtepSubnet: 172.30.41.0/24
-    fabricSubnet: 172.30.42.0/24
+    managementDHCPStart: 172.30.4.0
+    protocolSubnet: 172.30.8.0/24
+    vtepSubnet: 172.30.12.0/24
+    fabricSubnet: 172.30.128.0/24
   gateway:
     asn: 65534
 ```
@@ -92,8 +93,9 @@ Example: If management subnet is 172.30.0.0/21 and DHCP starts at 172.30.4.0, ch
 
 ### Dummy IP
 
-The dummy IP is used for internal K3s cluster communication between control and gateway nodes. Each node requires a unique /31
-subnet from the dummy subnet range. The /31 provides a point-to-point link between the node and the control plane.
+The dummy IP is used for internal K3s cluster communication between control and gateway nodes. We use dummy network devices
+and IPs to ensure K3s has a stable default network route. Each node requires a unique /31 subnet from the dummy subnet range.
+The /31 provides a point-to-point link between the node and the control plane.
 
 Verify uniqueness by checking existing allocations:
 
@@ -113,23 +115,23 @@ Example: If dummy subnet is 172.30.90.0/24, and control-1 uses 172.30.90.0/31, c
 
 ### Protocol IP
 
-Unique /32 from protocol subnet.
+Unique /32 from protocol subnet (`config.fabric.protocolSubnet`).
 
-Example: 172.30.8.3/32
+Example: 172.30.8.3/32 (from 172.30.8.0/24)
 
 ### VTEP IP
 
-Unique /32 from VTEP subnet.
+Unique /32 from VTEP subnet (`config.fabric.vtepSubnet`).
 
-Example: 172.30.12.3/32
+Example: 172.30.12.3/32 (from 172.30.12.0/24)
 
 ### Fabric Link IPs
 
-Unique /31 pairs from fabric subnet (one pair per uplink).
+Unique /31 pairs from fabric subnet (`config.fabric.fabricSubnet`, one pair per uplink).
 
-Example for two uplinks:
-- Spine-01 link: Switch 172.30.42.0/31, Gateway 172.30.42.1/31
-- Spine-02 link: Switch 172.30.42.2/31, Gateway 172.30.42.3/31
+Example for two uplinks (from 172.30.128.0/24):
+- Leaf-01 link: Switch 172.30.128.0/31, Gateway 172.30.128.1/31
+- Leaf-02 link: Switch 172.30.128.10/31, Gateway 172.30.128.11/31
 
 Check existing gateway connection IPs:
 
@@ -142,49 +144,59 @@ kubectl get connections -o custom-columns=NAME:.metadata.name,SWITCH_IP:.spec.ga
 Gateway connections must be created before the Gateway resource. Connections establish uplinks to Fabric switches and define
 the IP addresses used by gateway interfaces. For spine-leaf topology, connect to spines. For mesh topology, connect to leaves.
 
-Apply the Connection resources to the cluster:
+Create a YAML file with your Connection resources:
 
-```bash
-kubectl apply -f - <<'EOF'
+```{.yaml .annotate linenums="1" title="gateway-connections.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
-  name: leaf-01--gateway--gateway-1
+  name: leaf-01--gateway--gateway-1 # (1)!
   namespace: default
 spec:
   gateway:
     links:
       - switch:
-          port: leaf-01/E1/8
-          ip: 172.30.128.0/31
+          port: leaf-01/E1/8 # (2)!
+          ip: 172.30.128.0/31 # (3)!
         gateway:
-          port: gateway-1/enp2s1
-          ip: 172.30.128.1/31
+          port: gateway-1/enp2s1 # (4)!
+          ip: 172.30.128.1/31 # (5)!
 ---
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: Connection
 metadata:
-  name: leaf-02--gateway--gateway-1
+  name: leaf-02--gateway--gateway-1 # (6)!
   namespace: default
 spec:
   gateway:
     links:
       - switch:
-          port: leaf-02/E1/9
-          ip: 172.30.128.10/31
+          port: leaf-02/E1/9 # (7)!
+          ip: 172.30.128.10/31 # (8)!
         gateway:
-          port: gateway-1/enp2s2
-          ip: 172.30.128.11/31
-EOF
+          port: gateway-1/enp2s2 # (9)!
+          ip: 172.30.128.11/31 # (10)!
 ```
 
-Key points:
+1. Connection name - we typically use the pattern `<switch>--gateway--<gateway>` but any name will work
+2. Switch port must be a valid port on the switch (see [Switch Profiles](profiles.md))
+3. Allocate a unique /31 IP from `config.fabric.fabricSubnet` for the switch side
+4. Gateway physical network interface name (will be referenced in Gateway resource)
+5. Allocate the paired /31 IP from `config.fabric.fabricSubnet` for the gateway side
+6. Connection name for the second uplink
+7. Switch port for the second uplink
+8. Allocate another unique /31 IP pair from `config.fabric.fabricSubnet` for the switch side
+9. Gateway physical network interface name for the second uplink
+10. Allocate the paired /31 IP for the gateway side
 
-* Each link requires a /31 IP pair from fabricSubnet
-* Gateway port names will be referenced in the Gateway resource
-* Switch port must be a valid port on the switch (see [Switch Profiles](profiles.md))
-* Connection name follows pattern: `<switch>--gateway--<gateway>`
-* Connections must be in `default` namespace
+Apply the Connection resources to the cluster:
+
+```bash
+kubectl apply -f gateway-connections.yaml
+```
+
+!!! note
+    Connections must be created in the `default` namespace and must be applied before the Gateway resource.
 
 ## Step 4: Create Gateway Resource
 
@@ -197,50 +209,61 @@ First, determine the BGP ASNs of the switches you're connecting to:
 kubectl get switches -o custom-columns=NAME:.metadata.name,ASN:.spec.asn
 ```
 
-Then apply the Gateway resource:
+Create a YAML file with your Gateway resource:
 
-```bash
-kubectl apply -f - <<'EOF'
+```{.yaml .annotate linenums="1" title="gateway.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Gateway
 metadata:
   name: gateway-1
   namespace: fab
 spec:
-  asn: 65534
-  protocolIP: 172.30.8.3/32
-  vtepIP: 172.30.12.3/32
-  vtepMAC: CA:FE:BA:BE:01:02
+  asn: 65534 # (1)!
+  protocolIP: 172.30.8.3/32 # (2)!
+  vtepIP: 172.30.12.3/32 # (3)!
+  vtepMAC: 02:00:00:00:01:02 # (4)!
   interfaces:
-    enp2s1:
+    enp2s1: # (5)!
       ips:
-        - 172.30.128.1/31
-    enp2s2:
+        - 172.30.128.1/31 # (6)!
+    enp2s2: # (7)!
       ips:
-        - 172.30.128.11/31
+        - 172.30.128.11/31 # (8)!
   neighbors:
-    - asn: 65101
-      ip: 172.30.128.0
-      source: enp2s1
-    - asn: 65102
-      ip: 172.30.128.10
-      source: enp2s2
-  workers: 8
-EOF
+    - asn: 65101 # (9)!
+      ip: 172.30.128.0 # (10)!
+      source: enp2s1 # (11)!
+    - asn: 65102 # (12)!
+      ip: 172.30.128.10 # (13)!
+      source: enp2s2 # (14)!
+  workers: 8 # (15)!
 ```
 
-Key fields:
+1. Must match `config.gateway.asn` from Fabricator configuration (use `kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.gateway.asn}'`)
+2. Allocate a unique /32 from `config.fabric.protocolSubnet` (BGP router ID)
+3. Allocate a unique /32 from `config.fabric.vtepSubnet` (VXLAN tunnel endpoint)
+4. MAC address for VTEP - any valid MAC address (e.g., 02:00:00:00:01:02)
+5. Interface name must match the physical network interface on the gateway hardware and the `gateway.port` in the Connection resource
+6. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 11)
+7. Interface name for the second uplink
+8. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 26)
+9. Switch ASN - get from `kubectl get switches -o custom-columns=NAME:.metadata.name,ASN:.spec.asn` for leaf-01
+10. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 10)
+11. Must match the interface name defined above
+12. Switch ASN for the second uplink - get from `kubectl get switches` for leaf-02
+13. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 25)
+14. Must match the interface name for the second uplink
+15. Number of dataplane worker threads (typically 8)
 
-* `asn` - Must match `config.gateway.asn` from Fabricator configuration (typically 65534)
-* `protocolIP` - Unique /32 from protocol subnet for BGP router ID
-* `vtepIP` - Unique /32 from VTEP subnet for VXLAN tunnel endpoint
-* `vtepMAC` - MAC address for VTEP (use format CA:FE:BA:BE:XX:XX with unique last two octets)
-* `interfaces` - Each interface must have IPs matching the gateway side of the Connections
-* `neighbors` - BGP neighbors with switch ASNs and IPs from switch side of Connections
-* `workers` - Number of dataplane worker threads (typically 8)
+Apply the Gateway resource to the cluster:
 
-The interface names (enp2s1, enp2s2) must match physical network interfaces on the gateway hardware. For kernel driver
-(default), use standard Linux interface names. For DPDK driver, configure PCI addresses.
+```bash
+kubectl apply -f gateway.yaml
+```
+
+!!! note
+    The interface names (enp2s1, enp2s2) must match physical network interfaces on the gateway hardware. For kernel driver
+    (default), use standard Linux interface names. For DPDK driver, configure PCI addresses.
 
 ## Installing the Gateway Node
 
