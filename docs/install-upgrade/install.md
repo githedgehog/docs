@@ -51,8 +51,10 @@ command to see the available options. For example `hhfab init -h`.
 ### HHFAB commands to make a bootable image
 
 1. `hhfab init --wiring wiring-lab.yaml`
-1. The `init` command generates a `fab.yaml` file, edit the `fab.yaml` file for your needs
-    1. ensure the correct boot disk (e.g. `/dev/sda`) and control node NIC names are supplied
+1. The `init` command generates a `fab.yaml` file, edit the `fab.yaml` file for your needs, specifically:
+    1. Ensure the correct boot disk (e.g. `/dev/sda`) and control node NIC names are supplied
+    1. Ensure that the `name:` field under `kind: ControlNode` is the desired host name,
+       as this **cannot be changed** after installation
 1. `hhfab validate`
 1. `hhfab build --mode iso`
     1. An ISO is best suited to use with IPMI based virtual media. If desired an IMG file suitable for writing to a USB drive, can be created by passing the `--mode usb` option. ISO is the default.
