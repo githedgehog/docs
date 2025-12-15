@@ -1147,6 +1147,42 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#gatewaygroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupmembership" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupMembership
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gatewayinterface" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayInterface
@@ -1387,6 +1423,24 @@ You're not viewing the latest version.
   <a href="#gatewayagentstatus" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayAgentStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupmember" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupMember
     </span>
   </a>
   
@@ -1930,6 +1984,42 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#gatewaygroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupmembership" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupMembership
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gatewayinterface" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayInterface
@@ -2176,6 +2266,24 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#gatewaygroupinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaygroupmember" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayGroupMember
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gatewaystate" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayState
@@ -2257,6 +2365,7 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <h3 id="resource-types">Resource Types</h3>
 <ul>
 <li><a href="#gateway">Gateway</a></li>
+<li><a href="#gatewaygroup">GatewayGroup</a></li>
 <li><a href="#peering">Peering</a></li>
 <li><a href="#vpcinfo">VPCInfo</a></li>
 </ul>
@@ -2338,6 +2447,85 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 </tr>
 </tbody>
 </table>
+<h4 id="gatewaygroup">GatewayGroup</h4>
+<p>GatewayGroup is the Schema for the gatewaygroups API</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code> <em>string</em></td>
+<td><code>gateway.githedgehog.com/v1alpha1</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td><code>GatewayGroup</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#objectmeta-v1-meta">ObjectMeta</a></em></td>
+<td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spec</code> <em><a href="#gatewaygroupspec">GatewayGroupSpec</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>status</code> <em><a href="#gatewaygroupstatus">GatewayGroupStatus</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaygroupmembership">GatewayGroupMembership</h4>
+<p><em>Appears in:</em>
+- <a href="#gatewayspec">GatewaySpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code> <em>string</em></td>
+<td>Name is the name of the group to which the gateway belongs</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>priority</code> <em>integer</em></td>
+<td>Priority is the priority of the gateway within the group</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaygroupspec">GatewayGroupSpec</h4>
+<p>GatewayGroupSpec defines the desired state of GatewayGroup</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaygroup">GatewayGroup</a></p>
+<h4 id="gatewaygroupstatus">GatewayGroupStatus</h4>
+<p>GatewayGroupStatus defines the observed state of GatewayGroup.</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaygroup">GatewayGroup</a></p>
 <h4 id="gatewayinterface">GatewayInterface</h4>
 <p>GatewayInterface defines the configuration for a gateway interface</p>
 <p><em>Appears in:</em>
@@ -2537,6 +2725,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <tr>
 <td><code>workers</code> <em>integer</em></td>
 <td>Workers defines the number of worker threads to use for dataplane</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>groups</code> <em><a href="#gatewaygroupmembership">GatewayGroupMembership</a> array</em></td>
+<td>Groups is a list of group memberships for the gateway</td>
 <td></td>
 <td></td>
 </tr>
@@ -2746,6 +2940,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>gatewayGroup</code> <em>string</em></td>
+<td>GatewayGroup is the name of the gateway group that should process the peering</td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td><code>peering</code> <em>object (keys:string, values:<a href="#peeringentry">PeeringEntry</a>)</em></td>
 <td>Peerings is a map of peering entries for each <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> participating in the peering (keyed by <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> name)</td>
@@ -3010,6 +3210,18 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>groups</code> <em>object (keys:string, values:<a href="#gatewaygroupinfo">GatewayGroupInfo</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>communities</code> <em>object (keys:string, values:string)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="gatewayagentstatus">GatewayAgentStatus</h4>
@@ -3053,6 +3265,60 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <tr>
 <td><code>state</code> <em><a href="#gatewaystate">GatewayState</a></em></td>
 <td>State represents collected data from the dataplane API that includes FRR as well</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaygroupinfo">GatewayGroupInfo</h4>
+<p><em>Appears in:</em>
+- <a href="#gatewayagentspec">GatewayAgentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>members</code> <em><a href="#gatewaygroupmember">GatewayGroupMember</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="gatewaygroupmember">GatewayGroupMember</h4>
+<p><em>Appears in:</em>
+- <a href="#gatewaygroupinfo">GatewayGroupInfo</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>priority</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vtepIP</code> <em>string</em></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
