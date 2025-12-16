@@ -475,6 +475,22 @@ Package v1alpha1 contains API Schema definitions for the gwint v1alpha1 API grou
 
 
 
+#### DataplaneStatus
+
+
+
+DataplaneStatus represents the status of the dataplane
+
+
+
+_Appears in:_
+- [GatewayState](#gatewaystate)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `version` _string_ |  |  |  |
+
+
 #### FRRStatus
 
 
@@ -599,6 +615,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `lastCollectedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta)_ | LastCollectedTime is the time of the last successful collection of data from the dataplane API |  |  |
+| `dataplane` _[DataplaneStatus](#dataplanestatus)_ | Dataplane is the status of the dataplane |  |  |
 | `frr` _[FRRStatus](#frrstatus)_ | FRR is the status of the FRR daemon |  |  |
 | `vpcs` _object (keys:string, values:[VPCStatus](#vpcstatus))_ | VPCs is the status of the VPCs where key is the vpc (vpcinfo) name |  |  |
 | `peerings` _object (keys:string, values:[PeeringStatus](#peeringstatus))_ | Peerings is the status of the VPCs peerings where key is VPC1->VPC2 and data is for one direction only |  |  |

@@ -1393,6 +1393,15 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#dataplanestatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataplaneStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#frrstatus" class="md-nav__link">
     <span class="md-ellipsis">
       FRRStatus
@@ -2228,6 +2237,15 @@ You're not viewing the latest version.
   
     <nav class="md-nav" aria-label="Resource Types">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataplanestatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataplaneStatus
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#frrstatus" class="md-nav__link">
@@ -3106,6 +3124,28 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <ul>
 <li><a href="#gatewayagent">GatewayAgent</a></li>
 </ul>
+<h4 id="dataplanestatus">DataplaneStatus</h4>
+<p>DataplaneStatus represents the status of the dataplane</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaystate">GatewayState</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="frrstatus">FRRStatus</h4>
 <p>FRRStatus represents the status of the FRR daemon</p>
 <p><em>Appears in:</em>
@@ -3341,6 +3381,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <tr>
 <td><code>lastCollectedTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta">Time</a></em></td>
 <td>LastCollectedTime is the time of the last successful collection of data from the dataplane API</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>dataplane</code> <em><a href="#dataplanestatus">DataplaneStatus</a></em></td>
+<td>Dataplane is the status of the dataplane</td>
 <td></td>
 <td></td>
 </tr>
