@@ -277,8 +277,9 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `cidr` _string_ |  |  |  |
-| `not` _string_ |  |  |  |
+| `cidr` _string_ | CIDR to include, only one of cidr, not can be set |  |  |
+| `not` _string_ | CIDR to exclude, only one of cidr, not can be set |  |  |
+| `ports` _string_ | Port ranges (e.g. "80, 443, 3000-3100"), used together with exactly one of cidr, not |  |  |
 
 
 #### PeeringEntryExpose
@@ -312,9 +313,10 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `cidr` _string_ |  |  |  |
-| `not` _string_ |  |  |  |
-| `vpcSubnet` _string_ |  |  |  |
+| `cidr` _string_ | CIDR to include, only one of cidr, not, vpcSubnet can be set |  |  |
+| `not` _string_ | CIDR to exclude, only one of cidr, not, vpcSubnet can be set |  |  |
+| `vpcSubnet` _string_ | CIDR by VPC subnet name to include, only one of cidr, not, vpcSubnet can be set |  |  |
+| `ports` _string_ | Port ranges (e.g. "80, 443, 3000-3100"), used together with exactly one of cidr, not, vpcSubnet |  |  |
 
 
 #### PeeringNAT
