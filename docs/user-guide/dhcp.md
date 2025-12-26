@@ -75,8 +75,22 @@ kubectl fabric vpc attach \
   --connection server-01--mclag--leaf-01--leaf-02
 ```
 
-!!! note "CLI Limitations"
-    The CLI does not currently support configuring static leases or advanced DHCP options. Use YAML configuration with `kubectl apply -f` for these features.
+## CLI helpers for leases
+
+Use the CLI to manage leases without editing YAML. `static-lease` adds or updates a static lease, and
+`cleanup-leases` clears dynamic leases for a subnet:
+
+```bash
+kubectl fabric vpc static-lease \
+  --vpc vpc-1 \
+  --subnet default \
+  --mac 52:54:00:12:34:56 \
+  --ip 10.10.1.50
+```
+
+```bash
+kubectl fabric vpc cleanup-leases --vpc vpc-1 --subnet default
+```
 
 ## DHCP Options
 
