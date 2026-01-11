@@ -477,6 +477,143 @@ Package v1alpha1 contains API Schema definitions for the gwint v1alpha1 API grou
 
 
 
+#### BGPMessageCounters
+
+
+
+
+
+
+
+_Appears in:_
+- [BGPMessages](#bgpmessages)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `capability` _integer_ |  |  |  |
+| `keepalive` _integer_ |  |  |  |
+| `notification` _integer_ |  |  |  |
+| `open` _integer_ |  |  |  |
+| `routeRefresh` _integer_ |  |  |  |
+| `update` _integer_ |  |  |  |
+
+
+#### BGPMessages
+
+
+
+
+
+
+
+_Appears in:_
+- [BGPNeighborStatus](#bgpneighborstatus)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `received` _[BGPMessageCounters](#bgpmessagecounters)_ |  |  |  |
+| `sent` _[BGPMessageCounters](#bgpmessagecounters)_ |  |  |  |
+
+
+#### BGPNeighborPrefixes
+
+
+
+
+
+
+
+_Appears in:_
+- [BGPNeighborStatus](#bgpneighborstatus)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `received` _integer_ |  |  |  |
+| `receivedPrePolicy` _integer_ |  |  |  |
+| `sent` _integer_ |  |  |  |
+
+
+#### BGPNeighborSessionState
+
+_Underlying type:_ _string_
+
+BGPNeighborSessionState represents the BGP FSM state for a neighbor.
+
+_Validation:_
+- Enum: [unset idle connect active open established]
+
+_Appears in:_
+- [BGPNeighborStatus](#bgpneighborstatus)
+
+| Field | Description |
+| --- | --- |
+| `unset` |  |
+| `idle` |  |
+| `connect` |  |
+| `active` |  |
+| `open` |  |
+| `established` |  |
+
+
+#### BGPNeighborStatus
+
+
+
+
+
+
+
+_Appears in:_
+- [BGPVRFStatus](#bgpvrfstatus)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `enabled` _boolean_ |  |  |  |
+| `localAS` _integer_ |  |  |  |
+| `peerAS` _integer_ |  |  |  |
+| `remoteRouterID` _string_ |  |  |  |
+| `sessionState` _[BGPNeighborSessionState](#bgpneighborsessionstate)_ |  |  | Enum: [unset idle connect active open established] <br /> |
+| `connectionsDropped` _integer_ |  |  |  |
+| `establishedTransitions` _integer_ |  |  |  |
+| `lastResetReason` _string_ |  |  |  |
+| `messages` _[BGPMessages](#bgpmessages)_ |  |  |  |
+| `ipv4UnicastPrefixes` _[BGPNeighborPrefixes](#bgpneighborprefixes)_ |  |  |  |
+| `ipv6UnicastPrefixes` _[BGPNeighborPrefixes](#bgpneighborprefixes)_ |  |  |  |
+| `l2VPNEVPNPrefixes` _[BGPNeighborPrefixes](#bgpneighborprefixes)_ |  |  |  |
+
+
+#### BGPStatus
+
+
+
+BGPStatus represents BGP status across VRFs, derived from BMP/FRR.
+
+
+
+_Appears in:_
+- [GatewayState](#gatewaystate)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `vrfs` _object (keys:string, values:[BGPVRFStatus](#bgpvrfstatus))_ | VRFs keyed by VRF name (e.g. "default", "vrfVvpc-1") |  |  |
+
+
+#### BGPVRFStatus
+
+
+
+
+
+
+
+_Appears in:_
+- [BGPStatus](#bgpstatus)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `neighbors` _object (keys:string, values:[BGPNeighborStatus](#bgpneighborstatus))_ | Neighbors keyed by an ip address string |  |  |
+
+
 #### DataplaneStatus
 
 
@@ -621,6 +758,7 @@ _Appears in:_
 | `frr` _[FRRStatus](#frrstatus)_ | FRR is the status of the FRR daemon |  |  |
 | `vpcs` _object (keys:string, values:[VPCStatus](#vpcstatus))_ | VPCs is the status of the VPCs where key is the vpc (vpcinfo) name |  |  |
 | `peerings` _object (keys:string, values:[PeeringStatus](#peeringstatus))_ | Peerings is the status of the VPCs peerings where key is VPC1->VPC2 and data is for one direction only |  |  |
+| `bgp` _[BGPStatus](#bgpstatus)_ | BGP is BGP status |  |  |
 
 
 #### PeeringStatus
