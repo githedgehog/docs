@@ -1435,6 +1435,69 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#bgpmessagecounters" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPMessageCounters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpmessages" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPMessages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpneighborprefixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPNeighborPrefixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpneighborsessionstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPNeighborSessionState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpneighborstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPNeighborStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpvrfstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPVRFStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dataplanestatus" class="md-nav__link">
     <span class="md-ellipsis">
       DataplaneStatus
@@ -2279,6 +2342,69 @@ You're not viewing the latest version.
   
     <nav class="md-nav" aria-label="Resource Types">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bgpmessagecounters" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPMessageCounters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpmessages" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPMessages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpneighborprefixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPNeighborPrefixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpneighborsessionstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPNeighborSessionState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpneighborstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPNeighborStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgpvrfstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGPVRFStatus
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#dataplanestatus" class="md-nav__link">
@@ -3178,6 +3304,288 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <ul>
 <li><a href="#gatewayagent">GatewayAgent</a></li>
 </ul>
+<h4 id="bgpmessagecounters">BGPMessageCounters</h4>
+<p><em>Appears in:</em>
+- <a href="#bgpmessages">BGPMessages</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>capability</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>keepalive</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notification</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>open</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>routeRefresh</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>update</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgpmessages">BGPMessages</h4>
+<p><em>Appears in:</em>
+- <a href="#bgpneighborstatus">BGPNeighborStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>received</code> <em><a href="#bgpmessagecounters">BGPMessageCounters</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>sent</code> <em><a href="#bgpmessagecounters">BGPMessageCounters</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgpneighborprefixes">BGPNeighborPrefixes</h4>
+<p><em>Appears in:</em>
+- <a href="#bgpneighborstatus">BGPNeighborStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>received</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>receivedPrePolicy</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>sent</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgpneighborsessionstate">BGPNeighborSessionState</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p>BGPNeighborSessionState represents the <abbr title="Border Gateway Protocol">BGP</abbr> FSM state for a neighbor.</p>
+<p><em>Validation:</em>
+- Enum: [unset idle connect active open established]</p>
+<p><em>Appears in:</em>
+- <a href="#bgpneighborstatus">BGPNeighborStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>unset</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>idle</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>connect</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>established</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgpneighborstatus">BGPNeighborStatus</h4>
+<p><em>Appears in:</em>
+- <a href="#bgpvrfstatus">BGPVRFStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>localAS</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>peerAS</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>remoteRouterID</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>sessionState</code> <em><a href="#bgpneighborsessionstate">BGPNeighborSessionState</a></em></td>
+<td></td>
+<td></td>
+<td>Enum: [unset idle connect active open established] <br /></td>
+</tr>
+<tr>
+<td><code>connectionsDropped</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>establishedTransitions</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastResetReason</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code> <em><a href="#bgpmessages">BGPMessages</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipv4UnicastPrefixes</code> <em><a href="#bgpneighborprefixes">BGPNeighborPrefixes</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ipv6UnicastPrefixes</code> <em><a href="#bgpneighborprefixes">BGPNeighborPrefixes</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>l2VPNEVPNPrefixes</code> <em><a href="#bgpneighborprefixes">BGPNeighborPrefixes</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgpstatus">BGPStatus</h4>
+<p>BGPStatus represents <abbr title="Border Gateway Protocol">BGP</abbr> status across VRFs, derived from BMP/FRR.</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaystate">GatewayState</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vrfs</code> <em>object (keys:string, values:<a href="#bgpvrfstatus">BGPVRFStatus</a>)</em></td>
+<td>VRFs keyed by VRF name (e.g. "default", "vrfVvpc-1")</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgpvrfstatus">BGPVRFStatus</h4>
+<p><em>Appears in:</em>
+- <a href="#bgpstatus">BGPStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>neighbors</code> <em>object (keys:string, values:<a href="#bgpneighborstatus">BGPNeighborStatus</a>)</em></td>
+<td>Neighbors keyed by an ip address string</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="dataplanestatus">DataplaneStatus</h4>
 <p>DataplaneStatus represents the status of the dataplane</p>
 <p><em>Appears in:</em>
@@ -3459,6 +3867,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <tr>
 <td><code>peerings</code> <em>object (keys:string, values:<a href="#peeringstatus">PeeringStatus</a>)</em></td>
 <td>Peerings is the status of the VPCs peerings where key is VPC1-&gt;VPC2 and data is for one direction only</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>bgp</code> <em><a href="#bgpstatus">BGPStatus</a></em></td>
+<td><abbr title="Border Gateway Protocol">BGP</abbr> is <abbr title="Border Gateway Protocol">BGP</abbr> status</td>
 <td></td>
 <td></td>
 </tr>
