@@ -298,6 +298,7 @@ _Appears in:_
 | `ips` _[PeeringEntryIP](#peeringentryip) array_ |  |  |  |
 | `as` _[PeeringEntryAs](#peeringentryas) array_ |  |  |  |
 | `nat` _[PeeringNAT](#peeringnat)_ |  |  |  |
+| `default` _boolean_ |  |  |  |
 
 
 #### PeeringEntryIP
