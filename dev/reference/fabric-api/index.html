@@ -1513,6 +1513,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#externalattachmentl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalAttachmentL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#externalattachmentneighbor" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentNeighbor
@@ -1543,6 +1552,15 @@ You're not viewing the latest version.
   <a href="#externalattachmentswitch" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentSwitch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externall2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalL2
     </span>
   </a>
   
@@ -3244,6 +3262,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#externalattachmentl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalAttachmentL2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#externalattachmentneighbor" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentNeighbor
@@ -3274,6 +3301,15 @@ You're not viewing the latest version.
   <a href="#externalattachmentswitch" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentSwitch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externall2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalL2
     </span>
   </a>
   
@@ -6183,6 +6219,46 @@ Effectively it represents <abbr title="Border Gateway Protocol">BGP</abbr> peeri
 </tr>
 </tbody>
 </table>
+<h4 id="externalattachmentl2">ExternalAttachmentL2</h4>
+<p>ExternalAttachmentL2 defines parameters used for L2 external attachments</p>
+<p><em>Appears in:</em>
+- <a href="#externalattachmentspec">ExternalAttachmentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip</code> <em>string</em></td>
+<td>IP is the actual IP address of the external, which will be used as nexthop for prefixes reachable via this external attachment</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vlan</code> <em>integer</em></td>
+<td>VLAN (optional) is the VLAN ID used for the subinterface on a switch port specified in the connection, set to 0 if no VLAN is required</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gatewayIPs</code> <em>string array</em></td>
+<td>GatewayIPs is the list of IP addresses (with prefix length) which can be used for NAT on the fabric side for this L2 external attachment</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fabricEdgeIP</code> <em>string</em></td>
+<td>FabricEdgeIP is an IP address (with prefix length) that will be configured on the fabric edge switch; it is needed for proxy-ARP</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="externalattachmentneighbor">ExternalAttachmentNeighbor</h4>
 <p>ExternalAttachmentNeighbor defines the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor configuration for the external attachment</p>
 <p><em>Appears in:</em>
@@ -6239,13 +6315,19 @@ Effectively it represents <abbr title="Border Gateway Protocol">BGP</abbr> peeri
 </tr>
 <tr>
 <td><code>switch</code> <em><a href="#externalattachmentswitch">ExternalAttachmentSwitch</a></em></td>
-<td>Switch is the switch port configuration for the external attachment</td>
+<td>Switch is the switch port configuration for the external attachment in case of a <abbr title="Border Gateway Protocol">BGP</abbr> external</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>neighbor</code> <em><a href="#externalattachmentneighbor">ExternalAttachmentNeighbor</a></em></td>
-<td>Neighbor is the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor configuration for the external attachment</td>
+<td>Neighbor is the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor configuration for the external attachment in case of a <abbr title="Border Gateway Protocol">BGP</abbr> external</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>l2</code> <em><a href="#externalattachmentl2">ExternalAttachmentL2</a></em></td>
+<td>L2 contains parameters specific to an L2 external attachment</td>
 <td></td>
 <td></td>
 </tr>
@@ -6278,6 +6360,27 @@ Effectively it represents <abbr title="Border Gateway Protocol">BGP</abbr> peeri
 <tr>
 <td><code>ip</code> <em>string</em></td>
 <td>IP is the IP address of the subinterface on a switch port specified in the connection, it should include the prefix length</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externall2">ExternalL2</h4>
+<p><em>Appears in:</em>
+- <a href="#externalspec">ExternalSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prefixes</code> <em>string array</em></td>
+<td>Prefixes is the list of IPv4 prefixes reachable via the external</td>
 <td></td>
 <td></td>
 </tr>
@@ -6489,6 +6592,12 @@ filter routes from/to the external system.</p>
 <tr>
 <td><code>outboundCommunity</code> <em>string</em></td>
 <td>OutboundCommunity is theoutbound community that all outbound routes will be stamped with (e.g. 50000:50001)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>l2</code> <em><a href="#externall2">ExternalL2</a></em></td>
+<td>L2 contains L2 specific parameters</td>
 <td></td>
 <td></td>
 </tr>
@@ -7151,6 +7260,12 @@ At least one subnet is required.</p>
 <tr>
 <td><code>restricted</code> <em>boolean</em></td>
 <td>Restricted is the flag to enable restricted mode for the subnet which means no access between hosts within the subnet itself</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hostBGP</code> <em>boolean</em></td>
+<td>HostBGP is the flag to set this Subnet as dedicated to <abbr title="Border Gateway Protocol">BGP</abbr> speaking hosts advertising their VIPs within the subnet's IP range</td>
 <td></td>
 <td></td>
 </tr>
