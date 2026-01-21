@@ -139,6 +139,14 @@ spec:
           - cidr: 192.168.0.0/16 # Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1
 ```
 
+Note that multiple VPCs cannot expose overlapping prefixes to a given VPC. For
+example, if `vpc-1` and `vpc-3` are both peered with `vpc-2`, and `vpc-1`
+exposes subnet `10.1.1.0/24` to `vpc-2`, then `vpc-3` cannot expose overlapping
+prefix `10.1.0.0/16` to `vpc-2`. There is one exception to this rule: exposed
+prefixes can overlap with an expose block marked as `default`, see section on
+[peering for external connections](#gateway-peering-for-external-connections)
+for details.
+
 ### Gateway Peering with Stateless NAT
 
 Stateless NAT translates source and/or destination IP addresses for all packets that traverse
@@ -254,8 +262,7 @@ spec:
   peering:
     ext.example-ext: # NOTE the name of the external is prefixed with "ext."
       expose:
-      - ips:
-        - cidr: 0.0.0.0/0
+      - default: true # Fallback destination when no other expose matches
     vpc-02:
       expose:
       - ips:
@@ -264,3 +271,15 @@ spec:
 
 Note that the name of the external is prefixed with `ext.`: this is a
 requirement.
+
+Also, note how the external uses `default: true` instead of specifying the root
+IPv4 prefix `0.0.0.0/0`. An `expose` block marked as `default: true` serves as
+a default destination for all addresses _that do not otherwise match any of the
+other prefixes exposed to the VPC_, whether or not these prefixes are from the
+same peering. In our example, if `vpc-02` is additionally peered with `vpc-03`
+which exposes `10.50.3.0/24`, all packets from `vpc-02` towards this subnet are
+sent to `vpc-03`, and packets addressed to all other subnets from the IPv4
+space are sent to the external `example-ext`.
+
+For any given VPC, at most one remote `expose` block, among all peerings for
+this VPC, can act as a `default` destination.
