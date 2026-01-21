@@ -221,11 +221,13 @@ spec:
 
 ### Gateway Peering for External Connections
 
-The following YAML listings show how to expose a default route to the
-`10.50.2.0/24` subnet inside of `vpc-02`. In this example the name of the
-external is `example-ext`. Assuming this external is representing the WAN, this will
-allow hosts inside of the `10.50.2.0/24` to the WAN. The following is an
-example YAML file to create an external.
+The following YAML listings show how to create an external and expose a default
+route to the `10.50.2.0/24` subnet inside of `vpc-02`. In this example, the
+name of the external is `example-ext`. Assuming this external represents the
+WAN, this configuration allows hosts inside of the `10.50.2.0/24` subnet to
+reach the WAN.
+
+Here is the YAML fragment for creating the external:
 
 ```{.yaml .annotate linenums="1" title="example-external.yaml"}
 apiVersion: vpc.githedgehog.com/v1beta1
