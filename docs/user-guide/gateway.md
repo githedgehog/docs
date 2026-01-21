@@ -243,7 +243,7 @@ spec:
 
 Once the external is created, the gateway can be used to create a peering
 between the external and a VPC. The following YAML is an example of this
-configuration. Note that the name of the external is prefixed with `ext.`.
+configuration:
 
 ```{.yaml .annotate linenums="1" title="gw-peer-external.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
@@ -261,3 +261,6 @@ spec:
       - ips:
         - cidr: 10.50.2.0/24
 ```
+
+Note that the name of the external is prefixed with `ext.`: this is a
+requirement.
