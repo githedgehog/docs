@@ -142,7 +142,7 @@ spec:
 ### Gateway Peering with Stateless NAT
 
 Stateless NAT translates source and/or destination IP addresses for all packets that traverse
-the peering, but it does not maintain any flow state for the connection. A 
+the peering, but it does not maintain any flow state for the connection. A
 one-to-one mapping is established between the addresses exposed in the CIDRs for
 `ips` and the addresses to use represented by the CIDRs in
 `as`: each address from the first group is consistently mapped to a single
@@ -175,18 +175,15 @@ spec:
           as:
           - cidr: 10.22.22.0/25 # and exposed back to vpc-1.
           - cidr: 10.22.22.128/25
-
-
 ```
-
 
 ### Gateway Peering with Stateful Source NAT
 
 Stateful source NAT uses a flow table to track established connections.
-When traffic is initiated from `vpc-1` to `vpc-2`, the flow table is updated 
+When traffic is initiated from `vpc-1` to `vpc-2`, the flow table is updated
 with the connection details. In the return direction (from `vpc-2` to `vpc-1`
 in the following example), the flow table is consulted to determine if the packet
-is part of an established connection. If it is, the packet is allowed to pass 
+is part of an established connection. If it is, the packet is allowed to pass
 through the peering. If it is not, the packet is dropped.
 This behavior allows use of stateful NAT as a simple firewall.
 
@@ -208,9 +205,9 @@ spec:
           as:
           - cidr: 10.0.1.0/31  # but, NAT those addresses using the addresses in 10.0.1.0/31
           nat:  # Contains the NAT configuration
-          # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table. 
+          # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table.
           # An entry for the reverse direction will be added too, so that the receiving endpoint in vpc-2 can reply.
-            stateful: 
+            stateful:
               idleTimeout: 5m # Timeout connections after 5 minutes of inactivity (no packets received)
     vpc-2:
       expose:
@@ -221,7 +218,6 @@ spec:
         # Currently, only one VPC of a peering can use stateful NAT.
         # This restriction will be lifted in a future release.
 ```
-
 
 ### Gateway Peering for External Connections
 
@@ -241,7 +237,6 @@ spec:
   inboundCommunity: 65102:5001
   ipv4Namespace: default
   outboundCommunity: 5001:65102
-
 ```
 
 Once the external is created, the gateway can be used to create a peering
