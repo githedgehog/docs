@@ -685,6 +685,23 @@ _Appears in:_
 | `peerings` _object (keys:string, values:[PeeringSpec](#peeringspec))_ |  |  |  |
 | `groups` _object (keys:string, values:[GatewayGroupInfo](#gatewaygroupinfo))_ |  |  |  |
 | `communities` _object (keys:string, values:string)_ |  |  |  |
+| `config` _[GatewayAgentSpecConfig](#gatewayagentspecconfig)_ |  |  |  |
+
+
+#### GatewayAgentSpecConfig
+
+
+
+
+
+
+
+_Appears in:_
+- [GatewayAgentSpec](#gatewayagentspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `fabricBFD` _boolean_ | FabricBFD defines if fabric-facing links should be configured with BFD |  |  |
 
 
 #### GatewayAgentStatus
