@@ -1868,9 +1868,16 @@ transit the gateway node(s).</p>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.0/16</span><span class="w"> </span><span class="c1"># Expose all IP addresses in the 192.168.0.0/16 CIDR block to vpc-1</span>
 </span></code></pre></div></td></tr></table></div>
+<p>Note that multiple VPCs cannot expose overlapping prefixes to a given <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. For
+example, if <code>vpc-1</code> and <code>vpc-3</code> are both peered with <code>vpc-2</code>, and <code>vpc-1</code>
+exposes subnet <code>10.1.1.0/24</code> to <code>vpc-2</code>, then <code>vpc-3</code> cannot expose overlapping
+prefix <code>10.1.0.0/16</code> to <code>vpc-2</code>. There is one exception to this rule: exposed
+prefixes can overlap with an expose block marked as <code>default</code>, see section on
+<a href="#gateway-peering-for-external-connections">peering for external connections</a>
+for details.</p>
 <h3 id="gateway-peering-with-stateless-nat">Gateway Peering with Stateless NAT</h3>
 <p>Stateless NAT translates source and/or destination IP addresses for all packets that traverse
-the peering, but it does not maintain any flow state for the connection. A 
+the peering, but it does not maintain any flow state for the connection. A
 one-to-one mapping is established between the addresses exposed in the CIDRs for
 <code>ips</code> and the addresses to use represented by the CIDRs in
 <code>as</code>: each address from the first group is consistently mapped to a single
@@ -1927,10 +1934,10 @@ addresses covered by the CIDRs from <code>as</code>.</p>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="gateway-peering-with-stateful-source-nat">Gateway Peering with Stateful Source NAT</h3>
 <p>Stateful source NAT uses a flow table to track established connections.
-When traffic is initiated from <code>vpc-1</code> to <code>vpc-2</code>, the flow table is updated 
+When traffic is initiated from <code>vpc-1</code> to <code>vpc-2</code>, the flow table is updated
 with the connection details. In the return direction (from <code>vpc-2</code> to <code>vpc-1</code>
 in the following example), the flow table is consulted to determine if the packet
-is part of an established connection. If it is, the packet is allowed to pass 
+is part of an established connection. If it is, the packet is allowed to pass
 through the peering. If it is not, the packet is dropped.
 This behavior allows use of stateful NAT as a simple firewall.</p>
 <div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gw-sf-nat-peer.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
@@ -1978,9 +1985,9 @@ This behavior allows use of stateful NAT as a simple firewall.</p>
 </span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">          </span><span class="nt">as</span><span class="p">:</span>
 </span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.1.0/31</span><span class="w">  </span><span class="c1"># but, NAT those addresses using the addresses in 10.0.1.0/31</span>
 </span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">          </span><span class="nt">nat</span><span class="p">:</span><span class="w">  </span><span class="c1"># Contains the NAT configuration</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">          </span><span class="c1"># Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table. </span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">          </span><span class="c1"># Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table.</span>
 </span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">          </span><span class="c1"># An entry for the reverse direction will be added too, so that the receiving endpoint in vpc-2 can reply.</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">            </span><span class="nt">stateful</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">            </span><span class="nt">stateful</span><span class="p">:</span>
 </span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">              </span><span class="nt">idleTimeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span><span class="w"> </span><span class="c1"># Timeout connections after 5 minutes of inactivity (no packets received)</span>
 </span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
 </span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
@@ -1992,11 +1999,12 @@ This behavior allows use of stateful NAT as a simple firewall.</p>
 </span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">        </span><span class="c1"># This restriction will be lifted in a future release.</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="gateway-peering-for-external-connections">Gateway Peering for <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Connections</h3>
-<p>The following YAML listings show how to expose a default route to the
-<code>10.50.2.0/24</code> subnet inside of <code>vpc-02</code>. In this example the name of the
-external is <code>example-ext</code>. Assuming this external is representing the WAN, this will
-allow hosts inside of the <code>10.50.2.0/24</code> to the WAN. The following is an
-example YAML file to create an external.</p>
+<p>The following YAML listings show how to create an external and expose a default
+route to the <code>10.50.2.0/24</code> subnet inside of <code>vpc-02</code>. In this example, the
+name of the external is <code>example-ext</code>. Assuming this external represents the
+WAN, this configuration allows hosts inside of the <code>10.50.2.0/24</code> subnet to
+reach the WAN.</p>
+<p>Here is the YAML fragment for creating the external:</p>
 <div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">example-external.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
 <span class="normal"><a href="#__codelineno-3-3">3</a></span>
@@ -2017,7 +2025,7 @@ example YAML file to create an external.</p>
 </span></code></pre></div></td></tr></table></div>
 <p>Once the external is created, the gateway can be used to create a peering
 between the external and a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. The following YAML is an example of this
-configuration. Note that the name of the external is prefixed with <code>ext.</code>.</p>
+configuration:</p>
 <div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">gw-peer-external.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
@@ -2030,8 +2038,7 @@ configuration. Note that the name of the external is prefixed with <code>ext.</c
 <span class="normal"><a href="#__codelineno-4-10">10</a></span>
 <span class="normal"><a href="#__codelineno-4-11">11</a></span>
 <span class="normal"><a href="#__codelineno-4-12">12</a></span>
-<span class="normal"><a href="#__codelineno-4-13">13</a></span>
-<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-02--example-ext</span>
@@ -2039,13 +2046,24 @@ configuration. Note that the name of the external is prefixed with <code>ext.</c
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="nt">ext.example-ext</span><span class="p">:</span><span class="w"> </span><span class="c1"># NOTE the name of the external is prefixed with &quot;ext.&quot;</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="nt">vpc-02</span><span class="p">:</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.50.2.0/24</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Fallback destination when no other expose matches</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="nt">vpc-02</span><span class="p">:</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.50.2.0/24</span>
 </span></code></pre></div></td></tr></table></div>
+<p>Note that the name of the external is prefixed with <code>ext.</code>: this is a
+requirement.</p>
+<p>Also, note how the external uses <code>default: true</code> instead of specifying the root
+IPv4 prefix <code>0.0.0.0/0</code>. An <code>expose</code> block marked as <code>default: true</code> serves as
+a default destination for all addresses <em>that do not otherwise match any of the
+other prefixes exposed to the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></em>, whether or not these prefixes are from the
+same peering. In our example, if <code>vpc-02</code> is additionally peered with <code>vpc-03</code>
+which exposes <code>10.50.3.0/24</code>, all packets from <code>vpc-02</code> towards this subnet are
+sent to <code>vpc-03</code>, and packets addressed to all other subnets from the IPv4
+space are sent to the external <code>example-ext</code>.</p>
+<p>For any given <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, at most one remote <code>expose</code> block, among all peerings for
+this <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>, can act as a <code>default</code> destination.</p>
 
 
 
@@ -2068,7 +2086,7 @@ configuration. Note that the name of the external is prefixed with <code>ext.</c
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 21, 2026</span>
   </span>
 
     
