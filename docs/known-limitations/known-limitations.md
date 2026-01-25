@@ -6,7 +6,6 @@ working hard to address:
 * [Deleting a VPC and creating a new one right away can cause the agent to fail](#deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail)
 * [Configuration not allowed when port is member of PortChannel](#configuration-not-allowed-when-port-is-member-of-portchannel)
 * [External peering over a connection originating from an MCLAG switch can fail](#external-peering-over-a-connection-originating-from-an-mclag-switch-can-fail)
-* [Mesh limitations on TH5-based devices](#mesh-limitations-on-th5-based-devices)
 * [Breakout and CMIS transceiver initialization issues on DS5000](#breakout-and-cmis-transceiver-initialization-issues-on-ds5000)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
@@ -71,26 +70,6 @@ No connectivity from the workload server(s) in the VPC towards the prefix routed
 #### Known workarounds
 
 Connect your externals to non-MCLAG switches instead.
-
-### Mesh limitations on TH5-based devices
-
-On TH5-based devices, such as the Celestica DS5000, mesh topologies have major
-limitations:
-
-* Failover of mesh connections using an intermediate mesh node does not
-  work correctly
-* Gateway peering of VPCs does not work correctly, i.e. VPCs attached to leaves
-  that are not directly connected to the gateway node cannot peer properly via
-  the gateway
-
-We are investigating these issues together with our partners to determine the
-root cause and possible workarounds.
-
-#### Known workarounds
-
-None. We recommend avoiding mesh topologies on TH5-based devices for the
-time being, with the exception of 2-node topologies without gateway, where
-the above issues would not apply.
 
 ### Breakout and CMIS transceiver initialization issues on DS5000
 

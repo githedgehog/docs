@@ -147,10 +147,6 @@ A Mesh connection is used between a pair of leaf switches directly connected to 
 for a spine switch in between. This can be used to create smaller mesh topologies, or to connect border leaves
 to the fabric when there are no available spine ports.
 
-!!! warning
-    Mesh connections have major limitations on TH5-based devices. See the
-    [Known Limitations](../known-limitations/known-limitations.md#mesh-limitations-on-th5-based-devices) section for details.
-
 Here's an example YAML definition of a Mesh connection between two leaves:
 
 ```yaml
@@ -276,8 +272,7 @@ spec:
 These connection types are for gateway to spine connections. These connections
 will carry the traffic between VPCs that need network services, like NAT. More
 details about the Gateway are in the [Gateway section](gateway.md). In a mesh
-topology the connections will be between gateway and the leaf nodes. Note that
-gateway is not supported with mesh connections on TH5 leafs.
+topology the connections will be between gateway and the leaf nodes.
 
 ```{.yaml .annotate linenums="1" filename="gw-connection.yaml"}
 apiVersion: wiring.githedgehog.com/v1beta1
