@@ -158,7 +158,7 @@ address from the second group. Therefore, the total number of addresses covered
 by the CIDRs YAML array entries from `ips` must be equal to the total number of
 addresses covered by the CIDRs from `as`.
 
-```{.yaml .annotate linenums="1" title="sl-gw-peer.yaml"}
+```{.yaml .annotate linenums="1" title="gw-sl-nat-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
@@ -226,6 +226,110 @@ spec:
         # Currently, only one VPC of a peering can use stateful NAT.
         # This restriction will be lifted in a future release.
 ```
+
+### Gateway Peering with Port Address Translation
+
+Stateless NAT can also work with port ranges, a feature known as Port Address
+Translation (PAT).
+
+#### Stateless PAT
+
+For stateless translation, ports or port ranges can be specified for the IP
+prefix to translate (`ips`) as well as for the target prefixes (`as`).
+
+- Specifying ports or port ranges for a prefix in `ips` means that only packets
+  whose source L4 ports are in the list will be translated.
+- Specifying ports or port ranges for a prefix in `as` means that ports will be
+  translated to ports within the resulting list of ports.
+
+##### Example
+
+The following YAML fragment is an example with port translation configured on
+`vpc-1`'s side:
+
+```{.yaml .annotate linenums="1" title="gw-sl-pat-peer.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Peering
+metadata:
+  name: vpc-1--sl-nat--vpc-2
+  namespace: default
+spec:
+  peering:
+    vpc-1:
+      expose:
+        - ips:
+          - cidr: 10.0.1.0/24
+            ports: 2001-3000
+          as:
+          - cidr: 192.168.11.0/24
+            ports: 4999,5002-6000
+    vpc-2:
+      expose:
+        - ips:
+          - cidr: 10.0.2.0/24
+```
+
+In this example, packets emitted from `vpc-1` to `vpc-2` with a source IP
+address in `10.0.1.0/24` _and_ a TCP or UDP source port between 2001 and 3000
+(included), are translated with a new source IP in CIDR `192.168.11.0/24` and a
+source port being either `4999` or between `5002` and `6000` (included),
+whereas the destination IP and port are unchanged. Packets emitted in the other
+direction, from `vpc-2` to `vpc-1`, have their destination address and L4 port
+translated back to the initial prefix and port range.
+
+For example, once this peering has been created, if `vpc-1` sends the following
+TCP packet:
+
+- source IP: `10.0.1.2`
+- source TCP port: `2032`
+- destination IP: `10.0.2.2`
+- destination TCP port: `8080`
+
+then on reception, the gateway statelessly translates it to the following,
+before forwarding it to `vpc-2`:
+
+- source IP: `192.168.11.2` (or any other address from `192.168.11.0/24`,
+  depending on the internal mapping algorithm)
+- source TCP port: `5784` (or any other port from `5002-6000`, or `4999`,
+  depending on the internal mapping algorithm)
+- destination IP: `10.0.2.2` - unchanged
+- destination TCP port: `8080` - unchanged
+
+We could use ports and port ranges on `vpc-2`'s side as well, in a similar way.
+
+The field `ports` accepts a comma-separated list of ports and port ranges. Port
+ranges are specified with the lower and higher bounds for the range
+(inclusive), separated with a dash. Spaces are not allowed within the string
+for ports and port ranges.
+
+##### Size constraints
+
+Like for stateless NAT, a one-to-one mapping is established between elements to
+translate (`ips`) and target addresses and ports (`as`). As a consequence, the
+number of addresses covered by the IP prefixes, multiplied by the number of
+ports in the relative port ranges (if any), must be equal between `ips` and
+`as`. For example, CIDR `10.0.1.0/24` (256 IP addresses) with port range
+`2000-2099` (100 ports) covers 25,600 combinations.
+
+If a CIDR has no associated ports or port ranges, the full space of available
+ports (65536 ports) is used, just like in the case of NAT.
+
+##### Limitations
+
+Note that when PAT is set up for a given CIDR prefix, packets addressed to IPs
+in this prefix but not matching the ports or port ranges will be dropped,
+because the gateway may not be able to determine their destination VPC. In
+particular, with PAT set for a given prefix, **ICMP and all non-TCP or non-UDP
+overlay traffic will be dropped** if trying to use this prefix to communicate
+between the two VPCs associated with the peering.
+
+Configuring different port ranges for TCP and UDP, individually, is not
+currently supported.
+
+#### Stateful PAT
+
+Specifying port ranges for a prefix exposed with stateful NAT is not currently
+supported.
 
 ### Gateway Peering for External Connections
 
