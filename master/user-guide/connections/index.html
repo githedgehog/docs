@@ -2027,11 +2027,6 @@ the Fabric features.</p>
 <p>A Mesh connection is used between a pair of leaf switches directly connected to each other, without the need
 for a spine switch in between. This can be used to create smaller mesh topologies, or to connect border leaves
 to the fabric when there are no available spine ports.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Mesh connections have major limitations on TH5-based devices. See the
-<a href="../../known-limitations/known-limitations/#mesh-limitations-on-th5-based-devices">Known Limitations</a> section for details.</p>
-</div>
 <p>Here's an example YAML definition of a Mesh connection between two leaves:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
@@ -2135,8 +2130,7 @@ communities as well as granularly controlling what gets advertised and which rou
 <p>These connection types are for gateway to spine connections. These connections
 will carry the traffic between VPCs that need network services, like NAT. More
 details about the Gateway are in the <a href="../gateway/">Gateway section</a>. In a mesh
-topology the connections will be between gateway and the leaf nodes. Note that
-gateway is not supported with mesh connections on TH5 leafs.</p>
+topology the connections will be between gateway and the leaf nodes.</p>
 <div class="language-yaml annotate highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
@@ -2187,7 +2181,7 @@ gateway is not supported with mesh connections on TH5 leafs.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2026</span>
   </span>
 
     

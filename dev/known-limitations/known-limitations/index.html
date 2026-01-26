@@ -1525,30 +1525,6 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#mesh-limitations-on-th5-based-devices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mesh limitations on TH5-based devices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mesh limitations on TH5-based devices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#known-workarounds_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Known workarounds
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#breakout-and-cmis-transceiver-initialization-issues-on-ds5000" class="md-nav__link">
     <span class="md-ellipsis">
       Breakout and CMIS transceiver initialization issues on DS5000
@@ -1850,30 +1826,6 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#mesh-limitations-on-th5-based-devices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mesh limitations on TH5-based devices
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mesh limitations on TH5-based devices">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#known-workarounds_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Known workarounds
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#breakout-and-cmis-transceiver-initialization-issues-on-ds5000" class="md-nav__link">
     <span class="md-ellipsis">
       Breakout and CMIS transceiver initialization issues on DS5000
@@ -1945,7 +1897,6 @@ working hard to address:</p>
 <li><a href="#deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail">Deleting a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and creating a new one right away can cause the agent to fail</a></li>
 <li><a href="#configuration-not-allowed-when-port-is-member-of-portchannel">Configuration not allowed when port is member of PortChannel</a></li>
 <li><a href="#external-peering-over-a-connection-originating-from-an-mclag-switch-can-fail"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> peering over a connection originating from an MCLAG switch can fail</a></li>
-<li><a href="#mesh-limitations-on-th5-based-devices">Mesh limitations on TH5-based devices</a></li>
 <li><a href="#breakout-and-cmis-transceiver-initialization-issues-on-ds5000">Breakout and CMIS transceiver initialization issues on DS5000</a></li>
 </ul>
 <h3 id="deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail">Deleting a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and creating a new one right away can cause the agent to fail</h3>
@@ -1992,22 +1943,6 @@ be dropped with a Destination Unreachable error.</p>
 <p>No connectivity from the workload server(s) in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> towards the prefix routed via the external.</p>
 <h4 id="known-workarounds_2">Known workarounds</h4>
 <p>Connect your externals to non-MCLAG switches instead.</p>
-<h3 id="mesh-limitations-on-th5-based-devices">Mesh limitations on TH5-based devices</h3>
-<p>On TH5-based devices, such as the Celestica DS5000, mesh topologies have major
-limitations:</p>
-<ul>
-<li>Failover of mesh connections using an intermediate mesh node does not
-  work correctly</li>
-<li>Gateway peering of VPCs does not work correctly, i.e. VPCs attached to leaves
-  that are not directly connected to the gateway node cannot peer properly via
-  the gateway</li>
-</ul>
-<p>We are investigating these issues together with our partners to determine the
-root cause and possible workarounds.</p>
-<h4 id="known-workarounds_3">Known workarounds</h4>
-<p>None. We recommend avoiding mesh topologies on TH5-based devices for the
-time being, with the exception of 2-node topologies without gateway, where
-the above issues would not apply.</p>
 <h3 id="breakout-and-cmis-transceiver-initialization-issues-on-ds5000">Breakout and CMIS transceiver initialization issues on DS5000</h3>
 <p>On Celestica DS5000 devices, certain transceivers using the Common Management Interface Specification (CMIS) fail to initialize properly under specific conditions.</p>
 <p>CMIS is an open standard for managing high-speed pluggable transceivers, providing a uniform way for the network operating system to interact with and monitor them.</p>
@@ -2049,7 +1984,7 @@ the above issues would not apply.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 9, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2026</span>
   </span>
 
     
