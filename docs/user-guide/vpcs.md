@@ -46,9 +46,9 @@ spec:
       isolated: true # Makes subnet isolated from other subnets within the VPC (doesn't affect VPC peering)
       restricted: true # Causes all hosts in the subnet to be isolated from each other
 
-    thrird-party-dhcp: # Another subnet
+    third-party-dhcp: # Another subnet
       dhcp:
-        relay: 10.99.0.100/24 # Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection
+        relay: 10.99.0.100/24 # Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using a static External
       subnet: "10.10.2.0/24"
       vlan: 1002
 
@@ -282,5 +282,3 @@ user@server ~$ ip route
 10.10.0.1/24 via 10.10.0.1 dev enp2s1.1000 proto dhcp src 10.10.0.4 metric 1024 # Route for VPC subnet gateway
 10.10.0.1 dev enp2s1.1000 proto dhcp scope link src 10.10.0.4 metric 1024
 ```
-
-
