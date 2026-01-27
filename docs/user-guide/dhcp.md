@@ -266,4 +266,4 @@ spec:
 ```
 
 !!! note "External DHCP Server Access"
-    The external DHCP server must be reachable from the fabric. Use a [StaticExternal connection](connections.md#staticexternal) to provide connectivity to the DHCP server.
+    The external DHCP server must be reachable from the fabric. Use [static Externals](external.md#static-externals) to provide connectivity to the DHCP server.
