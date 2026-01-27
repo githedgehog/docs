@@ -1,8 +1,8 @@
 # External Peering
 
-Hedgehog Fabric uses the Border Leaf concept to exchange VPC routes outside the Fabric and provide L3 connectivity. The
-`External Peering` feature allows you to set up an external peering endpoint and to enforce several policies between
-internal and external endpoints.
+A Border Leaf can be used to exchange VPC routes with external systems. The `External Peering` feature in Hedgehog Fabric
+allows users to set up an external peering endpoint and to enforce policies between internal and external endpoints.
+Alternatively, the Hedgehog Gateway can be used to provide connectivity via an L2 endpoint directly connected to a Border Leaf.
 
 !!! note
     Hedgehog Fabric does not operate Edge side devices.
@@ -16,26 +16,33 @@ Border Leaves (or Borders) can connect to several Edge devices.
 !!! note
     External Peering is only available on the switch devices that are capable for sub-interfaces.
 
-### Connect Border Leaf to Edge device
+Hedgehog Fabric supports two types of Edge devices: BGP-speaking (or L3) externals, and Layer 2 (L2) externals.
 
-In order to distinguish VPC traffic, an Edge device should be able to:
+### Connect a Border Leaf to an Edge device
 
+To separate VPC traffic, the Edge device is typically connected to a Border Leaf using a VLAN.
+Additionally, if using the BGP speaker model for external peering, the Edge device should also be capable of:
 
-- Set up BGP IPv4 to advertise and receive routes from the Fabric
-- Connect to a Fabric Border Leaf over VLAN
-- Be able to mark egress routes towards the Fabric with BGP Communities
-- Be able to filter ingress routes from the Fabric by BGP Communities
+- Setting up BGP IPv4 to advertise and receive routes from the Fabric
+- Marking egress routes towards the Fabric with BGP Communities
+- Filtering ingress routes from the Fabric by BGP Communities
 
 All other filtering and processing of L3 Routed Fabric traffic should be done on the Edge devices.
 
 ### Control Plane
 
-The Fabric shares VPC routes with Edge devices via BGP. Peering is done over VLAN in IPv4 Unicast AFI/SAFI.
+For L3 externals, the Hedgehog Fabric shares VPC routes with Edge devices via BGP; peering is done over VLAN in IPv4 Unicast AFI/SAFI.
+
+For L2 externals, the Hedgehog Gateway advertises routes to the prefixes specified in the API, using the Edge device IP as next hop.
+Traffic reaching the Edge device will appear to be coming from one of a set of assigned Gateway IPs.
 
 ### Data Plane
 
-VPC L3 routable traffic will be tagged with VLAN and sent to Edge device. Later processing of VPC traffic
-(NAT, PBR, etc) should happen on Edge devices.
+For L3 externals, VPC L3 routable traffic will be tagged with VLAN at a Border Leaf and sent to the Edge device.
+Later processing of VPC traffic (NAT, PBR, etc) should happen on Edge devices.
+
+For L2 externals, traffic will first go through the Gateway, where it will be NATed using one of the assigned IPs.
+It will then be forwarded to a Border Leaf, where it will be VLAN tagged and forwarded to the Edge device.
 
 ### VPC access to Edge device
 
@@ -44,13 +51,35 @@ the VPC can export to Edge devices and import from the Edge devices.
 
 ## API and implementation
 
-### External
+### Connection
 
-General configuration starts with the specification of `External` objects. Each object of `External` type can represent
-a set of Edge devices, or a single BGP instance on Edge device, or any other united Edge entities that can be described
-with the following configuration:
+A `Connection` of type `external` is used to identify the switch port on Border Leaf that is cabled with an Edge device.
 
-- Name of `External`
+```yaml
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: # specified or generated
+spec:
+  external:
+    link:
+      switch:
+        port: ds3000/E1/1
+```
+
+A `Connection` object can be used with both BGP-speaking and L2 `Externals`.
+
+### BGP-speaking Externals
+
+General configuration starts with the specification of `External` objects. In this section we will introduce the
+BGP-speaking externals and their attachments.
+
+#### BGP-speaking External object
+
+Each object of `External` type can represent a set of Edge devices, or a single BGP instance on Edge device, or
+any other united Edge entities that can be described with the following configuration:
+
+- Name of the `External`
 - Inbound routes marked with the dedicated BGP community
 - Outbound routes marked with the dedicated community
 
@@ -67,25 +96,9 @@ spec:
   outboundCommunity: # BGP Standard Community required to be assigned on prefixes advertised from Fabric
 ```
 
-### Connection
+#### BGP-speaking External Attachment object
 
-A `Connection` of type `external` is used to identify the switch port on Border leaf that is cabled with an Edge device.
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: # specified or generated
-spec:
-  external:
-    link:
-      switch:
-        port: ds3000/E1/1
-```
-
-### External Attachment
-
-`External Attachment` defines BGP Peering and traffic connectivity between a Border leaf and `External`. Attachments are
+An `External Attachment` defines BGP Peering and traffic connectivity between a Border Leaf and `External`. Attachments are
 bound to a `Connection` with type `external` and they specify an optional `vlan` that will be used to segregate
 particular Edge peering.
 
@@ -107,10 +120,15 @@ spec:
 
 Several `External Attachment` can be configured for the same `Connection` but for different `vlan`.
 
-### External VPC Peering
+#### BGP-speaking External VPC Peering
 
-To allow a specific VPC to have access to Edge devices, bind the VPC to a specific `External` object. To do so, define
-an `External Peering` object.
+To allow a specific VPC to have access to BGP-speaking Edge devices, bind the VPC to a specific `External` object.
+
+!!! note
+    External VPC Peering is only supported for BGP-speaking externals. For L2 externals, see
+    [Gateway Peering for External Connections](gateway.md#gateway-peering-for-external-connections).
+
+To do so, define an `External Peering` object.
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1beta1
@@ -134,7 +152,7 @@ spec:
 equal to 32, effectively permitting all prefixes within the specified one. Use `0.0.0.0/0` for any route, including the
 default route.
 
-This example allows _any_ IPv4 prefix that came from `External`:
+The following example allows _any_ IPv4 prefix learned from the `External`:
 
 ```yaml
 spec:
@@ -145,7 +163,7 @@ spec:
       - prefix: 0.0.0.0/0 # Any route will be allowed including default route
 ```
 
-This example allows all prefixes that match the default route, with any prefix length:
+The following example only allows routes in the `77.0.0.0/8` prefix, with any prefix length:
 
 ```yaml
 spec:
@@ -156,15 +174,75 @@ spec:
       - prefix: 77.0.0.0/8 # Any route that belongs to the specified prefix is allowed (such as 77.0.0.0/8 or 77.1.2.0/24)
 ```
 
+### L2 Externals
+
+L2 externals are helpful when the Edge device expects a direct layer-2 connection to the Fabric, as opposed to the BGP-speaking
+case we described so far. As far as the Edge device is concerned, traffic from the Fabric should come from a directly connected
+device or set of devices, for which the Edge device operator provides IP addresses using our APIs. Prefixes advertised by the
+Edge device can be then exposed to VPCs in the Fabric using the Hedgehog Gateway.
+
+#### L2 External object
+
+An L2 `External` uses the same base CRD of the BGP-speaking case, but it does away with
+BGP communities. However, the `External` should provide a list of prefixes that are reachable
+via itself: since there is no routing protocol involved here, these prefixes have to be advertised
+manually via the API.
+
+Like its BGP-speaking counterpart, an L2 `External` should be bound to an IPv4 namespace to avoid prefix overlap.
+
+```yaml
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: External
+metadata:
+  name: ###
+spec:
+  ipv4Namespace: # VPC IP Namespace
+  l2:
+    prefixes:
+      - # one or more prefixes that are reachable via the Edge device
+```
+
+#### L2 External Attachment object
+
+The same `External Attachment` object we saw previously is used for L2 externals; like for `Externals`, some of the fields specific
+to BGP-speaking attachments will be left empty, and additional L2-specific configuration is required. Specifically, we require:
+- the IP address to be used as next hop for traffic destined to the Edge device;
+- an optional VLAN to segregate traffic on the external connection, use `0` for untagged;
+- a list of IP addresses that the Edge device is prepared to accept as source-address of incoming traffic from the Fabric;
+- an IP address to be configured on the Border Leaf interface connected to the Edge device. This does not have to be in the
+  same subnet as the Edge device or Gateway IPs, in fact it can be any IP address that does not collide with the used addressing.
+  Its only purpose is to allow the enabling of proxy-ARP on the Border Leaf for that particular interface.
+
+```yaml
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: ExternalAttachment
+metadata:
+  name: ###
+spec:
+  connection: # Name of the Connection with type external
+  external: # Name of the External this attachment refers to
+  l2:
+    ip: # IP address of the Edge device port connected to the Border Leaf
+    vlan: # VLAN (optional) ID to tag control and data traffic, use 0 for untagged
+    gatewayIPs:
+    - # One or more IPs (with prefix length) that can be used in Fabric as source address of traffic directed to the Edge device
+    fabricEdgeIP: # IP address (with prefix length) to configure on the port connecting to the Edge device
+```
+
+#### L2 External VPC Peering
+
+To peer VPCs to an L2 external, please see [Gateway Peering for External Connections](gateway.md#gateway-peering-for-external-connections).
+NAT - either stateful or stateless - should be used so that traffic reaching the Edge device has a source address in the allowed range.
+
 ## Examples
 
-This example shows how to peer with the `External` object with name `HedgeEdge`, given a Fabric VPC with name `vpc-1` on
+This example shows how to peer with the BGP-speaking `External` object with name `HedgeEdge`, given a Fabric VPC with name `vpc-1` on
 the Border Leaf `switchBorder` that has a cable connecting it to an Edge device
 on the port `E1/2`. Specifying `vpc-1` is required to receive any prefixes advertised from the `External`.
 
 ### Fabric API configuration
 
-#### External
+#### BGP-speaking External
 
 ```console
 # kubectl fabric external create --name hedgeedge --ipns default --in 65102:5000 --out 5000:65102
@@ -207,7 +285,7 @@ spec:
         port: switchBorder/E1/2
 ```
 
-#### ExternalAttachment
+#### BGP-speaking ExternalAttachment
 
 Specified in `wiring` diagram
 
