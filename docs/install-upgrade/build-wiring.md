@@ -207,6 +207,9 @@ The dotted line in the diagram shows the traffic flow for local peering. The tra
 
 #### Remote VPC Peering
 
+!!! warning "Deprecated"
+    Remote peering is being deprecated. Using local peering is encouraged.
+
 Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the VPC's are not present. This kind of peering allows peer traffic between different VPCs at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.
 
 ``` mermaid

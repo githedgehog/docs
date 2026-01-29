@@ -155,6 +155,9 @@ spec:
 
 ### Remote VPC peering
 
+!!! warning "Deprecated"
+    Remote peering is being deprecated. Using local peering is encouraged.
+
 ```yaml
 apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPCPeering

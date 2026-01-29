@@ -43,7 +43,7 @@ Wiring Diagram consists of the following resources:
     * __VPC__: Virtual Private Cloud, similar to a public cloud VPC, provides an isolated private network for the
       resources, with support for multiple subnets, each with user-defined VLANs and optional DHCP service
     * __VPCAttachment__: represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding
-    * __VPCPeering__: enables VPC-to-VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leaves)
+    * __VPCPeering__: enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering
 * External API
     * __External__: definition of the "external system" to peer with (could be one or multiple devices such as edge/provider routers)
     * __ExternalAttachment__: configuration for a specific switch (using Connection object) describing how it connects to an external system
