@@ -75,10 +75,15 @@ supports two different peering modes:
   automatically creates a stub VPC for peering and imports routes from it. This allows VPCs to peer with each other
   without the need for a dedicated peering leaf. Traffic between the peered VPCs will not leave the switch that connects
   them.
-* Remote Peering: Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
-  point for the 2 VPC's in the fabric. The set of switches to be used for peering is determined by configuration in the
-  peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
-  the peering switch advertise default routes into their specific VRFs identified by the L3VNI. All traffic that does
-  not belong to the VPCs is forwarded to the peering switch which has routes to the other VPCs and gets forwarded from
-  there. This peering mode was introduced as a workaround to previous limitations of the fabric; users are recommended
-  to use local peering instead.
+* Remote Peering:
+
+    !!! warning "Deprecated"
+        Remote peering is being deprecated. Using local peering is encouraged.
+
+    Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
+    point for the 2 VPC's in the fabric. The set of switches to be used for peering is determined by configuration in the
+    peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
+    the peering switch advertise default routes into their specific VRFs identified by the L3VNI. All traffic that does
+    not belong to the VPCs is forwarded to the peering switch which has routes to the other VPCs and gets forwarded from
+    there. This peering mode was introduced as a workaround to previous limitations of the fabric; users are recommended
+    to use local peering instead.
