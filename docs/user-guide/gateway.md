@@ -1,4 +1,4 @@
-# Gateway
+# Gateway overview
 
 The Gateway adds advanced network service capabilities to the fabric,
 complementing its fast, scalable connectivity. The fabric delivers efficient,
