@@ -1,4 +1,4 @@
-# Adding Gateway Node
+# Adding Gateways to the fabric
 
 This section covers adding a gateway node to an existing Fabric. Gateway nodes provide advanced network services (NAT, PAT, firewalling) by
 handling traffic between VPCs or between VPCs and externals using Gateway Peerings.
