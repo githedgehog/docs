@@ -5,158 +5,157 @@ before running VLAB.
 
 ## Initialize VLAB
 
-First, initialize Fabricator by running `hhfab init --dev`. This command creates the `fab.yaml` file, which is the main configuration file for the fabric. This command supports several customization options that are listed in the output of `hhfab init --help`.
+First, initialize Fabricator by running `hhfab init --dev --gw`. This command creates the `fab.yaml` file, which is the main configuration file for the fabric. The `--gw` flag enables the gateway. This command supports several customization options that are listed in the output of `hhfab init --help`.
 
 ```console
-ubuntu@docs:~$ hhfab init --dev
-11:26:52 INF Hedgehog Fabricator version=v0.41.3
-11:26:52 INF Generated initial config
-11:26:52 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
-11:26:52 INF Include wiring files (.yaml) or adjust imported ones dir=include
+ubuntu@docs:~$ hhfab init --dev --gw
+10:26:45 INF Hedgehog Fabricator version=v0.43.1
+10:26:45 INF Generated initial config
+10:26:45 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
+10:26:45 INF Include wiring (fabric/gateway) files (.yaml) or adjust imported ones dir=include
 ```
 ## VLAB Topology
 
 ### Spine-Leaf
 
-By default, `hhfab vlab gen` creates 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 orphan (non-LAG) leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. For an ESLAG-only topology (recommended), use `--mclag-leafs-count=0`. You can also configure the number of spines, leaves, connections, and so on. For example, flags `--spines-count` and `--eslag-leaf-groups` allow you to set the number of spines and ESLAG leaf groups, respectively. For complete options, `hhfab vlab gen -h`.
+To generate a spine-leaf topology, use `hhfab vlab gen`. The following generates an ESLAG (EVPN Multi-Homing) topology:
 
 ```console
-ubuntu@docs:~$ hhfab vlab gen
-11:37:33 INF Hedgehog Fabricator version=v0.41.1
-11:37:33 INF Building VLAB wiring diagram fabricMode=spine-leaf
-11:37:33 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
-11:37:33 INF >>> eslagLeafGroups=2
-11:37:33 INF >>> mclagLeafsCount=2 mclagSessionLinks=2 mclagPeerLinks=2
-11:37:33 INF >>> orphanLeafsCount=1
-11:37:33 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-11:37:33 INF Generated wiring file name=vlab.generated.yaml
+ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 0 --eslag-leaf-groups 2
+10:26:46 INF Hedgehog Fabricator version=v0.43.1
+10:26:46 INF Building VLAB wiring diagram fabricMode=spine-leaf
+10:26:46 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
+10:26:46 INF >>> eslagLeafGroups=2
+10:26:46 INF >>> gatewayUplinks=2 gatewayDriver=kernel
+10:26:46 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
+10:26:46 INF >>> orphanLeafsCount=1
+10:26:46 INF >>> mclagServers=0 eslagServers=2 unbundledServers=1 bundledServers=1
+10:26:46 INF >>> externalCount=0 externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=0
+10:26:46 INF Generated wiring file name=vlab.generated.yaml
 ```
 
-The default spine-leaf topology with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 orphan leaf is shown below:
+You can customize the topology with flags like `--spines-count` and `--eslag-leaf-groups`. For complete options, run `hhfab vlab gen -h`.
+
+The topology with 2 spines, 2 ESLAG leaves, 1 orphan leaf, and a gateway is shown below:
 
 ```mermaid
 graph TD
 
 %% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
 classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
 classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none
 classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
-subgraph Spines[ ]
-	direction LR
-	subgraph Spine_01_Group [ ]
-		direction TB
-		Spine_01["spine-01<br>spine"]
-	end
-	subgraph Spine_02_Group [ ]
-		direction TB
-		Spine_02["spine-02<br>spine"]
-	end
+subgraph Gateways[" "]
+    direction LR
+    Gateway_1["gateway-1"]
 end
 
-subgraph Leaves[ ]
-	direction LR
-	subgraph MCLAG [MCLAG]
-		direction LR
-		Leaf_01["leaf-01<br>server-leaf"]
-		Leaf_02["leaf-02<br>server-leaf"]
-	end
-
-	subgraph ESLAG [ESLAG]
-		direction LR
-		Leaf_03["leaf-03<br>server-leaf"]
-		Leaf_04["leaf-04<br>server-leaf"]
-	end
-
-	Leaf_05["leaf-05<br>server-leaf"]
+subgraph Spines[" "]
+    direction LR
+    subgraph Spine_01_Group [" "]
+        direction TB
+        Spine_01["spine-01<br>spine"]
+    end
+    subgraph Spine_02_Group [" "]
+        direction TB
+        Spine_02["spine-02<br>spine"]
+    end
 end
 
-subgraph Servers[ ]
-	direction TB
-	Server_03["server-03"]
-	Server_01["server-01"]
-	Server_02["server-02"]
-	Server_04["server-04"]
-	Server_07["server-07"]
-	Server_05["server-05"]
-	Server_06["server-06"]
-	Server_08["server-08"]
-	Server_09["server-09"]
-	Server_10["server-10"]
+subgraph Leaves[" "]
+    direction LR
+    subgraph Eslag_1 ["eslag-1"]
+        direction LR
+        Leaf_01["leaf-01<br>server-leaf"]
+        Leaf_02["leaf-02<br>server-leaf"]
+    end
+
+    Leaf_03["leaf-03<br>server-leaf"]
+end
+
+subgraph Servers[" "]
+    direction TB
+    Server_03["server-03"]
+    Server_01["server-01"]
+    Server_02["server-02"]
+    Server_04["server-04"]
+    Server_05["server-05"]
+    Server_06["server-06"]
 end
 
 %% Connections
 
+%% Gateway connections
+Gateway_1 ---|"enp2s2↔E1/7"| Spine_02
+Gateway_1 ---|"enp2s1↔E1/7"| Spine_01
+
 %% Spine_01 -> Leaves
-Spine_01 ---|"E1/8↔E1/1<br>E1/9↔E1/2"| Leaf_01
-Spine_01 ---|"E1/10↔E1/4<br>E1/9↔E1/3"| Leaf_02
+Spine_01 ---|"E1/4↔E1/1<br>E1/5↔E1/2"| Leaf_01
+Spine_01 ---|"E1/6↔E1/4<br>E1/5↔E1/3"| Leaf_02
 Spine_01 ---|"E1/4↔E1/5<br>E1/5↔E1/6"| Leaf_03
-Spine_01 ---|"E1/4↔E1/9<br>E1/5↔E1/10"| Leaf_05
-Spine_01 ---|"E1/5↔E1/7<br>E1/6↔E1/8"| Leaf_04
 
 %% Spine_02 -> Leaves
-Spine_02 ---|"E1/11↔E1/3<br>E1/12↔E1/4"| Leaf_02
-Spine_02 ---|"E1/7↔E1/7<br>E1/8↔E1/8"| Leaf_04
-Spine_02 ---|"E1/11↔E1/2<br>E1/10↔E1/1"| Leaf_01
+Spine_02 ---|"E1/7↔E1/3<br>E1/8↔E1/4"| Leaf_02
+Spine_02 ---|"E1/6↔E1/1<br>E1/7↔E1/2"| Leaf_01
 Spine_02 ---|"E1/6↔E1/5<br>E1/7↔E1/6"| Leaf_03
-Spine_02 ---|"E1/7↔E1/10<br>E1/6↔E1/9"| Leaf_05
 
 %% Leaves -> Servers
-Leaf_01 ---|"enp2s1↔E1/6"| Server_02
-Leaf_01 ---|"enp2s1↔E1/7"| Server_03
-Leaf_01 ---|"enp2s1↔E1/5"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/3"| Server_03
 
-Leaf_02 ---|"enp2s2↔E1/5"| Server_01
-Leaf_02 ---|"enp2s2↔E1/6"| Server_02
-Leaf_02 ---|"enp2s1↔E1/7<br>enp2s2↔E1/8"| Server_04
+Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
 
+Leaf_03 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_06
 Leaf_03 ---|"enp2s1↔E1/1"| Server_05
-Leaf_03 ---|"enp2s1↔E1/2"| Server_06
-Leaf_03 ---|"enp2s1↔E1/3"| Server_07
 
-Leaf_04 ---|"enp2s2↔E1/2"| Server_06
-Leaf_04 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_08
-Leaf_04 ---|"enp2s2↔E1/1"| Server_05
+%% Mesh connections
 
-Leaf_05 ---|"enp2s1↔E1/1"| Server_09
-Leaf_05 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_10
+%% External connections
 
 subgraph Legend["Network Connection Types"]
-	direction LR
-
-	%% Create invisible nodes for the start and end of each line
-	L1(( )) --- |"Fabric Links"| L2(( ))
-	L3(( )) --- |"MCLAG Server Links"| L4(( ))
-	L5(( )) --- |"Bundled Server Links"| L6(( ))
-	L7(( )) --- |"Unbundled Server Links"| L8(( ))
-	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+    direction LR
+    %% Create invisible nodes for the start and end of each line
+    L1(( )) --- |"Fabric Links"| L2(( ))
+    L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
+    L7(( )) --- |"Unbundled Server Links"| L8(( ))
+    L9(( )) --- |"ESLAG Server Links"| L10(( ))
+    L11(( )) --- |"Gateway Links"| L12(( ))
+    P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
+class Gateway_1 gateway
 class Spine_01,Spine_02 spine
-class Leaf_01,Leaf_02,Leaf_03,Leaf_04,Leaf_05 leaf
-class Server_03,Server_01,Server_02,Server_04,Server_07,Server_05,Server_06,Server_08,Server_09,Server_10 server
-class MCLAG mclag
-class ESLAG eslag
-class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10 hidden
+class Leaf_01,Leaf_02,Leaf_03 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
+class Eslag_1 eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 0,1,2,3,4,5,6,7,8,9 stroke:#CC3333,stroke-width:4px
-linkStyle 10,12,13,14 stroke:#99CCFF,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 15,20,23 stroke:#66CC66,stroke-width:4px
-linkStyle 16,17,19,21 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 11,18,22 stroke:#999999,stroke-width:2px
-linkStyle 24 stroke:#B85450,stroke-width:2px
-linkStyle 25 stroke:#6C8EBF,stroke-width:2px,stroke-dasharray:5 5
-linkStyle 26 stroke:#82B366,stroke-width:2px
-linkStyle 27 stroke:#000000,stroke-width:2px
-linkStyle 28 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 0,1 stroke:#CC9900,stroke-width:2px
+linkStyle 2,3,4,5,6,7 stroke:#CC3333,stroke-width:4px
+linkStyle 11,14 stroke:#66CC66,stroke-width:4px
+linkStyle 8,9,12,13 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 10,15 stroke:#999999,stroke-width:2px
+linkStyle 16 stroke:#B85450,stroke-width:2px
+linkStyle 17 stroke:#82B366,stroke-width:2px
+linkStyle 18 stroke:#000000,stroke-width:2px
+linkStyle 19 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 20 stroke:#CC9900,stroke-width:2px
+linkStyle 21 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
+style Gateways fill:none,stroke:none
 style Spines fill:none,stroke:none
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
@@ -277,9 +276,8 @@ style Servers fill:none,stroke:none
 
 ### Gateway
 
-Gateway could be added by adding `--gateway` flag to the `hhfab init` command and it'll be automatically added connected
-to two spines in case of spine-leaf topology or two leafs in case of the mesh topology, number of uplinks could be
-controlled using flags on the `hhfab vlab gen` command.
+The gateway is enabled by adding the `--gw` flag to `hhfab init`. It connects to two spines in spine-leaf topology
+or two leaves in mesh topology. The number of uplinks can be controlled using flags on `hhfab vlab gen`.
 
 ### Lightweight Spine-Leaf
 A default spine-leaf topology in VLAB requests more CPU and RAM than is commonly available. The lightweight
@@ -388,55 +386,50 @@ prerequisites for running the VLAB.
 
 ## Build the Installer and Start VLAB
 
-To build and start the virtual machines, use `hhfab vlab up`. For successive runs, use the `--kill-stale` flag to ensure that any virtual machines from a previous run are gone. `hhfab vlab up` runs in the foreground and does not return, which allows you to stop all VLAB VMs by simply pressing `Ctrl + C`.
+To build and start the virtual machines, use `hhfab vlab up`. This command runs in the foreground and does not return, which allows you to stop all VLAB VMs by pressing `Ctrl + C`.
 ```console
 ubuntu@docs:~$ hhfab vlab up
-11:48:22 INF Hedgehog Fabricator version=v0.36.1
-11:48:22 INF Wiring hydrated successfully mode=if-not-present
-11:48:22 INF VLAB config created file=vlab/config.yaml
-11:48:22 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog
-11:48:22 INF Building installer control=control-1
-11:48:22 INF Adding recipe bin to installer control=control-1
-11:48:24 INF Adding k3s and tools to installer control=control-1
-11:48:25 INF Adding zot to installer control=control-1
-11:48:25 INF Adding cert-manager to installer control=control-1
-11:48:26 INF Adding config and included wiring to installer control=control-1
-11:48:26 INF Adding airgap artifacts to installer control=control-1
-11:48:36 INF Archiving installer path=/home/ubuntu/result/control-1-install.tgz control=control-1
-11:48:45 INF Creating ignition path=/home/ubuntu/result/control-1-install.ign control=control-1
-11:48:46 INF Taps and bridge are ready count=8
-11:48:46 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog
-11:48:46 INF Preparing new vm=control-1 type=control
-11:48:51 INF Preparing new vm=server-01 type=server
-11:48:52 INF Preparing new vm=server-02 type=server
-11:48:54 INF Preparing new vm=server-03 type=server
-11:48:55 INF Preparing new vm=server-04 type=server
-11:48:57 INF Preparing new vm=server-05 type=server
-11:48:58 INF Preparing new vm=server-06 type=server
-11:49:00 INF Preparing new vm=server-07 type=server
-11:49:01 INF Preparing new vm=server-08 type=server
-11:49:03 INF Preparing new vm=server-09 type=server
-11:49:04 INF Preparing new vm=server-10 type=server
-11:49:05 INF Preparing new vm=leaf-01 type=switch
-11:49:06 INF Preparing new vm=leaf-02 type=switch
-11:49:06 INF Preparing new vm=leaf-03 type=switch
-11:49:06 INF Preparing new vm=leaf-04 type=switch
-11:49:06 INF Preparing new vm=leaf-05 type=switch
-11:49:06 INF Preparing new vm=spine-01 type=switch
-11:49:06 INF Preparing new vm=spine-02 type=switch
-11:49:06 INF Starting VMs count=18 cpu="54 vCPUs" ram="49664 MB" disk="550 GB"
-11:49:59 INF Uploading control install vm=control-1 type=control
-11:53:39 INF Running control install vm=control-1 type=control
-11:53:40 INF control-install: 01:53:39 INF Hedgehog Fabricator Recipe version=v0.36.1 vm=control-1
-11:53:40 INF control-install: 01:53:39 INF Running control node installation vm=control-1
-12:00:32 INF control-install: 02:00:31 INF Control node installation complete vm=control-1
-12:00:32 INF Control node is ready vm=control-1 type=control
-12:00:32 INF All VMs are ready
+17:25:31 INF Hedgehog Fabricator version=v0.43.1
+17:25:31 INF Wiring hydrated successfully mode=if-not-present
+17:25:31 INF VLAB config loaded file=vlab/config.yaml
+17:25:31 INF Downloader cache=/home/ubuntu/.hhfab-cache/v1 repo=ghcr.io prefix=githedgehog
+17:25:31 INF Building control node installers
+17:25:31 INF Building installer name=control-1 type=control mode=iso
+17:25:31 INF Adding recipe bin and config to installer name=control-1 type=control mode=iso
+17:25:33 INF Adding k3s and tools to installer name=control-1 type=control mode=iso
+17:25:33 INF Adding toolbox to installer name=control-1 type=control mode=iso
+17:25:34 INF Adding zot to installer name=control-1 type=control mode=iso
+17:25:34 INF Adding flatcar upgrade bin to installer name=control-1 type=control mode=iso
+17:25:34 INF Adding cert-manager to installer name=control-1 type=control mode=iso
+17:25:34 INF Adding bash-completion to installer name=control-1 type=control mode=iso control=control-1
+17:25:34 INF Adding config and wiring files to installer name=control-1 type=control mode=iso
+17:25:34 INF Adding CLIs to installer name=control-1 type=control mode=iso
+17:25:35 INF Building installer image, may take up to 5-10 minutes name=control-1 type=control mode=iso
+...
+17:25:48 INF Taps and bridge are ready count=7
+17:25:48 INF Preparing new vm=control-1 type=control
+17:26:28 INF Preparing new vm=gateway-1 type=gateway
+17:27:12 INF Preparing new vm=server-01 type=server
+17:27:14 INF Preparing new vm=server-02 type=server
+17:27:16 INF Preparing new vm=server-03 type=server
+17:27:17 INF Preparing new vm=server-04 type=server
+17:27:19 INF Preparing new vm=server-05 type=server
+17:27:21 INF Preparing new vm=server-06 type=server
+17:27:23 INF Preparing new vm=leaf-01 type=switch
+17:27:23 INF Preparing new vm=leaf-02 type=switch
+17:27:23 INF Preparing new vm=leaf-03 type=switch
+17:27:23 INF Preparing new vm=spine-01 type=switch
+17:27:23 INF Preparing new vm=spine-02 type=switch
+17:27:24 INF Starting VMs count=13 cpu="46 vCPUs" ram="42496 MB" disk="460 GB"
+...
+17:35:11 INF install(control-1): Jan 30 17:35:11 control-1 hhfab-recipe[1529]: Jan 30 17:35:11.024 INF Control node installation complete
+17:35:21 INF All VMs are ready
+17:35:21 INF All K8s nodes are ready
+17:35:21 INF VLAB is ready
 
 ```
-When the message `INF Control node is ready vm=control-1 type=control` from the installer's output means that the installer has finished. After this line
-has been displayed, you can get into the control node and other VMs to watch the Fabric coming up and switches getting
-provisioned. See [Accessing the VLAB](#accessing-the-vlab).
+When the message `INF VLAB is ready` appears, the installer has finished. After this, you can get into the control
+node and other VMs to watch the Fabric coming up and switches getting provisioned. See [Accessing the VLAB](#accessing-the-vlab).
 
 ## Enable Outside connectivity from VLAB VMs
 
@@ -458,25 +451,20 @@ You can select device you want to access or pass the name using the `--vm` flag.
 ```console
 ubuntu@docs:~$ hhfab vlab ssh
 Use the arrow keys to navigate: ↓ ↑ → ←  and / toggles search
-SSH to VM:
+Select target for ssh:
   🦔 control-1
+  gateway-1
+  leaf-01
+  leaf-02
+  leaf-03
   server-01
   server-02
   server-03
   server-04
   server-05
   server-06
-  leaf-01
-  leaf-02
-  leaf-03
   spine-01
   spine-02
-
------------ VM Details ------------
-ID:             0
-Name:           control-1
-Ready:          true
-Basedir:        .hhfab/vlab-vms/control-1
 ```
 ### Default credentials
 
@@ -497,12 +485,12 @@ After the switches are provisioned, the command returns something like this:
 
 ```console
 core@control-1 ~ $ kubectl get agents -o wide
-NAME       ROLE          DESCR           HWSKU                      ASIC   HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE
-leaf-01    server-leaf   VS-01 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     30s         5m5s      4          4          v0.23.0   4.1.1-Enterprise_Base   5m5s      4          10m
-leaf-02    server-leaf   VS-02 MCLAG 1   DellEMC-S5248f-P-25G-DPB   vs     27s         3m30s     3          3          v0.23.0   4.1.1-Enterprise_Base   3m30s     3          10m
-leaf-03    server-leaf   VS-03           DellEMC-S5248f-P-25G-DPB   vs     18s         3m52s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m52s     4          10m
-spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   vs     26s         3m59s     3          3          v0.23.0   4.1.1-Enterprise_Base   3m59s     3          10m
-spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   vs     19s         3m53s     4          4          v0.23.0   4.1.1-Enterprise_Base   3m53s     4          10m
+NAME       ROLE          DESCR           HWSKU                      HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE
+leaf-01    server-leaf   VS-01 ESLAG 1   DellEMC-S5248f-P-25G-DPB   11s         2m59s     1          1          v0.96.2   4.5.0-Enterprise_Base   2m59s     1          10m
+leaf-02    server-leaf   VS-02 ESLAG 1   DellEMC-S5248f-P-25G-DPB   29s         3m17s     1          1          v0.96.2   4.5.0-Enterprise_Base   3m17s     1          10m
+leaf-03    server-leaf   VS-03           DellEMC-S5248f-P-25G-DPB   19s         3m7s      1          1          v0.96.2   4.5.0-Enterprise_Base   3m7s      1          10m
+spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   28s         3m16s     1          1          v0.96.2   4.5.0-Enterprise_Base   3m16s     1          10m
+spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   17s         3m6s      1          1          v0.96.2   4.5.0-Enterprise_Base   3m6s      1          10m
 ```
 
 The `Heartbeat` column shows how long ago the switch has sent the heartbeat to the control node. The `Applied` column
@@ -524,12 +512,12 @@ For example, to get the list of switches, run:
 
 ```console
 core@control-1 ~ $ kubectl get switch
-NAME       ROLE          DESCR           GROUPS   LOCATIONUUID                           AGE
-leaf-01    server-leaf   VS-01 MCLAG 1            5e2ae08a-8ba9-599a-ae0f-58c17cbbac67   6h10m
-leaf-02    server-leaf   VS-02 MCLAG 1            5a310b84-153e-5e1c-ae99-dff9bf1bfc91   6h10m
-leaf-03    server-leaf   VS-03                    5f5f4ad5-c300-5ae3-9e47-f7898a087969   6h10m
-spine-01   spine         VS-04                    3e2c4992-a2e4-594b-bbd1-f8b2fd9c13da   6h10m
-spine-02   spine         VS-05                    96fbd4eb-53b5-5a4c-8d6a-bbc27d883030   6h10m
+NAME       PROFILE   ROLE          DESCR           GROUPS        AGE
+leaf-01    vs        server-leaf   VS-01 ESLAG 1   ["eslag-1"]   10m
+leaf-02    vs        server-leaf   VS-02 ESLAG 1   ["eslag-1"]   10m
+leaf-03    vs        server-leaf   VS-03                         10m
+spine-01   vs        spine         VS-04                         10m
+spine-02   vs        spine         VS-05                         10m
 ```
 
 Similarly, to get the list of servers, run:
@@ -537,33 +525,34 @@ Similarly, to get the list of servers, run:
 ```console
 core@control-1 ~ $ kubectl get server
 NAME        TYPE      DESCR                        AGE
-control-1   control   Control node                 6h10m
-server-01             S-01 MCLAG leaf-01 leaf-02   6h10m
-server-02             S-02 MCLAG leaf-01 leaf-02   6h10m
-server-03             S-03 Unbundled leaf-01       6h10m
-server-04             S-04 Bundled leaf-02         6h10m
-server-05             S-05 Unbundled leaf-03       6h10m
-server-06             S-06 Bundled leaf-03         6h10m
+control-1   control   Control node                 10m
+server-01             S-01 ESLAG leaf-01 leaf-02   10m
+server-02             S-02 ESLAG leaf-01 leaf-02   10m
+server-03             S-03 Unbundled leaf-01       10m
+server-04             S-04 Bundled leaf-02         10m
+server-05             S-05 Unbundled leaf-03       10m
+server-06             S-06 Bundled leaf-03         10m
 ```
 
 For connections, use:
 
 ```console
 core@control-1 ~ $ kubectl get connection
-NAME                                 TYPE           AGE
-leaf-01--mclag-domain--leaf-02       mclag-domain   6h11m
-server-01--mclag--leaf-01--leaf-02   mclag          6h11m
-server-02--mclag--leaf-01--leaf-02   mclag          6h11m
-server-03--unbundled--leaf-01        unbundled      6h11m
-server-04--bundled--leaf-02          bundled        6h11m
-server-05--unbundled--leaf-03        unbundled      6h11m
-server-06--bundled--leaf-03          bundled        6h11m
-spine-01--fabric--leaf-01            fabric         6h11m
-spine-01--fabric--leaf-02            fabric         6h11m
-spine-01--fabric--leaf-03            fabric         6h11m
-spine-02--fabric--leaf-01            fabric         6h11m
-spine-02--fabric--leaf-02            fabric         6h11m
-spine-02--fabric--leaf-03            fabric         6h11m
+NAME                                 TYPE        AGE
+server-01--eslag--leaf-01--leaf-02   eslag       10m
+server-02--eslag--leaf-01--leaf-02   eslag       10m
+server-03--unbundled--leaf-01        unbundled   10m
+server-04--bundled--leaf-02          bundled     10m
+server-05--unbundled--leaf-03        unbundled   10m
+server-06--bundled--leaf-03          bundled     10m
+spine-01--fabric--leaf-01            fabric      10m
+spine-01--fabric--leaf-02            fabric      10m
+spine-01--fabric--leaf-03            fabric      10m
+spine-01--gateway--gateway-1         gateway     10m
+spine-02--fabric--leaf-01            fabric      10m
+spine-02--fabric--leaf-02            fabric      10m
+spine-02--fabric--leaf-03            fabric      10m
+spine-02--gateway--gateway-1         gateway     10m
 ```
 
 For IPv4 and VLAN namespaces, use:
@@ -571,11 +560,11 @@ For IPv4 and VLAN namespaces, use:
 ```console
 core@control-1 ~ $ kubectl get ipns
 NAME      SUBNETS           AGE
-default   ["10.0.0.0/16"]   6h12m
+default   ["10.0.0.0/16"]   10m
 
 core@control-1 ~ $ kubectl get vlanns
 NAME      AGE
-default   6h12m
+default   10m
 ```
 
 ## Reset VLAB
