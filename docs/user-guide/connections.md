@@ -58,7 +58,35 @@ spec:
         port: s5248-01/E1/2
 ```
 
+### ESLAG
+
+ESLAG (EVPN Multi-Homing) server connections are used to connect servers to 2-4 switches using multiple ports.
+This is the recommended approach for multi-homing. Switches should belong to the same redundancy group with
+type `eslag`. The server interfaces should be configured for 802.3ad LACP.
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: server-1--eslag--s5248-01--s5248-02
+  namespace: default
+spec:
+  eslag:
+    links: # Defines multiple links between a single server and 2-4 switches
+    - server:
+        port: server-1/enp2s1
+      switch:
+        port: s5248-01/E1/1
+    - server:
+        port: server-1/enp2s2
+      switch:
+        port: s5248-02/E1/1
+```
+
 ### MCLAG
+
+!!! warning "Deprecated"
+    MCLAG is being deprecated. Use [ESLAG](#eslag) for multi-homing instead.
 
 MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
 Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type `mclag`
@@ -74,31 +102,6 @@ metadata:
 spec:
   mclag:
     links: # Defines multiple links between a single server and a pair of switches
-    - server:
-        port: server-1/enp2s1
-      switch:
-        port: s5248-01/E1/1
-    - server:
-        port: server-1/enp2s2
-      switch:
-        port: s5248-02/E1/1
-```
-
-### ESLAG
-
-ESLAG server connections are used to connect servers to the 2-4 switches using multiple ports (Multi-homing). Switches
-should belong to the same redundancy group with type `eslag`, but contrary to the MCLAG case, no other configuration is
-required. The server interfaces should be configured for 802.3ad LACP.
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: server-1--eslag--s5248-01--s5248-02
-  namespace: default
-spec:
-  eslag:
-    links: # Defines multiple links between a single server and a 2-4 switches
     - server:
         port: server-1/enp2s1
       switch:

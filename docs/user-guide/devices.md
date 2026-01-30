@@ -139,17 +139,14 @@ spec: {}
 ## Redundancy Groups
 
 Redundancy groups are used to define the redundancy between switches. It's a regular `SwitchGroup` used by multiple
-switches and currently it could be MCLAG or ESLAG (EVPN MH / ESI). A switch can only belong to a single redundancy
-group.
+switches. ESLAG (EVPN Multi-Homing) is the recommended approach and supports up to 4 switches. A switch can only
+belong to a single redundancy group.
 
-MCLAG is only supported for pairs of switches and ESLAG is supported for up to 4 switches. Multiple types of redundancy
-groups can be used in the fabric simultaneously.
+Connections with type `eslag` are used to define the server connections to switches. They are only supported if the
+switch belongs to a redundancy group with the corresponding type.
 
-Connections with types `mclag` and `eslag` are used to define the servers connections to switches. They are only
-supported if the switch belongs to a redundancy group with the corresponding type.
-
-In order to define a MCLAG or ESLAG redundancy group, you need to create a `SwitchGroup` object and assign it to the
-switches using the `redundancy` field.
+To define an ESLAG redundancy group, create a `SwitchGroup` object and assign it to the switches using the
+`redundancy` field.
 
 Example of switch configured for ESLAG:
 
@@ -174,31 +171,8 @@ spec:
   ...
 ```
 
-And example of switch configured for MCLAG:
-
-```{.yaml .annotate linenums="1" title="MCLAG-switchgroup.yaml"}
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: SwitchGroup
-metadata:
-  name: mclag-1
-  namespace: default
-spec: {}
----
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Switch
-metadata:
-  name: s5248-01
-  namespace: default
-spec:
-  ...
-  redundancy:
-    group: mclag-1
-    type: mclag
-  ...
-```
-
-In case of MCLAG it's required to have a special connection with type `mclag-domain` that defines the peer and session
-links between switches. For more details, see [Connections](./connections.md).
+!!! warning "MCLAG Deprecated"
+    MCLAG is being deprecated. Use ESLAG for multi-homing instead.
 
 ## Servers
 

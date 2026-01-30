@@ -9,7 +9,8 @@ You can find instructions on how to setup VLAB in the [Overview](overview.md) an
 
 ## Default topology
 
-The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 non-MCLAG leaf.
+The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 orphan leaf.
+For an ESLAG-only topology (recommended), use `hhfab vlab gen --mclag-leafs-count=0`.
 
 For more details on customizing topologies see the [Running VLAB](running.md) section.
 
