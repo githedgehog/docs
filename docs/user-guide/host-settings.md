@@ -10,19 +10,12 @@ additional details on options and behavior, consult the [kernel bonding driver][
 [nmanager]: https://networkmanager.dev/docs/admins/
 [netplan]: https://documentation.ubuntu.com/server/explanation/networking/configuring-networks/index.html
 
-## MCLAG / ESLAG
+## Multi-homing
 
-The multi-chassis LAG architecture is a way to provide device redundancy
-in a network architecture. At the physical layer, an MCLAG topology is a single
-server connected to two different switches and, those switches are directly connected
-to each other in addition to being connected to the rest of the fabric.
-
-ESLAG is a similar technology to MCLAG, with the beneficial difference that the
-switches do not need to be directly connected to each other. There can be up to 4
-switches in an ESLAG group, whereas MCLAG is always two switches.
-
-Regardless of whether MCLAG or ESLAG is chosen, the host must configure its two
-(or more) ports using LACP (IEEE 802.3ad).
+ESLAG (EVPN Multi-Homing) is the recommended way to provide device redundancy.
+A server connects to multiple switches (up to 4) without requiring the switches
+to be directly connected to each other. The host must configure its ports using
+LACP (IEEE 802.3ad).
 
 ### Server Settings
 

@@ -18,7 +18,7 @@ ubuntu@docs:~$ hhfab init --dev
 
 ### Spine-Leaf
 
-By default, `hhfab vlab gen` creates 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 orphan (non-LAG) leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. To generate the preceding topology, `hhfab vlab gen`. You can also configure the number of spines, leaves, connections, and so on. For example, flags `--spines-count` and `--mclag-leafs-count` allow you to set the number of spines and MCLAG leaves, respectively. For complete options, `hhfab vlab gen -h`.
+By default, `hhfab vlab gen` creates 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 orphan (non-LAG) leaf with 2 fabric connections (between each spine and leaf), 2 MCLAG peer links and 2 MCLAG session links. For an ESLAG-only topology (recommended), use `--mclag-leafs-count=0`. You can also configure the number of spines, leaves, connections, and so on. For example, flags `--spines-count` and `--eslag-leaf-groups` allow you to set the number of spines and ESLAG leaf groups, respectively. For complete options, `hhfab vlab gen -h`.
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen

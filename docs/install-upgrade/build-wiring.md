@@ -42,7 +42,7 @@ spec:
 
 1. See the [list](../reference/profiles.md) of profile names
 2. More information in the [User Guide](../user-guide/profiles.md#port-naming)
-3. Could be MCLAG, ESLAG or nothing, more details in [Redundancy
+3. Could be ESLAG or nothing, more details in [Redundancy
    Groups](../user-guide/devices.md#redundancy-groups)
 
 ## Design Discussion
@@ -83,8 +83,7 @@ A server connection is a connection used to connect servers to the fabric. The f
 
 - *Unbundled* - A single cable connecting switch to server.
 - *Bundled* - Two or more cables going to a single switch, a LAG or similar.
-- *MCLAG* -  Two cables going to two different switches, also called dual homing. The switches will need a fabric link between them.
-- *ESLAG* - Two to four cables going to different switches, also called multi-homing. If four links are used there will need to be four switches connected to a single server with four NIC ports.
+- *ESLAG* - Two to four cables going to different switches, also called multi-homing (EVPN-MH). If four links are used there will need to be four switches connected to a single server with four NIC ports.
 
 ``` mermaid
 graph TD
@@ -95,45 +94,33 @@ graph TD
     L3([Leaf 3])
     L4([Leaf 4])
     L5([Leaf 5])
-    L6([Leaf 6])
-    L7([Leaf 7])
 
     TS1[Server1]
     TS2[Server2]
     TS3[Server3]
-    TS4[Server4]
 
-    S1 & S2 ---- L1 & L2 & L3 & L4 & L5 & L6 & L7
+    S1 & S2 ---- L1 & L2 & L3 & L4 & L5
     L1 <-- Bundled --> TS1
     L1 <-- Bundled --> TS1
     L1 <-- Unbundled --> TS2
-    L2 <-- MCLAG --> TS3
-    L3 <-- MCLAG --> TS3
-    L4 <-- ESLAG --> TS4
-    L5 <-- ESLAG --> TS4
-    L6 <-- ESLAG --> TS4
-    L7 <-- ESLAG --> TS4
+    L2 <-- ESLAG --> TS3
+    L3 <-- ESLAG --> TS3
+    L4 <-- ESLAG --> TS3
+    L5 <-- ESLAG --> TS3
 
     subgraph VPC 1
     TS1
     TS2
     TS3
-    TS4
-    end
-    
-    subgraph MCLAG
-    L2
-    L3
     end
 
     subgraph ESLAG
+    L2
     L3
     L4
     L5
-    L6
-    L7
     end
-    
+
 ```
 #### Fabric Connections
 
