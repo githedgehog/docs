@@ -28,6 +28,9 @@ features and port naming scheme.
 
 ## Switch Feature Matrix
 
+!!! warning "MCLAG Deprecation"
+    MCLAG is being deprecated in favor of ESLAG (EVPN Multi-Homing) for multi-homing. While still supported, it is recommended to use ESLAG for new deployments.
+
 The following table shows which features are supported by each switch profile:
 
 | Switch Profile | Subinterfaces | ACLs | L2VNI | L3VNI | RoCE | MCLAG | ESLAG | QPN |

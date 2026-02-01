@@ -18,7 +18,7 @@ a spine is being added, it shares the same ASN as the existing spines. For an
 IPv4 address increment the largest IP by one, keep the same netmask.
 
 !!! note
-    If the`Switch` will be used in `ESLAG` or `MCLAG` groups, appropriate groups should exist. Redundancy groups should
+    If the`Switch` will be used in `ESLAG` or `MCLAG` (deprecated) groups, appropriate groups should exist. Redundancy groups should
     be specified in the `Switch` object before creation.
 
 #### Expanding Example
