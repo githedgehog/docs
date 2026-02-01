@@ -3,92 +3,143 @@
 ## Goals
 
 The goal of this demo is to show how to use VPCs, attach and peer them and run test connectivity between the servers.
-Examples are based on the default VLAB topology.
+Examples are based on the VLAB topology described in the [Running VLAB](running.md) section.
 
-You can find instructions on how to setup VLAB in the [Overview](overview.md) and [Running VLAB](running.md) sections.
+## VLAB Topology
 
-## Default topology
+### Spine-Leaf
 
-The default topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves and 1 orphan leaf.
-For an ESLAG-only topology (recommended), use `hhfab vlab gen --mclag-leafs-count=0`.
-
-For more details on customizing topologies see the [Running VLAB](running.md) section.
-
-In the default topology, the following Control Node and Switch VMs are created, the Control Node is connected to every switch, the lines are ommitted for clarity:
+The topology contains 2 spines, 2 ESLAG leaves, 1 orphan leaf, and a gateway as shown below:
 
 ```mermaid
 graph TD
-    S1([Spine 1])
-    S2([Spine 2])
 
-    L1([MCLAG Leaf 1])
-    L2([MCLAG Leaf 2])
-    L3([ESLAG Leaf 3])
-    L4([ESLAG Leaf 4])
-    L5([Leaf 5])
+%% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
+%% Network diagram
+subgraph Gateways[" "]
+    direction LR
+    Gateway_1["gateway-1"]
+end
 
-    L1 & L2 & L5 & L3 & L4 --> S1 & S2
-```
-
-As well as the following test servers, as above Control Node connections are omitted:
-
-```mermaid
-graph TD
-    S1([Spine 1])
-    S2([Spine 2])
-    L1([MCLAG Leaf 1])
-    L2([MCLAG Leaf 2])
-    L3([ESLAG Leaf 3])
-    L4([ESLAG Leaf 4])
-    L5([Leaf 5])
-
-    TS1[Server 1]
-    TS2[Server 2]
-    TS3[Server 3]
-    TS4[Server 4]
-    TS5[Server 5]
-    TS6[Server 6]
-    TS7[Server 7]
-    TS8[Server 8]
-    TS9[Server 9]
-    TS10[Server 10]
-
-    subgraph MCLAG
-    L1
-    L2
+subgraph Spines[" "]
+    direction LR
+    subgraph Spine_01_Group [" "]
+        direction TB
+        Spine_01["spine-01<br>spine"]
     end
-    TS3 --> L1
-    TS1 --> L1
-    TS1 --> L2
+    subgraph Spine_02_Group [" "]
+        direction TB
+        Spine_02["spine-02<br>spine"]
+    end
+end
 
-    TS2 --> L1
-    TS2 --> L2
-
-    TS4 --> L2
-
-    subgraph ESLAG
-    L3
-    L4
+subgraph Leaves[" "]
+    direction LR
+    subgraph Eslag_1 ["eslag-1"]
+        direction LR
+        Leaf_01["leaf-01<br>server-leaf"]
+        Leaf_02["leaf-02<br>server-leaf"]
     end
 
-    TS7 --> L3
-    TS5 --> L3
-    TS5 --> L4
-    TS6 --> L3
-    TS6 --> L4
+    Leaf_03["leaf-03<br>server-leaf"]
+end
 
-    TS8 --> L4
-    TS9 --> L5
-    TS10 --> L5
+subgraph Servers[" "]
+    direction TB
+    Server_03["server-03"]
+    Server_01["server-01"]
+    Server_02["server-02"]
+    Server_04["server-04"]
+    Server_05["server-05"]
+    Server_06["server-06"]
+end
 
-    L1 & L2 & L2 & L3 & L4 & L5 <----> S1 & S2
+%% Connections
+
+%% Gateway connections
+Gateway_1 ---|"enp2s2↔E1/7"| Spine_02
+Gateway_1 ---|"enp2s1↔E1/7"| Spine_01
+
+%% Spine_01 -> Leaves
+Spine_01 ---|"E1/4↔E1/1<br>E1/5↔E1/2"| Leaf_01
+Spine_01 ---|"E1/6↔E1/4<br>E1/5↔E1/3"| Leaf_02
+Spine_01 ---|"E1/4↔E1/5<br>E1/5↔E1/6"| Leaf_03
+
+%% Spine_02 -> Leaves
+Spine_02 ---|"E1/7↔E1/3<br>E1/8↔E1/4"| Leaf_02
+Spine_02 ---|"E1/6↔E1/1<br>E1/7↔E1/2"| Leaf_01
+Spine_02 ---|"E1/6↔E1/5<br>E1/7↔E1/6"| Leaf_03
+
+%% Leaves -> Servers
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/3"| Server_03
+
+Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+
+Leaf_03 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_06
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
+
+%% Mesh connections
+
+%% External connections
+
+subgraph Legend["Network Connection Types"]
+    direction LR
+    %% Create invisible nodes for the start and end of each line
+    L1(( )) --- |"Fabric Links"| L2(( ))
+    L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
+    L7(( )) --- |"Unbundled Server Links"| L8(( ))
+    L9(( )) --- |"ESLAG Server Links"| L10(( ))
+    L11(( )) --- |"Gateway Links"| L12(( ))
+    P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
+end
+
+class Gateway_1 gateway
+class Spine_01,Spine_02 spine
+class Leaf_01,Leaf_02,Leaf_03 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
+class Eslag_1 eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,1 stroke:#CC9900,stroke-width:2px
+linkStyle 2,3,4,5,6,7 stroke:#CC3333,stroke-width:4px
+linkStyle 11,14 stroke:#66CC66,stroke-width:4px
+linkStyle 8,9,12,13 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 10,15 stroke:#999999,stroke-width:2px
+linkStyle 16 stroke:#B85450,stroke-width:2px
+linkStyle 17 stroke:#82B366,stroke-width:2px
+linkStyle 18 stroke:#000000,stroke-width:2px
+linkStyle 19 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 20 stroke:#CC9900,stroke-width:2px
+linkStyle 21 stroke:#FFFFFF
+
+%% Make subgraph containers invisible
+style Gateways fill:none,stroke:none
+style Spines fill:none,stroke:none
+style Leaves fill:none,stroke:none
+style Servers fill:none,stroke:none
+style Spine_01_Group fill:none,stroke:none
+style Spine_02_Group fill:none,stroke:none
 ```
 
 ## Utility based VPC creation
 
 ### Setup VPCs
-`hhfab vlab` includes a utility to create VPCs in vlab. This utility is a `hhfab vlab` sub-command, `hhfab vlab setup-vpcs`.
+`hhfab` includes a utility to create VPCs in vlab. This utility is a `hhfab vlab` sub-command, `hhfab vlab setup-vpcs`.
 
 ```
 NAME:
@@ -118,11 +169,11 @@ OPTIONS:
    --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
    --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
    --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
+   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu/hhfab") [$HHFAB_WORK_DIR]
 ```
 
 ### Setup Peering
-`hhfab vlab` includes a utility to create VPC peerings in VLAB. This utility is a `hhfab vlab` sub-command, `hhfab vlab setup-peerings`.
+`hhfab` includes a utility to create VPC peerings in VLAB. This utility is a `hhfab vlab` sub-command, `hhfab vlab setup-peerings`.
 
 ```
 NAME:
@@ -145,7 +196,6 @@ USAGE:
    VPC Peerings:
 
    1+2 -- VPC peering between vpc-01 and vpc-02
-   1+2:gw -- same as above but using gateway peering, only valid if gateway is present
    demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
    1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
    1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
@@ -154,7 +204,6 @@ USAGE:
    External Peerings:
 
    1~as5835 -- external peering for vpc-01 with External as5835
-   1~as5835:gw -- same as above but using gateway peering, only valid if gateway is present
    1~ -- external peering for vpc-1 with external if only one external is present for ipv4 namespace of vpc-01, allowing
      default subnet and any route from external
    1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-1 with auth external with default vpc subnet and
@@ -172,11 +221,11 @@ OPTIONS:
    --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
    --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
    --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
+   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu/hhfab") [$HHFAB_WORK_DIR]
 ```
 
 ### Test Connectivity
-`hhfab vlab` includes a utility to test connectivity between servers inside VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab test-connectivity`.
+`hhfab` includes a utility to test connectivity between servers inside VLAB. This utility is a `hhfab vlab` sub-command. `hhfab vlab test-connectivity`.
 
 ```
 NAME:
@@ -186,14 +235,17 @@ USAGE:
    hhfab vlab test-connectivity [command options]
 
 OPTIONS:
+   --all-servers, --all                                                   requires all servers to be attached to a VPC (default: false)
    --curls value                                                          number of curl tests to run for each server to test external connectivity (0 to disable) (default: 3)
    --destination value, --dst value [ --destination value, --dst value ]  server to use as destination for connectivity tests (default: all servers)
+   --dscp value                                                           DSCP value to use for iperf3 tests (0 to disable DSCP) (default: 0)
    --help, -h                                                             show help
    --iperfs value                                                         seconds of iperf3 test to run between each pair of reachable servers (0 to disable) (default: 10)
    --iperfs-speed value                                                   minimum speed in Mbits/s for iperf3 test to consider successful (0 to not check speeds) (default: 8200)
    --name value, -n value                                                 name of the VM or HW to access
    --pings value                                                          number of pings to send between each pair of servers (0 to disable) (default: 5)
    --source value, --src value [ --source value, --src value ]            server to use as source for connectivity tests (default: all servers)
+   --tos value                                                            TOS value to use for iperf3 tests (0 to disable TOS) (default: 0)
    --wait-switches-ready, --wait                                          wait for switches to be ready before testing connectivity (default: true)
 
    Global options:
@@ -201,7 +253,8 @@ OPTIONS:
    --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
    --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
    --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu") [$HHFAB_WORK_DIR]
+   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu/hhfab") [$HHFAB_WORK_DIR]
+
 ```
 ## Manual VPC creation
 ### Creating and attaching VPCs
@@ -212,24 +265,24 @@ server enabled with its optional IP address range start defined, and to attach t
 
 ```
 core@control-1 ~ $ kubectl get conn | grep server
-server-01--mclag--leaf-01--leaf-02   mclag          5h13m
-server-02--mclag--leaf-01--leaf-02   mclag          5h13m
-server-03--unbundled--leaf-01        unbundled      5h13m
-server-04--bundled--leaf-02          bundled        5h13m
-server-05--unbundled--leaf-03        unbundled      5h13m
-server-06--bundled--leaf-03          bundled        5h13m
+server-01--eslag--leaf-01--leaf-02   eslag       44h
+server-02--eslag--leaf-01--leaf-02   eslag       44h
+server-03--unbundled--leaf-01        unbundled   44h
+server-04--bundled--leaf-02          bundled     44h
+server-05--unbundled--leaf-03        unbundled   44h
+server-06--bundled--leaf-03          bundled     44h
 
 core@control-1 ~ $ kubectl fabric vpc create --name vpc-1 --subnet 10.0.1.0/24 --vlan 1001 --dhcp --dhcp-start 10.0.1.10
-06:48:46 INF VPC created name=vpc-1
+13:46:58 INF VPC created name=vpc-1
 
 core@control-1 ~ $ kubectl fabric vpc create --name vpc-2 --subnet 10.0.2.0/24 --vlan 1002 --dhcp --dhcp-start 10.0.2.10
-06:49:04 INF VPC created name=vpc-2
+13:47:14 INF VPC created name=vpc-2
 
-core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01--mclag--leaf-01--leaf-02
-06:49:24 INF VPCAttachment created name=vpc-1--default--server-01--mclag--leaf-01--leaf-02
+core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01--eslag--leaf-01--leaf-02
+13:47:52 INF VPCAttachment created name=vpc-1--default--server-01--eslag--leaf-01--leaf-02
 
-core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-2/default --connection server-02--mclag--leaf-01--leaf-02
-06:49:34 INF VPCAttachment created name=vpc-2--default--server-02--mclag--leaf-01--leaf-02
+core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-2/default --connection server-02--eslag--leaf-01--leaf-02
+13:48:07 INF VPCAttachment created name=vpc-2--default--server-02--eslag--leaf-01--leaf-02
 ```
 
 The VPC subnet should belong to an IPv4Namespace, the default one in the VLAB is `10.0.0.0/16`:
@@ -237,7 +290,7 @@ The VPC subnet should belong to an IPv4Namespace, the default one in the VLAB is
 ```
 core@control-1 ~ $ kubectl get ipns
 NAME      SUBNETS           AGE
-default   ["10.0.0.0/16"]   5h14m
+default   ["10.0.0.0/16"]   44h
 ```
 
 After you created the VPCs and VPCAttachments, you can check the status of the agents to make sure that the requested
@@ -245,12 +298,12 @@ configuration was applied to the switches:
 
 ```
 core@control-1 ~ $ kubectl get agents
-NAME       ROLE          DESCR           APPLIED   APPLIEDG   CURRENTG   VERSION
-leaf-01    server-leaf   VS-01 MCLAG 1   2m2s      5          5          v0.23.0
-leaf-02    server-leaf   VS-02 MCLAG 1   2m2s      4          4          v0.23.0
-leaf-03    server-leaf   VS-03           112s      5          5          v0.23.0
-spine-01   spine         VS-04           16m       3          3          v0.23.0
-spine-02   spine         VS-05           18m       4          4          v0.23.0
+NAME       ROLE          DESCR           APPLIED   APPLIEDG   CURRENTG   VERSION   REBOOTREQ
+leaf-01    server-leaf   VS-01 ESLAG 1   36m       5          5          v0.96.2
+leaf-02    server-leaf   VS-02 ESLAG 1   46m       5          5          v0.96.2
+leaf-03    server-leaf   VS-03           21m       3          3          v0.96.2
+spine-01   spine         VS-04           7m27s     1          1          v0.96.2
+spine-02   spine         VS-05           37m       1          1          v0.96.2
 ```
 
 In this example, the values in columns `APPLIEDG` and `CURRENTG` are equal which means that the requested configuration
@@ -259,7 +312,7 @@ has been applied.
 ### Setting up networking on test servers
 
 You can use `hhfab vlab ssh` on the host to SSH into the test servers and configure networking there. For example, for
-both `server-01` (MCLAG attached to both `leaf-01` and `leaf-02`) we need to configure a bond with a VLAN on top of it
+both `server-01` (ESLAG attached to both `leaf-01` and `leaf-02`) we need to configure a bond with a VLAN on top of it
 and for the `server-05` (single-homed unbundled attached to `leaf-03`) we need to configure just a VLAN and they both
 will get an IP address from the DHCP server. You can use the `ip` command to configure networking on the servers or use
 the little helper pre-installed by Fabricator on test servers, `hhnet`.
@@ -270,21 +323,21 @@ For `server-01`:
 core@server-01 ~ $ hhnet cleanup
 core@server-01 ~ $ hhnet bond 1001 layer2+3 enp2s1 enp2s2
 10.0.1.10/24
-core@server-01 ~ $ ip a
+core@server-01 ~ $ ip address show
 ...
-3: enp2s1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP group default qlen 1000
-    link/ether 06:5a:e8:38:3b:ea brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:01:01
-4: enp2s2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP group default qlen 1000
-    link/ether 06:5a:e8:38:3b:ea brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:01:02
-6: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 06:5a:e8:38:3b:ea brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::45a:e8ff:fe38:3bea/64 scope link
+3: enp2s1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc fq_codel master bond0 state UP group default qlen 1000
+    link/ether 3e:2e:1e:ef:e3:c8 brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:02:01
+4: enp2s2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc fq_codel master bond0 state UP group default qlen 1000
+    link/ether 3e:2e:1e:ef:e3:c8 brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:02:02
+8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 3e:2e:1e:ef:e3:c8 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::3c2e:1eff:feef:e3c8/64 scope link proto kernel_ll
        valid_lft forever preferred_lft forever
-7: bond0.1001@bond0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 06:5a:e8:38:3b:ea brd ff:ff:ff:ff:ff:ff
+9: bond0.1001@bond0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 3e:2e:1e:ef:e3:c8 brd ff:ff:ff:ff:ff:ff
     inet 10.0.1.10/24 metric 1024 brd 10.0.1.255 scope global dynamic bond0.1001
-       valid_lft 86396sec preferred_lft 86396sec
-    inet6 fe80::45a:e8ff:fe38:3bea/64 scope link
+       valid_lft 3580sec preferred_lft 3580sec
+    inet6 fe80::3c2e:1eff:feef:e3c8/64 scope link proto kernel_ll
        valid_lft forever preferred_lft forever
 ```
 
@@ -294,21 +347,21 @@ And for `server-02`:
 core@server-02 ~ $ hhnet cleanup
 core@server-02 ~ $ hhnet bond 1002 layer2+3 enp2s1 enp2s2
 10.0.2.10/24
-core@server-02 ~ $ ip a
+core@server-02 ~ $ ip address show
 ...
-3: enp2s1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP group default qlen 1000
-    link/ether 5e:10:b1:f7:d0:4c brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:02:01
-4: enp2s2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP group default qlen 1000
-    link/ether 5e:10:b1:f7:d0:4c brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:02:02
+3: enp2s1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc fq_codel master bond0 state UP group default qlen 1000
+    link/ether 6e:27:d4:e2:6b:f7 brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:03:01
+4: enp2s2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc fq_codel master bond0 state UP group default qlen 1000
+    link/ether 6e:27:d4:e2:6b:f7 brd ff:ff:ff:ff:ff:ff permaddr 0c:20:12:fe:03:02
 8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 5e:10:b1:f7:d0:4c brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::5c10:b1ff:fef7:d04c/64 scope link
+    link/ether 6e:27:d4:e2:6b:f7 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::6c27:d4ff:fee2:6bf7/64 scope link proto kernel_ll
        valid_lft forever preferred_lft forever
 9: bond0.1002@bond0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 5e:10:b1:f7:d0:4c brd ff:ff:ff:ff:ff:ff
+    link/ether 6e:27:d4:e2:6b:f7 brd ff:ff:ff:ff:ff:ff
     inet 10.0.2.10/24 metric 1024 brd 10.0.2.255 scope global dynamic bond0.1002
-       valid_lft 86185sec preferred_lft 86185sec
-    inet6 fe80::5c10:b1ff:fef7:d04c/64 scope link
+       valid_lft 3594sec preferred_lft 3594sec
+    inet6 fe80::6c27:d4ff:fee2:6bf7/64 scope link proto kernel_ll
        valid_lft forever preferred_lft forever
 ```
 
@@ -348,10 +401,10 @@ To enable connectivity between the VPCs, peer them using `kubectl fabric vpc pee
 
 ```
 core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
-07:04:58 INF VPCPeering created name=vpc-1--vpc-2
+23:43:21 INF VPCPeering created name=vpc-1--vpc-2
 ```
 
-Make sure to wait until the peering is applied to the switches using `kubectl get agents` command. After that, you can
+Make sure to wait until the peering is applied to the switches using `kubectl get agents` command. After waiting that columns `APPLIEDG` and `CURRENTG` are equal, you can
 test connectivity between the servers again:
 
 ```
@@ -480,7 +533,7 @@ At that point you can setup networking on `server-03` the same as you did for `s
 
 ### Creating simple VPC peering via the gateway
 
-If gateway was [enabled](running.md#gateway) for your VLAB topology, you also have the option of peering VPCs
+When gateway is [enabled](running.md#gateway) in your VLAB topology, you also have the option of peering VPCs
 via the gateway. One way of doing so is using the [hhfab helpers](#setup-peering). For example, assuming vpc-1
 and vpc-2 were previously created, you can run:
 
