@@ -79,7 +79,7 @@ A connection represents the physical wires in your data center. They connect swi
 
 #### Server Connections
 
-A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (MLAG, Bundle, etc). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:
+A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (Unbundled, Bundled, ESLAG, etc.). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:
 
 - *Unbundled* - A single cable connecting switch to server.
 - *Bundled* - Two or more cables going to a single switch, a LAG or similar.

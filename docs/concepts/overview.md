@@ -33,7 +33,7 @@ Wiring Diagram consists of the following resources:
     * __Server__: *any* physical server attached to the Fabric including Control Nodes
 * __Connection__: *any* logical connection for devices
     * usually it's a connection between two or more ports on two different devices
-    * for example: MCLAG Peer Link, Unbundled/MCLAG server connections, Fabric connection between spine and leaf
+    * for example: Fabric connection between spine and leaf, and server connections like Unbundled, Bundled, MCLAG, or ESLAG.
 * __VLANNamespace__ -> non-overlapping VLAN ranges for attaching servers
 * __IPv4Namespace__ -> non-overlapping IPv4 ranges for VPC subnets
 
