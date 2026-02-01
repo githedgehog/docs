@@ -43,7 +43,7 @@ spec:
   - some-group
   redundancy: # Optional field to define that switch belongs to the redundancy group
     group: eslag-1 # Name of the redundancy group
-    type: eslag # Type of the redundancy group, one of mclag or eslag
+    type: eslag # Type of the redundancy group, should be eslag
   enableAllPorts: true # Optional field to enable all ports on the switch by default
   portAutoNegs: # Used for rj45 copper ports, and 800G ports for link conditioning
     E1/18: true

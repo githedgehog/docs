@@ -83,35 +83,6 @@ spec:
         port: s5248-02/E1/1
 ```
 
-### MCLAG
-
-!!! warning "Deprecated"
-    MCLAG is being deprecated. Use [ESLAG](#eslag) for multi-homing instead.
-
-MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
-Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type `mclag`
-and a Connection with type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and
-`spec.VTEPIP`. The server interfaces should be configured for 802.3ad LACP.
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: server-1--mclag--s5248-01--s5248-02
-  namespace: default
-spec:
-  mclag:
-    links: # Defines multiple links between a single server and a pair of switches
-    - server:
-        port: server-1/enp2s1
-      switch:
-        port: s5248-01/E1/1
-    - server:
-        port: server-1/enp2s2
-      switch:
-        port: s5248-02/E1/1
-```
-
 ## Switch connections (fabric-facing)
 
 Switch connections are used to connect switches to each other and provide any needed "service" connectivity to implement
@@ -173,40 +144,6 @@ spec:
       leaf2:
         ip: 172.30.128.11/31
         port: s5248-04/E1/56
-```
-
-### MCLAG-Domain
-
-MCLAG-Domain connections define a pair of MCLAG switches with Session and Peer link between them. Switches should be
-configured as an MCLAG, pair which requires them to be in a single redundancy group of type `mclag` and Connection with
-type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and `spec.VTEPIP`.
-
-```yaml
-apiVersion: wiring.githedgehog.com/v1beta1
-kind: Connection
-metadata:
-  name: s5248-01--mclag-domain--s5248-02
-  namespace: default
-spec:
-  mclagDomain:
-    peerLinks: # Defines multiple links between a pair of MCLAG switches for Peer link
-    - switch1:
-        port: s5248-01/E1/12
-      switch2:
-        port: s5248-02/E1/12
-    - switch1:
-        port: s5248-01/E1/13
-      switch2:
-        port: s5248-02/E1/13
-    sessionLinks: # Defines multiple links between a pair of MCLAG switches for Session link
-    - switch1:
-        port: s5248-01/E1/14
-      switch2:
-        port: s5248-02/E1/14
-    - switch1:
-        port: s5248-01/E1/15
-      switch2:
-        port: s5248-02/E1/15
 ```
 
 ## Connecting Fabric to the outside world
@@ -292,4 +229,72 @@ spec:
       switch:
         ip: 172.30.128.8/31
         port: spine-01/E1/5
+```
+
+## Deprecated Connections
+
+### MCLAG
+
+!!! warning "Deprecated"
+    MCLAG is being deprecated. Use [ESLAG](#eslag) for multi-homing instead.
+
+MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
+Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type `mclag`
+and a Connection with type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and
+`spec.VTEPIP`. The server interfaces should be configured for 802.3ad LACP.
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: server-1--mclag--s5248-01--s5248-02
+  namespace: default
+spec:
+  mclag:
+    links: # Defines multiple links between a single server and a pair of switches
+    - server:
+        port: server-1/enp2s1
+      switch:
+        port: s5248-01/E1/1
+    - server:
+        port: server-1/enp2s2
+      switch:
+        port: s5248-02/E1/1
+```
+
+### MCLAG-Domain
+
+!!! warning "Deprecated"
+    MCLAG is being deprecated. Use [ESLAG](#eslag) for multi-homing instead.
+
+MCLAG-Domain connections define a pair of MCLAG switches with Session and Peer link between them. Switches should be
+configured as an MCLAG, pair which requires them to be in a single redundancy group of type `mclag` and Connection with
+type `mclag-domain` between them. MCLAG switches should also have the same `spec.ASN` and `spec.VTEPIP`.
+
+```yaml
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Connection
+metadata:
+  name: s5248-01--mclag-domain--s5248-02
+  namespace: default
+spec:
+  mclagDomain:
+    peerLinks: # Defines multiple links between a pair of MCLAG switches for Peer link
+    - switch1:
+        port: s5248-01/E1/12
+      switch2:
+        port: s5248-02/E1/12
+    - switch1:
+        port: s5248-01/E1/13
+      switch2:
+        port: s5248-02/E1/13
+    sessionLinks: # Defines multiple links between a pair of MCLAG switches for Session link
+    - switch1:
+        port: s5248-01/E1/14
+      switch2:
+        port: s5248-02/E1/14
+    - switch1:
+        port: s5248-01/E1/15
+      switch2:
+        port: s5248-02/E1/15
 ```
