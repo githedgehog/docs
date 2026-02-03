@@ -272,17 +272,17 @@ server-04--bundled--leaf-02          bundled     44h
 server-05--unbundled--leaf-03        unbundled   44h
 server-06--bundled--leaf-03          bundled     44h
 
-core@control-1 ~ $ kubectl fabric vpc create --name vpc-1 --subnet 10.0.1.0/24 --vlan 1001 --dhcp --dhcp-start 10.0.1.10
-13:46:58 INF VPC created name=vpc-1
+core@control-1 ~ $ kubectl fabric vpc create --name vpc-01 --subnet 10.0.1.0/24 --vlan 1001 --dhcp --dhcp-start 10.0.1.10
+13:46:58 INF VPC created name=vpc-01
 
-core@control-1 ~ $ kubectl fabric vpc create --name vpc-2 --subnet 10.0.2.0/24 --vlan 1002 --dhcp --dhcp-start 10.0.2.10
-13:47:14 INF VPC created name=vpc-2
+core@control-1 ~ $ kubectl fabric vpc create --name vpc-02 --subnet 10.0.2.0/24 --vlan 1002 --dhcp --dhcp-start 10.0.2.10
+13:47:14 INF VPC created name=vpc-02
 
-core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01--eslag--leaf-01--leaf-02
-13:47:52 INF VPCAttachment created name=vpc-1--default--server-01--eslag--leaf-01--leaf-02
+core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-01/default --connection server-01--eslag--leaf-01--leaf-02
+13:47:52 INF VPCAttachment created name=vpc-01--default--server-01--eslag--leaf-01--leaf-02
 
-core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-2/default --connection server-02--eslag--leaf-01--leaf-02
-13:48:07 INF VPCAttachment created name=vpc-2--default--server-02--eslag--leaf-01--leaf-02
+core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-02/default --connection server-02--eslag--leaf-01--leaf-02
+13:48:07 INF VPCAttachment created name=vpc-02--default--server-02--eslag--leaf-01--leaf-02
 ```
 
 The VPC subnet should belong to an IPv4Namespace, the default one in the VLAB is `10.0.0.0/16`:
@@ -400,8 +400,8 @@ From 10.0.2.1 icmp_seq=3 Destination Net Unreachable
 To enable connectivity between the VPCs, peer them using `kubectl fabric vpc peer`:
 
 ```
-core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
-23:43:21 INF VPCPeering created name=vpc-1--vpc-2
+core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-01 --vpc vpc-02
+23:43:21 INF VPCPeering created name=vpc-01--vpc-02
 ```
 
 Make sure to wait until the peering is applied to the switches using `kubectl get agents` command. After waiting that columns `APPLIEDG` and `CURRENTG` are equal, you can
@@ -435,8 +435,8 @@ If you delete the VPC peering with `kubectl delete` applied to the relevant obje
 configuration on the switches, you can observe that connectivity is lost again:
 
 ```
-core@control-1 ~ $ kubectl delete vpcpeering/vpc-1--vpc-2
-vpcpeering.vpc.githedgehog.com "vpc-1--vpc-2" deleted
+core@control-1 ~ $ kubectl delete vpcpeering/vpc-01--vpc-02
+vpcpeering.vpc.githedgehog.com "vpc-01--vpc-02" deleted
 ```
 
 ```
@@ -498,16 +498,16 @@ default   ["10.0.0.0/16"]   30m
 ipns-2    ["10.0.0.0/16"]   8s
 ```
 
-Let's assume that `vpc-1` already exists and is attached to `server-01` (see [Creating and attaching VPCs](#creating-and-attaching-vpcs)).
-Now we can create `vpc-3` with the same subnet as `vpc-1` (but in the different IPv4Namespace) and attach it to the
+Let's assume that `vpc-01` already exists and is attached to `server-01` (see [Creating and attaching VPCs](#creating-and-attaching-vpcs)).
+Now we can create `vpc-03` with the same subnet as `vpc-01` (but in the different IPv4Namespace) and attach it to the
 `server-03`:
 
 ```
-core@control-1 ~ $ cat <<EOF > vpc-3.yaml
+core@control-1 ~ $ cat <<EOF > vpc-03.yaml
 apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPC
 metadata:
-  name: vpc-3
+  name: vpc-03
   namespace: default
 spec:
   ipv4Namespace: ipns-2
@@ -522,7 +522,7 @@ spec:
   vlanNamespace: default
 EOF
 
-core@control-1 ~ $ kubectl apply -f vpc-3.yaml
+core@control-1 ~ $ kubectl apply -f vpc-03.yaml
 ```
 
 At that point you can setup networking on `server-03` the same as you did for `server-01` and `server-02` in
@@ -534,8 +534,8 @@ At that point you can setup networking on `server-03` the same as you did for `s
 ### Creating simple VPC peering via the gateway
 
 When gateway is [enabled](running.md#gateway) in your VLAB topology, you also have the option of peering VPCs
-via the gateway. One way of doing so is using the [hhfab helpers](#setup-peering). For example, assuming vpc-1
-and vpc-2 were previously created, you can run:
+via the gateway. One way of doing so is using the [hhfab helpers](#setup-peering). For example, assuming vpc-01
+and vpc-02 were previously created, you can run:
 
 ```
 hhfab vlab setup-peerings 1+2:gw
@@ -545,26 +545,26 @@ Alternatively, you can create the peering manually in the control node, using th
 [gateway section of the user guide](../user-guide/gateway.md#gateway-peering) as a base, e.g.:
 
 ```
-core@control-1 ~ $ cat <<EOF > vpc-1--vpc-2--gw.yaml
+core@control-1 ~ $ cat <<EOF > vpc-01--vpc-02--gw.yaml
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
-  name: vpc-1--vpc-2
+  name: vpc-01--vpc-02
   namespace: default
 spec:
   peering:
-    vpc-1:
+    vpc-01:
       expose:
         - ips:
           - cidr: 10.0.1.0/24
-    vpc-2:
+    vpc-02:
       expose:
         - ips:
           - cidr: 10.0.2.0/24
 EOF
 
-core@control-1 ~ $ kubectl create -f vpc-1--vpc-2--gw.yaml
-peering.gateway.githedgehog.com/vpc-1--vpc-2 created
+core@control-1 ~ $ kubectl create -f vpc-01--vpc-02--gw.yaml
+peering.gateway.githedgehog.com/vpc-01--vpc-02 created
 core@control-1 ~ $
 ```
 
@@ -586,19 +586,19 @@ rtt min/avg/max/mdev = 11.560/31.852/70.008/26.998 ms
 
 Let's either edit or recreate the previous peering so that it looks like this:
 
-```{.yaml .annotate linenums="1" title="vpc-1--vpc-2--gw.yaml"}
+```{.yaml .annotate linenums="1" title="vpc-01--vpc-02--gw.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
-  name: vpc-1--vpc-2
+  name: vpc-01--vpc-02
   namespace: default
 spec:
   peering:
-    vpc-1:
+    vpc-01:
       expose:
         - ips:
           - cidr: 10.0.1.0/24
-    vpc-2:
+    vpc-02:
       expose:
         - ips:
           - cidr: 10.0.2.0/24
@@ -650,19 +650,19 @@ rtt min/avg/max/mdev = 12.177/18.106/29.826/8.287 ms
 
 Let's change the peering again to use source stateful NAT:
 
-```{.yaml .annotate linenums="1" title="vpc-1--vpc-2--gw.yaml"}
+```{.yaml .annotate linenums="1" title="vpc-01--vpc-02--gw.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
-  name: vpc-1--vpc-2
+  name: vpc-01--vpc-02
   namespace: default
 spec:
   peering:
-    vpc-1:
+    vpc-01:
       expose:
         - ips:
           - cidr: 10.0.1.0/24
-    vpc-2:
+    vpc-02:
       expose:
         - ips:
           - cidr: 10.0.2.0/24
