@@ -199,7 +199,6 @@ GatewaySpec defines the desired state of Gateway.
 
 _Appears in:_
 - [Gateway](#gateway)
-- [GatewayAgentSpec](#gatewayagentspec)
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
@@ -346,7 +345,6 @@ PeeringSpec defines the desired state of Peering.
 
 
 _Appears in:_
-- [GatewayAgentSpec](#gatewayagentspec)
 - [Peering](#peering)
 
 | Field | Description | Default | Validation |
@@ -426,7 +424,6 @@ VPCInfoSpec defines the desired state of VPCInfo.
 
 _Appears in:_
 - [VPCInfo](#vpcinfo)
-- [VPCInfoData](#vpcinfodata)
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
@@ -444,7 +441,6 @@ VPCInfoStatus defines the observed state of VPCInfo.
 
 _Appears in:_
 - [VPCInfo](#vpcinfo)
-- [VPCInfoData](#vpcinfodata)
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
@@ -460,7 +456,6 @@ _Appears in:_
 
 
 _Appears in:_
-- [VPCInfoData](#vpcinfodata)
 - [VPCInfoSpec](#vpcinfospec)
 
 | Field | Description | Default | Validation |
@@ -662,46 +657,7 @@ GatewayAgent is the Schema for the gatewayagents API.
 | `apiVersion` _string_ | `gwint.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `GatewayAgent` | | |
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
-| `spec` _[GatewayAgentSpec](#gatewayagentspec)_ |  |  |  |
 | `status` _[GatewayAgentStatus](#gatewayagentstatus)_ |  |  |  |
-
-
-#### GatewayAgentSpec
-
-
-
-GatewayAgentSpec defines the desired state of GatewayAgent.
-
-
-
-_Appears in:_
-- [GatewayAgent](#gatewayagent)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `agentVersion` _string_ | AgentVersion is the desired version of the gateway agent to trigger generation changes on controller upgrades |  |  |
-| `gateway` _[GatewaySpec](#gatewayspec)_ |  |  |  |
-| `vpcs` _object (keys:string, values:[VPCInfoData](#vpcinfodata))_ |  |  |  |
-| `peerings` _object (keys:string, values:[PeeringSpec](#peeringspec))_ |  |  |  |
-| `groups` _object (keys:string, values:[GatewayGroupInfo](#gatewaygroupinfo))_ |  |  |  |
-| `communities` _object (keys:string, values:string)_ |  |  |  |
-| `config` _[GatewayAgentSpecConfig](#gatewayagentspecconfig)_ |  |  |  |
-
-
-#### GatewayAgentSpecConfig
-
-
-
-
-
-
-
-_Appears in:_
-- [GatewayAgentSpec](#gatewayagentspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `fabricBFD` _boolean_ | FabricBFD defines if fabric-facing links should be configured with BFD |  |  |
 
 
 #### GatewayAgentStatus
@@ -722,40 +678,6 @@ _Appears in:_
 | `lastAppliedGen` _integer_ | Generation of the last successful configuration application |  |  |
 | `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
 | `state` _[GatewayState](#gatewaystate)_ | State represents collected data from the dataplane API that includes FRR as well |  |  |
-
-
-#### GatewayGroupInfo
-
-
-
-
-
-
-
-_Appears in:_
-- [GatewayAgentSpec](#gatewayagentspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `members` _[GatewayGroupMember](#gatewaygroupmember) array_ |  |  |  |
-
-
-#### GatewayGroupMember
-
-
-
-
-
-
-
-_Appears in:_
-- [GatewayGroupInfo](#gatewaygroupinfo)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `name` _string_ |  |  |  |
-| `priority` _integer_ |  |  |  |
-| `vtepIP` _string_ |  |  |  |
 
 
 #### GatewayState
@@ -797,24 +719,6 @@ _Appears in:_
 | `d` _integer_ | Drops is the number of packets dropped on the peering |  |  |
 | `bps` _float_ | BytesPerSecond is the number of bytes sent per second on the peering |  |  |
 | `pps` _float_ | PktsPerSecond is the number of packets sent per second on the peering |  |  |
-
-
-#### VPCInfoData
-
-
-
-
-
-
-
-_Appears in:_
-- [GatewayAgentSpec](#gatewayagentspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `subnets` _object (keys:string, values:[VPCInfoSubnet](#vpcinfosubnet))_ | Subnets is a map of all subnets in the VPC (incl. CIDRs, VNIs, etc) keyed by the subnet name |  |  |
-| `vni` _integer_ | VNI is the VNI for the VPC |  |  |
-| `internalID` _string_ |  |  |  |
 
 
 #### VPCStatus
