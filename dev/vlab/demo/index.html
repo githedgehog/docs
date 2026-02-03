@@ -2214,17 +2214,17 @@ server enabled with its optional IP address range start defined, and to attach t
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>server-05--unbundled--leaf-03        unbundled   44h
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>server-06--bundled--leaf-03          bundled     44h
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>core@control-1 ~ $ kubectl fabric vpc create --name vpc-1 --subnet 10.0.1.0/24 --vlan 1001 --dhcp --dhcp-start 10.0.1.10
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>13:46:58 INF VPC created name=vpc-1
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>core@control-1 ~ $ kubectl fabric vpc create --name vpc-01 --subnet 10.0.1.0/24 --vlan 1001 --dhcp --dhcp-start 10.0.1.10
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>13:46:58 INF VPC created name=vpc-01
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>core@control-1 ~ $ kubectl fabric vpc create --name vpc-2 --subnet 10.0.2.0/24 --vlan 1002 --dhcp --dhcp-start 10.0.2.10
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>13:47:14 INF VPC created name=vpc-2
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>core@control-1 ~ $ kubectl fabric vpc create --name vpc-02 --subnet 10.0.2.0/24 --vlan 1002 --dhcp --dhcp-start 10.0.2.10
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>13:47:14 INF VPC created name=vpc-02
 </span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01--eslag--leaf-01--leaf-02
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>13:47:52 INF VPCAttachment created name=vpc-1--default--server-01--eslag--leaf-01--leaf-02
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-01/default --connection server-01--eslag--leaf-01--leaf-02
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>13:47:52 INF VPCAttachment created name=vpc-01--default--server-01--eslag--leaf-01--leaf-02
 </span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-2/default --connection server-02--eslag--leaf-01--leaf-02
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>13:48:07 INF VPCAttachment created name=vpc-2--default--server-02--eslag--leaf-01--leaf-02
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-02/default --connection server-02--eslag--leaf-01--leaf-02
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>13:48:07 INF VPCAttachment created name=vpc-02--default--server-02--eslag--leaf-01--leaf-02
 </span></code></pre></div>
 <p>The <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet should belong to an IPv4Namespace, the default one in the VLAB is <code>10.0.0.0/16</code>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>core@control-1 ~ $ kubectl get ipns
@@ -2318,8 +2318,8 @@ the little helper pre-installed by Fabricator on test servers, <code>hhnet</code
 </span></code></pre></div>
 <h3 id="peering-vpcs-and-testing-connectivity">Peering VPCs and testing connectivity</h3>
 <p>To enable connectivity between the VPCs, peer them using <code>kubectl fabric vpc peer</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-1 --vpc vpc-2
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>23:43:21 INF VPCPeering created name=vpc-1--vpc-2
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>core@control-1 ~ $ kubectl fabric vpc peer --vpc vpc-01 --vpc vpc-02
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>23:43:21 INF VPCPeering created name=vpc-01--vpc-02
 </span></code></pre></div>
 <p>Make sure to wait until the peering is applied to the switches using <code>kubectl get agents</code> command. After waiting that columns <code>APPLIEDG</code> and <code>CURRENTG</code> are equal, you can
 test connectivity between the servers again:</p>
@@ -2345,8 +2345,8 @@ test connectivity between the servers again:</p>
 </span></code></pre></div>
 <p>If you delete the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering with <code>kubectl delete</code> applied to the relevant object and wait for the agent to apply the
 configuration on the switches, you can observe that connectivity is lost again:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>core@control-1 ~ $ kubectl delete vpcpeering/vpc-1--vpc-2
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>vpcpeering.vpc.githedgehog.com &quot;vpc-1--vpc-2&quot; deleted
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>core@control-1 ~ $ kubectl delete vpcpeering/vpc-01--vpc-02
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>vpcpeering.vpc.githedgehog.com &quot;vpc-01--vpc-02&quot; deleted
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>core@server-01 ~ $ ping 10.0.2.10
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
@@ -2399,14 +2399,14 @@ behavior and is caused by the limitations in the VLAB environment.</p>
 </span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>default   [&quot;10.0.0.0/16&quot;]   30m
 </span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>ipns-2    [&quot;10.0.0.0/16&quot;]   8s
 </span></code></pre></div>
-<p>Let's assume that <code>vpc-1</code> already exists and is attached to <code>server-01</code> (see <a href="#creating-and-attaching-vpcs">Creating and attaching VPCs</a>).
-Now we can create <code>vpc-3</code> with the same subnet as <code>vpc-1</code> (but in the different IPv4Namespace) and attach it to the
+<p>Let's assume that <code>vpc-01</code> already exists and is attached to <code>server-01</code> (see <a href="#creating-and-attaching-vpcs">Creating and attaching VPCs</a>).
+Now we can create <code>vpc-03</code> with the same subnet as <code>vpc-01</code> (but in the different IPv4Namespace) and attach it to the
 <code>server-03</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>core@control-1 ~ $ cat &lt;&lt;EOF &gt; vpc-3.yaml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>core@control-1 ~ $ cat &lt;&lt;EOF &gt; vpc-03.yaml
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>apiVersion: vpc.githedgehog.com/v1beta1
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>kind: VPC
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>metadata:
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  name: vpc-3
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>  name: vpc-03
 </span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  namespace: default
 </span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>spec:
 </span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  ipv4Namespace: ipns-2
@@ -2421,7 +2421,7 @@ Now we can create <code>vpc-3</code> with the same subnet as <code>vpc-1</code> 
 </span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>  vlanNamespace: default
 </span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>EOF
 </span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>
-</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>core@control-1 ~ $ kubectl apply -f vpc-3.yaml
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>core@control-1 ~ $ kubectl apply -f vpc-03.yaml
 </span></code></pre></div>
 <p>At that point you can setup networking on <code>server-03</code> the same as you did for <code>server-01</code> and <code>server-02</code> in
 <a href="#setting-up-networking-on-test-servers">a previous section</a>. Once you have configured networking, <code>server-01</code> and
@@ -2429,32 +2429,32 @@ Now we can create <code>vpc-3</code> with the same subnet as <code>vpc-1</code> 
 <h2 id="gateway-peerings-and-nat">Gateway peerings and NAT</h2>
 <h3 id="creating-simple-vpc-peering-via-the-gateway">Creating simple <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering via the gateway</h3>
 <p>When gateway is <a href="../running/#gateway">enabled</a> in your VLAB topology, you also have the option of peering VPCs
-via the gateway. One way of doing so is using the <a href="#setup-peering">hhfab helpers</a>. For example, assuming vpc-1
-and vpc-2 were previously created, you can run:</p>
+via the gateway. One way of doing so is using the <a href="#setup-peering">hhfab helpers</a>. For example, assuming vpc-01
+and vpc-02 were previously created, you can run:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>hhfab vlab setup-peerings 1+2:gw
 </span></code></pre></div>
 <p>Alternatively, you can create the peering manually in the control node, using the examples in the
 <a href="../../user-guide/gateway/#gateway-peering">gateway section of the user guide</a> as a base, e.g.:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>core@control-1 ~ $ cat &lt;&lt;EOF &gt; vpc-1--vpc-2--gw.yaml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>core@control-1 ~ $ cat &lt;&lt;EOF &gt; vpc-01--vpc-02--gw.yaml
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>apiVersion: gateway.githedgehog.com/v1alpha1
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>kind: Peering
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>metadata:
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>  name: vpc-1--vpc-2
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>  name: vpc-01--vpc-02
 </span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>  namespace: default
 </span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>spec:
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  peering:
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    vpc-1:
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    vpc-01:
 </span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>      expose:
 </span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>        - ips:
 </span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>          - cidr: 10.0.1.0/24
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>    vpc-2:
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>    vpc-02:
 </span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>      expose:
 </span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>        - ips:
 </span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>          - cidr: 10.0.2.0/24
 </span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>EOF
 </span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>core@control-1 ~ $ kubectl create -f vpc-1--vpc-2--gw.yaml
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>peering.gateway.githedgehog.com/vpc-1--vpc-2 created
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>core@control-1 ~ $ kubectl create -f vpc-01--vpc-02--gw.yaml
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>peering.gateway.githedgehog.com/vpc-01--vpc-02 created
 </span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>core@control-1 ~ $
 </span></code></pre></div>
 <p>You should now be able to check connectivity using the same methods described previously, e.g.:</p>
@@ -2470,7 +2470,7 @@ and vpc-2 were previously created, you can run:</p>
 </span></code></pre></div>
 <h3 id="vpc-peering-with-stateless-nat"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering with Stateless NAT</h3>
 <p>Let's either edit or recreate the previous peering so that it looks like this:</p>
-<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">vpc-1--vpc-2--gw.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">vpc-01--vpc-02--gw.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
@@ -2489,15 +2489,15 @@ and vpc-2 were previously created, you can run:</p>
 <span class="normal"><a href="#__codelineno-21-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--vpc-2</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-01--vpc-02</span>
 </span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="w">    </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="w">    </span><span class="nt">vpc-01</span><span class="p">:</span>
 </span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
 </span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
 </span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.1.0/24</span>
-</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="w">    </span><span class="nt">vpc-02</span><span class="p">:</span>
 </span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
 </span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
 </span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.2.0/24</span>
@@ -2539,7 +2539,7 @@ observe a failure:</p>
 </span></code></pre></div></p>
 <h3 id="vpc-peering-with-stateful-nat"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering with Stateful NAT</h3>
 <p>Let's change the peering again to use source stateful NAT:</p>
-<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">vpc-1--vpc-2--gw.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">vpc-01--vpc-02--gw.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
@@ -2561,15 +2561,15 @@ observe a failure:</p>
 <span class="normal"><a href="#__codelineno-25-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
 </span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Peering</span>
 </span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1--vpc-2</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-01--vpc-02</span>
 </span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">  </span><span class="nt">peering</span><span class="p">:</span>
-</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">    </span><span class="nt">vpc-1</span><span class="p">:</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">    </span><span class="nt">vpc-01</span><span class="p">:</span>
 </span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
 </span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
 </span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.1.0/24</span>
-</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="w">    </span><span class="nt">vpc-02</span><span class="p">:</span>
 </span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="w">      </span><span class="nt">expose</span><span class="p">:</span>
 </span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ips</span><span class="p">:</span>
 </span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.2.0/24</span>
@@ -2642,7 +2642,7 @@ by the source, up until the idle timeout expires.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 3, 2026</span>
   </span>
 
     
