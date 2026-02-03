@@ -6126,7 +6126,7 @@ and Externals APIs. Intended to be used by the user.</p>
 <li><a href="#ipv4namespace">IPv4Namespace</a></li>
 <li><a href="#vpc"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></a></li>
 <li><a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></li>
-<li><a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></li>
+<li><a href="#vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></a></li>
 </ul>
 <h4 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h4>
 <p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object represents an external system connected to the Fabric and available to the specific IPv4Namespace.
@@ -7034,8 +7034,8 @@ resources with support for multiple subnets each with user-provided VLANs and on
 </tr>
 </tbody>
 </table>
-<h4 id="vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></h4>
-<p><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> represents a peering between two VPCs with corresponding filtering rules.
+<h4 id="vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></h4>
+<p><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr> represents a peering between two VPCs with corresponding filtering rules.
 Minimal example of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering showing vpc-1 to vpc-2 peering with all subnets allowed:</p>
 <div class="language-text highlight"><pre><span></span><code>spec:
   permit:
@@ -7072,22 +7072,22 @@ Minimal example of the <abbr title="Virtual Private Cloud, similar to the public
 </tr>
 <tr>
 <td><code>spec</code> <em><a href="#vpcpeeringspec">VPCPeeringSpec</a></em></td>
-<td>Spec is the desired state of the <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></td>
+<td>Spec is the desired state of the <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>status</code> <em><a href="#vpcpeeringstatus">VPCPeeringStatus</a></em></td>
-<td>Status is the observed state of the <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></td>
+<td>Status is the observed state of the <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <h4 id="vpcpeeringspec">VPCPeeringSpec</h4>
-<p>VPCPeeringSpec defines the desired state of <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></p>
+<p>VPCPeeringSpec defines the desired state of <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></p>
 <p><em>Appears in:</em>
-- <a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></p>
+- <a href="#vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></a></p>
 <table>
 <thead>
 <tr>
@@ -7113,9 +7113,9 @@ Minimal example of the <abbr title="Virtual Private Cloud, similar to the public
 </tbody>
 </table>
 <h4 id="vpcpeeringstatus">VPCPeeringStatus</h4>
-<p>VPCPeeringStatus defines the observed state of <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></p>
+<p>VPCPeeringStatus defines the observed state of <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></p>
 <p><em>Appears in:</em>
-- <a href="#vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></a></p>
+- <a href="#vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></a></p>
 <h4 id="vpcspec">VPCSpec</h4>
 <p>VPCSpec defines the desired state of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.
 At least one subnet is required.</p>

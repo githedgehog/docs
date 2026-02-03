@@ -1929,7 +1929,7 @@ server connections.</p>
 <ol>
 <li>See the <a href="../../reference/profiles/">list</a> of profile names</li>
 <li>More information in the <a href="../../user-guide/profiles/#port-naming">User Guide</a></li>
-<li>Could be MCLAG, ESLAG or nothing, more details in <a href="../../user-guide/devices/#redundancy-groups">Redundancy
+<li>Could be ESLAG or nothing, more details in <a href="../../user-guide/devices/#redundancy-groups">Redundancy
    Groups</a></li>
 </ol>
 <h2 id="design-discussion">Design Discussion</h2>
@@ -1958,12 +1958,11 @@ server connections.</p>
 <h3 id="connection">Connection</h3>
 <p>A connection represents the physical wires in your data center. They connect switches to other switches or switches to servers.</p>
 <h4 id="server-connections">Server Connections</h4>
-<p>A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (MLAG, Bundle, etc). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:</p>
+<p>A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (Unbundled, Bundled, ESLAG, etc.). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:</p>
 <ul>
 <li><em>Unbundled</em> - A single cable connecting switch to server.</li>
 <li><em>Bundled</em> - Two or more cables going to a single switch, a LAG or similar.</li>
-<li><em>MCLAG</em> -  Two cables going to two different switches, also called dual homing. The switches will need a fabric link between them.</li>
-<li><em>ESLAG</em> - Two to four cables going to different switches, also called multi-homing. If four links are used there will need to be four switches connected to a single server with four NIC ports.</li>
+<li><em>ESLAG</em> - Two to four cables going to different switches, also called multi-homing (EVPN-MH). If four links are used there will need to be four switches connected to a single server with four NIC ports.</li>
 </ul>
 <pre class="mermaid"><code>graph TD
     S1([Spine 1])
@@ -1973,43 +1972,31 @@ server connections.</p>
     L3([Leaf 3])
     L4([Leaf 4])
     L5([Leaf 5])
-    L6([Leaf 6])
-    L7([Leaf 7])
 
     TS1[Server1]
     TS2[Server2]
     TS3[Server3]
-    TS4[Server4]
 
-    S1 &amp; S2 ---- L1 &amp; L2 &amp; L3 &amp; L4 &amp; L5 &amp; L6 &amp; L7
+    S1 &amp; S2 ---- L1 &amp; L2 &amp; L3 &amp; L4 &amp; L5
     L1 &lt;-- Bundled --&gt; TS1
     L1 &lt;-- Bundled --&gt; TS1
     L1 &lt;-- Unbundled --&gt; TS2
-    L2 &lt;-- MCLAG --&gt; TS3
-    L3 &lt;-- MCLAG --&gt; TS3
-    L4 &lt;-- ESLAG --&gt; TS4
-    L5 &lt;-- ESLAG --&gt; TS4
-    L6 &lt;-- ESLAG --&gt; TS4
-    L7 &lt;-- ESLAG --&gt; TS4
+    L2 &lt;-- ESLAG --&gt; TS3
+    L3 &lt;-- ESLAG --&gt; TS3
+    L4 &lt;-- ESLAG --&gt; TS3
+    L5 &lt;-- ESLAG --&gt; TS3
 
     subgraph VPC 1
     TS1
     TS2
     TS3
-    TS4
-    end
-
-    subgraph MCLAG
-    L2
-    L3
     end
 
     subgraph ESLAG
+    L2
     L3
     L4
     L5
-    L6
-    L7
     end
 </code></pre>
 <h4 id="fabric-connections">Fabric Connections</h4>
@@ -2068,6 +2055,10 @@ topologies without spines.</p>
     end</code></pre>
 The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2, travels to the switch, and finally out the port destined for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1.</p>
 <h4 id="remote-vpc-peering">Remote <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h4>
+<div class="admonition warning">
+<p class="admonition-title">Deprecated</p>
+<p>Remote peering is being deprecated. Using local peering is encouraged.</p>
+</div>
 <p>Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s are not present. This kind of peering allows peer traffic between different VPCs at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.</p>
 <p><pre class="mermaid"><code>graph TD
     S1([Spine 1])
@@ -2692,7 +2683,7 @@ needed for the fabric links. Additional cables are needed to connect servers int
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 1, 2026</span>
   </span>
 
     

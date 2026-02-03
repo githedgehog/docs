@@ -2092,8 +2092,8 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1/default</span><span class="w"> </span><span class="c1"># VPC subnet name</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">nativeVLAN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># (Optional) if true, the port will be configured as a native VLAN port (untagged)</span>
 </span></code></pre></div>
-<h2 id="vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></h2>
-<p>A <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity. There are two types of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering:</p>
+<h2 id="vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></h2>
+<p>A <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr> enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity. There are two types of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering:</p>
 <ul>
 <li>Local: peering is implemented on the same switches where VPCs are attached</li>
 <li>Remote: peering is implemented on the border/mixed leaves defined by the <code>SwitchGroup</code> object</li>
@@ -2112,6 +2112,10 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"> </span><span class="c1"># See &quot;Subnet filtering&quot; for more advanced configuration</span>
 </span></code></pre></div>
 <h3 id="remote-vpc-peering">Remote <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering</h3>
+<div class="admonition warning">
+<p class="admonition-title">Deprecated</p>
+<p>Remote peering is being deprecated. Using local peering is encouraged.</p>
+</div>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPCPeering</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -2227,7 +2231,7 @@ If the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> serv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 29, 2026</span>
   </span>
 
     
