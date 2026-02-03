@@ -11,4 +11,8 @@ nav:
   - Observability:
     - o11y-config.md
     - grafana.md
+  - Gateway:
+    - gateway.md
+    - gateway-add.md
+    - gateway-failover.md
   - ...
