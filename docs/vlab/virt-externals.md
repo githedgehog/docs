@@ -2,10 +2,13 @@
 
 VLAB also supports virtual [externals](../user-guide/external.md). These are implemented using
 a virtual machine running [FRR](https://frrouting.org/), which is automatically configured
-from the topology information to behave like one or more BGP instances advertising a default
-route towards the internet (assuming the host running the VLAB is connected to the internet).
+from the topology information. In the case of BGP-speaking externals, this means running one or
+more BGP instances advertising a default route towards the internet (assuming the host running
+the VLAB is connected to the internet). For static externals, there will be just a direct connection
+to an endpoint connected to the internet, with the appropriate static routes configured on the
+endpoint to ensure that forwarding will work correctly.
 
-Here we will explain how to generate a topology with a virtual external, and how to test it
+Here we will explain how to generate a topology with a BGP-speaking virtual external, and how to test it
 using either Fabric or Gateway external peerings.
 
 ## Creating the topology
@@ -22,7 +25,7 @@ a mesh one.
     This limitation does not apply to physical switches.
 
 The example below shows how to initialize and generate a spine-leaf topology with two
-ESLAG leaves, one orphan leaf with a virtual external attached to it, and a gateway
+ESLAG leaves, one orphan leaf with a virtual BGP-speaking external attached to it, and a gateway
 attached to the two spines:
 
 ```
@@ -31,7 +34,7 @@ ubuntu@docs:~/hhfab$ ./hhfab init -f --dev --gw
 09:27:35 INF Generated initial config
 09:27:35 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
 09:27:35 INF Include wiring (fabric/gateway) files (.yaml) or adjust imported ones dir=include
-ubuntu@docs:~/hhfab$ ./hhfab vlab gen --mclag-leafs-count=0 --eslag-leaf-groups=2 --orphan-leafs-count=1 --externals=1 --external-orphan-connections=1
+ubuntu@docs:~/hhfab$ ./hhfab vlab gen --mclag-leafs-count=0 --eslag-leaf-groups=2 --orphan-leafs-count=1 --externals-bgp=1 --external-orphan-connections=1
 09:28:36 INF Hedgehog Fabricator version=v0.43.1
 09:28:36 INF Building VLAB wiring diagram fabricMode=spine-leaf
 09:28:36 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
@@ -40,7 +43,8 @@ ubuntu@docs:~/hhfab$ ./hhfab vlab gen --mclag-leafs-count=0 --eslag-leaf-groups=
 09:28:36 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
 09:28:36 INF >>> orphanLeafsCount=1
 09:28:36 INF >>> mclagServers=0 eslagServers=2 unbundledServers=1 bundledServers=1
-09:28:36 INF >>> externalCount=1 externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=1
+09:28:36 INF >>> externalBGPCount=1 externalStaticCount=0 externalStaticProxyCount=0
+09:28:36 INF >>> externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=1
 09:28:36 INF Generated wiring file name=vlab.generated.yaml
 ubuntu@docs:~/hhfab$ ./hhfab vlab up -f -m=manual -r=wait
 09:31:53 INF Hedgehog Fabricator version=v0.43.1
