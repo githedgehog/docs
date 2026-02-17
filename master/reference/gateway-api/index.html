@@ -1333,27 +1333,45 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#peeringnatmasquerade" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATMasquerade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnatportforward" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATPortForward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnatprotocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATProtocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnatstatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATStatic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#peeringspec" class="md-nav__link">
     <span class="md-ellipsis">
       PeeringSpec
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#peeringstatefulnat" class="md-nav__link">
-    <span class="md-ellipsis">
-      PeeringStatefulNAT
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#peeringstatelessnat" class="md-nav__link">
-    <span class="md-ellipsis">
-      PeeringStatelessNAT
     </span>
   </a>
   
@@ -2206,27 +2224,45 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#peeringnatmasquerade" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATMasquerade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnatportforward" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATPortForward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnatprotocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATProtocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringnatstatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringNATStatic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#peeringspec" class="md-nav__link">
     <span class="md-ellipsis">
       PeeringSpec
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#peeringstatefulnat" class="md-nav__link">
-    <span class="md-ellipsis">
-      PeeringStatefulNAT
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#peeringstatelessnat" class="md-nav__link">
-    <span class="md-ellipsis">
-      PeeringStatelessNAT
     </span>
   </a>
   
@@ -2943,12 +2979,6 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <td></td>
 <td></td>
 </tr>
-<tr>
-<td><code>ports</code> <em>string</em></td>
-<td>Port ranges (e.g. "80, 443, 3000-3100"), used together with exactly one of cidr, not</td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <h4 id="peeringentryexpose">PeeringEntryExpose</h4>
@@ -3021,12 +3051,6 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 <td></td>
 <td></td>
 </tr>
-<tr>
-<td><code>ports</code> <em>string</em></td>
-<td>Port ranges (e.g. "80, 443, 3000-3100"), used together with exactly one of cidr, not, vpcSubnet</td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <h4 id="peeringnat">PeeringNAT</h4>
@@ -3043,19 +3067,104 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 </thead>
 <tbody>
 <tr>
-<td><code>stateful</code> <em><a href="#peeringstatefulnat">PeeringStatefulNAT</a></em></td>
-<td>Use connection state tracking when performing NAT</td>
+<td><code>masquerade</code> <em><a href="#peeringnatmasquerade">PeeringNATMasquerade</a></em></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>stateless</code> <em><a href="#peeringstatelessnat">PeeringStatelessNAT</a></em></td>
-<td>Use connection state tracking when performing NAT, use stateful NAT if omitted</td>
+<td><code>portForward</code> <em><a href="#peeringnatportforward">PeeringNATPortForward</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>static</code> <em><a href="#peeringnatstatic">PeeringNATStatic</a></em></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<h4 id="peeringnatmasquerade">PeeringNATMasquerade</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringnat">PeeringNAT</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>idleTimeout</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta">Duration</a></em></td>
+<td>Time since the last packet after which flows are removed from the connection state table</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringnatportforward">PeeringNATPortForward</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringnat">PeeringNAT</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>idleTimeout</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta">Duration</a></em></td>
+<td>Time since the last packet after which flows are removed from the connection state table</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ports</code> <em><a href="#peeringnatportforwardentry">PeeringNATPortForwardEntry</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringnatprotocol">PeeringNATProtocol</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p><em>Validation:</em>
+- Enum: [tcp udp ]</p>
+<p><em>Appears in:</em>
+- <a href="#peeringnatportforwardentry">PeeringNATPortForwardEntry</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>``</td>
+<td>Any protocol by default<br /></td>
+</tr>
+<tr>
+<td><code>tcp</code></td>
+<td>TCP only<br /></td>
+</tr>
+<tr>
+<td><code>udp</code></td>
+<td>UDP only<br /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringnatstatic">PeeringNATStatic</h4>
+<p><em>Appears in:</em>
+- <a href="#peeringnat">PeeringNAT</a></p>
 <h4 id="peeringspec">PeeringSpec</h4>
 <p>PeeringSpec defines the desired state of Peering.</p>
 <p><em>Appears in:</em>
@@ -3084,30 +3193,6 @@ You can find latest version in the <a href="https://github.com/githedgehog/gatew
 </tr>
 </tbody>
 </table>
-<h4 id="peeringstatefulnat">PeeringStatefulNAT</h4>
-<p><em>Appears in:</em>
-- <a href="#peeringnat">PeeringNAT</a></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-<th>Default</th>
-<th>Validation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>idleTimeout</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta">Duration</a></em></td>
-<td>Time since the last packet after which flows are removed from the connection state table</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="peeringstatelessnat">PeeringStatelessNAT</h4>
-<p><em>Appears in:</em>
-- <a href="#peeringnat">PeeringNAT</a></p>
 <h4 id="peeringstatus">PeeringStatus</h4>
 <p>PeeringStatus defines the observed state of Peering.</p>
 <p><em>Appears in:</em>

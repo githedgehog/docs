@@ -278,7 +278,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `cidr` _string_ | CIDR to include, only one of cidr, not can be set |  |  |
 | `not` _string_ | CIDR to exclude, only one of cidr, not can be set |  |  |
-| `ports` _string_ | Port ranges (e.g. "80, 443, 3000-3100"), used together with exactly one of cidr, not |  |  |
 
 
 #### PeeringEntryExpose
@@ -316,7 +315,6 @@ _Appears in:_
 | `cidr` _string_ | CIDR to include, only one of cidr, not, vpcSubnet can be set |  |  |
 | `not` _string_ | CIDR to exclude, only one of cidr, not, vpcSubnet can be set |  |  |
 | `vpcSubnet` _string_ | CIDR by VPC subnet name to include, only one of cidr, not, vpcSubnet can be set |  |  |
-| `ports` _string_ | Port ranges (e.g. "80, 443, 3000-3100"), used together with exactly one of cidr, not, vpcSubnet |  |  |
 
 
 #### PeeringNAT
@@ -332,8 +330,76 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `stateful` _[PeeringStatefulNAT](#peeringstatefulnat)_ | Use connection state tracking when performing NAT |  |  |
-| `stateless` _[PeeringStatelessNAT](#peeringstatelessnat)_ | Use connection state tracking when performing NAT, use stateful NAT if omitted |  |  |
+| `masquerade` _[PeeringNATMasquerade](#peeringnatmasquerade)_ |  |  |  |
+| `portForward` _[PeeringNATPortForward](#peeringnatportforward)_ |  |  |  |
+| `static` _[PeeringNATStatic](#peeringnatstatic)_ |  |  |  |
+
+
+#### PeeringNATMasquerade
+
+
+
+
+
+
+
+_Appears in:_
+- [PeeringNAT](#peeringnat)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
+
+
+#### PeeringNATPortForward
+
+
+
+
+
+
+
+_Appears in:_
+- [PeeringNAT](#peeringnat)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
+| `ports` _[PeeringNATPortForwardEntry](#peeringnatportforwardentry) array_ |  |  |  |
+
+
+
+
+#### PeeringNATProtocol
+
+_Underlying type:_ _string_
+
+
+
+_Validation:_
+- Enum: [tcp udp ]
+
+_Appears in:_
+- [PeeringNATPortForwardEntry](#peeringnatportforwardentry)
+
+| Field | Description |
+| --- | --- |
+| `` | Any protocol by default<br /> |
+| `tcp` | TCP only<br /> |
+| `udp` | UDP only<br /> |
+
+
+#### PeeringNATStatic
+
+
+
+
+
+
+
+_Appears in:_
+- [PeeringNAT](#peeringnat)
+
 
 
 #### PeeringSpec
@@ -351,35 +417,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `gatewayGroup` _string_ | GatewayGroup is the name of the gateway group that should process the peering |  |  |
 | `peering` _object (keys:string, values:[PeeringEntry](#peeringentry))_ | Peerings is a map of peering entries for each VPC participating in the peering (keyed by VPC name) |  |  |
-
-
-#### PeeringStatefulNAT
-
-
-
-
-
-
-
-_Appears in:_
-- [PeeringNAT](#peeringnat)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
-
-
-#### PeeringStatelessNAT
-
-
-
-
-
-
-
-_Appears in:_
-- [PeeringNAT](#peeringnat)
-
 
 
 #### PeeringStatus
