@@ -153,6 +153,9 @@ Internet, to other networks, or to some other systems such as DHCP, NTP, LMA, or
 
 ### StaticExternal
 
+!!! note
+    `StaticExternal` connections are deprecated; please consider using [static Externals](external.md#static-externals) instead.
+
 `StaticExternal` connections provide a simple way to connect things like DHCP servers directly to the Fabric by connecting
 them to specific switch ports.
 
@@ -189,8 +192,9 @@ spec:
 
 ### External
 
-Connection to external systems, such as edge/provider routers using BGP peering and configuring Inbound/Outbound
-communities as well as granularly controlling what gets advertised and which routes are accepted.
+Connection to [external systems](external.md). These could be edge/provider routers using BGP peering
+and Inbound/Outbound communities for dynamic learning of reachable prefixes, or simpler edge devices
+connected to the Fabric using static routes.
 
 ```yaml
 apiVersion: wiring.githedgehog.com/v1beta1
