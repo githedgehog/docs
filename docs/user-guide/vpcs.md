@@ -56,6 +56,11 @@ spec:
       subnet: 10.10.100.0/24
       vlan: 1100
 
+    bgp-on-host: # Another subnet with hosts peering with leaves via BGP
+      subnet: 10.10.50.0/25
+      hostBGP: true
+      vlan: 1050
+
   permit: # Defines which subnets of the current VPC can communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
     - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets can communicate to each other
     - [subnet-4, subnet-5] # Possible to define multiple lists
@@ -107,6 +112,24 @@ packet:
 * _VirtualSubnetSelection_ (suboption 151) is populated with the VRF which uniquely identifies a VPC on the Hedgehog
   Fabric and will be in `VrfV<VPC-name>` format, for example `VrfVvpc-1` for a VPC named `vpc-1` in the Fabric API.
 * _CircuitID_ (suboption 1) identifies the VLAN which, together with the VRF (VPC) name, maps to a specific VPC subnet.
+
+### HostBGP subnets
+
+At times, it is useful to have BGP running directly on the host and peering with the Fabric: one such case is
+to support active-active multi-homed servers, or simply to have redundancy when other techniques such
+as MCLAG or ESLAG are not available, for example because of hardware limitations.
+
+Consider this scenario: `server-1` is connected to two different Fabric switches `sw-1` and `sw-2`, and attached to
+`vpc-1/subnet-1` on both of them. This subnet is configured as `hostBGP`; the switches will be configured to peer with
+`server-1` using unnumbered BGP (IPv4 unicast address family), only importing /32 prefixes in the subnet of the VPC and
+exporting routes learned from other VPC peers. Similarly, BGP is running on `server-1`, unnumbered BGP sessions are
+established with each leaf, and one or more Virtual IPs (VIPs) in the VPC subnet are advertised. With this setup, the
+host is part of the VPC and can be reached via one of the advertised VIPs from either link to the Fabric.
+
+It is important to keep in mind that Hedgehog Fabric does not directly operate the host servers attached to it;
+running subnets in HostBGP mode requires running a routing suite and configuring it accordingly. To facilitate this
+process, however, we do provide a container image which can autogenerate a valid configuration, given some input parameters.
+For more details, see [the related section in the Host Settings page](host-settings.md#hostbgp-container).
 
 ## VPCAttachment
 
@@ -282,5 +305,3 @@ user@server ~$ ip route
 10.10.0.1/24 via 10.10.0.1 dev enp2s1.1000 proto dhcp src 10.10.0.4 metric 1024 # Route for VPC subnet gateway
 10.10.0.1 dev enp2s1.1000 proto dhcp scope link src 10.10.0.4 metric 1024
 ```
-
-
