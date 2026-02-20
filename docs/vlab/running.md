@@ -434,7 +434,7 @@ node and other VMs to watch the Fabric coming up and switches getting provisione
 ## Enable Outside connectivity from VLAB VMs
 
 By default, all test server VMs are isolated and have no connectivity to the host or the Internet. You can configure
-enable connectivity using `hhfab vlab up --restrict-servers=false` to allow the test servers to access the Internet and
+enable connectivity using `hhfab vlab up --controls-restricted=false` to allow the test servers to access the Internet and
 the host. When you enable connectivity, VMs get a default route pointing to the host, which means that in case of the
 VPC peering you need to configure test server VMs to use the VPC attachment as a default route (or just some specific
 subnets).
