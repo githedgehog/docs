@@ -858,6 +858,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hostbgp-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      HostBGP subnets
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1781,6 +1790,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hostbgp-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      HostBGP subnets
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1987,7 +2005,12 @@ each with user-defined VLANs and optional <abbr title="Dynamic Host Configuratio
 <span class="normal"><a href="#__codelineno-0-55">55</a></span>
 <span class="normal"><a href="#__codelineno-0-56">56</a></span>
 <span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPC</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1</span>
@@ -2037,14 +2060,19 @@ each with user-defined VLANs and optional <abbr title="Dynamic Host Configuratio
 </span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
 </span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
 </span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC. Will not be exported when peering</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.100.0.0/24</span><span class="w"> </span><span class="c1"># Destination prefix</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">      </span><span class="nt">nextHops</span><span class="p">:</span><span class="w"> </span><span class="c1"># Next hop IP addresses</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.200.0.0</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">    </span><span class="nt">bgp-on-host</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet with hosts peering with leaves via BGP</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.50.0/25</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">      </span><span class="nt">hostBGP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1050</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC. Will not be exported when peering</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.100.0.0/24</span><span class="w"> </span><span class="c1"># Destination prefix</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">      </span><span class="nt">nextHops</span><span class="p">:</span><span class="w"> </span><span class="c1"># Next hop IP addresses</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.200.0.0</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="isolated-and-restricted-subnets-permit-lists">Isolated and restricted subnets, permit lists</h3>
 <p>Subnets can be isolated and restricted, with the ability to define permit lists to allow communication between specific
@@ -2077,6 +2105,20 @@ packet:</p>
   Fabric and will be in <code>VrfV&lt;VPC-name&gt;</code> format, for example <code>VrfVvpc-1</code> for a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> named <code>vpc-1</code> in the Fabric API.</li>
 <li><em>CircuitID</em> (suboption 1) identifies the VLAN which, together with the VRF (<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>) name, maps to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet.</li>
 </ul>
+<h3 id="hostbgp-subnets">HostBGP subnets</h3>
+<p>At times, it is useful to have <abbr title="Border Gateway Protocol">BGP</abbr> running directly on the host and peering with the Fabric: one such case is
+to support active-active multi-homed servers, or simply to have redundancy when other techniques such
+as MCLAG or ESLAG are not available, for example because of hardware limitations.</p>
+<p>Consider this scenario: <code>server-1</code> is connected to two different Fabric switches <code>sw-1</code> and <code>sw-2</code>, and attached to
+<code>vpc-1/subnet-1</code> on both of them. This subnet is configured as <code>hostBGP</code>; the switches will be configured to peer with
+<code>server-1</code> using unnumbered <abbr title="Border Gateway Protocol">BGP</abbr> (IPv4 unicast address family), only importing /32 prefixes in the subnet of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and
+exporting routes learned from other <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peers. Similarly, <abbr title="Border Gateway Protocol">BGP</abbr> is running on <code>server-1</code>, unnumbered <abbr title="Border Gateway Protocol">BGP</abbr> sessions are
+established with each leaf, and one or more Virtual IPs (VIPs) in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet are advertised. With this setup, the
+host is part of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and can be reached via one of the advertised VIPs from either link to the Fabric.</p>
+<p>It is important to keep in mind that Hedgehog Fabric does not directly operate the host servers attached to it;
+running subnets in HostBGP mode requires running a routing suite and configuring it accordingly. To facilitate this
+process, however, we do provide a container image which can autogenerate a valid configuration, given some input parameters.
+For more details, see <a href="../host-settings/#hostbgp-container">the related section in the Host Settings page</a>.</p>
 <h2 id="vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></h2>
 <p>A <abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr> represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignment to the <code>Connection</code> object which means a binding between an
 exact server port and a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.
@@ -2231,7 +2273,7 @@ If the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> serv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 30, 2026</span>
   </span>
 
     
