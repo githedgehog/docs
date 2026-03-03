@@ -176,7 +176,8 @@ spec:
 ### External VPC Peering
 
 To allow a specific VPC to have access to prefixes reachable via an Edge Device, bind the VPC to the corresponding
-`External` by creating an `External Peering` object.
+`External` by creating an `External Peering` object. Both the VPC and the external must belong to the same
+`IPv4Namespace`; peering of VPCs and externals from different IPv4 namespaces is not supported.
 
 !!! note
     External VPC Peering via this Fabric object is only supported for BGP-speaking externals or
