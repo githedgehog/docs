@@ -111,10 +111,12 @@ style Servers fill:none,stroke:none
 Just as [VPC Peerings](vpcs.md#vpcpeering) provide VPC-to-VPC connectivity by way of the switches in the fabric, gateway peerings provide connectivity via the gateway nodes.
 Gateway services can be inserted between a pair of VPCs or a VPC and an external using a Gateway Peering.
 Each peering can be configured to provide the necessary services for traffic
-that uses that peering. Peering the same entities via gateway and fabric
-at the same time results in undefined behaviour. If two entities (VPCs or externals) are already
-peered via the fabric, delete this peering first, then peer them via the
-gateway.
+that uses that peering. 
+
+!!! warning
+    Peering the same entities via gateway and fabric at the same time results in undefined behavior.
+    If two entities (VPCs or externals) are already peered via the fabric, delete this peering first,
+    then peer them via the gateway.
 
 ### Simple Gateway Peering Between VPCs
 
@@ -147,22 +149,21 @@ prefixes can overlap with an expose block marked as `default`, see section on
 [peering for external connections](#gateway-peering-for-external-connections)
 for details.
 
-### Gateway Peering with Stateless NAT
+### Gateway Peering with Static (Stateless) NAT
 
-Stateless NAT translates source and/or destination IP addresses for all packets that traverse
-the peering, but it does not maintain any flow state for the connection. A
-one-to-one mapping is established between the addresses exposed in the CIDRs for
-`ips` and the addresses to use represented by the CIDRs in
-`as`: each address from the first group is consistently mapped to a single
-address from the second group. Therefore, the total number of addresses covered
-by the CIDRs YAML array entries from `ips` must be equal to the total number of
-addresses covered by the CIDRs from `as`.
+Static NAT translates source and/or destination IP addresses for all packets that traverse
+the peering, but it does not maintain any flow state for the connection; in other words,
+it is stateless. A one-to-one mapping is established between the addresses exposed in the CIDRs for
+`ips` and the addresses to use represented by the CIDRs in `as`: each address from
+the first group is consistently mapped to a single address from the second group.
+Therefore, the total number of addresses covered by the CIDRs YAML array entries
+from `ips` must be equal to the total number of addresses covered by the CIDRs from `as`.
 
-```{.yaml .annotate linenums="1" title="gw-sl-nat-peer.yaml"}
+```{.yaml .annotate linenums="1" title="gw-static-nat-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
-  name: vpc-1--sl-nat--vpc-2
+  name: vpc-1--static--vpc-2
   namespace: default
 spec:
   peering:
@@ -172,10 +173,14 @@ spec:
           - cidr: 10.0.1.0/24 # IP addresses in the 10.0.1.0/24 block will be exposed ...
           as:
           - cidr: 10.11.11.0/24 # as IP addresses in the 10.11.11.0/24 block.
+          nat:
+            static: {}
         - ips:
           - cidr: 10.0.2.3/32 # This single IP address will be reachable...
           as:
           - cidr: 10.11.22.3/32 # as this IP address in vpc-2.
+          nat:
+            static: {}
     vpc-2:
       expose:
         - ips:
@@ -183,185 +188,139 @@ spec:
           as:
           - cidr: 10.22.22.0/25 # and exposed back to vpc-1.
           - cidr: 10.22.22.128/25
+          nat:
+            static: {}
 ```
 
-### Gateway Peering with Stateful Source NAT
+### Gateway Peering with Stateful NAT
 
-Stateful source NAT uses a flow table to track established connections.
+Stateful NAT uses a flow table to track established connections; the decision on the action
+to take for a packet depends on both the configuration of the peering and the flow table
+state.
+
+There are two flavors of stateful NAT, depending on in which direction of the traffic the rule applies:
+masquerade and port-forwarding.
+
+!!! note
+    For a given gateway peering, only one side of the peering (i.e. one VPC or external)
+    can use "stateful NAT", in other words masquerade and/or port forwarding; the other side
+    MUST use no NAT or static NAT. This limitation will be lifted in an upcoming release.
+
+#### Masquerade (Stateful Source NAT)
+
+Stateful source NAT, also referred to as _masquerade_, uses a flow table to track established connections.
 When traffic is initiated from `vpc-1` to `vpc-2`, the flow table is updated
 with the connection details. In the return direction (from `vpc-2` to `vpc-1`
 in the following example), the flow table is consulted to determine if the packet
 is part of an established connection. If it is, the packet is allowed to pass
 through the peering. If it is not, the packet is dropped.
-This behavior allows use of stateful NAT as a simple firewall.
+This behavior allows the use of masquerading as a simple firewall.
 
-```{.yaml .annotate linenums="1" title="gw-sf-nat-peer.yaml"}
+```{.yaml .annotate linenums="1" title="gw-masquerade-nat-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
-  name: vpc-1--sf-nat--vpc-2
+  name: vpc-1--masquerade--vpc-2
   namespace: default
 spec:
   peering:
     vpc-1:
       expose:
         # Allow 10.0.0.0/24 addresses to talk to vpc-2
-        # Because of stateful NAT, traffic from vpc-2 to vpc-1 is only allowed if there is
-        # a flow table entry created by a traffic initiated from vpc-1 to vpc-2.
+        # Because of stateful source NAT, traffic from vpc-2 to vpc-1 is only allowed if there is
+        # a flow table entry created by a traffic flow initiated from vpc-1 to vpc-2.
         - ips:
           - cidr: 10.0.0.0/24
           as:
           - cidr: 10.0.1.0/31  # but, NAT those addresses using the addresses in 10.0.1.0/31
-          nat:  # Contains the NAT configuration
-          # Make NAT stateful, connections initiated from vpc-1 to vpc-2 will be added to the flow table.
-          # An entry for the reverse direction will be added too, so that the receiving endpoint in vpc-2 can reply.
-            stateful:
-              idleTimeout: 5m # Timeout connections after 5 minutes of inactivity (no packets received)
+          nat:
+            masquerade: # Stateful source NAT: connections initiated from vpc-1 to vpc-2 will be added to the flow table
+              idleTimeout: 5m0s # Timeout connections after 5 minutes of inactivity (no packets received)
     vpc-2:
       expose:
         # Allows traffic from vpc-1 to vpc-2 on these addresses.
         # Connections must be initiated from vpc-1 to vpc-2 due to flow tracking.
         - ips:
           - cidr: 192.168.0.0/16
-        # Currently, only one VPC of a peering can use stateful NAT.
-        # This restriction will be lifted in a future release.
+        # Currently, only one of the two VPCs of a peering can use stateful NAT
+        # (i.e. masquerade and/or port-forwarding). This restriction will be lifted in a future release.
 ```
 
-### Gateway Peering with Port Address Translation
+In this example, a host in `vpc-1` with an IP address in the range `10.0.0.0/24` - for example
+`10.0.0.4` - can send packets to a host in `vpc-2` with an address in the range `192.168.0.0/16` -
+for example `192.168.5.32`. The host in `vpc-2` will see those packets arrive with a source address
+in the range `10.0.1.0/31` - for example `10.0.1.1`; the reverse translation will be done on the gateway
+for return traffic, and the hosts are going to be able to communicate with each other.
+However, if that same host in `vpc-2` attempts to connect to that same address before the host in `vpc-1`
+has initiated the connection flow - or after the idle timeout has expired without any packet being sent
+between the pair - the gateway will drop those packets and the connection will not succeed.
 
-Stateless NAT can also work with port ranges, a feature known as Port Address
-Translation (PAT).
+#### Port-Forwarding (Stateful Destination NAT)
 
-#### Stateless PAT
+Port-Forwarding is the complement to Masquerading, in that it enables connection
+flows initiated from the remote side. One example of the use cases for this would be
+to allow external services to connect to a host in a VPC on a specific port
+or range of ports, while rejecting connections outside of that range.
 
-For stateless translation, ports or port ranges can be specified for the IP
-prefix to translate (`ips`) as well as for the target prefixes (`as`).
-
-- Specifying ports or port ranges for a prefix in `ips` means that only packets
-  whose source L4 ports are in the list will be translated.
-- Specifying ports or port ranges for a prefix in `as` means that ports will be
-  translated to ports within the resulting list of ports.
-
-##### Example
-
-The following YAML fragment is an example with port translation configured on
+The following YAML fragment is an example with port forwarding configured on
 `vpc-1`'s side:
 
-```{.yaml .annotate linenums="1" title="gw-sl-pat-peer.yaml"}
+```{.yaml .annotate linenums="1" title="gw-pf-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
-  name: vpc-1--sl-nat--vpc-2
+  name: vpc-1--pf--vpc-2
   namespace: default
 spec:
   peering:
     vpc-1:
       expose:
         - ips:
-          - cidr: 10.0.1.0/24
-            ports: 2001-3000
+          - cidr: 10.0.1.3/32 # the real IPs of the hosts we want to expose
           as:
-          - cidr: 192.168.11.0/24
-            ports: 4999,5002-6000
+          - cidr: 192.168.11.20/32 # the "public" IPs that can be used to reach those hosts
+          nat:
+            portForward:
+              ports:
+                - proto: tcp  # one of tcp or udp, or empty for both
+                  port: "22"  # the real port (or port range) on the host where the traffic will be sent
+                  as: "22101" # the port (or port range) the sender will use as the destination on the public IPs above
     vpc-2:
       expose:
         - ips:
           - cidr: 10.0.2.0/24
+        # Currently, only one of the two VPCs of a peering can use stateful NAT
+        # (i.e. masquerade and/or port-forwarding). This restriction will be lifted in a future release.
 ```
 
-In this example, packets emitted from `vpc-1` to `vpc-2` with a source IP
-address in `10.0.1.0/24` _and_ a TCP or UDP source port between 2001 and 3000
-(included), are translated with a new source IP in CIDR `192.168.11.0/24` and a
-source port being either `4999` or between `5002` and `6000` (included),
-whereas the destination IP and port are unchanged. Packets emitted in the other
-direction, from `vpc-2` to `vpc-1`, have their destination address and L4 port
-translated back to the initial prefix and port range.
+In this example, hosts in `vpc-2` with an IP address in the range `10.0.2.0/24` can connect
+to `192.168.11.20` via TCP on port `22101`, and this will be mapped to port `22`
+of host `10.0.1.3` in `vpc-1`, e.g. allowing them to ssh into it.
 
-For example, once this peering has been created, if `vpc-1` sends the following
-TCP packet:
+!!! warning
+    Port-Forwarding tracks the state of TCP flows. It is recommended to use TCP keepalives
+    or application-layer keepalives to avoid flows from expiring due to inactivity, which
+    would cause further packets from those flows to be dropped.
+    Note that the IdleTimeout for Port-Forwarding is currently ignored and fixed at 2 minutes;
+    this issue will be addressed in an upcoming release.
 
-- source IP: `10.0.1.2`
-- source TCP port: `2032`
-- destination IP: `10.0.2.2`
-- destination TCP port: `8080`
-
-then on reception, the gateway statelessly translates it to the following,
-before forwarding it to `vpc-2`:
-
-- source IP: `192.168.11.2` (or any other address from `192.168.11.0/24`,
-  depending on the internal mapping algorithm)
-- source TCP port: `5784` (or any other port from `5002-6000`, or `4999`,
-  depending on the internal mapping algorithm)
-- destination IP: `10.0.2.2` - unchanged
-- destination TCP port: `8080` - unchanged
-
-We could use ports and port ranges on `vpc-2`'s side as well, in a similar way.
-
-The field `ports` accepts a comma-separated list of ports and port ranges. Port
-ranges are specified with the lower and higher bounds for the range
-(inclusive), separated with a dash. Spaces are not allowed within the string
-for ports and port ranges.
-
-##### Size constraints
-
-Like for stateless NAT, a one-to-one mapping is established between elements to
-translate (`ips`) and target addresses and ports (`as`). As a consequence, the
-number of addresses covered by the IP prefixes, multiplied by the number of
-ports in the relative port ranges (if any), must be equal between `ips` and
-`as`. For example, CIDR `10.0.1.0/24` (256 IP addresses) with port range
-`2000-2099` (100 ports) covers 25,600 combinations.
-
-If a CIDR has no associated ports or port ranges, the full space of available
-ports (65536 ports) is used, just like in the case of NAT.
-
-##### Limitations
-
-Note that when PAT is set up for a given CIDR prefix, packets addressed to IPs
-in this prefix but not matching the ports or port ranges will be dropped,
-because the gateway may not be able to determine their destination VPC. In
-particular, with PAT set for a given prefix, **ICMP and all non-TCP or non-UDP
-overlay traffic will be dropped** if trying to use this prefix to communicate
-between the two VPCs associated with the peering.
-
-Configuring different port ranges for TCP and UDP, individually, is not
-currently supported.
-
-#### Stateful PAT
-
-Specifying port ranges for a prefix exposed with stateful NAT is not currently
-supported.
+The fields `port` and `as` under `ports` accept a string with a single port or a port range;
+a range should be specified with the lower and higher bounds (inclusive) separated with a dash.
+Spaces are not allowed within the string for ports or port ranges. For example, both `245` and
+`435-512` are valid entries, while `340-237`, `2,3`, or `122 - 234` are not.
 
 ### Gateway Peering for External Connections
 
-The following YAML listings show how to create an external and expose a default
-route to the `10.50.2.0/24` subnet inside of `vpc-02`. In this example, the
-name of the external is `example-ext`. Assuming this external represents the
-WAN, this configuration allows hosts inside of the `10.50.2.0/24` subnet to
-reach the WAN.
-
-Here is the YAML fragment for creating the external:
-
-```{.yaml .annotate linenums="1" title="example-external.yaml"}
-apiVersion: vpc.githedgehog.com/v1beta1
-kind: External
-metadata:
-  name: example-ext
-  namespace: default
-spec:
-  inboundCommunity: 65102:5001
-  ipv4Namespace: default
-  outboundCommunity: 5001:65102
-```
-
-Once the external is created, the gateway can be used to create a peering
-between the external and a VPC. The following YAML is an example of this
-configuration:
+Gateway peerings can also be used to peer a VPC with an [External](external.md).
+The following YAML is an example configuration for a peering between VPC `vpc-02`
+and External `example-ext`:
 
 ```{.yaml .annotate linenums="1" title="gw-peer-external.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
 kind: Peering
 metadata:
   name: vpc-02--example-ext
+  namespace: default
 spec:
   peering:
     ext.example-ext: # NOTE the name of the external is prefixed with "ext."
@@ -387,3 +346,129 @@ space are sent to the external `example-ext`.
 
 For any given VPC, at most one remote `expose` block, among all peerings for
 this VPC, can act as a `default` destination.
+
+## Example Use Case: Gateway External Peering with Masquerade and Port-Forwarding
+
+Let's see how everything we have discussed so far can be used to support a reasonable
+external connectivity use case.
+
+We will assume that our Fabric is connected to an external endpoint providing
+internet connectivity. We want hosts on one of our VPCs to be able to reach the
+internet despite having a private IP address in the VPC subnet range; additionally,
+we want to expose some ports on the VPC hosts via a public IP, so that we can connect
+to a locally running service from the outside. Naturally, we want to keep the hosts isolated otherwise.
+
+First, let's create the `External` object and its attachment to a border leaf `leaf-01`.
+Let's assume the external is managed by an ISP which does not want to BGP peer with us;
+instead, it provides a default route with a /31 nexthop on a VLAN connection. We will use a static external
+with proxy-ARP to connect the border leaf to the external, and later we will configure
+the gateway peering to masquerade traffic from our VPC hosts using the other end of the
+/31 nexthop, so that the external will see the outgoing traffic as if it was coming
+directly from the border leaf.
+
+```{.yaml .annotate linenums="1" title="static-external.yaml"}
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: External
+metadata:
+  name: ext-sp-01
+  namespace: default
+spec:
+  ipv4Namespace: default
+  static:
+    prefixes:
+    - 0.0.0.0/0
+---
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: ExternalAttachment
+metadata:
+  name: leaf-01--ext-sp-01
+  namespace: default
+spec:
+  connection: leaf-01--external
+  external: ext-sp-01
+  neighbor: {}
+  static:
+    proxy: true
+    remoteIP: 100.1.10.1
+    vlan: 10
+  switch: {}
+```
+
+We also have some VPCs and attachments already created: here are their YAMLs for reference.
+
+```{.yaml .annotate linenums="1" title="vpc-01.yaml"}
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: VPC
+metadata:
+  name: vpc-01
+  namespace: default
+spec:
+  ipv4Namespace: default
+  mode: l3vni
+  subnets:
+    subnet-01:
+      dhcp:
+        enable: true
+        range:
+          end: 10.0.1.255
+          start: 10.0.1.2
+      gateway: 10.0.1.1
+      subnet: 10.0.1.0/24
+      vlan: 1001
+  vlanNamespace: default
+---
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: VPCAttachment
+metadata:
+  name: server-01--unbundled--leaf-01--vpc-01--subnet-01
+  namespace: default
+spec:
+  connection: server-01--unbundled--leaf-01
+  subnet: vpc-01/subnet-01
+```
+
+Let's assume `server-01` has received the IP address `10.0.1.2/32` from the DHCP server.
+We want to create a gateway peering between `vpc-01` and the external `ext-sp-01`, such that:
+
+- the external advertises a "default route" to the internet, mapping any prefix for which there
+is no explicit expose; this is done via the `default` flag on the external side
+- traffic from the VPC towards the external is masqueraded using the other half of the /31
+configured on the external, i.e. `100.1.10.0`, and the reverse translation is done for return traffic
+- traffic from the external directed to the public IP address above and TCP port 22101 will be
+mapped to the IP address of `server-01` and TCP port 22
+- all other inbound traffic to `server-01`, whether via its private IP or the public IP `100.1.10.0`,
+will be rejected
+
+```{.yaml .annotate linenums="1" title="gw-peering.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: Peering
+metadata:
+  name: vpc-01--ext-sp-01
+  namespace: default
+spec:
+  gatewayGroup: default
+  peering:
+    ext.ext-sp-01:
+      expose:
+      - default: true
+    vpc-01:
+      expose:
+      - as:
+        - cidr: 100.1.10.0/32
+        ips:
+        - cidr: 10.0.1.0/24
+        nat:
+          masquerade:
+            idleTimeout: 2m0s
+      - as:
+        - cidr: 100.1.10.0/32
+        ips:
+        - cidr: 10.0.1.2/32
+        nat:
+          portForward:
+            idleTimeout: 2m0s
+            ports:
+            - proto: tcp
+              port: "22"
+              as: "22101"
+```
