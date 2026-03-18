@@ -2504,7 +2504,7 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tbody>
 </table>
 <h4 id="componentsstatus">ComponentsStatus</h4>
-<p>! WARNING: Make sure to update the IsReady method if you add or remove components</p>
+<p>! WARNING: Make sure to update the IsReady/IsGatewayReady methods if you add or remove components</p>
 <p><em>Appears in:</em>
 - <a href="#fabricatorstatus">FabricatorStatus</a></p>
 <table>
@@ -2619,6 +2619,18 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>gatewayDataplane</code> <em>object (keys:string, values:<a href="#componentstatus">ComponentStatus</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gatewayFRR</code> <em>object (keys:string, values:<a href="#componentstatus">ComponentStatus</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="controlconfig">ControlConfig</h4>
@@ -2642,6 +2654,18 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tr>
 <tr>
 <td><code>controlVIP</code> <em><a href="#prefix">Prefix</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>managementSubnetAnyDevice</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>managementSubnetStatic</code> <em>object (keys:string, values:string)</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3237,6 +3261,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>proxyExternalSubnet</code> <em><a href="#prefix">Prefix</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>baseVPCCommunity</code> <em>string</em></td>
 <td></td>
 <td></td>
@@ -3262,6 +3292,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tr>
 <tr>
 <td><code>vpcWorkaroundSubnet</code> <em><a href="#prefix">Prefix</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>th5WorkaroundVLANs</code> <em>VLANRange array</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3297,13 +3333,31 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>excludeNOSInstallers</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>includeONIE</code> <em>boolean</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>includeCLS</code> <em>boolean</em></td>
+<td><code>includeBCM</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>includeCLSP</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>includeCumulus</code> <em>boolean</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3631,6 +3685,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>communities</code> <em>object (keys:string, values:string)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="gatewayobservability">GatewayObservability</h4>
@@ -3931,6 +3991,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>reloaderChart</code> <em><a href="#version">Version</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>ntp</code> <em><a href="#version">Version</a></em></td>
 <td></td>
 <td></td>
@@ -3962,6 +4028,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tr>
 <tr>
 <td><code>bashCompletion</code> <em><a href="#version">Version</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hostBGPContainer</code> <em><a href="#version">Version</a></em></td>
 <td></td>
 <td></td>
 <td></td>
