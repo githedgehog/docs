@@ -52,6 +52,13 @@ spec:
       subnet: "10.10.2.0/24"
       vlan: 1002
 
+    dhcp-relay-to-other-vpc: # Another subnet with DHCP relay to a separate VPC
+      dhcp:
+        relay: 10.20.20.200/32 # IP address to reach the DHCP server in the target VPC
+        relayVPC: vpc-2 # The name of the VPC that the host running the DHCP server is attached to 
+      subnet: "10.10.3.0/24"
+      vlan: 1003
+
     another-subnet: # Minimal configuration is just a name, subnet and VLAN
       subnet: 10.10.100.0/24
       vlan: 1100
@@ -112,6 +119,89 @@ packet:
 * _VirtualSubnetSelection_ (suboption 151) is populated with the VRF which uniquely identifies a VPC on the Hedgehog
   Fabric and will be in `VrfV<VPC-name>` format, for example `VrfVvpc-1` for a VPC named `vpc-1` in the Fabric API.
 * _CircuitID_ (suboption 1) identifies the VLAN which, together with the VRF (VPC) name, maps to a specific VPC subnet.
+
+### DHCP Relay to another VPC
+
+It is possible to configure DHCP relay for a VPC subnet towards a DHCP server in another VPC. To do so:
+
+- configure `spec.subnets.<subnet>.dhcp.relay` with the address of the host where the DHCP server will be running
+- configure `spec.subnets.<subnet>.dhcp.relayVPC` with the name of the VPC where the DHCP server lives
+- make sure that the DHCP server has a route back to the client's VPC subnet
+- if the DHCP client and server are not attached to the same physical leaf, create a peering between their
+respective VPCs, so that DHCP offers from the server can be routed back to the client
+
+The relay sets two sub-options in the packet:
+
+- _VirtualSubnetSelection_ (sub-option 151) is populated with the VRF which uniquely identifies a VPC on the Hedgehog
+  Fabric and will be in `VrfV<VPC-name>` format, for example `VrfVvpc-1` for a VPC named `vpc-1` in the Fabric API.
+- _CircuitID_ (sub-option 1) identifies the VLAN which, together with the VRF (VPC) name, maps to a specific VPC subnet.
+
+Here is a sample configuration for a scenario where:
+
+- `server-01` is attached to `vpc-01/default` on `leaf-01` and runs the DHCP client
+- `server-02` is attached to `vpc-02/default` on `leaf-01` and runs the DHCP server
+
+These are the YAMLs for the VPCs and their attachments:
+
+```{.yaml .annotate linenums="1" title="dhcp-relay-vpc.yaml"}
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: VPC
+metadata:
+  name: vpc-01
+  namespace: default
+spec:
+  ipv4Namespace: default
+  subnets:
+    default:
+      dhcp:
+        relay: 10.0.2.200/32
+        relayVPC: vpc-02
+      gateway: 10.0.1.1
+      subnet: 10.0.1.0/24
+      vlan: 1001
+  vlanNamespace: default
+---
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: VPCAttachment
+metadata:
+  name: server-01--vpc-01
+  namespace: default
+spec:
+  connection: server-01--unbundled--leaf-01
+  subnet: vpc-01/default
+---
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: VPC
+metadata:
+  name: vpc-02
+  namespace: default
+spec:
+  ipv4Namespace: default
+  subnets:
+    default:
+      dhcp: {}
+      gateway: 10.0.2.1
+      subnet: 10.0.2.0/24
+      vlan: 1002
+  vlanNamespace: default
+---
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: VPCAttachment
+metadata:
+  name: server-02--vpc-02
+  namespace: default
+spec:
+  connection: server-02--unbundled--leaf-01
+  subnet: vpc-02/default
+```
+
+And here's the log from a successful DHCP request from `server-01` to `server-02`:
+```
+DHCPDISCOVER from 0c:20:12:fe:03:01 (server-01) via 10.0.1.1
+DHCPOFFER on 10.0.1.2 to 0c:20:12:fe:03:01 (server-01) via 10.0.1.1
+DHCPREQUEST for 10.0.1.2 (10.0.2.200) from 0c:20:12:fe:03:01 (server-01) via 10.0.1.1
+DHCPACK on 10.0.1.2 to 0c:20:12:fe:03:01 (server-01) via 10.0.1.1
+```
 
 ### HostBGP subnets
 
