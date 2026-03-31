@@ -547,7 +547,7 @@ Alternatively, you can create the peering manually in the control node, using th
 ```
 core@control-1 ~ $ cat <<EOF > vpc-01--vpc-02--gw.yaml
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-01--vpc-02
   namespace: default
@@ -582,13 +582,13 @@ PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
 rtt min/avg/max/mdev = 11.560/31.852/70.008/26.998 ms
 ```
 
-### VPC peering with Stateless NAT
+### VPC peering with static NAT
 
 Let's either edit or recreate the previous peering so that it looks like this:
 
 ```{.yaml .annotate linenums="1" title="vpc-01--vpc-02--gw.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-01--vpc-02
   namespace: default
@@ -604,6 +604,8 @@ spec:
           - cidr: 10.0.2.0/24
           as:
           - cidr: 192.168.2.0/24
+          nat:
+            static: {}
 ```
 
 If we try pinging server-2 from server-1 using its real IP address, we should now
@@ -646,13 +648,13 @@ PING 10.0.1.10 (10.0.1.10) 56(84) bytes of data.
 rtt min/avg/max/mdev = 12.177/18.106/29.826/8.287 ms
 ```
 
-### VPC peering with Stateful NAT
+### VPC peering with masquerade
 
-Let's change the peering again to use source stateful NAT:
+Let's change the peering again to use source stateful NAT (i.e. masquerade):
 
 ```{.yaml .annotate linenums="1" title="vpc-01--vpc-02--gw.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-01--vpc-02
   namespace: default
@@ -669,7 +671,7 @@ spec:
           as:
           - cidr: 192.168.5.40/31
           nat:
-            stateful:
+            masquerade:
               idleTimeout: 1m
 ```
 

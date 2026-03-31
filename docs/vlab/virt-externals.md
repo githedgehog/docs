@@ -402,9 +402,9 @@ ubuntu@docs:~/hhfab$ ./hhfab vlab setup-peerings 4~external-01:s=subnet-01:gw
 or by creating a gateway peering object like the one that we just generated:
 
 ```
-core@control-1 ~ $ kubectl get peering vpc-04--external-01 -o yaml
+core@control-1 ~ $ kubectl get gatewaypeering vpc-04--external-01 -o yaml
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   creationTimestamp: "2025-11-26T11:03:13Z"
   generation: 1

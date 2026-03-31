@@ -454,10 +454,10 @@ spec:
       - default
 ```
 
-Alternatively, for the proxy version of the static external, use a Gateway peering:
+Alternatively, for the proxy version of the static external, use a `GatewayPeering`:
 ```yaml
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-01--static-edge
   namespace: default
