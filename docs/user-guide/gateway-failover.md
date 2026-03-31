@@ -65,7 +65,7 @@ With the previous setup, one of the two gateways remains idle, which can be sub-
 
 ```yaml
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-1--vpc-2
   namespace: default

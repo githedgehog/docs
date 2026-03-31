@@ -125,7 +125,7 @@ transit the gateway node(s).
 
 ```{.yaml .annotate linenums="1" title="gw-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-1--vpc-2
   namespace: default
@@ -161,7 +161,7 @@ from `ips` must be equal to the total number of addresses covered by the CIDRs f
 
 ```{.yaml .annotate linenums="1" title="gw-static-nat-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-1--static--vpc-2
   namespace: default
@@ -217,7 +217,7 @@ This behavior allows the use of masquerading as a simple firewall.
 
 ```{.yaml .annotate linenums="1" title="gw-masquerade-nat-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-1--masquerade--vpc-2
   namespace: default
@@ -268,7 +268,7 @@ The following YAML fragment is an example with port forwarding configured on
 
 ```{.yaml .annotate linenums="1" title="gw-pf-peer.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-1--pf--vpc-2
   namespace: default
@@ -321,7 +321,7 @@ and External `example-ext`:
 
 ```{.yaml .annotate linenums="1" title="gw-peer-external.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-02--example-ext
   namespace: default
@@ -445,7 +445,7 @@ will be rejected
 
 ```{.yaml .annotate linenums="1" title="gw-peering.yaml"}
 apiVersion: gateway.githedgehog.com/v1alpha1
-kind: Peering
+kind: GatewayPeering
 metadata:
   name: vpc-01--ext-sp-01
   namespace: default
