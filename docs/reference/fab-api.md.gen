@@ -39,7 +39,7 @@ _Appears in:_
 
 
 
-! WARNING: Make sure to update the IsReady/IsGatewayReady methods if you add or remove components
+! WARNING: Make sure to update the IsReady method if you add or remove components
 
 
 
@@ -62,9 +62,9 @@ _Appears in:_
 | `fabricDHCP` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `controlProxy` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `controlAlloy` _[ComponentStatus](#componentstatus)_ |  |  |  |
+| `gatewayAPI` _[ComponentStatus](#componentstatus)_ |  |  |  |
+| `gatewayCtrl` _[ComponentStatus](#componentstatus)_ |  |  |  |
 | `gatewayAlloy` _[ComponentStatus](#componentstatus)_ |  |  |  |
-| `gatewayDataplane` _object (keys:string, values:[ComponentStatus](#componentstatus))_ |  |  |  |
-| `gatewayFRR` _object (keys:string, values:[ComponentStatus](#componentstatus))_ |  |  |  |
 
 
 #### ControlConfig
@@ -82,8 +82,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `managementSubnet` _[Prefix](#prefix)_ |  |  |  |
 | `controlVIP` _[Prefix](#prefix)_ |  |  |  |
-| `managementSubnetAnyDevice` _boolean_ |  |  |  |
-| `managementSubnetStatic` _object (keys:string, values:string)_ |  |  |  |
 | `tlsSAN` _string array_ |  |  |  |
 | `joinToken` _string_ |  |  |  |
 | `kubeClusterSubnet` _[Prefix](#prefix)_ |  |  |  |
@@ -396,23 +394,18 @@ _Appears in:_
 | `protocolSubnet` _[Prefix](#prefix)_ |  |  |  |
 | `vtepSubnet` _[Prefix](#prefix)_ |  |  |  |
 | `fabricSubnet` _[Prefix](#prefix)_ |  |  |  |
-| `proxyExternalSubnet` _[Prefix](#prefix)_ |  |  |  |
 | `baseVPCCommunity` _string_ |  |  |  |
 | `vpcIRBVLANs` _VLANRange array_ |  |  |  |
 | `loopbackWorkaroundDisable` _boolean_ |  |  |  |
 | `vpcWorkaroundVLANs` _VLANRange array_ |  |  |  |
 | `vpcWorkaroundSubnet` _[Prefix](#prefix)_ |  |  |  |
-| `th5WorkaroundVLANs` _VLANRange array_ |  |  |  |
 | `eslagMACBase` _string_ |  |  |  |
 | `eslagESIPrefix` _string_ |  |  |  |
 | `mclagSessionSubnet` _[Prefix](#prefix)_ |  |  |  |
 | `defaultSwitchUsers` _object (keys:string, values:[SwitchUser](#switchuser))_ |  |  |  |
 | `defaultAlloyConfig` _[AlloyConfig](#alloyconfig)_ |  |  |  |
-| `excludeNOSInstallers` _boolean_ |  |  |  |
 | `includeONIE` _boolean_ |  |  |  |
-| `includeBCM` _boolean_ |  |  |  |
-| `includeCLSP` _boolean_ |  |  |  |
-| `includeCumulus` _boolean_ |  |  |  |
+| `includeCLS` _boolean_ |  |  |  |
 | `disableBFD` _boolean_ |  |  |  |
 | `observability` _[Observability](#observability)_ |  |  |  |
 
@@ -541,7 +534,6 @@ _Appears in:_
 | `asn` _integer_ |  |  |  |
 | `mac` _string_ |  |  |  |
 | `observability` _[GatewayObservability](#gatewayobservability)_ |  |  |  |
-| `communities` _object (keys:string, values:string)_ |  |  |  |
 
 
 #### GatewayObservability
@@ -693,14 +685,12 @@ _Appears in:_
 | `k9s` _[Version](#version)_ |  |  |  |
 | `toolbox` _[Version](#version)_ |  |  |  |
 | `reloader` _[Version](#version)_ |  |  |  |
-| `reloaderChart` _[Version](#version)_ |  |  |  |
 | `ntp` _[Version](#version)_ |  |  |  |
 | `ntpChart` _[Version](#version)_ |  |  |  |
 | `alloy` _[Version](#version)_ |  |  |  |
 | `controlProxy` _[Version](#version)_ |  |  |  |
 | `controlProxyChart` _[Version](#version)_ |  |  |  |
 | `bashCompletion` _[Version](#version)_ |  |  |  |
-| `hostBGPContainer` _[Version](#version)_ |  |  |  |
 
 
 #### RegistryConfig
