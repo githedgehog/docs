@@ -4,6 +4,25 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
     
+## 25.05.1
+
+Date: April 2, 2026
+
+### Other
+
+- Added support for auto-negotiation configuration on Celestica DS3000 100G ports
+
+### Software versions
+
+- fabricator/hhfab: v0.43.2
+- fabric: v0.96.4
+    - broadcom sonic: 4.5.0
+- gateway: v0.28.0
+    - dataplane: v0.4.0
+    - frr: v0.3.0 (10.4.1)
+- flatcar: v4230.2.4
+- k8s (k3s): v1.34.1-k3s1
+
 ## 25.05
 
 Date: November 20, 2025
@@ -33,10 +52,10 @@ Date: November 20, 2025
 
 - fabricator/hhfab: v0.43.1
 - fabric: v0.96.2
-  - broadcom sonic: 4.5.0
+    - broadcom sonic: 4.5.0
 - gateway: v0.28.0
-  - dataplane: v0.4.0
-  - frr: v0.3.0 (10.4.1)
+    - dataplane: v0.4.0
+    - frr: v0.3.0 (10.4.1)
 - flatcar: v4230.2.4
 - k8s (k3s): v1.34.1-k3s1
 
