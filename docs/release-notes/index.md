@@ -4,6 +4,47 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
     
+## 26.01
+
+Date: April 2, 2026
+
+### Highlights
+
+- Gateway is now Generally Available (GA), building on features released in 25.05:
+    - Active-passive redundancy within a Gateway group
+    - Multiple Gateway groups for horizontal scalability
+    - Port Address Translation (PAT) and Masquerade
+    - Throughput (hardware-, MTU-, and traffic-dependent):
+      - Up to 120 Gb/s across multiple streams
+      - Up to 11 Gb/s on a single stream
+        - Measured using iperf3 in TCP mode with 9000 MTU on test servers with a Gateway node
+          running on a 24-core CPU and ConnectX-7
+- Non-BGP External connectivity for reaching destinations outside the Fabric (e.g., the internet):
+    - Supports static IP on leaf port with static routes and optional proxy ARP
+
+### Other
+
+- New `Host BGP` VPC subnet mode enables BGP to run on the host side and peer with leaf switches:
+    - Enables ECMP-based multihoming on TH5-based switches with full multi-tenancy support
+- Gateway is now supported in TH5-based mesh Fabrics
+- Fallback is now supported for Bundled Connections
+
+### Notes
+
+- Upgrade is supported only from 25.05.x
+
+### Software versions
+
+- fabricator/hhfab: v0.45.5
+- fabric: v0.115.4
+    - broadcom sonic: 4.5.0
+- gateway:
+    - dataplane: v0.17.0
+    - frr: v0.17.0 (based on FRR 10.5.3, patched)
+    - gateway controller is now included in the Fabric
+- flatcar: v4459.2.4
+- k8s (k3s): v1.35.2-k3s1
+
 ## 25.05.1
 
 Date: April 2, 2026
