@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/25.05/user-guide/vpcs/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/26.01/user-guide/vpcs/">
       
       
         <link rel="prev" href="../host-settings/">
       
       
-        <link rel="next" href="../external/">
+        <link rel="next" href="../dhcp/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -450,6 +450,27 @@ You're not viewing the latest version.
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vlab/virt-externals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Externals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -837,6 +858,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hostbgp-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      HostBGP subnets
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -975,6 +1005,27 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../dhcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DHCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../external/" class="md-nav__link">
         
   
@@ -1047,10 +1098,10 @@ You're not viewing the latest version.
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
         
           
-          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1061,8 +1112,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
             <span class="md-nav__icon md-icon"></span>
             Observability
           </label>
@@ -1124,16 +1175,103 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../gateway/" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Gateway
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
+            <span class="md-nav__icon md-icon"></span>
+            Gateway
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway overview
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gateway-add/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding Gateways to the fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gateway-failover/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway fail-over and redundancy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1194,7 +1332,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Fabric API
+    Fabric & Gateway APIs
   </span>
   
 
@@ -1236,7 +1374,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Gateway API
+    Gateway API (moved)
   </span>
   
 
@@ -1718,6 +1856,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hostbgp-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      HostBGP subnets
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1924,7 +2071,12 @@ each with user-defined VLANs and optional <abbr title="Dynamic Host Configuratio
 <span class="normal"><a href="#__codelineno-0-55">55</a></span>
 <span class="normal"><a href="#__codelineno-0-56">56</a></span>
 <span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPC</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1</span>
@@ -1964,9 +2116,9 @@ each with user-defined VLANs and optional <abbr title="Dynamic Host Configuratio
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">      </span><span class="nt">isolated</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Makes subnet isolated from other subnets within the VPC (doesn&#39;t affect VPC peering)</span>
 </span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">      </span><span class="nt">restricted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Causes all hosts in the subnet to be isolated from each other</span>
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="nt">thrird-party-dhcp</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="nt">third-party-dhcp</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">      </span><span class="nt">dhcp</span><span class="p">:</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">        </span><span class="nt">relay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.100/24</span><span class="w"> </span><span class="c1"># Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using StaticExternal connection</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">        </span><span class="nt">relay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.99.0.100/24</span><span class="w"> </span><span class="c1"># Use third-party DHCP server (DHCP relay configuration), access to it could be enabled using a static External</span>
 </span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.10.2.0/24&quot;</span>
 </span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1002</span>
 </span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a>
@@ -1974,14 +2126,19 @@ each with user-defined VLANs and optional <abbr title="Dynamic Host Configuratio
 </span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.100.0/24</span>
 </span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
 </span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC. Will not be exported when peering</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.100.0.0/24</span><span class="w"> </span><span class="c1"># Destination prefix</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">      </span><span class="nt">nextHops</span><span class="p">:</span><span class="w"> </span><span class="c1"># Next hop IP addresses</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.200.0.0</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">    </span><span class="nt">bgp-on-host</span><span class="p">:</span><span class="w"> </span><span class="c1"># Another subnet with hosts peering with leaves via BGP</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">      </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.50.0/25</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">      </span><span class="nt">hostBGP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">      </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1050</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">  </span><span class="nt">permit</span><span class="p">:</span><span class="w"> </span><span class="c1"># Defines which subnets of the current VPC can communicate to each other, applied on top of subnets &quot;isolated&quot; flag (doesn&#39;t affect VPC peering)</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-3</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># 1, 2 and 3 subnets can communicate to each other</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">subnet-4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">subnet-5</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Possible to define multiple lists</span>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">  </span><span class="nt">staticRoutes</span><span class="p">:</span><span class="w"> </span><span class="c1"># Optional, static routes to be added to the VPC. Will not be exported when peering</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.100.0.0/24</span><span class="w"> </span><span class="c1"># Destination prefix</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">      </span><span class="nt">nextHops</span><span class="p">:</span><span class="w"> </span><span class="c1"># Next hop IP addresses</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.200.0.0</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="isolated-and-restricted-subnets-permit-lists">Isolated and restricted subnets, permit lists</h3>
 <p>Subnets can be isolated and restricted, with the ability to define permit lists to allow communication between specific
@@ -2014,6 +2171,20 @@ packet:</p>
   Fabric and will be in <code>VrfV&lt;VPC-name&gt;</code> format, for example <code>VrfVvpc-1</code> for a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> named <code>vpc-1</code> in the Fabric API.</li>
 <li><em>CircuitID</em> (suboption 1) identifies the VLAN which, together with the VRF (<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>) name, maps to a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet.</li>
 </ul>
+<h3 id="hostbgp-subnets">HostBGP subnets</h3>
+<p>At times, it is useful to have <abbr title="Border Gateway Protocol">BGP</abbr> running directly on the host and peering with the Fabric: one such case is
+to support active-active multi-homed servers, or simply to have redundancy when other techniques such
+as MCLAG or ESLAG are not available, for example because of hardware limitations.</p>
+<p>Consider this scenario: <code>server-1</code> is connected to two different Fabric switches <code>sw-1</code> and <code>sw-2</code>, and attached to
+<code>vpc-1/subnet-1</code> on both of them. This subnet is configured as <code>hostBGP</code>; the switches will be configured to peer with
+<code>server-1</code> using unnumbered <abbr title="Border Gateway Protocol">BGP</abbr> (IPv4 unicast address family), only importing /32 prefixes in the subnet of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and
+exporting routes learned from other <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peers. Similarly, <abbr title="Border Gateway Protocol">BGP</abbr> is running on <code>server-1</code>, unnumbered <abbr title="Border Gateway Protocol">BGP</abbr> sessions are
+established with each leaf, and one or more Virtual IPs (VIPs) in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet are advertised. With this setup, the
+host is part of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and can be reached via one of the advertised VIPs from either link to the Fabric.</p>
+<p>It is important to keep in mind that Hedgehog Fabric does not directly operate the host servers attached to it;
+running subnets in HostBGP mode requires running a routing suite and configuring it accordingly. To facilitate this
+process, however, we do provide a container image which can autogenerate a valid configuration, given some input parameters.
+For more details, see <a href="../host-settings/#hostbgp-container">the related section in the Host Settings page</a>.</p>
 <h2 id="vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></h2>
 <p>A <abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr> represents a specific <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet assignment to the <code>Connection</code> object which means a binding between an
 exact server port and a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.
@@ -2029,8 +2200,8 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc-1/default</span><span class="w"> </span><span class="c1"># VPC subnet name</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">nativeVLAN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># (Optional) if true, the port will be configured as a native VLAN port (untagged)</span>
 </span></code></pre></div>
-<h2 id="vpcpeering"><abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr></h2>
-<p>A <abbr title="Enables VPC to VPC connectivity (could be Local where VPCs are used or Remote peering on the border/mixed leafs)">VPCPeering</abbr> enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity. There are two types of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering:</p>
+<h2 id="vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></h2>
+<p>A <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr> enables <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>-to-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> connectivity. There are two types of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering:</p>
 <ul>
 <li>Local: peering is implemented on the same switches where VPCs are attached</li>
 <li>Remote: peering is implemented on the border/mixed leaves defined by the <code>SwitchGroup</code> object</li>
@@ -2049,6 +2220,10 @@ It basically leads to the <abbr title="Virtual Private Cloud, similar to the pub
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">vpc-2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"> </span><span class="c1"># See &quot;Subnet filtering&quot; for more advanced configuration</span>
 </span></code></pre></div>
 <h3 id="remote-vpc-peering">Remote <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering</h3>
+<div class="admonition warning">
+<p class="admonition-title">Deprecated</p>
+<p>Remote peering is being deprecated. Using local peering is encouraged.</p>
+</div>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VPCPeering</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -2164,7 +2339,7 @@ If the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> serv
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 30, 2026</span>
   </span>
 
     
@@ -2230,13 +2405,13 @@ If the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> serv
         
         
           
-          <a href="../external/" class="md-footer__link md-footer__link--next" aria-label="Next: External Peering">
+          <a href="../dhcp/" class="md-footer__link md-footer__link--next" aria-label="Next: DHCP">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                External Peering
+                DHCP
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2253,7 +2428,7 @@ If the fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> serv
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2025 Hedgehog &#x25cf; <a href="#__consent">Change cookie settings</a>
+      Copyright &copy; 2026 Hedgehog &#x25cf; <a href="#__consent">Change cookie settings</a>
     </div>
   
   

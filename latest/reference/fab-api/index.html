@@ -12,7 +12,7 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/25.05/reference/fab-api/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/26.01/reference/fab-api/">
       
       
         <link rel="prev" href="../fabric-api/">
@@ -450,6 +450,27 @@ You're not viewing the latest version.
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vlab/virt-externals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Externals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -776,6 +797,27 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../../user-guide/dhcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DHCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user-guide/external/" class="md-nav__link">
         
   
@@ -848,10 +890,10 @@ You're not viewing the latest version.
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
         
           
-          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -862,8 +904,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
             <span class="md-nav__icon md-icon"></span>
             Observability
           </label>
@@ -925,16 +967,103 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../user-guide/gateway/" class="md-nav__link">
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Gateway
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
+            <span class="md-nav__icon md-icon"></span>
+            Gateway
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway overview
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/gateway-add/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adding Gateways to the fabric
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/gateway-failover/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway fail-over and redundancy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -995,7 +1124,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Fabric API
+    Fabric & Gateway APIs
   </span>
   
 
@@ -1467,7 +1596,7 @@ You're not viewing the latest version.
         
   
   <span class="md-ellipsis">
-    Gateway API
+    Gateway API (moved)
   </span>
   
 
@@ -2375,7 +2504,7 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tbody>
 </table>
 <h4 id="componentsstatus">ComponentsStatus</h4>
-<p>! WARNING: Make sure to update the IsReady method if you add or remove components</p>
+<p>! WARNING: Make sure to update the IsReady/IsGatewayReady methods if you add or remove components</p>
 <p><em>Appears in:</em>
 - <a href="#fabricatorstatus">FabricatorStatus</a></p>
 <table>
@@ -2473,19 +2602,19 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
-<td><code>gatewayAPI</code> <em><a href="#componentstatus">ComponentStatus</a></em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>gatewayCtrl</code> <em><a href="#componentstatus">ComponentStatus</a></em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><code>gatewayAlloy</code> <em><a href="#componentstatus">ComponentStatus</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gatewayDataplane</code> <em>object (keys:string, values:<a href="#componentstatus">ComponentStatus</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gatewayFRR</code> <em>object (keys:string, values:<a href="#componentstatus">ComponentStatus</a>)</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -2513,6 +2642,18 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tr>
 <tr>
 <td><code>controlVIP</code> <em><a href="#prefix">Prefix</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>managementSubnetAnyDevice</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>managementSubnetStatic</code> <em>object (keys:string, values:string)</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3108,6 +3249,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>proxyExternalSubnet</code> <em><a href="#prefix">Prefix</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>baseVPCCommunity</code> <em>string</em></td>
 <td></td>
 <td></td>
@@ -3133,6 +3280,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tr>
 <tr>
 <td><code>vpcWorkaroundSubnet</code> <em><a href="#prefix">Prefix</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>th5WorkaroundVLANs</code> <em>VLANRange array</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3168,13 +3321,31 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>excludeNOSInstallers</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>includeONIE</code> <em>boolean</em></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>includeCLS</code> <em>boolean</em></td>
+<td><code>includeBCM</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>includeCLSP</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>includeCumulus</code> <em>boolean</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -3502,6 +3673,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>communities</code> <em>object (keys:string, values:string)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="gatewayobservability">GatewayObservability</h4>
@@ -3802,6 +3979,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>reloaderChart</code> <em><a href="#version">Version</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>ntp</code> <em><a href="#version">Version</a></em></td>
 <td></td>
 <td></td>
@@ -3833,6 +4016,12 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 </tr>
 <tr>
 <td><code>bashCompletion</code> <em><a href="#version">Version</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hostBGPContainer</code> <em><a href="#version">Version</a></em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -4065,7 +4254,7 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../fabric-api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fabric API">
+          <a href="../fabric-api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Fabric &amp; Gateway APIs">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4075,20 +4264,20 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
                 Previous
               </span>
               <div class="md-ellipsis">
-                Fabric API
+                Fabric & Gateway APIs
               </div>
             </div>
           </a>
         
         
           
-          <a href="../gateway-api/" class="md-footer__link md-footer__link--next" aria-label="Next: Gateway API">
+          <a href="../gateway-api/" class="md-footer__link md-footer__link--next" aria-label="Next: Gateway API (moved)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Gateway API
+                Gateway API (moved)
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4105,7 +4294,7 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2025 Hedgehog &#x25cf; <a href="#__consent">Change cookie settings</a>
+      Copyright &copy; 2026 Hedgehog &#x25cf; <a href="#__consent">Change cookie settings</a>
     </div>
   
   
