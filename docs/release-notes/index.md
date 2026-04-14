@@ -327,7 +327,7 @@ CLI commands are intended to navigate fabric configuration and state and allow i
 - Switch (status, used ports, counters, etc.)
 - Switch sort (connection if used in one, counters, VPC and External attachments, etc.)
 - Server (connection if used in one, VPC attachments, etc.)
-- Connection (incl. VPC and External attachments, Loobpback Workaround usage, etc.)
+- Connection (incl. VPC and External attachments, Loopback Workaround usage, etc.)
 - VPC/VPCSubnet (incl. where is it attached and what's reachable from it)
 - IP Address (incl. IPv4Namespace, VPCSubnet and DHCPLease or External/StaticExternal usage)
 - MAC Address (incl. switch ports and DHCP leases)

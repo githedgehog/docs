@@ -16,11 +16,11 @@ Declaring gateway groups is done by means of the `GatewayGroup` object. The foll
 
 ```yaml
 apiVersion: gateway.githedgehog.com/v1alpha1
-  kind: GatewayGroup
-  metadata:
-    name: group-1
-    namespace: default
-  spec: {}
+kind: GatewayGroup
+metadata:
+  name: group-1
+  namespace: default
+spec: {}
 ```
 
 The set of gateways that belong to a *GatewayGroup* is not explicitly enumerated in the GatewayGroup. Instead, group membership is declared in the definition of the Gateway objects by referring to groups by their name and indicating a certain priority. The following snippet shows how **gateway-1** is a member of group **group-1** with priority 10.
@@ -70,8 +70,8 @@ metadata:
   name: vpc-1--vpc-2
   namespace: default
 spec:
+  gatewayGroup: group-1
   peering:
-    gatewayGroup: group-1
     vpc-1:
       expose: [..]
     vpc-2:

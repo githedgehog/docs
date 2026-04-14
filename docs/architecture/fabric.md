@@ -31,7 +31,7 @@ is useful for smaller deployments and test environments, where a full spine-leaf
 
 ## Overlay Network
 
-The overlay network runs on top the underlay network to create a virtual network. The overlay network isolates control
+The overlay network runs on top of the underlay network to create a virtual network. The overlay network isolates control
 and data plane traffic between different virtual networks and the underlay network. Virtualization is achieved in the
 Hedgehog Fabric by encapsulating workload traffic over VXLAN tunnels that are source and terminated on the leaf switches
 in the network. The fabric uses BGP-EVPN/VXLAN to enable the creation and management of virtual networks on top of the

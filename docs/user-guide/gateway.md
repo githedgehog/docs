@@ -282,7 +282,7 @@ spec:
           - cidr: 192.168.11.20/32 # the "public" IPs that can be used to reach those hosts
           nat:
             portForward:
-              idleTimeout: 10m0s # Timeout connections after 30 minutes of inactivity (no packets received)
+              idleTimeout: 10m0s # Timeout connections after 10 minutes of inactivity (no packets received)
               ports:
                 - proto: tcp  # one of tcp or udp, or empty for both
                   port: "22"  # the real port (or port range) on the host where the traffic will be sent

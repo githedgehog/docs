@@ -50,7 +50,7 @@ COMMANDS:
    switch                  Inspect Switch (status, used ports, counters, etc.)
    port, switchport        Inspect Switch Port (connection if used in one, counters, VPC and External attachments, etc.)
    server                  Inspect Server (connection if used in one, VPC attachments, etc.)
-   connection, conn        Inspect Connection (incl. VPC and External attachments, Loobpback Workaround usage, etc.)
+   connection, conn        Inspect Connection (incl. VPC and External attachments, Loopback Workaround usage, etc.)
    vpc, subnet, vpcsubnet  Inspect VPC/VPCSubnet (incl. where is it attached and what's reachable from it)
    bgp                     Inspect BGP neighbors
    lldp                    Inspect LLDP neighbors
