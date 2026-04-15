@@ -1222,6 +1222,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#bfdsessionstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      BFDSessionState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bgpmessages" class="md-nav__link">
     <span class="md-ellipsis">
       BGPMessages
@@ -1270,6 +1279,15 @@ You're not viewing the latest version.
   <a href="#switchstate" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchstatebfdpeer" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchStateBFDPeer
     </span>
   </a>
   
@@ -1997,6 +2015,42 @@ You're not viewing the latest version.
   
     <nav class="md-nav" aria-label="Resource Types">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aclprotocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLProtocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aclspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aclstatement" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLStatement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acltcpfilters" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLTCPFilters
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#external" class="md-nav__link">
@@ -3409,6 +3463,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#bfdsessionstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      BFDSessionState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bgpmessages" class="md-nav__link">
     <span class="md-ellipsis">
       BGPMessages
@@ -3457,6 +3520,15 @@ You're not viewing the latest version.
   <a href="#switchstate" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchstatebfdpeer" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchStateBFDPeer
     </span>
   </a>
   
@@ -4184,6 +4256,42 @@ You're not viewing the latest version.
   
     <nav class="md-nav" aria-label="Resource Types">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aclprotocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLProtocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aclspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLSpec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aclstatement" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLStatement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acltcpfilters" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLTCPFilters
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#external" class="md-nav__link">
@@ -5257,6 +5365,40 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="bfdsessionstate">BFDSessionState</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p><em>Appears in:</em>
+- <a href="#switchstatebfdpeer">SwitchStateBFDPeer</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>``</td>
+<td></td>
+</tr>
+<tr>
+<td><code>up</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>down</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>adminDown</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>init</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="bgpmessages">BGPMessages</h4>
 <p><em>Appears in:</em>
 - <a href="#switchstatebgpneighbor">SwitchStateBGPNeighbor</a></p>
@@ -5493,6 +5635,12 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
+<td><code>bfdPeers</code> <em>object (keys:string, values:<a href="#map[string]switchstatebfdpeer">map[string]SwitchStateBFDPeer</a>)</em></td>
+<td>State of all BFD peers (VRF -&gt; peer address -&gt; state)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>platform</code> <em><a href="#switchstateplatform">SwitchStatePlatform</a></em></td>
 <td>State of the switch platform (fans, PSUs, sensors)</td>
 <td></td>
@@ -5513,6 +5661,45 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <tr>
 <td><code>firmware</code> <em>object (keys:string, values:string)</em></td>
 <td>Firmware versions of the switch</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="switchstatebfdpeer">SwitchStateBFDPeer</h4>
+<p><em>Appears in:</em>
+- <a href="#switchstate">SwitchState</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state</code> <em><a href="#bfdsessionstate">BFDSessionState</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>profile</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastUpTime</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta">Time</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fails</code> <em>integer</em></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -8433,6 +8620,226 @@ and Externals APIs. Intended to be used by the user.</p>
 <li><a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></li>
 <li><a href="#vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></a></li>
 </ul>
+<h4 id="aclprotocol">ACLProtocol</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p><em>Appears in:</em>
+- <a href="#aclstatement">ACLStatement</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ip</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>tcp</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>udp</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>icmp</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="aclspec">ACLSpec</h4>
+<p>ACLSpec defines an IPv4 Access Control List applied to inbound traffic on an external attachment.</p>
+<p><em>Appears in:</em>
+- <a href="#externalattachmentspec">ExternalAttachmentSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>statements</code> <em><a href="#aclstatement">ACLStatement</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="aclstatement">ACLStatement</h4>
+<p><em>Appears in:</em>
+- <a href="#aclspec">ACLSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seq</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>permit</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>protocol</code> <em><a href="#aclprotocol">ACLProtocol</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>srcPrefix</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>dstPrefix</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>portRangeBegin</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>portRangeEnd</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>tcpFilters</code> <em><a href="#acltcpfilters">ACLTCPFilters</a></em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>icmpType</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>icmpCode</code> <em>integer</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="acltcpfilters">ACLTCPFilters</h4>
+<p><em>Appears in:</em>
+- <a href="#aclstatement">ACLStatement</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>established</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fin</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notFin</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>syn</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notSyn</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>rst</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notRst</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>psh</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notPsh</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ack</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notAck</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>urg</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notUrg</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="external"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h4>
 <p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> object represents an external system connected to the Fabric and available to the specific IPv4Namespace.
 Users can do external peering with the external system by specifying the name of the <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Object without need to
@@ -8593,6 +9000,12 @@ Effectively it represents <abbr title="Border Gateway Protocol">BGP</abbr> peeri
 <tr>
 <td><code>static</code> <em><a href="#externalattachmentstatic">ExternalAttachmentStatic</a></em></td>
 <td>Static contains parameters specific to a static external attachment</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>inboundACL</code> <em><a href="#aclspec">ACLSpec</a></em></td>
+<td>InboundACL defines the ACL statements to apply to inbound traffic on this external attachment</td>
 <td></td>
 <td></td>
 </tr>
