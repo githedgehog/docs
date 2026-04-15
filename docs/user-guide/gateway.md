@@ -106,6 +106,35 @@ style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
 ```
 
+## Flow Table and Stateful Processing
+
+When stateful NAT (masquerade or port-forwarding) is configured on a gateway peering,
+the gateway maintains a **flow table** to track active connections. Each unique connection
+(identified by its source/destination IPs, ports, and protocol) creates an entry in the
+flow table. This entry records the NAT translation applied and the connection's idle timer.
+
+Key characteristics of the flow table:
+
+- **Timeout-based eviction**: Flow entries expire after a configurable period of inactivity.
+  Set the idle timeout per peering via the `idleTimeout` field in the NAT configuration;
+  see [Masquerade](#masquerade-stateful-source-nat) and
+  [Port-Forwarding](#port-forwarding-stateful-destination-nat) for usage. If `idleTimeout`
+  is omitted, a built-in default applies — set it explicitly when the timeout matters for
+  your workload. When a flow expires, its entry is removed and subsequent packets for that
+  connection are treated as a new flow.
+- **Capacity**: The flow table can handle millions of concurrent entries depending on the gateway
+  node's available memory. The maximum number of flow entries can be configured via the
+  `flowTableCapacity` field in the Gateway spec. In most deployments, the default is sufficient.
+- **Per-gateway state**: Each gateway maintains its own flow table independently. Flow state
+  is not shared between gateways. If a gateway fails and traffic is redirected to a backup
+  gateway (see [Gateway fail-over](gateway-failover.md)), existing stateful connections must
+  be re-established, as the backup gateway has no knowledge of the failed gateway's flow table.
+
+!!! tip
+    Use TCP keepalives or application-layer keepalives for long-lived connections through
+    stateful NAT. This prevents the flow entry from expiring due to inactivity during
+    idle periods.
+
 ## Gateway Peering
 
 Just as [VPC Peerings](vpcs.md#vpcpeering) provide VPC-to-VPC connectivity by way of the switches in the fabric, gateway peerings provide connectivity via the gateway nodes.
@@ -254,7 +283,6 @@ However, with masquerade, only hosts in `vpc-1` can initiate connections. If tha
 `192.168.5.32` in `vpc-2` attempts to connect to that same address `10.0.1.1` before the host in `vpc-1`
 has initiated the connection flow - or after the idle timeout has expired without any packet being sent
 between the pair - the gateway will drop those packets and the connection will not succeed.
-The default idle timeout for masquerade is 2 minutes.
 
 #### Port-Forwarding (Stateful Destination NAT)
 
