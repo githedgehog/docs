@@ -19,3 +19,4 @@
 *[ASIC]: Application Specific Integrated Circuit, the heart of a network switch.
 *[DHCP]: Dynamic Host Configuration Protocol
 *[BGP]: Border Gateway Protocol
+*[ESLAG]: Ethernet Segment Link Aggregation (RFC 7432)
