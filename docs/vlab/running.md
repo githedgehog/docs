@@ -475,6 +475,50 @@ The default user with password-less sudo for the control node and test servers i
 The admin user with full access and password-less sudo for the switches is `admin` with password `HHFab.Admin!`.
 The read-only, non-sudo user with access to the switch CLI is `op` with password `HHFab.Op!`.
 
+### Firewall
+
+If there are issues connecting via SSH the host running VLAB the firewall
+settings might need to be adjusted. The most commonly seen issue is when using
+the `vlab ssh` shortcut. If the firewall is blocking the connections there will
+not be any output, and the SSH connection will fail. The VLAB provides a serial console to the virtual machines.
+If you can login via the serial console, but not via SSH then there is most
+likely a firewall problem. Another piece of evidence for a firewall problem is
+if the switches show nothing for the `APPLIEDG` in the output of `kubectl get
+agents -o wide`:
+
+```
+core@control-1 ~ $ kubectl get agents
+NAME       ROLE          DESCR           APPLIED   APPLIEDG   CURRENTG   VERSION    REBOOTREQ
+leaf-01    server-leaf   VS-01 ESLAG 1                        2
+leaf-02    server-leaf   VS-02 ESLAG 1                        2
+leaf-03    server-leaf   VS-03 ESLAG 2                        2
+leaf-04    server-leaf   VS-04 ESLAG 2                        1
+spine-01   spine         VS-05                                1
+spine-02   spine         VS-06                                1
+
+```
+
+#### Firewall Rule
+The VLAB creates a bridge, `hhbr`, and several tap
+devices for the virtual machines. The bridge and taps should be allowed to
+input, output, and forward packets. For `iptables` based systems the commands are:
+
+```
+iptables -I INPUT 1 -i hhbr -j ACCEPT
+iptables -I OUTPUT 1 -o hhbr -j ACCEPT
+iptables -I FORWARD 1 -i hhbr -j ACCEPT
+iptables -I FORWARD 1 -o hhbr -j ACCEPT
+```
+
+For `nft` based systems the commands are:
+
+```
+nft 'insert rule ip filter  INPUT 1 -i hhbr -j ACCEPT counter'
+nft 'insert rule ip filter  OUTPUT 1 -o hhbr -j ACCEPT counter'
+nft 'insert rule ip filter  FORWARD 1 -i hhbr -j ACCEPT counter'
+nft 'insert rule ip filter  FORWARD 1 -o hhbr -j ACCEPT counter'
+```
+
 
 ## Use Kubectl to Interact with the Fabric
 On the control node you have access to kubectl, Fabric CLI, and k9s to manage the Fabric. To view information
