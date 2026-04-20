@@ -8,7 +8,7 @@
 *[ExternalPeering]: Enables VPC to External connectivity by exposing specific VPC subnets to the external system and allowing inbound routes from it
 *[HHFab]: Hedgehog Fabricator - a tool for building Hedgehog Fabric installers and running Virtual LABs
 *[ZTP]: Zero Touch Provisioning
-*[RoCE]: RDMA over Converged Etherent
+*[RoCE]: RDMA over Converged Ethernet
 *[DSCP]: Differentiated Services Code Point, 6 bits in IP packet header
 *[RDMA]: Remote Direct Memory Access
 *[ECMP]: Equal-cost Multi-path Routing
