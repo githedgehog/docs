@@ -2049,13 +2049,13 @@ users also enable this <code>ecmp</code> setting.</p>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="redundancy-groups">Redundancy Groups</h2>
 <p>Redundancy groups are used to define the redundancy between switches. It's a regular <code>SwitchGroup</code> used by multiple
-switches. ESLAG (EVPN Multi-Homing) is the recommended approach and supports up to 4 switches. A switch can only
+switches. <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> (EVPN Multi-Homing) is the recommended approach and supports up to 4 switches. A switch can only
 belong to a single redundancy group.</p>
 <p>Connections with type <code>eslag</code> are used to define the server connections to switches. They are only supported if the
 switch belongs to a redundancy group with the corresponding type.</p>
-<p>To define an ESLAG redundancy group, create a <code>SwitchGroup</code> object and assign it to the switches using the
+<p>To define an <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> redundancy group, create a <code>SwitchGroup</code> object and assign it to the switches using the
 <code>redundancy</code> field.</p>
-<p>Example of switch configured for ESLAG:</p>
+<p>Example of switch configured for <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr>:</p>
 <div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">SwitchGroup-Switch-example.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -2094,7 +2094,7 @@ switch belongs to a redundancy group with the corresponding type.</p>
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition warning">
 <p class="admonition-title">MCLAG Deprecated</p>
-<p>MCLAG is being deprecated. Use ESLAG for multi-homing instead.</p>
+<p>MCLAG is being deprecated. Use <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> for multi-homing instead.</p>
 </div>
 <h2 id="servers">Servers</h2>
 <p>Regular workload server:</p>

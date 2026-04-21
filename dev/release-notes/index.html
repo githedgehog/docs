@@ -2831,7 +2831,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <h3 id="other_5">Other</h3>
 <ul>
 <li>IPv4 and VLAN namespaces are now mutable</li>
-<li>MCLAG and ESLAG connections could be created with a single port</li>
+<li>MCLAG and <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> connections could be created with a single port</li>
 <li>Flatcar and K8s updates</li>
 </ul>
 <h3 id="software-versions_5">Software versions</h3>
@@ -3071,7 +3071,7 @@ and managed by the Fabric</p>
 <h3 id="dhcppxe-boot-support-for-multi-homed-connections"><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr>/PXE boot support for multi-homed connections</h3>
 <ul>
 <li>PXE URL support for on-demand <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> service</li>
-<li>LACP link (MCLAG and ESLAG) fallback allows support of one of the links without the use of a host-level bond</li>
+<li>LACP link (MCLAG and <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr>) fallback allows support of one of the links without the use of a host-level bond</li>
 </ul>
 <h3 id="improvements">Improvements</h3>
 <ul>
@@ -3091,8 +3091,8 @@ and managed by the Fabric</p>
 <li>Host connectivity Redundancy Groups</li>
 <li>Groups LEAF switches to provide multi-homed connectivity to the Fabric</li>
 <li>2-4 switches per group</li>
-<li>Support for MCLAG and ESLAG (EVPN MH / ESI)</li>
-<li>A single redundancy group can only support multi-homing of one type (ESLAG or MCLAG)</li>
+<li>Support for MCLAG and <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> (EVPN MH / ESI)</li>
+<li>A single redundancy group can only support multi-homing of one type (<abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> or MCLAG)</li>
 <li>Multiple types of redundancy groups can be used in the fabric simultaneously</li>
 </ul>
 <h3 id="improved-vpc-security-policy-better-zero-trust">Improved <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> security policy - better Zero Trust</h3>

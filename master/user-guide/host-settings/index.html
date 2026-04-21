@@ -1826,7 +1826,7 @@ the Linux distribution for guides on how to persist the settings used on the
 server. For example, <a href="https://documentation.ubuntu.com/server/explanation/networking/configuring-networks/index.html">Netplan</a> or <a href="https://networkmanager.dev/docs/admins/">Network Manager</a>. For
 additional details on options and behavior, consult the <a href="https://www.kernel.org/doc/html/latest/networking/bonding.html">kernel bonding driver</a> documentation.</p>
 <h2 id="multi-homing">Multi-homing</h2>
-<p>ESLAG (EVPN Multi-Homing) is the recommended way to provide device redundancy.
+<p><abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> (EVPN Multi-Homing) is the recommended way to provide device redundancy.
 A server connects to multiple switches (up to 4) without requiring the switches
 to be directly connected to each other. The host must configure its ports using
 LACP (IEEE 802.3ad).</p>

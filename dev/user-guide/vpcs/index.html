@@ -2310,7 +2310,7 @@ other hosts inside of the <abbr title="Virtual Private Cloud, similar to the pub
 <h3 id="hostbgp-subnets">HostBGP subnets</h3>
 <p>At times, it is useful to have <abbr title="Border Gateway Protocol">BGP</abbr> running directly on the host and peering with the Fabric: one such case is
 to support active-active multi-homed servers, or simply to have redundancy when other techniques such
-as MCLAG or ESLAG are not available, for example because of hardware limitations.</p>
+as MCLAG or <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> are not available, for example because of hardware limitations.</p>
 <p>Consider this scenario: <code>server-1</code> is connected to two different Fabric switches <code>sw-1</code> and <code>sw-2</code>, and attached to
 <code>vpc-1/subnet-1</code> on both of them. This subnet is configured as <code>hostBGP</code>; the switches will be configured to peer with
 <code>server-1</code> using unnumbered <abbr title="Border Gateway Protocol">BGP</abbr> (IPv4 unicast address family), only importing /32 prefixes in the subnet of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and
@@ -2427,7 +2427,7 @@ default option for VPCs.</p>
 This enables multi-tenancy inside of a fabric, even with switches of mixed
 capabilities. The <a href="../../reference/profiles/#celestica-ds5000">DS5000</a> is an
 L3-only leaf and VPCs attached to this switch must be in <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> mode. VPCs in
-<abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> mode are not able to use switches configured for ESLAG.</p>
+<abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> mode are not able to use switches configured for <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr>.</p>
 <p>Without broadcast traffic, each end host needs to have a full /32 address for
 its address (e.g., <code>10.10.0.5/32</code>, not <code>10.10.0.5/24</code>). The host also
 needs to emit traffic containing its IP-to-MAC mapping before the network will be

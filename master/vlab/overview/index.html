@@ -1847,8 +1847,8 @@ the installer to get Fabric up and running.</p>
 and fairly up-to-date packages.</p>
 <p>The following packages needs to be installed: <code>qemu-kvm socat</code>. Docker is also required, to login
 into the OCI registry.</p>
-<p>By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 "orphan" leaf, i.e. with
-no redundancy scheme. For ESLAG-only topologies (recommended), use <code>--mclag-leafs-count=0</code>. Alternatively, users can
+<p>By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> leaves, and 1 "orphan" leaf, i.e. with
+no redundancy scheme. For <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr>-only topologies (recommended), use <code>--mclag-leafs-count=0</code>. Alternatively, users can
 run the mesh topology, which directly connects as few as 2 leaves to each other, without the need for a spine switch
 in between.</p>
 <p>You can calculate the system requirements based on the allocated resources to the VMs using the following table:</p>

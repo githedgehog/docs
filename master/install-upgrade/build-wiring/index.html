@@ -1995,7 +1995,7 @@ server connections.</p>
 <ol>
 <li>See the <a href="../../reference/profiles/">list</a> of profile names</li>
 <li>More information in the <a href="../../user-guide/profiles/#port-naming">User Guide</a></li>
-<li>Could be ESLAG or nothing, more details in <a href="../../user-guide/devices/#redundancy-groups">Redundancy
+<li>Could be <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> or nothing, more details in <a href="../../user-guide/devices/#redundancy-groups">Redundancy
    Groups</a></li>
 </ol>
 <h2 id="design-discussion">Design Discussion</h2>
@@ -2024,11 +2024,11 @@ server connections.</p>
 <h3 id="connection">Connection</h3>
 <p>A connection represents the physical wires in your data center. They connect switches to other switches or switches to servers.</p>
 <h4 id="server-connections">Server Connections</h4>
-<p>A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (Unbundled, Bundled, ESLAG, etc.). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:</p>
+<p>A server connection is a connection used to connect servers to the fabric. The fabric will configure the server-facing port according to the type of the connection (Unbundled, Bundled, <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr>, etc.). The configuration of the actual server needs to be done by the server administrator. The server port names are not validated by the fabric and used as metadata to identify the connection. A server connection can be one of:</p>
 <ul>
 <li><em>Unbundled</em> - A single cable connecting switch to server.</li>
 <li><em>Bundled</em> - Two or more cables going to a single switch, a LAG or similar.</li>
-<li><em>ESLAG</em> - Two to four cables going to different switches, also called multi-homing (EVPN-MH). If four links are used there will need to be four switches connected to a single server with four NIC ports.</li>
+<li><em><abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr></em> - Two to four cables going to different switches, also called multi-homing (EVPN-MH). If four links are used there will need to be four switches connected to a single server with four NIC ports.</li>
 </ul>
 <pre class="mermaid"><code>graph TD
     S1([Spine 1])
