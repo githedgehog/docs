@@ -1956,19 +1956,19 @@ model and capabilities. More details can be found in the <a href="../profiles/">
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">  </span><span class="nt">ecmp</span><span class="p">:</span>
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="nt">roceQPN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># ECMP RoCE QPN hashing</span>
 </span></code></pre></div></td></tr></table></div>
-<h3 id="rdma-over-converged-ethernet-roce-version-2"><abbr title="Remote Direct Memory Access">RDMA</abbr> over Converged Ethernet (<abbr title="RDMA over Converged Etherent">RoCE</abbr>) version 2</h3>
-<p><abbr title="Remote Direct Memory Access">RDMA</abbr> over converged ethernet (<abbr title="RDMA over Converged Etherent">RoCE</abbr>) allows for <abbr title="Remote Direct Memory Access">RDMA</abbr> communication over conventional
-ethernet devices. <abbr title="RDMA over Converged Etherent">RoCE</abbr> isn't available on every switch, check the <a href="../../reference/profiles/">switch
-catalog</a> for <code>RoCE: true</code>. Enabling <abbr title="RDMA over Converged Etherent">RoCE</abbr> on a switch
+<h3 id="rdma-over-converged-ethernet-roce-version-2"><abbr title="Remote Direct Memory Access">RDMA</abbr> over Converged Ethernet (<abbr title="RDMA over Converged Ethernet">RoCE</abbr>) version 2</h3>
+<p><abbr title="Remote Direct Memory Access">RDMA</abbr> over converged ethernet (<abbr title="RDMA over Converged Ethernet">RoCE</abbr>) allows for <abbr title="Remote Direct Memory Access">RDMA</abbr> communication over conventional
+ethernet devices. <abbr title="RDMA over Converged Ethernet">RoCE</abbr> isn't available on every switch, check the <a href="../../reference/profiles/">switch
+catalog</a> for <code>RoCE: true</code>. Enabling <abbr title="RDMA over Converged Ethernet">RoCE</abbr> on a switch
 requires the switch to reboot in order to configure the hardware and associated
-queues. Once a switch is in <abbr title="RDMA over Converged Etherent">RoCE</abbr> mode the port breakouts cannot be changed.</p>
+queues. Once a switch is in <abbr title="RDMA over Converged Ethernet">RoCE</abbr> mode the port breakouts cannot be changed.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Users are advised to set the port breakouts as desired, and confirm
-the link is up before enabling <abbr title="RDMA over Converged Etherent">RoCE</abbr>.</p>
+the link is up before enabling <abbr title="RDMA over Converged Ethernet">RoCE</abbr>.</p>
 </div>
-<h4 id="roce-lossless-mode"><abbr title="RDMA over Converged Etherent">RoCE</abbr> Lossless mode</h4>
-<p>When enabling <abbr title="RDMA over Converged Etherent">RoCE</abbr> on a switch, the buffers inside the switch are configured to
+<h4 id="roce-lossless-mode"><abbr title="RDMA over Converged Ethernet">RoCE</abbr> Lossless mode</h4>
+<p>When enabling <abbr title="RDMA over Converged Ethernet">RoCE</abbr> on a switch, the buffers inside the switch are configured to
 be lossless, and ingress traffic is classified based on the <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr> value inside
 the IP packet header.</p>
 <table>
@@ -2024,14 +2024,14 @@ client side setting. A sample invocation using this flag is:</p>
 <p>The value of 96 is derived from the integer value 24 bit-shifted left by 2
 places.</p>
 <h5 id="dscp-bits-and-vxlan"><abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr> bits and <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr></h5>
-<p>When <abbr title="RDMA over Converged Etherent">RoCE</abbr> traffic is using <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr>, the inner packet <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr> information is copied
+<p>When <abbr title="RDMA over Converged Ethernet">RoCE</abbr> traffic is using <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr>, the inner packet <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr> information is copied
 to the outer packet at the time of encapsulation. Likewise the outer <abbr title="Differentiated Services Code Point, 6 bits in IP packet header">DSCP</abbr>
 information is copied to the inner packet when the packet is deencapsulated.
 This process preserves the traffic classification even through a <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> tunnel.</p>
-<h4 id="roce-qpn-hashing-mode"><abbr title="RDMA over Converged Etherent">RoCE</abbr> <abbr title="Queue Pair Number">QPN</abbr> Hashing Mode</h4>
-<p><abbr title="RDMA over Converged Etherent">RoCE</abbr> traffic adds another input for hashing of traffic to ensure load
+<h4 id="roce-qpn-hashing-mode"><abbr title="RDMA over Converged Ethernet">RoCE</abbr> <abbr title="Queue Pair Number">QPN</abbr> Hashing Mode</h4>
+<p><abbr title="RDMA over Converged Ethernet">RoCE</abbr> traffic adds another input for hashing of traffic to ensure load
 sharing. The <code>ecmp.roceQPN</code> option will enable the use of the queue pair
-number as part of the hashing calculation. It is recommended that <abbr title="RDMA over Converged Etherent">RoCE</abbr>
+number as part of the hashing calculation. It is recommended that <abbr title="RDMA over Converged Ethernet">RoCE</abbr>
 users also enable this <code>ecmp</code> setting.</p>
 <h2 id="switch-groups">Switch Groups</h2>
 <p>The <code>SwitchGroup</code> is just a marker at that point and doesn't have any configuration options.</p>
