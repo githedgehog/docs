@@ -168,6 +168,12 @@ A non-zero drop counter (`d`) means packets were discarded, often due to a
 misconfigured peering or an exhausted NAT pool. A zero packet counter on an
 expected active peering means traffic is not reaching the gateway.
 
+!!! note
+    A drop counter of `0` only rules out drops on the gateway itself, not
+    end-to-end loss. If clients see TCP retransmits while `d` stays at `0`,
+    validate reachability with `kubectl fabric inspect access <A> <B>` and
+    continue from the [Troubleshooting overview](overview.md).
+
 ## Metrics
 
 The dataplane exposes Prometheus metrics scraped by the Alloy agent on the
