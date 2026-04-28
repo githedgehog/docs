@@ -89,7 +89,7 @@ curl -fsSL https://i.hhdev.io/oras | bash
 
 ### Hhfab
 
-You need a GitHub access token to download `hhfab`, please submit a ticket using the [Hedgehog Support Portal](https://support.githedgehog.com/). Once in possession of the credentials, use the provided username and token to log into the GitHub container registry:
+You need a GitHub access token to download `hhfab`, please submit a request via the [Hedgehog Download Request form](https://hedgehog.cloud/download). Once in possession of the credentials, use the provided username and token to log into the GitHub container registry:
 
 ```bash
 docker login ghcr.io --username provided_username --password provided_token
