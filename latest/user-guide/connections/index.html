@@ -12,7 +12,7 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/26.01-rn-update/user-guide/connections/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/26.01/user-guide/connections/">
       
       
         <link rel="prev" href="../devices/">
@@ -2050,8 +2050,8 @@ settings on the server side, see <a href="../host-settings/">end host settings</
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s5248-01/E1/2</span>
 </span></code></pre></div>
-<h3 id="eslag"><abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr></h3>
-<p><abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> (EVPN Multi-Homing) server connections are used to connect servers to 2-4 switches using multiple ports.
+<h3 id="eslag">ESLAG</h3>
+<p>ESLAG (EVPN Multi-Homing) server connections are used to connect servers to 2-4 switches using multiple ports.
 This is the recommended approach for multi-homing. Switches should belong to the same redundancy group with
 type <code>eslag</code>. The server interfaces should be configured for 802.3ad LACP.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
@@ -2212,7 +2212,7 @@ topology the connections will be between gateway and the leaf nodes.</p>
 <h3 id="mclag">MCLAG</h3>
 <div class="admonition warning">
 <p class="admonition-title">Deprecated</p>
-<p>MCLAG is being deprecated. Use <a href="#eslag"><abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr></a> for multi-homing instead.</p>
+<p>MCLAG is being deprecated. Use <a href="#eslag">ESLAG</a> for multi-homing instead.</p>
 </div>
 <p>MCLAG server connections are used to connect servers to a pair of switches using multiple ports (Dual-homing).
 Switches should be configured as an MCLAG pair which requires them to be in a single redundancy group of type <code>mclag</code>
@@ -2238,7 +2238,7 @@ and a Connection with type <code>mclag-domain</code> between them. MCLAG switche
 <h3 id="mclag-domain">MCLAG-Domain</h3>
 <div class="admonition warning">
 <p class="admonition-title">Deprecated</p>
-<p>MCLAG is being deprecated. Use <a href="#eslag"><abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr></a> for multi-homing instead.</p>
+<p>MCLAG is being deprecated. Use <a href="#eslag">ESLAG</a> for multi-homing instead.</p>
 </div>
 <p>MCLAG-Domain connections define a pair of MCLAG switches with Session and Peer link between them. Switches should be
 configured as an MCLAG, pair which requires them to be in a single redundancy group of type <code>mclag</code> and Connection with

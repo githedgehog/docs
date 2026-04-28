@@ -89,26 +89,6 @@ _Appears in:_
 | `rebootRequired` _boolean_ | RebootRequired indicates whether a reboot is required |  |  |
 
 
-#### BFDSessionState
-
-_Underlying type:_ _string_
-
-
-
-
-
-_Appears in:_
-- [SwitchStateBFDPeer](#switchstatebfdpeer)
-
-| Field | Description |
-| --- | --- |
-| `` |  |
-| `up` |  |
-| `down` |  |
-| `adminDown` |  |
-| `init` |  |
-
-
 #### BGPMessages
 
 
@@ -228,30 +208,10 @@ _Appears in:_
 | `breakouts` _object (keys:string, values:[SwitchStateBreakout](#switchstatebreakout))_ | Breakout ports state (port -> breakout state) |  |  |
 | `transceivers` _object (keys:string, values:[SwitchStateTransceiver](#switchstatetransceiver))_ | Transceivers state (port -> transceiver state) |  |  |
 | `bgpNeighbors` _object (keys:string, values:[map[string]SwitchStateBGPNeighbor](#map[string]switchstatebgpneighbor))_ | State of all BGP neighbors (VRF -> neighbor address -> state) |  |  |
-| `bfdPeers` _object (keys:string, values:[map[string]SwitchStateBFDPeer](#map[string]switchstatebfdpeer))_ | State of all BFD peers (VRF -> peer address -> state) |  |  |
 | `platform` _[SwitchStatePlatform](#switchstateplatform)_ | State of the switch platform (fans, PSUs, sensors) |  |  |
 | `criticalResources` _[SwitchStateCRM](#switchstatecrm)_ | State of the critical resources (ACLs, routes, etc.) |  |  |
 | `roce` _boolean_ | State of the roce configuration |  |  |
 | `firmware` _object (keys:string, values:string)_ | Firmware versions of the switch |  |  |
-
-
-#### SwitchStateBFDPeer
-
-
-
-
-
-
-
-_Appears in:_
-- [SwitchState](#switchstate)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `state` _[BFDSessionState](#bfdsessionstate)_ |  |  |  |
-| `profile` _string_ |  |  |  |
-| `lastUpTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
-| `fails` _integer_ |  |  |  |
 
 
 #### SwitchStateBGPNeighbor
@@ -1065,7 +1025,6 @@ _Appears in:_
 | `profiling` _[GatewayProfiling](#gatewayprofiling)_ | Profiling defines the configuration for profiling |  |  |
 | `workers` _integer_ | Workers defines the number of worker threads to use for dataplane |  |  |
 | `groups` _[GatewayGroupMembership](#gatewaygroupmembership) array_ | Groups is a list of group memberships for the gateway |  |  |
-| `flowTableCapacity` _integer_ | FlowTableCapacity defines the maximum number of flow entres |  |  |
 
 
 #### GatewayStatus
@@ -1627,94 +1586,6 @@ and Externals APIs. Intended to be used by the user.
 
 
 
-#### ACLProtocol
-
-_Underlying type:_ _string_
-
-
-
-
-
-_Appears in:_
-- [ACLStatement](#aclstatement)
-
-| Field | Description |
-| --- | --- |
-| `ip` |  |
-| `tcp` |  |
-| `udp` |  |
-| `icmp` |  |
-
-
-#### ACLSpec
-
-
-
-ACLSpec defines an IPv4 Access Control List applied to inbound traffic on an external attachment.
-
-
-
-_Appears in:_
-- [ExternalAttachmentSpec](#externalattachmentspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `statements` _[ACLStatement](#aclstatement) array_ |  |  |  |
-
-
-#### ACLStatement
-
-
-
-
-
-
-
-_Appears in:_
-- [ACLSpec](#aclspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `seq` _integer_ |  |  |  |
-| `permit` _boolean_ |  |  |  |
-| `protocol` _[ACLProtocol](#aclprotocol)_ |  |  |  |
-| `srcPrefix` _string_ |  |  |  |
-| `dstPrefix` _string_ |  |  |  |
-| `portRangeBegin` _integer_ |  |  |  |
-| `portRangeEnd` _integer_ |  |  |  |
-| `tcpFilters` _[ACLTCPFilters](#acltcpfilters)_ |  |  |  |
-| `icmpType` _integer_ |  |  |  |
-| `icmpCode` _integer_ |  |  |  |
-
-
-#### ACLTCPFilters
-
-
-
-
-
-
-
-_Appears in:_
-- [ACLStatement](#aclstatement)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `established` _boolean_ |  |  |  |
-| `fin` _boolean_ |  |  |  |
-| `notFin` _boolean_ |  |  |  |
-| `syn` _boolean_ |  |  |  |
-| `notSyn` _boolean_ |  |  |  |
-| `rst` _boolean_ |  |  |  |
-| `notRst` _boolean_ |  |  |  |
-| `psh` _boolean_ |  |  |  |
-| `notPsh` _boolean_ |  |  |  |
-| `ack` _boolean_ |  |  |  |
-| `notAck` _boolean_ |  |  |  |
-| `urg` _boolean_ |  |  |  |
-| `notUrg` _boolean_ |  |  |  |
-
-
 #### External
 
 
@@ -1791,7 +1662,6 @@ _Appears in:_
 | `switch` _[ExternalAttachmentSwitch](#externalattachmentswitch)_ | Switch is the switch port configuration for the external attachment in case of a BGP external |  |  |
 | `neighbor` _[ExternalAttachmentNeighbor](#externalattachmentneighbor)_ | Neighbor is the BGP neighbor configuration for the external attachment in case of a BGP external |  |  |
 | `static` _[ExternalAttachmentStatic](#externalattachmentstatic)_ | Static contains parameters specific to a static external attachment |  |  |
-| `inboundACL` _[ACLSpec](#aclspec)_ | InboundACL defines the ACL statements to apply to inbound traffic on this external attachment |  |  |
 
 
 #### ExternalAttachmentStatic
@@ -1973,8 +1843,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `ipv4Namespace` _string_ | IPv4Namespace is the name of the IPv4Namespace this External belongs to |  |  |
-| `inboundCommunity` _string_ | InboundCommunity is the optional inbound community to filter routes from the external system (e.g. 65102:5000) |  |  |
-| `outboundCommunity` _string_ | OutboundCommunity is the optional outbound community that all outbound routes will be stamped with (e.g. 50000:50001) |  |  |
+| `inboundCommunity` _string_ | InboundCommunity is the inbound community to filter routes from the external system (e.g. 65102:5000) |  |  |
+| `outboundCommunity` _string_ | OutboundCommunity is theoutbound community that all outbound routes will be stamped with (e.g. 50000:50001) |  |  |
 | `static` _[ExternalStaticSpec](#externalstaticspec)_ | Static contains parameters specific to static externals |  |  |
 
 
@@ -2141,7 +2011,6 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `relay` _string_ | Relay is the DHCP relay IP address, if specified, DHCP server will be disabled |  |  |
-| `relayVPC` _string_ | RelayVPC is the name of the VPC where the selected DHCP relay lives |  |  |
 | `enable` _boolean_ | Enable enables DHCP server for the subnet |  |  |
 | `range` _[VPCDHCPRange](#vpcdhcprange)_ | Range (optional) is the DHCP range for the subnet if DHCP server is enabled |  |  |
 | `options` _[VPCDHCPOptions](#vpcdhcpoptions)_ | Options (optional) is the DHCP options for the subnet if DHCP server is enabled |  |  |

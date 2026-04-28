@@ -12,7 +12,7 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/26.01-rn-update/vlab/demo/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/26.01/vlab/demo/">
       
       
         <link rel="prev" href="../running/">
@@ -2034,7 +2034,7 @@ You're not viewing the latest version.
 Examples are based on the VLAB topology described in the <a href="../running/">Running VLAB</a> section.</p>
 <h2 id="vlab-topology">VLAB Topology</h2>
 <h3 id="spine-leaf">Spine-Leaf</h3>
-<p>The topology contains 2 spines, 2 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> leaves, 1 orphan leaf, and a gateway as shown below:</p>
+<p>The topology contains 2 spines, 2 ESLAG leaves, 1 orphan leaf, and a gateway as shown below:</p>
 <pre class="mermaid"><code>graph TD
 
 %% Style definitions
@@ -2311,7 +2311,7 @@ configuration was applied to the switches:</p>
 has been applied.</p>
 <h3 id="setting-up-networking-on-test-servers">Setting up networking on test servers</h3>
 <p>You can use <code>hhfab vlab ssh</code> on the host to SSH into the test servers and configure networking there. For example, for
-both <code>server-01</code> (<abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> attached to both <code>leaf-01</code> and <code>leaf-02</code>) we need to configure a bond with a VLAN on top of it
+both <code>server-01</code> (ESLAG attached to both <code>leaf-01</code> and <code>leaf-02</code>) we need to configure a bond with a VLAN on top of it
 and for the <code>server-05</code> (single-homed unbundled attached to <code>leaf-03</code>) we need to configure just a VLAN and they both
 will get an IP address from the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server. You can use the <code>ip</code> command to configure networking on the servers or use
 the little helper pre-installed by Fabricator on test servers, <code>hhnet</code>.</p>
