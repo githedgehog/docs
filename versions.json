@@ -7,11 +7,16 @@
     ]
   },
   {
-    "version": "26.01",
-    "title": "26.01",
+    "version": "26.01-rn-update",
+    "title": "26.01-rn-update",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "26.01",
+    "title": "26.01",
+    "aliases": []
   },
   {
     "version": "25.05",
