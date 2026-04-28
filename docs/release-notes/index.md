@@ -32,6 +32,8 @@ Date: April 2, 2026
 ### Notes
 
 - Upgrade is supported only from 25.05.x
+- VPCPeering with type Remote is deprecated, use regular VPCPeerings or GatewayPeerings
+- MCLAG support is deprecated, use ESLAG (EVPN MH) instead
 
 ### Software versions
 
