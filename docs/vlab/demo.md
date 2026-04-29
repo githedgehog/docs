@@ -256,6 +256,28 @@ OPTIONS:
    --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu/hhfab") [$HHFAB_WORK_DIR]
 
 ```
+
+#### How to read the output
+
+`test-connectivity` reports whether the *observed* behaviour matches the
+*intent* declared on the fabric, not whether every ping succeeds. For each
+pair of servers it first reads the VPCs, VPCPeering objects, and
+GatewayPeering objects to determine the intended reachability, then runs a
+probe (ping, iperf3, or curl) and compares the result to that expectation:
+
+| Intent declares | What the probe shows | Test result |
+|---|---|---|
+| Should be reachable | Probe succeeds | ✅ pass: working as designed |
+| Should be reachable | Probe fails | ❌ fail: the fabric is not delivering traffic it should |
+| Should **not** be reachable | Probe fails | ✅ pass: isolation is working as designed |
+| Should not be reachable | Probe succeeds | ❌ fail: traffic is leaking across an unintended boundary |
+
+!!! note
+    A failing probe is not a failing test. Each per-pair log line carries
+    an `expected=` field: real failures are probes that fail with
+    `expected=true` or succeed with `expected=false`. For overall health,
+    read the summary at the end of the run rather than individual probes.
+
 ## Manual VPC creation
 ### Creating and attaching VPCs
 
