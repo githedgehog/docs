@@ -1355,9 +1355,18 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#sonic-switch-components" class="md-nav__link">
+  <a href="#switch-components" class="md-nav__link">
     <span class="md-ellipsis">
-      SONiC Switch Components
+      Switch Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Components
     </span>
   </a>
   
@@ -1406,9 +1415,18 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-telemetry-monitoring" class="md-nav__link">
+  <a href="#4-gateway-configuration-management" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Telemetry &amp; Monitoring
+      4. Gateway Configuration &amp; Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-telemetry-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Telemetry &amp; Monitoring
     </span>
   </a>
   
@@ -1547,6 +1565,27 @@ You're not viewing the latest version.
   
   <span class="md-ellipsis">
     Switch Agent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/gateway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway
   </span>
   
 
@@ -1755,9 +1794,18 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#sonic-switch-components" class="md-nav__link">
+  <a href="#switch-components" class="md-nav__link">
     <span class="md-ellipsis">
-      SONiC Switch Components
+      Switch Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway Components
     </span>
   </a>
   
@@ -1806,9 +1854,18 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-telemetry-monitoring" class="md-nav__link">
+  <a href="#4-gateway-configuration-management" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Telemetry &amp; Monitoring
+      4. Gateway Configuration &amp; Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-telemetry-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Telemetry &amp; Monitoring
     </span>
   </a>
   
@@ -1845,8 +1902,9 @@ You're not viewing the latest version.
 <h1 id="overview">Overview</h1>
 <p>Hedgehog Open Network Fabric leverages the Kubernetes API to manage its resources. All user-facing APIs are exposed as Kubernetes Custom Resources Definitions (CRDs), allowing users to manage Fabric resources using standard Kubernetes tools.</p>
 <p>To make network switches Kubernetes-aware, the Fabric employs an <strong>Agent</strong> running on each switch. This agent acts as an interface  between the Kubernetes control plane and the switch internal network configuration mechanisms. It continuously syncs desired state from Kubernetes via the Fabric Controller and applies configurations using <strong>gNMI</strong> (gRPC Network Management Interface).</p>
+<p>Gateway nodes follow the same Kubernetes-native model. The Fabric Controller manages gateway configuration through a dedicated Kubernetes CRD, which the gateway's Dataplane watches directly, continuously reconciling its running state with the desired configuration and reporting observed status back through the Kubernetes API. This keeps gateway management fully consistent with the rest of the Fabric: operators interact exclusively through Kubernetes resources, and operational state is always visible via standard Kubernetes tooling.</p>
 <h2 id="components">Components</h2>
-<p>Hedgehog Fabric consists of several key components, distributed between the Control Node and the Network devices. The following diagram breaks down the components of a <a href="../fabric/#mesh">mesh topology</a>. Hedgehog components have been highlighted in brown color:</p>
+<p>Hedgehog Fabric consists of several key components, distributed between the Control Node and the network devices. The following diagram illustrates these components and their relationships. Hedgehog components have been highlighted in brown color:</p>
 <pre class="mermaid"><code>graph TD;
   %% Control Plane
   subgraph Control Node ["Control Node"]
@@ -1857,35 +1915,38 @@ You're not viewing the latest version.
 
   K --&gt;|Interacts via K8s API| A
   L[Fabricator]:::ourComponent --&gt;|Installs &amp; Configures| A
-  A --&gt;|Kubernetes API| B1
-  B1 --&gt;|Syncs State| A;
-  A --&gt;|Kubernetes API| B2
-  B2 --&gt;|Syncs State| A;
+  A --&gt;|Kubernetes API| SW_AGENT
+  SW_AGENT --&gt;|Syncs State| A
+  GWD --&gt;|Syncs State| A
 
-  %% Mesh - Two Switches
-  subgraph SONiC Leaf 2
-    B1[Fabric Agent]:::ourComponent --&gt;|Scraped by| C1[Alloy]:::thirdParty
-    C1 --&gt;|Pushes Logs/Metrics| P
-    D1[gNMI]:::thirdParty
-    E1[Config DB]:::thirdParty
-    I1[ASIC]:::thirdParty
+  %% Switch
+  subgraph Switch
+    SW_AGENT[Fabric Agent]:::ourComponent
+    SW_ALLOY[Alloy]:::thirdParty
+    SW_GNMI[gNMI]:::thirdParty
+    SW_CDB[Config DB]:::thirdParty
+    SW_ASIC[ASIC]:::thirdParty
+    SW_ALLOY --&gt;|scrapes| SW_AGENT
+    SW_ALLOY --&gt;|Pushes Logs/Metrics| P
   end
 
-  subgraph SONiC Leaf 1
-    B2[Fabric Agent]:::ourComponent --&gt;|Scraped by| C2[Alloy]:::thirdParty
-    C2 --&gt;|Pushes Logs/Metrics| P
-    D2[gNMI]:::thirdParty
-    E2[Config DB]:::thirdParty
-    I2[ASIC]:::thirdParty
+  %% Gateway
+  subgraph Gateway
+    GWD[Dataplane]:::ourComponent
+    GWFA[FRR Agent]:::ourComponent
+    GWFRR[FRR]:::thirdParty
+    GWA[Alloy]:::thirdParty
+    GWD --&gt;|routing config| GWFA
+    GWFA --&gt;|config reload| GWFRR
+    GWFRR --&gt;|routes &amp; BGP state| GWD
+    GWA --&gt;|scrapes /metrics| GWD
+    GWA --&gt;|Pushes Logs/Metrics| P
   end
 
   %% Switch Configuration Flow
-  B1 --&gt;|Applies Config| D1
-  B2 --&gt;|Applies Config| D2
-  D1 --&gt;|Writes/Reads| E1
-  D2 --&gt;|Writes/Reads| E2
-  E1 --&gt;|Controls| I1
-  E2 --&gt;|Controls| I2
+  SW_AGENT --&gt;|Applies Config| SW_GNMI
+  SW_GNMI --&gt;|Writes/Reads| SW_CDB
+  SW_CDB --&gt;|Controls| SW_ASIC
 
   %% Logs and Metrics Flow
   P --&gt;|Forwards Logs/Metrics| M
@@ -1906,10 +1967,10 @@ You're not viewing the latest version.
 <ul>
 <li><strong>Fabric Controller</strong>: The central control plane component that manages Fabric resources and configurations.</li>
 <li><strong>Fabric CLI (kubectl plugin)</strong>: A <code>kubectl</code> plugin that provides an easy way to manage Fabric resources.</li>
-<li><strong>Fabric Proxy</strong>: A pod responsible for collecting logs and metrics from switches (via Alloy) and forwarding them to an external system.</li>
+<li><strong>Fabric Proxy</strong>: A pod responsible for collecting logs and metrics from switches and gateways (via Alloy) and forwarding them to an external system.</li>
 <li><strong>Fabricator</strong>: A tool for installing and configuring Fabric, including virtual lab environments.</li>
 </ul>
-<h3 id="sonic-switch-components">SONiC Switch Components</h3>
+<h3 id="switch-components">Switch Components</h3>
 <ul>
 <li><strong>Fabric Agent</strong>: Runs on each switch and applies configurations received from the control plane.</li>
 <li><strong>Alloy</strong>: Collects logs and telemetry data from the switch.</li>
@@ -1918,6 +1979,14 @@ You're not viewing the latest version.
 <li><strong><abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr></strong>: The hardware component handling packet forwarding.</li>
 </ul>
 <p>The SONiC architecture presented here is a high-level abstraction, for simplicity.</p>
+<h3 id="gateway-components">Gateway Components</h3>
+<ul>
+<li><strong>Dataplane</strong>: A packet processing pipeline that handles NAT, flow tracking, and <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> encapsulation/decapsulation. It reads the desired peering and NAT configuration from Kubernetes and generates FRR configuration delivered to the FRR Agent.</li>
+<li><strong>FRR Agent</strong>: A Hedgehog-written component that receives FRR configuration from the dataplane and applies it to FRR via dynamic reload.</li>
+<li><strong>FRR (Free Range Routing)</strong>: A suite of routing daemons that provides <abbr title="Border Gateway Protocol">BGP</abbr> peering with the fabric switches. FRR advertises <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering routes to attract traffic to the gateway, and pushes routes received from the fabric back into the dataplane's forwarding table via the Control Plane Interface (CPI).</li>
+<li><strong>Alloy</strong>: Collects logs and metrics from the gateway and forwards them to the Fabric Proxy.</li>
+</ul>
+<p>Gateway nodes run Flatcar Linux and join the Kubernetes cluster as worker nodes. The Fabric Controller schedules all gateway components onto gateway nodes and delivers configuration through the <code>GatewayAgent</code> Kubernetes CRD. The Dataplane watches this CRD directly, keeping its own state synchronized and reporting back observed status. FRR and the FRR Agent are responsible for all routing interactions with the fabric: FRR advertises and receives routes via <abbr title="Border Gateway Protocol">BGP</abbr>, while the FRR Agent keeps FRR's configuration in sync with the Dataplane's desired state.</p>
 <h2 id="architecture-flow">Architecture Flow</h2>
 <h3 id="1-fabric-installation-configuration">1. <strong>Fabric Installation &amp; Configuration</strong></h3>
 <ul>
@@ -1937,9 +2006,16 @@ You're not viewing the latest version.
 <li>The <strong>Fabric Agent</strong> applies configurations using the <strong>gNMI</strong> interface, updating the <strong>Config DB</strong>.</li>
 <li>The <strong>Config DB</strong> ensures that all settings are applied to the <strong><abbr title="Application Specific Integrated Circuit, the heart of a network switch.">ASIC</abbr></strong> for packet forwarding.</li>
 </ul>
-<h3 id="4-telemetry-monitoring">4. <strong>Telemetry &amp; Monitoring</strong></h3>
+<h3 id="4-gateway-configuration-management">4. <strong>Gateway Configuration &amp; Management</strong></h3>
 <ul>
-<li>The <strong>Alloy</strong> agent on the switch collects logs and metrics.</li>
+<li>The <strong>Fabric Controller</strong> publishes a <code>GatewayAgent</code> CRD containing the desired gateway configuration: <abbr title="Border Gateway Protocol">BGP</abbr> settings, <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings, NAT rules, and gateway group membership.</li>
+<li>The <strong>Dataplane</strong> watches the <code>GatewayAgent</code> CRD via the Kubernetes API, applies the configuration, and writes its observed state (including FRR applied generation and per-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic statistics) back to the CRD status.</li>
+<li>The <strong>Dataplane</strong> generates FRR configuration from the desired state and delivers it to the <strong>FRR Agent</strong>, which applies it to FRR via dynamic reload.</li>
+<li><strong>FRR</strong> establishes <abbr title="Border Gateway Protocol">BGP</abbr> sessions with the fabric switches to advertise <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering routes. It pushes received routes and <abbr title="Border Gateway Protocol">BGP</abbr> state back to the <strong>Dataplane</strong> via the Control Plane Interface (CPI) and <abbr title="Border Gateway Protocol">BGP</abbr> Monitoring Protocol (BMP) respectively.</li>
+</ul>
+<h3 id="5-telemetry-monitoring">5. <strong>Telemetry &amp; Monitoring</strong></h3>
+<ul>
+<li>The <strong>Alloy</strong> agent on switches and gateways collects logs and metrics.</li>
 <li>Logs and metrics are sent to the <strong>Fabric Proxy</strong> running in Kubernetes.</li>
 <li>The <strong>Fabric Proxy</strong> forwards this data to <strong>LGTM</strong>, an external logging and monitoring system.</li>
 </ul>
@@ -1965,7 +2041,7 @@ You're not viewing the latest version.
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 15, 2026</span>
   </span>
 
     

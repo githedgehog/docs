@@ -12,13 +12,13 @@
         <meta name="author" content="Hedgehog Authors">
       
       
-        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/install-upgrade/install/">
+        <link rel="canonical" href="https://docs.hedgehog.cloud/dev/troubleshooting/gateway/">
       
       
-        <link rel="prev" href="../../vlab/virt-externals/">
+        <link rel="prev" href="../agent/">
       
       
-        <link rel="next" href="../supported-devices/">
+        <link rel="next" href="../../known-limitations/known-limitations/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Install - Open Network Fabric</title>
+        <title>Gateway - Open Network Fabric</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-fabric" class="md-skip">
+        <a href="#gateway" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +148,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install
+              Gateway
             
           </span>
         </div>
@@ -482,19 +482,19 @@ You're not viewing the latest version.
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -508,7 +508,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Install & Upgrade
@@ -519,30 +519,10 @@ You're not viewing the latest version.
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Install
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../install-upgrade/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -551,119 +531,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview-of-install-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview of Install Process
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build Control Node configuration and Installer
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Build Control Node configuration and Installer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hhfab-commands-to-make-a-bootable-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      HHFAB commands to make a bootable image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#write-usb-image-to-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      Write USB Image to Disk
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-control-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Control Node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Control Node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configure-management-network" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configure Management Network
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fabric-manages-switches" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fabric Manages Switches
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-gateway-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Gateway Node
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -676,7 +543,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../supported-devices/" class="md-nav__link">
+      <a href="../../install-upgrade/supported-devices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -697,7 +564,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../requirements/" class="md-nav__link">
+      <a href="../../install-upgrade/requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -718,7 +585,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../build-wiring/" class="md-nav__link">
+      <a href="../../install-upgrade/build-wiring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -739,7 +606,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../config/" class="md-nav__link">
+      <a href="../../install-upgrade/config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -760,7 +627,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/" class="md-nav__link">
+      <a href="../../install-upgrade/upgrade/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1469,19 +1336,19 @@ You're not viewing the latest version.
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -1495,7 +1362,7 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
@@ -1509,7 +1376,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1530,7 +1397,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/physical_links/" class="md-nav__link">
+      <a href="../physical_links/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1551,7 +1418,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/agent/" class="md-nav__link">
+      <a href="../agent/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1569,10 +1436,30 @@ You're not viewing the latest version.
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../troubleshooting/gateway/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gateway
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1581,6 +1468,128 @@ You're not viewing the latest version.
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Checks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traffic-not-flowing-through-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traffic not flowing through gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-not-working-as-expected" class="md-nav__link">
+    <span class="md-ellipsis">
+      NAT not working as expected
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway failover
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-gateway-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting Gateway State
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inspecting Gateway State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgp-neighbor-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      BGP neighbor state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traffic counters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1766,46 +1775,46 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#health-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Health Checks
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#overview-of-install-process" class="md-nav__link">
+  <a href="#common-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview of Install Process
+      Common Issues
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build-control-node-configuration-and-installer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Build Control Node configuration and Installer
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Build Control Node configuration and Installer">
+    <nav class="md-nav" aria-label="Common Issues">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hhfab-commands-to-make-a-bootable-image" class="md-nav__link">
+  <a href="#traffic-not-flowing-through-gateway" class="md-nav__link">
     <span class="md-ellipsis">
-      HHFAB commands to make a bootable image
+      Traffic not flowing through gateway
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#write-usb-image-to-disk" class="md-nav__link">
+  <a href="#nat-not-working-as-expected" class="md-nav__link">
     <span class="md-ellipsis">
-      Write USB Image to Disk
+      NAT not working as expected
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gateway-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateway failover
     </span>
   </a>
   
@@ -1817,28 +1826,37 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-control-node" class="md-nav__link">
+  <a href="#inspecting-gateway-state" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Control Node
+      Inspecting Gateway State
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Install Control Node">
+    <nav class="md-nav" aria-label="Inspecting Gateway State">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configure-management-network" class="md-nav__link">
+  <a href="#configuration-status" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure Management Network
+      Configuration status
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fabric-manages-switches" class="md-nav__link">
+  <a href="#bgp-neighbor-state" class="md-nav__link">
     <span class="md-ellipsis">
-      Fabric Manages Switches
+      BGP neighbor state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traffic counters
     </span>
   </a>
   
@@ -1850,9 +1868,9 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-gateway-node" class="md-nav__link">
+  <a href="#metrics" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Gateway Node
+      Metrics
     </span>
   </a>
   
@@ -1873,7 +1891,7 @@ You're not viewing the latest version.
                   
 
   
-    <a href="https://github.com/githedgehog/docs/edit/master/docs/install-upgrade/install.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/githedgehog/docs/edit/master/docs/troubleshooting/gateway.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1881,204 +1899,206 @@ You're not viewing the latest version.
   
 
 
-<h1 id="install-fabric">Install Fabric</h1>
-<h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li>A machine with access to the Internet to use Fabricator and build installer with at least 8 GB RAM and 25 GB of disk space</li>
-<li>An 16 GB USB flash drive, if you are not using virtual media</li>
-<li>Have a machine to function as the Fabric Control Node. <a href="../requirements/">System Requirements</a> as well as IPMI access to it to install
-  the OS. Only UEFI is supported.</li>
-<li>A management switch with at least 1 10GbE port is recommended</li>
-<li>Enough <a href="../supported-devices/">Supported Switches</a> for your Fabric</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Control nodes on virtual machines</p>
-<p>Running control nodes on virtual machines is possible, although not officially supported. If you use virtual
-machines, make sure to use UEFI boot.</p>
-</div>
-<h2 id="overview-of-install-process">Overview of Install Process</h2>
-<p>This section is dedicated to the Hedgehog Fabric installation on bare-metal control node(s) and switches, their
-preparation and configuration. To install the VLAB see <a href="../../vlab/overview/">VLAB Overview</a>.</p>
-<p>Download and install <code>hhfab</code> following instructions from the <a href="../../getting-started/download/">Download</a> section.</p>
-<p>The main steps to install Fabric are:</p>
-<ol>
-<li>Install <code>hhfab</code> on the machines with access to the Internet<ol>
-<li><a href="../build-wiring/">Prepare Wiring Diagram</a></li>
-<li><a href="../config/">Select Fabric Configuration</a></li>
-<li><a href="#build-control-node-configuration-and-installer">Build Control Node configuration and installer</a></li>
-</ol>
-</li>
-<li><a href="#install-control-node">Install Control Node</a><ol>
-<li>Attach the ISO or insert USB drive with control-os image to the Fabric Control Node</li>
-<li>Boot the node off the media to initiate the installation</li>
-</ol>
-</li>
-<li><a href="#install-gateway-node">Install Gateway Node</a><ol>
-<li>Attach the ISO or insert USB drive with gateway-os image to the gateway node</li>
-<li>Boot the node off the media to initiate the installation</li>
-</ol>
-</li>
-<li>Prepare Management Network<ol>
-<li>Connect management switch to Fabric control node</li>
-<li>Connect 1GbE Management port of switches to management switch</li>
-</ol>
-</li>
-<li>Prepare supported switches<ol>
-<li>Ensure switch serial numbers and / or first management interface MAC addresses are recorded in wiring diagram</li>
-<li>Boot them into ONIE Install Mode to have them automatically provisioned</li>
-</ol>
-</li>
-</ol>
-<h2 id="build-control-node-configuration-and-installer">Build Control Node configuration and Installer</h2>
-<p>Hedgehog has created a command line utility, called <code>hhfab</code>, that helps generate the wiring diagram and fabric configuration,
-validate the supplied configurations, and generate an installation image (.img or .iso) suitable
-for writing to a USB flash drive or mounting via IPMI virtual media. The first <code>hhfab</code> command to
-run is <code>hhfab init</code>. This will generate the main configuration file, <code>fab.yaml</code>. <code>fab.yaml</code> is
-responsible for almost every configuration of the fabric with the exception of the wiring. Each
-command and subcommand have usage messages, simply supply the <code>-h</code> flag to your command or sub
-command to see the available options. For example <code>hhfab init -h</code>.</p>
-<h3 id="hhfab-commands-to-make-a-bootable-image">HHFAB commands to make a bootable image</h3>
-<ol>
-<li><code>hhfab init --wiring wiring-lab.yaml</code></li>
-<li>The <code>init</code> command generates a <code>fab.yaml</code> file, edit the <code>fab.yaml</code> file for your needs, specifically:<ol>
-<li>Ensure the correct boot disk (e.g. <code>/dev/sda</code>) and control node NIC names are supplied</li>
-<li>Ensure that the <code>name:</code> field under <code>kind: ControlNode</code> is the desired host name,
-   as this <strong>cannot be changed</strong> after installation</li>
-</ol>
-</li>
-<li><code>hhfab validate</code></li>
-<li><code>hhfab build --mode iso</code><ol>
-<li>An ISO is best suited to use with IPMI based virtual media. If desired an IMG file suitable for writing to a USB drive, can be created by passing the <code>--mode usb</code> option. ISO is the default.</li>
-</ol>
-</li>
-</ol>
-<p>The installer for the fabric is generated in <code>$CWD/result/</code>. This installation image is named <code>control-1-install-usb.iso</code> and is 7.5 GB in size. Once the image is created, you can write it to a USB drive, or mount it via virtual media.</p>
-<h3 id="write-usb-image-to-disk">Write USB Image to Disk</h3>
-<div class="admonition warning">
-<p>This will erase data on the USB disk.</p>
-</div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux</label><label for="__tabbed_1_2">macOS</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ol>
-<li>Insert the USB to your machine</li>
-<li>Identify the path to your USB stick, for example: <code>/dev/sdc</code></li>
-<li>Issue the command to write the image to the USB drive<ul>
-<li><code>sudo dd if=control-1-install-usb.img of=/dev/sdc bs=4k status=progress</code></li>
-</ul>
-</li>
-</ol>
-</div>
-<div class="tabbed-block">
-<ol>
-<li>Plug the drive into the computer</li>
-<li>Open the terminal</li>
-<li>Identify the drive using <code>diskutil list</code></li>
-<li>Unmount the disk <code>diskutil unmount disk5</code>, the disk is specific to your environment</li>
-<li>Write the image to the disk: <code>sudo dd if=./control-1-install-usb.img of=/dev/disk5 bs=4k status=progress</code></li>
-</ol>
-</div>
-</div>
-</div>
-<p>There are utilities that assist this process such as <a href="https://etcher.balena.io/">etcher</a>.</p>
-<h2 id="install-control-node">Install Control Node</h2>
-<p>This control node should be given a static IP address. Either a lease or statically assigned.</p>
+<h1 id="gateway">Gateway</h1>
+<p>This page covers diagnosing common issues with the Hedgehog Gateway, including
+connectivity problems and NAT issues.</p>
+<h2 id="health-checks">Health Checks</h2>
+<p>Start by verifying the gateway has picked up its current configuration:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>get<span class="w"> </span>gatewayagents
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">NAME          APPLIED             APPLIEDG   CURRENTG   VERSION   PROTOCOLIP   VTEPIP   AGE</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">gateway-1     10 minutes ago      10         10         v1.2.0    ...          ...      2d</span>
+</span></code></pre></div>
+<p><code>AppliedG</code> should equal <code>CurrentG</code>. If they differ, the gateway has not yet
+applied the latest configuration.</p>
+<p>If the gateway is not reporting in at all, check that both pods are running:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>fab<span class="w"> </span>-l<span class="w"> </span>app.kubernetes.io/component<span class="o">=</span>gateway
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">NAME                               READY   STATUS    RESTARTS   AGE</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">gw--gateway-1--dataplane-7v9ss     1/1     Running   0          12h</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">gw--gateway-1--frr-c9kwc           2/2     Running   0          12h</span>
+</span></code></pre></div>
+<h2 id="common-issues">Common Issues</h2>
+<h3 id="traffic-not-flowing-through-gateway">Traffic not flowing through gateway</h3>
 <ol>
 <li>
-<p>Configure the server to use UEFI boot <strong>without</strong> secure boot</p>
-</li>
-<li>
-<p>Attach the image to the server either by inserting via USB, or attaching via virtual media</p>
-</li>
-<li>
-<p>Select boot off of the attached media, the installation process is <strong>automated</strong></p>
-</li>
-<li>
-<p>Once the control node has booted, it logs in automatically and begins the installation process</p>
-<ol>
-<li>Optionally use <code>journalctl -f -u flatcar-install.service</code> to monitor progress</li>
-</ol>
-</li>
-<li>
-<p>Once the installation is complete, the system automatically reboots.</p>
-</li>
-<li>
-<p>After the system has shut down but before the boot process reaches the operating system, <strong>remove the media from the system</strong>. Removal during the UEFI boot screen is acceptable.</p>
-</li>
-<li>
-<p>Upon booting into the freshly installed system, the fabric installation will <strong>automatically begin</strong></p>
-<ol>
-<li>If the insecure <code>--dev</code> flag was passed to <code>hhfab init</code> the password for the <code>core</code> user is <code>HHFab.Admin!</code>, the switches have two users created <code>admin</code> and <code>op</code>. <code>admin</code> has administrator privileges and password <code>HHFab.Admin!</code>, whereas the <code>op</code> user is a read-only, non-sudo user with password <code>HHFab.Op!</code>.</li>
-<li>Optionally this can be monitored with <code>journalctl -f -u fabric-install.service</code></li>
-</ol>
-</li>
-<li>
-<p>The install is complete when the log emits "Control Node installation complete". Additionally, the systemctl status will show <code>inactive (dead)</code> indicating that the executable has finished.</p>
-</li>
-</ol>
-<h3 id="configure-management-network">Configure Management Network</h3>
-<p>The control node is dual-homed: it connects to two different networks, which are called
-<code>management</code> and <code>external</code>, respectively, in the <code>fab.yaml</code> file.
-The <code>management</code> network is for controlling the switches that comprise the fabric. It
-can be a simple broadcast domain with layer 2 connectivity. The management network is
-not accessible to machines or devices not associated with the fabric; it is a private,
-exclusive network. The control node connects to the management network via a 10 GbE
-interface. It runs a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server, as well as a small HTTP server.</p>
-<p>The <code>external</code> network allows the user to access the control node via their local
-IT network. It provides SSH access to the host operating system on the control node.</p>
-<h3 id="fabric-manages-switches">Fabric Manages Switches</h3>
-<p>Now that the install has finished, you can start interacting with the Fabric using <code>kubectl</code>, <code>kubectl fabric</code> and <code>k9s</code>, all pre-installed as part of the Control Node installer.</p>
-<p>At this stage, the fabric hands out <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> addresses to the switches via the management network. Optionally, you can monitor this process by going through the following steps:
-- enter <code>k9s</code> at the command prompt
-- use the arrow keys to select the pod named <code>fabric-boot</code>
-- the logs of the pod will be displayed showing the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> lease process
-- use the switches screen of <code>k9s</code> to see the heartbeat column to verify the connection between switch and controller.
-    - to see the switches type <code>:switches</code> (like a vim command) into <code>k9s</code></p>
-<h2 id="install-gateway-node">Install Gateway Node</h2>
-<p>All of the management of the gateway node is provided through the control node. The management
-network of the gateway node should reside on the same management network as the
-switches and control node. As with the control node, use the virtual media
-feature of the BMC to attach the bootable ISO to the node. Alternatively a USB
-image is also available, if it can be physically attached to the server.</p>
-<ol>
-<li>
-<p>Complete the <a href="#install-control-node">installation of the control node</a></p>
-</li>
-<li>
-<p>Attach the image to the server either by inserting via USB, or attaching via virtual media</p>
-</li>
-<li>
-<p>Configure the server to use UEFI boot <strong>without</strong> secure boot</p>
-</li>
-<li>
-<p>Select boot off of the attached media, the installation process is automated</p>
-</li>
-<li>
-<p>Once the gateway node has booted, it logs in automatically and begins the installation process</p>
-<ol>
-<li>Optionally use <code>journalctl -f -u flatcar-install.service</code> to monitor progress</li>
-</ol>
-</li>
-<li>
-<p>Once the installation is complete, the system automatically reboots</p>
-</li>
-<li>
-<p>After the system has shut down but before the boot process reaches the operating system, <strong>remove the media from the system</strong>. Removal during the UEFI boot screen is acceptable</p>
-</li>
-<li>
-<p>Upon booting into the freshly installed system, the gateway installation
-   will automatically begin. The gateway node acts as a K3S agent</p>
-</li>
-<li>
-<p>Confirm that the control node and gateway node are communicating, from the
-   control node, see that the gateway <code>STATUS</code> is <code>Ready</code>:
-<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">NAME        STATUS   ROLES                AGE    VERSION</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">control-1   Ready    control-plane,etcd   2d2h   v1.34.1+k3s1</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">gateway-1   Ready    &lt;none&gt;               2d2h   v1.34.1+k3s1</span>
+<p><strong>Check peering is configured</strong>: Verify the GatewayPeering object exists
+   and is not rejected:
+   <div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>get<span class="w"> </span>gatewaypeerings
 </span></code></pre></div></p>
 </li>
+<li>
+<p><strong>Check routes on the leaf</strong>: Verify gateway routes are installed on the
+   leaf switches:
+   <div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>vpc<span class="w"> </span>&lt;vpc-name&gt;
+</span></code></pre></div>
+   Look for routes pointing to the gateway's VTEP IP.</p>
+</li>
+<li>
+<p><strong>Check <abbr title="Border Gateway Protocol">BGP</abbr> neighbors</strong>: Verify all <abbr title="Border Gateway Protocol">BGP</abbr> sessions are established (see
+   <a href="#inspecting-gateway-state">Inspecting Gateway State</a>).</p>
+</li>
 </ol>
+<h3 id="nat-not-working-as-expected">NAT not working as expected</h3>
+<ol>
+<li>
+<p><strong>Check traffic is reaching the gateway</strong>: Use the per-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and per-peering
+   packet counters in the gateway state (see
+   <a href="#inspecting-gateway-state">Inspecting Gateway State</a>) to verify packets
+   are being processed. Zero counters while traffic is expected indicates
+   the packets are not reaching the gateway.</p>
+</li>
+<li>
+<p><strong>Idle timeout</strong>: If connections work briefly then stop, the flow may be
+   expiring. Check the <code>idleTimeout</code> setting in the GatewayPeering spec.
+   Use TCP or application-layer keepalives for long-lived connections.</p>
+</li>
+</ol>
+<h3 id="gateway-failover">Gateway failover</h3>
+<ol>
+<li>
+<p><strong>Check both gateways are running</strong>: Verify both gateway pods are healthy.</p>
+</li>
+<li>
+<p><strong>Check gateway group membership</strong>:
+   <div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>get<span class="w"> </span>gateways<span class="w"> </span>-o<span class="w"> </span>yaml
+</span></code></pre></div>
+   Verify both gateways are members of the expected group with correct
+   priorities.</p>
+</li>
+<li>
+<p><strong>Check <abbr title="Border Gateway Protocol">BGP</abbr> on leaves</strong>: After a failover, the leaf switches should
+   withdraw routes from the failed gateway and install routes from the
+   backup. Use <code>kubectl fabric inspect bgp</code> to check. Also verify <abbr title="Border Gateway Protocol">BGP</abbr>
+   neighbor state on the backup gateway (see
+   <a href="#inspecting-gateway-state">Inspecting Gateway State</a>).</p>
+</li>
+</ol>
+<h2 id="inspecting-gateway-state">Inspecting Gateway State</h2>
+<p>The <code>GatewayAgent</code> status exposes the full operational state of the gateway,
+including <abbr title="Border Gateway Protocol">BGP</abbr> neighbor sessions and per-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic counters.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>get<span class="w"> </span>gatewayagents<span class="w"> </span>-o<span class="w"> </span>yaml
+</span></code></pre></div>
+<h3 id="configuration-status">Configuration status</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">status</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">lastAppliedGen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">lastAppliedTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2026-04-17T16:29:04Z&quot;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">lastHeartbeat</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2026-04-17T17:25:25Z&quot;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">state</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">frr</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="nt">lastAppliedGen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span></code></pre></div>
+<ul>
+<li><code>lastAppliedGen</code> should match the object's <code>metadata.generation</code>. If it
+  lags, the dataplane has not yet applied the current configuration.</li>
+<li><code>state.frr.lastAppliedGen</code> should match <code>lastAppliedGen</code>. If it lags, FRR
+  has not yet picked up the latest routing configuration.</li>
+<li><code>lastHeartbeat</code> is updated periodically by the dataplane. A stale value
+  indicates the dataplane is not running or not reachable.</li>
+</ul>
+<h3 id="bgp-neighbor-state"><abbr title="Border Gateway Protocol">BGP</abbr> neighbor state</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">  </span><span class="nt">state</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">bgp</span><span class="p">:</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">      </span><span class="nt">vrfs</span><span class="p">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="nt">default</span><span class="p">:</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">          </span><span class="nt">neighbors</span><span class="p">:</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">            </span><span class="nt">172.30.128.12</span><span class="p">:</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">              </span><span class="nt">sessionState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">              </span><span class="nt">localAS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65534</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">              </span><span class="nt">peerAS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65100</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">              </span><span class="nt">remoteRouterID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.8.0</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">              </span><span class="nt">connectionsDropped</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">              </span><span class="nt">establishedTransitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">              </span><span class="nt">ipv4UnicastPrefixes</span><span class="p">:</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">                </span><span class="nt">received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">                </span><span class="nt">sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">            </span><span class="nt">172.30.128.26</span><span class="p">:</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">              </span><span class="nt">sessionState</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></code></pre></div>
+<p>All neighbors should be in <code>established</code> state. If a neighbor is in <code>active</code>
+or <code>idle</code>, the <abbr title="Border Gateway Protocol">BGP</abbr> session is not up; check physical connectivity and IP
+configuration on both the gateway and the connected leaf switch.</p>
+<p>A non-zero <code>connectionsDropped</code> or a high <code>establishedTransitions</code> count
+indicates the session has been flapping.</p>
+<h3 id="traffic-counters">Traffic counters</h3>
+<p>Per-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> totals:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">  </span><span class="nt">state</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nt">vpcs</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">      </span><span class="nt">vpc-01</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3555</span><span class="w">    </span><span class="c1"># packets</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nt">b</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5835616</span><span class="w"> </span><span class="c1"># bytes</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="nt">d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">       </span><span class="c1"># drops</span>
+</span></code></pre></div>
+<p>Per-peering directional counters (present when peerings are active):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">  </span><span class="nt">state</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nt">peerings</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">      </span><span class="nt">vpc-01-&gt;vpc-02</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3555</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="nt">b</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5835616</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="nt">d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="nt">bps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">254024.3</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">        </span><span class="nt">pps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">70.2</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">      </span><span class="nt">vpc-02-&gt;vpc-01</span><span class="p">:</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">        </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2711</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">        </span><span class="nt">b</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000519</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">        </span><span class="nt">d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="nt">bps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128.9</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">        </span><span class="nt">pps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9.5</span>
+</span></code></pre></div>
+<p>A non-zero drop counter (<code>d</code>) means packets were discarded, often due to a
+misconfigured peering or an exhausted NAT pool. A zero packet counter on an
+expected active peering means traffic is not reaching the gateway.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A drop counter of <code>0</code> only rules out drops on the gateway itself, not
+end-to-end loss. If clients see TCP retransmits while <code>d</code> stays at <code>0</code>,
+validate reachability with <code>kubectl fabric inspect access &lt;A&gt; &lt;B&gt;</code> and
+continue from the <a href="../overview/">Troubleshooting overview</a>.</p>
+</div>
+<h2 id="metrics">Metrics</h2>
+<p>The dataplane exposes Prometheus metrics scraped by the Alloy agent on the
+gateway node and forwarded to the Fabric Proxy.</p>
+<p>Each metric is emitted with three label variants:</p>
+<ul>
+<li><code>{total="&lt;vpc&gt;"}</code>: all traffic in or out of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></li>
+<li><code>{drops="&lt;vpc&gt;"}</code>: traffic dropped for the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr></li>
+<li><code>{from="&lt;src&gt;",to="&lt;dst&gt;"}</code>: directional traffic between two VPCs</li>
+</ul>
+<p>Available metrics:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vpc_packet_count</code></td>
+<td>Gauge</td>
+<td>Packet count</td>
+</tr>
+<tr>
+<td><code>vpc_packet_rate</code></td>
+<td>Gauge</td>
+<td>Packet rate</td>
+</tr>
+<tr>
+<td><code>vpc_byte_count</code></td>
+<td>Gauge</td>
+<td>Byte count</td>
+</tr>
+<tr>
+<td><code>vpc_byte_rate</code></td>
+<td>Gauge</td>
+<td>Byte rate</td>
+</tr>
+</tbody>
+</table>
+<p>To inspect metrics directly, run on the gateway node itself (the dataplane uses
+host networking, so the endpoint is accessible on the node at port 9442):</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9442/metrics
+</span></code></pre></div>
 
 
 
@@ -2101,7 +2121,7 @@ image is also available, if it can be physically attached to the server.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 24, 2026</span>
   </span>
 
     
@@ -2111,7 +2131,7 @@ image is also available, if it can be physically attached to the server.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 15, 2026</span>
   </span>
 
     
@@ -2150,7 +2170,7 @@ image is also available, if it can be physically attached to the server.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../vlab/virt-externals/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Virtual Externals">
+          <a href="../agent/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Switch Agent">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2160,20 +2180,20 @@ image is also available, if it can be physically attached to the server.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Virtual Externals
+                Switch Agent
               </div>
             </div>
           </a>
         
         
           
-          <a href="../supported-devices/" class="md-footer__link md-footer__link--next" aria-label="Next: Supported Devices">
+          <a href="../../known-limitations/known-limitations/" class="md-footer__link md-footer__link--next" aria-label="Next: Known Limitations">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Supported Devices
+                Known Limitations
               </div>
             </div>
             <div class="md-footer__button md-icon">
