@@ -1461,6 +1461,57 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#diagnosing-a-down-fiber-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing a Down Fiber Link
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing a Down Fiber Link">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-identify-the-affected-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Identify the affected port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-confirm-the-port-is-admin-up-but-operationally-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Confirm the port is admin up but operationally down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-read-the-per-lane-laser-powers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Read the per-lane laser powers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-interpret-the-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Interpret the pattern
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ports" class="md-nav__link">
     <span class="md-ellipsis">
       Ports
@@ -1697,6 +1748,57 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#diagnosing-a-down-fiber-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing a Down Fiber Link
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing a Down Fiber Link">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-identify-the-affected-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Identify the affected port
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-confirm-the-port-is-admin-up-but-operationally-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Confirm the port is admin up but operationally down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-read-the-per-lane-laser-powers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Read the per-lane laser powers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-interpret-the-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Interpret the pattern
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ports" class="md-nav__link">
     <span class="md-ellipsis">
       Ports
@@ -1761,29 +1863,140 @@ servers can be monitored with the following commands:</p>
 </span></code></pre></div>
 Often a value of <code>-40dBm</code> on the transmit or receive side indicates that the
 laser is not on. If supported, check the CMIS status of the optic.</p>
+<h2 id="diagnosing-a-down-fiber-link">Diagnosing a Down Fiber Link</h2>
+<p>When <code>kubectl fabric inspect lldp</code> reports an expected neighbor missing on a
+port, or <code>kubectl fabric inspect bgp</code> reports an underlay neighbor that
+never reaches <code>Established</code>, the most common root cause is a layer 1 fault
+(optic, fiber cable, or connector) on that port. The steps below narrow
+the fault to a single switch port using <code>kubectl fabric inspect</code>.</p>
+<h3 id="1-identify-the-affected-port">1. Identify the affected port</h3>
+<p><code>kubectl fabric inspect lldp</code> prints a per-switch table of the LLDP
+neighbors it observes against what the wiring expects. A port with a
+blank <code>NEIGHBOR</code> / <code>PORT</code> / <code>DESCRIPTION</code> is missing its expected
+neighbor entirely:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>lldp
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">Switch: ds5000-01 (actual←→expected)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">PORT       CONNECTION                      TYPE        NEIGHBOR       PORT            DESCRIPTION</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">E1/21/1    ds5000-01--mesh--ds5000-02      mesh</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">E1/22/1    ds5000-01--mesh--ds5000-02      mesh        ds5000-02      E1/22/1         Hedgehog Fabric</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">...</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">Switch: ds5000-02 (actual←→expected)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">PORT       CONNECTION                        TYPE         NEIGHBOR       PORT                   DESCRIPTION</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">E1/21/1    ds5000-01--mesh--ds5000-02        mesh</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="go">E1/22/1    ds5000-01--mesh--ds5000-02        mesh         ds5000-01      E1/22/1                Hedgehog Fabric</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="go">...</span>
+</span></code></pre></div>
+<p>Both sides of the link report an empty neighbor on <code>E1/21/1</code> while the
+sibling port <code>E1/22/1</code> on the same connection reports its peer normally.
+The fault is on that specific physical link between <code>ds5000-01</code> and
+<code>ds5000-02</code>, not on either switch as a whole. A working sibling on the
+same connection rules out a configuration problem shared by the two
+ports.</p>
+<p><code>kubectl fabric inspect bgp</code> shows the same issue from the routing
+perspective. The row for the affected port reports <code>STATE</code> as <code>active</code>
+(a <abbr title="Border Gateway Protocol">BGP</abbr> peer that is trying to connect but never reaches <code>established</code>)
+while other fabric peers on the same switch are <code>established</code>:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>bgp
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">Switch: ds5000-01</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">TYPE      PORT       VRF        NEIGHBOR        REMOTE NAME          CONNECTION                    STATE          LAST ESTABLISHED</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">fabric    E1/21/1    default    172.30.128.1    ds5000-02/E1/21/1    ds5000-01--mesh--ds5000-02    active         a long while ago</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">fabric    E1/22/1    default    172.30.128.3    ds5000-02/E1/22/1    ds5000-01--mesh--ds5000-02    established    a long while ago</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">...</span>
+</span></code></pre></div>
+<p>Both outputs name the same port (<code>E1/21/1</code>), so either starting symptom
+leads to the same link.</p>
+<h3 id="2-confirm-the-port-is-admin-up-but-operationally-down">2. Confirm the port is admin up but operationally down</h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>switch<span class="w"> </span>--name<span class="w"> </span>ds5000-01<span class="w"> </span>--ports
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">NAME         PROFILE             ROLE           GROUPS    SERIAL                    STATE    GEN    APPLIED          HEARTBEAT</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">ds5000-01    Celestica DS5000    server-leaf              R4028F2B094A15GD200125    Ready    3/3    6 minutes ago    10 seconds ago</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">Ports:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">NAME       NOS            TYPE        CONNECTION / MODE               ADM / OP     SPEED        TRANSCEIVER                          TRANSC / CMIS</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go">E1/21      Ethernet160                                                                          OSFP112 800GBASE-DR8                 active/ready</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="go">E1/21/1    Ethernet160    mesh        ds5000-01--mesh--ds5000-02      up/down      800G</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="go">E1/22      Ethernet168                                                                          OSFP112 2x(400GBASE-CR2-DAC)-1.0M    active/ready</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="go">E1/22/1    Ethernet168    mesh        ds5000-01--mesh--ds5000-02      up/up        800G</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>NAME</code> column is the fabric API port name used in wiring objects and
+other <code>kubectl fabric inspect</code> commands (for example <code>E1/21/1</code>). The <code>NOS</code>
+column is the underlying NOS interface name (for example <code>Ethernet160</code>).
+Both refer to the same port.</p>
+</div>
+<p>Locate the affected port in the <code>ADM / OP</code> column. <code>up/down</code> means the
+switch is trying to bring the port up but the PHY is not training, which
+points at the optical path (cable, connector, or transceiver). <code>down/down</code>
+means the port is intentionally disabled and the fault is at the
+configuration layer instead; stop here and review the wiring object.</p>
+<p>In the example above, <code>E1/21/1</code> is <code>up/down</code> while the sibling port
+<code>E1/22/1</code> on the same connection is <code>up/up</code>, which confirms the fault is
+specific to one cable rather than a switch-wide configuration issue.</p>
+<h3 id="3-read-the-per-lane-laser-powers">3. Read the per-lane laser powers</h3>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>switch<span class="w"> </span>--name<span class="w"> </span>ds5000-01<span class="w"> </span>--lasers
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">NAME         PROFILE             ROLE           GROUPS    SERIAL                    STATE    GEN    APPLIED          HEARTBEAT</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">ds5000-01    Celestica DS5000    server-leaf              R4028F2B094A15GD200125    Ready    3/3    6 minutes ago    4 seconds ago</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">Laser Status:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">NAME     CHANNELS IN / OUT ( BIAS )</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go">E1/2     0: -0.47/2.83 dBm (28.25 mA)     1: 1.47/2.82 dBm (28.25 mA)      2: 0.66/2.54 dBm (28.25 mA)      3: 0.45/1.96 dBm (28.25 mA)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go">E1/17    0: -40.00/2.33 dBm (83.01 mA)    1: -40.00/2.24 dBm (83.10 mA)    2: -40.00/2.27 dBm (83.23 mA)    3: -40.00/2.28 dBm (83.13 mA)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go">E1/21    0: -40.00/0.32 dBm (28.02 mA)    1: -40.00/0.48 dBm (28.02 mA)    2: -40.00/0.45 dBm (28.02 mA)    3: -40.00/0.51 dBm (28.02 mA)</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="go">E1/66    0: -2.16/-0.93 dBm (36.61 mA)</span>
+</span></code></pre></div>
+<p>Each row is one port. <code>IN</code> is receive optical power in dBm, <code>OUT</code> is
+transmit optical power in dBm, and <code>BIAS</code> is transmit laser bias current
+in mA. Run the same command on the far end of the affected link
+(<code>ds5000-02</code> in this example) and compare.</p>
+<h3 id="4-interpret-the-pattern">4. Interpret the pattern</h3>
+<p>Using the example above, port <code>E1/2</code> is healthy (all <code>IN</code> and <code>OUT</code>
+values within a few dBm of zero). Port <code>E1/21</code>, the one named in the
+original LLDP/<abbr title="Border Gateway Protocol">BGP</abbr> error, shows all <code>IN</code> values at <code>-40.00 dBm</code> while
+<code>OUT</code> values are normal: the transceiver is lasing, but no light comes
+back from the far end. Port <code>E1/17</code> shows the same pattern but belongs
+to an unused port and can be ignored here.</p>
+<p>Common patterns on both ends and what they indicate:</p>
+<ul>
+<li>All <code>IN</code> values near <code>-40 dBm</code>, all <code>OUT</code> values normal: the patch
+  cord is unplugged, cut, or inserted with the wrong polarity. The far
+  end is not sending light back on any lane.</li>
+<li>Some lanes at <code>-40 dBm</code>, others near <code>0 dBm</code>, symmetric on both ends:
+  one group of fibers inside the patch cord is damaged, dirty, or
+  miswired; the remaining fibers are fine.</li>
+<li>All <code>OUT</code> values at <code>-40 dBm</code> on one end only: the transmit lasers
+  on that transceiver are not emitting. Suspect a failed or partially
+  inserted optic on that end.</li>
+<li><code>IN</code> values swing between healthy and below <code>-10 dBm</code>: a dirty end
+  face or bent fiber. Clean and reseat before replacing hardware.</li>
+</ul>
+<p>The <code>-40 dBm</code> value is the "no light" measurement floor the module
+reports when the receiver sees essentially no input. The low-alarm
+threshold for most modern optics is around <code>-10 dBm</code>; any lane below
+that threshold is enough to keep the PHY from training, even when the
+other lanes are healthy.</p>
 <h2 id="ports">Ports</h2>
 <p>The inspect command will also show the connections and counters on a specific
 port:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>switchport<span class="w"> </span>-n<span class="w"> </span>spine-02/E1/1
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">Used in Connection spine-02--fabric--leaf-01:</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">fabric:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">  links:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">  - leaf:</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">      ip: 172.30.128.21/31</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">      port: leaf-01/E1/10</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">    spine:</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">      ip: 172.30.128.20/31</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="go">      port: spine-02/E1/1</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="go">  - leaf:</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="go">      ip: 172.30.128.23/31</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="go">      port: leaf-01/E1/11</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="go">    spine:</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="go">      ip: 172.30.128.22/31</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="go">      port: spine-02/E1/2</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="go">Port Counters (↓ In ↑ Out):</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="go">SPEED    UTIL  %         BITS / SEC IN    BITS / SEC OUT    PKTS / SEC IN    PKTS / SEC OUT    CLEAR    ERRORS      DISCARDS</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="go">25G      ↓   0 ↑   0     ↓ 2,432          ↑ 2,224           ↓ 3              ↑ 3               -        ↓ 0 ↑ 0     ↓ 2 ↑ 0</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>inspect<span class="w"> </span>switchport<span class="w"> </span>-n<span class="w"> </span>spine-02/E1/1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">Used in Connection spine-02--fabric--leaf-01:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">fabric:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">  links:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">  - leaf:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="go">      ip: 172.30.128.21/31</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">      port: leaf-01/E1/10</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="go">    spine:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="go">      ip: 172.30.128.20/31</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="go">      port: spine-02/E1/1</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="go">  - leaf:</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="go">      ip: 172.30.128.23/31</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="go">      port: leaf-01/E1/11</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="go">    spine:</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="go">      ip: 172.30.128.22/31</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="go">      port: spine-02/E1/2</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="go">Port Counters (↓ In ↑ Out):</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="go">SPEED    UTIL  %         BITS / SEC IN    BITS / SEC OUT    PKTS / SEC IN    PKTS / SEC OUT    CLEAR    ERRORS      DISCARDS</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="go">25G      ↓   0 ↑   0     ↓ 2,432          ↑ 2,224           ↓ 3              ↑ 3               -        ↓ 0 ↑ 0     ↓ 2 ↑ 0</span>
 </span></code></pre></div>
 
 
@@ -1807,7 +2020,7 @@ port:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 24, 2026</span>
   </span>
 
     
