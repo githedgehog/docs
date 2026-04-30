@@ -549,6 +549,21 @@ You're not viewing the latest version.
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Test Connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-read-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to read the output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1896,6 +1911,21 @@ You're not viewing the latest version.
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Test Connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-read-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to read the output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2267,6 +2297,50 @@ style Spine_02_Group fill:none,stroke:none</code></pre>
 </span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
 </span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: &quot;/home/ubuntu/hhfab&quot;) [$HHFAB_WORK_DIR]
 </span></code></pre></div>
+<h4 id="how-to-read-the-output">How to read the output</h4>
+<p><code>test-connectivity</code> reports whether the <em>observed</em> behaviour matches the
+<em>intent</em> declared on the fabric, not whether every ping succeeds. For each
+pair of servers it first reads the VPCs, <abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr> objects, and
+GatewayPeering objects to determine the intended reachability, then runs a
+probe (ping, iperf3, or curl) and compares the result to that expectation:</p>
+<table>
+<thead>
+<tr>
+<th>Intent declares</th>
+<th>What the probe shows</th>
+<th>Test result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Should be reachable</td>
+<td>Probe succeeds</td>
+<td>✅ pass: working as designed</td>
+</tr>
+<tr>
+<td>Should be reachable</td>
+<td>Probe fails</td>
+<td>❌ fail: the fabric is not delivering traffic it should</td>
+</tr>
+<tr>
+<td>Should <strong>not</strong> be reachable</td>
+<td>Probe fails</td>
+<td>✅ pass: isolation is working as designed</td>
+</tr>
+<tr>
+<td>Should not be reachable</td>
+<td>Probe succeeds</td>
+<td>❌ fail: traffic is leaking across an unintended boundary</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A failing probe is not a failing test. Each per-pair log line carries
+an <code>expected=</code> field: real failures are probes that fail with
+<code>expected=true</code> or succeed with <code>expected=false</code>. For overall health,
+read the summary at the end of the run rather than individual probes.</p>
+</div>
 <h2 id="manual-vpc-creation">Manual <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> creation</h2>
 <h3 id="creating-and-attaching-vpcs">Creating and attaching VPCs</h3>
 <p>You can create and attach VPCs to the VMs using the <code>kubectl fabric vpc</code> command on the Control Node or outside of the
@@ -2712,7 +2786,7 @@ by the source, up until the idle timeout expires.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 29, 2026</span>
   </span>
 
     
