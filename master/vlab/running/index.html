@@ -557,6 +557,30 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firewall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firewall Rule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1913,6 +1937,30 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firewall
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#firewall-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firewall Rule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2410,18 +2458,51 @@ SONiC Virtual Switches.</p>
 <p>The default user with password-less sudo for the control node and test servers is <code>core</code> with password <code>HHFab.Admin!</code>.
 The admin user with full access and password-less sudo for the switches is <code>admin</code> with password <code>HHFab.Admin!</code>.
 The read-only, non-sudo user with access to the switch CLI is <code>op</code> with password <code>HHFab.Op!</code>.</p>
+<h3 id="firewall">Firewall</h3>
+<p>If there are issues connecting via SSH the host running VLAB the firewall
+settings might need to be adjusted. The most commonly seen issue is when using
+the <code>vlab ssh</code> shortcut. If the firewall is blocking the connections there will
+not be any output, and the SSH connection will fail. The VLAB provides a serial console to the virtual machines.
+If you can login via the serial console, but not via SSH then there is most
+likely a firewall problem. Another piece of evidence for a firewall problem is
+if the switches show nothing for the <code>APPLIEDG</code> in the output of <code>kubectl get
+agents -o wide</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>core@control-1 ~ $ kubectl get agents
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>NAME       ROLE          DESCR           APPLIED   APPLIEDG   CURRENTG   VERSION    REBOOTREQ
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>leaf-01    server-leaf   VS-01 ESLAG 1                        2
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>leaf-02    server-leaf   VS-02 ESLAG 1                        2
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>leaf-03    server-leaf   VS-03 ESLAG 2                        2
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>leaf-04    server-leaf   VS-04 ESLAG 2                        1
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>spine-01   spine         VS-05                                1
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>spine-02   spine         VS-06                                1
+</span></code></pre></div>
+<h4 id="firewall-rule">Firewall Rule</h4>
+<p>The VLAB creates a bridge, <code>hhbr</code>, and several tap
+devices for the virtual machines. The bridge and taps should be allowed to
+input, output, and forward packets. For <code>iptables</code> based systems the commands are:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>iptables -I INPUT 1 -i hhbr -j ACCEPT
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>iptables -I OUTPUT 1 -o hhbr -j ACCEPT
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>iptables -I FORWARD 1 -i hhbr -j ACCEPT
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>iptables -I FORWARD 1 -o hhbr -j ACCEPT
+</span></code></pre></div>
+<p>For <code>nft</code> based systems the commands are:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>nft &#39;insert rule ip filter  INPUT 1 -i hhbr -j ACCEPT counter&#39;
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>nft &#39;insert rule ip filter  OUTPUT 1 -o hhbr -j ACCEPT counter&#39;
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>nft &#39;insert rule ip filter  FORWARD 1 -i hhbr -j ACCEPT counter&#39;
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>nft &#39;insert rule ip filter  FORWARD 1 -o hhbr -j ACCEPT counter&#39;
+</span></code></pre></div>
 <h2 id="use-kubectl-to-interact-with-the-fabric">Use Kubectl to Interact with the Fabric</h2>
 <p>On the control node you have access to kubectl, Fabric CLI, and k9s to manage the Fabric. To view information
 about the switches run <code>kubectl get agents -o wide</code>. After the control node is available it usually takes about 10-15 minutes for the
 switches to get installed.</p>
 <p>After the switches are provisioned, the command returns something like this:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>agents<span class="w"> </span>-o<span class="w"> </span>wide
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">NAME       ROLE          DESCR           HWSKU                      HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">leaf-01    server-leaf   VS-01 ESLAG 1   DellEMC-S5248f-P-25G-DPB   11s         2m59s     1          1          v0.96.2   4.5.0-Enterprise_Base   2m59s     1          10m</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">leaf-02    server-leaf   VS-02 ESLAG 1   DellEMC-S5248f-P-25G-DPB   29s         3m17s     1          1          v0.96.2   4.5.0-Enterprise_Base   3m17s     1          10m</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">leaf-03    server-leaf   VS-03           DellEMC-S5248f-P-25G-DPB   19s         3m7s      1          1          v0.96.2   4.5.0-Enterprise_Base   3m7s      1          10m</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="go">spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   28s         3m16s     1          1          v0.96.2   4.5.0-Enterprise_Base   3m16s     1          10m</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   17s         3m6s      1          1          v0.96.2   4.5.0-Enterprise_Base   3m6s      1          10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>agents<span class="w"> </span>-o<span class="w"> </span>wide
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">NAME       ROLE          DESCR           HWSKU                      HEARTBEAT   APPLIED   APPLIEDG   CURRENTG   VERSION   SOFTWARE                ATTEMPT   ATTEMPTG   AGE</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">leaf-01    server-leaf   VS-01 ESLAG 1   DellEMC-S5248f-P-25G-DPB   11s         2m59s     1          1          v0.96.2   4.5.0-Enterprise_Base   2m59s     1          10m</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">leaf-02    server-leaf   VS-02 ESLAG 1   DellEMC-S5248f-P-25G-DPB   29s         3m17s     1          1          v0.96.2   4.5.0-Enterprise_Base   3m17s     1          10m</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">leaf-03    server-leaf   VS-03           DellEMC-S5248f-P-25G-DPB   19s         3m7s      1          1          v0.96.2   4.5.0-Enterprise_Base   3m7s      1          10m</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">spine-01   spine         VS-04           DellEMC-S5248f-P-25G-DPB   28s         3m16s     1          1          v0.96.2   4.5.0-Enterprise_Base   3m16s     1          10m</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">spine-02   spine         VS-05           DellEMC-S5248f-P-25G-DPB   17s         3m6s      1          1          v0.96.2   4.5.0-Enterprise_Base   3m6s      1          10m</span>
 </span></code></pre></div>
 <p>The <code>Heartbeat</code> column shows how long ago the switch has sent the heartbeat to the control node. The <code>Applied</code> column
 shows how long ago the switch has applied the configuration. <code>AppliedG</code> shows the generation of the configuration
@@ -2435,51 +2516,51 @@ using the Fabric in the <a href="../../user-guide/overview/">User Guide</a>, <a 
 API</a> and
 <a href="../../reference/cli/">Fabric CLI</a> sections.</p>
 <p>For example, to get the list of switches, run:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>switch
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">NAME       PROFILE   ROLE          DESCR           GROUPS        AGE</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">leaf-01    vs        server-leaf   VS-01 ESLAG 1   [&quot;eslag-1&quot;]   10m</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">leaf-02    vs        server-leaf   VS-02 ESLAG 1   [&quot;eslag-1&quot;]   10m</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">leaf-03    vs        server-leaf   VS-03                         10m</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">spine-01   vs        spine         VS-04                         10m</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">spine-02   vs        spine         VS-05                         10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>switch
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">NAME       PROFILE   ROLE          DESCR           GROUPS        AGE</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">leaf-01    vs        server-leaf   VS-01 ESLAG 1   [&quot;eslag-1&quot;]   10m</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">leaf-02    vs        server-leaf   VS-02 ESLAG 1   [&quot;eslag-1&quot;]   10m</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go">leaf-03    vs        server-leaf   VS-03                         10m</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go">spine-01   vs        spine         VS-04                         10m</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go">spine-02   vs        spine         VS-05                         10m</span>
 </span></code></pre></div>
 <p>Similarly, to get the list of servers, run:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>server
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">NAME        TYPE      DESCR                        AGE</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">control-1   control   Control node                 10m</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">server-01             S-01 ESLAG leaf-01 leaf-02   10m</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go">server-02             S-02 ESLAG leaf-01 leaf-02   10m</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">server-03             S-03 Unbundled leaf-01       10m</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go">server-04             S-04 Bundled leaf-02         10m</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="go">server-05             S-05 Unbundled leaf-03       10m</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="go">server-06             S-06 Bundled leaf-03         10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>server
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">NAME        TYPE      DESCR                        AGE</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">control-1   control   Control node                 10m</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">server-01             S-01 ESLAG leaf-01 leaf-02   10m</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="go">server-02             S-02 ESLAG leaf-01 leaf-02   10m</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="go">server-03             S-03 Unbundled leaf-01       10m</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="go">server-04             S-04 Bundled leaf-02         10m</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="go">server-05             S-05 Unbundled leaf-03       10m</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="go">server-06             S-06 Bundled leaf-03         10m</span>
 </span></code></pre></div>
 <p>For connections, use:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>connection
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">NAME                                 TYPE        AGE</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">server-01--eslag--leaf-01--leaf-02   eslag       10m</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">server-02--eslag--leaf-01--leaf-02   eslag       10m</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">server-03--unbundled--leaf-01        unbundled   10m</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">server-04--bundled--leaf-02          bundled     10m</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">server-05--unbundled--leaf-03        unbundled   10m</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="go">server-06--bundled--leaf-03          bundled     10m</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="go">spine-01--fabric--leaf-01            fabric      10m</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="go">spine-01--fabric--leaf-02            fabric      10m</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="go">spine-01--fabric--leaf-03            fabric      10m</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="go">spine-01--gateway--gateway-1         gateway     10m</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="go">spine-02--fabric--leaf-01            fabric      10m</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="go">spine-02--fabric--leaf-02            fabric      10m</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="go">spine-02--fabric--leaf-03            fabric      10m</span>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="go">spine-02--gateway--gateway-1         gateway     10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>connection
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">NAME                                 TYPE        AGE</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="go">server-01--eslag--leaf-01--leaf-02   eslag       10m</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="go">server-02--eslag--leaf-01--leaf-02   eslag       10m</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="go">server-03--unbundled--leaf-01        unbundled   10m</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="go">server-04--bundled--leaf-02          bundled     10m</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="go">server-05--unbundled--leaf-03        unbundled   10m</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="go">server-06--bundled--leaf-03          bundled     10m</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="go">spine-01--fabric--leaf-01            fabric      10m</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="go">spine-01--fabric--leaf-02            fabric      10m</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="go">spine-01--fabric--leaf-03            fabric      10m</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="go">spine-01--gateway--gateway-1         gateway     10m</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="go">spine-02--fabric--leaf-01            fabric      10m</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="go">spine-02--fabric--leaf-02            fabric      10m</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="go">spine-02--fabric--leaf-03            fabric      10m</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="go">spine-02--gateway--gateway-1         gateway     10m</span>
 </span></code></pre></div>
 <p>For IPv4 and VLAN namespaces, use:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>ipns
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">NAME      SUBNETS           AGE</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">default   [&quot;10.0.0.0/16&quot;]   10m</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>vlanns
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go">NAME      AGE</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go">default   10m</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>ipns
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="go">NAME      SUBNETS           AGE</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="go">default   [&quot;10.0.0.0/16&quot;]   10m</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="gp">core@control-1 ~ $ </span>kubectl<span class="w"> </span>get<span class="w"> </span>vlanns
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="go">NAME      AGE</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="go">default   10m</span>
 </span></code></pre></div>
 <h2 id="reset-vlab">Reset VLAB</h2>
 <p>If VLAB is currently running, press <code>Ctrl + C</code> to stop it. To reset VLAB and start over run <code>hhfab init -f</code>. This option forces the process to overwrite your existing configuration in <code>fab.yaml</code>.</p>
@@ -2509,7 +2590,7 @@ API</a> and
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 30, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 17, 2026</span>
   </span>
 
     
