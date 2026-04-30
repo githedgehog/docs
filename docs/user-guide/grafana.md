@@ -1,7 +1,7 @@
 # Grafana Dashboards
 
 To provide monitoring for most critical metrics from the switches managed by Hedgehog Fabric there are several Dashboards that may be used in Grafana deployments. Make sure that you've enabled metrics and logs collection for the switches in the Fabric that is
-described in [Fabric Config](../install-upgrade/config.md#telemetry) section.
+described in [Fabric Config](../user-guide/o11y-config.md) section.
 
 ## Variables
 List of common variables used in Hedgehog Grafana dashboards
@@ -150,4 +150,3 @@ Dashboard ID:
 ```
 24419
 ```
-
