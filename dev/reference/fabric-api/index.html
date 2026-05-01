@@ -5650,13 +5650,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>bgpNeighbors</code> <em>object (keys:string, values:<a href="#map[string]switchstatebgpneighbor">map[string]SwitchStateBGPNeighbor</a>)</em></td>
+<td><code>bgpNeighbors</code> <em>object (keys:string, values:<a href="#switchstatebgpneighbor">map[string]SwitchStateBGPNeighbor</a>)</em></td>
 <td>State of all <abbr title="Border Gateway Protocol">BGP</abbr> neighbors (VRF -&gt; neighbor address -&gt; state)</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><code>bfdPeers</code> <em>object (keys:string, values:<a href="#map[string]switchstatebfdpeer">map[string]SwitchStateBFDPeer</a>)</em></td>
+<td><code>bfdPeers</code> <em>object (keys:string, values:<a href="#switchstatebfdpeer">map[string]SwitchStateBFDPeer</a>)</em></td>
 <td>State of all BFD peers (VRF -&gt; peer address -&gt; state)</td>
 <td></td>
 <td></td>
@@ -7896,7 +7896,7 @@ Not intended to be modified by the user.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>ports</code> <em><a href="#peeringnatportforwardentry">PeeringNATPortForwardEntry</a> array</em></td>
+<td><code>ports</code> <em>PeeringNATPortForwardEntry array</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -7908,7 +7908,7 @@ Not intended to be modified by the user.</p>
 <p><em>Validation:</em>
 - Enum: [tcp udp ]</p>
 <p><em>Appears in:</em>
-- <a href="#peeringnatportforwardentry">PeeringNATPortForwardEntry</a></p>
+- PeeringNATPortForwardEntry</p>
 <table>
 <thead>
 <tr>
@@ -9510,7 +9510,7 @@ resources with support for multiple subnets each with user-provided VLANs and on
 <p>VPCAttachmentSpec defines the desired state of <abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></p>
 <p><em>Appears in:</em>
 - <a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a>
-- <a href="#vpcattachmentspecann">VPCAttachmentSpecAnn</a></p>
+- VPCAttachmentSpecAnn</p>
 <table>
 <thead>
 <tr>
@@ -9851,7 +9851,7 @@ Minimal example of the <abbr title="Virtual Private Cloud, similar to the public
 <td></td>
 </tr>
 <tr>
-<td><code>permit</code> <em><a href="#map[string]vpcpeer">map[string]VPCPeer</a> array</em></td>
+<td><code>permit</code> <em><a href="#vpcpeer">map[string]VPCPeer</a> array</em></td>
 <td>Permit defines a list of the peering policies - which <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets will have access to the peer <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</td>
 <td></td>
 <td>MaxItems: 10 <br />MinItems: 1 <br /></td>
@@ -11428,7 +11428,7 @@ Only one of Profile or Group can be set</p>
 <td></td>
 </tr>
 <tr>
-<td><code>nosType</code> <em><a href="#nostype">NOSType</a></em></td>
+<td><code>nosType</code> <em>NOSType</em></td>
 <td>NOSType defines the NOS type to be used for the switch</td>
 <td></td>
 <td></td>
@@ -11482,7 +11482,7 @@ SwitchGroup objects.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>type</code> <em><a href="#redundancytype">RedundancyType</a></em></td>
+<td><code>type</code> <em>RedundancyType</em></td>
 <td>Type is the type of the redundancy group, could be mclag or eslag</td>
 <td></td>
 <td></td>
