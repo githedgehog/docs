@@ -2017,6 +2017,15 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#aclaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#aclprotocol" class="md-nav__link">
     <span class="md-ellipsis">
       ACLProtocol
@@ -4277,6 +4286,15 @@ You're not viewing the latest version.
   
     <nav class="md-nav" aria-label="Resource Types">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aclaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACLAction
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#aclprotocol" class="md-nav__link">
@@ -8641,6 +8659,36 @@ and Externals APIs. Intended to be used by the user.</p>
 <li><a href="#vpcattachment"><abbr title="Represents a specific VPC subnet assignment to the Connection object which means exact server port to a VPC binding">VPCAttachment</abbr></a></li>
 <li><a href="#vpcpeering"><abbr title="Enables VPC-to-VPC connectivity via Local or Remote (deprecated) peering">VPCPeering</abbr></a></li>
 </ul>
+<h4 id="aclaction">ACLAction</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p><em>Appears in:</em>
+- <a href="#aclstatement">ACLStatement</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>permit</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>deny</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>discard</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>transit</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="aclprotocol">ACLProtocol</h4>
 <p><em>Underlying type:</em> <em>string</em></p>
 <p><em>Appears in:</em>
@@ -8713,7 +8761,7 @@ and Externals APIs. Intended to be used by the user.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>permit</code> <em>boolean</em></td>
+<td><code>action</code> <em><a href="#aclaction">ACLAction</a></em></td>
 <td></td>
 <td></td>
 <td></td>
