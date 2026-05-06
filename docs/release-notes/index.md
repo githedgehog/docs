@@ -3,7 +3,40 @@
 !!! note
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
-    
+
+## 26.02
+
+Date: May 7, 2026
+
+### Highlights
+
+- Edgecore DCS240 (AS9726) is now supported as a leaf or spine
+    - Broadcom TD4, 32xQSFP56DD-400G, 2xSFP28-10G
+- VPC peering between L2 (L2VNI) and L3-only (L3VNI) VPCs is now supported
+
+### Other
+
+- DHCP relay is now supported between VPCs
+- Gateway now supports LLDP on its fabric-facing interfaces
+- BFD stats are now available via API and `kubectl fabric inspect`
+
+### Notes
+
+- Upgrade is supported only from 26.01.x
+- Remote VPC peering (`spec.remote`) has been deprecated since 26.01 and will be removed in 26.03; use local `VPCPeering` or `GatewayPeering` instead
+- `MCLAG` has been deprecated since 26.01 and will be removed in 26.03; use `ESLAG` (EVPN MH) instead
+
+### Software versions
+
+- fabricator/hhfab: v0.47.3
+- fabric: v0.120.3
+    - broadcom sonic: 4.5.0
+- gateway:
+    - dataplane: v0.20.1
+    - frr: v0.20.1 (based on FRR 10.5.3, patched)
+- flatcar: v4459.2.4
+- k8s (k3s): v1.35.2-k3s1
+
 ## 26.01
 
 Date: April 2, 2026
