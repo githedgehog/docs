@@ -6,7 +6,7 @@
 
 ## 26.02
 
-Date: May 7, 2026
+Date: May 8, 2026
 
 ### Highlights
 
@@ -28,11 +28,11 @@ Date: May 7, 2026
 
 ### Software versions
 
-- fabricator/hhfab: v0.47.3
+- fabricator/hhfab: v0.47.4
 - fabric: v0.120.3
     - broadcom sonic: 4.5.0
 - gateway:
-    - dataplane: v0.20.1
+    - dataplane: v0.20.2
     - frr: v0.20.1 (based on FRR 10.5.3, patched)
 - flatcar: v4459.2.4
 - k8s (k3s): v1.35.2-k3s1
