@@ -33,7 +33,7 @@ Date: May 8, 2026
     - broadcom sonic: 4.5.0
 - gateway:
     - dataplane: v0.20.2
-    - frr: v0.20.1 (based on FRR 10.5.3, patched)
+    - frr: v0.20.2 (based on FRR 10.5.3, patched)
 - flatcar: v4459.2.4
 - k8s (k3s): v1.35.2-k3s1
 
