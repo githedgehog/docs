@@ -368,12 +368,12 @@ CLI commands are intended to navigate fabric configuration and state and allow i
 - MAC Address (incl. switch ports and DHCP leases)
 - Access between pair of IPs, Server names or VPCSubnets (everything except external IPs will be translated to VPCSubnets)
 
-# Observability
+## Observability
 
 - Example Grafana Dashboards [added to the docs](../user-guide/grafana.md)
 - Syslog (`/var/log/syslog`) is now could be collected from all switches and forwarded to Loki targets
 
-# Bug Fixes
+## Bug Fixes
 
 - Fixed: Restricted subnet isn't accessible from other subnets of the same VPC
 
@@ -565,7 +565,7 @@ Management port connectivity can also be supported for CLOS/LEAF-SPINE topology 
 
 ### Controller requirements
 
-* One  1 gig+ port per to connect to each controller attached switch
+* One 1 gig+ port to connect to each controller attached switch
 * One+ 1 gig+ ports connecting to the external management network.
 * 4 Cores, 12GB RAM, 100GB SSD.
 
