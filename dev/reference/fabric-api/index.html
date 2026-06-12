@@ -2740,6 +2740,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#switchlinkflaperrdisable" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchLinkFlapErrDisable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#switchprofile" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchProfile
@@ -5011,6 +5020,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#switchlinkflaperrdisable" class="md-nav__link">
+    <span class="md-ellipsis">
+      SwitchLinkFlapErrDisable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#switchprofile" class="md-nav__link">
     <span class="md-ellipsis">
       SwitchProfile
@@ -6293,6 +6311,18 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 <tr>
 <td><code>lldpNeighbors</code> <em><a href="#switchstatelldpneighbor">SwitchStateLLDPNeighbor</a> array</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>errDisabled</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>linkFlapCount</code> <em>integer</em></td>
 <td></td>
 <td></td>
 <td></td>
@@ -11045,6 +11075,41 @@ in a single Connection object.</p>
 <p>SwitchGroupStatus defines the observed state of SwitchGroup</p>
 <p><em>Appears in:</em>
 - <a href="#switchgroup">SwitchGroup</a></p>
+<h4 id="switchlinkflaperrdisable">SwitchLinkFlapErrDisable</h4>
+<p>SwitchLinkFlapErrDisable configures link-flap errdisable on fabric-facing ports.
+Presence of this struct enables the feature; omitting it leaves the ports unprotected.</p>
+<p><em>Appears in:</em>
+- <a href="#switchspec">SwitchSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flapThreshold</code> <em>integer</em></td>
+<td>FlapThreshold is the number of link-down events within SamplingInterval that triggers errdisable.<br />Defaults to 3.</td>
+<td>3</td>
+<td>Maximum: 50 <br />Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>samplingInterval</code> <em>integer</em></td>
+<td>SamplingInterval is the observation window in seconds for counting flap events.<br />Defaults to 30 s.</td>
+<td>30</td>
+<td>Maximum: 65535 <br />Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>recoveryInterval</code> <em>integer</em></td>
+<td>RecoveryInterval is how long in seconds before the port is automatically re-enabled.<br />0 means the port is never automatically re-enabled and must be recovered manually.<br />Defaults to 300 s.</td>
+<td>300</td>
+<td>Maximum: 65534 <br />Minimum: 0 <br /></td>
+</tr>
+</tbody>
+</table>
 <h4 id="switchprofile">SwitchProfile</h4>
 <p>SwitchProfile represents switch capabilities and configuration</p>
 <table>
@@ -11689,6 +11754,12 @@ SwitchGroup objects.</p>
 <tr>
 <td><code>ecmp</code> <em><a href="#switchecmp">SwitchECMP</a></em></td>
 <td><abbr title="Equal-cost Multi-path Routing">ECMP</abbr> is the <abbr title="Equal-cost Multi-path Routing">ECMP</abbr> configuration for the switch</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>linkFlapErrDisable</code> <em><a href="#switchlinkflaperrdisable">SwitchLinkFlapErrDisable</a></em></td>
+<td>LinkFlapErrDisable, if set, enables link-flap errdisable protection on all fabric-facing ports.<br />When a port exceeds FlapThreshold link-down events within SamplingInterval seconds it is<br />disabled; RecoveryInterval controls how long before it is automatically re-enabled (0 = never).</td>
 <td></td>
 <td></td>
 </tr>
