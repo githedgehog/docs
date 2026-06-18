@@ -171,9 +171,6 @@ spec:
   ...
 ```
 
-!!! warning "MCLAG Deprecated"
-    MCLAG is being deprecated. Use ESLAG for multi-homing instead.
-
 ## Servers
 
 Regular workload server:

@@ -13,14 +13,10 @@ using either Fabric or Gateway external peerings.
 
 ## Creating the topology
 
-Externals can be connected to any non-MCLAG leaf, whether in a spine-leaf topology or
-a mesh one.
+Externals can be connected to any leaf, whether in a spine-leaf topology or a mesh one.
 
 !!! warning
-    Due to a [known limitation](../known-limitations/known-limitations.md#external-peering-over-a-connection-originating-from-an-mclag-switch-can-fail)
-    with MCLAG and external peerings, connecting externals to MCLAG leaves is not recommended.
-
-    Additionally, due to a limitation of the SONiC virtual switch implementation, having more than one
+    Due to a limitation of the SONiC virtual switch implementation, having more than one
     external connection between virtual switches and an external will cause issues.
     This limitation does not apply to physical switches.
 
@@ -34,17 +30,16 @@ ubuntu@docs:~/hhfab$ ./hhfab init -f --dev --gw
 09:27:35 INF Generated initial config
 09:27:35 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
 09:27:35 INF Include wiring (fabric/gateway) files (.yaml) or adjust imported ones dir=include
-ubuntu@docs:~/hhfab$ ./hhfab vlab gen --mclag-leafs-count=0 --eslag-leaf-groups=2 --orphan-leafs-count=1 --externals-bgp=1 --external-orphan-connections=1
+ubuntu@docs:~/hhfab$ ./hhfab vlab gen --eslag-leaf-groups=2 --orphan-leafs-count=1 --externals-bgp=1 --external-orphan-connections=1
 09:28:36 INF Hedgehog Fabricator version=v0.43.1
 09:28:36 INF Building VLAB wiring diagram fabricMode=spine-leaf
 09:28:36 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
 09:28:36 INF >>> eslagLeafGroups=2
 09:28:36 INF >>> gatewayUplinks=2 gatewayDriver=kernel
-09:28:36 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
 09:28:36 INF >>> orphanLeafsCount=1
-09:28:36 INF >>> mclagServers=0 eslagServers=2 unbundledServers=1 bundledServers=1
+09:28:36 INF >>> eslagServers=2 unbundledServers=1 bundledServers=1
 09:28:36 INF >>> externalBGPCount=1 externalStaticCount=0 externalStaticProxyCount=0
-09:28:36 INF >>> externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=1
+09:28:36 INF >>> externalEslagConnCount=0 externalOrphanConnCount=1
 09:28:36 INF Generated wiring file name=vlab.generated.yaml
 ubuntu@docs:~/hhfab$ ./hhfab vlab up -f -m=manual -r=wait
 09:31:53 INF Hedgehog Fabricator version=v0.43.1
@@ -62,7 +57,6 @@ classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
 classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
-classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
 classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none

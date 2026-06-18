@@ -19,7 +19,6 @@ classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
 classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
-classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
 classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none
@@ -184,11 +183,11 @@ USAGE:
 
    Example command:
 
-   $ hhfab vlab setup-peerings 1+2 2+4:r=border 1~as5835 2~as5835:subnets=sub1,sub2:prefixes=0.0.0.0/0,22.22.22.0/24
+   $ hhfab vlab setup-peerings 1+2 2+4 1~as5835 2~as5835:subnets=sub1,sub2:prefixes=0.0.0.0/0,22.22.22.0/24
 
    Which will produce:
    1. VPC peering between vpc-01 and vpc-02
-   2. Remote VPC peering between vpc-02 and vpc-04 on switch group named border
+   2. VPC peering between vpc-02 and vpc-04
    3. External peering for vpc-01 with External as5835 with default vpc subnet and any routes from external permitted
    4. External peering for vpc-02 with External as5835 with subnets sub1 and sub2 exposed from vpc-02 and default route
       from external permitted as well any route that belongs to 22.22.22.0/24
@@ -196,20 +195,37 @@ USAGE:
    VPC Peerings:
 
    1+2 -- VPC peering between vpc-01 and vpc-02
+   1+2:gw -- same as above but using gateway peering, only valid if gateway is present
    demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
-   1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
-   1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
-   1+2:remote=border -- same as above
 
    External Peerings:
 
    1~as5835 -- external peering for vpc-01 with External as5835
-   1~ -- external peering for vpc-1 with external if only one external is present for ipv4 namespace of vpc-01, allowing
+   1~as5835:gw -- same as above but using gateway peering, only valid if gateway is present
+   1~ -- external peering for vpc-01 with external if only one external is present for ipv4 namespace of vpc-01, allowing
      default subnet and any route from external
-   1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-1 with auth external with default vpc subnet and
+   1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-01 with auth external with default vpc subnet and
      default route from external permitted
-   1~as5835:subnets=default,other:prefixes=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same but with more details
-   1~as5835:s=default,other:p=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same as above
+   1~as5835:s=default:p=default:gw -- same as above but via the gateway
+   1~as5835:s=default,other:p=1.0.0.1/32_le32_ge32,22.22.22.0/24 -- two explicit prefixes allowed from the external,
+     provided the external it is advertising them they will be imported and exposed to the VPC
+
+   Gateway NAT options:
+
+   These are available only when :gw is used. Options are per side of the peering; the examples below are for the
+   first VPC in a VPC peering. For the second VPC, replace '1' with '2'; for external peerings, use 'ext' and 'vpc'
+   instead to target respectively the external or the VPC in the peering (e.g. 'vpc-as' or 'ext-as').
+   - vpc1-as / as1: expose NAT "as" prefixes (one or more CIDRs, comma-separated; use !CIDR for Not)
+   - vpc1-nat / nat1: static|masquerade|port-forward (if *-as is set and *-nat omitted => static)
+   - vpc1-pf / pf1: port-forward rules (required when *-nat=port-forward), comma-separated:
+     tcp/80=8080,udp/10000-10010=20000-20010,443=8443
+
+   Example of VPC↔VPC with NAT via gateway:
+   1+2:gw:vpc1-as=10.10.0.0/24:vpc1-nat=masquerade:vpc2-as=172.16.0.0/16:vpc2-nat=static
+   1+2:gw:as1=10.10.0.0/24:nat1=port-forward:pf1=tcp/80=8080:as2=172.16.0.0/16
+
+   Example of VPC↔External with NAT via gateway:
+   1~as5835:gw:vpc-as=10.10.0.1/32:vpc-nat=masquerade:ext-as=192.0.2.0/24:ext-nat=port-forward:ext-pf=udp/53=5353:p=1.0.0.0/8
 
 OPTIONS:
    --help, -h                     show help
@@ -219,7 +235,7 @@ OPTIONS:
    Global options:
 
    --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
-   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "/home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
+   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: "home/ubuntu/.hhfab-cache") [$HHFAB_CACHE_DIR]
    --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
    --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: "/home/ubuntu/hhfab") [$HHFAB_WORK_DIR]
 ```

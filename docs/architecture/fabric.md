@@ -67,23 +67,7 @@ describe how VPCs are actually implemented in the network to ensure a private vi
 
 ## VPC Peering
 
-To enable communication between 2 different VPCs, one needs to configure a VPC peering policy. The Hedgehog Fabric
-supports two different peering modes:
-
-* Local Peering: A local peering directly imports routes from another VPC locally. This is achieved by a simple
-  import route from the peer VPC. In case there are no locally attached workloads to the peer VPC the fabric
-  automatically creates a stub VPC for peering and imports routes from it. This allows VPCs to peer with each other
-  without the need for a dedicated peering leaf. Traffic between the peered VPCs will not leave the switch that connects
-  them.
-* Remote Peering:
-
-    !!! warning "Deprecated"
-        Remote peering is being deprecated. Using local peering is encouraged.
-
-    Remote peering is implemented using a dedicated peering switch/switches which is used as a rendezvous
-    point for the 2 VPC's in the fabric. The set of switches to be used for peering is determined by configuration in the
-    peering policy. When a remote peering policy is applied for a pair of VPCs, the VRFs corresponding to these VPCs on
-    the peering switch advertise default routes into their specific VRFs identified by the L3VNI. All traffic that does
-    not belong to the VPCs is forwarded to the peering switch which has routes to the other VPCs and gets forwarded from
-    there. This peering mode was introduced as a workaround to previous limitations of the fabric; users are recommended
-    to use local peering instead.
+To enable communication between 2 different VPCs, one needs to configure a VPC peering policy.
+This directly imports routes from another VPC using route leaking.
+In case there are no locally attached workloads to the peer VPC, the fabric automatically creates
+a stub VPC for peering and imports routes from it.

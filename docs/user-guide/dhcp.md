@@ -72,7 +72,7 @@ After creating the VPC, attach it to servers using their connection names:
 kubectl fabric vpc attach \
   --vpc vpc-1 \
   --subnet default \
-  --connection server-01--mclag--leaf-01--leaf-02
+  --connection server-01--eslag--leaf-01--leaf-02
 ```
 
 ## CLI helpers for leases
