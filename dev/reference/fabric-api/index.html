@@ -1651,6 +1651,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#gatewaylogratelimit" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayLogRateLimit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gatewaylogs" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayLogs
@@ -3925,6 +3934,15 @@ You're not viewing the latest version.
   <a href="#gatewayloglevel" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayLogLevel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gatewaylogratelimit" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayLogRateLimit
     </span>
   </a>
   
@@ -7565,6 +7583,35 @@ Not intended to be modified by the user.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="gatewaylogratelimit">GatewayLogRateLimit</h4>
+<p>GatewayLogRateLimit configures the token-bucket rate limiter applied to log
+output. Both fields must be greater than zero when the limiter is set.</p>
+<p><em>Appears in:</em>
+- <a href="#gatewaylogs">GatewayLogs</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>burst</code> <em>integer</em></td>
+<td>token bucket capacity</td>
+<td></td>
+<td>Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>replenishPerSecond</code> <em>integer</em></td>
+<td>ReplenishPerSecond is the number of tokens (messages) replenished per second</td>
+<td></td>
+<td>Minimum: 1 <br /></td>
+</tr>
+</tbody>
+</table>
 <h4 id="gatewaylogs">GatewayLogs</h4>
 <p>GatewayLogs defines the configuration for logging levels</p>
 <p><em>Appears in:</em>
@@ -7587,6 +7634,12 @@ Not intended to be modified by the user.</p>
 </tr>
 <tr>
 <td><code>tags</code> <em>object (keys:string, values:<a href="#gatewayloglevel">GatewayLogLevel</a>)</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>rateLimit</code> <em><a href="#gatewaylogratelimit">GatewayLogRateLimit</a></em></td>
 <td></td>
 <td></td>
 <td></td>
