@@ -25,10 +25,9 @@ and fairly up-to-date packages.
 The following packages needs to be installed: `qemu-kvm socat`. Docker is also required, to login
 into the OCI registry.
 
-By default, the VLAB topology is Spine-Leaf with 2 spines, 2 MCLAG leaves, 2 ESLAG leaves, and 1 "orphan" leaf, i.e. with
-no redundancy scheme. For ESLAG-only topologies (recommended), use `--mclag-leafs-count=0`. Alternatively, users can
-run the mesh topology, which directly connects as few as 2 leaves to each other, without the need for a spine switch
-in between.
+By default, the VLAB topology is Spine-Leaf with 2 spines, 2 ESLAG leaves, and 1 "orphan" leaf, i.e. with
+no redundancy scheme. Alternatively, users can run the mesh topology, which directly connects as few as 2
+leaves to each other, without the need for a spine switch in between.
 
 You can calculate the system requirements based on the allocated resources to the VMs using the following table:
 
@@ -41,7 +40,7 @@ You can calculate the system requirements based on the allocated resources to th
 
 These numbers give approximately the following requirements for the default topologies:
 
-* Spine-Leaf: 54 vCPUs, 49664 MB, 550 GB disk
+* Spine-Leaf: 46 vCPUs, 39424 MB, 450 GB disk
 * Mesh (2 leaves): 22 vCPUs, 19456 MB, 240 GB disk
 * If gateway is enabled it adds 8 vCPUs, 6GB RAM, and 50GB disk
 

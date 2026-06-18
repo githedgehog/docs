@@ -133,7 +133,7 @@ topologies without spines.
 
 ### VPC Peering
 
-VPCs need VPC Peerings to talk to each other. VPC Peerings come in two varieties: local and remote.
+VPCs need VPC Peerings to talk to each other.
 
 ``` mermaid
 graph TD
@@ -162,9 +162,7 @@ graph TD
     end
 ```
 
-#### Local VPC Peering
-
-When there is no dedicated border/peering switch available in the fabric we can use local VPC peering. This kind of peering tries to send traffic between the two VPCs on the switch where either of the VPCs has workloads attached.
+A VPC peering sends traffic between the two VPCs on the switch where either of the VPCs has workloads attached.
 
 ``` mermaid
 graph TD
@@ -189,51 +187,7 @@ graph TD
     S4
     end
 ```
-The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in VPC 2, travels to the switch, and finally out the port destined for VPC 1.
-
-
-#### Remote VPC Peering
-
-!!! warning "Deprecated"
-    Remote peering is being deprecated. Using local peering is encouraged.
-
-Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the VPC's are not present. This kind of peering allows peer traffic between different VPCs at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.
-
-``` mermaid
-graph TD
-    S1([Spine 1])
-    S2([Spine 2])
-    L1([Leaf 1])
-    L2([Leaf 2])
-    L3([Leaf 3])
-    TS1[Server1]
-    TS2[Server2]
-    TS3[Server3]
-    TS4[Server4]
-
-    S1 <-.5.-> L1;
-    S1 <-.2.-> L2;
-    S1 <-.3,4.-> L3;
-    S2 <--> L1;
-    S2 <--> L2;
-    S2 <--> L3;
-    L1 <-.6.-> TS1;
-    L1 <--> TS2;
-    L2 <--> TS3;
-    L2 <-.1.-> TS4;
-
-
-    subgraph VPC 1
-    TS1
-    TS2
-    end
-
-    subgraph VPC 2
-    TS3
-    TS4
-    end
-```
-The dotted line in the diagram shows the traffic flow for remote peering. The traffic could take a different path because of ECMP. It is important to note that Leaf 3 cannot have any servers from VPC 1 or VPC 2 on it, but it can have a  different VPC attached to it.
+The dotted line in the diagram shows the traffic flow for VPC peering. The traffic originates in VPC 2, travels to the switch, and finally out the port destined for VPC 1.
 
 ## Sample Wiring Diagram
 

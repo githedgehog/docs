@@ -198,8 +198,8 @@ DHCPACK on 10.0.1.2 to 0c:20:12:fe:03:01 (server-01) via 10.0.1.1
 ### HostBGP subnets
 
 At times, it is useful to have BGP running directly on the host and peering with the Fabric: one such case is
-to support active-active multi-homed servers, or simply to have redundancy when other techniques such
-as MCLAG or ESLAG are not available, for example because of hardware limitations.
+to support active-active multi-homed servers, or simply to have redundancy when ESLAG is not available,
+for example because of hardware limitations.
 
 Consider this scenario: `server-1` is connected to two different Fabric switches `sw-1` and `sw-2`, and attached to
 `vpc-1/subnet-1` on both of them. This subnet is configured as `hostBGP`; the switches will be configured to peer with
@@ -225,26 +225,20 @@ VPC could be attached to a switch that is part of the VLAN namespace used by the
 apiVersion: vpc.githedgehog.com/v1beta1
 kind: VPCAttachment
 metadata:
-  name: vpc-1-server-1--mclag--s5248-01--s5248-02
+  name: vpc-1-server-1--eslag--s5248-01--s5248-02
   namespace: default
 spec:
-  connection: server-1--mclag--s5248-01--s5248-02 # Connection name representing the server port(s)
+  connection: server-1--eslag--s5248-01--s5248-02 # Connection name representing the server port(s)
   subnet: vpc-1/default # VPC subnet name
   nativeVLAN: true # (Optional) if true, the port will be configured as a native VLAN port (untagged)
 ```
 
 ## VPCPeering
 
-A VPCPeering enables VPC-to-VPC connectivity. There are two types of VPC peering:
-
-* Local: peering is implemented on the same switches where VPCs are attached
-* Remote: peering is implemented on the border/mixed leaves defined by the `SwitchGroup` object
-
+A VPCPeering enables VPC-to-VPC connectivity.
 VPC peering is only possible between VPCs attached to the same IPv4 namespace (see [IPv4Namespace](#ipv4namespace)).
 
 Note that static routes defined within a VPC will not be exported to other VPC peers.
-
-### Local VPC peering
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1beta1
@@ -256,24 +250,6 @@ spec:
   permit: # Defines a pair of VPCs to peer
   - vpc-1: {} # Meaning all subnets of two VPCs will be able to communicate with each other
     vpc-2: {} # See "Subnet filtering" for more advanced configuration
-```
-
-### Remote VPC peering
-
-!!! warning "Deprecated"
-    Remote peering is being deprecated. Using local peering is encouraged.
-
-```yaml
-apiVersion: vpc.githedgehog.com/v1beta1
-kind: VPCPeering
-metadata:
-  name: vpc-1--vpc-2
-  namespace: default
-spec:
-  permit:
-  - vpc-1: {}
-    vpc-2: {}
-  remote: border # Indicates a switch group to implement the peering on
 ```
 
 ### Subnet filtering

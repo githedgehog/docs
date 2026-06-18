@@ -5,11 +5,11 @@ before running VLAB.
 
 ## Initialize VLAB
 
-First, initialize Fabricator by running `hhfab init --dev --gw`. This command creates the `fab.yaml` file, which is the main configuration file for the fabric. The `--gw` flag enables the gateway. This command supports several customization options that are listed in the output of `hhfab init --help`.
+First, initialize Fabricator by running `hhfab init --dev --gws=2`. This command creates the `fab.yaml` file, which is the main configuration file for the fabric. The `--gws=2` flag enables the gateway and adds two of them. This command supports several customization options that are listed in the output of `hhfab init --help`.
 
 ```console
-ubuntu@docs:~$ hhfab init --dev --gw
-10:26:45 INF Hedgehog Fabricator version=v0.43.1
+ubuntu@docs:~$ hhfab init --dev --gws=2
+10:26:45 INF Hedgehog Fabricator version=v0.47.4
 10:26:45 INF Generated initial config
 10:26:45 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml
 10:26:45 INF Include wiring (fabric/gateway) files (.yaml) or adjust imported ones dir=include
@@ -18,25 +18,26 @@ ubuntu@docs:~$ hhfab init --dev --gw
 
 ### Spine-Leaf
 
-To generate a spine-leaf topology, use `hhfab vlab gen`. The following generates an ESLAG (EVPN Multi-Homing) topology:
+To generate a spine-leaf topology, use `hhfab vlab gen`:
 
 ```console
-ubuntu@docs:~$ hhfab vlab gen --mclag-leafs-count 0 --eslag-leaf-groups 2
-10:26:46 INF Hedgehog Fabricator version=v0.43.1
-10:26:46 INF Building VLAB wiring diagram fabricMode=spine-leaf
-10:26:46 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
-10:26:46 INF >>> eslagLeafGroups=2
-10:26:46 INF >>> gatewayUplinks=2 gatewayDriver=kernel
-10:26:46 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
-10:26:46 INF >>> orphanLeafsCount=1
-10:26:46 INF >>> mclagServers=0 eslagServers=2 unbundledServers=1 bundledServers=1
-10:26:46 INF >>> externalCount=0 externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=0
-10:26:46 INF Generated wiring file name=vlab.generated.yaml
+ubuntu@docs:~$ hhfab vlab gen
+17:33:13 INF Hedgehog Fabricator version=v0.47.4
+17:33:13 INF Building VLAB wiring diagram fabricMode=spine-leaf
+17:33:13 INF >>> profile=vs
+17:33:13 INF >>> spinesCount=2 fabricLinksCount=2 meshLinksCount=0
+17:33:13 INF >>> eslagLeafGroups=2
+17:33:13 INF >>> gateways=2 gatewayUplinks=2 gatewayDriver=kernel
+17:33:13 INF >>> orphanLeafsCount=1
+17:33:13 INF >>> eslagServers=2 unbundledServers=1 bundledServers=1 multihomedServers=0
+17:33:13 INF >>> externalBGPCount=0 externalStaticCount=0 externalStaticProxyCount=0
+17:33:13 INF >>> externalEslagConnCount=0 externalOrphanConnCount=0
+17:33:13 INF Generated wiring file name=vlab.generated.yaml
 ```
 
-You can customize the topology with flags like `--spines-count` and `--eslag-leaf-groups`. For complete options, run `hhfab vlab gen -h`.
+You can customize the topology with flags like `--spines-count` and `--eslag-leaf-groups`. For a complete list of options, run `hhfab vlab gen -h`.
 
-The topology with 2 spines, 2 ESLAG leaves, 1 orphan leaf, and a gateway is shown below:
+The resulting topology with 2 spines, 2 ESLAG leaves, 1 orphan leaf, and two gateways is shown below:
 
 ```mermaid
 graph TD
@@ -54,67 +55,70 @@ classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
 subgraph Gateways[" "]
-    direction LR
-    Gateway_1["gateway-1"]
+	direction LR
+	Gateway_1["gateway-1"]
+	Gateway_2["gateway-2"]
 end
 
 subgraph Spines[" "]
-    direction LR
-    subgraph Spine_01_Group [" "]
-        direction TB
-        Spine_01["spine-01<br>spine"]
-    end
-    subgraph Spine_02_Group [" "]
-        direction TB
-        Spine_02["spine-02<br>spine"]
-    end
+	direction LR
+	subgraph Spine_01_Group [" "]
+		direction TB
+		Spine_01["spine-01<br>spine"]
+	end
+	subgraph Spine_02_Group [" "]
+		direction TB
+		Spine_02["spine-02<br>spine"]
+	end
 end
 
 subgraph Leaves[" "]
-    direction LR
-    subgraph Eslag_1 ["eslag-1"]
-        direction LR
-        Leaf_01["leaf-01<br>server-leaf"]
-        Leaf_02["leaf-02<br>server-leaf"]
-    end
+	direction LR
+	subgraph Eslag_1 ["eslag-1"]
+		direction LR
+		Leaf_01["leaf-01<br>server-leaf"]
+		Leaf_02["leaf-02<br>server-leaf"]
+	end
 
-    Leaf_03["leaf-03<br>server-leaf"]
+	Leaf_03["leaf-03<br>server-leaf"]
 end
 
 subgraph Servers[" "]
-    direction TB
-    Server_03["server-03"]
-    Server_01["server-01"]
-    Server_02["server-02"]
-    Server_04["server-04"]
-    Server_05["server-05"]
-    Server_06["server-06"]
+	direction TB
+	Server_03["server-03"]
+	Server_01["server-01"]
+	Server_02["server-02"]
+	Server_04["server-04"]
+	Server_05["server-05"]
+	Server_06["server-06"]
 end
 
 %% Connections
 
 %% Gateway connections
-Gateway_1 ---|"enp2s2↔E1/7"| Spine_02
 Gateway_1 ---|"enp2s1↔E1/7"| Spine_01
+Gateway_1 ---|"enp2s2↔E1/7"| Spine_02
+Gateway_2 ---|"enp2s1↔E1/8"| Spine_01
+Gateway_2 ---|"enp2s2↔E1/8"| Spine_02
 
 %% Spine_01 -> Leaves
-Spine_01 ---|"E1/4↔E1/1<br>E1/5↔E1/2"| Leaf_01
-Spine_01 ---|"E1/6↔E1/4<br>E1/5↔E1/3"| Leaf_02
 Spine_01 ---|"E1/4↔E1/5<br>E1/5↔E1/6"| Leaf_03
+Spine_01 ---|"E1/4↔E1/1<br>E1/5↔E1/2"| Leaf_01
+Spine_01 ---|"E1/5↔E1/3<br>E1/6↔E1/4"| Leaf_02
 
 %% Spine_02 -> Leaves
-Spine_02 ---|"E1/7↔E1/3<br>E1/8↔E1/4"| Leaf_02
 Spine_02 ---|"E1/6↔E1/1<br>E1/7↔E1/2"| Leaf_01
 Spine_02 ---|"E1/6↔E1/5<br>E1/7↔E1/6"| Leaf_03
+Spine_02 ---|"E1/7↔E1/3<br>E1/8↔E1/4"| Leaf_02
 
 %% Leaves -> Servers
-Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 Leaf_01 ---|"enp2s1↔E1/3"| Server_03
 
-Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
-Leaf_02 ---|"enp2s2↔E1/2"| Server_02
 Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
 
 Leaf_03 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_06
 Leaf_03 ---|"enp2s1↔E1/1"| Server_05
@@ -124,17 +128,17 @@ Leaf_03 ---|"enp2s1↔E1/1"| Server_05
 %% External connections
 
 subgraph Legend["Network Connection Types"]
-    direction LR
-    %% Create invisible nodes for the start and end of each line
-    L1(( )) --- |"Fabric Links"| L2(( ))
-    L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
-    L7(( )) --- |"Unbundled Server Links"| L8(( ))
-    L9(( )) --- |"ESLAG Server Links"| L10(( ))
-    L11(( )) --- |"Gateway Links"| L12(( ))
-    P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
+	direction LR
+	%% Create invisible nodes for the start and end of each line
+	L1(( )) --- |"Fabric Links"| L2(( ))
+	L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
+	L7(( )) --- |"Unbundled Server Links"| L8(( ))
+	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+	L11(( )) --- |"Gateway Links"| L12(( ))
+	P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
-class Gateway_1 gateway
+class Gateway_1,Gateway_2 gateway
 class Spine_01,Spine_02 spine
 class Leaf_01,Leaf_02,Leaf_03 leaf
 class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
@@ -142,17 +146,17 @@ class Eslag_1 eslag
 class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 0,1 stroke:#CC9900,stroke-width:2px
-linkStyle 2,3,4,5,6,7 stroke:#CC3333,stroke-width:4px
-linkStyle 11,14 stroke:#66CC66,stroke-width:4px
-linkStyle 8,9,12,13 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 10,15 stroke:#999999,stroke-width:2px
-linkStyle 16 stroke:#B85450,stroke-width:2px
-linkStyle 17 stroke:#82B366,stroke-width:2px
-linkStyle 18 stroke:#000000,stroke-width:2px
-linkStyle 19 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
-linkStyle 20 stroke:#CC9900,stroke-width:2px
-linkStyle 21 stroke:#FFFFFF
+linkStyle 0,1,2,3 stroke:#CC9900,stroke-width:2px
+linkStyle 4,5,6,7,8,9 stroke:#CC3333,stroke-width:4px
+linkStyle 15,16 stroke:#66CC66,stroke-width:4px
+linkStyle 10,11,13,14 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 12,17 stroke:#999999,stroke-width:2px
+linkStyle 18 stroke:#B85450,stroke-width:2px
+linkStyle 19 stroke:#82B366,stroke-width:2px
+linkStyle 20 stroke:#000000,stroke-width:2px
+linkStyle 21 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 22 stroke:#CC9900,stroke-width:2px
+linkStyle 23 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
 style Gateways fill:none,stroke:none
@@ -174,14 +178,17 @@ For example, to create a mesh topology with 2 links between each pair of leaves,
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen --mesh-links-count 2
-13:24:58 INF Hedgehog Fabricator version=v0.41.3
-13:24:58 INF Building VLAB wiring diagram fabricMode=spine-leaf
-13:24:58 INF >>> spinesCount=0 fabricLinksCount=0 meshLinksCount=2
-13:24:58 INF >>> eslagLeafGroups=2
-13:24:58 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
-13:24:58 INF >>> orphanLeafsCount=1
-13:24:58 INF >>> mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1
-13:24:58 INF Generated wiring file name=vlab.generated.yaml
+18:14:56 INF Hedgehog Fabricator version=v0.47.4
+18:14:56 INF Building VLAB wiring diagram fabricMode=spine-leaf
+18:14:56 INF >>> profile=vs
+18:14:56 INF >>> spinesCount=0 fabricLinksCount=0 meshLinksCount=2
+18:14:56 INF >>> eslagLeafGroups=2
+18:14:56 INF >>> gateways=2 gatewayUplinks=2 gatewayDriver=kernel
+18:14:56 INF >>> orphanLeafsCount=1
+18:14:56 INF >>> eslagServers=2 unbundledServers=1 bundledServers=1 multihomedServers=0
+18:14:56 INF >>> externalBGPCount=0 externalStaticCount=0 externalStaticProxyCount=0
+18:14:56 INF >>> externalEslagConnCount=0 externalOrphanConnCount=0
+18:14:56 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 The default topology generated in this case will have 2 ESLAG leaves and 1 orphan leaf. Below is the corresponding diagram:
@@ -201,12 +208,18 @@ classDef hidden fill:none,stroke:none
 classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
+subgraph Gateways[" "]
+	direction LR
+	Gateway_1["gateway-1"]
+	Gateway_2["gateway-2"]
+end
+
 subgraph Leaves[" "]
 	direction LR
-	subgraph ESLAG [ESLAG]
+	subgraph Eslag_1 ["eslag-1"]
 		direction LR
-		Leaf_01["leaf-01<br>server-leaf"]
 		Leaf_02["leaf-02<br>server-leaf"]
+		Leaf_01["leaf-01<br>server-leaf"]
 	end
 
 	Leaf_03["leaf-03<br>server-leaf"]
@@ -214,32 +227,38 @@ end
 
 subgraph Servers[" "]
 	direction TB
-	Server_03["server-03"]
+	Server_04["server-04"]
 	Server_01["server-01"]
 	Server_02["server-02"]
-	Server_04["server-04"]
+	Server_03["server-03"]
 	Server_05["server-05"]
 	Server_06["server-06"]
 end
 
 %% Connections
 
+%% Gateway connections
+Gateway_2 ---|"enp2s2↔E1/10"| Leaf_02
+Gateway_2 ---|"enp2s1↔E1/9"| Leaf_01
+Gateway_1 ---|"enp2s1↔E1/8"| Leaf_01
+Gateway_1 ---|"enp2s2↔E1/9"| Leaf_02
+
 %% Leaves -> Servers
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 Leaf_01 ---|"enp2s1↔E1/3"| Server_03
 Leaf_01 ---|"enp2s1↔E1/1"| Server_01
-Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 
-Leaf_02 ---|"enp2s2↔E1/1"| Server_01
 Leaf_02 ---|"enp2s2↔E1/2"| Server_02
 Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
 
-Leaf_03 ---|"enp2s1↔E1/1"| Server_05
 Leaf_03 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_06
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
 
 %% Mesh connections
-Leaf_01 ---|"E1/6↔E1/5<br>E1/5↔E1/4"| Leaf_02
+Leaf_01 ---|"E1/5↔E1/4<br>E1/6↔E1/5"| Leaf_02
 Leaf_02 ---|"E1/6↔E1/7<br>E1/7↔E1/8"| Leaf_03
-Leaf_01 ---|"E1/4↔E1/6<br>E1/5↔E1/7"| Leaf_03
+Leaf_01 ---|"E1/5↔E1/7<br>E1/4↔E1/6"| Leaf_03
 
 %% External connections
 
@@ -247,29 +266,34 @@ subgraph Legend["Network Connection Types"]
 	direction LR
 	%% Create invisible nodes for the start and end of each line
 	L15(( )) --- |"Mesh Links"| L16(( ))
-	L5(( )) --- |"Bundled Server Links"| L6(( ))
+	L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
 	L7(( )) --- |"Unbundled Server Links"| L8(( ))
 	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+	L11(( )) --- |"Gateway Links"| L12(( ))
 	P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
-class Leaf_01,Leaf_02,Leaf_03 leaf
-class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
-class ESLAG eslag
+class Gateway_1,Gateway_2 gateway
+class Leaf_02,Leaf_01,Leaf_03 leaf
+class Server_04,Server_01,Server_02,Server_03,Server_05,Server_06 server
+class Eslag_1 eslag
 class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2,L15,L16 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 8,9,10 stroke:#0078D4,stroke-width:4px
-linkStyle 5,7 stroke:#66CC66,stroke-width:4px
-linkStyle 1,2,3,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 0,6 stroke:#999999,stroke-width:2px
-linkStyle 11 stroke:#0078D4,stroke-width:2px
-linkStyle 12 stroke:#82B366,stroke-width:2px
-linkStyle 13 stroke:#000000,stroke-width:2px
-linkStyle 14 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
-linkStyle 15 stroke:#FFFFFF
+linkStyle 0,1,2,3 stroke:#CC9900,stroke-width:2px
+linkStyle 12,13,14 stroke:#0078D4,stroke-width:4px
+linkStyle 8,10 stroke:#66CC66,stroke-width:4px
+linkStyle 4,6,7,9 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 5,11 stroke:#999999,stroke-width:2px
+linkStyle 15 stroke:#0078D4,stroke-width:2px
+linkStyle 16 stroke:#82B366,stroke-width:2px
+linkStyle 17 stroke:#000000,stroke-width:2px
+linkStyle 18 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 19 stroke:#CC9900,stroke-width:2px
+linkStyle 20 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
+style Gateways fill:none,stroke:none
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
 ```
@@ -277,7 +301,8 @@ style Servers fill:none,stroke:none
 ### Gateway
 
 The gateway is enabled by adding the `--gw` flag to `hhfab init`. It connects to two spines in spine-leaf topology
-or two leaves in mesh topology. The number of uplinks can be controlled using flags on `hhfab vlab gen`.
+or two leaves in mesh topology. Multiple gateways can be used e.g. by using the `--gws=2` flag.
+The number of uplinks can be controlled using flags on `hhfab vlab gen`.
 
 ### Lightweight Spine-Leaf
 A default spine-leaf topology in VLAB requests more CPU and RAM than is commonly available. The lightweight
@@ -287,14 +312,17 @@ Host, and 1 normal host. To launch the lightweight spine-leaf topology use the f
 
 ```console
 ubuntu@docs:~$ hhfab vlab gen --eslag-leaf-groups=2 --spines-count=1 --bundled-servers=0 --eslag-servers=1 --unbundled-servers=1
-20:10:16 INF Hedgehog Fabricator version=v0.42.0
-20:10:16 INF Building VLAB wiring diagram fabricMode=spine-leaf
-20:10:16 INF >>> spinesCount=1 fabricLinksCount=2 meshLinksCount=0
-20:10:16 INF >>> eslagLeafGroups=2
-20:10:16 INF >>> mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0
-20:10:16 INF >>> orphanLeafsCount=0
-20:10:16 INF >>> mclagServers=2 eslagServers=1 unbundledServers=1 bundledServers=0
-20:10:16 INF Generated wiring file name=vlab.generated.yaml
+18:27:19 INF Hedgehog Fabricator version=v0.47.4
+18:27:19 INF Building VLAB wiring diagram fabricMode=spine-leaf
+18:27:19 INF >>> profile=vs
+18:27:19 INF >>> spinesCount=1 fabricLinksCount=2 meshLinksCount=0
+18:27:19 INF >>> eslagLeafGroups=2
+18:27:19 INF >>> gateways=1 gatewayUplinks=1 gatewayDriver=kernel
+18:27:19 INF >>> orphanLeafsCount=0
+18:27:19 INF >>> eslagServers=1 unbundledServers=1 bundledServers=0 multihomedServers=0
+18:27:19 INF >>> externalBGPCount=0 externalStaticCount=0 externalStaticProxyCount=0
+18:27:19 INF >>> externalEslagConnCount=0 externalOrphanConnCount=0
+18:27:19 INF Generated wiring file name=vlab.generated.yaml
 ```
 
 The lightweight spine-leaf topology looks like this:
@@ -303,72 +331,95 @@ The lightweight spine-leaf topology looks like this:
 graph TD
 
 %% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
 classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none
 classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
+subgraph Gateways[" "]
+	direction LR
+	Gateway_1["gateway-1"]
+end
+
 subgraph Spines[" "]
-    direction LR
-    subgraph Spine_01_Group [" "]
-        direction TB
-        Spine_01["spine-01<br>spine"]
-    end
+	direction LR
+	subgraph Spine_01_Group [" "]
+		direction TB
+		Spine_01["spine-01<br>spine"]
+	end
 end
 
 subgraph Leaves[" "]
-    direction LR
-    subgraph Eslag_1 ["eslag-1"]
-        direction LR
-        Leaf_01["leaf-01<br>server-leaf"]
-        Leaf_02["leaf-02<br>server-leaf"]
-    end
+	direction LR
+	subgraph Eslag_1 ["eslag-1"]
+		direction LR
+		Leaf_01["leaf-01<br>server-leaf"]
+		Leaf_02["leaf-02<br>server-leaf"]
+	end
 
 end
 
 subgraph Servers[" "]
-    direction TB
-    Server_02["server-02"]
-    Server_01["server-01"]
+	direction TB
+	Server_02["server-02"]
+	Server_01["server-01"]
 end
 
 %% Connections
 
+%% Gateway connections
+Gateway_1 ---|"enp2s1↔E1/5"| Spine_01
+
 %% Spine_01 -> Leaves
-Spine_01 --- Leaf_01
-Spine_01 --- Leaf_02
+Spine_01 ---|"E1/4↔E1/2<br>E1/3↔E1/1"| Leaf_01
+Spine_01 ---|"E1/2↔E1/3<br>E1/3↔E1/4"| Leaf_02
 
 %% Leaves -> Servers
-Leaf_01 --- Server_01
-Leaf_01 --- Server_02
-Leaf_02 --- Server_01
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+
+%% Mesh connections
+
+%% External connections
 
 subgraph Legend["Network Connection Types"]
-    direction LR
-    %% Create invisible nodes for the start and end of each line
-    L1(( )) --- |"Fabric Links"| L2(( ))
-    L7(( )) --- |"Unbundled Server Links"| L8(( ))
-    L9(( )) --- |"ESLAG Server Links"| L10(( ))
+	direction LR
+	%% Create invisible nodes for the start and end of each line
+	L1(( )) --- |"Fabric Links"| L2(( ))
+	L7(( )) --- |"Unbundled Server Links"| L8(( ))
+	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+	L11(( )) --- |"Gateway Links"| L12(( ))
+	P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
+class Gateway_1 gateway
 class Spine_01 spine
 class Leaf_01,Leaf_02 leaf
 class Server_02,Server_01 server
 class Eslag_1 eslag
-class L1,L2,L7,L8,L9,L10 hidden
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 0,1 stroke:#CC3333,stroke-width:4px
-linkStyle 2,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 3 stroke:#999999,stroke-width:2px
-linkStyle 5 stroke:#B85450,stroke-width:2px
-linkStyle 6 stroke:#000000,stroke-width:2px
-linkStyle 7 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 0 stroke:#CC9900,stroke-width:2px
+linkStyle 1,2 stroke:#CC3333,stroke-width:4px
+linkStyle 3,5 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 4 stroke:#999999,stroke-width:2px
+linkStyle 6 stroke:#B85450,stroke-width:2px
+linkStyle 7 stroke:#000000,stroke-width:2px
+linkStyle 8 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 9 stroke:#CC9900,stroke-width:2px
+linkStyle 10 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
+style Gateways fill:none,stroke:none
 style Spines fill:none,stroke:none
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none

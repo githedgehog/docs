@@ -46,10 +46,10 @@ core@control-1 ~ $ kubectl fabric vpc create --name vpc-1 --subnet 10.0.1.0/24 -
 ```
 
 Attach previously created VPC to the server `server-01` (which is connected to the Fabric using the
-`server-01--mclag--leaf-01--leaf-02` Connection):
+`server-01--eslag--leaf-01--leaf-02` Connection):
 
 ```bash
-core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01--mclag--leaf-01--leaf-02
+core@control-1 ~ $ kubectl fabric vpc attach --vpc-subnet vpc-1/default --connection server-01--eslag--leaf-01--leaf-02
 ```
 
 To peer VPC with another VPC (e.g. `vpc-2`) use the following command:

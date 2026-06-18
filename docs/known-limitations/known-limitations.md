@@ -5,7 +5,6 @@ working hard to address:
 
 * [Deleting a VPC and creating a new one right away can cause the agent to fail](#deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail)
 * [Configuration not allowed when port is member of PortChannel](#configuration-not-allowed-when-port-is-member-of-portchannel)
-* [External peering over a connection originating from an MCLAG switch can fail](#external-peering-over-a-connection-originating-from-an-mclag-switch-can-fail)
 * [Breakout and CMIS transceiver initialization issues on DS5000](#breakout-and-cmis-transceiver-initialization-issues-on-ds5000)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
@@ -54,22 +53,6 @@ s5248-01# configure
 s5248-01(config)# interface Ethernet 1
 s5248-01(config-if-Ethernet1)# no shutdown
 ```
-
-### External peering over a connection originating from an MCLAG switch can fail
-
-When importing routes via [External Peering](../user-guide/external.md) over a connection
-originating from an MCLAG leaf switch, traffic from the peered VPC towards that
-prefix can be blackholed. This is due to a routing mismatch between the two MCLAG leaves,
-where only one switch learns the imported route. Packets hitting the "wrong" leaf will
-be dropped with a Destination Unreachable error.
-
-#### Diagnosing this issue
-
-No connectivity from the workload server(s) in the VPC towards the prefix routed via the external.
-
-#### Known workarounds
-
-Connect your externals to non-MCLAG switches instead.
 
 ### Breakout and CMIS transceiver initialization issues on DS5000
 
