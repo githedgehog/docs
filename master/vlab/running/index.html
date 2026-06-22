@@ -2035,30 +2035,31 @@ You're not viewing the latest version.
 <p>Make sure to follow the prerequisites and check system requirements in the <a href="../overview/">VLAB Overview</a> section
 before running VLAB.</p>
 <h2 id="initialize-vlab">Initialize VLAB</h2>
-<p>First, initialize Fabricator by running <code>hhfab init --dev --gw</code>. This command creates the <code>fab.yaml</code> file, which is the main configuration file for the fabric. The <code>--gw</code> flag enables the gateway. This command supports several customization options that are listed in the output of <code>hhfab init --help</code>.</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>init<span class="w"> </span>--dev<span class="w"> </span>--gw
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">10:26:45 INF Hedgehog Fabricator version=v0.43.1</span>
+<p>First, initialize Fabricator by running <code>hhfab init --dev --gws=2</code>. This command creates the <code>fab.yaml</code> file, which is the main configuration file for the fabric. The <code>--gws=2</code> flag enables the gateway and adds two of them. This command supports several customization options that are listed in the output of <code>hhfab init --help</code>.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>init<span class="w"> </span>--dev<span class="w"> </span>--gws<span class="o">=</span><span class="m">2</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">10:26:45 INF Hedgehog Fabricator version=v0.47.4</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">10:26:45 INF Generated initial config</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">10:26:45 INF Adjust configs (incl. credentials, modes, subnets, etc.) file=fab.yaml</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">10:26:45 INF Include wiring (fabric/gateway) files (.yaml) or adjust imported ones dir=include</span>
 </span></code></pre></div>
 <h2 id="vlab-topology">VLAB Topology</h2>
 <h3 id="spine-leaf">Spine-Leaf</h3>
-<p>To generate a spine-leaf topology, use <code>hhfab vlab gen</code>. The following generates an <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> (EVPN Multi-Homing) topology:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mclag-leafs-count<span class="w"> </span><span class="m">0</span><span class="w"> </span>--eslag-leaf-groups<span class="w"> </span><span class="m">2</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">10:26:46 INF Hedgehog Fabricator version=v0.43.1</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">10:26:46 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">10:26:46 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2 meshLinksCount=0</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">10:26:46 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">10:26:46 INF &gt;&gt;&gt; gatewayUplinks=2 gatewayDriver=kernel</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">10:26:46 INF &gt;&gt;&gt; mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">10:26:46 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">10:26:46 INF &gt;&gt;&gt; mclagServers=0 eslagServers=2 unbundledServers=1 bundledServers=1</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="go">10:26:46 INF &gt;&gt;&gt; externalCount=0 externalMclagConnCount=0 externalEslagConnCount=0 externalOrphanConnCount=0</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="go">10:26:46 INF Generated wiring file name=vlab.generated.yaml</span>
+<p>To generate a spine-leaf topology, use <code>hhfab vlab gen</code>:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">17:33:13 INF Hedgehog Fabricator version=v0.47.4</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">17:33:13 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">17:33:13 INF &gt;&gt;&gt; profile=vs</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="go">17:33:13 INF &gt;&gt;&gt; spinesCount=2 fabricLinksCount=2 meshLinksCount=0</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">17:33:13 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">17:33:13 INF &gt;&gt;&gt; gateways=2 gatewayUplinks=2 gatewayDriver=kernel</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">17:33:13 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">17:33:13 INF &gt;&gt;&gt; eslagServers=2 unbundledServers=1 bundledServers=1 multihomedServers=0</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="go">17:33:13 INF &gt;&gt;&gt; externalBGPCount=0 externalStaticCount=0 externalStaticProxyCount=0</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="go">17:33:13 INF &gt;&gt;&gt; externalEslagConnCount=0 externalOrphanConnCount=0</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="go">17:33:13 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
-<p>You can customize the topology with flags like <code>--spines-count</code> and <code>--eslag-leaf-groups</code>. For complete options, run <code>hhfab vlab gen -h</code>.</p>
-<p>The topology with 2 spines, 2 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> leaves, 1 orphan leaf, and a gateway is shown below:</p>
+<p>You can customize the topology with flags like <code>--spines-count</code> and <code>--eslag-leaf-groups</code>. For a complete list of options, run <code>hhfab vlab gen -h</code>.</p>
+<p>The resulting topology with 2 spines, 2 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> leaves, 1 orphan leaf, and two gateways is shown below:</p>
 <pre class="mermaid"><code>graph TD
 
 %% Style definitions
@@ -2076,6 +2077,7 @@ classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 subgraph Gateways[" "]
     direction LR
     Gateway_1["gateway-1"]
+    Gateway_2["gateway-2"]
 end
 
 subgraph Spines[" "]
@@ -2114,27 +2116,29 @@ end
 %% Connections
 
 %% Gateway connections
-Gateway_1 ---|"enp2s2↔E1/7"| Spine_02
 Gateway_1 ---|"enp2s1↔E1/7"| Spine_01
+Gateway_1 ---|"enp2s2↔E1/7"| Spine_02
+Gateway_2 ---|"enp2s1↔E1/8"| Spine_01
+Gateway_2 ---|"enp2s2↔E1/8"| Spine_02
 
 %% Spine_01 -&gt; Leaves
-Spine_01 ---|"E1/4↔E1/1&lt;br&gt;E1/5↔E1/2"| Leaf_01
-Spine_01 ---|"E1/6↔E1/4&lt;br&gt;E1/5↔E1/3"| Leaf_02
 Spine_01 ---|"E1/4↔E1/5&lt;br&gt;E1/5↔E1/6"| Leaf_03
+Spine_01 ---|"E1/4↔E1/1&lt;br&gt;E1/5↔E1/2"| Leaf_01
+Spine_01 ---|"E1/5↔E1/3&lt;br&gt;E1/6↔E1/4"| Leaf_02
 
 %% Spine_02 -&gt; Leaves
-Spine_02 ---|"E1/7↔E1/3&lt;br&gt;E1/8↔E1/4"| Leaf_02
 Spine_02 ---|"E1/6↔E1/1&lt;br&gt;E1/7↔E1/2"| Leaf_01
 Spine_02 ---|"E1/6↔E1/5&lt;br&gt;E1/7↔E1/6"| Leaf_03
+Spine_02 ---|"E1/7↔E1/3&lt;br&gt;E1/8↔E1/4"| Leaf_02
 
 %% Leaves -&gt; Servers
-Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 Leaf_01 ---|"enp2s1↔E1/3"| Server_03
 
-Leaf_02 ---|"enp2s1↔E1/3&lt;br&gt;enp2s2↔E1/4"| Server_04
-Leaf_02 ---|"enp2s2↔E1/2"| Server_02
 Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s1↔E1/3&lt;br&gt;enp2s2↔E1/4"| Server_04
 
 Leaf_03 ---|"enp2s1↔E1/2&lt;br&gt;enp2s2↔E1/3"| Server_06
 Leaf_03 ---|"enp2s1↔E1/1"| Server_05
@@ -2154,7 +2158,7 @@ subgraph Legend["Network Connection Types"]
     P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
-class Gateway_1 gateway
+class Gateway_1,Gateway_2 gateway
 class Spine_01,Spine_02 spine
 class Leaf_01,Leaf_02,Leaf_03 leaf
 class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
@@ -2162,17 +2166,17 @@ class Eslag_1 eslag
 class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 0,1 stroke:#CC9900,stroke-width:2px
-linkStyle 2,3,4,5,6,7 stroke:#CC3333,stroke-width:4px
-linkStyle 11,14 stroke:#66CC66,stroke-width:4px
-linkStyle 8,9,12,13 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 10,15 stroke:#999999,stroke-width:2px
-linkStyle 16 stroke:#B85450,stroke-width:2px
-linkStyle 17 stroke:#82B366,stroke-width:2px
-linkStyle 18 stroke:#000000,stroke-width:2px
-linkStyle 19 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
-linkStyle 20 stroke:#CC9900,stroke-width:2px
-linkStyle 21 stroke:#FFFFFF
+linkStyle 0,1,2,3 stroke:#CC9900,stroke-width:2px
+linkStyle 4,5,6,7,8,9 stroke:#CC3333,stroke-width:4px
+linkStyle 15,16 stroke:#66CC66,stroke-width:4px
+linkStyle 10,11,13,14 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 12,17 stroke:#999999,stroke-width:2px
+linkStyle 18 stroke:#B85450,stroke-width:2px
+linkStyle 19 stroke:#82B366,stroke-width:2px
+linkStyle 20 stroke:#000000,stroke-width:2px
+linkStyle 21 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 22 stroke:#CC9900,stroke-width:2px
+linkStyle 23 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
 style Gateways fill:none,stroke:none
@@ -2188,14 +2192,17 @@ use the <code>--mesh-links-count</code> flag.
 This flag allows you to specify how many mesh links should be created between each pair of leaves.
 For example, to create a mesh topology with 2 links between each pair of leaves, run:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--mesh-links-count<span class="w"> </span><span class="m">2</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">13:24:58 INF Hedgehog Fabricator version=v0.41.3</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">13:24:58 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">13:24:58 INF &gt;&gt;&gt; spinesCount=0 fabricLinksCount=0 meshLinksCount=2</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">13:24:58 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">13:24:58 INF &gt;&gt;&gt; mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">13:24:58 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">13:24:58 INF &gt;&gt;&gt; mclagServers=2 eslagServers=2 unbundledServers=1 bundledServers=1</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">13:24:58 INF Generated wiring file name=vlab.generated.yaml</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">18:14:56 INF Hedgehog Fabricator version=v0.47.4</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">18:14:56 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">18:14:56 INF &gt;&gt;&gt; profile=vs</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">18:14:56 INF &gt;&gt;&gt; spinesCount=0 fabricLinksCount=0 meshLinksCount=2</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">18:14:56 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">18:14:56 INF &gt;&gt;&gt; gateways=2 gatewayUplinks=2 gatewayDriver=kernel</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">18:14:56 INF &gt;&gt;&gt; orphanLeafsCount=1</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">18:14:56 INF &gt;&gt;&gt; eslagServers=2 unbundledServers=1 bundledServers=1 multihomedServers=0</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="go">18:14:56 INF &gt;&gt;&gt; externalBGPCount=0 externalStaticCount=0 externalStaticProxyCount=0</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="go">18:14:56 INF &gt;&gt;&gt; externalEslagConnCount=0 externalOrphanConnCount=0</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="go">18:14:56 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
 <p>The default topology generated in this case will have 2 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> leaves and 1 orphan leaf. Below is the corresponding diagram:</p>
 <pre class="mermaid"><code>graph TD
@@ -2212,12 +2219,18 @@ classDef hidden fill:none,stroke:none
 classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
+subgraph Gateways[" "]
+    direction LR
+    Gateway_1["gateway-1"]
+    Gateway_2["gateway-2"]
+end
+
 subgraph Leaves[" "]
     direction LR
-    subgraph ESLAG [ESLAG]
+    subgraph Eslag_1 ["eslag-1"]
         direction LR
-        Leaf_01["leaf-01&lt;br&gt;server-leaf"]
         Leaf_02["leaf-02&lt;br&gt;server-leaf"]
+        Leaf_01["leaf-01&lt;br&gt;server-leaf"]
     end
 
     Leaf_03["leaf-03&lt;br&gt;server-leaf"]
@@ -2225,32 +2238,38 @@ end
 
 subgraph Servers[" "]
     direction TB
-    Server_03["server-03"]
+    Server_04["server-04"]
     Server_01["server-01"]
     Server_02["server-02"]
-    Server_04["server-04"]
+    Server_03["server-03"]
     Server_05["server-05"]
     Server_06["server-06"]
 end
 
 %% Connections
 
+%% Gateway connections
+Gateway_2 ---|"enp2s2↔E1/10"| Leaf_02
+Gateway_2 ---|"enp2s1↔E1/9"| Leaf_01
+Gateway_1 ---|"enp2s1↔E1/8"| Leaf_01
+Gateway_1 ---|"enp2s2↔E1/9"| Leaf_02
+
 %% Leaves -&gt; Servers
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 Leaf_01 ---|"enp2s1↔E1/3"| Server_03
 Leaf_01 ---|"enp2s1↔E1/1"| Server_01
-Leaf_01 ---|"enp2s1↔E1/2"| Server_02
 
-Leaf_02 ---|"enp2s2↔E1/1"| Server_01
 Leaf_02 ---|"enp2s2↔E1/2"| Server_02
 Leaf_02 ---|"enp2s1↔E1/3&lt;br&gt;enp2s2↔E1/4"| Server_04
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
 
-Leaf_03 ---|"enp2s1↔E1/1"| Server_05
 Leaf_03 ---|"enp2s1↔E1/2&lt;br&gt;enp2s2↔E1/3"| Server_06
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
 
 %% Mesh connections
-Leaf_01 ---|"E1/6↔E1/5&lt;br&gt;E1/5↔E1/4"| Leaf_02
+Leaf_01 ---|"E1/5↔E1/4&lt;br&gt;E1/6↔E1/5"| Leaf_02
 Leaf_02 ---|"E1/6↔E1/7&lt;br&gt;E1/7↔E1/8"| Leaf_03
-Leaf_01 ---|"E1/4↔E1/6&lt;br&gt;E1/5↔E1/7"| Leaf_03
+Leaf_01 ---|"E1/5↔E1/7&lt;br&gt;E1/4↔E1/6"| Leaf_03
 
 %% External connections
 
@@ -2258,61 +2277,78 @@ subgraph Legend["Network Connection Types"]
     direction LR
     %% Create invisible nodes for the start and end of each line
     L15(( )) --- |"Mesh Links"| L16(( ))
-    L5(( )) --- |"Bundled Server Links"| L6(( ))
+    L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
     L7(( )) --- |"Unbundled Server Links"| L8(( ))
     L9(( )) --- |"ESLAG Server Links"| L10(( ))
+    L11(( )) --- |"Gateway Links"| L12(( ))
     P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
-class Leaf_01,Leaf_02,Leaf_03 leaf
-class Server_03,Server_01,Server_02,Server_04,Server_05,Server_06 server
-class ESLAG eslag
+class Gateway_1,Gateway_2 gateway
+class Leaf_02,Leaf_01,Leaf_03 leaf
+class Server_04,Server_01,Server_02,Server_03,Server_05,Server_06 server
+class Eslag_1 eslag
 class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2,L15,L16 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 8,9,10 stroke:#0078D4,stroke-width:4px
-linkStyle 5,7 stroke:#66CC66,stroke-width:4px
-linkStyle 1,2,3,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 0,6 stroke:#999999,stroke-width:2px
-linkStyle 11 stroke:#0078D4,stroke-width:2px
-linkStyle 12 stroke:#82B366,stroke-width:2px
-linkStyle 13 stroke:#000000,stroke-width:2px
-linkStyle 14 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
-linkStyle 15 stroke:#FFFFFF
+linkStyle 0,1,2,3 stroke:#CC9900,stroke-width:2px
+linkStyle 12,13,14 stroke:#0078D4,stroke-width:4px
+linkStyle 8,10 stroke:#66CC66,stroke-width:4px
+linkStyle 4,6,7,9 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 5,11 stroke:#999999,stroke-width:2px
+linkStyle 15 stroke:#0078D4,stroke-width:2px
+linkStyle 16 stroke:#82B366,stroke-width:2px
+linkStyle 17 stroke:#000000,stroke-width:2px
+linkStyle 18 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 19 stroke:#CC9900,stroke-width:2px
+linkStyle 20 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
+style Gateways fill:none,stroke:none
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none</code></pre>
 <h3 id="gateway">Gateway</h3>
 <p>The gateway is enabled by adding the <code>--gw</code> flag to <code>hhfab init</code>. It connects to two spines in spine-leaf topology
-or two leaves in mesh topology. The number of uplinks can be controlled using flags on <code>hhfab vlab gen</code>.</p>
+or two leaves in mesh topology. Multiple gateways can be used e.g. by using the <code>--gws=2</code> flag.
+The number of uplinks can be controlled using flags on <code>hhfab vlab gen</code>.</p>
 <h3 id="lightweight-spine-leaf">Lightweight Spine-Leaf</h3>
 <p>A default spine-leaf topology in VLAB requests more CPU and RAM than is commonly available. The lightweight
 topology requests 22 vCPUs and 23 GiB of RAM, it is 6 virtual machines, and still allows for traffic to transit a spine.
 The lightweight spine-leaf topology is 2 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> leaves, 1 spine, 1 <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr>
 Host, and 1 normal host. To launch the lightweight spine-leaf topology use the following command:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">ubuntu@docs:~$ </span>hhfab<span class="w"> </span>vlab<span class="w"> </span>gen<span class="w"> </span>--eslag-leaf-groups<span class="o">=</span><span class="m">2</span><span class="w"> </span>--spines-count<span class="o">=</span><span class="m">1</span><span class="w"> </span>--bundled-servers<span class="o">=</span><span class="m">0</span><span class="w"> </span>--eslag-servers<span class="o">=</span><span class="m">1</span><span class="w"> </span>--unbundled-servers<span class="o">=</span><span class="m">1</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">20:10:16 INF Hedgehog Fabricator version=v0.42.0</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">20:10:16 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">20:10:16 INF &gt;&gt;&gt; spinesCount=1 fabricLinksCount=2 meshLinksCount=0</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">20:10:16 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">20:10:16 INF &gt;&gt;&gt; mclagLeafsCount=0 mclagSessionLinks=0 mclagPeerLinks=0</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">20:10:16 INF &gt;&gt;&gt; orphanLeafsCount=0</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">20:10:16 INF &gt;&gt;&gt; mclagServers=2 eslagServers=1 unbundledServers=1 bundledServers=0</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">20:10:16 INF Generated wiring file name=vlab.generated.yaml</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">18:27:19 INF Hedgehog Fabricator version=v0.47.4</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">18:27:19 INF Building VLAB wiring diagram fabricMode=spine-leaf</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">18:27:19 INF &gt;&gt;&gt; profile=vs</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">18:27:19 INF &gt;&gt;&gt; spinesCount=1 fabricLinksCount=2 meshLinksCount=0</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">18:27:19 INF &gt;&gt;&gt; eslagLeafGroups=2</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">18:27:19 INF &gt;&gt;&gt; gateways=1 gatewayUplinks=1 gatewayDriver=kernel</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">18:27:19 INF &gt;&gt;&gt; orphanLeafsCount=0</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">18:27:19 INF &gt;&gt;&gt; eslagServers=1 unbundledServers=1 bundledServers=0 multihomedServers=0</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="go">18:27:19 INF &gt;&gt;&gt; externalBGPCount=0 externalStaticCount=0 externalStaticProxyCount=0</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="go">18:27:19 INF &gt;&gt;&gt; externalEslagConnCount=0 externalOrphanConnCount=0</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="go">18:27:19 INF Generated wiring file name=vlab.generated.yaml</span>
 </span></code></pre></div>
 <p>The lightweight spine-leaf topology looks like this:</p>
 <pre class="mermaid"><code>graph TD
 
 %% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
 classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none
 classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
+subgraph Gateways[" "]
+    direction LR
+    Gateway_1["gateway-1"]
+end
+
 subgraph Spines[" "]
     direction LR
     subgraph Spine_01_Group [" "]
@@ -2339,14 +2375,22 @@ end
 
 %% Connections
 
+%% Gateway connections
+Gateway_1 ---|"enp2s1↔E1/5"| Spine_01
+
 %% Spine_01 -&gt; Leaves
-Spine_01 --- Leaf_01
-Spine_01 --- Leaf_02
+Spine_01 ---|"E1/4↔E1/2&lt;br&gt;E1/3↔E1/1"| Leaf_01
+Spine_01 ---|"E1/2↔E1/3&lt;br&gt;E1/3↔E1/4"| Leaf_02
 
 %% Leaves -&gt; Servers
-Leaf_01 --- Server_01
-Leaf_01 --- Server_02
-Leaf_02 --- Server_01
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+
+%% Mesh connections
+
+%% External connections
 
 subgraph Legend["Network Connection Types"]
     direction LR
@@ -2354,23 +2398,30 @@ subgraph Legend["Network Connection Types"]
     L1(( )) --- |"Fabric Links"| L2(( ))
     L7(( )) --- |"Unbundled Server Links"| L8(( ))
     L9(( )) --- |"ESLAG Server Links"| L10(( ))
+    L11(( )) --- |"Gateway Links"| L12(( ))
+    P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
 end
 
+class Gateway_1 gateway
 class Spine_01 spine
 class Leaf_01,Leaf_02 leaf
 class Server_02,Server_01 server
 class Eslag_1 eslag
-class L1,L2,L7,L8,L9,L10 hidden
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2 hidden
 class Legend legendBox
 linkStyle default stroke:#666,stroke-width:2px
-linkStyle 0,1 stroke:#CC3333,stroke-width:4px
-linkStyle 2,4 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
-linkStyle 3 stroke:#999999,stroke-width:2px
-linkStyle 5 stroke:#B85450,stroke-width:2px
-linkStyle 6 stroke:#000000,stroke-width:2px
-linkStyle 7 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 0 stroke:#CC9900,stroke-width:2px
+linkStyle 1,2 stroke:#CC3333,stroke-width:4px
+linkStyle 3,5 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 4 stroke:#999999,stroke-width:2px
+linkStyle 6 stroke:#B85450,stroke-width:2px
+linkStyle 7 stroke:#000000,stroke-width:2px
+linkStyle 8 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 9 stroke:#CC9900,stroke-width:2px
+linkStyle 10 stroke:#FFFFFF
 
 %% Make subgraph containers invisible
+style Gateways fill:none,stroke:none
 style Spines fill:none,stroke:none
 style Leaves fill:none,stroke:none
 style Servers fill:none,stroke:none
@@ -2590,7 +2641,7 @@ API</a> and
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2026</span>
   </span>
 
     

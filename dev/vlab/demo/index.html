@@ -2093,7 +2093,6 @@ classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
 classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
 classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
-classDef mclag   fill:#F0F8FF,stroke:#6C8EBF,stroke-width:1px,color:#000
 classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
 classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
 classDef hidden fill:none,stroke:none
@@ -2250,11 +2249,11 @@ style Spine_02_Group fill:none,stroke:none</code></pre>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>   Example command:
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   $ hhfab vlab setup-peerings 1+2 2+4:r=border 1~as5835 2~as5835:subnets=sub1,sub2:prefixes=0.0.0.0/0,22.22.22.0/24
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   $ hhfab vlab setup-peerings 1+2 2+4 1~as5835 2~as5835:subnets=sub1,sub2:prefixes=0.0.0.0/0,22.22.22.0/24
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>   Which will produce:
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>   1. VPC peering between vpc-01 and vpc-02
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>   2. Remote VPC peering between vpc-02 and vpc-04 on switch group named border
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>   2. VPC peering between vpc-02 and vpc-04
 </span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>   3. External peering for vpc-01 with External as5835 with default vpc subnet and any routes from external permitted
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>   4. External peering for vpc-02 with External as5835 with subnets sub1 and sub2 exposed from vpc-02 and default route
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>      from external permitted as well any route that belongs to 22.22.22.0/24
@@ -2262,32 +2261,49 @@ style Spine_02_Group fill:none,stroke:none</code></pre>
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>   VPC Peerings:
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
 </span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>   1+2 -- VPC peering between vpc-01 and vpc-02
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>   demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>   1+2:r -- remote VPC peering between vpc-01 and vpc-02 on switch group if only one switch group is present
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>   1+2:r=border -- remote VPC peering between vpc-01 and vpc-02 on switch group named border
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>   1+2:remote=border -- same as above
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>   1+2:gw -- same as above but using gateway peering, only valid if gateway is present
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>   demo-1+demo-2 -- VPC peering between vpc-demo-1 and vpc-demo-2
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>   External Peerings:
 </span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>   External Peerings:
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>   1~as5835 -- external peering for vpc-01 with External as5835
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>   1~ -- external peering for vpc-1 with external if only one external is present for ipv4 namespace of vpc-01, allowing
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>     default subnet and any route from external
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>   1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-1 with auth external with default vpc subnet and
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>     default route from external permitted
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>   1~as5835:subnets=default,other:prefixes=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same but with more details
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>   1~as5835:s=default,other:p=0.0.0.0/0_le32_ge32,22.22.22.0/24 -- same as above
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>   1~as5835 -- external peering for vpc-01 with External as5835
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>   1~as5835:gw -- same as above but using gateway peering, only valid if gateway is present
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>   1~ -- external peering for vpc-01 with external if only one external is present for ipv4 namespace of vpc-01, allowing
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>     default subnet and any route from external
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>   1~:subnets=default@prefixes=0.0.0.0/0 -- external peering for vpc-01 with auth external with default vpc subnet and
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>     default route from external permitted
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>   1~as5835:s=default:p=default:gw -- same as above but via the gateway
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>   1~as5835:s=default,other:p=1.0.0.1/32_le32_ge32,22.22.22.0/24 -- two explicit prefixes allowed from the external,
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>     provided the external it is advertising them they will be imported and exposed to the VPC
 </span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>OPTIONS:
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>   --help, -h                     show help
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>   --name value, -n value         name of the VM or HW to access
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>   --wait-switches-ready, --wait  wait for switches to be ready before and after configuring peerings (default: true)
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>   Global options:
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: &quot;/home/ubuntu/.hhfab-cache&quot;) [$HHFAB_CACHE_DIR]
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: &quot;/home/ubuntu/hhfab&quot;) [$HHFAB_WORK_DIR]
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>   Gateway NAT options:
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>   These are available only when :gw is used. Options are per side of the peering; the examples below are for the
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>   first VPC in a VPC peering. For the second VPC, replace &#39;1&#39; with &#39;2&#39;; for external peerings, use &#39;ext&#39; and &#39;vpc&#39;
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>   instead to target respectively the external or the VPC in the peering (e.g. &#39;vpc-as&#39; or &#39;ext-as&#39;).
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>   - vpc1-as / as1: expose NAT &quot;as&quot; prefixes (one or more CIDRs, comma-separated; use !CIDR for Not)
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>   - vpc1-nat / nat1: static|masquerade|port-forward (if *-as is set and *-nat omitted =&gt; static)
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>   - vpc1-pf / pf1: port-forward rules (required when *-nat=port-forward), comma-separated:
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>     tcp/80=8080,udp/10000-10010=20000-20010,443=8443
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>   Example of VPC↔VPC with NAT via gateway:
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>   1+2:gw:vpc1-as=10.10.0.0/24:vpc1-nat=masquerade:vpc2-as=172.16.0.0/16:vpc2-nat=static
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>   1+2:gw:as1=10.10.0.0/24:nat1=port-forward:pf1=tcp/80=8080:as2=172.16.0.0/16
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>   Example of VPC↔External with NAT via gateway:
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>   1~as5835:gw:vpc-as=10.10.0.1/32:vpc-nat=masquerade:ext-as=192.0.2.0/24:ext-nat=port-forward:ext-pf=udp/53=5353:p=1.0.0.0/8
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>OPTIONS:
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>   --help, -h                     show help
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>   --name value, -n value         name of the VM or HW to access
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>   --wait-switches-ready, --wait  wait for switches to be ready before and after configuring peerings (default: true)
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>   Global options:
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>   --brief, -b      brief output (only warn and error) (default: false) [$HHFAB_BRIEF]
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>   --cache-dir DIR  use cache dir DIR for caching downloaded files (default: &quot;home/ubuntu/.hhfab-cache&quot;) [$HHFAB_CACHE_DIR]
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>   --verbose, -v    verbose output (includes debug) (default: false) [$HHFAB_VERBOSE]
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>   --workdir PATH   run as if hhfab was started in PATH instead of the current working directory (default: &quot;/home/ubuntu/hhfab&quot;) [$HHFAB_WORK_DIR]
 </span></code></pre></div>
 <h3 id="test-connectivity">Test Connectivity</h3>
 <p><code>hhfab</code> includes a utility to test connectivity between servers inside VLAB. This utility is a <code>hhfab vlab</code> sub-command. <code>hhfab vlab test-connectivity</code>.</p>
@@ -2807,7 +2823,7 @@ by the source, up until the idle timeout expires.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 29, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2026</span>
   </span>
 
     

@@ -722,30 +722,6 @@ You're not viewing the latest version.
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="VPC Peering">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#local-vpc-peering" class="md-nav__link">
-    <span class="md-ellipsis">
-      Local VPC Peering
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remote-vpc-peering" class="md-nav__link">
-    <span class="md-ellipsis">
-      Remote VPC Peering
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -1896,30 +1872,6 @@ You're not viewing the latest version.
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="VPC Peering">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#local-vpc-peering" class="md-nav__link">
-    <span class="md-ellipsis">
-      Local VPC Peering
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remote-vpc-peering" class="md-nav__link">
-    <span class="md-ellipsis">
-      Remote VPC Peering
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -2092,7 +2044,7 @@ server connections.</p>
 <p>Mesh connections directly connect leaf switches with each other; they are useful when creating small mesh
 topologies without spines.</p>
 <h3 id="vpc-peering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
-<p>VPCs need <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings to talk to each other. <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings come in two varieties: local and remote.</p>
+<p>VPCs need <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peerings to talk to each other.</p>
 <pre class="mermaid"><code>graph TD
     S1([Spine 1])
     S2([Spine 2])
@@ -2117,8 +2069,7 @@ topologies without spines.</p>
     TS3
     TS4
     end</code></pre>
-<h4 id="local-vpc-peering">Local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h4>
-<p>When there is no dedicated border/peering switch available in the fabric we can use local <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering. This kind of peering tries to send traffic between the two VPCs on the switch where either of the VPCs has workloads attached.</p>
+<p>A <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering sends traffic between the two VPCs on the switch where either of the VPCs has workloads attached.</p>
 <p><pre class="mermaid"><code>graph TD
 
     L1([Leaf 1])
@@ -2140,46 +2091,7 @@ topologies without spines.</p>
     S3
     S4
     end</code></pre>
-The dotted line in the diagram shows the traffic flow for local peering. The traffic originates in <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2, travels to the switch, and finally out the port destined for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1.</p>
-<h4 id="remote-vpc-peering">Remote <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h4>
-<div class="admonition warning">
-<p class="admonition-title">Deprecated</p>
-<p>Remote peering is being deprecated. Using local peering is encouraged.</p>
-</div>
-<p>Remote Peering is used when you need a high bandwidth connection between the VPCs, you will dedicate a switch to the peering traffic. This is either done on the border leaf or on a switch where either of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>'s are not present. This kind of peering allows peer traffic between different VPCs at line rate and is only limited by fabric bandwidth. Remote peering introduces a few additional hops in the traffic and may cause a small increase in latency.</p>
-<p><pre class="mermaid"><code>graph TD
-    S1([Spine 1])
-    S2([Spine 2])
-    L1([Leaf 1])
-    L2([Leaf 2])
-    L3([Leaf 3])
-    TS1[Server1]
-    TS2[Server2]
-    TS3[Server3]
-    TS4[Server4]
-
-    S1 &lt;-.5.-&gt; L1;
-    S1 &lt;-.2.-&gt; L2;
-    S1 &lt;-.3,4.-&gt; L3;
-    S2 &lt;--&gt; L1;
-    S2 &lt;--&gt; L2;
-    S2 &lt;--&gt; L3;
-    L1 &lt;-.6.-&gt; TS1;
-    L1 &lt;--&gt; TS2;
-    L2 &lt;--&gt; TS3;
-    L2 &lt;-.1.-&gt; TS4;
-
-
-    subgraph VPC 1
-    TS1
-    TS2
-    end
-
-    subgraph VPC 2
-    TS3
-    TS4
-    end</code></pre>
-The dotted line in the diagram shows the traffic flow for remote peering. The traffic could take a different path because of <abbr title="Equal-cost Multi-path Routing">ECMP</abbr>. It is important to note that Leaf 3 cannot have any servers from <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1 or <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2 on it, but it can have a  different <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> attached to it.</p>
+The dotted line in the diagram shows the traffic flow for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering. The traffic originates in <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2, travels to the switch, and finally out the port destined for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1.</p>
 <h2 id="sample-wiring-diagram">Sample Wiring Diagram</h2>
 <p>The YAML listing below shows a complete wiring diagram for a spine-leaf topology. It illustrates
 how switches from a single vendor can be arranged to form a fabric. There are no IP
@@ -2770,7 +2682,7 @@ needed for the fabric links. Additional cables are needed to connect servers int
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2026</span>
   </span>
 
     
