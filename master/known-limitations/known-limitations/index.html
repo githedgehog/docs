@@ -1620,6 +1620,39 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#traffic-gets-black-holed-for-up-to-5-minutes-if-a-host-changes-ip-within-its-l3vni-vpc-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traffic gets black-holed for up to 5 minutes if a host changes IP within its L3VNI VPC subnet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Traffic gets black-holed for up to 5 minutes if a host changes IP within its L3VNI VPC subnet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-this-issue_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing this issue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-workarounds_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known workarounds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1888,6 +1921,39 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#traffic-gets-black-holed-for-up-to-5-minutes-if-a-host-changes-ip-within-its-l3vni-vpc-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traffic gets black-holed for up to 5 minutes if a host changes IP within its L3VNI VPC subnet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Traffic gets black-holed for up to 5 minutes if a host changes IP within its L3VNI VPC subnet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-this-issue_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing this issue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-workarounds_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known workarounds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1918,6 +1984,7 @@ working hard to address:</p>
 <li><a href="#deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail">Deleting a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and creating a new one right away can cause the agent to fail</a></li>
 <li><a href="#configuration-not-allowed-when-port-is-member-of-portchannel">Configuration not allowed when port is member of PortChannel</a></li>
 <li><a href="#breakout-and-cmis-transceiver-initialization-issues-on-ds5000">Breakout and CMIS transceiver initialization issues on DS5000</a></li>
+<li><a href="#traffic-gets-black-holed-for-up-to-5-minutes-if-a-host-changes-ip-within-its-l3vni-vpc-subnet">Traffic gets black-holed for up to 5 minutes if a host changes IP within its <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet</a></li>
 </ul>
 <h3 id="deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail">Deleting a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and creating a new one right away can cause the agent to fail</h3>
 <p>The issue is due to limitations in SONiC's gNMI interface. In this particular case,
@@ -1972,6 +2039,18 @@ ssh onto the switch (let's call it <code>s5248-01</code>) and do:</p>
 <li>Always follow any REBOOTREQ status after upgrades or configuration changes.</li>
 <li>If problems persist, perform a full power cycle as a last resort.</li>
 </ul>
+<h3 id="traffic-gets-black-holed-for-up-to-5-minutes-if-a-host-changes-ip-within-its-l3vni-vpc-subnet">Traffic gets black-holed for up to 5 minutes if a host changes IP within its <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet</h3>
+<p>When a host changes its IP address inside an <abbr title="Layer 3 virtual network identifier, part of VXLAN">L3VNI</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet, leaves not directly attached to the host will
+black-hole all traffic to the new IP address for up to 5 minutes, i.e., until the old neighbor is aged
+out. This is due to a defect in SONiC that will be fixed in a future release.</p>
+<h4 id="diagnosing-this-issue_1">Diagnosing this issue</h4>
+<p>Pings to the new IP address of the host from a remote peer will fail with <code>Destination Host Unreachable</code>.</p>
+<p>In the remote leaf, a log like the following one can be observed, where <code>10.10.99.70</code> is the hypothetical new IP of the host:</p>
+<blockquote>
+<p><code>NOTICE swss#orchagent: :- handleConflictingNeighbor: Route: Add IP:10.10.99.70 vrf_id:0x844424930134944, has no matching interface</code></p>
+</blockquote>
+<h4 id="known-workarounds_2">Known workarounds</h4>
+<p>The black-hole will age out on its own after a few minutes. As a defensive measure, users can configure <a href="../../user-guide/dhcp/#static-leases">static <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> leases</a> to ensure that hosts will always receive the same IP address and prevent the issue from happening.</p>
 
 
 
@@ -1994,7 +2073,7 @@ ssh onto the switch (let's call it <code>s5248-01</code>) and do:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 24, 2026</span>
   </span>
 
     
