@@ -6,7 +6,7 @@ working hard to address:
 * [Deleting a VPC and creating a new one right away can cause the agent to fail](#deleting-a-vpc-and-creating-a-new-one-right-away-can-cause-the-agent-to-fail)
 * [Configuration not allowed when port is member of PortChannel](#configuration-not-allowed-when-port-is-member-of-portchannel)
 * [Breakout and CMIS transceiver initialization issues on DS5000](#breakout-and-cmis-transceiver-initialization-issues-on-ds5000)
-* [Traffic gets black-holed for up to 5 minutes if a host changes IP within its L3VNI VPC subnet](#traffic-gets-black-holed-for-up-to-5-minutes-if-a-host-changes-ip-within-its-l3vni-vpc-subnet)
+* [Traffic gets black-holed for up to 1 minute if a host changes IP within its L3VNI VPC subnet](#traffic-gets-black-holed-for-up-to-1-minute-if-a-host-changes-ip-within-its-l3vni-vpc-subnet)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
 
@@ -80,10 +80,10 @@ This occurs because SONiC did not always correctly reinitialize hardware abstrac
 - Always follow any REBOOTREQ status after upgrades or configuration changes.
 - If problems persist, perform a full power cycle as a last resort.
 
-### Traffic gets black-holed for up to 5 minutes if a host changes IP within its L3VNI VPC subnet
+### Traffic gets black-holed for up to 1 minute if a host changes IP within its L3VNI VPC subnet
 
 When a host changes its IP address inside an L3VNI VPC subnet, leaves not directly attached to the host will
-black-hole all traffic to the new IP address for up to 5 minutes, i.e., until the old neighbor is aged
+black-hole all traffic to the new IP address for up to 1 minute, i.e., until the old neighbor is aged
 out. This is due to a defect in SONiC that will be fixed in a future release.
 
 #### Diagnosing this issue
@@ -95,4 +95,4 @@ In the remote leaf, a log like the following one can be observed, where `10.10.9
 
 #### Known workarounds
 
-The black-hole will age out on its own after a few minutes. As a defensive measure, users can configure [static DHCP leases](../user-guide/dhcp.md#static-leases) to ensure that hosts will always receive the same IP address and prevent the issue from happening.
+The black-hole will resolve itself after a minute at most, when the old neighbor ages out. As a defensive measure, users can configure [static DHCP leases](../user-guide/dhcp.md#static-leases) to ensure that hosts will always receive the same IP address and prevent the issue from happening.
