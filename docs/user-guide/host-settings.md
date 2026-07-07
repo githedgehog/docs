@@ -95,6 +95,13 @@ an appropriate configuration should be applied. To facilitate these steps, Hedge
 docker container which automatically starts [FRR](https://docs.frrouting.org/en/latest/) with
 a valid configuration to join the Fabric.
 
+!!! warning
+    Hedgehog does not control host servers; the scripts in the HostBGP container do their best to
+    generate a sane configuration and to address possible pitfalls, but they are not bulletproof,
+    and they cannot fix issues occurring after startup. Users are encouraged to double-check
+    container logs for warnings, to ensure that the generated configuration matches the declared
+    intent, and to monitor the system after the initial container deployment.
+
 As a first step, users should download the docker image from our registry:
 ```bash
 docker pull ghcr.io/githedgehog/host-bgp
