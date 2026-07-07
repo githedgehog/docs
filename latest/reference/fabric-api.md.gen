@@ -89,6 +89,26 @@ _Appears in:_
 | `rebootRequired` _boolean_ | RebootRequired indicates whether a reboot is required |  |  |
 
 
+#### BFDSessionState
+
+_Underlying type:_ _string_
+
+
+
+
+
+_Appears in:_
+- [SwitchStateBFDPeer](#switchstatebfdpeer)
+
+| Field | Description |
+| --- | --- |
+| `` |  |
+| `up` |  |
+| `down` |  |
+| `adminDown` |  |
+| `init` |  |
+
+
 #### BGPMessages
 
 
@@ -207,11 +227,31 @@ _Appears in:_
 | `interfaces` _object (keys:string, values:[SwitchStateInterface](#switchstateinterface))_ | Switch interfaces state (incl. physical, management and port channels) |  |  |
 | `breakouts` _object (keys:string, values:[SwitchStateBreakout](#switchstatebreakout))_ | Breakout ports state (port -> breakout state) |  |  |
 | `transceivers` _object (keys:string, values:[SwitchStateTransceiver](#switchstatetransceiver))_ | Transceivers state (port -> transceiver state) |  |  |
-| `bgpNeighbors` _object (keys:string, values:[map[string]SwitchStateBGPNeighbor](#map[string]switchstatebgpneighbor))_ | State of all BGP neighbors (VRF -> neighbor address -> state) |  |  |
+| `bgpNeighbors` _object (keys:string, values:[map[string]SwitchStateBGPNeighbor](#switchstatebgpneighbor))_ | State of all BGP neighbors (VRF -> neighbor address -> state) |  |  |
+| `bfdPeers` _object (keys:string, values:[map[string]SwitchStateBFDPeer](#switchstatebfdpeer))_ | State of all BFD peers (VRF -> peer address -> state) |  |  |
 | `platform` _[SwitchStatePlatform](#switchstateplatform)_ | State of the switch platform (fans, PSUs, sensors) |  |  |
 | `criticalResources` _[SwitchStateCRM](#switchstatecrm)_ | State of the critical resources (ACLs, routes, etc.) |  |  |
 | `roce` _boolean_ | State of the roce configuration |  |  |
 | `firmware` _object (keys:string, values:string)_ | Firmware versions of the switch |  |  |
+
+
+#### SwitchStateBFDPeer
+
+
+
+
+
+
+
+_Appears in:_
+- [SwitchState](#switchstate)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `state` _[BFDSessionState](#bfdsessionstate)_ |  |  |  |
+| `profile` _string_ |  |  |  |
+| `lastUpTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
+| `fails` _integer_ |  |  |  |
 
 
 #### SwitchStateBGPNeighbor
@@ -1025,6 +1065,7 @@ _Appears in:_
 | `profiling` _[GatewayProfiling](#gatewayprofiling)_ | Profiling defines the configuration for profiling |  |  |
 | `workers` _integer_ | Workers defines the number of worker threads to use for dataplane |  |  |
 | `groups` _[GatewayGroupMembership](#gatewaygroupmembership) array_ | Groups is a list of group memberships for the gateway |  |  |
+| `flowTableCapacity` _integer_ | FlowTableCapacity defines the maximum number of flow entres |  |  |
 
 
 #### GatewayStatus
@@ -1158,7 +1199,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
-| `ports` _[PeeringNATPortForwardEntry](#peeringnatportforwardentry) array_ |  |  |  |
+| `ports` _PeeringNATPortForwardEntry array_ |  |  |  |
 
 
 
@@ -1173,7 +1214,7 @@ _Validation:_
 - Enum: [tcp udp ]
 
 _Appears in:_
-- [PeeringNATPortForwardEntry](#peeringnatportforwardentry)
+- PeeringNATPortForwardEntry
 
 | Field | Description |
 | --- | --- |
@@ -1586,6 +1627,113 @@ and Externals APIs. Intended to be used by the user.
 
 
 
+#### ACLAction
+
+_Underlying type:_ _string_
+
+
+
+
+
+_Appears in:_
+- [ACLStatement](#aclstatement)
+
+| Field | Description |
+| --- | --- |
+| `permit` |  |
+| `deny` |  |
+| `discard` |  |
+| `transit` |  |
+
+
+#### ACLProtocol
+
+_Underlying type:_ _string_
+
+
+
+
+
+_Appears in:_
+- [ACLStatement](#aclstatement)
+
+| Field | Description |
+| --- | --- |
+| `ip` |  |
+| `tcp` |  |
+| `udp` |  |
+| `icmp` |  |
+
+
+#### ACLSpec
+
+
+
+ACLSpec defines an IPv4 Access Control List applied to inbound traffic on an external attachment.
+
+
+
+_Appears in:_
+- [ExternalAttachmentSpec](#externalattachmentspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `statements` _[ACLStatement](#aclstatement) array_ |  |  |  |
+
+
+#### ACLStatement
+
+
+
+
+
+
+
+_Appears in:_
+- [ACLSpec](#aclspec)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `seq` _integer_ |  |  |  |
+| `action` _[ACLAction](#aclaction)_ |  |  |  |
+| `protocol` _[ACLProtocol](#aclprotocol)_ |  |  |  |
+| `srcPrefix` _string_ |  |  |  |
+| `dstPrefix` _string_ |  |  |  |
+| `portRangeBegin` _integer_ |  |  |  |
+| `portRangeEnd` _integer_ |  |  |  |
+| `tcpFilters` _[ACLTCPFilters](#acltcpfilters)_ |  |  |  |
+| `icmpType` _integer_ |  |  |  |
+| `icmpCode` _integer_ |  |  |  |
+
+
+#### ACLTCPFilters
+
+
+
+
+
+
+
+_Appears in:_
+- [ACLStatement](#aclstatement)
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `established` _boolean_ |  |  |  |
+| `fin` _boolean_ |  |  |  |
+| `notFin` _boolean_ |  |  |  |
+| `syn` _boolean_ |  |  |  |
+| `notSyn` _boolean_ |  |  |  |
+| `rst` _boolean_ |  |  |  |
+| `notRst` _boolean_ |  |  |  |
+| `psh` _boolean_ |  |  |  |
+| `notPsh` _boolean_ |  |  |  |
+| `ack` _boolean_ |  |  |  |
+| `notAck` _boolean_ |  |  |  |
+| `urg` _boolean_ |  |  |  |
+| `notUrg` _boolean_ |  |  |  |
+
+
 #### External
 
 
@@ -1662,6 +1810,7 @@ _Appears in:_
 | `switch` _[ExternalAttachmentSwitch](#externalattachmentswitch)_ | Switch is the switch port configuration for the external attachment in case of a BGP external |  |  |
 | `neighbor` _[ExternalAttachmentNeighbor](#externalattachmentneighbor)_ | Neighbor is the BGP neighbor configuration for the external attachment in case of a BGP external |  |  |
 | `static` _[ExternalAttachmentStatic](#externalattachmentstatic)_ | Static contains parameters specific to a static external attachment |  |  |
+| `inboundACL` _[ACLSpec](#aclspec)_ | InboundACL defines the ACL statements to apply to inbound traffic on this external attachment |  |  |
 
 
 #### ExternalAttachmentStatic
@@ -1843,8 +1992,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `ipv4Namespace` _string_ | IPv4Namespace is the name of the IPv4Namespace this External belongs to |  |  |
-| `inboundCommunity` _string_ | InboundCommunity is the inbound community to filter routes from the external system (e.g. 65102:5000) |  |  |
-| `outboundCommunity` _string_ | OutboundCommunity is theoutbound community that all outbound routes will be stamped with (e.g. 50000:50001) |  |  |
+| `inboundCommunity` _string_ | InboundCommunity is the optional inbound community to filter routes from the external system (e.g. 65102:5000) |  |  |
+| `outboundCommunity` _string_ | OutboundCommunity is the optional outbound community that all outbound routes will be stamped with (e.g. 50000:50001) |  |  |
 | `static` _[ExternalStaticSpec](#externalstaticspec)_ | Static contains parameters specific to static externals |  |  |
 
 
@@ -1975,7 +2124,7 @@ VPCAttachmentSpec defines the desired state of VPCAttachment
 
 _Appears in:_
 - [VPCAttachment](#vpcattachment)
-- [VPCAttachmentSpecAnn](#vpcattachmentspecann)
+- VPCAttachmentSpecAnn
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
@@ -2011,6 +2160,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `relay` _string_ | Relay is the DHCP relay IP address, if specified, DHCP server will be disabled |  |  |
+| `relayVPC` _string_ | RelayVPC is the name of the VPC where the selected DHCP relay lives |  |  |
 | `enable` _boolean_ | Enable enables DHCP server for the subnet |  |  |
 | `range` _[VPCDHCPRange](#vpcdhcprange)_ | Range (optional) is the DHCP range for the subnet if DHCP server is enabled |  |  |
 | `options` _[VPCDHCPOptions](#vpcdhcpoptions)_ | Options (optional) is the DHCP options for the subnet if DHCP server is enabled |  |  |
@@ -2162,7 +2312,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `remote` _string_ |  |  |  |
-| `permit` _[map[string]VPCPeer](#map[string]vpcpeer) array_ | Permit defines a list of the peering policies - which VPC subnets will have access to the peer VPC subnets. |  | MaxItems: 10 <br />MinItems: 1 <br /> |
+| `permit` _[map[string]VPCPeer](#vpcpeer) array_ | Permit defines a list of the peering policies - which VPC subnets will have access to the peer VPC subnets. |  | MaxItems: 10 <br />MinItems: 1 <br /> |
 
 
 #### VPCPeeringStatus
@@ -3076,7 +3226,7 @@ _Appears in:_
 | `ports` _object (keys:string, values:[SwitchProfilePort](#switchprofileport))_ | Ports defines the switch port configuration |  |  |
 | `portGroups` _object (keys:string, values:[SwitchProfilePortGroup](#switchprofileportgroup))_ | PortGroups defines the switch port group configuration |  |  |
 | `portProfiles` _object (keys:string, values:[SwitchProfilePortProfile](#switchprofileportprofile))_ | PortProfiles defines the switch port profile configuration |  |  |
-| `nosType` _[NOSType](#nostype)_ | NOSType defines the NOS type to be used for the switch |  |  |
+| `nosType` _NOSType_ | NOSType defines the NOS type to be used for the switch |  |  |
 | `platform` _string_ | Platform is what expected to be request by ONIE and displayed in the NOS |  |  |
 | `pipelines` _object (keys:string, values:[SwitchProfilePipeline](#switchprofilepipeline))_ | Pipelines defines the switch pipeline configuration |  |  |
 | `maxPorts` _integer_ | MaxPorts defines the maximum number of ports (breakouts) allowed for the switch |  |  |
@@ -3113,7 +3263,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `group` _string_ | Group is the name of the redundancy group switch belongs to |  |  |
-| `type` _[RedundancyType](#redundancytype)_ | Type is the type of the redundancy group, could be mclag or eslag |  |  |
+| `type` _RedundancyType_ | Type is the type of the redundancy group, could be mclag or eslag |  |  |
 
 
 #### SwitchRole
