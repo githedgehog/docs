@@ -7584,8 +7584,7 @@ Not intended to be modified by the user.</p>
 </tbody>
 </table>
 <h4 id="gatewaylogratelimit">GatewayLogRateLimit</h4>
-<p>GatewayLogRateLimit configures the token-bucket rate limiter applied to log
-output. Both fields must be greater than zero when the limiter is set.</p>
+<p>GatewayLogRateLimit configures the token-bucket rate limiter applied to logs</p>
 <p><em>Appears in:</em>
 - <a href="#gatewaylogs">GatewayLogs</a></p>
 <table>
@@ -7600,15 +7599,15 @@ output. Both fields must be greater than zero when the limiter is set.</p>
 <tbody>
 <tr>
 <td><code>burst</code> <em>integer</em></td>
-<td>token bucket capacity</td>
+<td>token bucket capacity (default 50)</td>
 <td></td>
-<td>Minimum: 1 <br /></td>
+<td>Minimum: 0 <br /></td>
 </tr>
 <tr>
 <td><code>replenishPerSecond</code> <em>integer</em></td>
-<td>ReplenishPerSecond is the number of tokens (messages) replenished per second</td>
+<td>ReplenishPerSecond is the number of tokens (messages) replenished per second (default 5)</td>
 <td></td>
-<td>Minimum: 1 <br /></td>
+<td>Minimum: 0 <br /></td>
 </tr>
 </tbody>
 </table>
