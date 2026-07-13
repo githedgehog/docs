@@ -200,6 +200,20 @@ sudo ip link delete dev enp2s2.1001
 Users should consider automating the startup of the hostbgp container at system boot up, to make
 sure that connectivity is restored in case of a reboot.
 
+### Coexistence with systemd-networkd
+
+The hostbgp container runs with `--network=host`, which means that any route installed
+by BGP will be visible in the host networking stack. If the server where the container runs is
+managed by `systemd-networkd`, it is crucial to ensure that those routes are not
+removed by systemd. For this reason, users running systemd version >=246 should disable the
+management of foreign routes, e.g. by creating a drop-in file such as
+`/etc/systemd/networkd.conf.d/10-systemd-frr-coexist.conf` with the following content:
+
+```console
+[Network]
+ManageForeignRoutes=no
+```
+
 ### Example: multi-VPC multi-homed server
 
 Let's assume that `server-03` is attached to both `leaf-01` and `leaf-02` with unbundled connections
