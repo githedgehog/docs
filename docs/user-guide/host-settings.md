@@ -121,10 +121,15 @@ using the host's interfaces) and in privileged mode. Additionally, a few input p
       the provided interface as the master device.
     - `a=<ADDRESS1>` is the Virtual IP (or VIP) to be advertised to the leaves; it should have
       a prefix length of /32 and be part of the subnet the host is attaching to.
+- an optional list of static routes (which, if present, must go after the VPC subnets), in the format
+  `--routes <PREFIX>:i=<INTERFACE>[:d=<DISTANCE>] [<PREFIX2>:i=<INTERFACE2>[:d=<DISTANCE2>]...]`, where:
+    - `<PREFIX>` is the destination IP prefix for the route.
+    - `i=<INTERFACE>` is the egress interface for the route.
+    - `d=<DISTANCE>` is an optional administrative distance for the route, in the range 1-255 (default 1).
 
 As an example, the command might look something like this:
 ```bash
-docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp 64307 vpc-01:v=1001:i=enp2s1:i=enp2s2:a=10.100.34.5/32
+docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp 64307 vpc-01:v=1001:i=enp2s1:i=enp2s2:a=10.100.34.5/32 --routes 0.0.0.0/0:i=enp2s0:d=100
 ```
 !!! note
     With the above command, any output produced by the container will not be visible from the terminal
@@ -136,6 +141,8 @@ With the above command:
 - VLAN interfaces `enp2s1.1001` and `enp2s2.1001` would be created, if not already existing
 - BGP unnumbered sessions would be created on those same interfaces, using ASN 64307
 - the address `10.100.34.5/32` would be configured on the loopback of the host server and it would be advertised to the leaves
+- a default route via `enp2s0` would be installed with administrative distance 100; this is higher than the default distance for a BGP
+  route (20), meaning that any default route learned via BGP would take priority over this, effectively making it a "backup" route
 
 To further modify the configuration or to troubleshoot the state of the system, an
 expert user can invoke the FRR CLI using the following command:
@@ -160,6 +167,8 @@ ip prefix-list vpc-01 seq 5 permit 10.100.34.5/32
 route-map vpc-01 permit 10
  match ip address prefix-list vpc-01
 exit
+!
+ip route 0.0.0.0/0 enp2s0 100
 !
 interface lo
  ip address 10.100.34.5/32
@@ -188,10 +197,11 @@ To stop the container, just run the following command:
 docker stop -t 1 hostbgp
 ```
 
-Note that stopping the docker container does not currently remove the VIPs from the loopback, nor
-does it delete the VLAN interfaces. If needed, these should be removed manually; for example,
-using iproute2 and the reference command above, one could run:
+Note that stopping the docker container does not currently remove the VIPs from the loopback
+or any static route configured, nor does it delete the VLAN interfaces. If needed, these should
+be removed manually; for example, using iproute2 and the reference command above, one could run:
 ```bash
+sudo ip route delete 0.0.0.0/0 dev enp2s0
 sudo ip address delete dev lo 10.100.34.5/32
 sudo ip link delete dev enp2s1.1001
 sudo ip link delete dev enp2s2.1001
