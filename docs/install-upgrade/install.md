@@ -48,6 +48,15 @@ responsible for almost every configuration of the fabric with the exception of t
 command and subcommand have usage messages, simply supply the `-h` flag to your command or sub
 command to see the available options. For example `hhfab init -h`.
 
+Hedgehog supplies a [flatcar
+ISO](https://github.com/githedgehog/control-usb-root/pkgs/container/fabricator%2Fflatcar-discovery) that is uefi bootable to assist in the
+discovery of the NIC names and other topology information. Use `oras` to
+download the iso and write it to suitable media, or attach it via virtual
+media. Upstream flatcar
+[images](https://stable.release.flatcar-linux.net/amd64-usr/current/) can be
+[written to USB media](#write-usb-image-to-disk) and
+physically attached to the server; Search for `flatcar_production_image.bin.bz2`.
+
 ### HHFAB commands to make a bootable image
 
 1. `hhfab init --wiring wiring-lab.yaml`
