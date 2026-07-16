@@ -859,6 +859,15 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#coexistence-with-systemd-networkd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coexistence with systemd-networkd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-multi-vpc-multi-homed-server" class="md-nav__link">
     <span class="md-ellipsis">
       Example: multi-VPC multi-homed server
@@ -1803,6 +1812,15 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#coexistence-with-systemd-networkd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coexistence with systemd-networkd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-multi-vpc-multi-homed-server" class="md-nav__link">
     <span class="md-ellipsis">
       Example: multi-VPC multi-homed server
@@ -1930,9 +1948,16 @@ using the host's interfaces) and in privileged mode. Additionally, a few input p
   a prefix length of /32 and be part of the subnet the host is attaching to.</li>
 </ul>
 </li>
+<li>an optional list of static routes (which, if present, must go after the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets), in the format
+  <code>--routes &lt;PREFIX&gt;:i=&lt;INTERFACE&gt;[:d=&lt;DISTANCE&gt;] [&lt;PREFIX2&gt;:i=&lt;INTERFACE2&gt;[:d=&lt;DISTANCE2&gt;]...]</code>, where:<ul>
+<li><code>&lt;PREFIX&gt;</code> is the destination IP prefix for the route.</li>
+<li><code>i=&lt;INTERFACE&gt;</code> is the egress interface for the route.</li>
+<li><code>d=&lt;DISTANCE&gt;</code> is an optional administrative distance for the route, in the range 1-255 (default 1).</li>
+</ul>
+</li>
 </ul>
 <p>As an example, the command might look something like this:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--rm<span class="w"> </span>--detach<span class="w"> </span>--name<span class="w"> </span>hostbgp<span class="w"> </span>ghcr.io/githedgehog/host-bgp<span class="w"> </span><span class="m">64307</span><span class="w"> </span>vpc-01:v<span class="o">=</span><span class="m">1001</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2:a<span class="o">=</span><span class="m">10</span>.100.34.5/32
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--rm<span class="w"> </span>--detach<span class="w"> </span>--name<span class="w"> </span>hostbgp<span class="w"> </span>ghcr.io/githedgehog/host-bgp<span class="w"> </span><span class="m">64307</span><span class="w"> </span>vpc-01:v<span class="o">=</span><span class="m">1001</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2:a<span class="o">=</span><span class="m">10</span>.100.34.5/32<span class="w"> </span>--routes<span class="w"> </span><span class="m">0</span>.0.0.0/0:i<span class="o">=</span>enp2s0:d<span class="o">=</span><span class="m">100</span>
 </span></code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1945,6 +1970,8 @@ the logs of the container with <code>docker logs hostbgp</code> to investigate a
 <li>VLAN interfaces <code>enp2s1.1001</code> and <code>enp2s2.1001</code> would be created, if not already existing</li>
 <li><abbr title="Border Gateway Protocol">BGP</abbr> unnumbered sessions would be created on those same interfaces, using ASN 64307</li>
 <li>the address <code>10.100.34.5/32</code> would be configured on the loopback of the host server and it would be advertised to the leaves</li>
+<li>a default route via <code>enp2s0</code> would be installed with administrative distance 100; this is higher than the default distance for a <abbr title="Border Gateway Protocol">BGP</abbr>
+  route (20), meaning that any default route learned via <abbr title="Border Gateway Protocol">BGP</abbr> would take priority over this, effectively making it a "backup" route</li>
 </ul>
 <p>To further modify the configuration or to troubleshoot the state of the system, an
 expert user can invoke the FRR CLI using the following command:
@@ -1967,114 +1994,127 @@ expert user can invoke the FRR CLI using the following command:
 </span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w"> </span>match<span class="w"> </span>ip<span class="w"> </span>address<span class="w"> </span>prefix-list<span class="w"> </span>vpc-01
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="nb">exit</span>
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>!
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>interface<span class="w"> </span>lo
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w"> </span>ip<span class="w"> </span>address<span class="w"> </span><span class="m">10</span>.100.34.5/32
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="nb">exit</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>!
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>router<span class="w"> </span>bgp<span class="w"> </span><span class="m">64307</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w"> </span>no<span class="w"> </span>bgp<span class="w"> </span>ebgp-requires-policy
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w"> </span>bgp<span class="w"> </span>bestpath<span class="w"> </span>as-path<span class="w"> </span>multipath-relax
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w"> </span>timers<span class="w"> </span>bgp<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">9</span>
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w"> </span>neighbor<span class="w"> </span>enp2s1.1001<span class="w"> </span>interface<span class="w"> </span>remote-as<span class="w"> </span>external
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w"> </span>neighbor<span class="w"> </span>enp2s2.1001<span class="w"> </span>interface<span class="w"> </span>remote-as<span class="w"> </span>external
-</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w"> </span>!
-</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w"> </span>address-family<span class="w"> </span>ipv4<span class="w"> </span>unicast
-</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">  </span>network<span class="w"> </span><span class="m">10</span>.100.34.5/32
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">  </span>neighbor<span class="w"> </span>enp2s1.1001<span class="w"> </span>route-map<span class="w"> </span>vpc-01<span class="w"> </span>out
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">  </span>neighbor<span class="w"> </span>enp2s2.1001<span class="w"> </span>route-map<span class="w"> </span>vpc-01<span class="w"> </span>out
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">  </span>maximum-paths<span class="w"> </span><span class="m">4</span>
-</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w"> </span>exit-address-family
-</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="nb">exit</span>
-</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>!
-</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>end
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>ip<span class="w"> </span>route<span class="w"> </span><span class="m">0</span>.0.0.0/0<span class="w"> </span>enp2s0<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>!
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>interface<span class="w"> </span>lo
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w"> </span>ip<span class="w"> </span>address<span class="w"> </span><span class="m">10</span>.100.34.5/32
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="nb">exit</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>!
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>router<span class="w"> </span>bgp<span class="w"> </span><span class="m">64307</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w"> </span>no<span class="w"> </span>bgp<span class="w"> </span>ebgp-requires-policy
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w"> </span>bgp<span class="w"> </span>bestpath<span class="w"> </span>as-path<span class="w"> </span>multipath-relax
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w"> </span>timers<span class="w"> </span>bgp<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">9</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w"> </span>neighbor<span class="w"> </span>enp2s1.1001<span class="w"> </span>interface<span class="w"> </span>remote-as<span class="w"> </span>external
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w"> </span>neighbor<span class="w"> </span>enp2s2.1001<span class="w"> </span>interface<span class="w"> </span>remote-as<span class="w"> </span>external
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w"> </span>!
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w"> </span>address-family<span class="w"> </span>ipv4<span class="w"> </span>unicast
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">  </span>network<span class="w"> </span><span class="m">10</span>.100.34.5/32
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">  </span>neighbor<span class="w"> </span>enp2s1.1001<span class="w"> </span>route-map<span class="w"> </span>vpc-01<span class="w"> </span>out
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">  </span>neighbor<span class="w"> </span>enp2s2.1001<span class="w"> </span>route-map<span class="w"> </span>vpc-01<span class="w"> </span>out
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">  </span>maximum-paths<span class="w"> </span><span class="m">4</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w"> </span>exit-address-family
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="nb">exit</span>
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>!
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>end
 </span></code></pre></div></p>
 <p>To stop the container, just run the following command:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>-t<span class="w"> </span><span class="m">1</span><span class="w"> </span>hostbgp
 </span></code></pre></div></p>
-<p>Note that stopping the docker container does not currently remove the VIPs from the loopback, nor
-does it delete the VLAN interfaces. If needed, these should be removed manually; for example,
-using iproute2 and the reference command above, one could run:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>ip<span class="w"> </span>address<span class="w"> </span>delete<span class="w"> </span>dev<span class="w"> </span>lo<span class="w"> </span><span class="m">10</span>.100.34.5/32
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>dev<span class="w"> </span>enp2s1.1001
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>dev<span class="w"> </span>enp2s2.1001
+<p>Note that stopping the docker container does not currently remove the VIPs from the loopback
+or any static route configured, nor does it delete the VLAN interfaces. If needed, these should
+be removed manually; for example, using iproute2 and the reference command above, one could run:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>ip<span class="w"> </span>route<span class="w"> </span>delete<span class="w"> </span><span class="m">0</span>.0.0.0/0<span class="w"> </span>dev<span class="w"> </span>enp2s0
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>ip<span class="w"> </span>address<span class="w"> </span>delete<span class="w"> </span>dev<span class="w"> </span>lo<span class="w"> </span><span class="m">10</span>.100.34.5/32
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>dev<span class="w"> </span>enp2s1.1001
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>delete<span class="w"> </span>dev<span class="w"> </span>enp2s2.1001
 </span></code></pre></div></p>
 <p>Users should consider automating the startup of the hostbgp container at system boot up, to make
 sure that connectivity is restored in case of a reboot.</p>
+<h3 id="coexistence-with-systemd-networkd">Coexistence with systemd-networkd</h3>
+<p>The hostbgp container runs with <code>--network=host</code>, which means that any route installed
+by <abbr title="Border Gateway Protocol">BGP</abbr> will be visible in the host networking stack. If the server where the container runs is
+managed by <code>systemd-networkd</code>, it is crucial to ensure that those routes are not
+removed by systemd. For this reason, users running systemd version &gt;=246 should disable the
+management of foreign routes, e.g. by creating a drop-in file such as
+<code>/etc/systemd/networkd.conf.d/10-systemd-frr-coexist.conf</code> with the following content:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">[Network]</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">ManageForeignRoutes=no</span>
+</span></code></pre></div>
 <h3 id="example-multi-vpc-multi-homed-server">Example: multi-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> multi-homed server</h3>
 <p>Let's assume that <code>server-03</code> is attached to both <code>leaf-01</code> and <code>leaf-02</code> with unbundled connections
 <code>server-03--unbundled--leaf-01</code> and <code>server-03--unbundled--leaf-02</code>, and that we want it to be part
 of two separate VPCs using host-<abbr title="Border Gateway Protocol">BGP</abbr>. We can create the VPCs and attachments e.g. from the control node
 using the Fabric <code>kubectl</code> plugin:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>vpc-01<span class="w"> </span>--subnet<span class="o">=</span><span class="m">10</span>.0.1.0/24<span class="w"> </span>--vlan<span class="o">=</span><span class="m">1001</span><span class="w"> </span>--host-bgp<span class="o">=</span><span class="nb">true</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="m">10</span>:04:09<span class="w"> </span>INF<span class="w"> </span>VPC<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>vpc-01
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>vpc-02<span class="w"> </span>--subnet<span class="o">=</span><span class="m">10</span>.0.2.0/24<span class="w"> </span>--vlan<span class="o">=</span><span class="m">1002</span><span class="w"> </span>--host-bgp<span class="o">=</span><span class="nb">true</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="m">10</span>:04:24<span class="w"> </span>INF<span class="w"> </span>VPC<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>vpc-02
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v1-l1<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-01<span class="w"> </span>--subnet<span class="o">=</span>vpc-01/default
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="m">10</span>:05:59<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v1-l1
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v1-l2<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-02<span class="w"> </span>--subnet<span class="o">=</span>vpc-01/default
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="m">10</span>:06:08<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v1-l2
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v2-l1<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-01<span class="w"> </span>--subnet<span class="o">=</span>vpc-02/default
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="m">10</span>:06:24<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v2-l1
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v2-l2<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-02<span class="w"> </span>--subnet<span class="o">=</span>vpc-02/default
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="m">10</span>:06:33<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v2-l2
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>vpc-01<span class="w"> </span>--subnet<span class="o">=</span><span class="m">10</span>.0.1.0/24<span class="w"> </span>--vlan<span class="o">=</span><span class="m">1001</span><span class="w"> </span>--host-bgp<span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="m">10</span>:04:09<span class="w"> </span>INF<span class="w"> </span>VPC<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>vpc-01
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>create<span class="w"> </span>--name<span class="o">=</span>vpc-02<span class="w"> </span>--subnet<span class="o">=</span><span class="m">10</span>.0.2.0/24<span class="w"> </span>--vlan<span class="o">=</span><span class="m">1002</span><span class="w"> </span>--host-bgp<span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="m">10</span>:04:24<span class="w"> </span>INF<span class="w"> </span>VPC<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>vpc-02
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v1-l1<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-01<span class="w"> </span>--subnet<span class="o">=</span>vpc-01/default
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="m">10</span>:05:59<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v1-l1
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v1-l2<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-02<span class="w"> </span>--subnet<span class="o">=</span>vpc-01/default
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="m">10</span>:06:08<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v1-l2
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v2-l1<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-01<span class="w"> </span>--subnet<span class="o">=</span>vpc-02/default
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="m">10</span>:06:24<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v2-l1
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>core@control-1<span class="w"> </span>~<span class="w"> </span>$<span class="w"> </span>kubectl<span class="w"> </span>fabric<span class="w"> </span>vpc<span class="w"> </span>attach<span class="w"> </span>--name<span class="o">=</span>s3-v2-l2<span class="w"> </span>--conn<span class="o">=</span>server-03--unbundled--leaf-02<span class="w"> </span>--subnet<span class="o">=</span>vpc-02/default
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="m">10</span>:06:33<span class="w"> </span>INF<span class="w"> </span>VPCAttachment<span class="w"> </span>created<span class="w"> </span><span class="nv">name</span><span class="o">=</span>s3-v2-l2
 </span></code></pre></div>
 <p>Then we can configure <code>server-03</code> using the provided container:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--rm<span class="w"> </span>--detach<span class="w"> </span>--name<span class="w"> </span>hostbgp<span class="w"> </span>ghcr.io/githedgehog/host-bgp<span class="w"> </span>vpc-01:v<span class="o">=</span><span class="m">1001</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2:a<span class="o">=</span><span class="m">10</span>.0.1.3/32<span class="w"> </span>vpc-02:v<span class="o">=</span><span class="m">1002</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2:a<span class="o">=</span><span class="m">10</span>.0.2.3/32
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--rm<span class="w"> </span>--detach<span class="w"> </span>--name<span class="w"> </span>hostbgp<span class="w"> </span>ghcr.io/githedgehog/host-bgp<span class="w"> </span>vpc-01:v<span class="o">=</span><span class="m">1001</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2:a<span class="o">=</span><span class="m">10</span>.0.1.3/32<span class="w"> </span>vpc-02:v<span class="o">=</span><span class="m">1002</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2:a<span class="o">=</span><span class="m">10</span>.0.2.3/32
 </span></code></pre></div>
 <p>This will generate the following FRR configuration:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>!
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ip prefix-list vpc-01 seq 5 permit 10.0.1.3/32
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>ip prefix-list vpc-02 seq 5 permit 10.0.2.3/32
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>!
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>route-map vpc-01 permit 10
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a> match ip address prefix-list vpc-01
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>exit
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>!
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>route-map vpc-02 permit 10
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a> match ip address prefix-list vpc-02
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>exit
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>!
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>interface lo
-</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a> ip address 10.0.1.3/32
-</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a> ip address 10.0.2.3/32
-</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>exit
-</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>!
-</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>router bgp 64999
-</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a> no bgp ebgp-requires-policy
-</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a> bgp bestpath as-path multipath-relax
-</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a> timers bgp 3 9
-</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a> neighbor enp2s1.1001 interface remote-as external
-</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a> neighbor enp2s1.1002 interface remote-as external
-</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a> neighbor enp2s2.1001 interface remote-as external
-</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a> neighbor enp2s2.1002 interface remote-as external
-</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a> !
-</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a> address-family ipv4 unicast
-</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>  network 10.0.1.3/32
-</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>  network 10.0.2.3/32
-</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>  neighbor enp2s1.1001 route-map vpc-01 out
-</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>  neighbor enp2s1.1002 route-map vpc-02 out
-</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>  neighbor enp2s2.1001 route-map vpc-01 out
-</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>  neighbor enp2s2.1002 route-map vpc-02 out
-</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>  maximum-paths 4
-</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a> exit-address-family
-</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>exit
-</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>!
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>!
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ip prefix-list vpc-01 seq 5 permit 10.0.1.3/32
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>ip prefix-list vpc-02 seq 5 permit 10.0.2.3/32
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>!
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>route-map vpc-01 permit 10
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a> match ip address prefix-list vpc-01
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>exit
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>!
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>route-map vpc-02 permit 10
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a> match ip address prefix-list vpc-02
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>exit
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>!
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>interface lo
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a> ip address 10.0.1.3/32
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a> ip address 10.0.2.3/32
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>exit
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>!
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>router bgp 64999
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a> no bgp ebgp-requires-policy
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a> bgp bestpath as-path multipath-relax
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a> timers bgp 3 9
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a> neighbor enp2s1.1001 interface remote-as external
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a> neighbor enp2s1.1002 interface remote-as external
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a> neighbor enp2s2.1001 interface remote-as external
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a> neighbor enp2s2.1002 interface remote-as external
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a> !
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a> address-family ipv4 unicast
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>  network 10.0.1.3/32
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>  network 10.0.2.3/32
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>  neighbor enp2s1.1001 route-map vpc-01 out
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>  neighbor enp2s1.1002 route-map vpc-02 out
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>  neighbor enp2s2.1001 route-map vpc-01 out
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>  neighbor enp2s2.1002 route-map vpc-02 out
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>  maximum-paths 4
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a> exit-address-family
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>exit
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a>!
 </span></code></pre></div></p>
 <p>And we can verify on either of the leaves attached to <code>server-03</code> that VIPs are only
 learned in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> they belong to:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>leaf-01# show ip route vrf VrfVvpc-01
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Codes:  K - kernel route, C - connected, S - static, B - BGP, O - OSPF, A - attached-host
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        &gt; - selected route, * - FIB route, q - queued route, r - rejected route, b - backup
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>       Destination        Gateway                                                                    Dist/Metric   Last Update
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>--------------------------------------------------------------------------------------------------------------------------------
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a> B&gt;*   10.0.1.3/32        via fe80::e20:12ff:fefe:401     Ethernet1.1001                             20/0          00:09:43 ago
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>leaf-01# show ip route vrf VrfVvpc-02
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>Codes:  K - kernel route, C - connected, S - static, B - BGP, O - OSPF, A - attached-host
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        &gt; - selected route, * - FIB route, q - queued route, r - rejected route, b - backup
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>       Destination        Gateway                                                                    Dist/Metric   Last Update
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>--------------------------------------------------------------------------------------------------------------------------------
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a> B&gt;*   10.0.2.3/32        via fe80::e20:12ff:fefe:401     Ethernet1.1002                             20/0          00:09:47 ago
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>leaf-01#
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>leaf-01# show ip route vrf VrfVvpc-01
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Codes:  K - kernel route, C - connected, S - static, B - BGP, O - OSPF, A - attached-host
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>        &gt; - selected route, * - FIB route, q - queued route, r - rejected route, b - backup
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>       Destination        Gateway                                                                    Dist/Metric   Last Update
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>--------------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a> B&gt;*   10.0.1.3/32        via fe80::e20:12ff:fefe:401     Ethernet1.1001                             20/0          00:09:43 ago
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>leaf-01# show ip route vrf VrfVvpc-02
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>Codes:  K - kernel route, C - connected, S - static, B - BGP, O - OSPF, A - attached-host
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        &gt; - selected route, * - FIB route, q - queued route, r - rejected route, b - backup
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>       Destination        Gateway                                                                    Dist/Metric   Last Update
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>--------------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a> B&gt;*   10.0.2.3/32        via fe80::e20:12ff:fefe:401     Ethernet1.1002                             20/0          00:09:47 ago
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>leaf-01#
 </span></code></pre></div></p>
 
 
@@ -2098,7 +2138,7 @@ learned in the <abbr title="Virtual Private Cloud, similar to the public cloud V
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2026</span>
   </span>
 
     
