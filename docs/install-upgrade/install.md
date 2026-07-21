@@ -143,6 +143,9 @@ hypervisor:
 - Configure both NICs as `virtio`
 - Ensure a console device is present
 - Use VirtIO devices wherever possible
+- The qemu guest agent is built into the flatcar image, create a virtio-port
+  with the name `org.qemu.guest_agent.0`. More information is on the [flatcar
+website](https://www.flatcar.org/docs/latest/os-config/network/acpi/?highlight=guest#qemu-guest-agent)
 
 
 ### Fabric Manages Switches
