@@ -49,13 +49,17 @@ command and subcommand have usage messages, simply supply the `-h` flag to your 
 command to see the available options. For example `hhfab init -h`.
 
 Hedgehog supplies a [flatcar
-ISO](https://github.com/githedgehog/control-usb-root/pkgs/container/fabricator%2Fflatcar-discovery) that is uefi bootable to assist in the
+ISO](https://github.com/githedgehog/control-usb-root/pkgs/container/fabricator%2Fflatcar-discovery) that is UEFI bootable to assist in the
 discovery of the NIC names and other topology information. Use `oras` to
-download the iso and write it to suitable media, or attach it via virtual
-media. Upstream flatcar
-[images](https://stable.release.flatcar-linux.net/amd64-usr/current/) can be
-[written to USB media](#write-usb-image-to-disk) and
-physically attached to the server; Search for `flatcar_production_image.bin.bz2`.
+download the ISO and write it to suitable media, or attach it via virtual
+media. 
+
+For USB media, first locate the Flatcar version number in the Software Versions section of the [release notes](../release-notes/index.md).
+Next go to the [flatcar stable releases](https://stable.release.flatcar-linux.net/amd64-usr/) and select the
+link that corresponds to the version number. Finally use the search
+feature of the page and download `flatcar_production_image.bin.bz2`. Once downloaded
+the image can be [written to USB media](#write-usb-image-to-disk) and
+physically attached to the server.
 
 ### HHFAB commands to make a bootable image
 
