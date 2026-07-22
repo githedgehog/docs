@@ -35,20 +35,17 @@ classDef legendBox fill:none,stroke:none,color:#000
 Gateway_01["Gateway"]
 
 subgraph Spines[" "]
-    direction LR
     Spine_01["Spine-1"]
     Spine_02["Spine-2"]
 end
 
 subgraph Leaves[" "]
-    direction LR
     Leaf_01["Leaf-1"]
     Leaf_02["Leaf-2"]
     Leaf_03["Leaf-3"]
 end
 
 subgraph Servers[" "]
-    direction TB
     Server_01["Server-1"]
     Server_02["Server-2"]
     Server_03["Server-3"]
