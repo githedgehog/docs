@@ -95,7 +95,10 @@ There are utilities that assist this process such as [etcher](https://etcher.bal
 
 ## Install Control Node
 
-This control node should be given a static IP address. Either a lease or statically assigned.
+This control node should be given a static IP address. Either a lease or
+statically assigned. Running the control node as a virtual machine isn't
+officially supported but there are recommendations [in this
+section](#controller-as-virtual-machine).
 
 1. Configure the server to use UEFI boot **without** secure boot
 
@@ -129,6 +132,30 @@ interface. It runs a DHCP server, as well as a small HTTP server.
 
 The `external` network allows the user to access the control node via their local
 IT network. It provides SSH access to the host operating system on the control node.
+
+### Controller as Virtual Machine
+
+These instructions are provided for `libvirt`, adapt as needed for the chosen
+hypervisor:
+
+- Ensure the hardware specs match [the control node](./requirements.md#control-node)
+- Disable secure boot: 
+```xml
+<os firmware='efi'>
+  <firmware>
+    <feature enabled='no' name='secure-boot'/>
+  </firmware>
+</os>
+```
+- Configure the `efi` firmware and `q35` machine type
+- Configure the virtual machine for auto start when the host system boots up.
+- Configure both NICs as `virtio`
+- Ensure a console device is present
+- Use VirtIO devices wherever possible
+- The qemu guest agent is built into the flatcar image, create a virtio-port
+  with the name `org.qemu.guest_agent.0`. More information is on the [flatcar
+website](https://www.flatcar.org/docs/latest/os-config/network/acpi/?highlight=guest#qemu-guest-agent)
+
 
 ### Fabric Manages Switches
 
