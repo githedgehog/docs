@@ -107,42 +107,82 @@ As a first step, users should download the docker image from our registry:
 docker pull ghcr.io/githedgehog/host-bgp
 ```
 
+The command above downloads the `latest` image for the host-bgp container; alternatively, a specific
+version can be fetched by adding it as a suffix to the image name, e.g., using version `v0.4.0` as a reference:
+
+```bash
+docker pull ghcr.io/githedgehog/host-bgp:v0.4.0
+```
+
+Pinning a version is recommended, so that a host reboot cannot silently pick up a different image; the examples
+below all refer to `v0.4.0`.
+
+!!! note
+    Starting with `v0.4.0`, the image is published as a multi-arch manifest covering `linux/amd64` and `linux/arm64`,
+    so the same image name works on both x86 and ARM hosts and `docker pull` picks the matching variant automatically.
+    Earlier versions are `amd64`-only.
+
 The container should then be run with host networking (so that FRR can communicate with the leaves
 using the host's interfaces) and in privileged mode. Additionally, a few input parameters are required:
 
 - an optional ASN to use in BGP. If present, it should be the first parameter; if not specified, the container will use ASN 64999
 - one or more VPC subnets with their related parameters, in the format
-  `<VPC-SUBNET-NAME>:v=<VLAN>:i=<INTERFACE1>[:i=<INTERFACE2>...]:a=<ADDRESS1>[:a=<ADDRESS2>...]`, where:
+  `<VPC-SUBNET-NAME>:v=<VLAN>:i=<INTERFACE1>[,<ALIAS1>][:i=<INTERFACE2>[,<ALIAS2>]...]:a=<ADDRESS1>[:a=<ADDRESS2>...]`, where:
     - `<VPC-SUBNET-NAME>` is just a mnemonic ID for the VPC subnet we want to attach to.
       It can be anything as long as it is a legal name for a route-map or prefix-list in FRR.
     - `v=<VLAN>` is the VLAN ID to be used for the VPC; use 0 for untagged.
-    - `i=<INTERFACE1>` is an interface to be used to establish a BGP unnumbered session with a
+    - `i=<INTERFACE>` is an interface to be used to establish a BGP unnumbered session with a
       Fabric leaf; if a VLAN ID was specified, a corresponding VLAN interface will be created using
-      the provided interface as the master device.
-    - `a=<ADDRESS1>` is the Virtual IP (or VIP) to be advertised to the leaves; it should have
+      the provided interface as the master device, named `<INTERFACE>.<VLAN>` by default.
+    - `<ALIAS>` is an optional name for that VLAN interface, given after a comma separator, and used
+      instead of the default `<INTERFACE>.<VLAN>`. It must be a legal interface name (alphanumeric
+      characters, dashes and underscores, at most 15 characters) and it is only accepted when the VLAN
+      ID is non-zero. An alias is *required* when the default `<INTERFACE>.<VLAN>` name would exceed
+      the kernel's 15-character limit on interface names: the container refuses to start rather than
+      truncating the name.
+    - `a=<ADDRESS>` is the Virtual IP (or VIP) to be advertised to the leaves; it should have
       a prefix length of /32 and be part of the subnet the host is attaching to.
 - an optional list of static routes (which, if present, must go after the VPC subnets), in the format
   `--routes <PREFIX>:i=<INTERFACE>[:d=<DISTANCE>] [<PREFIX2>:i=<INTERFACE2>[:d=<DISTANCE2>]...]`, where:
     - `<PREFIX>` is the destination IP prefix for the route.
     - `i=<INTERFACE>` is the egress interface for the route.
     - `d=<DISTANCE>` is an optional administrative distance for the route, in the range 1-255 (default 1).
+- an optional list of per-interface rail IPs, useful to run RoCE from the host (which, if present, must also go after
+  the VPC subnets), in the format
+  `--roce <INTERFACE-OR-ALIAS1>:a=<ADDRESS1> [<INTERFACE-OR-ALIAS2>:a=<ADDRESS2>...]`, where:
+    - `<INTERFACE-OR-ALIAS>` refers to an interface declared in the VPC section. In the `--roce` section, reference it
+      either by its real interface name or by its alias (if one was configured), but not using the comma form
+      (`<INTERFACE>,<ALIAS>`). The interface must appear in exactly one VPC subnet, since the rail IP rides
+      that subnet's existing BGP session, and it can carry a single rail IP.
+    - `a=<ADDRESS>` is a /32 IP address that will be configured on the enslaved VLAN interface (or the "parent"
+      interface itself if not using VLANs) and advertised via the BGP session over that interface only, so that
+      traffic towards it follows a single link. Note that by default Fabric leaves will only accept /32 prefixes
+      belonging to the hostBGP subnet proper; if these per-interface addresses are not part of that, appropriate
+      prefixes including them should be configured as `hostBGPExtraPrefixes` in the
+      [hostBGP subnet](vpcs.md#hostbgp-subnets).
+
+The `--routes` and `--roce` sections can appear in any order relative to each other, as long as both come after the
+VPC subnets.
 
 As an example, the command might look something like this:
 ```bash
-docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp 64307 vpc-01:v=1001:i=enp2s1:i=enp2s2:a=10.100.34.5/32 --routes 0.0.0.0/0:i=enp2s0:d=100
+docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp:v0.4.0 64307 vpc-01:v=1001:i=enp2s1:i=enp2s2,to-leaf2:a=10.100.34.5/32 --routes 0.0.0.0/0:i=enp2s0:d=100 --roce enp2s1:a=10.115.1.5/32 to-leaf2:a=10.115.2.7/32
 ```
 !!! note
     With the above command, any output produced by the container will not be visible from the terminal
-    where it was started. Verify that the container is running correctly with `docker ps`, or examine
-    the logs of the container with `docker logs hostbgp` to investigate a failure.
+    where it was started. Verify that the container is running correctly with `docker ps` and inspect its output
+    with `docker logs hostbgp`. Note that if the container fails at startup, `--rm` will have already removed it and
+    its logs along with it; in that case, drop both `--detach` and `--rm` to see the failure directly.
 
 With the above command:
 
-- VLAN interfaces `enp2s1.1001` and `enp2s2.1001` would be created, if not already existing
+- VLAN interfaces `enp2s1.1001` and `to-leaf2` would be created, if not already existing
 - BGP unnumbered sessions would be created on those same interfaces, using ASN 64307
 - the address `10.100.34.5/32` would be configured on the loopback of the host server and it would be advertised to the leaves
 - a default route via `enp2s0` would be installed with administrative distance 100; this is higher than the default distance for a BGP
   route (20), meaning that any default route learned via BGP would take priority over this, effectively making it a "backup" route
+- IP address `10.115.1.5/32` would be configured on `enp2s1.1001` and advertised over the corresponding BGP session
+- IP address `10.115.2.7/32` would be configured on `to-leaf2` and advertised over the corresponding BGP session
 
 To further modify the configuration or to troubleshoot the state of the system, an
 expert user can invoke the FRR CLI using the following command:
@@ -163,15 +203,41 @@ hostname server-04
 service integrated-vtysh-config
 !
 ip prefix-list vpc-01 seq 5 permit 10.100.34.5/32
+ip prefix-list roce-enp2s1-v1001 seq 5 permit 10.115.1.5/32
+ip prefix-list roce-to-leaf2-v1001 seq 5 permit 10.115.2.7/32
 !
 route-map vpc-01 permit 10
  match ip address prefix-list vpc-01
 exit
 !
+route-map roce-enp2s1-v1001 permit 10
+ match ip address prefix-list vpc-01
+exit
+!
+route-map roce-enp2s1-v1001 permit 20
+ match ip address prefix-list roce-enp2s1-v1001
+exit
+!
+route-map roce-to-leaf2-v1001 permit 10
+ match ip address prefix-list vpc-01
+exit
+!
+route-map roce-to-leaf2-v1001 permit 20
+ match ip address prefix-list roce-to-leaf2-v1001
+exit
+!
 ip route 0.0.0.0/0 enp2s0 100
+!
+interface enp2s1.1001
+ ip address 10.115.1.5/32
+exit
 !
 interface lo
  ip address 10.100.34.5/32
+exit
+!
+interface to-leaf2
+ ip address 10.115.2.7/32
 exit
 !
 router bgp 64307
@@ -179,12 +245,14 @@ router bgp 64307
  bgp bestpath as-path multipath-relax
  timers bgp 3 9
  neighbor enp2s1.1001 interface remote-as external
- neighbor enp2s2.1001 interface remote-as external
+ neighbor to-leaf2 interface remote-as external
  !
  address-family ipv4 unicast
   network 10.100.34.5/32
-  neighbor enp2s1.1001 route-map vpc-01 out
-  neighbor enp2s2.1001 route-map vpc-01 out
+  network 10.115.1.5/32
+  network 10.115.2.7/32
+  neighbor enp2s1.1001 route-map roce-enp2s1-v1001 out
+  neighbor to-leaf2 route-map roce-to-leaf2-v1001 out
   maximum-paths 4
  exit-address-family
 exit
@@ -204,7 +272,7 @@ be removed manually; for example, using iproute2 and the reference command above
 sudo ip route delete 0.0.0.0/0 dev enp2s0
 sudo ip address delete dev lo 10.100.34.5/32
 sudo ip link delete dev enp2s1.1001
-sudo ip link delete dev enp2s2.1001
+sudo ip link delete dev to-leaf2
 ```
 
 Users should consider automating the startup of the hostbgp container at system boot up, to make
@@ -249,7 +317,7 @@ core@control-1 ~ $ kubectl fabric vpc attach --name=s3-v2-l2 --conn=server-03--u
 Then we can configure `server-03` using the provided container:
 
 ```bash
-docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp vpc-01:v=1001:i=enp2s1:i=enp2s2:a=10.0.1.3/32 vpc-02:v=1002:i=enp2s1:i=enp2s2:a=10.0.2.3/32
+docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp:v0.4.0 vpc-01:v=1001:i=enp2s1:i=enp2s2:a=10.0.1.3/32 vpc-02:v=1002:i=enp2s1:i=enp2s2:a=10.0.2.3/32
 ```
 
 This will generate the following FRR configuration:
