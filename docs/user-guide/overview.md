@@ -6,7 +6,8 @@ This chapter gives an overview of the main features of Hedgehog Fabric and their
 - [**Connections**](connections.md): Describes the different types of network links, such as workload server connections, switch interconnects, and external peering links.
 - [**VPCs and Namespaces**](vpcs.md): Explains virtual private cloud configurations, subnet management, and peering mechanisms.
 - [**External Peering**](external.md): Details how to connect the fabric to external networks and services through border leaf peering.
-- [**Gateway**](gateway.md): Explains gateway configuration and gateway based Peerings for NAT and firewall functionality.
+- [**Gateway**](gateway.md): Explains how gateway nodes attach to the fabric and how they process traffic.
+- [**Gateway Peering**](gateway-peering.md): Details gateway based Peerings for NAT and firewall functionality.
 - [**Adding a gateway to Fabric**](gateway-add.md): Explains how to add a gateway to a Fabric.
 - [**Gateway fail-over**](gateway-failover.md): Explains fail-over strategies when using multiple gateways.
 - [**Fabric Shrink/Expand**](shrink-expand.md): Guides users on adding, removing, or replacing switches within the fabric.

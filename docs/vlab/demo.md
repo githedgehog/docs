@@ -580,7 +580,7 @@ hhfab vlab setup-peerings 1+2:gw
 ```
 
 Alternatively, you can create the peering manually in the control node, using the examples in the
-[gateway section of the user guide](../user-guide/gateway.md#gateway-peering) as a base, e.g.:
+[Gateway Peering section of the user guide](../user-guide/gateway-peering.md) as a base, e.g.:
 
 ```
 core@control-1 ~ $ cat <<EOF > vpc-01--vpc-02--gw.yaml

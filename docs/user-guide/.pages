@@ -13,6 +13,7 @@ nav:
     - grafana.md
   - Gateway:
     - gateway.md
+    - gateway-peering.md
     - gateway-add.md
     - gateway-failover.md
   - ...

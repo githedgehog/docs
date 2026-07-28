@@ -183,7 +183,7 @@ To allow a specific VPC to have access to prefixes reachable via an Edge Device,
     External VPC Peering via this Fabric object is only supported for BGP-speaking externals or
     static externals without proxy ARP. For the proxied static external use case, or whenever NAT
     is required to access the target prefixes, Gateway peering should be used instead: see
-    [Gateway Peering for External Connections](gateway.md#gateway-peering-for-external-connections).
+    [Gateway Peering for External Connections](gateway-peering.md#gateway-peering-for-external-connections).
 
 ```yaml
 apiVersion: vpc.githedgehog.com/v1beta1
@@ -367,7 +367,7 @@ route-map HedgeOut permit 10
 bgp community-list standard HedgeIn permit 5000:65102
 ```
 
-See [Gateway Peering with NAT for External Connections](gateway.md#gateway-peering-for-external-connections) for examples on how to connect to external networks using NAT.
+See [Gateway Peering with NAT for External Connections](gateway-peering.md#gateway-peering-for-external-connections) for examples on how to connect to external networks using NAT.
 
 ## Example 2: Static External
 
