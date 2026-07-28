@@ -119,7 +119,7 @@ It is possible to configure DHCP relay for a VPC subnet towards a DHCP server in
 - configure `spec.subnets.<subnet>.dhcp.relay` with the address of the host where the DHCP server will be running
 - configure `spec.subnets.<subnet>.dhcp.relayVPC` with the name of the VPC where the DHCP server lives
 - make sure that the DHCP server has a route back to the client's VPC subnet
-- create a [VPC Peering](#vpcpeering) or [Gateway Peering](gateway.md#gateway-peering) between the VPCs of the DHCP server and client
+- create a [VPC Peering](#vpcpeering) or [Gateway Peering](gateway-peering.md) between the VPCs of the DHCP server and client
 
 The relay sets two sub-options of DHCP Option 82 (RelayAgentInfo) in the packet:
 
