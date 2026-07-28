@@ -97,8 +97,10 @@ There are two flavors of stateful NAT, depending on in which direction of the tr
 masquerade and port-forwarding.
 
 !!! note
-    If one side of a gateway peering (i.e. one VPC or external) uses "stateful NAT", such
-    as masquerade and/or port forwarding, the other side cannot use NAT of any type.
+    If one side of a gateway peering (i.e. one VPC or external) uses "stateful
+    NAT", such as masquerade and/or port forwarding, the other side cannot also
+    use stateful NAT (but using stateful NAT one one side, and static NAT on
+    the other side of a gateway peering is supported).
     This limitation will be lifted in an upcoming release.
 
 ### Flow Table
