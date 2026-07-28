@@ -60,6 +60,15 @@ spec:
     bgp-on-host: # Another subnet with hosts peering with leaves via BGP
       subnet: 10.10.50.0/25
       hostBGP: true
+      hostBGPMinPrefixLen: 25 # optional shortest prefix length accepted from the host within the subnet's IP range, default is 32; cannot be shorter than the subnet's own prefix length
+      hostBGPMaxPrefixLen: 32 # optional longest prefix length accepted from the host within the subnet's IP range, default (and maximum) is 32
+      hostBGPExtraPrefixes: # optional map of extra IPv4 prefixes, on top of the subnet's own IP range, to accept from the host's BGP sessions (up to 100)
+        "10.10.55.0/24": # keys must be canonical IPv4 prefixes and must not overlap the fabric's reserved subnets
+          minPrefixLen: 26 # optional shortest prefix length accepted within the parent prefix, defaults to hostBGPMinPrefixLen
+          maxPrefixLen: 32 # optional longest prefix length accepted within the parent prefix, defaults to hostBGPMaxPrefixLen
+        "10.10.56.14/32": # a single host route; minPrefixLen must be set here, since the inherited 25 would be shorter than the prefix itself
+          minPrefixLen: 32
+          maxPrefixLen: 32
       vlan: 1050
 
   permit: # Defines which subnets of the current VPC can communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
@@ -203,10 +212,21 @@ for example because of hardware limitations.
 
 Consider this scenario: `server-1` is connected to two different Fabric switches `sw-1` and `sw-2`, and attached to
 `vpc-1/subnet-1` on both of them. This subnet is configured as `hostBGP`; the switches will be configured to peer with
-`server-1` using unnumbered BGP (IPv4 unicast address family), only importing /32 prefixes in the subnet of the VPC and
-exporting routes learned from other VPC peers. Similarly, BGP is running on `server-1`, unnumbered BGP sessions are
+`server-1` using unnumbered BGP (IPv4 unicast address family), by default only importing /32 prefixes in the subnet of the
+VPC and exporting routes learned from other VPC peers. Similarly, BGP is running on `server-1`, unnumbered BGP sessions are
 established with each leaf, and one or more Virtual IPs (VIPs) in the VPC subnet are advertised. With this setup, the
 host is part of the VPC and can be reached via one of the advertised VIPs from either link to the Fabric.
+
+The set of prefixes the leaves accept from the host can be widened in two ways. `hostBGPMinPrefixLen` and
+`hostBGPMaxPrefixLen` relax the prefix lengths accepted *within* the subnet's own IP range, so the host can advertise
+aggregates rather than only /32s. `hostBGPExtraPrefixes` accepts prefixes *outside* the subnet's IP range altogether,
+each with its own optional prefix length bounds.
+
+The latter is what makes it possible to run RoCE from the host: each interface connecting the host to a leaf is given
+its own rail IP, advertised only over that interface's BGP session so that traffic to it follows a single link rather
+than being load-balanced. Those rail IPs typically live outside the VPC subnet, so the prefixes covering them must be
+listed under `hostBGPExtraPrefixes` for the leaves to accept them. See
+[the `--roce` parameter of the HostBGP container](host-settings.md#hostbgp-container) for the host-side configuration.
 
 It is important to keep in mind that Hedgehog Fabric does not directly operate the host servers attached to it;
 running subnets in HostBGP mode requires running a routing suite and configuring it accordingly. To facilitate this
