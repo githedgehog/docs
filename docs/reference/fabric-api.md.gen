@@ -457,8 +457,6 @@ _Appears in:_
 | `fec` _string_ |  |  |  |
 | `counters` _[SwitchStateInterfaceCounters](#switchstateinterfacecounters)_ |  |  |  |
 | `lldpNeighbors` _[SwitchStateLLDPNeighbor](#switchstatelldpneighbor) array_ |  |  |  |
-| `errDisabled` _boolean_ |  |  |  |
-| `linkFlapCount` _integer_ |  |  |  |
 
 
 #### SwitchStateInterfaceCounters
@@ -852,78 +850,6 @@ Package v1alpha1 contains API Schema definitions for the gateway v1alpha1 API gr
 
 
 
-#### ACLAction
-
-_Underlying type:_ _string_
-
-
-
-_Validation:_
-- Enum: [deny allow]
-
-_Appears in:_
-- [PeeringACLRule](#peeringaclrule)
-
-| Field | Description |
-| --- | --- |
-| `deny` |  |
-| `allow` |  |
-
-
-#### ACLDefaultAction
-
-_Underlying type:_ _string_
-
-
-
-_Validation:_
-- Enum: [deny deny-unless-exposed ]
-
-_Appears in:_
-- [PeeringACL](#peeringacl)
-
-| Field | Description |
-| --- | --- |
-| `deny-unless-exposed` |  |
-| `deny` |  |
-
-
-#### ACLMatchProtocol
-
-_Underlying type:_ _string_
-
-
-
-
-
-_Appears in:_
-- [PeeringACLMatch](#peeringaclmatch)
-
-| Field | Description |
-| --- | --- |
-| `tcp` |  |
-| `udp` |  |
-| `` |  |
-
-
-#### ACLScope
-
-_Underlying type:_ _string_
-
-
-
-_Validation:_
-- Enum: [flow packet ]
-
-_Appears in:_
-- [PeeringACLRule](#peeringaclrule)
-
-| Field | Description |
-| --- | --- |
-| `flow` |  |
-| `packet` |  |
-
-
 #### Gateway
 
 
@@ -1063,23 +989,6 @@ _Appears in:_
 | `trace` |  |
 
 
-#### GatewayLogRateLimit
-
-
-
-GatewayLogRateLimit configures the token-bucket rate limiter applied to logs
-
-
-
-_Appears in:_
-- [GatewayLogs](#gatewaylogs)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `burst` _integer_ | token bucket capacity (default 50) |  | Minimum: 0 <br /> |
-| `replenishPerSecond` _integer_ | ReplenishPerSecond is the number of tokens (messages) replenished per second (default 5) |  | Minimum: 0 <br /> |
-
-
 #### GatewayLogs
 
 
@@ -1095,7 +1004,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `default` _[GatewayLogLevel](#gatewayloglevel)_ |  |  |  |
 | `tags` _object (keys:string, values:[GatewayLogLevel](#gatewayloglevel))_ |  |  |  |
-| `rateLimit` _[GatewayLogRateLimit](#gatewaylogratelimit)_ |  |  |  |
 
 
 #### GatewayPeering
@@ -1171,81 +1079,6 @@ GatewayStatus defines the observed state of Gateway.
 _Appears in:_
 - [Gateway](#gateway)
 
-
-
-#### PeeringACL
-
-
-
-
-
-
-
-_Appears in:_
-- [PeeringSpec](#peeringspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `default` _[ACLDefaultAction](#acldefaultaction)_ | Default action to execute if no rules matches, can be either "deny-unless-exposed" (default if empty) or "deny" |  | Enum: [deny deny-unless-exposed ] <br /> |
-| `rules` _[PeeringACLRule](#peeringaclrule) array_ | List of rules for this particular ACL |  |  |
-
-
-#### PeeringACLMatch
-
-
-
-
-
-
-
-_Appears in:_
-- [PeeringACLRule](#peeringaclrule)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `src` _[PeeringACLMatchEndpoint](#peeringaclmatchendpoint) array_ | From-side native addresses and/or source ports |  |  |
-| `dst` _[PeeringACLMatchEndpoint](#peeringaclmatchendpoint) array_ | To-side advertised addresses and/or destination ports |  |  |
-| `proto` _[ACLMatchProtocol](#aclmatchprotocol)_ | Protocol to match ("tcp", "udp", or numeric), omit to match any protocol |  |  |
-
-
-#### PeeringACLMatchEndpoint
-
-
-
-
-
-
-
-_Appears in:_
-- [PeeringACLMatch](#peeringaclmatch)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `cidr` _string_ | CIDR to match, at most one of cidr and vpcSubnet can be set |  |  |
-| `vpcSubnet` _string_ | VPC subnet to match, at most one of cidr and vpcSubnet can be set |  |  |
-| `ports` _string array_ | List of ports or port ranges to match, omit to match all ports |  |  |
-
-
-#### PeeringACLRule
-
-
-
-
-
-
-
-_Appears in:_
-- [PeeringACL](#peeringacl)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `name` _string_ | Optional name for logs and diagnostics |  |  |
-| `from` _string_ | From has to match one of the peering's two VPCs if present, implicit from the "to" field otherwise |  |  |
-| `to` _string_ | To has to match one of the peering's two VPCs if present, implicit from the "from" field otherwise |  |  |
-| `action` _[ACLAction](#aclaction)_ | Action to execute if the rule matches, can be either "deny" or "allow" |  | Enum: [deny allow] <br /> |
-| `match` _[PeeringACLMatch](#peeringaclmatch)_ | What the rule should match against, omit to match everything in the rule's direction |  |  |
-| `scope` _[ACLScope](#aclscope)_ | Scope of the rule, can be either "flow" (default if empty) or "packet" |  | Enum: [flow packet ] <br /> |
-| `log` _boolean_ |  |  |  |
 
 
 #### PeeringEntry
@@ -1418,7 +1251,6 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `gatewayGroup` _string_ | GatewayGroup is the name of the gateway group that should process the peering |  |  |
 | `peering` _object (keys:string, values:[PeeringEntry](#peeringentry))_ | Peerings is a map of peering entries for each VPC participating in the peering (keyed by VPC name) |  |  |
-| `acl` _[PeeringACL](#peeringacl)_ | ACL is an optional, peering-scoped ACL |  |  |
 
 
 #### PeeringStatus
@@ -2479,7 +2311,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `remote` _string_ | Deprecated and no longer supported |  |  |
+| `remote` _string_ |  |  |  |
 | `permit` _[map[string]VPCPeer](#vpcpeer) array_ | Permit defines a list of the peering policies - which VPC subnets will have access to the peer VPC subnets. |  | MaxItems: 10 <br />MinItems: 1 <br /> |
 
 
@@ -2570,26 +2402,6 @@ _Appears in:_
 | `isolated` _boolean_ | Isolated is the flag to enable isolated mode for the subnet which means no access to and from the other subnets within the VPC |  |  |
 | `restricted` _boolean_ | Restricted is the flag to enable restricted mode for the subnet which means no access between hosts within the subnet itself |  |  |
 | `hostBGP` _boolean_ | HostBGP is the flag to set this Subnet as dedicated to BGP speaking hosts advertising their VIPs within the subnet's IP range |  |  |
-| `hostBGPMinPrefixLen` _integer_ | HostBGPMinPrefixLen is the shortest prefix length accepted from the host within the subnet's IP range, 32 by default |  | Maximum: 32 <br />Minimum: 1 <br /> |
-| `hostBGPMaxPrefixLen` _integer_ | HostBGPMaxPrefixLen is the longest prefix length accepted from the host within the subnet's IP range, 32 by default |  | Maximum: 32 <br />Minimum: 1 <br /> |
-| `hostBGPExtraPrefixes` _object (keys:string, values:[VPCSubnetHostBGPPrefix](#vpcsubnethostbgpprefix))_ | HostBGPExtraPrefixes is the set of extra IP prefixes, on top of the subnet's own IP range, to accept from the<br />host over its BGP sessions, keyed by prefix |  |  |
-
-
-#### VPCSubnetHostBGPPrefix
-
-
-
-VPCSubnetHostBGPPrefix defines the prefix lengths accepted from the host within an extra hostBGP prefix
-
-
-
-_Appears in:_
-- [VPCSubnet](#vpcsubnet)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `minPrefixLen` _integer_ | MinPrefixLen is the shortest prefix length accepted within the prefix, defaults to the subnet's hostBGPMinPrefixLen |  | Maximum: 32 <br />Minimum: 1 <br /> |
-| `maxPrefixLen` _integer_ | MaxPrefixLen is the longest prefix length accepted within the prefix, defaults to the subnet's hostBGPMaxPrefixLen |  | Maximum: 32 <br />Minimum: 1 <br /> |
 
 
 
@@ -2771,7 +2583,7 @@ _Appears in:_
 
 
 
-Deprecated: ConnMCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)
+ConnMCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)
 
 
 
@@ -2789,7 +2601,7 @@ _Appears in:_
 
 
 
-Deprecated: ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or
+ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or
 redundancy group and allows to use MCLAG connections to connect servers in a multi-homed way.
 
 
@@ -2944,9 +2756,9 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `unbundled` _[ConnUnbundled](#connunbundled)_ | Unbundled defines the unbundled connection (no port channel, single server to a single switch with a single link) |  |  |
 | `bundled` _[ConnBundled](#connbundled)_ | Bundled defines the bundled connection (port channel, single server to a single switch with multiple links) |  |  |
-| `mclag` _[ConnMCLAG](#connmclag)_ | Deprecated: MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links) |  |  |
+| `mclag` _[ConnMCLAG](#connmclag)_ | MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links) |  |  |
 | `eslag` _[ConnESLAG](#conneslag)_ | ESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links) |  |  |
-| `mclagDomain` _[ConnMCLAGDomain](#connmclagdomain)_ | Deprecated: MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing |  |  |
+| `mclagDomain` _[ConnMCLAGDomain](#connmclagdomain)_ | MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing |  |  |
 | `fabric` _[ConnFabric](#connfabric)_ | Fabric defines the fabric connection (single spine to a single leaf with at least one link) |  |  |
 | `mesh` _[ConnMesh](#connmesh)_ | Mesh defines the mesh connection (direct leaf to leaf connection with at least one link) |  |  |
 | `gateway` _[ConnGateway](#conngateway)_ | Gateway defines the gateway connection (single spine to a single gateway with at least one link) |  |  |
@@ -3021,26 +2833,6 @@ _Appears in:_
 | `leaf2` _[ConnFabricLinkSwitch](#connfabriclinkswitch)_ |  |  |  |
 
 
-#### PortFECMode
-
-_Underlying type:_ _string_
-
-PortFECMode is the FEC mode for a port
-
-_Validation:_
-- Enum: [rs fc auto disabled]
-
-_Appears in:_
-- [SwitchSpec](#switchspec)
-
-| Field | Description |
-| --- | --- |
-| `rs` |  |
-| `fc` |  |
-| `auto` |  |
-| `disabled` |  |
-
-
 #### Server
 
 
@@ -3064,7 +2856,7 @@ Server is the Schema for the servers API
 
 
 
-ServerFacingConnectionConfig defines any server-facing connection (unbundled, bundled etc.) configuration
+ServerFacingConnectionConfig defines any server-facing connection (unbundled, bundled, mclag, etc.) configuration
 
 
 
@@ -3224,25 +3016,6 @@ SwitchGroupStatus defines the observed state of SwitchGroup
 _Appears in:_
 - [SwitchGroup](#switchgroup)
 
-
-
-#### SwitchLinkFlapErrDisable
-
-
-
-SwitchLinkFlapErrDisable configures link-flap errdisable on fabric-facing ports.
-Presence of this struct enables the feature; omitting it leaves the ports unprotected.
-
-
-
-_Appears in:_
-- [SwitchSpec](#switchspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `flapThreshold` _integer_ | FlapThreshold is the number of link-down events within SamplingInterval that triggers errdisable.<br />Defaults to 3. | 3 | Maximum: 50 <br />Minimum: 1 <br /> |
-| `samplingInterval` _integer_ | SamplingInterval is the observation window in seconds for counting flap events.<br />Defaults to 30 s. | 30 | Maximum: 65535 <br />Minimum: 1 <br /> |
-| `recoveryInterval` _integer_ | RecoveryInterval is how long in seconds before the port is automatically re-enabled.<br />0 means the port is never automatically re-enabled and must be recovered manually.<br />Defaults to 300 s. | 300 | Maximum: 65534 <br />Minimum: 0 <br /> |
 
 
 #### SwitchProfile
@@ -3477,7 +3250,7 @@ _Appears in:_
 
 
 SwitchRedundancy is the switch redundancy configuration which includes name of the redundancy group switch belongs
-to and its type, used for ESLAG connections. It defines how redundancy will be configured and handled
+to and its type, used both for MCLAG and ESLAG connections. It defines how redundancy will be configured and handled
 on the switch as well as which connection types will be available. If not specified, switch will not be part of any
 redundancy group. If name isn't empty, type must be specified as well and name should be the same as one of the
 SwitchGroup objects.
@@ -3490,7 +3263,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `group` _string_ | Group is the name of the redundancy group switch belongs to |  |  |
-| `type` _RedundancyType_ | Type is the type of the redundancy group, although only eslag is supported now |  |  |
+| `type` _RedundancyType_ | Type is the type of the redundancy group, could be mclag or eslag |  |  |
 
 
 #### SwitchRole
@@ -3530,7 +3303,7 @@ _Appears in:_
 | `description` _string_ | Description is a description of the switch |  |  |
 | `profile` _string_ | Profile is the profile of the switch, name of the SwitchProfile object to be used for this switch, currently not used by the Fabric |  |  |
 | `groups` _string array_ | Groups is a list of switch groups the switch belongs to |  |  |
-| `redundancy` _[SwitchRedundancy](#switchredundancy)_ | Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used for ESLAG connections |  |  |
+| `redundancy` _[SwitchRedundancy](#switchredundancy)_ | Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used both for MCLAG and ESLAG connections |  |  |
 | `vlanNamespaces` _string array_ | VLANNamespaces is a list of VLAN namespaces the switch is part of, their VLAN ranges could not overlap |  |  |
 | `asn` _integer_ | ASN is the ASN of the switch |  |  |
 | `ip` _string_ | IP is the IP of the switch that could be used to access it from other switches and control nodes in the Fabric |  |  |
@@ -3540,12 +3313,10 @@ _Appears in:_
 | `portSpeeds` _object (keys:string, values:string)_ | PortSpeeds is a map of port speeds, key is the port name, value is the speed |  |  |
 | `portBreakouts` _object (keys:string, values:string)_ | PortBreakouts is a map of port breakouts, key is the port name, value is the breakout configuration, such as "1/55: 4x25G" |  |  |
 | `portAutoNegs` _object (keys:string, values:boolean)_ | PortAutoNegs is a map of port auto negotiation, key is the port name, value is true or false |  |  |
-| `portFECs` _object (keys:string, values:[PortFECMode](#portfecmode))_ | PortFECs is a map of port FEC modes, key is the port name, value is the FEC mode (rs/fc/auto/disabled).<br />Use only as last resort: removing a value from the map does NOT reset the port's FEC to its default,<br />instead that value persists on the device until a full config reset or a new explicit config |  |  |
 | `boot` _[SwitchBoot](#switchboot)_ | Boot is the boot/provisioning information of the switch |  |  |
 | `enableAllPorts` _boolean_ | EnableAllPorts is a flag to enable all ports on the switch regardless of them being used or not |  |  |
 | `roce` _boolean_ | RoCE is a flag to enable RoCEv2 support on the switch which includes lossless queues and QoS configuration |  |  |
 | `ecmp` _[SwitchECMP](#switchecmp)_ | ECMP is the ECMP configuration for the switch |  |  |
-| `linkFlapErrDisable` _[SwitchLinkFlapErrDisable](#switchlinkflaperrdisable)_ | LinkFlapErrDisable, if set, enables link-flap errdisable protection on all fabric-facing ports.<br />When a port exceeds FlapThreshold link-down events within SamplingInterval seconds it is<br />disabled; RecoveryInterval controls how long before it is automatically re-enabled (0 = never). |  |  |
 
 
 #### SwitchStatus
