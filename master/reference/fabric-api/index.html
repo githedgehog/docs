@@ -2484,6 +2484,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#vpcsubnethostbgpprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCSubnetHostBGPPrefix
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2716,6 +2725,15 @@ You're not viewing the latest version.
   <a href="#meshlink" class="md-nav__link">
     <span class="md-ellipsis">
       MeshLink
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfecmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      PortFECMode
     </span>
   </a>
   
@@ -4845,6 +4863,15 @@ You're not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#vpcsubnethostbgpprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      VPCSubnetHostBGPPrefix
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5077,6 +5104,15 @@ You're not viewing the latest version.
   <a href="#meshlink" class="md-nav__link">
     <span class="md-ellipsis">
       MeshLink
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfecmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      PortFECMode
     </span>
   </a>
   
@@ -10374,7 +10410,7 @@ Minimal example of the <abbr title="Virtual Private Cloud, similar to the public
 <tbody>
 <tr>
 <td><code>remote</code> <em>string</em></td>
-<td></td>
+<td>Deprecated and no longer supported</td>
 <td></td>
 <td></td>
 </tr>
@@ -10542,6 +10578,52 @@ At least one subnet is required.</p>
 <td>HostBGP is the flag to set this Subnet as dedicated to <abbr title="Border Gateway Protocol">BGP</abbr> speaking hosts advertising their VIPs within the subnet's IP range</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td><code>hostBGPMinPrefixLen</code> <em>integer</em></td>
+<td>HostBGPMinPrefixLen is the shortest prefix length accepted from the host within the subnet's IP range, 32 by default</td>
+<td></td>
+<td>Maximum: 32 <br />Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>hostBGPMaxPrefixLen</code> <em>integer</em></td>
+<td>HostBGPMaxPrefixLen is the longest prefix length accepted from the host within the subnet's IP range, 32 by default</td>
+<td></td>
+<td>Maximum: 32 <br />Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>hostBGPExtraPrefixes</code> <em>object (keys:string, values:<a href="#vpcsubnethostbgpprefix">VPCSubnetHostBGPPrefix</a>)</em></td>
+<td>HostBGPExtraPrefixes is the set of extra IP prefixes, on top of the subnet's own IP range, to accept from the<br />host over its <abbr title="Border Gateway Protocol">BGP</abbr> sessions, keyed by prefix</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="vpcsubnethostbgpprefix">VPCSubnetHostBGPPrefix</h4>
+<p>VPCSubnetHostBGPPrefix defines the prefix lengths accepted from the host within an extra hostBGP prefix</p>
+<p><em>Appears in:</em>
+- <a href="#vpcsubnet">VPCSubnet</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>minPrefixLen</code> <em>integer</em></td>
+<td>MinPrefixLen is the shortest prefix length accepted within the prefix, defaults to the subnet's hostBGPMinPrefixLen</td>
+<td></td>
+<td>Maximum: 32 <br />Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>maxPrefixLen</code> <em>integer</em></td>
+<td>MaxPrefixLen is the longest prefix length accepted within the prefix, defaults to the subnet's hostBGPMaxPrefixLen</td>
+<td></td>
+<td>Maximum: 32 <br />Minimum: 1 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -10799,7 +10881,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 </tbody>
 </table>
 <h4 id="connmclag">ConnMCLAG</h4>
-<p>ConnMCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</p>
+<p>Deprecated: ConnMCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</p>
 <p><em>Appears in:</em>
 - <a href="#connectionspec">ConnectionSpec</a></p>
 <table>
@@ -10833,7 +10915,7 @@ the underlay definition including Switches, Server, wiring between them and etc.
 </tbody>
 </table>
 <h4 id="connmclagdomain">ConnMCLAGDomain</h4>
-<p>ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or
+<p>Deprecated: ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or
 redundancy group and allows to use MCLAG connections to connect servers in a multi-homed way.</p>
 <p><em>Appears in:</em>
 - <a href="#connectionspec">ConnectionSpec</a></p>
@@ -11106,7 +11188,7 @@ in a single Connection object.</p>
 </tr>
 <tr>
 <td><code>mclag</code> <em><a href="#connmclag">ConnMCLAG</a></em></td>
-<td>MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</td>
+<td>Deprecated: MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)</td>
 <td></td>
 <td></td>
 </tr>
@@ -11118,7 +11200,7 @@ in a single Connection object.</p>
 </tr>
 <tr>
 <td><code>mclagDomain</code> <em><a href="#connmclagdomain">ConnMCLAGDomain</a></em></td>
-<td>MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing</td>
+<td>Deprecated: MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing</td>
 <td></td>
 <td></td>
 </tr>
@@ -11248,6 +11330,39 @@ in a single Connection object.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="portfecmode">PortFECMode</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p>PortFECMode is the FEC mode for a port</p>
+<p><em>Validation:</em>
+- Enum: [rs fc auto disabled]</p>
+<p><em>Appears in:</em>
+- <a href="#switchspec">SwitchSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rs</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fc</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>auto</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="server">Server</h4>
 <p>Server is the Schema for the servers API</p>
 <table>
@@ -11293,7 +11408,7 @@ in a single Connection object.</p>
 </tbody>
 </table>
 <h4 id="serverfacingconnectionconfig">ServerFacingConnectionConfig</h4>
-<p>ServerFacingConnectionConfig defines any server-facing connection (unbundled, bundled, mclag, etc.) configuration</p>
+<p>ServerFacingConnectionConfig defines any server-facing connection (unbundled, bundled etc.) configuration</p>
 <p><em>Appears in:</em>
 - <a href="#connbundled">ConnBundled</a>
 - <a href="#conneslag">ConnESLAG</a>
@@ -12022,7 +12137,7 @@ Only one of Profile or Group can be set</p>
 - <a href="#switchprofile">SwitchProfile</a></p>
 <h4 id="switchredundancy">SwitchRedundancy</h4>
 <p>SwitchRedundancy is the switch redundancy configuration which includes name of the redundancy group switch belongs
-to and its type, used both for MCLAG and <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> connections. It defines how redundancy will be configured and handled
+to and its type, used for <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> connections. It defines how redundancy will be configured and handled
 on the switch as well as which connection types will be available. If not specified, switch will not be part of any
 redundancy group. If name isn't empty, type must be specified as well and name should be the same as one of the
 SwitchGroup objects.</p>
@@ -12046,7 +12161,7 @@ SwitchGroup objects.</p>
 </tr>
 <tr>
 <td><code>type</code> <em>RedundancyType</em></td>
-<td>Type is the type of the redundancy group, could be mclag or eslag</td>
+<td>Type is the type of the redundancy group, although only eslag is supported now</td>
 <td></td>
 <td></td>
 </tr>
@@ -12125,7 +12240,7 @@ SwitchGroup objects.</p>
 </tr>
 <tr>
 <td><code>redundancy</code> <em><a href="#switchredundancy">SwitchRedundancy</a></em></td>
-<td>Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used both for MCLAG and <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> connections</td>
+<td>Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used for <abbr title="Ethernet Segment Link Aggregation (RFC 7432)">ESLAG</abbr> connections</td>
 <td></td>
 <td></td>
 </tr>
@@ -12180,6 +12295,12 @@ SwitchGroup objects.</p>
 <tr>
 <td><code>portAutoNegs</code> <em>object (keys:string, values:boolean)</em></td>
 <td>PortAutoNegs is a map of port auto negotiation, key is the port name, value is true or false</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>portFECs</code> <em>object (keys:string, values:<a href="#portfecmode">PortFECMode</a>)</em></td>
+<td>PortFECs is a map of port FEC modes, key is the port name, value is the FEC mode (rs/fc/auto/disabled).<br />Use only as last resort: removing a value from the map does NOT reset the port's FEC to its default,<br />instead that value persists on the device until a full config reset or a new explicit config</td>
 <td></td>
 <td></td>
 </tr>
