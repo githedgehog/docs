@@ -99,8 +99,7 @@ There are utilities that assist this process such as [etcher](https://etcher.bal
 
 ## Install Control Node
 
-This control node should be given a static IP address. Either a lease or
-statically assigned. 
+The control node should be given a static IP address or a DHCP reservation.
 
 1. Configure the server to use UEFI boot **without** secure boot
 
