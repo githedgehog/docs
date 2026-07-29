@@ -11,7 +11,7 @@
 
 !!! tip "Control nodes on virtual machines"
     Running control nodes on virtual machines is possible, although not officially supported. If you use virtual
-    machines, make sure to use UEFI boot.
+    machines, make sure to use UEFI boot. See [Virtual Machines](./virtual-machines.md) for the required settings.
 
 ## Overview of Install Process
 
