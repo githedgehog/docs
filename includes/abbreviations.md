@@ -20,3 +20,5 @@
 *[DHCP]: Dynamic Host Configuration Protocol
 *[BGP]: Border Gateway Protocol
 *[ESLAG]: Ethernet Segment Link Aggregation (RFC 7432)
+*[NAT]: Network Address Translation
+*[ACL]: Access Control List
