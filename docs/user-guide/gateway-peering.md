@@ -274,6 +274,46 @@ space are sent to the external `example-ext`.
 For any given VPC, at most one remote `expose` block, among all peerings for
 this VPC, can act as a `default` destination.
 
+## Access Control
+
+Defining a Gateway Peering implies defining what traffic will be allowed
+between two VPCs: an address that is not exposed is not reachable. Using
+masquerade or port-forwarding for some `expose` block also sets up a constraint
+on the direction for which corresponding flows can be initiated.
+
+On top of these, a peering can also carry an optional Access Control List,
+configured via the peering-scoped `spec.acl` field, to explicitly allow or deny
+flows that would otherwise be allowed by the peering. For example, the
+following rule denies connections from `vpc-01` to `vpc-02` on TCP port 25,
+whereas all other flows in the peering are allowed:
+
+```{.yaml .annotate linenums="1" title="gw-acl-peer.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: GatewayPeering
+metadata:
+  name: acl-example
+  namespace: default
+spec:
+  acl:
+    rules:
+      - from: vpc-01 # Deny connections from vpc-01 to vpc-02 on TCP port 25,
+        to: vpc-02   # while everything the peering exposes stays reachable
+        action: deny
+        match:
+          proto: tcp
+          dst:
+            - ports: ["25"]
+  peering:
+    # ... Peering definition, unchanged
+```
+
+Rules are evaluated top-down and the first match decides. When no rule matches,
+the peering falls back to `spec.acl.default`, which defaults to
+`deny-unless-exposed`: traffic that an `expose` block already permits is
+admitted.
+
+See [Gateway Peering ACLs](gateway-acls.md) for more details.
+
 ## Example Use Case: Gateway External Peering with Masquerade and Port-Forwarding
 
 Let's see how everything we have discussed so far can be used to support a reasonable

@@ -135,3 +135,6 @@ that uses that peering.
 See [Gateway Peering](gateway-peering.md) for the configuration of peerings,
 including static and stateful NAT, peering with externals, and external
 connectivity examples.
+
+See [Gateway Peering ACLs](gateway-acls.md) for restricting the traffic that a
+peering admits.
