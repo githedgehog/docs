@@ -55,27 +55,27 @@ classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
 subgraph Gateways[" "]
-	direction LR
+	%%direction LR
 	Gateway_1["gateway-1"]
 	Gateway_2["gateway-2"]
 end
 
 subgraph Spines[" "]
-	direction LR
+	%%direction LR
 	subgraph Spine_01_Group [" "]
-		direction TB
+		%%direction TB
 		Spine_01["spine-01<br>spine"]
 	end
 	subgraph Spine_02_Group [" "]
-		direction TB
+		%%direction TB
 		Spine_02["spine-02<br>spine"]
 	end
 end
 
 subgraph Leaves[" "]
-	direction LR
+	%%direction LR
 	subgraph Eslag_1 ["eslag-1"]
-		direction LR
+		%%direction LR
 		Leaf_01["leaf-01<br>server-leaf"]
 		Leaf_02["leaf-02<br>server-leaf"]
 	end
@@ -84,7 +84,7 @@ subgraph Leaves[" "]
 end
 
 subgraph Servers[" "]
-	direction TB
+	%%direction TB
 	Server_03["server-03"]
 	Server_01["server-01"]
 	Server_02["server-02"]
@@ -128,7 +128,7 @@ Leaf_03 ---|"enp2s1↔E1/1"| Server_05
 %% External connections
 
 subgraph Legend["Network Connection Types"]
-	direction LR
+	%%direction LR
 	%% Create invisible nodes for the start and end of each line
 	L1(( )) --- |"Fabric Links"| L2(( ))
 	L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
@@ -209,15 +209,15 @@ classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
 subgraph Gateways[" "]
-	direction LR
+	%%direction LR
 	Gateway_1["gateway-1"]
 	Gateway_2["gateway-2"]
 end
 
 subgraph Leaves[" "]
-	direction LR
+	%%direction LR
 	subgraph Eslag_1 ["eslag-1"]
-		direction LR
+		%%direction LR
 		Leaf_02["leaf-02<br>server-leaf"]
 		Leaf_01["leaf-01<br>server-leaf"]
 	end
@@ -226,7 +226,7 @@ subgraph Leaves[" "]
 end
 
 subgraph Servers[" "]
-	direction TB
+	%%direction TB
 	Server_04["server-04"]
 	Server_01["server-01"]
 	Server_02["server-02"]
@@ -263,7 +263,7 @@ Leaf_01 ---|"E1/5↔E1/7<br>E1/4↔E1/6"| Leaf_03
 %% External connections
 
 subgraph Legend["Network Connection Types"]
-	direction LR
+	%%direction LR
 	%% Create invisible nodes for the start and end of each line
 	L15(( )) --- |"Mesh Links"| L16(( ))
 	L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
@@ -343,22 +343,22 @@ classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
 subgraph Gateways[" "]
-	direction LR
+	%%direction LR
 	Gateway_1["gateway-1"]
 end
 
 subgraph Spines[" "]
-	direction LR
+	%%direction LR
 	subgraph Spine_01_Group [" "]
-		direction TB
+		%%direction TB
 		Spine_01["spine-01<br>spine"]
 	end
 end
 
 subgraph Leaves[" "]
-	direction LR
+	%%direction LR
 	subgraph Eslag_1 ["eslag-1"]
-		direction LR
+		%%direction LR
 		Leaf_01["leaf-01<br>server-leaf"]
 		Leaf_02["leaf-02<br>server-leaf"]
 	end
@@ -366,7 +366,7 @@ subgraph Leaves[" "]
 end
 
 subgraph Servers[" "]
-	direction TB
+	%%direction TB
 	Server_02["server-02"]
 	Server_01["server-01"]
 end
@@ -391,7 +391,7 @@ Leaf_02 ---|"enp2s2↔E1/1"| Server_01
 %% External connections
 
 subgraph Legend["Network Connection Types"]
-	direction LR
+	%%direction LR
 	%% Create invisible nodes for the start and end of each line
 	L1(( )) --- |"Fabric Links"| L2(( ))
 	L7(( )) --- |"Unbundled Server Links"| L8(( ))
