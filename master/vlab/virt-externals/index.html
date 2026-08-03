@@ -1858,31 +1858,31 @@ classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
 
 %% Network diagram
 subgraph Gateways[" "]
-    direction LR
+    %%direction LR
     Gateway_1["gateway-1"]
 end
 
 subgraph Spines[" "]
-    direction LR
+    %%direction LR
     subgraph Spine_01_Group [" "]
-        direction TB
+        %%direction TB
         Spine_01["spine-01&lt;br&gt;spine"]
     end
     subgraph Spine_02_Group [" "]
-        direction TB
+        %%direction TB
         Spine_02["spine-02&lt;br&gt;spine"]
     end
 end
 
 subgraph ExternalsRight[" "]
-    direction TB
+    %%direction TB
     External_01["external-01"]
 end
 
 subgraph Leaves[" "]
-    direction LR
+    %%direction LR
     subgraph Eslag_1 ["eslag-1"]
-        direction LR
+        %%direction LR
         Leaf_01["leaf-01&lt;br&gt;server-leaf"]
         Leaf_02["leaf-02&lt;br&gt;server-leaf"]
     end
@@ -1891,7 +1891,7 @@ subgraph Leaves[" "]
 end
 
 subgraph Servers[" "]
-    direction TB
+    %%direction TB
     Server_03["server-03"]
     Server_01["server-01"]
     Server_02["server-02"]
@@ -1934,7 +1934,7 @@ Leaf_03 --- Server_05
 Leaf_03 --- External_01
 
 subgraph Legend["Network Connection Types"]
-    direction LR
+    %%direction LR
     %% Create invisible nodes for the start and end of each line
     L1(( )) --- |"Fabric Links"| L2(( ))
     L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
@@ -2230,7 +2230,7 @@ verify that this works in the same way we just did with Fabric peerings:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 3, 2026</span>
   </span>
 
     
