@@ -11824,6 +11824,12 @@ Presence of this struct enables the feature; omitting it leaves the ports unprot
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>portLocator</code> <em>boolean</em></td>
+<td>PortLocator defines if switch supports port locator LED control</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="switchprofilepipeline">SwitchProfilePipeline</h4>
@@ -12322,6 +12328,12 @@ SwitchGroup objects.</p>
 <tr>
 <td><code>portFECs</code> <em>object (keys:string, values:<a href="#portfecmode">PortFECMode</a>)</em></td>
 <td>PortFECs is a map of port FEC modes, key is the port name, value is the FEC mode (rs/fc/auto/disabled).<br />Use only as last resort: removing a value from the map does NOT reset the port's FEC to its default,<br />instead that value persists on the device until a full config reset or a new explicit config</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>portLocators</code> <em>object (keys:string, values:string)</em></td>
+<td>PortLocators is a map of port locator LED expire times, key is the port name such as E1/1 (incl. breakout<br />sub-ports such as E1/53/1) or "<em>" to apply to all ports of the switch, value is a duration relative to now<br />such as 10m, an exact expire time in the "2026-08-05 18:45:47" (UTC) format or empty for the default 5 minutes.<br />Values are normalized to the exact expire time and clamped to at most 20 minutes from now, already expired<br />entries are removed as well as all per-port ones if "</em>" is present</td>
 <td></td>
 <td></td>
 </tr>
