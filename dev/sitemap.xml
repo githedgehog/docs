@@ -125,11 +125,19 @@
          <lastmod>2026-08-07</lastmod>
     </url>
     <url>
+         <loc>https://docs.hedgehog.cloud/dev/user-guide/gateway-acls/</loc>
+         <lastmod>2026-08-07</lastmod>
+    </url>
+    <url>
          <loc>https://docs.hedgehog.cloud/dev/user-guide/gateway-add/</loc>
          <lastmod>2026-08-07</lastmod>
     </url>
     <url>
          <loc>https://docs.hedgehog.cloud/dev/user-guide/gateway-failover/</loc>
+         <lastmod>2026-08-07</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.hedgehog.cloud/dev/user-guide/gateway-peering/</loc>
          <lastmod>2026-08-07</lastmod>
     </url>
     <url>

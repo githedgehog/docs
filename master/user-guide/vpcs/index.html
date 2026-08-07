@@ -1237,6 +1237,48 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../gateway-peering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gateway-acls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering ACLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../gateway-add/" class="md-nav__link">
         
   
@@ -2193,7 +2235,7 @@ other hosts inside of the <abbr title="Virtual Private Cloud, similar to the pub
 <li>configure <code>spec.subnets.&lt;subnet&gt;.dhcp.relay</code> with the address of the host where the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server will be running</li>
 <li>configure <code>spec.subnets.&lt;subnet&gt;.dhcp.relayVPC</code> with the name of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> where the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server lives</li>
 <li>make sure that the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server has a route back to the client's <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnet</li>
-<li>create a <a href="#vpcpeering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</a> or <a href="../gateway/#gateway-peering">Gateway Peering</a> between the VPCs of the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server and client</li>
+<li>create a <a href="#vpcpeering"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</a> or <a href="../gateway-peering/">Gateway Peering</a> between the VPCs of the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server and client</li>
 </ul>
 <p>The relay sets two sub-options of <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Option 82 (RelayAgentInfo) in the packet:</p>
 <ul>

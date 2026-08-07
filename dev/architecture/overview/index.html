@@ -1047,6 +1047,48 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../../user-guide/gateway-peering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/gateway-acls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering ACLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user-guide/gateway-add/" class="md-nav__link">
         
   
@@ -2002,7 +2044,7 @@ You're not viewing the latest version.
 <p>The SONiC architecture presented here is a high-level abstraction, for simplicity.</p>
 <h3 id="gateway-components">Gateway Components</h3>
 <ul>
-<li><strong>Dataplane</strong>: A packet processing pipeline that handles NAT, flow tracking, and <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> encapsulation/decapsulation. It reads the desired peering and NAT configuration from Kubernetes and generates FRR configuration delivered to the FRR Agent.</li>
+<li><strong>Dataplane</strong>: A packet processing pipeline that handles <abbr title="Network Address Translation">NAT</abbr>, flow tracking, and <abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> encapsulation/decapsulation. It reads the desired peering and <abbr title="Network Address Translation">NAT</abbr> configuration from Kubernetes and generates FRR configuration delivered to the FRR Agent.</li>
 <li><strong>FRR Agent</strong>: A Hedgehog-written component that receives FRR configuration from the dataplane and applies it to FRR via dynamic reload.</li>
 <li><strong>FRR (Free Range Routing)</strong>: A suite of routing daemons that provides <abbr title="Border Gateway Protocol">BGP</abbr> peering with the fabric switches. FRR advertises <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering routes to attract traffic to the gateway, and pushes routes received from the fabric back into the dataplane's forwarding table via the Control Plane Interface (CPI).</li>
 <li><strong>Alloy</strong>: Collects logs and metrics from the gateway and forwards them to the Fabric Proxy.</li>
@@ -2029,7 +2071,7 @@ You're not viewing the latest version.
 </ul>
 <h3 id="4-gateway-configuration-management">4. <strong>Gateway Configuration &amp; Management</strong></h3>
 <ul>
-<li>The <strong>Fabric Controller</strong> publishes a <code>GatewayAgent</code> CRD containing the desired gateway configuration: <abbr title="Border Gateway Protocol">BGP</abbr> settings, <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings, NAT rules, and gateway group membership.</li>
+<li>The <strong>Fabric Controller</strong> publishes a <code>GatewayAgent</code> CRD containing the desired gateway configuration: <abbr title="Border Gateway Protocol">BGP</abbr> settings, <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings, <abbr title="Network Address Translation">NAT</abbr> rules, and gateway group membership.</li>
 <li>The <strong>Dataplane</strong> watches the <code>GatewayAgent</code> CRD via the Kubernetes API, applies the configuration, and writes its observed state (including FRR applied generation and per-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic statistics) back to the CRD status.</li>
 <li>The <strong>Dataplane</strong> generates FRR configuration from the desired state and delivers it to the <strong>FRR Agent</strong>, which applies it to FRR via dynamic reload.</li>
 <li><strong>FRR</strong> establishes <abbr title="Border Gateway Protocol">BGP</abbr> sessions with the fabric switches to advertise <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering routes. It pushes received routes and <abbr title="Border Gateway Protocol">BGP</abbr> state back to the <strong>Dataplane</strong> via the Control Plane Interface (CPI) and <abbr title="Border Gateway Protocol">BGP</abbr> Monitoring Protocol (BMP) respectively.</li>

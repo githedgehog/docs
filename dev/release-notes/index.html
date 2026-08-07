@@ -1047,6 +1047,48 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../user-guide/gateway-peering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/gateway-acls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering ACLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user-guide/gateway-add/" class="md-nav__link">
         
   
@@ -3957,7 +3999,7 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 <ul>
 <li>Experimental Gateway is now available<ul>
 <li>Allows peering between VPCs as well as between <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and Externals using a dedicated Gateway node</li>
-<li>Supports stateful source NAT and stateless source and destination NAT</li>
+<li>Supports stateful source <abbr title="Network Address Translation">NAT</abbr> and stateless source and destination <abbr title="Network Address Translation">NAT</abbr></li>
 <li>Performance depends on hardware, MTU and traffic characteristics<ul>
 <li>Up to 120 Gb/s multiple streams</li>
 <li>Up to 11 Gb/s single stream</li>
@@ -4421,7 +4463,7 @@ and managed by the Fabric</p>
 <li>Integrated with on-demand <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Service (see below)</li>
 <li>All IPv4 addresses within a given <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> must be unique</li>
 <li>Only VPCs with non-overlapping IPv4 subnets can peer within the Fabric</li>
-<li>An external NAT device is required for peering of VPCs with overlapping subnets</li>
+<li>An external <abbr title="Network Address Translation">NAT</abbr> device is required for peering of VPCs with overlapping subnets</li>
 </ul>
 <h3 id="hedgehog-fabric-dhcp-and-ipam-service">Hedgehog Fabric <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> and IPAM Service</h3>
 <ul>
@@ -4516,7 +4558,7 @@ and managed by the Fabric</p>
 <h3 id="external-vpc-peering"><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering</h3>
 <p><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering provides the means of peering with external networking devices (edge routers, firewalls, or data center interconnects). <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> egress/ingress is pinned to a specific group of the border or mixed leaf switches. Multiple “external systems” with multiple devices/links in each of them are supported.</p>
 <p>The user controls what subnets/prefixes to import and export from/to the external system.</p>
-<p>No NAT function is supported for external peering.</p>
+<p>No <abbr title="Network Address Translation">NAT</abbr> function is supported for external peering.</p>
 <h3 id="host-connectivity">Host connectivity</h3>
 <p>Servers can be attached as Unbundled, Bundled (LAG) and MCLAG</p>
 <h3 id="dhcp-service"><abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> Service</h3>
@@ -4637,7 +4679,7 @@ and managed by the Fabric</p>
 </ul>
 </li>
 <li>
-<p>NAT</p>
+<p><abbr title="Network Address Translation">NAT</abbr></p>
 <ul>
 <li>DNAT + SNAT are supported per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>. SNAT and DNAT can't be enabled per <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> simultaneously.</li>
 </ul>
@@ -4659,7 +4701,7 @@ and managed by the Fabric</p>
 <ul>
 <li>40 VPCs max</li>
 <li>50 <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings</li>
-<li>[ 768 ACL entry platform limitation from Broadcom ]</li>
+<li>[ 768 <abbr title="Access Control List">ACL</abbr> entry platform limitation from Broadcom ]</li>
 </ul>
 </li>
 <li>

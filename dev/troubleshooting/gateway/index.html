@@ -1047,6 +1047,48 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../../user-guide/gateway-peering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/gateway-acls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering ACLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user-guide/gateway-add/" class="md-nav__link">
         
   
@@ -1922,7 +1964,7 @@ You're not viewing the latest version.
 
 <h1 id="gateway">Gateway</h1>
 <p>This page covers diagnosing common issues with the Hedgehog Gateway, including
-connectivity problems and NAT issues.</p>
+connectivity problems and <abbr title="Network Address Translation">NAT</abbr> issues.</p>
 <h2 id="health-checks">Health Checks</h2>
 <p>Start by verifying the gateway has picked up its current configuration:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>kubectl<span class="w"> </span>get<span class="w"> </span>gatewayagents
@@ -1958,7 +2000,7 @@ applied the latest configuration.</p>
    <a href="#inspecting-gateway-state">Inspecting Gateway State</a>).</p>
 </li>
 </ol>
-<h3 id="nat-not-working-as-expected">NAT not working as expected</h3>
+<h3 id="nat-not-working-as-expected"><abbr title="Network Address Translation">NAT</abbr> not working as expected</h3>
 <ol>
 <li>
 <p><strong>Check traffic is reaching the gateway</strong>: Use the per-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> and per-peering
@@ -2066,7 +2108,7 @@ indicates the session has been flapping.</p>
 </span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">        </span><span class="nt">pps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9.5</span>
 </span></code></pre></div>
 <p>A non-zero drop counter (<code>d</code>) means packets were discarded, often due to a
-misconfigured peering or an exhausted NAT pool. A zero packet counter on an
+misconfigured peering or an exhausted <abbr title="Network Address Translation">NAT</abbr> pool. A zero packet counter on an
 expected active peering means traffic is not reaching the gateway.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

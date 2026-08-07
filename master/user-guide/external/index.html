@@ -1387,6 +1387,48 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
+      <a href="../gateway-peering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gateway-acls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway Peering ACLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../gateway-add/" class="md-nav__link">
         
   
@@ -2346,11 +2388,11 @@ Additionally, if using the <abbr title="Border Gateway Protocol">BGP</abbr> spea
 <p>For <abbr title="Border Gateway Protocol">BGP</abbr> externals, the Hedgehog Fabric shares <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> routes with Edge Devices via <abbr title="Border Gateway Protocol">BGP</abbr>; peering is done over VLAN in IPv4 Unicast AFI/SAFI.</p>
 <p>For static externals, static routes for the listed prefixes are installed in a VRF associated with the external
 in the Border Leaf. These routes can be exposed to VPCs either via route leaking on the Border Leaf itself or
-via the Hedgehog Gateway, which adds support for more advanced features such as source NAT. When using the Gateway,
+via the Hedgehog Gateway, which adds support for more advanced features such as source <abbr title="Network Address Translation">NAT</abbr>. When using the Gateway,
 Proxy ARP is configured on the Border Leaf to emulate a direct connection between the external and the Gateway.</p>
 <h3 id="data-plane">Data Plane</h3>
 <p>For <abbr title="Border Gateway Protocol">BGP</abbr> and non-proxied static externals, <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> L3 routable traffic will be tagged with VLAN at a Border Leaf and sent to the Edge Device.
-Later processing of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic (NAT, PBR, etc) should happen on Edge Devices.</p>
+Later processing of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> traffic (<abbr title="Network Address Translation">NAT</abbr>, PBR, etc) should happen on Edge Devices.</p>
 <p>For proxied static externals, traffic will first go through the Gateway, where it will be NATed using one of the assigned IPs.
 It will then be forwarded to a Border Leaf, where it will be VLAN tagged and forwarded to the Edge Device.</p>
 <h3 id="vpc-access-to-edge-device"><abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> access to Edge Device</h3>
@@ -2458,9 +2500,9 @@ to <abbr title="Border Gateway Protocol">BGP</abbr>-speaking attachments will be
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Peering via this Fabric object is only supported for <abbr title="Border Gateway Protocol">BGP</abbr>-speaking externals or
-static externals without proxy ARP. For the proxied static external use case, or whenever NAT
+static externals without proxy ARP. For the proxied static external use case, or whenever <abbr title="Network Address Translation">NAT</abbr>
 is required to access the target prefixes, Gateway peering should be used instead: see
-<a href="../gateway/#gateway-peering-for-external-connections">Gateway Peering for <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Connections</a>.</p>
+<a href="../gateway-peering/#gateway-peering-for-external-connections">Gateway Peering for <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Connections</a>.</p>
 </div>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ExternalPeering</span>
@@ -2606,7 +2648,7 @@ Edge Peer configuration.</p>
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
 </span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>bgp community-list standard HedgeIn permit 5000:65102
 </span></code></pre></div>
-<p>See <a href="../gateway/#gateway-peering-for-external-connections">Gateway Peering with NAT for <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Connections</a> for examples on how to connect to external networks using NAT.</p>
+<p>See <a href="../gateway-peering/#gateway-peering-for-external-connections">Gateway Peering with <abbr title="Network Address Translation">NAT</abbr> for <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> Connections</a> for examples on how to connect to external networks using <abbr title="Network Address Translation">NAT</abbr>.</p>
 <h2 id="example-2-static-external">Example 2: Static <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></h2>
 <p>This example shows how to peer with the static <code>External</code> object with name <code>static-edge</code>,
 given a Fabric <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> with name <code>vpc-01</code> on the Border Leaf <code>switch-border</code> that has a cable
@@ -2714,7 +2756,7 @@ As an example, assuming the Edge Device is connected to the target network via <
 </span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>ip route vrf VrfPublic 192.168.30.0/24 interface Ethernet2.35 nexthop-vrf VrfStatic
 </span></code></pre></div>
 <p>Finally, if traffic coming from the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> must be able to go over the public Internet,
-NAT should be configured on the Edge Device to masquerade the private IPs of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.</p>
+<abbr title="Network Address Translation">NAT</abbr> should be configured on the Edge Device to masquerade the private IPs of the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr>.</p>
 
 
 
@@ -2737,7 +2779,7 @@ NAT should be configured on the Edge Device to masquerade the private IPs of the
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 28, 2026</span>
   </span>
 
     
