@@ -4,6 +4,42 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
 
+## 26.03
+
+Date: August 18, 2026
+
+### Highlights
+
+- ACL support for GatewayPeerings, allowing fine-grained traffic policies, more details [here](../user-guide/gateway-acls.md)
+    - Standard 5-tuple matching (src/dst IP and ports plus protocol), stateful (`flow`) by default with an opt-out for stateless (`packet`) rules
+- HostBGP now supports hosts advertising extra prefixes to enable running RoCEv2 and NCCL
+    - It allows having per-interface rail IPs advertised in addition to the main VIP (see [HostBGP](../user-guide/vpcs.md#hostbgp-subnets))
+- Support for Broadcom SONiC 4.5.2 (see [upgrade SONiC](../install-upgrade/upgrade.md#upgrade-sonic) for instructions)
+
+### Other
+
+- It's now possible to enable port locator LEDs on switches through API and CLI (with timers)
+- Support for automatically shutting down flapping fabric links, with configurable flap threshold and auto-recovery
+- Support for per-port FEC overrides
+- Edgecore EPS202 (AS4630-54PE, 48xRJ45-1G, 4xSFP28-25G, 2xQSFP28-100G) is now supported as a limited leaf
+
+### Notes
+
+- Upgrade is supported from 26.01.x and 26.02.x
+- Remote VPC peering (`spec.remote`) has been deprecated since 26.01 and removed in 26.03; use regular `VPCPeering` or `GatewayPeering` instead
+- `MCLAG` has been deprecated since 26.01 and removed in 26.03; use `ESLAG` (EVPN MH) instead
+
+### Software versions
+
+- fabricator/hhfab: v0.49.3
+- fabric: v0.129.4
+    - broadcom sonic: 4.5.2
+- gateway:
+    - dataplane: v0.25.2
+    - frr: v0.25.2 (based on FRR 10.6, patched)
+- flatcar: v4593.2.4
+- k8s (k3s): v1.36.3-k3s1
+
 ## 26.02
 
 Date: May 8, 2026
