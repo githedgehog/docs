@@ -1996,11 +1996,11 @@ intent, and to monitor the system after the initial container deployment.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/githedgehog/host-bgp
 </span></code></pre></div></p>
 <p>The command above downloads the <code>latest</code> image for the host-bgp container; alternatively, a specific
-version can be fetched by adding it as a suffix to the image name, e.g., using version <code>v0.4.0</code> as a reference:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/githedgehog/host-bgp:v0.4.0
+version can be fetched by adding it as a suffix to the image name, e.g., using version <code>v0.4.1</code> as a reference:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/githedgehog/host-bgp:v0.4.1
 </span></code></pre></div>
 <p>Pinning a version is recommended, so that a host reboot cannot silently pick up a different image; the examples
-below all refer to <code>v0.4.0</code>.</p>
+below all refer to <code>v0.4.1</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Starting with <code>v0.4.0</code>, the image is published as a multi-arch manifest covering <code>linux/amd64</code> and <code>linux/arm64</code>,
@@ -2051,11 +2051,15 @@ using the host's interfaces) and in privileged mode. Additionally, a few input p
   <a href="../vpcs/#hostbgp-subnets">hostBGP subnet</a>.</li>
 </ul>
 </li>
+<li>an optional MTU in the format <code>--mtu &lt;MTU&gt;</code> (68-65535), applied to every interface in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets
+  list, i.e. both parent interfaces and the VLAN interfaces created when <code>v&gt;0</code>. Egress interfaces named
+  only under <code>--routes</code> are not touched. If not specified, a default of 9036 is used: this accounts for
+  9000 bytes of payload plus room for <abbr title="RDMA over Converged Ethernet">RoCE</abbr>/UDP encapsulation, matching how the fabric is provisioned.</li>
 </ul>
 <p>The <code>--routes</code> and <code>--roce</code> sections can appear in any order relative to each other, as long as both come after the
-<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets.</p>
+<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> subnets. The <code>--mtu</code> parameter takes a single value; it can appear anywhere in the command line.</p>
 <p>As an example, the command might look something like this:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--rm<span class="w"> </span>--detach<span class="w"> </span>--name<span class="w"> </span>hostbgp<span class="w"> </span>ghcr.io/githedgehog/host-bgp:v0.4.0<span class="w"> </span><span class="m">64307</span><span class="w"> </span>vpc-01:v<span class="o">=</span><span class="m">1001</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2,to-leaf2:a<span class="o">=</span><span class="m">10</span>.100.34.5/32<span class="w"> </span>--routes<span class="w"> </span><span class="m">0</span>.0.0.0/0:i<span class="o">=</span>enp2s0:d<span class="o">=</span><span class="m">100</span><span class="w"> </span>--roce<span class="w"> </span>enp2s1:a<span class="o">=</span><span class="m">10</span>.115.1.5/32<span class="w"> </span>to-leaf2:a<span class="o">=</span><span class="m">10</span>.115.2.7/32
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>--rm<span class="w"> </span>--detach<span class="w"> </span>--name<span class="w"> </span>hostbgp<span class="w"> </span>ghcr.io/githedgehog/host-bgp:v0.4.1<span class="w"> </span><span class="m">64307</span><span class="w"> </span>vpc-01:v<span class="o">=</span><span class="m">1001</span>:i<span class="o">=</span>enp2s1:i<span class="o">=</span>enp2s2,to-leaf2:a<span class="o">=</span><span class="m">10</span>.100.34.5/32<span class="w"> </span>--routes<span class="w"> </span><span class="m">0</span>.0.0.0/0:i<span class="o">=</span>enp2s0:d<span class="o">=</span><span class="m">100</span><span class="w"> </span>--roce<span class="w"> </span>enp2s1:a<span class="o">=</span><span class="m">10</span>.115.1.5/32<span class="w"> </span>to-leaf2:a<span class="o">=</span><span class="m">10</span>.115.2.7/32<span class="w"> </span>--mtu<span class="w"> </span><span class="m">9000</span>
 </span></code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2073,6 +2077,7 @@ its logs along with it; in that case, drop both <code>--detach</code> and <code>
   route (20), meaning that any default route learned via <abbr title="Border Gateway Protocol">BGP</abbr> would take priority over this, effectively making it a "backup" route</li>
 <li>IP address <code>10.115.1.5/32</code> would be configured on <code>enp2s1.1001</code> and advertised over the corresponding <abbr title="Border Gateway Protocol">BGP</abbr> session</li>
 <li>IP address <code>10.115.2.7/32</code> would be configured on <code>to-leaf2</code> and advertised over the corresponding <abbr title="Border Gateway Protocol">BGP</abbr> session</li>
+<li>an MTU of 9000 would be configured on interfaces <code>enp2s1</code>, <code>enp2s1.1001</code>, <code>enp2s2</code> and <code>to-leaf2</code></li>
 </ul>
 <p>To further modify the configuration or to troubleshoot the state of the system, an
 expert user can invoke the FRR CLI using the following command:
@@ -2267,7 +2272,7 @@ learned in the <abbr title="Virtual Private Cloud, similar to the public cloud V
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2026</span>
   </span>
 
     
