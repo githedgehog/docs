@@ -108,14 +108,14 @@ docker pull ghcr.io/githedgehog/host-bgp
 ```
 
 The command above downloads the `latest` image for the host-bgp container; alternatively, a specific
-version can be fetched by adding it as a suffix to the image name, e.g., using version `v0.4.0` as a reference:
+version can be fetched by adding it as a suffix to the image name, e.g., using version `v0.4.1` as a reference:
 
 ```bash
-docker pull ghcr.io/githedgehog/host-bgp:v0.4.0
+docker pull ghcr.io/githedgehog/host-bgp:v0.4.1
 ```
 
 Pinning a version is recommended, so that a host reboot cannot silently pick up a different image; the examples
-below all refer to `v0.4.0`.
+below all refer to `v0.4.1`.
 
 !!! note
     Starting with `v0.4.0`, the image is published as a multi-arch manifest covering `linux/amd64` and `linux/arm64`,
@@ -160,13 +160,17 @@ using the host's interfaces) and in privileged mode. Additionally, a few input p
       belonging to the hostBGP subnet proper; if these per-interface addresses are not part of that, appropriate
       prefixes including them should be configured as `hostBGPExtraPrefixes` in the
       [hostBGP subnet](vpcs.md#hostbgp-subnets).
+- an optional MTU in the format `--mtu <MTU>` (68-65535), applied to every interface in the VPC subnets
+  list, i.e. both parent interfaces and the VLAN interfaces created when `v>0`. Egress interfaces named
+  only under `--routes` are not touched. If not specified, a default of 9036 is used: this accounts for
+  9000 bytes of payload plus room for RoCE/UDP encapsulation, matching how the fabric is provisioned.
 
 The `--routes` and `--roce` sections can appear in any order relative to each other, as long as both come after the
-VPC subnets.
+VPC subnets. The `--mtu` parameter takes a single value; it can appear anywhere in the command line.
 
 As an example, the command might look something like this:
 ```bash
-docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp:v0.4.0 64307 vpc-01:v=1001:i=enp2s1:i=enp2s2,to-leaf2:a=10.100.34.5/32 --routes 0.0.0.0/0:i=enp2s0:d=100 --roce enp2s1:a=10.115.1.5/32 to-leaf2:a=10.115.2.7/32
+docker run --network=host --privileged --rm --detach --name hostbgp ghcr.io/githedgehog/host-bgp:v0.4.1 64307 vpc-01:v=1001:i=enp2s1:i=enp2s2,to-leaf2:a=10.100.34.5/32 --routes 0.0.0.0/0:i=enp2s0:d=100 --roce enp2s1:a=10.115.1.5/32 to-leaf2:a=10.115.2.7/32 --mtu 9000
 ```
 !!! note
     With the above command, any output produced by the container will not be visible from the terminal
@@ -183,6 +187,7 @@ With the above command:
   route (20), meaning that any default route learned via BGP would take priority over this, effectively making it a "backup" route
 - IP address `10.115.1.5/32` would be configured on `enp2s1.1001` and advertised over the corresponding BGP session
 - IP address `10.115.2.7/32` would be configured on `to-leaf2` and advertised over the corresponding BGP session
+- an MTU of 9000 would be configured on interfaces `enp2s1`, `enp2s1.1001`, `enp2s2` and `to-leaf2`
 
 To further modify the configuration or to troubleshoot the state of the system, an
 expert user can invoke the FRR CLI using the following command:
