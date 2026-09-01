@@ -2821,6 +2821,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#serverinspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServerInspect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#serverspec" class="md-nav__link">
     <span class="md-ellipsis">
       ServerSpec
@@ -5200,6 +5209,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#serverinspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServerInspect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#serverspec" class="md-nav__link">
     <span class="md-ellipsis">
       ServerSpec
@@ -5948,13 +5966,13 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 <tr>
 <td><code>bgpNeighbors</code> <em>object (keys:string, values:<a href="#switchstatebgpneighbor">map[string]SwitchStateBGPNeighbor</a>)</em></td>
-<td>State of all <abbr title="Border Gateway Protocol">BGP</abbr> neighbors (VRF -&gt; neighbor address -&gt; state)</td>
+<td>State of all <abbr title="Border Gateway Protocol">BGP</abbr> neighbors (VRF -&gt; neighbor address, or port (with .VLAN for TH5) for an unnumbered session -&gt; state)</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>bfdPeers</code> <em>object (keys:string, values:<a href="#switchstatebfdpeer">map[string]SwitchStateBFDPeer</a>)</em></td>
-<td>State of all BFD peers (VRF -&gt; peer address -&gt; state)</td>
+<td>State of all BFD peers (VRF -&gt; peer address, or port for an unnumbered session -&gt; state)</td>
 <td></td>
 <td></td>
 </tr>
@@ -6772,12 +6790,6 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>name</code> <em>string</em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><code>chassis</code> <em>string</em></td>
 <td></td>
 <td></td>
@@ -6808,6 +6820,18 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 </tr>
 <tr>
+<td><code>ttl</code> <em>integer</em></td>
+<td>TTL advertised by the neighbor, seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updated</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta">Time</a></em></td>
+<td>When the neighbor entry was last updated</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>manuf</code> <em>string</em></td>
 <td></td>
 <td></td>
@@ -6822,6 +6846,18 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <tr>
 <td><code>serial</code> <em>string</em></td>
 <td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>mac</code> <em>string</em></td>
+<td>MAC of the neighbor port: the LLDP source MAC, or the port ID if it's a MAC address</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>port</code> <em>string</em></td>
+<td>Human-readable neighbor port name: the port ID, or the port description if the port ID is a MAC address</td>
 <td></td>
 <td></td>
 </tr>
@@ -11495,6 +11531,28 @@ in a single Connection object.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="serverinspect">ServerInspect</h4>
+<p>ServerInspect defines the expectations used to check the server against what's observed in the Fabric</p>
+<p><em>Appears in:</em>
+- <a href="#serverspec">ServerSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expectedSysName</code> <em>string</em></td>
+<td>ExpectedSystemName is the LLDP system name the server advertises, usually its hostname, if it isn't the<br />name of this object, e.g. a server-1 running as server-1.example.com</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="serverspec">ServerSpec</h4>
 <p>ServerSpec defines the desired state of Server</p>
 <p><em>Appears in:</em>
@@ -11518,6 +11576,12 @@ in a single Connection object.</p>
 <tr>
 <td><code>profile</code> <em>string</em></td>
 <td>Profile is the profile of the server, name of the ServerProfile object to be used for this server, currently not used by the Fabric</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>inspect</code> <em><a href="#serverinspect">ServerInspect</a></em></td>
+<td>Inspect is the expectations used to check the server against what's observed in the Fabric</td>
 <td></td>
 <td></td>
 </tr>
