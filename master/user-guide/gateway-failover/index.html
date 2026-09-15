@@ -1892,17 +1892,18 @@ You're not viewing the latest version.
 
 <h1 id="gateway-fail-over-and-redundancy">Gateway fail-over and redundancy</h1>
 <h2 id="overview">Overview</h2>
-<p>When <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> <em>peerings</em> are configured to use a gateway, the latter is responsible for the delivery of the traffic exchanged between the VPCs on each side of the peering, fabric-wide. Failures in a gateway, its interconnects, or neighboring nodes can cause connectivity interruptions. Much as link protection is accomplished with interconnect redundancy, gateway failures are mitigated by deploying additional gateways. When more than one gateway is deployed in a Hedgehog Fabric, flexible fail-over strategies are possible to minimize service interruptions, as explained next.</p>
+<p>When <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> <em>peerings</em> are configured to use a gateway (by means of <code>GatewayPeering</code> objects), the latter is responsible for the delivery of the traffic exchanged between the VPCs on each side of the peering, fabric-wide. Failures in a gateway, its interconnects, or neighboring nodes can cause connectivity interruptions. Much as link protection is accomplished with interconnect redundancy, gateway failures are mitigated by deploying additional gateways. When more than one gateway is deployed in a Hedgehog Fabric, flexible fail-over strategies are possible to minimize service interruptions, as explained next.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Gateway "failures" do not necessarily refer to physical issues with the gateway device, its cabling or its software. Any condition that prevents a gateway from being reachable by fabric edges (such as multiple neighbor failures or their cabling) falls in this category. The fail-over strategy of the Hedgehog Fabric is designed to protect against those as well.</p>
 </div>
 <h3 id="gateway-groups">Gateway groups</h3>
-<p>Gateway fail-over strategies build on the concept of <em>gateway groups</em>. A gateway group is a configurable, named set of gateways ranked by priority, such that the member gateway with highest priority is preferred over the rest, provided, of course, that it is operational. There is no limit on the number of groups that can be defined, and gateways can be members of as many groups as desired.
+<p>Gateway fail-over strategies build on the concept of <em>gateway groups</em>. A gateway group is a configurable, named set of gateways, ranked by priority, meant to provide connectivity to a common collection of peerings.
+Within a group, the gateway with highest priority is preferred over the rest, provided that it is operational. There is no limit on the number of groups that can be defined, and gateways can be members of as many groups as desired.
 However:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Currently, group sizes are limited to 10 members at most. Such a limit may only affect in case you have more than 10 gateways deployed on the same fabric.</p>
+<p>By default, group sizes are limited to 10 members. Such a limit may only affect in case you have more than 10 gateways deployed on the same fabric.</p>
 </div>
 <p>Declaring gateway groups is done by means of the <code>GatewayGroup</code> object. The following sample snippet shows the declaration of a group called <strong>group-1</strong>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
@@ -1933,17 +1934,27 @@ However:</p>
 <p class="admonition-title">Note</p>
 <p>The priority assigned to a gateway in a group has no significance in absolute terms. Configuring three gateways in the same group with priorities 300, 200 and 100 has the same effect as configuring them with priorities 51, 29 and 3.</p>
 </div>
-<p>Gateways implement services that are, in many cases, stateful. To correctly handle flows, the packets in the forward and reverse direction should be processed by the same gateway. The Hedgehog Fabric fail-over strategy is such that only one gateway handles a particular flow at any point in time. Gateway group priorities help to ensure that edge devices participating in a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering select the same gateway. In future releases, it may be possible to balance the traffic of a single <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering over multiple gateways.</p>
+<p>Gateways implement services that are, in many cases, stateful. To correctly handle flows, the packets in the forward and reverse direction should be processed by the same gateway. The Hedgehog Fabric fail-over strategy is designed so that only one gateway handles a particular flow at any point in time: gateway group priorities help to ensure that edge devices select the same, single gateway for each peering. In future releases, it may be possible to balance the traffic of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings requiring stateful services over multiple gateways. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Since group membership priorities are specified in the gateways themselves (instead of the <code>GatewayGroup</code>s), with many groups and gateways, two or more gateways may end up being assigned the same priority in a given group. The fabric will not reject such a configuration: despite having the same priorities, only one of the gateways will be the preferred; the first when ordering the gateways within the group alphabetically by name. This tie-breaking criterion is implemented by all gateways so that only one gateway per group is selected consistently across the fabric.</p>
 </div>
+<p>The above restriction where only one gateway may be used at a single point in time for a given peering is relaxed for the so-called  <strong>stateless peerings</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>A peering is <strong>stateless</strong> if it does not require stateful <abbr title="Network Address Translation">NAT</abbr> (masquerade or port-forwarding) nor stateful ACLs.</p>
+</div>
+<p>In stateless peerings, fabric edge devices can use all of the gateways within a group (regardless of their priority) for the same peering at the same time. As a result, better throughput and utilization can be achieved. This multipath behavior for stateless peerings is enabled by default and can be disabled in the GatewayPeering object by setting <code>noMultiPath</code> to <code>true</code>.</p>
 <h2 id="using-gateway-groups-sample-setups">Using gateway groups: sample setups</h2>
 <h3 id="minimal-default-fail-over-setup">Minimal, default fail-over setup</h3>
 <p>The simplest fail-over setup consists of two gateways and a single gateway group. In this setup, one of the gateways is the preferred one and all of the traffic exchanged over all <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings is serviced by that gateway. In the event that it fails, the other gateway takes over. This strategy is commonly called Active-Backup in many redundant systems.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Since there always exists a <code>default</code> gateway group (containing all of the gateways), this Active-Backup behavior is (for any number of gateways) the default when no additional configuration is provided.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case of stateless peerings, all gateways in a group can be used. This strategy is commonly called Active-Active.</p>
 </div>
 <h3 id="customizing-fail-over-setups-traffic-mapping-to-gateway-groups">Customizing fail-over setups: traffic mapping to gateway groups</h3>
 <p>With the previous setup, one of the two gateways remains idle, which can be sub-optimal and under-utilize resources. In order to overcome this, <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings can be specified with a <code>GatewayGroup</code> to indicate the name of the gateway group that should serve the traffic for that peering, as shown in the following snippet.</p>
@@ -1975,16 +1986,17 @@ However:</p>
 <p>Gateway groups and the peering mappings can be handy for other purposes. For instance, removing a gateway from a group allows pulling the traffic of all peerings mapped to that group out of that gateway. Or, by adjusting member priorities, traffic can be re-mapped without changing the peering mappings to groups.</p>
 </div>
 <h2 id="fail-over-under-the-hood-and-recommendations">Fail-over under the hood and recommendations</h2>
-<p>The gateway fail-over strategy in the Hedgehog Fabric is implemented in a distributed manner. Gateways announce <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering prefixes with the specified priorities, while edge nodes (such as leaf switches) select the gateway that handles each packet based on the destination and the priorities. If a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering refers to a group that has K members, the edge devices participating in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> will have K <abbr title="Border Gateway Protocol">BGP</abbr> routes (one per gateway) for each of the peering destinations. However, only one of those routes will be active at any point in time; the one advertised by (and pointing to) the preferred active gateway.</p>
+<p>The gateway fail-over strategy in the Hedgehog Fabric is implemented in a distributed manner. Gateways announce <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering prefixes with the specified priorities, while edge nodes (such as leaf switches) select the gateway that handles each packet based on the destination and the priorities. If a <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering refers to a group that has K members, the edge devices participating in the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> will have K <abbr title="Border Gateway Protocol">BGP</abbr> routes (one per gateway) for each of the peering destinations. However, only one of those routes will be active at any point in time; the one advertised by (and pointing to) the preferred active gateway. In the special case of stateless peerings, this rule is relaxed and edge devices may get multiple routes to the same destinations in the peering, one for each of the (active) gateways in the group.</p>
 <p>Because edge devices perform the fail-over when a gateway ceases to be reachable, downtime in case of failure depends on how quickly those devices reckon the anomaly. To minimize the detection time (and the volume of traffic blackholed), it is recommended to enable BFD on gateway links in order to expedite the propagation of failures.</p>
 <div class="admonition note">
 <p class="admonition-title">Takeaways and configuration summary</p>
-<p>Redundancy works out of the box in an Active-Backup fashion. To customize the behavior, you can:</p>
+<p>Redundancy works out of the box in an Active-Backup fashion for stateful peerings and Active-Active for stateless peerings. To customize the behavior, you can:</p>
 <ol>
 <li>Declare gateway groups (<code>GatewayGroup</code> objects) depending on the number of gateways available.</li>
 <li>Assign gateways to those groups, with suitable priorities. The recommendation is to assign a high priority to each gateway in at least one of the groups so that load is shared evenly among all gateways.</li>
-<li>Map <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings to the groups defined.</li>
-<li>Enable BFD on gateway links.</li>
+<li>Map <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peerings to the groups defined. The recommendation is to define several groups and map peerings to distinct groups.</li>
+<li>Enable BFD on gateway links to expedite the detection of failures.</li>
+<li>Active-Active behavior (multipath) for a stateless peering can be disabled on a per peering basis. The recommendation is to keep it enabled.</li>
 </ol>
 </div>
 
@@ -2009,7 +2021,7 @@ However:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 15, 2026</span>
   </span>
 
     
