@@ -1,16 +1,17 @@
 # Gateway fail-over and redundancy
 ## Overview
-When VPC *peerings* are configured to use a gateway, the latter is responsible for the delivery of the traffic exchanged between the VPCs on each side of the peering, fabric-wide. Failures in a gateway, its interconnects, or neighboring nodes can cause connectivity interruptions. Much as link protection is accomplished with interconnect redundancy, gateway failures are mitigated by deploying additional gateways. When more than one gateway is deployed in a Hedgehog Fabric, flexible fail-over strategies are possible to minimize service interruptions, as explained next.
+When VPC *peerings* are configured to use a gateway (by means of `GatewayPeering` objects), the latter is responsible for the delivery of the traffic exchanged between the VPCs on each side of the peering, fabric-wide. Failures in a gateway, its interconnects, or neighboring nodes can cause connectivity interruptions. Much as link protection is accomplished with interconnect redundancy, gateway failures are mitigated by deploying additional gateways. When more than one gateway is deployed in a Hedgehog Fabric, flexible fail-over strategies are possible to minimize service interruptions, as explained next.
 
 !!! note
     Gateway "failures" do not necessarily refer to physical issues with the gateway device, its cabling or its software. Any condition that prevents a gateway from being reachable by fabric edges (such as multiple neighbor failures or their cabling) falls in this category. The fail-over strategy of the Hedgehog Fabric is designed to protect against those as well.
 
 ### Gateway groups
-Gateway fail-over strategies build on the concept of *gateway groups*. A gateway group is a configurable, named set of gateways ranked by priority, such that the member gateway with highest priority is preferred over the rest, provided, of course, that it is operational. There is no limit on the number of groups that can be defined, and gateways can be members of as many groups as desired.
+Gateway fail-over strategies build on the concept of *gateway groups*. A gateway group is a configurable, named set of gateways, ranked by priority, meant to provide connectivity to a common collection of peerings.
+Within a group, the gateway with highest priority is preferred over the rest, provided that it is operational. There is no limit on the number of groups that can be defined, and gateways can be members of as many groups as desired.
 However:
 
 !!! warning
-    Currently, group sizes are limited to 10 members at most. Such a limit may only affect in case you have more than 10 gateways deployed on the same fabric.
+    By default, group sizes are limited to 10 members. Such a limit may only affect in case you have more than 10 gateways deployed on the same fabric.
 
 Declaring gateway groups is done by means of the `GatewayGroup` object. The following sample snippet shows the declaration of a group called **group-1**.
 
@@ -45,10 +46,19 @@ spec:
 !!! note
     The priority assigned to a gateway in a group has no significance in absolute terms. Configuring three gateways in the same group with priorities 300, 200 and 100 has the same effect as configuring them with priorities 51, 29 and 3.
 
-Gateways implement services that are, in many cases, stateful. To correctly handle flows, the packets in the forward and reverse direction should be processed by the same gateway. The Hedgehog Fabric fail-over strategy is such that only one gateway handles a particular flow at any point in time. Gateway group priorities help to ensure that edge devices participating in a VPC peering select the same gateway. In future releases, it may be possible to balance the traffic of a single VPC peering over multiple gateways.
+Gateways implement services that are, in many cases, stateful. To correctly handle flows, the packets in the forward and reverse direction should be processed by the same gateway. The Hedgehog Fabric fail-over strategy is designed so that only one gateway handles a particular flow at any point in time: gateway group priorities help to ensure that edge devices select the same, single gateway for each peering. In future releases, it may be possible to balance the traffic of VPC peerings requiring stateful services over multiple gateways. 
 
 !!! note
     Since group membership priorities are specified in the gateways themselves (instead of the `GatewayGroup`s), with many groups and gateways, two or more gateways may end up being assigned the same priority in a given group. The fabric will not reject such a configuration: despite having the same priorities, only one of the gateways will be the preferred; the first when ordering the gateways within the group alphabetically by name. This tie-breaking criterion is implemented by all gateways so that only one gateway per group is selected consistently across the fabric.
+
+
+The above restriction where only one gateway may be used at a single point in time for a given peering is relaxed for the so-called  **stateless peerings**.
+
+!!! info
+    A peering is **stateless** if it does not require stateful NAT (masquerade or port-forwarding) nor stateful ACLs.
+
+In stateless peerings, fabric edge devices can use all of the gateways within a group (regardless of their priority) for the same peering at the same time. As a result, better throughput and utilization can be achieved. This multipath behavior for stateless peerings is enabled by default and can be disabled in the GatewayPeering object by setting `noMultiPath` to `true`.
+
 
 ## Using gateway groups: sample setups
 ### Minimal, default fail-over setup
@@ -56,6 +66,9 @@ The simplest fail-over setup consists of two gateways and a single gateway group
 
 !!! note
     Since there always exists a `default` gateway group (containing all of the gateways), this Active-Backup behavior is (for any number of gateways) the default when no additional configuration is provided.
+
+!!! note
+    In case of stateless peerings, all gateways in a group can be used. This strategy is commonly called Active-Active.
 
 ### Customizing fail-over setups: traffic mapping to gateway groups
 With the previous setup, one of the two gateways remains idle, which can be sub-optimal and under-utilize resources. In order to overcome this, VPC peerings can be specified with a `GatewayGroup` to indicate the name of the gateway group that should serve the traffic for that peering, as shown in the following snippet.
@@ -89,14 +102,15 @@ The possibility of creating multiple gateway groups (with distinct gateways and 
     Gateway groups and the peering mappings can be handy for other purposes. For instance, removing a gateway from a group allows pulling the traffic of all peerings mapped to that group out of that gateway. Or, by adjusting member priorities, traffic can be re-mapped without changing the peering mappings to groups.
 
 ## Fail-over under the hood and recommendations
-The gateway fail-over strategy in the Hedgehog Fabric is implemented in a distributed manner. Gateways announce VPC peering prefixes with the specified priorities, while edge nodes (such as leaf switches) select the gateway that handles each packet based on the destination and the priorities. If a VPC peering refers to a group that has K members, the edge devices participating in the VPC will have K BGP routes (one per gateway) for each of the peering destinations. However, only one of those routes will be active at any point in time; the one advertised by (and pointing to) the preferred active gateway.
+The gateway fail-over strategy in the Hedgehog Fabric is implemented in a distributed manner. Gateways announce VPC peering prefixes with the specified priorities, while edge nodes (such as leaf switches) select the gateway that handles each packet based on the destination and the priorities. If a VPC peering refers to a group that has K members, the edge devices participating in the VPC will have K BGP routes (one per gateway) for each of the peering destinations. However, only one of those routes will be active at any point in time; the one advertised by (and pointing to) the preferred active gateway. In the special case of stateless peerings, this rule is relaxed and edge devices may get multiple routes to the same destinations in the peering, one for each of the (active) gateways in the group.
 
 Because edge devices perform the fail-over when a gateway ceases to be reachable, downtime in case of failure depends on how quickly those devices reckon the anomaly. To minimize the detection time (and the volume of traffic blackholed), it is recommended to enable BFD on gateway links in order to expedite the propagation of failures.
 
 !!! note "Takeaways and configuration summary"
-    Redundancy works out of the box in an Active-Backup fashion. To customize the behavior, you can:
+    Redundancy works out of the box in an Active-Backup fashion for stateful peerings and Active-Active for stateless peerings. To customize the behavior, you can:
 
     1. Declare gateway groups (`GatewayGroup` objects) depending on the number of gateways available.
     2. Assign gateways to those groups, with suitable priorities. The recommendation is to assign a high priority to each gateway in at least one of the groups so that load is shared evenly among all gateways.
-    3. Map VPC peerings to the groups defined.
-    4. Enable BFD on gateway links.
+    3. Map VPC peerings to the groups defined. The recommendation is to define several groups and map peerings to distinct groups.
+    4. Enable BFD on gateway links to expedite the detection of failures.
+    5. Active-Active behavior (multipath) for a stateless peering can be disabled on a per peering basis. The recommendation is to keep it enabled.
