@@ -184,3 +184,20 @@ metadata:
 spec:
   description: MH s5248-01/E1 s5248-02/E1
 ```
+
+If a server advertises an LLDP system name that isn't the name of its `Server` object, it can be declared with
+the optional `spec.inspect.expectedSysName` field:
+
+```{.yaml .annotate linenums="1" title="Server.yaml"}
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Server
+metadata:
+  name: server-1
+  namespace: default
+spec:
+  inspect:
+    expectedSysName: server-1.example.com
+```
+
+The field is optional: servers that don't set it are matched by the object name, with some common suffixes and
+prefixes ignored. See [LLDP Neighbors](../troubleshooting/lldp.md) for how the matching works.

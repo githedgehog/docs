@@ -1,5 +1,6 @@
 nav:
   - Overview: overview.md
   - Physical Links: physical_links.md
+  - LLDP Neighbors: lldp.md
   - Switch Agent: agent.md
   - ...
