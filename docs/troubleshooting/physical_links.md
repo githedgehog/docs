@@ -52,25 +52,25 @@ the fault to a single switch port using `kubectl fabric inspect`.
 ### 1. Identify the affected port
 
 `kubectl fabric inspect lldp` prints a per-switch table of the LLDP
-neighbors it observes against what the wiring expects. A port with a
-blank `NEIGHBOR` / `PORT` / `DESCRIPTION` is missing its expected
-neighbor entirely:
+neighbors it observes against what the wiring expects (see
+[LLDP Neighbors](lldp.md)). A port that is missing its expected neighbor
+entirely reports the expectation only, with no observed values:
 
 ```console
 core@control-1 ~ $ kubectl fabric inspect lldp
-Switch: ds5000-01 (actual←→expected)
-PORT       CONNECTION                      TYPE        NEIGHBOR       PORT            DESCRIPTION
-E1/21/1    ds5000-01--mesh--ds5000-02      mesh
-E1/22/1    ds5000-01--mesh--ds5000-02      mesh        ds5000-02      E1/22/1         Hedgehog Fabric
+Switch: ds5000-01
+PORT       CONNECTION                      TYPE        NEIGHBOR       PORT            MAC                  AGE / TTL
+E1/21/1    ds5000-01--mesh--ds5000-02      mesh        (want ds5000-02)
+E1/22/1    ds5000-01--mesh--ds5000-02      mesh        ds5000-02      E1/22/1         b4:db:91:9b:60:27    14/20s
 ...
-Switch: ds5000-02 (actual←→expected)
-PORT       CONNECTION                        TYPE         NEIGHBOR       PORT                   DESCRIPTION
-E1/21/1    ds5000-01--mesh--ds5000-02        mesh
-E1/22/1    ds5000-01--mesh--ds5000-02        mesh         ds5000-01      E1/22/1                Hedgehog Fabric
+Switch: ds5000-02
+PORT       CONNECTION                      TYPE        NEIGHBOR       PORT            MAC                  AGE / TTL
+E1/21/1    ds5000-01--mesh--ds5000-02      mesh        (want ds5000-01)
+E1/22/1    ds5000-01--mesh--ds5000-02      mesh        ds5000-01      E1/22/1         b4:db:91:9b:60:1f    12/20s
 ...
 ```
 
-Both sides of the link report an empty neighbor on `E1/21/1` while the
+Both sides of the link report no neighbor on `E1/21/1` while the
 sibling port `E1/22/1` on the same connection reports its peer normally.
 The fault is on that specific physical link between `ds5000-01` and
 `ds5000-02`, not on either switch as a whole. A working sibling on the
