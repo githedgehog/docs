@@ -4,6 +4,42 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
 
+## 26.04
+
+Date: September 16, 2026
+
+### Highlights
+
+- Gateway now handles stateless peerings on all gateways of a group at the same time (ECMP), more details
+  [here](../user-guide/gateway-failover.md)
+    - A peering is stateless if it requires neither stateful NAT (masquerade or port forwarding) nor stateful ACLs
+    - Enabled by default, can be disabled per peering with `noMultiPath` in the `GatewayPeering` object
+- Significantly expanded LLDP and transceiver metrics (Prometheus) and state exposed through API, more details
+  [here](../troubleshooting/lldp.md)
+    - LLDP neighbors now include neighbor MAC, human-readable port name, advertised TTL and last update time
+    - All major transceiver information is now exposed through Prometheus (part numbers, serial numbers, etc.)
+
+### Other
+
+- Experimental BGP unnumbered support for Fabric links, removing the need to allocate IPs for spine-leaf links
+- BFD for External attachments is now configurable per attachment, falling back to the Fabric defaults
+
+### Notes
+
+- Upgrade is supported only from 26.03.x
+- Broadcom SONiC 4.5.2 is required (see [upgrade SONiC](../install-upgrade/upgrade.md#upgrade-sonic) for instructions)
+
+### Software versions
+
+- fabricator/hhfab: v0.50.4
+- fabric: v0.133.0
+    - broadcom sonic: v4.5.2
+- gateway:
+    - dataplane: v0.28.0
+    - frr: v0.28.0 (based on FRR 10.6, patched)
+- flatcar: v4593.2.5
+- k8s (k3s): v1.36.3-k3s1
+
 ## 26.03
 
 Date: August 18, 2026
