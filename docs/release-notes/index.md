@@ -3,6 +3,36 @@
 !!! note
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
+## 26.04
+
+Date: September 16, 2026
+
+### Highlights
+
+-  
+-
+
+### Other
+
+- LED port location enabled on additional hardware: DS4101, Z9332-ON, DCS240, EPS202 
+- Control Proxy telemetry enabled
+- `fabric inspect` is enhanced to show corrective action when cables are misplaced
+- Allow BGP unnumbered on fabric links
+
+### Notes
+
+- Upgrade is supported from 26.02.x and 26.03.x
+
+### Software versions
+
+- fabricator/hhfab: v0.50.0
+- fabric: v0.133.0
+    - broadcom sonic: 4.5.2
+- gateway:
+    - dataplane: v0.28.0
+    - frr: v0.28.0 (based on FRR 10.6, patched)
+- flatcar: v4593.2.5
+- k8s (k3s): v1.36.3-k3s1
 
 ## 26.03
 
