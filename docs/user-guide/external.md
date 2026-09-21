@@ -16,7 +16,9 @@ Border Leaves (or Borders) can connect to several Edge Devices.
 !!! note
     External Peering is only available on switch devices that support sub-interfaces.
 
-Hedgehog Fabric supports both BGP-speaking and static externals.
+Hedgehog Fabric supports both BGP-speaking and static externals. This choice is made per attachment, not per
+`External`, so a single `External` can have both kinds of attachment at once; see
+[Migrating a Static Attachment to BGP](#migrating-a-static-attachment-to-bgp).
 
 ### Connect a Border Leaf to an Edge Device
 
@@ -172,6 +174,34 @@ spec:
     proxy:    # Flag to enable proxy-ARP, used in conjunction with Gateway peering
     ip:       # IP address (with prefix length) to be configured on the switch when not using Proxy mode, empty otherwise
 ```
+
+### Migrating a Static Attachment to BGP
+
+Static-ness is a property of the `ExternalAttachment`, not of the `External`. This means a single `External` can have
+both static and BGP-speaking attachments at the same time, which allows a static uplink to be migrated to BGP without
+an outage:
+
+1. Add a BGP `ExternalAttachment` on a second Border Leaf, pointing at the same `External`.
+2. Convert the original attachment from static to BGP (remove its `static` block, add `neighbor` and `switch`).
+3. Clear `spec.static.prefixes` on the `External` itself. The API refuses this while any attachment referencing it is
+   still static, so it can only be done after step 2.
+
+While a static attachment and a BGP attachment on the same `External` coexist, the static path always wins, so
+traffic keeps flowing over it during steps 1 and 2.
+
+!!! warning
+    Steps 2 and 3 cannot be applied atomically. Until step 3 completes, the Border Leaf configures the newly-converted
+    BGP link but does not use its routes, so traffic has no working path in between: the static path stopped being
+    used the moment step 2 landed, and the BGP path isn't usable yet. Apply steps 2 and 3 back to back to keep this
+    window as short as possible.
+
+!!! warning
+    `inboundCommunity`/`outboundCommunity` cannot be set on the `External` while `spec.static.prefixes` is present, so
+    an `External` that started out purely static will not have them configured. Once the migration is complete, set
+    them to match whatever community policy the Edge Device applies (see
+    [BGP-speaking External object](#bgp-speaking-external-object) above). If the Edge Device filters inbound routes by
+    community, an `External` with no `outboundCommunity` configured will have every route it advertises silently
+    dropped by the Edge Device.
 
 ### External VPC Peering
 
