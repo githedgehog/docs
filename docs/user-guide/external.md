@@ -178,30 +178,26 @@ spec:
 ### Migrating a Static Attachment to BGP
 
 Static-ness is a property of the `ExternalAttachment`, not of the `External`. This means a single `External` can have
-both static and BGP-speaking attachments at the same time, which allows a static uplink to be migrated to BGP without
-an outage:
+both static and BGP-speaking attachments at the same time, which allows a static uplink to be migrated to BGP:
 
 1. Add a BGP `ExternalAttachment` on a second Border Leaf, pointing at the same `External`.
 2. Convert the original attachment from static to BGP (remove its `static` block, add `neighbor` and `switch`).
-3. Clear `spec.static.prefixes` on the `External` itself. The API refuses this while any attachment referencing it is
-   still static, so it can only be done after step 2.
+3. Clear `spec.static.prefixes` on the `External` itself, and set `inboundCommunity`/`outboundCommunity` to match
+   whatever community policy the Edge Device applies (see
+   [BGP-speaking External object](#bgp-speaking-external-object) above). The API refuses both changes while any
+   attachment referencing the `External` is still static, so step 3 can only happen after step 2.
 
 While a static attachment and a BGP attachment on the same `External` coexist, the static path always wins, so
 traffic keeps flowing over it during steps 1 and 2.
 
 !!! warning
-    This migration has two sharp edges:
-
-    - Steps 2 and 3 cannot be applied atomically. Until step 3 completes, the Border Leaf configures the
-      newly-converted BGP link but does not use its routes, so traffic has no working path in between: the
-      static path stopped being used the moment step 2 landed, and the BGP path isn't usable yet. Apply steps 2
-      and 3 back to back to keep this window as short as possible.
-    - `inboundCommunity`/`outboundCommunity` cannot be set on the `External` while `spec.static.prefixes` is
-      present, so an `External` that started out purely static will not have them configured. Once the migration
-      is complete, set them to match whatever community policy the Edge Device applies (see
-      [BGP-speaking External object](#bgp-speaking-external-object) above). If the Edge Device filters inbound
-      routes by community, an `External` with no `outboundCommunity` configured will have every route it
-      advertises silently dropped.
+    Once step 2 removes the last static attachment, traffic has to use the BGP path, but that path cannot carry
+    `outboundCommunity` yet: the API forbids setting it while `spec.static.prefixes` is still present, to protect the
+    static route from being dropped by a community-based route-map while it still exists. If the Edge Device filters
+    inbound routes by community, as recommended above, every route the Fabric advertises over the new BGP session
+    gets silently dropped until step 3 completes, so this is a real traffic gap, not a hitless cutover. The gap is
+    bound by how long the switch's control plane takes to reconcile the change, typically on the order of a minute,
+    regardless of how quickly the API calls themselves are issued.
 
 ### External VPC Peering
 
