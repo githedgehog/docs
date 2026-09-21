@@ -199,6 +199,10 @@ traffic keeps flowing over it during steps 1 and 2.
     bound by how long the switch's control plane takes to reconcile the change, typically on the order of a minute,
     regardless of how quickly the API calls themselves are issued.
 
+    Since this is a new BGP session (there was no prior BGP config on the Edge Device for this External), this is
+    avoidable: ask the Edge Device operator to accept routes without a community for this session until step 3
+    completes, then add their community-based filter afterward.
+
 ### External VPC Peering
 
 To allow a specific VPC to have access to prefixes reachable via an Edge Device, bind the VPC to the corresponding
