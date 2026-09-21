@@ -190,18 +190,18 @@ While a static attachment and a BGP attachment on the same `External` coexist, t
 traffic keeps flowing over it during steps 1 and 2.
 
 !!! warning
-    Steps 2 and 3 cannot be applied atomically. Until step 3 completes, the Border Leaf configures the newly-converted
-    BGP link but does not use its routes, so traffic has no working path in between: the static path stopped being
-    used the moment step 2 landed, and the BGP path isn't usable yet. Apply steps 2 and 3 back to back to keep this
-    window as short as possible.
+    This migration has two sharp edges:
 
-!!! warning
-    `inboundCommunity`/`outboundCommunity` cannot be set on the `External` while `spec.static.prefixes` is present, so
-    an `External` that started out purely static will not have them configured. Once the migration is complete, set
-    them to match whatever community policy the Edge Device applies (see
-    [BGP-speaking External object](#bgp-speaking-external-object) above). If the Edge Device filters inbound routes by
-    community, an `External` with no `outboundCommunity` configured will have every route it advertises silently
-    dropped by the Edge Device.
+    - Steps 2 and 3 cannot be applied atomically. Until step 3 completes, the Border Leaf configures the
+      newly-converted BGP link but does not use its routes, so traffic has no working path in between: the
+      static path stopped being used the moment step 2 landed, and the BGP path isn't usable yet. Apply steps 2
+      and 3 back to back to keep this window as short as possible.
+    - `inboundCommunity`/`outboundCommunity` cannot be set on the `External` while `spec.static.prefixes` is
+      present, so an `External` that started out purely static will not have them configured. Once the migration
+      is complete, set them to match whatever community policy the Edge Device applies (see
+      [BGP-speaking External object](#bgp-speaking-external-object) above). If the Edge Device filters inbound
+      routes by community, an `External` with no `outboundCommunity` configured will have every route it
+      advertises silently dropped.
 
 ### External VPC Peering
 
