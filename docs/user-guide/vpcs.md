@@ -69,7 +69,7 @@ spec:
         "10.10.56.14/32": # a single host route; minPrefixLen must be set here, since the inherited 25 would be shorter than the prefix itself
           minPrefixLen: 32
           maxPrefixLen: 32
-      vlan: 1050
+      vlan: 1050 # VLAN tag from the VLAN Namespace, use 0 for untagged
 
   permit: # Defines which subnets of the current VPC can communicate to each other, applied on top of subnets "isolated" flag (doesn't affect VPC peering)
     - [subnet-1, subnet-2, subnet-3] # 1, 2 and 3 subnets can communicate to each other
