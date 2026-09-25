@@ -7,6 +7,7 @@ working hard to address:
 * [Configuration not allowed when port is member of PortChannel](#configuration-not-allowed-when-port-is-member-of-portchannel)
 * [Breakout and CMIS transceiver initialization issues on DS5000](#breakout-and-cmis-transceiver-initialization-issues-on-ds5000)
 * [Traffic gets black-holed for up to 1 minute if a host changes IP within its L3VNI VPC subnet](#traffic-gets-black-holed-for-up-to-1-minute-if-a-host-changes-ip-within-its-l3vni-vpc-subnet)
+* [enableAllPorts with base port names on breakout-capable ports causes fabric interfaces to flap between configured and unused](#enableallports-with-base-port-names-on-breakout-capable-ports-causes-fabric-interfaces-to-flap-between-configured-and-unused)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
 
@@ -96,3 +97,29 @@ In the remote leaf, a log like the following one can be observed, where `10.10.9
 #### Known workarounds
 
 The black-hole will resolve itself after a minute at most, when the old neighbor ages out. As a defensive measure, users can configure [static DHCP leases](../user-guide/dhcp.md#static-leases) to ensure that hosts will always receive the same IP address and prevent the issue from happening.
+
+### enableAllPorts with base port names on breakout-capable ports causes fabric interfaces to flap between configured and unused
+
+On a fabric with `enableAllPorts: true`, if the wiring references a breakout-capable fabric port by its base name (e.g. `E1/1`) rather than the breakout-specific name (e.g. `E1/1/1`), BGP and BFD on that port never stabilize. Sessions establish, then drop roughly every 2 minutes, indefinitely.
+
+#### Diagnosing this issue
+
+`kubectl fabric inspect bgp` shows fabric neighbors cycling between established and not-established, with no trend toward convergence over 30+ minutes. The Agent CR's applied generation still reports full convergence throughout, since it only reflects the original apply and doesn't update on this ongoing per-interface churn.
+
+The agent logs on the switch (accessible at `/var/log/agent.log`) will show the affected interface's desired state alternating between its real connection and `description: Unused` on successive reconcile passes:
+
+><code>time=2026-09-23T12:30:49.353Z level=DEBUG msg="Actual <> Desired" diff="-  Ethernet56:"</code>
+><code>time=2026-09-23T12:30:49.353Z level=DEBUG msg="Actual <> Desired" diff="-    description: Unused"</code>
+><code>time=2026-09-23T12:30:49.970Z level=DEBUG msg=Action idx=6 weight=30 summary="Delete Subinterface IP 172.30.128.3" command=delete path="/interfaces/interface[name=Ethernet52]/subinterfaces/subinterface[index=0]/ipv4/addresses/address[ip=172.30.128.3]"</code>
+
+#### Affected versions
+
+Present in every release from 25.01 through 26.04.
+
+#### Known workarounds
+
+Setting `enableAllPorts: false` on the affected switches avoids the issue. Ports not referenced in the wiring will be disabled until they're added to the wiring and reapplied.
+
+Referencing the breakout-specific port name (e.g. `E1/1/1` instead of `E1/1`) for fabric links on breakout-capable ports also avoids the issue with `enableAllPorts` left on.
+
+This is fixed in [fabric#1624](https://github.com/githedgehog/fabric/pull/1624). Targeting release 26.05.
