@@ -100,26 +100,15 @@ The black-hole will resolve itself after a minute at most, when the old neighbor
 
 ### enableAllPorts with base port names on breakout-capable ports causes fabric interfaces to flap between configured and unused
 
-On a fabric with `enableAllPorts: true`, if the wiring references a breakout-capable fabric port by its base name (e.g. `E1/1`) rather than the breakout-specific name (e.g. `E1/1/1`), BGP and BFD on that port never stabilize. Sessions establish, then drop roughly every 2 minutes, indefinitely.
+On a fabric with `enableAllPorts: true`, if the wiring references a breakout-capable fabric port by its base name (e.g. `E1/1`) rather than the breakout-specific name (e.g. `E1/1/1`), BGP and BFD on that port never stabilize, dropping roughly every 2 minutes. Present in every release from 25.01 through 26.04.
 
 #### Diagnosing this issue
 
-`kubectl fabric inspect bgp` shows fabric neighbors cycling between established and not-established, with no trend toward convergence over 30+ minutes. The Agent CR's applied generation still reports full convergence throughout, since it only reflects the original apply and doesn't update on this ongoing per-interface churn.
+`kubectl fabric inspect bgp` shows the affected neighbors cycling between established and not-established with no trend toward convergence. The agent logs on the switch (accessible at `/var/log/agent.log`) show the interface's desired state alternating between its real connection and `description: Unused` on successive reconcile passes:
 
-The agent logs on the switch (accessible at `/var/log/agent.log`) will show the affected interface's desired state alternating between its real connection and `description: Unused` on successive reconcile passes:
-
-><code>time=2026-09-23T12:30:49.353Z level=DEBUG msg="Actual <> Desired" diff="-  Ethernet56:"</code>
 ><code>time=2026-09-23T12:30:49.353Z level=DEBUG msg="Actual <> Desired" diff="-    description: Unused"</code>
 ><code>time=2026-09-23T12:30:49.970Z level=DEBUG msg=Action idx=6 weight=30 summary="Delete Subinterface IP 172.30.128.3" command=delete path="/interfaces/interface[name=Ethernet52]/subinterfaces/subinterface[index=0]/ipv4/addresses/address[ip=172.30.128.3]"</code>
 
-#### Affected versions
-
-Present in every release from 25.01 through 26.04.
-
 #### Known workarounds
 
-Setting `enableAllPorts: false` on the affected switches avoids the issue. Ports not referenced in the wiring will be disabled until they're added to the wiring and reapplied.
-
-Referencing the breakout-specific port name (e.g. `E1/1/1` instead of `E1/1`) for fabric links on breakout-capable ports also avoids the issue with `enableAllPorts` left on.
-
-This is fixed in [fabric#1624](https://github.com/githedgehog/fabric/pull/1624). Targeting release 26.05.
+Setting `enableAllPorts: false` avoids the issue, at the cost of disabling ports not referenced in the wiring. Referencing the breakout-specific port name instead of the base name also avoids it, with `enableAllPorts` left on. Fixed in [fabric#1624](https://github.com/githedgehog/fabric/pull/1624), targeting release 26.05.
