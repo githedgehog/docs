@@ -4,3 +4,4 @@ nav:
   - LLDP Neighbors: lldp.md
   - Switch Agent: agent.md
   - ...
+  - Support Diagnostics: support_diagnostics.md
