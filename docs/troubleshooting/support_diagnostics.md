@@ -14,8 +14,8 @@ front, the faster the issue can be localized.
 - Which specific switches or nodes are affected, if you've already narrowed
   it down.
 - Any diagnostics you've already collected yourself. Include the raw output
-  rather than a summary, so we don't have to re-derive what you've already
-  found.
+  so we can reach our own conclusions and rule out other causes, plus your
+  own summary or theory if you have one.
 
 ## Collecting a support bundle
 
@@ -30,6 +30,22 @@ This produces a single timestamped `.hhs` file containing cluster resources
 (Fabricator, Agent, Connection, VPC, and related objects) and pod logs.
 Secrets are redacted, but the bundle still reflects your deployment's real
 topology and state.
+
+## Switch agent logs
+
+For issues where BGP, BFD, or interface state won't stabilize or keeps
+flapping, the support bundle's Agent CR status can look fully converged even
+while the problem is ongoing - it only reflects the most recent apply, not
+churn happening between applies. `/var/log/agent.log` on the affected
+switches is the artifact that actually shows this. It's a plain file, not a
+`kubectl` or `sonic-cli` command:
+
+```console
+admin@switch:~$ cat /var/log/agent.log
+```
+
+Include the whole file, or at least the span covering when the issue was
+observed, rather than a filtered excerpt.
 
 ## Switch-level diagnostics
 
