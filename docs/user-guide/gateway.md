@@ -8,6 +8,16 @@ full bandwidth of the fabric, whereas traffic using Gateway services is
 handled through the Gateway nodes, which determine the available throughput.
 Together, they offer both high-performance connectivity and rich network services.
 
+
+## Features
+
+* NAT
+* Masqurade
+* PAT
+* ACL
+* Firewall
+
+
 ## Gateway Nodes and Fabric Connectivity
 
 Gateway nodes are connected to the fabric by a set of physical connections that are modeled via Connection objects.

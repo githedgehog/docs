@@ -22,3 +22,4 @@
 *[ESLAG]: Ethernet Segment Link Aggregation (RFC 7432)
 *[NAT]: Network Address Translation
 *[ACL]: Access Control List
+*[PAT]: Port Address Translation
