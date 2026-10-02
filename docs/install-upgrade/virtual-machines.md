@@ -23,13 +23,19 @@ These apply to both control and gateway nodes.
     </os>
     ```
 
+- To Disable Secure boot in Proxmox:
+  - Start the VM, enter the UEFI configuration 
+  - Navigate via keyboard Device Manager -> Secure Boot Configuration. Ensure
+    it is disabled.
 - Use VirtIO devices wherever possible.
 - Attach a console device.
 - Enable autostart so the VM starts with the host.
 - The QEMU guest agent is built into the Flatcar image. To use it, add a
   virtio-serial port named `org.qemu.guest_agent.0`. See the
   [Flatcar documentation](https://www.flatcar.org/docs/latest/os-config/network/acpi/?highlight=guest#qemu-guest-agent)
-  for details.
+  for details. In Proxmox ensure to check the box for Guest Agent when creating
+the Virtual Machine
+
 
 ## Control Node
 
@@ -47,3 +53,5 @@ These apply to both control and gateway nodes.
   device can be attached:
     - [RHEL passthrough documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/configuring_and_managing_linux_virtual_machines/attaching-host-devices-to-virtual-machines#attaching-pci-devices-to-virtual-machines-by-using-the-command-line)
     - [Ubuntu passthrough documentation](https://ubuntu.com/server/docs/how-to/virtualisation/libvirt/#device-passthrough-hotplug)
+    - [Proxmox Wiki](https://pve.proxmox.com/wiki/PCI_Passthrough)
+
