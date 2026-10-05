@@ -5,6 +5,11 @@
 Starting with Beta-1 release and onwards, the upgrade process is more streamlined and fully automated. The control node
 is upgraded in place and the agents/switches are upgraded using the control node.
 
+!!! warning
+    Plan for an outage during the upgrade: traffic that goes through the gateways can be
+    interrupted while the gateway components restart during the control node upgrade.
+    Upgrade the control node first and then the gateway nodes, if your fabric has any.
+
 In order to apply the upgrade, use the following instructions:
 
 1. Generate the current configuration of your fabric:
@@ -33,6 +38,45 @@ Upgrade process is idempotent and can be run multiple times without any issues.
 
 Check the [release notes](../release-notes/index.md) for your version to see if a [SONiC
 Upgrade](#upgrade-sonic) is available.
+
+### Upgrade gateway nodes
+
+If your fabric has gateway nodes, upgrade them after the control node upgrade has finished.
+The same `hhfab build --mode=manual` run that generated the control node package also
+generates one package per gateway node; for a gateway node named `gateway-1`, it will be
+`result/node--gateway-1--install.tgz`.
+
+For each gateway node:
+
+1. upload its package to the gateway node (e.g. using `scp`)
+1. unpack and run `hhfab-recipe upgrade` from the resulting directory
+
+```bash
+tar xzf node--gateway-1--install.tgz
+cd node--gateway-1--install
+sudo ./hhfab-recipe upgrade
+```
+
+After the upgrade, check from the control node that the gateway node is `Ready`:
+
+```console
+core@control-1 ~ $ kubectl get nodes
+NAME        STATUS   ROLES                AGE    VERSION
+control-1   Ready    control-plane,etcd   2d2h   v1.34.1+k3s1
+gateway-1   Ready    <none>               2d2h   v1.34.1+k3s1
+```
+
+and that its gateway pods, named `gw--<gateway name>--...`, are `Running`:
+
+```console
+core@control-1 ~ $ kubectl -n fab get pods
+NAME                             READY   STATUS    RESTARTS   AGE
+gw--gateway-1--dataplane-qtp7p   1/1     Running   0          5m
+gw--gateway-1--frr-64jzt         2/2     Running   0          5m
+[..]
+```
+
+The other pods in the `fab` namespace are listed as well.
 
 ## Install SONiC using ONIE
 
