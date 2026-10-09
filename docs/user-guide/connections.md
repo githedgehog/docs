@@ -9,6 +9,9 @@ on the gateway needs to be accurate. NOS (or any other) port names aren't suppor
 the Fabric API other than for uniqueness. See the [Switch Profiles and Port Naming](../user-guide/profiles.md) section
 for more details on the switch port names.
 
+All the switches and gateways of a connection must be in the same fabric. If the controller manages more than one, see
+[Multi-Fabric and Multi-Domain Deployments](multi-fabric.md).
+
 There are several types of connections.
 
 ## Workload server connections
