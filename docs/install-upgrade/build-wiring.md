@@ -192,15 +192,31 @@ The dotted line in the diagram shows the traffic flow for VPC peering. The traff
 ## Sample Wiring Diagram
 
 The YAML listing below shows a complete wiring diagram for a spine-leaf topology. It illustrates
-how switches from a single vendor can be arranged to form a fabric. There are no IP
-addresses or ASN numbers in this listing, the `hhfab build` step creates those as part
-of creating the fabric. To physically connect this topology, 16 cables are
+how different switches can be arranged to form a fabric. The `Fabric` object at the top
+holds the ASNs of the fabric and should use the same values as the Fabricator configuration, shown here with
+their defaults. There are no IP addresses or switch ASNs in the rest of the listing, the `hhfab build` step
+creates those as part of creating the fabric. To physically connect this topology, 16 cables are
 needed for the fabric links. Additional cables are needed to connect servers into the fabric.
 
 ``` {.yaml .annotate linenums="1" title="wiring_diagram.yaml"}
 #
+# Fabric
+#
+apiVersion: wiring.githedgehog.com/v1beta1
+kind: Fabric
+metadata:
+  name: default
+spec:
+  leafASNStart: 65101 # config.fabric.leafASNStart
+  leafASNEnd: 65533 # config.fabric.leafASNEnd
+  domains:
+    default:
+      spineASN: 65100 # config.fabric.spineASN
+      gatewayASN: 65534 # config.gateway.asn
+#
 # VLANNamespaceList
 #
+---
 apiVersion: wiring.githedgehog.com/v1beta1
 kind: VLANNamespace
 metadata:

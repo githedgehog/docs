@@ -81,6 +81,9 @@ spec:
         - 10.200.0.0
 ```
 
+In a deployment with more than one fabric or domain, a VPC also declares where it can be attached in
+`spec.topology.fabric` and `spec.topology.domains`, see [Multi-Fabric and Multi-Domain Deployments](multi-fabric.md).
+
 ### Isolated and restricted subnets, permit lists
 
 Subnets can be isolated and restricted, with the ability to define permit lists to allow communication between specific

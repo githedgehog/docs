@@ -53,6 +53,10 @@ spec:
     roceQPN: false # ECMP RoCE QPN hashing
 ```
 
+If the controller manages more than one fabric, or the switch is connected to more than one set of spines, the
+switch also needs `spec.topology.fabric` and `spec.topology.domains`, see
+[Multi-Fabric and Multi-Domain Deployments](multi-fabric.md).
+
 ### RDMA over Converged Ethernet (RoCE) version 2
 RDMA over converged ethernet (RoCE) allows for RDMA communication over conventional
 ethernet devices. RoCE isn't available on every switch, check the [switch

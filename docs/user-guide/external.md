@@ -89,6 +89,9 @@ any other united Edge entities that can be described with the following configur
 
 Each `External` should be bound to some VPC IP Namespace, otherwise prefixes overlap may happen.
 
+In a deployment with more than one fabric or domain, each `External` also belongs to a single fabric and domain, see
+[Multi-Fabric and Multi-Domain Deployments](multi-fabric.md).
+
 ```yaml
 apiVersion: vpc.githedgehog.com/v1beta1
 kind: External
@@ -123,6 +126,29 @@ spec:
 ```
 
 Several `External Attachment` can be configured for the same `Connection` but for different `vlan`.
+
+#### Local ASN
+
+By default each border leaf peers with the Edge Device using its own ASN. Setting `localASN` on the `External`
+makes all its attachments present that ASN instead, so the Edge Device needs a single remote AS for every border
+leaf:
+
+```yaml
+apiVersion: vpc.githedgehog.com/v1beta1
+kind: External
+metadata:
+  name: bgp-edge
+spec:
+  ipv4Namespace: default
+  inboundCommunity: 65102:5000
+  outboundCommunity: 5000:65102
+  localASN: 65500
+```
+
+The border leaf's own ASN is not added to the AS path, so its length is the same as without `localASN`, in both
+directions. `localASN` must not be an ASN of the fabric (leaf range, spine or gateway ASN) or the neighbor ASN of any
+of the External's attachments. Changing it resets all BGP sessions to the External, and the Edge Device must change
+its remote AS to match. Static attachments ignore it.
 
 ### Static Externals
 
