@@ -29,6 +29,12 @@ underlay network.
 A mesh topology is a flat network where leaf switches peer directly with each other using BGP. This topology
 is useful for smaller deployments and test environments, where a full spine-leaf topology is not required.
 
+### Multiple Fabrics and Domains
+
+A single controller can also manage several separate topologies, called fabrics, and a spine-leaf fabric can have
+several sets of spines, called domains, with some leaves connected to more than one. See
+[Multi-Fabric and Multi-Domain Deployments](../user-guide/multi-fabric.md).
+
 ## Overlay Network
 
 The overlay network runs on top of the underlay network to create a virtual network. The overlay network isolates control
