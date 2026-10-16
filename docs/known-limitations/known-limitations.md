@@ -8,6 +8,7 @@ working hard to address:
 * [Breakout and CMIS transceiver initialization issues on DS5000](#breakout-and-cmis-transceiver-initialization-issues-on-ds5000)
 * [Traffic gets black-holed for up to 1 minute if a host changes IP within its L3VNI VPC subnet](#traffic-gets-black-holed-for-up-to-1-minute-if-a-host-changes-ip-within-its-l3vni-vpc-subnet)
 * [enableAllPorts with base port names on breakout-capable ports causes fabric interfaces to flap between configured and unused](#enableallports-with-base-port-names-on-breakout-capable-ports-causes-fabric-interfaces-to-flap-between-configured-and-unused)
+* [Connection changes on a switch with RoCE enabled can leave the agent unable to apply](#connection-changes-on-a-switch-with-roce-enabled-can-leave-the-agent-unable-to-apply)
 
 ### Deleting a VPC and creating a new one right away can cause the agent to fail
 
@@ -112,3 +113,25 @@ On a fabric with `enableAllPorts: true`, if the wiring references a breakout-cap
 #### Known workarounds
 
 Setting `enableAllPorts: false` avoids the issue, at the cost of disabling ports not referenced in the wiring. Referencing the breakout-specific port name instead of the base name also avoids it, with `enableAllPorts` left on. Fixed in [fabric#1624](https://github.com/githedgehog/fabric/pull/1624), targeting release 26.05.
+
+### Connection changes on a switch with RoCE enabled can leave the agent unable to apply
+
+On a switch with `roce: true`, the SONiC gNMI interface refuses to configure a port that has the RoCE QoS maps bound to it, or to delete a port channel whose members still have them. Moving a link of a bundled or ESLAG Connection to another port, or deleting a bundled or ESLAG Connection, makes the agent fail on every attempt. The agent only asks the switch to turn RoCE off after the configuration applies, so setting `roce: false` does not recover it. Tracked in [fabric#1677](https://github.com/githedgehog/fabric/issues/1677) and [fabric#1664](https://github.com/githedgehog/fabric/issues/1664).
+
+#### Diagnosing this issue
+
+The applied generation of the affected agent reported by kubectl will not converge to the last desired generation. Additionally, the agent logs on the switch (accessible at `/var/log/agent.log`) will contain one of the following errors:
+
+><code>level=ERROR msg=Failed err="failed to run agent: failed to process agent config from k8s: failed to process agent config loaded from k8s: failed to apply actions: gNMI set request failed: gnmi set request failed: rpc error: code = InvalidArgument desc = Configuration not allowed as Ethernet4 interface has dscp-tc or dot1p-tc or tc-dscp or tc-dot1p map."</code>
+
+><code>level=ERROR msg=Failed err="failed to run agent: failed to process agent config from k8s: failed to process agent config loaded from k8s: failed to apply actions: gNMI set request failed: gnmi set request failed: rpc error: code = InvalidArgument desc = Validation failed for Delete operation, given instance is in use"</code>
+
+#### Known workarounds
+
+Revert the Connection change, or recreate the deleted Connection. The agent applies the previous generation and returns to applied.
+
+To move a link of a Connection, disable RoCE first:
+
+1. Set `roce: false` on the Switch and nothing else. Wait for the switch to reboot and for the agent to report applied.
+2. Move the link.
+3. Set `roce: true` again if needed.
