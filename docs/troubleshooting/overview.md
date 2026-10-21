@@ -63,3 +63,14 @@ OPTIONS:
    --verbose, -v  verbose output (includes debug) (default: true)
    --help, -h     show help
 ```
+
+## BGP Prefix Limits on Externals
+
+If an External attachment has a `prefixLimit` (see [External Peering](../user-guide/external.md#bgp-speaking-external-attachment-object)),
+`kubectl fabric inspect bgp --prefix-limits` (or `-p`) adds a `PrefixLimit` column with the prefixes received from
+the neighbor against its maximum, e.g. `800/1000`, followed by `warn-only` if `warningOnly` is set. The value turns
+yellow from the warning threshold and red above the maximum.
+
+The switch does not report why it closed a BGP session, so a session closed by the prefix limit looks like any other
+session that is not established. With `--strict`, the command fails for a neighbor with a limit that is not
+established, suggesting to check the switch logs to confirm whether it went above the limit.
