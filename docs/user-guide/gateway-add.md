@@ -239,7 +239,7 @@ spec:
   workers: 8 # (15)!
 ```
 
-1. Must match `config.gateway.asn` from Fabricator configuration (use `kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.gateway.asn}'`)
+1. Must match `config.gateway.asn` from Fabricator configuration (use `kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.gateway.asn}'`). With [more than one fabric or domain](multi-fabric.md), it must instead be the `gatewayASN` of the domain named in the gateway's `spec.topology`
 2. Allocate a unique /32 from `config.fabric.protocolSubnet` (BGP router ID)
 3. Allocate a unique /32 from `config.fabric.vtepSubnet` (VXLAN tunnel endpoint)
 4. MAC address for VTEP - any valid MAC address (e.g., 02:00:00:00:01:02)
