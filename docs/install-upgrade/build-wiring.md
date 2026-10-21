@@ -192,11 +192,13 @@ The dotted line in the diagram shows the traffic flow for VPC peering. The traff
 ## Sample Wiring Diagram
 
 The YAML listing below shows a complete wiring diagram for a spine-leaf topology. It illustrates
-how different switches can be arranged to form a fabric. The `Fabric` object at the top
-holds the ASNs of the fabric and should use the same values as the Fabricator configuration, shown here with
-their defaults. There are no IP addresses or switch ASNs in the rest of the listing, the `hhfab build` step
-creates those as part of creating the fabric. To physically connect this topology, 16 cables are
-needed for the fabric links. Additional cables are needed to connect servers into the fabric.
+how different switches can be arranged to form a fabric. The `Fabric` object at the top is
+required and holds the ASNs of the fabric; it should use the same values as the Fabricator configuration, shown here
+with their defaults. Wiring written for a release without fabrics has no `Fabric` object, and `hhfab validate` and
+`hhfab build` reject it with `switch <name> fabric default not found` until one is added. There are no IP addresses
+or switch ASNs in the rest of the listing, the `hhfab build` step creates those as part of creating the fabric. To
+physically connect this topology, 16 cables are needed for the fabric links. Additional cables are needed to connect
+servers into the fabric.
 
 ``` {.yaml .annotate linenums="1" title="wiring_diagram.yaml"}
 #

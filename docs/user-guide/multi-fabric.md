@@ -68,13 +68,14 @@ Any object that does not name a fabric is placed in `Fabric/default`, and any sw
 does not name a domain is placed in a domain called `default`. This is what keeps single-fabric wiring free of
 fabric and domain references.
 
-`Fabric/default` has a single domain named `default`, and should use the same ASNs as the Fabricator configuration
+By default `Fabric/default` has a single domain named `default`, with the ASNs from the Fabricator configuration
 (`spineASN`, `leafASNStart`, `leafASNEnd` and the gateway `asn`). A new installation gets it from the wiring, see the
-[sample wiring diagram](../install-upgrade/build-wiring.md#sample-wiring-diagram). When upgrading from a release
-without fabrics, it is created from the Fabricator configuration, and every existing object is moved into it.
+[sample wiring diagram](../install-upgrade/build-wiring.md#sample-wiring-diagram), and the wiring can declare more
+domains in it. When upgrading from a release without fabrics, it is created from the Fabricator configuration with
+only the `default` domain, and every existing object is moved into it.
 
-`Fabric/default` can not be deleted. Like any other fabric, its domains can not be changed once it is created, so a
-deployment that needs several domains must create a new Fabric for them.
+`Fabric/default` can not be deleted. Like any other fabric, its domains can not be changed once it is created, so
+after an upgrade, more domains need a new Fabric.
 
 Here is an example of a topology with two fabrics. `fabric-a` is a spine-leaf topology with two domains;
 `leaf-04` is shared and belongs to both domains. `fabric-b` is a mesh topology; the two fabrics are interconnected
