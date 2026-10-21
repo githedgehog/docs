@@ -83,11 +83,13 @@ BGP-speaking externals and their attachments.
 Each object of `External` type can represent a set of Edge Devices, or a single BGP instance on Edge Device, or
 any other united Edge entities that can be described with the following configuration:
 
-- Name of the `External`
-- Inbound routes marked with the dedicated BGP community
-- Outbound routes marked with the dedicated community
+- name of the `External`
+- an optional BGP community to filter inbound routes
+- an optional BGP community to mark outbound routes
+- an optional list of inbound prefixes outside the IPv4Namespace to allow; if not specified,
+  everything outside the IPv4Namespace is accepted
 
-Each `External` should be bound to some VPC IP Namespace, otherwise prefixes overlap may happen.
+Each `External` must be bound to an IPv4Namespace, to prevent prefix overlap.
 
 In a deployment with more than one fabric or domain, each `External` also belongs to a single fabric and domain, see
 [Multi-Fabric and Multi-Domain Deployments](multi-fabric.md).
@@ -98,9 +100,14 @@ kind: External
 metadata:
   name: default--5835
 spec:
-  ipv4Namespace: # VPC IP Namespace
-  inboundCommunity: # BGP Standard Community of routes from Edge Devices
-  outboundCommunity: # BGP Standard Community required to be assigned on prefixes advertised from Fabric
+  ipv4Namespace:     # VPC IPv4Namespace, defaults to 'default'
+  inboundCommunity:  # optional BGP Standard Community to filter inbound routes
+  outboundCommunity: # optional BGP Standard Community to be assigned on prefixes advertised from Fabric
+  inboundPrefixes:   # optional map of prefixes to accept, each with optional minimum and maximum prefix length
+    0.0.0.0/0: {}      # default route only: without min and max PrefixLen the prefix is matched exactly
+    172.16.0.0/12:
+      minPrefixLen: 16 # optional minimum prefix length for the match, defaults to the prefix's own length (12 in the example here)
+      maxPrefixLen: 32 # optional maximum prefix length for the match, defaults to minPrefixLen
 ```
 
 #### BGP-speaking External Attachment object
@@ -118,14 +125,36 @@ spec:
   connection: # Name of the Connection with type external
   external: # Name of the External to pick config
   neighbor:
-    asn: # Edge Device ASN
-    ip: # IP address of Edge Device to peer with
+    asn: # Edge Device ASN, leave empty to accept any ASN other than the switch's own
+    ip: # IP address of Edge Device to peer with, leave empty for unnumbered BGP
+    prefixLimit: # optional
+      max: # maximum number of prefixes accepted before the BGP session is closed, at least 1
+      restartMinutes: # how long the session stays closed, default is 5 minutes, can't be set with warningOnly
+      warningThresholdPct: # % of the max at which the switch logs a warning, 75 by default
+      warningOnly: # if set to true keeps the session open and logs only
   switch:
-    ip: # IP address on the Border Leaf to set up BGP peering
+    ip: # IP address on the Border Leaf to set up BGP peering, leave empty for unnumbered BGP
     vlan: # VLAN (optional) ID to tag control and data traffic, use 0 for untagged
+  bfd: # optionally enable BFD for the BGP session, an empty object uses the fabric defaults
+    minRX: # minimum BFD receive interval in ms, default 300
+    minTX: # minimum BFD transmit interval in ms, default 300
+    multiplier: # how many missed packets bring the session down, default 3
+    passive: # whether this side waits for the other peer to initiate the BFD session, default false
 ```
 
 Several `External Attachment` can be configured for the same `Connection` but for different `vlan`.
+If no IP addresses are specified on either the switch or the neighbor side, the session uses BGP
+unnumbered over IPv6 link-local.
+
+Routes learned from an `External` do not keep the BGP communities set by the Edge Device: the Border Leaf replaces
+them with a community derived from the `External` itself, plus `inboundCommunity` if set. `inboundCommunity` should
+not have the same ASN as the Fabric's `baseVPCCommunity` (`50000:0` by default) and a higher value, as the Fabric
+assigns communities in that range to VPCs, and routes from the `External` could be treated as belonging to the VPC.
+The API accepts such a community but returns a warning.
+
+On the optional prefix limit, `max` is required and it counts prefixes _after_ the optional inbound filters,
+i.e. only prefixes that actually make it to the VRF count towards the maximum. Raising `max` doesn't reopen
+a closed session early; removing the limit does.
 
 #### Local ASN
 
