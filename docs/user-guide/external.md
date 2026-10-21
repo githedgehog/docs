@@ -176,8 +176,12 @@ spec:
 
 The border leaf's own ASN is not added to the AS path, so its length is the same as without `localASN`, in both
 directions. `localASN` must not be an ASN of the fabric (leaf range, spine or gateway ASN) or the neighbor ASN of any
-of the External's attachments. Changing it resets all BGP sessions to the External, and the Edge Device must change
-its remote AS to match. Static attachments ignore it.
+of the External's attachments, and every BGP attachment of the External must set `neighbor.asn`. Changing it resets
+all BGP sessions to the External, and the Edge Device must change its remote AS to match. Static attachments ignore
+it.
+
+Note that if `localASN` is specified, the neighbor section of the `External Attachment` must include the ASN of the
+remote peer.
 
 ### Static Externals
 
