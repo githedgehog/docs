@@ -76,6 +76,184 @@ without fabrics, it is created from the Fabricator configuration, and every exis
 `Fabric/default` can not be deleted. Like any other fabric, its domains can not be changed once it is created, so a
 deployment that needs several domains must create a new Fabric for them.
 
+Here is an example of a topology with two fabrics. `fabric-a` is a spine-leaf topology with two domains;
+`leaf-04` is shared and belongs to both domains. `fabric-b` is a mesh topology; the two fabrics are interconnected
+via externals.
+
+``` mermaid
+graph TD
+
+%% Style definitions
+classDef gateway fill:#FFF2CC,stroke:#999,stroke-width:1px,color:#000
+classDef spine   fill:#F8CECC,stroke:#B85450,stroke-width:1px,color:#000
+classDef leaf    fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px,color:#000
+classDef server  fill:#D5E8D4,stroke:#82B366,stroke-width:1px,color:#000
+classDef eslag   fill:#FFF8E8,stroke:#CC9900,stroke-width:1px,color:#000
+classDef external fill:#FFCC99,stroke:#D79B00,stroke-width:1px,color:#000
+classDef hidden fill:none,stroke:none
+classDef legendBox fill:white,stroke:#999,stroke-width:1px,color:#000
+
+%% Network diagram
+subgraph Fabric_Fabric_B["Fabric: fabric-b"]
+	direction TB
+subgraph Leaves_Fabric_B[" "]
+	direction LR
+	Leaf_05["leaf-05<br>server-leaf"]
+	Leaf_06["leaf-06<br>server-leaf"]
+end
+
+subgraph Servers_Fabric_B[" "]
+	direction TB
+	Server_09["server-09"]
+	Server_10["server-10"]
+end
+
+end
+style Fabric_Fabric_B fill:#FAFAFA,stroke:#666,stroke-width:2px
+
+subgraph Externals[" "]
+	direction TB
+	To_Fabric_A["to-fabric-a"]
+	To_Fabric_B["to-fabric-b"]
+end
+
+subgraph Fabric_Fabric_A["Fabric: fabric-a"]
+	direction TB
+subgraph Domain_Fabric_A_Domain_B["Domain: domain-b"]
+	direction TB
+	Spine_03["spine-03<br>spine"]
+	Spine_04["spine-04<br>spine"]
+end
+style Domain_Fabric_A_Domain_B fill:#EEF3F8,stroke:#6C8EBF,stroke-dasharray:5 5
+
+subgraph Domain_Fabric_A_Domain_A["Domain: domain-a"]
+	direction TB
+	Spine_01["spine-01<br>spine"]
+	Spine_02["spine-02<br>spine"]
+end
+style Domain_Fabric_A_Domain_A fill:#EEF3F8,stroke:#6C8EBF,stroke-dasharray:5 5
+
+subgraph Leaves_Fabric_A[" "]
+	direction LR
+	Leaf_03["leaf-03<br>server-leaf"]
+	Leaf_04["leaf-04<br>server-leaf"]
+
+	subgraph Eslag_1 ["eslag-1"]
+		direction LR
+		Leaf_01["leaf-01<br>server-leaf"]
+		Leaf_02["leaf-02<br>server-leaf"]
+	end
+end
+
+subgraph Servers_Fabric_A[" "]
+	direction TB
+	Server_05["server-05"]
+	Server_06["server-06"]
+	Server_07["server-07"]
+	Server_08["server-08"]
+	Server_03["server-03"]
+	Server_01["server-01"]
+	Server_02["server-02"]
+	Server_04["server-04"]
+end
+
+end
+style Fabric_Fabric_A fill:#FAFAFA,stroke:#666,stroke-width:2px
+
+
+%% Connections
+
+%% Spine_01 -> Leaves
+Spine_01 ---|"E1/4↔E1/1<br>E1/5↔E1/2"| Leaf_01
+Spine_01 ---|"E1/5↔E1/3<br>E1/6↔E1/4"| Leaf_02
+Spine_01 ---|"E1/4↔E1/5<br>E1/5↔E1/6"| Leaf_04
+
+%% Spine_02 -> Leaves
+Spine_02 ---|"E1/6↔E1/1<br>E1/7↔E1/2"| Leaf_01
+Spine_02 ---|"E1/7↔E1/3<br>E1/8↔E1/4"| Leaf_02
+Spine_02 ---|"E1/6↔E1/5<br>E1/7↔E1/6"| Leaf_04
+
+%% Spine_03 -> Leaves
+Spine_03 ---|"E1/4↔E1/1<br>E1/5↔E1/2"| Leaf_03
+Spine_03 ---|"E1/8↔E1/3<br>E1/9↔E1/4"| Leaf_04
+
+%% Spine_04 -> Leaves
+Spine_04 ---|"E1/6↔E1/1<br>E1/7↔E1/2"| Leaf_03
+Spine_04 ---|"E1/10↔E1/3<br>E1/11↔E1/4"| Leaf_04
+
+%% Leaves -> Servers
+Leaf_01 ---|"enp2s1↔E1/1"| Server_01
+Leaf_01 ---|"enp2s1↔E1/2"| Server_02
+Leaf_01 ---|"enp2s1↔E1/3"| Server_03
+
+Leaf_02 ---|"enp2s2↔E1/1"| Server_01
+Leaf_02 ---|"enp2s2↔E1/2"| Server_02
+Leaf_02 ---|"enp2s1↔E1/3<br>enp2s2↔E1/4"| Server_04
+
+Leaf_03 ---|"enp2s1↔E1/1"| Server_05
+Leaf_03 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_06
+
+Leaf_04 ---|"enp2s1↔E1/1"| Server_07
+Leaf_04 ---|"enp2s1↔E1/2<br>enp2s2↔E1/3"| Server_08
+
+Leaf_05 ---|"enp2s1↔E1/1"| Server_09
+
+Leaf_06 ---|"enp2s1↔E1/1"| Server_10
+
+%% Mesh connections
+Leaf_05 ---|"E1/2↔E1/2<br>E1/3↔E1/3"| Leaf_06
+
+%% External connections
+Leaf_02 ---|"↔E1/9"| To_Fabric_B
+Leaf_05 ---|"↔E1/4"| To_Fabric_A
+
+To_Fabric_A ---|"interconnect"| To_Fabric_B
+
+subgraph Legend["Network Connection Types"]
+	direction LR
+	%% Create invisible nodes for the start and end of each line
+	L1(( )) --- |"Fabric Links"| L2(( ))
+	L15(( )) --- |"Mesh Links"| L16(( ))
+	L5(( )) --- |"Bundled Server Links (x2)"| L6(( ))
+	L7(( )) --- |"Unbundled Server Links"| L8(( ))
+	L9(( )) --- |"ESLAG Server Links"| L10(( ))
+	L13(( )) --- |"External Links"| L14(( ))
+	L19(( )) --- |"Fabric Interconnect Links"| L20(( ))
+	P1(( )) --- |"Label Notation: Downstream ↔ Upstream"| P2(( ))
+end
+
+class Spine_01,Spine_02,Spine_03,Spine_04 spine
+class Leaf_01,Leaf_02,Leaf_04,Leaf_03,Leaf_05,Leaf_06 leaf
+class Server_03,Server_01,Server_02,Server_04,Server_07,Server_08,Server_05,Server_06,Server_09,Server_10 server
+class To_Fabric_A,To_Fabric_B external
+class Eslag_1 eslag
+class L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,P1,P2,L13,L14,L15,L16,L19,L20 hidden
+class Legend legendBox
+linkStyle default stroke:#666,stroke-width:2px
+linkStyle 0,1,2,3,4,5,6,7,8,9 stroke:#CC3333,stroke-width:4px
+linkStyle 22 stroke:#0078D4,stroke-width:4px
+linkStyle 15,17,19 stroke:#66CC66,stroke-width:4px
+linkStyle 10,11,13,14 stroke:#CC9900,stroke-width:4px,stroke-dasharray:5 5
+linkStyle 12,16,18,20,21 stroke:#999999,stroke-width:2px
+linkStyle 23,24 stroke:#D79B00,stroke-width:2px
+linkStyle 25 stroke:#9673A6,stroke-width:3px,stroke-dasharray:5 5
+linkStyle 26 stroke:#B85450,stroke-width:2px
+linkStyle 27 stroke:#0078D4,stroke-width:2px
+linkStyle 28 stroke:#82B366,stroke-width:2px
+linkStyle 29 stroke:#000000,stroke-width:2px
+linkStyle 30 stroke:#CC9900,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 31 stroke:#D79B00,stroke-width:2px
+linkStyle 32 stroke:#9673A6,stroke-width:2px,stroke-dasharray:5 5
+linkStyle 33 stroke:#FFFFFF
+
+%% Make subgraph containers invisible
+style Leaves_Fabric_B fill:none,stroke:none
+style Servers_Fabric_B fill:none,stroke:none
+style Leaves_Fabric_A fill:none,stroke:none
+style Servers_Fabric_A fill:none,stroke:none
+style Externals fill:none,stroke:none
+```
+
 ### Rules for Fabric Objects
 
 - Domain names must be valid DNS labels.
