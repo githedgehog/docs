@@ -115,6 +115,30 @@ to the outer packet at the time of encapsulation. Likewise the outer DSCP
 information is copied to the inner packet when the packet is deencapsulated.
 This process preserves the traffic classification even through a VXLAN tunnel.
 
+#### What RoCE mode configures
+
+`roce: true` is a single switch-level setting. It applies a fixed set of
+lossless Ethernet configuration to the switch as one unit:
+
+- Buffer sizing for the lossless queues
+- Priority Flow Control (PFC) on the RDMA traffic class
+- Explicit Congestion Notification (ECN) marking
+- Queue scheduling between the traffic classes in the table above
+
+Enabling `roce` makes the Fabric agent invoke the switch operating system's
+built-in RoCE configuration, which applies these settings. The Fabric API has
+no fields for adjusting individual PFC, ECN, buffer or scheduler parameters, so
+they can't be changed per fabric or per switch.
+
+!!! warning
+    Do not change these settings through the switch CLI. The Fabric agent
+    does not track individual parameter values, so manual changes are
+    unsupported and are lost when RoCE mode is disabled and enabled again.
+
+RoCE mode is enabled per switch. PFC and ECN only work end to end when every
+switch on the traffic path uses the same configuration, so enable `roce` on all
+switches that carry RoCE traffic, and configure the end hosts to match the DSCP
+values in the table above.
 
 #### RoCE QPN Hashing Mode
 
