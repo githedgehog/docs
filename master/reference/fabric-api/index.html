@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://docs.hedgehog.cloud/dev/reference/fabric-api/">
       
       
-        <link rel="prev" href="../../user-guide/gateway-failover/">
+        <link rel="prev" href="../../user-guide/multi-fabric/">
       
       
         <link rel="next" href="../fab-api/">
@@ -1127,6 +1127,27 @@ You're not viewing the latest version.
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/multi-fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Fabric and Multi-Domain Deployments
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -7879,7 +7900,7 @@ end user through API. Not intended to be modified by the user.</p>
 </tr>
 <tr>
 <td><code>discover</code> <em>boolean</em></td>
-<td>Discover is true if the IP was offered to a client but not yet acked</td>
+<td>Discover is true if the IP was offered to a client but not yet acked, not set anymore as offers are only kept in<br />memory by the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server</td>
 <td></td>
 <td></td>
 </tr>
@@ -10540,13 +10561,13 @@ Unset values fall back to the fabric defaults.</p>
 <tbody>
 <tr>
 <td><code>asn</code> <em>integer</em></td>
-<td>ASN is the ASN of the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor</td>
+<td>ASN (optional) is the ASN of the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor, if not set any ASN other than the switch's own is accepted</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
-<td>IP is the IP address of the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor to peer with (without prefix length)</td>
+<td>IP is the IP address of the <abbr title="Border Gateway Protocol">BGP</abbr> neighbor to peer with (without prefix length).<br />Leave it and switch.ip empty for a <abbr title="Border Gateway Protocol">BGP</abbr> unnumbered session over IPv6 link-local addresses</td>
 <td></td>
 <td></td>
 </tr>
@@ -10682,7 +10703,7 @@ Unset values fall back to the fabric defaults.</p>
 </tr>
 <tr>
 <td><code>ip</code> <em>string</em></td>
-<td>IP is the IP address of the subinterface on a switch port specified in the connection, it should include the prefix length</td>
+<td>IP is the IP address of the subinterface on a switch port specified in the connection, it should include the prefix length.<br />Leave it and neighbor.ip empty for a <abbr title="Border Gateway Protocol">BGP</abbr> unnumbered session over IPv6 link-local addresses</td>
 <td></td>
 <td></td>
 </tr>
@@ -11310,7 +11331,7 @@ resources with support for multiple subnets each with user-provided VLANs and on
 </tr>
 <tr>
 <td><code>range</code> <em><a href="#vpcdhcprange">VPCDHCPRange</a></em></td>
-<td>Range (optional) is the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> range for the subnet if <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server is enabled</td>
+<td>Range (optional) is the <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> range for the subnet if <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> server is enabled. The gateway, subnet and broadcast<br />addresses are never handed out, even if the range includes them (all addresses of a /31 or /32 are usable).</td>
 <td></td>
 <td></td>
 </tr>
@@ -12943,6 +12964,8 @@ Fabrics are not cabled to each other and reach each other by peering as external
 </tbody>
 </table>
 <h4 id="switchboot">SwitchBoot</h4>
+<p>SwitchBoot identifies the switch when it's booted to install the NOS, by serial number or MAC address. Each of them
+must be unique across switches.</p>
 <p><em>Appears in:</em>
 - <a href="#switchspec">SwitchSpec</a></p>
 <table>
@@ -12957,13 +12980,13 @@ Fabrics are not cabled to each other and reach each other by peering as external
 <tbody>
 <tr>
 <td><code>serial</code> <em>string</em></td>
-<td>Identify switch by serial number</td>
+<td>Identify switch by serial number, compared case-insensitively</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>mac</code> <em>string</em></td>
-<td>Identify switch by MAC address of the management port</td>
+<td>Identify switch by MAC address of the management port, accepted in any common format and normalized to lower case<br />colon-separated form, e.g. 0c:20:12:fe:01:00</td>
 <td></td>
 <td></td>
 </tr>
@@ -13999,7 +14022,7 @@ SwitchGroup objects.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../user-guide/gateway-failover/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Gateway fail-over and redundancy">
+          <a href="../../user-guide/multi-fabric/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Multi-Fabric and Multi-Domain Deployments">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -14009,7 +14032,7 @@ SwitchGroup objects.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Gateway fail-over and redundancy
+                Multi-Fabric and Multi-Domain Deployments
               </div>
             </div>
           </a>

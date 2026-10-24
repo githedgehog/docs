@@ -1280,6 +1280,27 @@ You're not viewing the latest version.
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/multi-fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Fabric and Multi-Domain Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2178,10 +2199,13 @@ topologies without spines.</p>
 The dotted line in the diagram shows the traffic flow for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> peering. The traffic originates in <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 2, travels to the switch, and finally out the port destined for <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> 1.</p>
 <h2 id="sample-wiring-diagram">Sample Wiring Diagram</h2>
 <p>The YAML listing below shows a complete wiring diagram for a spine-leaf topology. It illustrates
-how switches from a single vendor can be arranged to form a fabric. There are no IP
-addresses or ASN numbers in this listing, the <code>hhfab build</code> step creates those as part
-of creating the fabric. To physically connect this topology, 16 cables are
-needed for the fabric links. Additional cables are needed to connect servers into the fabric.</p>
+how different switches can be arranged to form a fabric. The <code>Fabric</code> object at the top is
+required and holds the ASNs of the fabric; it should use the same values as the Fabricator configuration, shown here
+with their defaults. Wiring written for a release without fabrics has no <code>Fabric</code> object, and <code>hhfab validate</code> and
+<code>hhfab build</code> reject it with <code>switch &lt;name&gt; fabric default not found</code> until one is added. There are no IP addresses
+or switch ASNs in the rest of the listing, the <code>hhfab build</code> step creates those as part of creating the fabric. To
+physically connect this topology, 16 cables are needed for the fabric links. Additional cables are needed to connect
+servers into the fabric.</p>
 <div class="language-yaml annotate highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">wiring_diagram.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">  2</a></span>
 <span class="normal"><a href="#__codelineno-1-3">  3</a></span>
@@ -2462,287 +2486,317 @@ needed for the fabric links. Additional cables are needed to connect servers int
 <span class="normal"><a href="#__codelineno-1-278">278</a></span>
 <span class="normal"><a href="#__codelineno-1-279">279</a></span>
 <span class="normal"><a href="#__codelineno-1-280">280</a></span>
-<span class="normal"><a href="#__codelineno-1-281">281</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1"># VLANNamespaceList</span>
+<span class="normal"><a href="#__codelineno-1-281">281</a></span>
+<span class="normal"><a href="#__codelineno-1-282">282</a></span>
+<span class="normal"><a href="#__codelineno-1-283">283</a></span>
+<span class="normal"><a href="#__codelineno-1-284">284</a></span>
+<span class="normal"><a href="#__codelineno-1-285">285</a></span>
+<span class="normal"><a href="#__codelineno-1-286">286</a></span>
+<span class="normal"><a href="#__codelineno-1-287">287</a></span>
+<span class="normal"><a href="#__codelineno-1-288">288</a></span>
+<span class="normal"><a href="#__codelineno-1-289">289</a></span>
+<span class="normal"><a href="#__codelineno-1-290">290</a></span>
+<span class="normal"><a href="#__codelineno-1-291">291</a></span>
+<span class="normal"><a href="#__codelineno-1-292">292</a></span>
+<span class="normal"><a href="#__codelineno-1-293">293</a></span>
+<span class="normal"><a href="#__codelineno-1-294">294</a></span>
+<span class="normal"><a href="#__codelineno-1-295">295</a></span>
+<span class="normal"><a href="#__codelineno-1-296">296</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1"># Fabric</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1">#</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VLANNamespace</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fabric</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">  </span><span class="nt">ranges</span><span class="p">:</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2999</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="c1"># IPv4NamespaceList</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="nn">---</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4Namespace</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/16</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="c1">#</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="c1"># SwitchGroupList</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="c1">#</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="nn">---</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SwitchGroup</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">empty</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="c1">#</span>
-</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="c1"># SwitchList</span>
-</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="c1">#</span>
-</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="nn">---</span>
-</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
-</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01</span>
-</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
-</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:00:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
-</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01</span>
-</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
-</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
-</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="nn">---</span>
-</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
-</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02</span>
-</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
-</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:01:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
-</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02</span>
-</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
-</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
-</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59"></a><span class="nn">---</span>
-</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
-</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03</span>
-</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
-</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:02:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
-</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03</span>
-</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
-</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
-</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71"></a><span class="nn">---</span>
-</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
-</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04</span>
-</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
-</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:03:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
-</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04</span>
-</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
-</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
-</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83"></a><span class="nn">---</span>
-</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
-</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01</span>
-</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
-</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:05:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
-</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01</span>
-</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds4000</span>
-</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93"></a><span class="w">  </span><span class="nt">portBreakouts</span><span class="p">:</span>
-</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94"></a><span class="w">    </span><span class="nt">E1/1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4x100G</span>
-</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95"></a><span class="w">    </span><span class="nt">E1/2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4x100G</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">  </span><span class="nt">leafASNStart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65101</span><span class="w"> </span><span class="c1"># config.fabric.leafASNStart</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="nt">leafASNEnd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65533</span><span class="w"> </span><span class="c1"># config.fabric.leafASNEnd</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="nt">domains</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="nt">default</span><span class="p">:</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">      </span><span class="nt">spineASN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65100</span><span class="w"> </span><span class="c1"># config.fabric.spineASN</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">      </span><span class="nt">gatewayASN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65534</span><span class="w"> </span><span class="c1"># config.gateway.asn</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c1">#</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1"># VLANNamespaceList</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="c1">#</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="nn">---</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VLANNamespace</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">  </span><span class="nt">ranges</span><span class="p">:</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2999</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="c1">#</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="c1"># IPv4NamespaceList</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="c1">#</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="nn">---</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vpc.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4Namespace</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">  </span><span class="nt">subnets</span><span class="p">:</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/16</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="c1">#</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="c1"># SwitchGroupList</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="c1">#</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="nn">---</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SwitchGroup</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">empty</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="c1">#</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="c1"># SwitchList</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="c1">#</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="nn">---</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:00:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62"></a><span class="nn">---</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:01:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74"></a><span class="nn">---</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:02:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86"></a><span class="nn">---</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:03:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04</span>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds3000</span>
 </span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server-leaf</span>
 </span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98"></a><span class="nn">---</span>
 </span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
 </span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
 </span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02</span>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01</span>
 </span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103"></a><span class="nt">spec</span><span class="p">:</span>
 </span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
-</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:06:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
-</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02</span>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:05:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01</span>
 </span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds4000</span>
 </span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108"></a><span class="w">  </span><span class="nt">portBreakouts</span><span class="p">:</span>
 </span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109"></a><span class="w">    </span><span class="nt">E1/1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4x100G</span>
 </span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110"></a><span class="w">    </span><span class="nt">E1/2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4x100G</span>
 </span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine</span>
-</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113"></a><span class="c1">#</span>
-</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114"></a><span class="c1"># GatewayList</span>
-</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115"></a><span class="c1">#</span>
-</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116"></a><span class="nn">---</span>
-</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
-</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
-</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1</span>
-</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fab</span>
-</span><span id="__span-1-122"><a id="__codelineno-1-122" name="__codelineno-1-122"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-123"><a id="__codelineno-1-123" name="__codelineno-1-123"></a><span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span>
-</span><span id="__span-1-124"><a id="__codelineno-1-124" name="__codelineno-1-124"></a><span class="w">    </span><span class="nt">enp2s1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-125"><a id="__codelineno-1-125" name="__codelineno-1-125"></a><span class="w">    </span><span class="nt">enp2s2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-126"><a id="__codelineno-1-126" name="__codelineno-1-126"></a><span class="w">  </span><span class="nt">logs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span><span id="__span-1-127"><a id="__codelineno-1-127" name="__codelineno-1-127"></a><span class="c1">#</span>
-</span><span id="__span-1-128"><a id="__codelineno-1-128" name="__codelineno-1-128"></a><span class="c1"># ConnectionList</span>
-</span><span id="__span-1-129"><a id="__codelineno-1-129" name="__codelineno-1-129"></a><span class="c1">#</span>
-</span><span id="__span-1-130"><a id="__codelineno-1-130" name="__codelineno-1-130"></a><span class="nn">---</span>
-</span><span id="__span-1-131"><a id="__codelineno-1-131" name="__codelineno-1-131"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-132"><a id="__codelineno-1-132" name="__codelineno-1-132"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-133"><a id="__codelineno-1-133" name="__codelineno-1-133"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-134"><a id="__codelineno-1-134" name="__codelineno-1-134"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-01</span>
-</span><span id="__span-1-135"><a id="__codelineno-1-135" name="__codelineno-1-135"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-136"><a id="__codelineno-1-136" name="__codelineno-1-136"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-137"><a id="__codelineno-1-137" name="__codelineno-1-137"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-138"><a id="__codelineno-1-138" name="__codelineno-1-138"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-139"><a id="__codelineno-1-139" name="__codelineno-1-139"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/8</span>
-</span><span id="__span-1-140"><a id="__codelineno-1-140" name="__codelineno-1-140"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-141"><a id="__codelineno-1-141" name="__codelineno-1-141"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/1</span>
-</span><span id="__span-1-142"><a id="__codelineno-1-142" name="__codelineno-1-142"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-143"><a id="__codelineno-1-143" name="__codelineno-1-143"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/9</span>
-</span><span id="__span-1-144"><a id="__codelineno-1-144" name="__codelineno-1-144"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-145"><a id="__codelineno-1-145" name="__codelineno-1-145"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/1</span>
-</span><span id="__span-1-146"><a id="__codelineno-1-146" name="__codelineno-1-146"></a><span class="nn">---</span>
-</span><span id="__span-1-147"><a id="__codelineno-1-147" name="__codelineno-1-147"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-148"><a id="__codelineno-1-148" name="__codelineno-1-148"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-149"><a id="__codelineno-1-149" name="__codelineno-1-149"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-150"><a id="__codelineno-1-150" name="__codelineno-1-150"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-02</span>
-</span><span id="__span-1-151"><a id="__codelineno-1-151" name="__codelineno-1-151"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-152"><a id="__codelineno-1-152" name="__codelineno-1-152"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-153"><a id="__codelineno-1-153" name="__codelineno-1-153"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-154"><a id="__codelineno-1-154" name="__codelineno-1-154"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-155"><a id="__codelineno-1-155" name="__codelineno-1-155"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/9</span>
-</span><span id="__span-1-156"><a id="__codelineno-1-156" name="__codelineno-1-156"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-157"><a id="__codelineno-1-157" name="__codelineno-1-157"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/2</span>
-</span><span id="__span-1-158"><a id="__codelineno-1-158" name="__codelineno-1-158"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-159"><a id="__codelineno-1-159" name="__codelineno-1-159"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/10</span>
-</span><span id="__span-1-160"><a id="__codelineno-1-160" name="__codelineno-1-160"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-161"><a id="__codelineno-1-161" name="__codelineno-1-161"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/2</span>
-</span><span id="__span-1-162"><a id="__codelineno-1-162" name="__codelineno-1-162"></a><span class="nn">---</span>
-</span><span id="__span-1-163"><a id="__codelineno-1-163" name="__codelineno-1-163"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-164"><a id="__codelineno-1-164" name="__codelineno-1-164"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-165"><a id="__codelineno-1-165" name="__codelineno-1-165"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-166"><a id="__codelineno-1-166" name="__codelineno-1-166"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-03</span>
-</span><span id="__span-1-167"><a id="__codelineno-1-167" name="__codelineno-1-167"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-168"><a id="__codelineno-1-168" name="__codelineno-1-168"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-169"><a id="__codelineno-1-169" name="__codelineno-1-169"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-170"><a id="__codelineno-1-170" name="__codelineno-1-170"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-171"><a id="__codelineno-1-171" name="__codelineno-1-171"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/4</span>
-</span><span id="__span-1-172"><a id="__codelineno-1-172" name="__codelineno-1-172"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-173"><a id="__codelineno-1-173" name="__codelineno-1-173"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/3</span>
-</span><span id="__span-1-174"><a id="__codelineno-1-174" name="__codelineno-1-174"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-175"><a id="__codelineno-1-175" name="__codelineno-1-175"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/5</span>
-</span><span id="__span-1-176"><a id="__codelineno-1-176" name="__codelineno-1-176"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-177"><a id="__codelineno-1-177" name="__codelineno-1-177"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/3</span>
-</span><span id="__span-1-178"><a id="__codelineno-1-178" name="__codelineno-1-178"></a><span class="nn">---</span>
-</span><span id="__span-1-179"><a id="__codelineno-1-179" name="__codelineno-1-179"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-180"><a id="__codelineno-1-180" name="__codelineno-1-180"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-181"><a id="__codelineno-1-181" name="__codelineno-1-181"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-182"><a id="__codelineno-1-182" name="__codelineno-1-182"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-04</span>
-</span><span id="__span-1-183"><a id="__codelineno-1-183" name="__codelineno-1-183"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-184"><a id="__codelineno-1-184" name="__codelineno-1-184"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-185"><a id="__codelineno-1-185" name="__codelineno-1-185"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-186"><a id="__codelineno-1-186" name="__codelineno-1-186"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-187"><a id="__codelineno-1-187" name="__codelineno-1-187"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/5</span>
-</span><span id="__span-1-188"><a id="__codelineno-1-188" name="__codelineno-1-188"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-189"><a id="__codelineno-1-189" name="__codelineno-1-189"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/4</span>
-</span><span id="__span-1-190"><a id="__codelineno-1-190" name="__codelineno-1-190"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-191"><a id="__codelineno-1-191" name="__codelineno-1-191"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/6</span>
-</span><span id="__span-1-192"><a id="__codelineno-1-192" name="__codelineno-1-192"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-193"><a id="__codelineno-1-193" name="__codelineno-1-193"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/4</span>
-</span><span id="__span-1-194"><a id="__codelineno-1-194" name="__codelineno-1-194"></a><span class="nn">---</span>
-</span><span id="__span-1-195"><a id="__codelineno-1-195" name="__codelineno-1-195"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-196"><a id="__codelineno-1-196" name="__codelineno-1-196"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-197"><a id="__codelineno-1-197" name="__codelineno-1-197"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-198"><a id="__codelineno-1-198" name="__codelineno-1-198"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-01</span>
-</span><span id="__span-1-199"><a id="__codelineno-1-199" name="__codelineno-1-199"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-200"><a id="__codelineno-1-200" name="__codelineno-1-200"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-201"><a id="__codelineno-1-201" name="__codelineno-1-201"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-202"><a id="__codelineno-1-202" name="__codelineno-1-202"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-203"><a id="__codelineno-1-203" name="__codelineno-1-203"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/10</span>
-</span><span id="__span-1-204"><a id="__codelineno-1-204" name="__codelineno-1-204"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-205"><a id="__codelineno-1-205" name="__codelineno-1-205"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/1</span>
-</span><span id="__span-1-206"><a id="__codelineno-1-206" name="__codelineno-1-206"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-207"><a id="__codelineno-1-207" name="__codelineno-1-207"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/11</span>
-</span><span id="__span-1-208"><a id="__codelineno-1-208" name="__codelineno-1-208"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-209"><a id="__codelineno-1-209" name="__codelineno-1-209"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/1</span>
-</span><span id="__span-1-210"><a id="__codelineno-1-210" name="__codelineno-1-210"></a><span class="nn">---</span>
-</span><span id="__span-1-211"><a id="__codelineno-1-211" name="__codelineno-1-211"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-212"><a id="__codelineno-1-212" name="__codelineno-1-212"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-213"><a id="__codelineno-1-213" name="__codelineno-1-213"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-214"><a id="__codelineno-1-214" name="__codelineno-1-214"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-02</span>
-</span><span id="__span-1-215"><a id="__codelineno-1-215" name="__codelineno-1-215"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-216"><a id="__codelineno-1-216" name="__codelineno-1-216"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-217"><a id="__codelineno-1-217" name="__codelineno-1-217"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-218"><a id="__codelineno-1-218" name="__codelineno-1-218"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-219"><a id="__codelineno-1-219" name="__codelineno-1-219"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/11</span>
-</span><span id="__span-1-220"><a id="__codelineno-1-220" name="__codelineno-1-220"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-221"><a id="__codelineno-1-221" name="__codelineno-1-221"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/2</span>
-</span><span id="__span-1-222"><a id="__codelineno-1-222" name="__codelineno-1-222"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-223"><a id="__codelineno-1-223" name="__codelineno-1-223"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/12</span>
-</span><span id="__span-1-224"><a id="__codelineno-1-224" name="__codelineno-1-224"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-225"><a id="__codelineno-1-225" name="__codelineno-1-225"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/2</span>
-</span><span id="__span-1-226"><a id="__codelineno-1-226" name="__codelineno-1-226"></a><span class="nn">---</span>
-</span><span id="__span-1-227"><a id="__codelineno-1-227" name="__codelineno-1-227"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-228"><a id="__codelineno-1-228" name="__codelineno-1-228"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-229"><a id="__codelineno-1-229" name="__codelineno-1-229"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-230"><a id="__codelineno-1-230" name="__codelineno-1-230"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-03</span>
-</span><span id="__span-1-231"><a id="__codelineno-1-231" name="__codelineno-1-231"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-232"><a id="__codelineno-1-232" name="__codelineno-1-232"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-233"><a id="__codelineno-1-233" name="__codelineno-1-233"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-234"><a id="__codelineno-1-234" name="__codelineno-1-234"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-235"><a id="__codelineno-1-235" name="__codelineno-1-235"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/6</span>
-</span><span id="__span-1-236"><a id="__codelineno-1-236" name="__codelineno-1-236"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-237"><a id="__codelineno-1-237" name="__codelineno-1-237"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/3</span>
-</span><span id="__span-1-238"><a id="__codelineno-1-238" name="__codelineno-1-238"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-239"><a id="__codelineno-1-239" name="__codelineno-1-239"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/7</span>
-</span><span id="__span-1-240"><a id="__codelineno-1-240" name="__codelineno-1-240"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-241"><a id="__codelineno-1-241" name="__codelineno-1-241"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/3</span>
-</span><span id="__span-1-242"><a id="__codelineno-1-242" name="__codelineno-1-242"></a><span class="nn">---</span>
-</span><span id="__span-1-243"><a id="__codelineno-1-243" name="__codelineno-1-243"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-244"><a id="__codelineno-1-244" name="__codelineno-1-244"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-245"><a id="__codelineno-1-245" name="__codelineno-1-245"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-246"><a id="__codelineno-1-246" name="__codelineno-1-246"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-04</span>
-</span><span id="__span-1-247"><a id="__codelineno-1-247" name="__codelineno-1-247"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-248"><a id="__codelineno-1-248" name="__codelineno-1-248"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
-</span><span id="__span-1-249"><a id="__codelineno-1-249" name="__codelineno-1-249"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-250"><a id="__codelineno-1-250" name="__codelineno-1-250"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-251"><a id="__codelineno-1-251" name="__codelineno-1-251"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/7</span>
-</span><span id="__span-1-252"><a id="__codelineno-1-252" name="__codelineno-1-252"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-253"><a id="__codelineno-1-253" name="__codelineno-1-253"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/4</span>
-</span><span id="__span-1-254"><a id="__codelineno-1-254" name="__codelineno-1-254"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
-</span><span id="__span-1-255"><a id="__codelineno-1-255" name="__codelineno-1-255"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/8</span>
-</span><span id="__span-1-256"><a id="__codelineno-1-256" name="__codelineno-1-256"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
-</span><span id="__span-1-257"><a id="__codelineno-1-257" name="__codelineno-1-257"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/4</span>
-</span><span id="__span-1-258"><a id="__codelineno-1-258" name="__codelineno-1-258"></a><span class="nn">---</span>
-</span><span id="__span-1-259"><a id="__codelineno-1-259" name="__codelineno-1-259"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-260"><a id="__codelineno-1-260" name="__codelineno-1-260"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-261"><a id="__codelineno-1-261" name="__codelineno-1-261"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-262"><a id="__codelineno-1-262" name="__codelineno-1-262"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--gateway--gateway-1</span>
-</span><span id="__span-1-263"><a id="__codelineno-1-263" name="__codelineno-1-263"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-264"><a id="__codelineno-1-264" name="__codelineno-1-264"></a><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
-</span><span id="__span-1-265"><a id="__codelineno-1-265" name="__codelineno-1-265"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-266"><a id="__codelineno-1-266" name="__codelineno-1-266"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">gateway</span><span class="p">:</span>
-</span><span id="__span-1-267"><a id="__codelineno-1-267" name="__codelineno-1-267"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1/enp2s1</span>
-</span><span id="__span-1-268"><a id="__codelineno-1-268" name="__codelineno-1-268"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
-</span><span id="__span-1-269"><a id="__codelineno-1-269" name="__codelineno-1-269"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/3/1</span>
-</span><span id="__span-1-270"><a id="__codelineno-1-270" name="__codelineno-1-270"></a><span class="nn">---</span>
-</span><span id="__span-1-271"><a id="__codelineno-1-271" name="__codelineno-1-271"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
-</span><span id="__span-1-272"><a id="__codelineno-1-272" name="__codelineno-1-272"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
-</span><span id="__span-1-273"><a id="__codelineno-1-273" name="__codelineno-1-273"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-274"><a id="__codelineno-1-274" name="__codelineno-1-274"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--gateway--gateway-1</span>
-</span><span id="__span-1-275"><a id="__codelineno-1-275" name="__codelineno-1-275"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-276"><a id="__codelineno-1-276" name="__codelineno-1-276"></a><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
-</span><span id="__span-1-277"><a id="__codelineno-1-277" name="__codelineno-1-277"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
-</span><span id="__span-1-278"><a id="__codelineno-1-278" name="__codelineno-1-278"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">gateway</span><span class="p">:</span>
-</span><span id="__span-1-279"><a id="__codelineno-1-279" name="__codelineno-1-279"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1/enp2s2</span>
-</span><span id="__span-1-280"><a id="__codelineno-1-280" name="__codelineno-1-280"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
-</span><span id="__span-1-281"><a id="__codelineno-1-281" name="__codelineno-1-281"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/3/1</span>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113"></a><span class="nn">---</span>
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
+</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02</span>
+</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119"></a><span class="w">  </span><span class="nt">boot</span><span class="p">:</span>
+</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120"></a><span class="w">    </span><span class="nt">mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0c:20:12:ff:06:00</span><span class="w"> </span><span class="c1"># CHANGE ME</span>
+</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02</span>
+</span><span id="__span-1-122"><a id="__codelineno-1-122" name="__codelineno-1-122"></a><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celestica-ds4000</span>
+</span><span id="__span-1-123"><a id="__codelineno-1-123" name="__codelineno-1-123"></a><span class="w">  </span><span class="nt">portBreakouts</span><span class="p">:</span>
+</span><span id="__span-1-124"><a id="__codelineno-1-124" name="__codelineno-1-124"></a><span class="w">    </span><span class="nt">E1/1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4x100G</span>
+</span><span id="__span-1-125"><a id="__codelineno-1-125" name="__codelineno-1-125"></a><span class="w">    </span><span class="nt">E1/2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4x100G</span>
+</span><span id="__span-1-126"><a id="__codelineno-1-126" name="__codelineno-1-126"></a><span class="w">  </span><span class="nt">redundancy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-127"><a id="__codelineno-1-127" name="__codelineno-1-127"></a><span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine</span>
+</span><span id="__span-1-128"><a id="__codelineno-1-128" name="__codelineno-1-128"></a><span class="c1">#</span>
+</span><span id="__span-1-129"><a id="__codelineno-1-129" name="__codelineno-1-129"></a><span class="c1"># GatewayList</span>
+</span><span id="__span-1-130"><a id="__codelineno-1-130" name="__codelineno-1-130"></a><span class="c1">#</span>
+</span><span id="__span-1-131"><a id="__codelineno-1-131" name="__codelineno-1-131"></a><span class="nn">---</span>
+</span><span id="__span-1-132"><a id="__codelineno-1-132" name="__codelineno-1-132"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.githedgehog.com/v1alpha1</span>
+</span><span id="__span-1-133"><a id="__codelineno-1-133" name="__codelineno-1-133"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
+</span><span id="__span-1-134"><a id="__codelineno-1-134" name="__codelineno-1-134"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-135"><a id="__codelineno-1-135" name="__codelineno-1-135"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1</span>
+</span><span id="__span-1-136"><a id="__codelineno-1-136" name="__codelineno-1-136"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fab</span>
+</span><span id="__span-1-137"><a id="__codelineno-1-137" name="__codelineno-1-137"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-138"><a id="__codelineno-1-138" name="__codelineno-1-138"></a><span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span>
+</span><span id="__span-1-139"><a id="__codelineno-1-139" name="__codelineno-1-139"></a><span class="w">    </span><span class="nt">enp2s1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-140"><a id="__codelineno-1-140" name="__codelineno-1-140"></a><span class="w">    </span><span class="nt">enp2s2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-141"><a id="__codelineno-1-141" name="__codelineno-1-141"></a><span class="w">  </span><span class="nt">logs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span><span id="__span-1-142"><a id="__codelineno-1-142" name="__codelineno-1-142"></a><span class="c1">#</span>
+</span><span id="__span-1-143"><a id="__codelineno-1-143" name="__codelineno-1-143"></a><span class="c1"># ConnectionList</span>
+</span><span id="__span-1-144"><a id="__codelineno-1-144" name="__codelineno-1-144"></a><span class="c1">#</span>
+</span><span id="__span-1-145"><a id="__codelineno-1-145" name="__codelineno-1-145"></a><span class="nn">---</span>
+</span><span id="__span-1-146"><a id="__codelineno-1-146" name="__codelineno-1-146"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-147"><a id="__codelineno-1-147" name="__codelineno-1-147"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-148"><a id="__codelineno-1-148" name="__codelineno-1-148"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-149"><a id="__codelineno-1-149" name="__codelineno-1-149"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-01</span>
+</span><span id="__span-1-150"><a id="__codelineno-1-150" name="__codelineno-1-150"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-151"><a id="__codelineno-1-151" name="__codelineno-1-151"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-152"><a id="__codelineno-1-152" name="__codelineno-1-152"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-153"><a id="__codelineno-1-153" name="__codelineno-1-153"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-154"><a id="__codelineno-1-154" name="__codelineno-1-154"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/8</span>
+</span><span id="__span-1-155"><a id="__codelineno-1-155" name="__codelineno-1-155"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-156"><a id="__codelineno-1-156" name="__codelineno-1-156"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/1</span>
+</span><span id="__span-1-157"><a id="__codelineno-1-157" name="__codelineno-1-157"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-158"><a id="__codelineno-1-158" name="__codelineno-1-158"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/9</span>
+</span><span id="__span-1-159"><a id="__codelineno-1-159" name="__codelineno-1-159"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-160"><a id="__codelineno-1-160" name="__codelineno-1-160"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/1</span>
+</span><span id="__span-1-161"><a id="__codelineno-1-161" name="__codelineno-1-161"></a><span class="nn">---</span>
+</span><span id="__span-1-162"><a id="__codelineno-1-162" name="__codelineno-1-162"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-163"><a id="__codelineno-1-163" name="__codelineno-1-163"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-164"><a id="__codelineno-1-164" name="__codelineno-1-164"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-165"><a id="__codelineno-1-165" name="__codelineno-1-165"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-02</span>
+</span><span id="__span-1-166"><a id="__codelineno-1-166" name="__codelineno-1-166"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-167"><a id="__codelineno-1-167" name="__codelineno-1-167"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-168"><a id="__codelineno-1-168" name="__codelineno-1-168"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-169"><a id="__codelineno-1-169" name="__codelineno-1-169"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-170"><a id="__codelineno-1-170" name="__codelineno-1-170"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/9</span>
+</span><span id="__span-1-171"><a id="__codelineno-1-171" name="__codelineno-1-171"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-172"><a id="__codelineno-1-172" name="__codelineno-1-172"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/2</span>
+</span><span id="__span-1-173"><a id="__codelineno-1-173" name="__codelineno-1-173"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-174"><a id="__codelineno-1-174" name="__codelineno-1-174"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/10</span>
+</span><span id="__span-1-175"><a id="__codelineno-1-175" name="__codelineno-1-175"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-176"><a id="__codelineno-1-176" name="__codelineno-1-176"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/2</span>
+</span><span id="__span-1-177"><a id="__codelineno-1-177" name="__codelineno-1-177"></a><span class="nn">---</span>
+</span><span id="__span-1-178"><a id="__codelineno-1-178" name="__codelineno-1-178"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-179"><a id="__codelineno-1-179" name="__codelineno-1-179"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-180"><a id="__codelineno-1-180" name="__codelineno-1-180"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-181"><a id="__codelineno-1-181" name="__codelineno-1-181"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-03</span>
+</span><span id="__span-1-182"><a id="__codelineno-1-182" name="__codelineno-1-182"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-183"><a id="__codelineno-1-183" name="__codelineno-1-183"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-184"><a id="__codelineno-1-184" name="__codelineno-1-184"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-185"><a id="__codelineno-1-185" name="__codelineno-1-185"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-186"><a id="__codelineno-1-186" name="__codelineno-1-186"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/4</span>
+</span><span id="__span-1-187"><a id="__codelineno-1-187" name="__codelineno-1-187"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-188"><a id="__codelineno-1-188" name="__codelineno-1-188"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/3</span>
+</span><span id="__span-1-189"><a id="__codelineno-1-189" name="__codelineno-1-189"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-190"><a id="__codelineno-1-190" name="__codelineno-1-190"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/5</span>
+</span><span id="__span-1-191"><a id="__codelineno-1-191" name="__codelineno-1-191"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-192"><a id="__codelineno-1-192" name="__codelineno-1-192"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/3</span>
+</span><span id="__span-1-193"><a id="__codelineno-1-193" name="__codelineno-1-193"></a><span class="nn">---</span>
+</span><span id="__span-1-194"><a id="__codelineno-1-194" name="__codelineno-1-194"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-195"><a id="__codelineno-1-195" name="__codelineno-1-195"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-196"><a id="__codelineno-1-196" name="__codelineno-1-196"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-197"><a id="__codelineno-1-197" name="__codelineno-1-197"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--fabric--leaf-04</span>
+</span><span id="__span-1-198"><a id="__codelineno-1-198" name="__codelineno-1-198"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-199"><a id="__codelineno-1-199" name="__codelineno-1-199"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-200"><a id="__codelineno-1-200" name="__codelineno-1-200"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-201"><a id="__codelineno-1-201" name="__codelineno-1-201"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-202"><a id="__codelineno-1-202" name="__codelineno-1-202"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/5</span>
+</span><span id="__span-1-203"><a id="__codelineno-1-203" name="__codelineno-1-203"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-204"><a id="__codelineno-1-204" name="__codelineno-1-204"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/1/4</span>
+</span><span id="__span-1-205"><a id="__codelineno-1-205" name="__codelineno-1-205"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-206"><a id="__codelineno-1-206" name="__codelineno-1-206"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/6</span>
+</span><span id="__span-1-207"><a id="__codelineno-1-207" name="__codelineno-1-207"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-208"><a id="__codelineno-1-208" name="__codelineno-1-208"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/2/4</span>
+</span><span id="__span-1-209"><a id="__codelineno-1-209" name="__codelineno-1-209"></a><span class="nn">---</span>
+</span><span id="__span-1-210"><a id="__codelineno-1-210" name="__codelineno-1-210"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-211"><a id="__codelineno-1-211" name="__codelineno-1-211"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-212"><a id="__codelineno-1-212" name="__codelineno-1-212"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-213"><a id="__codelineno-1-213" name="__codelineno-1-213"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-01</span>
+</span><span id="__span-1-214"><a id="__codelineno-1-214" name="__codelineno-1-214"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-215"><a id="__codelineno-1-215" name="__codelineno-1-215"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-216"><a id="__codelineno-1-216" name="__codelineno-1-216"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-217"><a id="__codelineno-1-217" name="__codelineno-1-217"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-218"><a id="__codelineno-1-218" name="__codelineno-1-218"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/10</span>
+</span><span id="__span-1-219"><a id="__codelineno-1-219" name="__codelineno-1-219"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-220"><a id="__codelineno-1-220" name="__codelineno-1-220"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/1</span>
+</span><span id="__span-1-221"><a id="__codelineno-1-221" name="__codelineno-1-221"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-222"><a id="__codelineno-1-222" name="__codelineno-1-222"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-01/E1/11</span>
+</span><span id="__span-1-223"><a id="__codelineno-1-223" name="__codelineno-1-223"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-224"><a id="__codelineno-1-224" name="__codelineno-1-224"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/1</span>
+</span><span id="__span-1-225"><a id="__codelineno-1-225" name="__codelineno-1-225"></a><span class="nn">---</span>
+</span><span id="__span-1-226"><a id="__codelineno-1-226" name="__codelineno-1-226"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-227"><a id="__codelineno-1-227" name="__codelineno-1-227"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-228"><a id="__codelineno-1-228" name="__codelineno-1-228"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-229"><a id="__codelineno-1-229" name="__codelineno-1-229"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-02</span>
+</span><span id="__span-1-230"><a id="__codelineno-1-230" name="__codelineno-1-230"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-231"><a id="__codelineno-1-231" name="__codelineno-1-231"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-232"><a id="__codelineno-1-232" name="__codelineno-1-232"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-233"><a id="__codelineno-1-233" name="__codelineno-1-233"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-234"><a id="__codelineno-1-234" name="__codelineno-1-234"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/11</span>
+</span><span id="__span-1-235"><a id="__codelineno-1-235" name="__codelineno-1-235"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-236"><a id="__codelineno-1-236" name="__codelineno-1-236"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/2</span>
+</span><span id="__span-1-237"><a id="__codelineno-1-237" name="__codelineno-1-237"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-238"><a id="__codelineno-1-238" name="__codelineno-1-238"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-02/E1/12</span>
+</span><span id="__span-1-239"><a id="__codelineno-1-239" name="__codelineno-1-239"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-240"><a id="__codelineno-1-240" name="__codelineno-1-240"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/2</span>
+</span><span id="__span-1-241"><a id="__codelineno-1-241" name="__codelineno-1-241"></a><span class="nn">---</span>
+</span><span id="__span-1-242"><a id="__codelineno-1-242" name="__codelineno-1-242"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-243"><a id="__codelineno-1-243" name="__codelineno-1-243"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-244"><a id="__codelineno-1-244" name="__codelineno-1-244"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-245"><a id="__codelineno-1-245" name="__codelineno-1-245"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-03</span>
+</span><span id="__span-1-246"><a id="__codelineno-1-246" name="__codelineno-1-246"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-247"><a id="__codelineno-1-247" name="__codelineno-1-247"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-248"><a id="__codelineno-1-248" name="__codelineno-1-248"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-249"><a id="__codelineno-1-249" name="__codelineno-1-249"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-250"><a id="__codelineno-1-250" name="__codelineno-1-250"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/6</span>
+</span><span id="__span-1-251"><a id="__codelineno-1-251" name="__codelineno-1-251"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-252"><a id="__codelineno-1-252" name="__codelineno-1-252"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/3</span>
+</span><span id="__span-1-253"><a id="__codelineno-1-253" name="__codelineno-1-253"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-254"><a id="__codelineno-1-254" name="__codelineno-1-254"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-03/E1/7</span>
+</span><span id="__span-1-255"><a id="__codelineno-1-255" name="__codelineno-1-255"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-256"><a id="__codelineno-1-256" name="__codelineno-1-256"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/3</span>
+</span><span id="__span-1-257"><a id="__codelineno-1-257" name="__codelineno-1-257"></a><span class="nn">---</span>
+</span><span id="__span-1-258"><a id="__codelineno-1-258" name="__codelineno-1-258"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-259"><a id="__codelineno-1-259" name="__codelineno-1-259"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-260"><a id="__codelineno-1-260" name="__codelineno-1-260"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-261"><a id="__codelineno-1-261" name="__codelineno-1-261"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--fabric--leaf-04</span>
+</span><span id="__span-1-262"><a id="__codelineno-1-262" name="__codelineno-1-262"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-263"><a id="__codelineno-1-263" name="__codelineno-1-263"></a><span class="w">  </span><span class="nt">fabric</span><span class="p">:</span>
+</span><span id="__span-1-264"><a id="__codelineno-1-264" name="__codelineno-1-264"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-265"><a id="__codelineno-1-265" name="__codelineno-1-265"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-266"><a id="__codelineno-1-266" name="__codelineno-1-266"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/7</span>
+</span><span id="__span-1-267"><a id="__codelineno-1-267" name="__codelineno-1-267"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-268"><a id="__codelineno-1-268" name="__codelineno-1-268"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/1/4</span>
+</span><span id="__span-1-269"><a id="__codelineno-1-269" name="__codelineno-1-269"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">leaf</span><span class="p">:</span>
+</span><span id="__span-1-270"><a id="__codelineno-1-270" name="__codelineno-1-270"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leaf-04/E1/8</span>
+</span><span id="__span-1-271"><a id="__codelineno-1-271" name="__codelineno-1-271"></a><span class="w">      </span><span class="nt">spine</span><span class="p">:</span>
+</span><span id="__span-1-272"><a id="__codelineno-1-272" name="__codelineno-1-272"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/2/4</span>
+</span><span id="__span-1-273"><a id="__codelineno-1-273" name="__codelineno-1-273"></a><span class="nn">---</span>
+</span><span id="__span-1-274"><a id="__codelineno-1-274" name="__codelineno-1-274"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-275"><a id="__codelineno-1-275" name="__codelineno-1-275"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-276"><a id="__codelineno-1-276" name="__codelineno-1-276"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-277"><a id="__codelineno-1-277" name="__codelineno-1-277"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01--gateway--gateway-1</span>
+</span><span id="__span-1-278"><a id="__codelineno-1-278" name="__codelineno-1-278"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-279"><a id="__codelineno-1-279" name="__codelineno-1-279"></a><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-1-280"><a id="__codelineno-1-280" name="__codelineno-1-280"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-281"><a id="__codelineno-1-281" name="__codelineno-1-281"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-1-282"><a id="__codelineno-1-282" name="__codelineno-1-282"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1/enp2s1</span>
+</span><span id="__span-1-283"><a id="__codelineno-1-283" name="__codelineno-1-283"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
+</span><span id="__span-1-284"><a id="__codelineno-1-284" name="__codelineno-1-284"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-01/E1/3/1</span>
+</span><span id="__span-1-285"><a id="__codelineno-1-285" name="__codelineno-1-285"></a><span class="nn">---</span>
+</span><span id="__span-1-286"><a id="__codelineno-1-286" name="__codelineno-1-286"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wiring.githedgehog.com/v1beta1</span>
+</span><span id="__span-1-287"><a id="__codelineno-1-287" name="__codelineno-1-287"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Connection</span>
+</span><span id="__span-1-288"><a id="__codelineno-1-288" name="__codelineno-1-288"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-289"><a id="__codelineno-1-289" name="__codelineno-1-289"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02--gateway--gateway-1</span>
+</span><span id="__span-1-290"><a id="__codelineno-1-290" name="__codelineno-1-290"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-291"><a id="__codelineno-1-291" name="__codelineno-1-291"></a><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-1-292"><a id="__codelineno-1-292" name="__codelineno-1-292"></a><span class="w">    </span><span class="nt">links</span><span class="p">:</span>
+</span><span id="__span-1-293"><a id="__codelineno-1-293" name="__codelineno-1-293"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-1-294"><a id="__codelineno-1-294" name="__codelineno-1-294"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway-1/enp2s2</span>
+</span><span id="__span-1-295"><a id="__codelineno-1-295" name="__codelineno-1-295"></a><span class="w">      </span><span class="nt">switch</span><span class="p">:</span>
+</span><span id="__span-1-296"><a id="__codelineno-1-296" name="__codelineno-1-296"></a><span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spine-02/E1/3/1</span>
 </span></code></pre></div></td></tr></table></div>
 
 
@@ -2766,7 +2820,7 @@ needed for the fabric links. Additional cables are needed to connect servers int
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 21, 2026</span>
   </span>
 
     

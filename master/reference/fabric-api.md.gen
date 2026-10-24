@@ -736,7 +736,7 @@ _Appears in:_
 | `ip` _string_ | Allocated IP address |  |  |
 | `expiry` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Expiry time of the lease |  |  |
 | `hostname` _string_ | Hostname from DHCP request |  |  |
-| `discover` _boolean_ | Discover is true if the IP was offered to a client but not yet acked |  |  |
+| `discover` _boolean_ | Discover is true if the IP was offered to a client but not yet acked, not set anymore as offers are only kept in<br />memory by the DHCP server |  |  |
 
 
 #### DHCPRoute
@@ -2160,8 +2160,8 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `asn` _integer_ | ASN is the ASN of the BGP neighbor |  |  |
-| `ip` _string_ | IP is the IP address of the BGP neighbor to peer with (without prefix length) |  |  |
+| `asn` _integer_ | ASN (optional) is the ASN of the BGP neighbor, if not set any ASN other than the switch's own is accepted |  |  |
+| `ip` _string_ | IP is the IP address of the BGP neighbor to peer with (without prefix length).<br />Leave it and switch.ip empty for a BGP unnumbered session over IPv6 link-local addresses |  |  |
 
 
 #### ExternalAttachmentSpec
@@ -2233,7 +2233,7 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `vlan` _integer_ | VLAN (optional) is the VLAN ID used for the subinterface on a switch port specified in the connection, set to 0 if no VLAN is used |  |  |
-| `ip` _string_ | IP is the IP address of the subinterface on a switch port specified in the connection, it should include the prefix length |  |  |
+| `ip` _string_ | IP is the IP address of the subinterface on a switch port specified in the connection, it should include the prefix length.<br />Leave it and neighbor.ip empty for a BGP unnumbered session over IPv6 link-local addresses |  |  |
 
 
 #### ExternalAttachmentTopology
@@ -2623,7 +2623,7 @@ _Appears in:_
 | `relay` _string_ | Relay is the DHCP relay IP address, if specified, DHCP server will be disabled |  |  |
 | `relayVPC` _string_ | RelayVPC is the name of the VPC where the selected DHCP relay lives |  |  |
 | `enable` _boolean_ | Enable enables DHCP server for the subnet |  |  |
-| `range` _[VPCDHCPRange](#vpcdhcprange)_ | Range (optional) is the DHCP range for the subnet if DHCP server is enabled |  |  |
+| `range` _[VPCDHCPRange](#vpcdhcprange)_ | Range (optional) is the DHCP range for the subnet if DHCP server is enabled. The gateway, subnet and broadcast<br />addresses are never handed out, even if the range includes them (all addresses of a /31 or /32 are usable). |  |  |
 | `options` _[VPCDHCPOptions](#vpcdhcpoptions)_ | Options (optional) is the DHCP options for the subnet if DHCP server is enabled |  |  |
 | `static` _object (keys:string, values:[VPCDHCPStatic](#vpcdhcpstatic))_ | Static is a map of static IP assignments for MAC addresses |  |  |
 
@@ -3584,7 +3584,8 @@ Switch is the Schema for the switches API
 
 
 
-
+SwitchBoot identifies the switch when it's booted to install the NOS, by serial number or MAC address. Each of them
+must be unique across switches.
 
 
 
@@ -3593,8 +3594,8 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `serial` _string_ | Identify switch by serial number |  |  |
-| `mac` _string_ | Identify switch by MAC address of the management port |  |  |
+| `serial` _string_ | Identify switch by serial number, compared case-insensitively |  |  |
+| `mac` _string_ | Identify switch by MAC address of the management port, accepted in any common format and normalized to lower case<br />colon-separated form, e.g. 0c:20:12:fe:01:00 |  |  |
 
 
 #### SwitchECMP

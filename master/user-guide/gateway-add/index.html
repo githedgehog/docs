@@ -1319,6 +1319,27 @@ You're not viewing the latest version.
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-fabric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Fabric and Multi-Domain Deployments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2308,7 +2329,7 @@ information derived from the Connections.</p>
 </span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="w">  </span><span class="nt">workers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span><span class="w"> </span><span class="c1"># (15)!</span>
 </span></code></pre></div></td></tr></table></div>
 <ol>
-<li>Must match <code>config.gateway.asn</code> from Fabricator configuration (use <code>kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.gateway.asn}'</code>)</li>
+<li>Must match <code>config.gateway.asn</code> from Fabricator configuration (use <code>kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.gateway.asn}'</code>). With <a href="../multi-fabric/">more than one fabric or domain</a>, it must instead be the <code>gatewayASN</code> of the domain named in the gateway's <code>spec.topology</code></li>
 <li>Allocate a unique /32 from <code>config.fabric.protocolSubnet</code> (<abbr title="Border Gateway Protocol">BGP</abbr> router ID)</li>
 <li>Allocate a unique /32 from <code>config.fabric.vtepSubnet</code> (<abbr title="Virtual Extensible LAN, a tunneling protocol that enables network virtualization">VXLAN</abbr> tunnel endpoint)</li>
 <li>MAC address for VTEP - any valid MAC address (e.g., 02:00:00:00:01:02)</li>
@@ -2401,7 +2422,7 @@ guide to boot the gateway hardware from the ISO and complete installation.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 29, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 9, 2026</span>
   </span>
 
     
