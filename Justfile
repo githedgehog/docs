@@ -11,7 +11,7 @@ image := image_name + ":" + image_version
 
 # Run mkdocs or mike CLI in a container
 _run +cmd:
-  docker run -q --pull=always --rm -v $(pwd):/docs -p 8000:8000 {{image}} {{cmd}}
+  docker run -q --pull=always --rm --init -e TINI_KILL_PROCESS_GROUP=1 -v $(pwd):/docs -p 8000:8000 {{image}} {{cmd}} || [ $? -eq 130 ]
 
 # Build docs site (unversioned)
 build: (_run "mkdocs build --strict")
