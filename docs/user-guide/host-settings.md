@@ -383,3 +383,31 @@ Codes:  K - kernel route, C - connected, S - static, B - BGP, O - OSPF, A - atta
  B>*   10.0.2.3/32        via fe80::e20:12ff:fefe:401     Ethernet1.1002                             20/0          00:09:47 ago
 leaf-01#
 ```
+
+## Single Cage NICs to Multi-domain Fabrics
+
+Some [network
+architectures](https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory/latest/networking-physical-topologies.html#multi-plane-topology-approach)
+employ a [multi-domain](multi-fabric.md) fabric with servers that have
+a network card with a single cage. In this case the NIC should be split into
+two physical functions (PF). NIC vendors have different CLI utilities to manage
+this on their cards. 
+
+NVIDIA / Mellanox use the [mlxconfig
+utility](https://networking-docs.nvidia.com/mftswum/4221526lts/mlxconfig-changing-device-configuration-tool). To see the
+capabilities of the card use the `mlxconfig -d <device> show_confs` command. 
+Look for the `NUM_OF_PF`,`NUM_OF_PLANES`, and `MODULE_SPLIT_M0` in your cards
+capabilities. Each card has different capabilities, the
+[documentation](https://networking-docs.nvidia.com/connectx8hw/port-configurations) for the
+Cx-8 tells you the values to set based on the architecture of the network.
+
+Intel uses the
+[devlink](https://www.intel.com/content/www/us/en/content-details/864895/using-devlink-for-intel-ethernet-management-and-debugging-user-guide.html)
+CLI utility. Broadcom uses the
+[niccli](https://techdocs.broadcom.com/us/en/storage-and-ethernet-connectivity/ethernet-nic-controllers/bcm957xxx/adapters/ethernet-network-adapter-utilities/nic-cli-configuration-utility.html) utility. 
+
+
+Depending on the transceivers involved there may need to be multiple MPO fibers going to
+the transceiver or a breakout cable of some kind.
+
+Often the system needs a reboot or a cold boot for changes to be applied.
