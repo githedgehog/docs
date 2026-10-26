@@ -287,12 +287,11 @@ against the ACL rules table.
 The scope does not matter in the case of `deny` rules, given that no flow
 matching this rule can be initiated in the first place.
 
-!!! warning
-    Due to internal limitations in the gateway, `scope: flow` is currently
-    **restricted** to peerings for which **all flows use masquerade or
-    port-forwarding**. Flows relying on static NAT, or no NAT at all, do not
-    currently generate stateful entries in the gateway's table. This limitation
-    will be lifted in a future release.
+Finally, note that creating ACL rules with `scope: flow` for a peering turns on
+connection tracking for all flows related to this peering, even if the NAT
+mode(s) in use would not otherwise require it (masquerade and port-forwarding
+always necessitate that flows be tracked, static NAT or no NAT do not otherwise
+require it), which may have a performance impact.
 
 ### Default action
 
