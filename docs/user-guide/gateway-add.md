@@ -37,7 +37,6 @@ Extract subnet information from the Fabricator configuration:
 * `config.fabric.protocolSubnet` - Protocol IP subnet
 * `config.fabric.vtepSubnet` - VTEP IP subnet
 * `config.fabric.fabricSubnet` - Fabric link IP subnet
-* `config.gateway.asn` - Gateway ASN (typically 65534)
 
 Example configuration:
 
@@ -52,9 +51,18 @@ config:
     protocolSubnet: 172.30.8.0/24
     vtepSubnet: 172.30.12.0/24
     fabricSubnet: 172.30.128.0/24
-  gateway:
-    asn: 65534
 ```
+
+The ASN of the gateway comes from the [fabric domain](multi-fabric.md#fabrics-and-domains) it belongs to;
+for the default fabric and domain this will typically be 65534, and it can be retrieved with:
+
+```bash
+kubectl get fabrics default -o jsonpath='{.spec.domains.default.gatewayASN}'
+```
+
+!!! note
+    The Fabricator configuration field `config.gateway.asn` is deprecated, and it is only used to seed
+    Fabric/default when upgrading from an older version.
 
 ## Step 2: Allocate IP Addresses
 
@@ -239,7 +247,8 @@ spec:
   workers: 8 # (15)!
 ```
 
-1. Must match `config.gateway.asn` from Fabricator configuration (use `kubectl get fabricator -n fab -o jsonpath='{.items[0].spec.config.gateway.asn}'`). With [more than one fabric or domain](multi-fabric.md), it must instead be the `gatewayASN` of the domain named in the gateway's `spec.topology`
+1. Must match the `gatewayASN` of the gateway's [fabric and domain](multi-fabric.md#fabrics-and-domains);
+   for the default case, get it from `kubectl get fabrics default -o jsonpath='{.spec.domains.default.gatewayASN}'`
 2. Allocate a unique /32 from `config.fabric.protocolSubnet` (BGP router ID)
 3. Allocate a unique /32 from `config.fabric.vtepSubnet` (VXLAN tunnel endpoint)
 4. MAC address for VTEP - any valid MAC address (e.g., 02:00:00:00:01:02)
