@@ -1,7 +1,8 @@
 # Gateway
 
 This page covers diagnosing common issues with the Hedgehog Gateway, including
-connectivity problems and NAT issues.
+connectivity problems and NAT issues, and how to capture the packets going
+through it.
 
 ## Health Checks
 
@@ -16,13 +17,13 @@ gateway-1     10 minutes ago      10         10         v1.2.0    ...          .
 `AppliedG` should equal `CurrentG`. If they differ, the gateway has not yet
 applied the latest configuration.
 
-If the gateway is not reporting in at all, check that both pods are running:
+If the gateway is not reporting in at all, check that its pod is running with
+both containers ready. Each gateway runs as a pod named `gw--<gateway>-<suffix>`:
 
 ```console
-$ kubectl get pods -n fab -l app.kubernetes.io/component=gateway
-NAME                               READY   STATUS    RESTARTS   AGE
-gw--gateway-1--dataplane-7v9ss     1/1     Running   0          12h
-gw--gateway-1--frr-c9kwc           2/2     Running   0          12h
+$ kubectl get pods -n fab -l app.kubernetes.io/name=gw--gateway-1
+NAME                  READY   STATUS    RESTARTS   AGE
+gw--gateway-1-pwv7s   2/2     Running   0          12h
 ```
 
 ## Common Issues
@@ -51,7 +52,10 @@ gw--gateway-1--frr-c9kwc           2/2     Running   0          12h
    packet counters in the gateway state (see
    [Inspecting Gateway State](#inspecting-gateway-state)) to verify packets
    are being processed. Zero counters while traffic is expected indicates
-   the packets are not reaching the gateway.
+   the packets are not reaching the gateway. Alternatively,
+   [capture packets](#capturing-packets) traversing the gateway, filtering
+   by ingress or egress VPC, and verify that they are exiting with the right
+   address.
 
 2. **Idle timeout**: If connections work briefly then stop, the flow may be
    expiring. Check the `idleTimeout` setting in the GatewayPeering spec.
@@ -173,6 +177,100 @@ expected active peering means traffic is not reaching the gateway.
     end-to-end loss. If clients see TCP retransmits while `d` stays at `0`,
     validate reachability with `kubectl fabric inspect access <A> <B>` and
     continue from the [Troubleshooting overview](overview.md).
+
+## Capturing Packets
+
+With the `dpdk` driver the gateway's dataplane owns its NICs, so host tools such
+as `tcpdump` don't see the traffic going through it. The dataplane CLI can
+instead record packets from inside the pipeline into a pcapng file, with either
+driver, at two points:
+
+- **Ingress**: each frame as it arrived, outer VXLAN header included.
+- **Egress**: each frame as it leaves, re-encapsulated. Packets the gateway
+  dropped are recorded here too, with the reason.
+
+Every packet carries a comment with its metadata: direction, VNIs, input and
+output port, worker thread and the verdict (`done=Delivered`, or a drop reason
+such as `done=HopLimitExceeded`). Egress records also name the source and
+destination VPCs; ingress records only have the VNI the packet arrived with.
+
+### Running a capture
+
+The CLI runs in the `dataplane` container of the gateway pod. For a gateway
+named `gateway-1`:
+
+```console
+$ kubectl -n fab exec ds/gw--gateway-1 -c dataplane -- cli \
+    -c 'capture start ingress=vpc-01 egress=vpc-02 seconds=30 file=/tmp/vpc-01-02.pcapng'
+
+ capturing egress from vpc-01 to vpc-02, one packet in 1, 256 bytes of each frame, until 10000 packets or 30s
+ file: /tmp/vpc-01-02.pcapng
+```
+
+Running `cli` without `-c` (and with `-it` on `kubectl exec`) opens an
+interactive prompt instead. Check on a capture with `show capture`, or end it
+early with `capture stop`:
+
+```console
+$ kubectl -n fab exec ds/gw--gateway-1 -c dataplane -- cli -c 'show capture'
+
+ capture ended (duration elapsed): admitted=15 written=15 dropped=0
+ file: /tmp/vpc-01-02.pcapng
+```
+
+`admitted` counts the packets that matched the filter; `dropped` counts the
+ones the file writer couldn't keep up with. If `dropped` is above zero, narrow
+the filter or use `sample=`.
+
+| Argument                     | Meaning                                                    | Default                                    |
+| ---------------------------- | ---------------------------------------------------------- | ------------------------------------------ |
+| `ingress=VPC` or `ingress=*` | Packets arriving from that VPC                             | all traffic, if neither is given           |
+| `egress=VPC` or `egress=*`   | Packets leaving towards that VPC                           | all traffic, if neither is given           |
+| `ingress=A egress=B`         | Traffic from A to B, recorded at egress only               |                                            |
+| `packets=N`                  | Stop after N packets                                       | 10000                                      |
+| `seconds=N`                  | Stop after N seconds                                       | 60                                         |
+| `sample=N`                   | Keep one matching packet in N                              | 1 (every packet)                           |
+| `snaplen=N`                  | Bytes kept from each frame, `0` for whole frames           | 256 (both VXLAN headers, little payload)   |
+| `file=PATH`                  | Write to this file                                         | none, `file=` or `dir=` is required        |
+| `dir=PATH`                   | Write to a file with a generated name in this directory    | none, `file=` or `dir=` is required        |
+
+Externals are named with an `ext.` prefix, for example `egress=ext.isp-a` for
+external `isp-a`. An unknown name is rejected with the list of known ones.
+
+### Getting the file
+
+`kubectl cp` needs the pod name, so it is easier to stream the file out:
+
+```console
+$ kubectl -n fab exec ds/gw--gateway-1 -c dataplane -- cat /tmp/vpc-01-02.pcapng > vpc-01-02.pcapng
+$ kubectl -n fab exec ds/gw--gateway-1 -c dataplane -- rm /tmp/vpc-01-02.pcapng
+```
+
+Open it in Wireshark: the metadata is in the packet comments, and can be
+filtered on with e.g. `frame.comment contains "done=HopLimitExceeded"`.
+`tcpdump` reads the file but doesn't show the comments; `capinfos` lists them.
+
+### Things to know
+
+- **Copy files out promptly.** `/tmp` in the dataplane container is not
+  persistent: it is emptied whenever the gateway pod is recreated, for
+  example when its driver is changed. Paths outside `/tmp` (and relative
+  paths) are written to the container's own filesystem, with the same lifetime.
+- **Existing files are not overwritten.** Pick a new name, or use `dir=`.
+- **One capture at a time** per gateway.
+- **Pick the right gateway.** In a gateway group, traffic for a peering goes
+  through one gateway at a time, and it may not be the one you expect. If a
+  capture comes back empty, try the other members of the group.
+- **Keep it small.** The defaults stop at 10,000 packets or 60 seconds, keeping
+  256 bytes of each. Use `snaplen=0` only for short captures where the payload
+  matters.
+- **Traffic to and from the gateway itself**, such as its BGP and BFD sessions,
+  is not a reliable target: what the gateway sends is never captured, and what
+  it receives is only captured with the `kernel` driver.
+- A capture that matches nothing produces a file that some tools, including
+  `tcpdump`, refuse to open. `capinfos` will correctly report 0 packets captured;
+  alternatively, use the `show capture` command of the dataplane cli as in the
+  example above to verify that no packets were admitted.
 
 ## Metrics
 
