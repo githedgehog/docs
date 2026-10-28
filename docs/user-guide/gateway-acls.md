@@ -150,6 +150,8 @@ The `match` block is a 5-tuple, expressed from the initiator's point of view:
   (from its `expose`'s `as`, or `ips` where no NAT applies)
 - **`proto`** can be `tcp`, `udp`, or a quoted [protocol number] (for example:
   `"132"` for SCTP)
+- **`tcpFilters`** (optional, TCP only) adds conditions on the TCP header, see
+  [Matching TCP flags](#matching-tcp-flags)
 
 `src` and `dst` are lists of
 [match endpoints](../reference/fabric-api.md#peeringaclmatchendpoint). Each
@@ -247,6 +249,58 @@ is set to `tcp` or `udp`.
 
 [protocol number]: https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
 
+#### Matching TCP flags
+
+For TCP traffic, a rule can also match on the flags of TCP segments, using
+field **`tcpFilters.flags`** in the `match` block. Each flag (`fin`, `syn`,
+`rst`, `psh`, `ack`, `urg`, `ece`, `cwr`) accepts one of the following:
+
+- `true`: the flag must be set
+- `false`: the flag must be clear
+- omitted: the flag is ignored
+
+A segment matches if all the listed flags have the requested value; flags
+that are not listed can have any value. For example, the following block
+matches segments that open a TCP connection (SYN set, ACK clear), from
+`10.0.1.0/24` to port 22:
+
+```yaml
+match:
+  src:
+    - cidr: 10.0.1.0/24
+  dst:
+    - ports: ["22"]
+  proto: tcp
+  tcpFilters:
+    flags:
+      syn: true
+      ack: false
+```
+
+Because unlisted flags are ignored, this block also matches SYN segments with
+the ECE and CWR flags set, as sent by hosts negotiating ECN.
+
+Filtering on TCP flags allows to restrict the direction in which TCP
+connections can be opened, without connection tracking: with static NAT or no
+NAT, rules with `scope: flow` are the other way to achieve this, at the cost of
+turning on connection tracking for the peering. See the [example
+below](#directional-tcp-connections-without-connection-tracking).
+
+TCP filters come with the following constraints:
+
+- `proto` must be `tcp` (or `"6"`). Using `tcpFilters` with another protocol,
+  or without `proto`, is rejected when creating the `GatewayPeering` object.
+- The rule must have **`scope: packet`**, including for `deny` rules.
+
+Packet-scoped rules are stateless: a rule denying SYN segments prevents a side
+from _opening_ connections the normal way, but other segments from this side,
+such as a stray ACK segment, still go through if another rule allows them. The
+receiving host is expected to discard or reset such segments, as they do not
+belong to any of its connections.
+
+Note that non-first IP fragments carry no TCP header: they do not match rules
+with `proto: tcp`, with or without TCP filters.
+
 #### Optional `match` fields
 
 Everything in `match` is optional, and omitting a field widens the rule:
@@ -257,6 +311,8 @@ Everything in `match` is optional, and omitting a field widens the rule:
 | `src.{cidr,vpcSubnet}`, `dst.{cidr,vpcSubnet}` | the rule matches any source or destination IP address within the peering configuration (respectively), but can still be restricted to specified port ranges |
 | `src.ports`, `dst.ports` | the rule matches all source or destination ports within the peering configuration, respectively |
 | `proto` | the rule matches any protocol |
+| `tcpFilters`, `tcpFilters.flags` | the rule matches all TCP segments, whatever their flags |
+| `tcpFilters.flags.{fin,syn,...}` | the rule matches segments with this flag either set or clear |
 
 If the `match` block is omitted altogether, the rule matches every flow in the
 specified direction: this is how to write a generic allow or deny for one
@@ -272,7 +328,9 @@ The **`scope` field** in each rule selects whether the rule is stateful:
   allow rule. The connection can still only be _initiated_ in the rule's
   direction.
 - **`packet`** makes the rule stateless. **Return traffic is not implicitly
-  allowed** and must be permitted by a separate rule.
+  allowed** and must be permitted by a separate rule. Packet-scoped rules can
+  [match TCP flags](#matching-tcp-flags), which makes it possible to restrict
+  which side opens TCP connections without connection tracking.
 
 Note that under `default: deny`, a rule with `scope: packet` and no matching
 reverse rule admits the forward direction **while dropping every reply**. Add
@@ -572,3 +630,67 @@ And when `vpc-02` sends packets towards `vpc-01`:
 - To other addresses in `10.0.1.0/24`: Packets match the peering and do not
   match any deny rule — the first two rules in the list do not apply to traffic
   in this direction — so `deny-unless-exposed` lets them pass.
+
+### Directional TCP connections without connection tracking
+
+In this example, `vpc-01` and `vpc-02` use no NAT. Hosts in `vpc-01` must be
+able to open TCP connections to `vpc-02`, but hosts in `vpc-02` must not be
+able to open TCP connections to `vpc-01`. Rules with `scope: flow` would
+achieve this, at the cost of tracking connections for the peering. Instead, the
+rules below use `scope: packet` and match on TCP flags.
+
+```{.yaml .annotate linenums="1" title="gw-acl-tcp-flags.yaml"}
+apiVersion: gateway.githedgehog.com/v1alpha1
+kind: GatewayPeering
+metadata:
+  name: vpc-01--vpc-02
+  namespace: default
+spec:
+  peering:
+    vpc-01:
+      expose:
+        - ips:
+          - cidr: 10.0.1.0/24
+    vpc-02:
+      expose:
+        - ips:
+          - cidr: 10.0.2.0/24
+  acl:
+    default: deny       # Deny packets even if they match the peering
+    rules:
+      - name: vpc-01-tcp
+        from: vpc-01
+        action: allow   # Allow all TCP segments from vpc-01, including
+        match:          # the ones opening connections
+          proto: tcp
+        scope: packet
+      - name: vpc-02-no-tcp-open
+        from: vpc-02
+        action: deny    # Deny segments opening a connection from vpc-02
+        match:
+          proto: tcp
+          tcpFilters:
+            flags:
+              syn: true
+              ack: false
+        scope: packet   # Required with tcpFilters, even for deny rules
+      - name: vpc-02-tcp
+        from: vpc-02
+        action: allow   # Allow other TCP segments from vpc-02, including
+        match:          # replies (SYN-ACK, ...) to connections from vpc-01
+          proto: tcp
+        scope: packet
+```
+
+When a host in `vpc-01` opens a connection to `vpc-02`, its SYN segment is
+allowed by the first rule. The SYN-ACK reply from `vpc-02` has the ACK flag
+set, so it does not match the second rule, and the third rule allows it. All
+subsequent segments in both directions have the ACK flag set and go through
+the same way.
+
+When a host in `vpc-02` attempts to open a connection to `vpc-01`, its SYN
+segment matches the second rule and is dropped. The order of the rules
+matters: placing `vpc-02-tcp` before `vpc-02-no-tcp-open` would shadow the
+deny rule and let all TCP segments from `vpc-02` through.
+
+Traffic other than TCP is dropped in both directions by `default: deny`.
