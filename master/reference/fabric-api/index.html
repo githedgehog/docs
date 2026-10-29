@@ -1792,6 +1792,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#gatewaydriver" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayDriver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gatewaygroup" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayGroup
@@ -1948,6 +1957,24 @@ You're not viewing the latest version.
   <a href="#peeringaclmatchendpoint" class="md-nav__link">
     <span class="md-ellipsis">
       PeeringACLMatchEndpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringaclmatchtcpfilters" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringACLMatchTCPFilters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringaclmatchtcpflags" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringACLMatchTCPFlags
     </span>
   </a>
   
@@ -2374,6 +2401,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#externalattachmentprefixlimit" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalAttachmentPrefixLimit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#externalattachmentspec" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentSpec
@@ -2413,6 +2449,15 @@ You're not viewing the latest version.
   <a href="#externalattachmenttopology" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentTopology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalinboundprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalInboundPrefix
     </span>
   </a>
   
@@ -2929,15 +2974,6 @@ You're not viewing the latest version.
   <a href="#connunbundled" class="md-nav__link">
     <span class="md-ellipsis">
       ConnUnbundled
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connvpcloopback" class="md-nav__link">
-    <span class="md-ellipsis">
-      ConnVPCLoopback
     </span>
   </a>
   
@@ -4447,6 +4483,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#gatewaydriver" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayDriver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gatewaygroup" class="md-nav__link">
     <span class="md-ellipsis">
       GatewayGroup
@@ -4603,6 +4648,24 @@ You're not viewing the latest version.
   <a href="#peeringaclmatchendpoint" class="md-nav__link">
     <span class="md-ellipsis">
       PeeringACLMatchEndpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringaclmatchtcpfilters" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringACLMatchTCPFilters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peeringaclmatchtcpflags" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeeringACLMatchTCPFlags
     </span>
   </a>
   
@@ -5029,6 +5092,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#externalattachmentprefixlimit" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalAttachmentPrefixLimit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#externalattachmentspec" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentSpec
@@ -5068,6 +5140,15 @@ You're not viewing the latest version.
   <a href="#externalattachmenttopology" class="md-nav__link">
     <span class="md-ellipsis">
       ExternalAttachmentTopology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externalinboundprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExternalInboundPrefix
     </span>
   </a>
   
@@ -5584,15 +5665,6 @@ You're not viewing the latest version.
   <a href="#connunbundled" class="md-nav__link">
     <span class="md-ellipsis">
       ConnUnbundled
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connvpcloopback" class="md-nav__link">
-    <span class="md-ellipsis">
-      ConnVPCLoopback
     </span>
   </a>
   
@@ -6727,6 +6799,24 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <tr>
 <td><code>sent</code> <em>integer</em></td>
 <td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>limit</code> <em>integer</em></td>
+<td>Limit is the most prefixes accepted, if there is a limit</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>limitWarnPct</code> <em>integer</em></td>
+<td>LimitWarnPct is the percentage of the limit from which the switch logs a warning</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>limitWarnOnly</code> <em>boolean</em></td>
+<td>LimitWarnOnly is set if the session stays open above the limit</td>
 <td></td>
 <td></td>
 </tr>
@@ -8544,6 +8634,28 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 </tr>
 </tbody>
 </table>
+<h4 id="gatewaydriver">GatewayDriver</h4>
+<p><em>Underlying type:</em> <em>string</em></p>
+<p><em>Appears in:</em>
+- <a href="#gatewayspec">GatewaySpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kernel</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>dpdk</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="gatewaygroup">GatewayGroup</h4>
 <p>GatewayGroup is the Schema for the gatewaygroups API</p>
 <table>
@@ -8685,13 +8797,13 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 <tbody>
 <tr>
 <td><code>pci</code> <em>string</em></td>
-<td>PCI address of the interface (required for DPDK driver), e.g. 0000:00:01.0</td>
+<td>PCI address of the interface (required for dpdk driver, optional for kernel driver), e.g. 0000:00:01.0</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>kernel</code> <em>string</em></td>
-<td>Kernel is the kernel name of the interface to use (required for kernel driver), e.g. enp2s1</td>
+<td>Kernel is the kernel name of the interface to use (kernel driver only, ignored for dpdk driver or if it's the same<br />as the interface name), e.g. enp2s1</td>
 <td></td>
 <td></td>
 </tr>
@@ -8988,6 +9100,12 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>driver</code> <em><a href="#gatewaydriver">GatewayDriver</a></em></td>
+<td>Driver is the dataplane driver for the interfaces, kernel or dpdk</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="gatewaystatus">GatewayStatus</h4>
@@ -9080,6 +9198,12 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>tcpFilters</code> <em><a href="#peeringaclmatchtcpfilters">PeeringACLMatchTCPFilters</a></em></td>
+<td>TCP-specific filters, only valid with protocol "tcp" and scope "packet"</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="peeringaclmatchendpoint">PeeringACLMatchEndpoint</h4>
@@ -9110,6 +9234,93 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 <tr>
 <td><code>ports</code> <em>string array</em></td>
 <td>List of ports or port ranges to match, omit to match all ports</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringaclmatchtcpfilters">PeeringACLMatchTCPFilters</h4>
+<p>TCP-specific match filters</p>
+<p><em>Appears in:</em>
+- <a href="#peeringaclmatch">PeeringACLMatch</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flags</code> <em><a href="#peeringaclmatchtcpflags">PeeringACLMatchTCPFlags</a></em></td>
+<td>TCP flags to match, omit to match all segments</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="peeringaclmatchtcpflags">PeeringACLMatchTCPFlags</h4>
+<p>TCP flags to match. For each flag, true requires the flag to be set, false requires it to be
+clear, omit to accept both</p>
+<p><em>Appears in:</em>
+- <a href="#peeringaclmatchtcpfilters">PeeringACLMatchTCPFilters</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fin</code> <em>boolean</em></td>
+<td>FIN flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>syn</code> <em>boolean</em></td>
+<td>SYN flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>rst</code> <em>boolean</em></td>
+<td>RST flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>psh</code> <em>boolean</em></td>
+<td>PSH flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ack</code> <em>boolean</em></td>
+<td>ACK flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>urg</code> <em>boolean</em></td>
+<td>URG flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ece</code> <em>boolean</em></td>
+<td>ECE flag</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>cwr</code> <em>boolean</em></td>
+<td>CWR flag</td>
 <td></td>
 <td></td>
 </tr>
@@ -10571,6 +10782,52 @@ Unset values fall back to the fabric defaults.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>prefixLimit</code> <em><a href="#externalattachmentprefixlimit">ExternalAttachmentPrefixLimit</a></em></td>
+<td>PrefixLimit (optional) limits the prefixes accepted from the neighbor</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalattachmentprefixlimit">ExternalAttachmentPrefixLimit</h4>
+<p>ExternalAttachmentPrefixLimit limits the prefixes accepted from a <abbr title="Border Gateway Protocol">BGP</abbr> neighbor, counted after the inbound filters</p>
+<p><em>Appears in:</em>
+- <a href="#externalattachmentneighbor">ExternalAttachmentNeighbor</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max</code> <em>integer</em></td>
+<td>Max is the most prefixes accepted. Above it the session is closed, unless warningOnly is set</td>
+<td></td>
+<td>Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>restartMinutes</code> <em>integer</em></td>
+<td>RestartMinutes (optional) is how long the session stays closed after going above max, 5 by default.<br />Raising max doesn't open the session earlier, removing the limit does. Can't be set with warningOnly</td>
+<td></td>
+<td>Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>warningThresholdPct</code> <em>integer</em></td>
+<td>WarningThresholdPct (optional) is the percentage of max from which the switch logs a warning, 75 by default</td>
+<td></td>
+<td>Maximum: 100 <br />Minimum: 1 <br /></td>
+</tr>
+<tr>
+<td><code>warningOnly</code> <em>boolean</em></td>
+<td>WarningOnly (optional) keeps the session open above max, so that going above it is only logged</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="externalattachmentspec">ExternalAttachmentSpec</h4>
@@ -10728,6 +10985,34 @@ Unset values fall back to the fabric defaults.</p>
 <td>Fabric is the name of the Fabric this <abbr title="Configuration for a specific switch (using Connection object) describing how it connects to an external system">ExternalAttachment</abbr> belongs to (if not specified, "default" is used)</td>
 <td></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="externalinboundprefix">ExternalInboundPrefix</h4>
+<p>ExternalInboundPrefix defines the prefix lengths accepted within an inbound prefix of an <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr></p>
+<p><em>Appears in:</em>
+- <a href="#externalspec">ExternalSpec</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>minPrefixLen</code> <em>integer</em></td>
+<td>MinPrefixLen is the shortest prefix length accepted within the prefix, defaults to its own length</td>
+<td></td>
+<td>Maximum: 32 <br /></td>
+</tr>
+<tr>
+<td><code>maxPrefixLen</code> <em>integer</em></td>
+<td>MaxPrefixLen is the longest prefix length accepted within the prefix, defaults to minPrefixLen, so<br />that a prefix without either matches exactly</td>
+<td></td>
+<td>Maximum: 32 <br /></td>
 </tr>
 </tbody>
 </table>
@@ -10983,6 +11268,12 @@ filter routes from/to the external system.</p>
 <tr>
 <td><code>localASN</code> <em>integer</em></td>
 <td>LocalASN makes every attachment to this <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> present the same ASN to the external system<br />instead of each border leaf's own. Changing it resets all sessions to this <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr>, and the<br />external system has to change its remote-as to match. Static attachments ignore it.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>inboundPrefixes</code> <em>object (keys:string, values:<a href="#externalinboundprefix">ExternalInboundPrefix</a>)</em></td>
+<td>InboundPrefixes (optional) limits the routes accepted from the external system to these prefixes,<br />keyed by prefix. Without it any prefix outside the IPv4Namespace is accepted</td>
 <td></td>
 <td></td>
 </tr>
@@ -12340,30 +12631,6 @@ redundancy group and allows to use MCLAG connections to connect servers in a mul
 </tr>
 </tbody>
 </table>
-<h4 id="connvpcloopback">ConnVPCLoopback</h4>
-<p>ConnVPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) that enables automated
-workaround named "<abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> Loopback" that allow to avoid switch hardware limitations and traffic going through CPU in some
-cases</p>
-<p><em>Appears in:</em>
-- <a href="#connectionspec">ConnectionSpec</a></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-<th>Default</th>
-<th>Validation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>links</code> <em><a href="#switchtoswitchlink">SwitchToSwitchLink</a> array</em></td>
-<td>Links is the list of <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback links</td>
-<td></td>
-<td>MinItems: 1 <br /></td>
-</tr>
-</tbody>
-</table>
 <h4 id="connection">Connection</h4>
 <p>Connection object represents a logical and physical connections between any devices in the Fabric (Switch, Server
 and <abbr title="Definition of the &quot;external system&quot; to peer with (could be one or multiple devices such as edge/provider routers)">External</abbr> objects). It's needed to define all physical and logical connections between the devices in the Wiring
@@ -12476,12 +12743,6 @@ in a single Connection object.</p>
 <tr>
 <td><code>gateway</code> <em><a href="#conngateway">ConnGateway</a></em></td>
 <td>Gateway defines the gateway connection (single spine to a single gateway with at least one link)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>vpcLoopback</code> <em><a href="#connvpcloopback">ConnVPCLoopback</a></em></td>
-<td>VPCLoopback defines the <abbr title="Virtual Private Cloud, similar to the public cloud VPC it provides an isolated private network for the resources with support for multiple subnets each with user-provided VLANs and on-demand DHCP">VPC</abbr> loopback connection (multiple port pairs on a single switch) for automated workaround</td>
 <td></td>
 <td></td>
 </tr>
@@ -13827,8 +14088,7 @@ SwitchGroup objects.</p>
 <h4 id="switchtoswitchlink">SwitchToSwitchLink</h4>
 <p>SwitchToSwitchLink defines the switch-to-switch link</p>
 <p><em>Appears in:</em>
-- <a href="#connmclagdomain">ConnMCLAGDomain</a>
-- <a href="#connvpcloopback">ConnVPCLoopback</a></p>
+- <a href="#connmclagdomain">ConnMCLAGDomain</a></p>
 <table>
 <thead>
 <tr>
