@@ -1351,6 +1351,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#mutatestatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      MutateStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#operstatus" class="md-nav__link">
     <span class="md-ellipsis">
       OperStatus
@@ -4042,6 +4051,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#mutatestatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      MutateStatus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#operstatus" class="md-nav__link">
     <span class="md-ellipsis">
       OperStatus
@@ -6306,6 +6324,18 @@ switch itself as well as the state of the agent and applied configuration.</p>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><code>mutate</code> <em><a href="#mutatestatus">MutateStatus</a></em></td>
+<td>Mutate is the state of the bcm mutate rules applied by the agent on Broadcom SONiC switches (alpha)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>notes</code> <em>string</em></td>
+<td>Notes is a comma separated summary of the agent state that needs attention</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <h4 id="bfdsessionstate">BFDSessionState</h4>
@@ -6484,6 +6514,33 @@ switch itself as well as the state of the agent and applied configuration.</p>
 </tr>
 <tr>
 <td><code>external</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mutatestatus">MutateStatus</h4>
+<p><em>Appears in:</em>
+- <a href="#agentstatus">AgentStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code> <em>boolean</em></td>
+<td>Enabled is true if the last config application had any bcm mutate rules</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>applied</code> <em>string array</em></td>
+<td>Applied are the sorted bcm mutate rules that took effect in the last config application</td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
