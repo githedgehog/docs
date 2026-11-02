@@ -3399,24 +3399,6 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
-<td><code>loopbackWorkaroundDisable</code> <em>boolean</em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>vpcWorkaroundVLANs</code> <em>VLANRange array</em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>vpcWorkaroundSubnet</code> <em>Prefix</em></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><code>th5WorkaroundVLANs</code> <em>VLANRange array</em></td>
 <td></td>
 <td></td>
@@ -3483,8 +3465,26 @@ You can find latest version in the <a href="https://github.com/githedgehog/fabri
 <td></td>
 </tr>
 <tr>
+<td><code>allowExtraSwitchProfiles</code> <em>boolean</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>disableBFD</code> <em>boolean</em></td>
 <td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>agentHeartbeatInterval</code> <em>integer</em></td>
+<td>AgentHeartbeatInterval is how often switch agents report their status and refresh metrics, in seconds: 15 (default) to 3600</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>agentEnforceInterval</code> <em>integer</em></td>
+<td>AgentEnforceInterval is how often switch agents re-apply their full config, in seconds: 120 (default) to 86400</td>
 <td></td>
 <td></td>
 </tr>
