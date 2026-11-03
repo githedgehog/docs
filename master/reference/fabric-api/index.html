@@ -1681,6 +1681,15 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
+  <a href="#fabriccontrollerproblem" class="md-nav__link">
+    <span class="md-ellipsis">
+      FabricControllerProblem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fabriccontrollerrefresh" class="md-nav__link">
     <span class="md-ellipsis">
       FabricControllerRefresh
@@ -4375,6 +4384,15 @@ You're not viewing the latest version.
   <a href="#fabriccontroller" class="md-nav__link">
     <span class="md-ellipsis">
       FabricController
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fabriccontrollerproblem" class="md-nav__link">
+    <span class="md-ellipsis">
+      FabricControllerProblem
     </span>
   </a>
   
@@ -8352,6 +8370,52 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 </tr>
 </tbody>
 </table>
+<h4 id="fabriccontrollerproblem">FabricControllerProblem</h4>
+<p>FabricControllerProblem is an object the refresh couldn't fix</p>
+<p><em>Appears in:</em>
+- <a href="#fabriccontrollerstatus">FabricControllerStatus</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+<th>Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kind</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>namespace</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>reason</code> <em>string</em></td>
+<td>Reason is Rejected, Stale or Invalid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>message</code> <em>string</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="fabriccontrollerrefresh">FabricControllerRefresh</h4>
 <p>FabricControllerRefresh is the progress of a refresh of stored objects with the current defaults and labels</p>
 <p><em>Appears in:</em>
@@ -8432,19 +8496,19 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 </tr>
 <tr>
 <td><code>rejected</code> <em>integer</em></td>
-<td>Rejected is the number of objects whose update was rejected</td>
+<td>Rejected is the number of objects whose update was rejected, e.g. by the CRD schema or missing permissions</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>stale</code> <em>integer</em></td>
-<td>Stale is the number of objects that still don't carry the current defaults after retries</td>
+<td>Stale is the number of objects that still don't carry the current defaults after retries, e.g. as the CRD<br />schema drops a defaulted field or something else keeps writing them back</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td><code>invalid</code> <em>integer</em></td>
-<td>Invalid is the number of objects that fail the validation of the current version, checked without looking up<br />other objects. They still get the current defaults, but any change to them is rejected until they're fixed</td>
+<td>Invalid is the number of objects that fail the validation of the current version, checked without looking up<br />other objects. They still get the current defaults</td>
 <td></td>
 <td></td>
 </tr>
@@ -8465,8 +8529,8 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 </thead>
 <tbody>
 <tr>
-<td><code>forceUnlock</code> <em>boolean</em></td>
-<td>ForceUnlock unlocks the fabric controller regardless of the initialized version. It's a last resort for a<br />stuck refresh: objects that weren't refreshed don't carry the current defaults and labels</td>
+<td><code>maintenance</code> <em>boolean</em></td>
+<td>Maintenance is dangerous, it's for fixing the objects that keep the fabric controller locked: all changes are<br />admitted, validation errors only come back as warnings, while reconcilers stay stopped, so nothing is deployed.<br />Clearing it initializes the fabric controller again, which validates every object on its own only: a conflict<br />between objects or a deletion of an object still in use, made in maintenance, goes unnoticed and gets deployed</td>
 <td></td>
 <td></td>
 </tr>
@@ -8487,8 +8551,20 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 </thead>
 <tbody>
 <tr>
+<td><code>version</code> <em>string</em></td>
+<td>Version is the running fabric controller version</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>initializedVersion</code> <em>string</em></td>
-<td>InitializedVersion is the fabric controller version that completed initialization, including the refresh of<br />stored objects. The fabric controller is locked until it matches the running version</td>
+<td>InitializedVersion is the fabric controller version that last completed initialization, including the refresh<br />of stored objects. The fabric controller is locked until it matches the running version and it's Ready</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>error</code> <em>string</em></td>
+<td>Error is why the initialization failed, while it's retried</td>
 <td></td>
 <td></td>
 </tr>
@@ -8499,8 +8575,14 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 <td></td>
 </tr>
 <tr>
+<td><code>problems</code> <em><a href="#fabriccontrollerproblem">FabricControllerProblem</a> array</em></td>
+<td>Problems are the objects the last refresh couldn't fix. They keep the fabric controller locked, it initializes<br />again only on a spec change, e.g. leaving maintenance to fix them, or a restart. Only the first ones are listed,<br />refresh.kinds has the counts</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><code>conditions</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#condition-v1-meta">Condition</a> array</em></td>
-<td>Conditions of the fabric controller: Initialized and Refreshing</td>
+<td>Conditions of the fabric controller: Ready</td>
 <td></td>
 <td></td>
 </tr>
