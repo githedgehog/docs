@@ -902,6 +902,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#single-cage-nics-to-multi-domain-fabrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single Cage NICs to Multi-domain Fabrics
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1939,6 +1948,15 @@ You're not viewing the latest version.
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#single-cage-nics-to-multi-domain-fabrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single Cage NICs to Multi-domain Fabrics
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2292,6 +2310,27 @@ learned in the <abbr title="Virtual Private Cloud, similar to the public cloud V
 </span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a> B&gt;*   10.0.2.3/32        via fe80::e20:12ff:fefe:401     Ethernet1.1002                             20/0          00:09:47 ago
 </span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>leaf-01#
 </span></code></pre></div></p>
+<h2 id="single-cage-nics-to-multi-domain-fabrics">Single Cage NICs to Multi-domain Fabrics</h2>
+<p>Some <a href="https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory/latest/networking-physical-topologies.html#multi-plane-topology-approach">network
+architectures</a>
+employ a <a href="../multi-fabric/">multi-domain</a> fabric with servers that have
+a network card with a single cage. In this case the NIC should be split into
+two physical functions (PF). NIC vendors have different CLI utilities to manage
+this on their cards. </p>
+<p>NVIDIA / Mellanox use the <a href="https://networking-docs.nvidia.com/mftswum/4221526lts/mlxconfig-changing-device-configuration-tool">mlxconfig
+utility</a>. To see the
+capabilities of the card use the <code>mlxconfig -d &lt;device&gt; show_confs</code> command. 
+Look for the <code>NUM_OF_PF</code>,<code>NUM_OF_PLANES</code>, and <code>MODULE_SPLIT_M0</code> in your cards
+capabilities. Each card has different capabilities, the
+<a href="https://networking-docs.nvidia.com/connectx8hw/port-configurations">documentation</a> for the
+Cx-8 tells you the values to set based on the architecture of the network.</p>
+<p>Intel uses the
+<a href="https://www.intel.com/content/www/us/en/content-details/864895/using-devlink-for-intel-ethernet-management-and-debugging-user-guide.html">devlink</a>
+CLI utility. Broadcom uses the
+<a href="https://techdocs.broadcom.com/us/en/storage-and-ethernet-connectivity/ethernet-nic-controllers/bcm957xxx/adapters/ethernet-network-adapter-utilities/nic-cli-configuration-utility.html">niccli</a> utility. </p>
+<p>Depending on the transceivers involved there may need to be multiple MPO fibers going to
+the transceiver or a breakout cable of some kind.</p>
+<p>Often the system needs a reboot or a cold boot for changes to be applied.</p>
 
 
 
@@ -2314,7 +2353,7 @@ learned in the <abbr title="Virtual Private Cloud, similar to the public cloud V
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2026</span>
   </span>
 
     
