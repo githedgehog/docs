@@ -9,6 +9,8 @@ is upgraded in place and the agents/switches are upgraded using the control node
     Plan for an outage during the upgrade: traffic that goes through the gateways can be
     interrupted while the gateway components restart during the control node upgrade.
     Upgrade the control node first and then the gateway nodes, if your fabric has any.
+    When upgrading from 26.04 or older, gateway traffic stays interrupted until each gateway
+    node is upgraded and rebooted, see [Upgrade gateway nodes](#upgrade-gateway-nodes).
 
 In order to apply the upgrade, use the following instructions:
 
