@@ -10,7 +10,8 @@ Date: November 5, 2026
 
 ### Highlights
 
-- DPDK is now the primary and recommended Gateway dataplane driver, more details [here](../user-guide/gateway-add.md)
+- DPDK is now the primary and recommended Gateway dataplane driver, significantly increasing Gateway performance,
+  more details [here](../user-guide/gateway-add.md)
     - Many (384) TCP flows: 300+ Gbps (4.2+ Mpps) at 9000 MTU, 157+ Gbps (13.6+ Mpps) at 1500 MTU
     - Single TCP flow: 69–70 Gbps (~1 Mpps) at 9000 MTU, 16–18 Gbps (1.4–1.55 Mpps) at 1500 MTU
     - Measured as TCP goodput using iperf3 on one bare-metal gateway (AMD EPYC 9555P, 32 workers, ConnectX-7
