@@ -13,9 +13,10 @@ other) port names aren't supported. An complete example wiring diagram is
 [below](build-wiring.md#sample-wiring-diagram).
 
 Every wiring diagram needs at least one `Fabric`. A Fabric is a single spine-leaf or mesh topology: it holds the ASN
-range its leaves are allocated from and the spine and gateway ASNs of each of its domains (spine layers). All other
-objects belong to a Fabric through `spec.topology.fabric`, which is `default` if not set, so a wiring diagram with a
-single fabric only needs a Fabric named `default`. The ASNs of a Fabric can't be changed once it's created. See
+range its leaves are allocated from and the spine and gateway ASNs of each of its domains (spine layers). Other
+objects, except Servers and VLANNamespaces which are shared between fabrics, belong to a Fabric through
+`spec.topology.fabric`, which is `default` if not set, so a wiring diagram with a single fabric only needs a Fabric
+named `default`. The ASNs of a Fabric can't be changed once it's created. See
 [Multi-Fabric and Multi-Domain Deployments](../user-guide/multi-fabric.md) for more details.
 
 A good place to start building a wiring diagram is with the switch profiles.
