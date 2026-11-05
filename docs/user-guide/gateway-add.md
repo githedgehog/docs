@@ -249,7 +249,7 @@ spec:
     - asn: 65102 # (17)!
       ip: 172.30.128.10 # (18)!
       source: port2 # (19)!
-  workers: 8 # (20)!
+  workers: 28 # (20)!
 ```
 
 1. Must match the `gatewayASN` of the gateway's [fabric and domain](multi-fabric.md#fabrics-and-domains);
@@ -260,19 +260,19 @@ spec:
 5. Dataplane driver, `dpdk` is recommended, see [Dataplane Driver](#dataplane-driver)
 6. Port name, any name unique within the gateway, must match the `gateway.port` in the Connection resource
 7. PCI address of the NIC port on the gateway node, required with the `dpdk` driver
-8. Linux kernel interface name of the NIC port, only used by the `kernel` driver
-9. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 11)
+8. Linux kernel interface name of the NIC port, only used by the `kernel` driver (defaults to the port name)
+9. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 14)
 10. Port name for the second uplink
 11. PCI address of the NIC port for the second uplink
 12. Linux kernel interface name of the NIC port for the second uplink
-13. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 26)
+13. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 29)
 14. Switch ASN - get from `kubectl get switches -o custom-columns=NAME:.metadata.name,ASN:.spec.asn` for leaf-01
-15. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 10)
+15. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 11)
 16. Must match the port name defined above
 17. Switch ASN for the second uplink - get from `kubectl get switches` for leaf-02
-18. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 25)
+18. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 26)
 19. Must match the port name for the second uplink
-20. Number of dataplane worker threads (typically 8)
+20. Number of dataplane worker threads, see [Workers](#workers)
 
 Apply the Gateway resource to the cluster:
 
@@ -289,10 +289,11 @@ The `driver` field selects how the dataplane accesses the gateway NICs:
 * `kernel` uses the Linux kernel network interfaces, identified by the `kernel` name of each port, and it is mainly
   intended for testing. If `driver` is not set, `kernel` is used.
 
-The name of each port (the key in `interfaces`) could be anything unique within the gateway, it's what the Connections
-(`gateway-1/port1`) and the BGP neighbors (`source`) refer to. The `kernel` field is the Linux kernel interface name of
-the NIC port and it's only used by the `kernel` driver, so keeping both `pci` and `kernel` set allows switching
-between the drivers.
+The name of each port (the key in `interfaces`) is what the Connections (`gateway-1/port1`) and the BGP neighbors
+(`source`) refer to. The `kernel` field is the Linux kernel interface name of the NIC port and it's only used by the
+`kernel` driver; if it's not set, the port name is used as the kernel interface name. So with the `dpdk` driver, or
+with `kernel` set, the port name could be anything unique within the gateway, and keeping both `pci` and `kernel` set
+allows switching between the drivers.
 
 To find the PCI addresses and kernel interface names of all NIC ports, run on the gateway node:
 
@@ -310,6 +311,36 @@ The PCI address is the `Bus info` without the `pci@` prefix, e.g. `0000:02:01.0`
 
 With the `dpdk` driver, the NICs used by the dataplane are not visible to host tools such as `ip` or `tcpdump` while the
 dataplane is running, see [Capturing Packets](../troubleshooting/gateway.md#capturing-packets) for an alternative.
+
+#### Switching an Existing Gateway to DPDK
+
+Gateways created before 26.05 without `pci` addresses keep using the `kernel` driver after the upgrade, with the port
+names being the kernel interface names, e.g. `enp2s1`. To switch such a gateway to the `dpdk` driver, add the `pci`
+address of each port and set `driver: dpdk`, while keeping the port names, so the Connections and BGP neighbors don't
+need to change:
+
+```yaml
+spec:
+  driver: dpdk
+  interfaces:
+    enp2s1:
+      pci: "0000:02:01.0"
+      ips:
+        - 172.30.128.1/31
+    enp2s2:
+      pci: "0000:02:02.0"
+      ips:
+        - 172.30.128.11/31
+```
+
+The dataplane restarts with the new driver, so traffic through the gateway is interrupted for a short time; switch
+the gateways of a group one at a time.
+
+### Workers
+
+The `workers` field is the number of dataplane worker threads, 4 by default and up to 64. Set it to the number of
+physical CPU cores of the gateway node minus 2 to 4 cores left for the system and the control plane, e.g. 28 workers
+for a gateway node with 32 physical cores. SMT (Hyper-Threading) threads don't count as cores.
 
 ## Installing the Gateway Node
 
