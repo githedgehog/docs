@@ -33,6 +33,7 @@ Date: November 5, 2026
       relays for Tailscale, NetBird, ZeroTier or WebRTC
 - Gateway user ACLs can match TCP flags, and stateful (`flow`) rules are now allowed for any peering regardless of
   NAT mode
+- Experimental rate limiting for GatewayPeerings, by bits and/or packets per second with bursts
 - Fabric and mesh links are now BGP unnumbered by default (introduced as experimental in 26.04)
 - Support dumps are now compressed and include more of the cluster state, with credentials redacted, and can be
   extracted into a tree of files, more details [here](../troubleshooting/support-dump.md)
