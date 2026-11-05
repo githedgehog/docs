@@ -1,5 +1,7 @@
 # Overview
 
+When reporting an issue, collect a [support dump](support-dump.md) with the state of the Fabric control plane.
+
 ## Inspecting the Fabric
 
 The `kubectl fabric` plugin has an `inspect` functionality that shows an
