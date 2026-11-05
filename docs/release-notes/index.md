@@ -4,6 +4,56 @@
     Please consult [this page](../known-limitations/known-limitations.md) for a list of current limitations
     of the Fabric. Unless otherwise stated, these issues affect all the latest versions of Fabric.
 
+## 26.05
+
+Date: November 5, 2026
+
+### Highlights
+
+- DPDK is now the primary and recommended Gateway dataplane driver, more details [here](../user-guide/gateway-add.md)
+    - Many (384) TCP flows: 300+ Gbps (4.2+ Mpps) at 9000 MTU, 157+ Gbps (13.6+ Mpps) at 1500 MTU
+    - Single TCP flow: 69–70 Gbps (~1 Mpps) at 9000 MTU, 16–18 Gbps (1.4–1.55 Mpps) at 1500 MTU
+    - Measured as TCP goodput using iperf3 on one bare-metal gateway (AMD EPYC 9555P, 32 workers, ConnectX-7
+      2×200G), with or without masquerade NAT
+- A single Hedgehog Fabric deployment can now manage multiple fabrics, and a spine-leaf fabric can have multiple
+  domains, more details [here](../user-guide/multi-fabric.md)
+    - It enables multi-plane backends with dedicated spines per plane and shared leaves, e.g. for heterogeneous XPU
+      fabrics
+    - Existing deployments are moved to the `default` fabric and domain automatically on upgrade
+- Improved control node scalability, validated with up to 500 switches, 60k Connections and 50k VPCAttachments per
+  Hedgehog Fabric deployment
+
+### Other
+
+- The allocation mode for NAT (masquerade) has changed to Endpoint-Independent Mapping (EIM), as required by RFCs 4787
+  and 5382: a given private source IP and port is always assigned, when possible, the same public source IP and port
+  mapping, regardless of the destination IP and port
+    - It enables NAT traversal for peer-to-peer applications behind the gateway, e.g. direct connections instead of
+      relays for Tailscale, NetBird, ZeroTier or WebRTC
+- Gateway user ACLs can match TCP flags, and stateful (`flow`) rules are now allowed for any peering regardless of
+  NAT mode
+- Fabric and mesh links are now BGP unnumbered by default (introduced as experimental in 26.04)
+- Support dumps are now compressed and include more of the cluster state, with credentials redacted, and can be
+  extracted into a tree of files, more details [here](../troubleshooting/support-dump.md)
+
+### Notes
+
+- Upgrade is supported from 26.03.x and 26.04.x
+- Gateway nodes now require an IOMMU (VT-d or AMD-Vi enabled in the firmware) and reserve 16x1G hugepages at boot;
+  this is fully managed by Hedgehog Fabric during installation and upgrade, but requires a reboot when upgrading
+  from older releases (see [upgrade gateway nodes](../install-upgrade/upgrade.md#upgrade-gateway-nodes))
+
+### Software versions
+
+- fabricator/hhfab: v0.51.4
+- fabric: v0.144.1
+    - broadcom sonic: v4.5.2
+- gateway:
+    - dataplane: v0.38.2
+    - frr: v0.38.1 (based on FRR 10.7.1, patched)
+- flatcar: v4757.2.3
+- k8s (k3s): v1.36.4-k3s1
+
 ## 26.04
 
 Date: September 16, 2026
