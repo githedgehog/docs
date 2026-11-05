@@ -44,7 +44,7 @@ spec:
   redundancy: # Optional field to define that switch belongs to the redundancy group
     group: eslag-1 # Name of the redundancy group
     type: eslag # Type of the redundancy group, should be eslag
-  enableAllPorts: false # Optional field to enable all ports on the switch by default; useful during bring-up, not recommended left on in production (see Known Limitations)
+  enableAllPorts: false # Optional field to enable all ports on the switch by default; useful during bring-up, not recommended left on in production
   portAutoNegs: # Used for rj45 copper ports, and 800G ports for link conditioning
     E1/18: true
     E1/19: false
