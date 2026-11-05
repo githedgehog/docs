@@ -400,9 +400,8 @@ _Appears in:_
 | `proxyExternalSubnet` _Prefix_ |  |  |  |
 | `baseVPCCommunity` _string_ |  |  |  |
 | `vpcIRBVLANs` _VLANRange array_ |  |  |  |
-| `loopbackWorkaroundDisable` _boolean_ |  |  |  |
-| `vpcWorkaroundVLANs` _VLANRange array_ |  |  |  |
-| `vpcWorkaroundSubnet` _Prefix_ |  |  |  |
+| `vpcWorkaroundVLANs` _VLANRange array_ | Deprecated: ignored, kept so configs exported by older releases can be imported |  |  |
+| `vpcWorkaroundSubnet` _Prefix_ | Deprecated: ignored, kept so configs exported by older releases can be imported |  |  |
 | `th5WorkaroundVLANs` _VLANRange array_ |  |  |  |
 | `eslagMACBase` _string_ |  |  |  |
 | `eslagESIPrefix` _string_ |  |  |  |
@@ -414,7 +413,10 @@ _Appears in:_
 | `includeBCM` _boolean_ |  |  |  |
 | `includeCLSP` _boolean_ |  |  |  |
 | `includeCumulus` _boolean_ |  |  |  |
+| `allowExtraSwitchProfiles` _boolean_ |  |  |  |
 | `disableBFD` _boolean_ |  |  |  |
+| `agentHeartbeatInterval` _integer_ | AgentHeartbeatInterval is how often switch agents report their status and refresh metrics, in seconds: 15 (default) to 3600 |  |  |
+| `agentEnforceInterval` _integer_ | AgentEnforceInterval is how often switch agents re-apply their full config, in seconds: 120 (default) to 86400 |  |  |
 | `observability` _Observability_ |  |  |  |
 
 
@@ -637,7 +639,7 @@ _Appears in:_
 | `controller` _Version_ |  |  |  |
 | `agent` _Version_ |  |  |  |
 | `dataplane` _Version_ |  |  |  |
-| `frr` _Version_ |  |  |  |
+| `frr` _Version_ | Deprecated: ignored, FRR is part of the dataplane |  |  |
 
 
 #### ObservabilityConfig
