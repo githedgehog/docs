@@ -3,6 +3,7 @@ nav:
   - index.md
   - Concepts: concepts
   - Getting Started: getting-started
+  - release-notes
   - Virtual Lab (VLAB): vlab
   - Install & Upgrade: install-upgrade
   - User Guide: user-guide
@@ -12,5 +13,4 @@ nav:
   - Known Limitations: known-limitations
   - FAQ: faq
   - ...
-  - release-notes
   - contribute
