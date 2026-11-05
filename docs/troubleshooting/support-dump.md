@@ -27,7 +27,8 @@ It's compressed and usually takes from a few to tens of MB, and collecting it is
 - `--workdir` (`-w`): directory to write the dump into, the current directory by default
 - `--force` (`-f`): overwrite an existing dump with the same name
 
-To copy the dump from the control node, e.g. with `scp`:
+To copy the dump from the control node, e.g. with `scp`, use the path it was written to; for a dump created in the
+home directory of the `core` user:
 
 ```bash
 scp core@<control node IP>:hhfab-2026-11-04T10-33-17-08-00.hhs .
