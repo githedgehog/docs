@@ -12,7 +12,12 @@ defaults of the new version and validates them. Until the initialization is comp
 Error from server (ServiceUnavailable): fabric controller is locked, see kubectl get fabriccontrollers -A
 ```
 
-The initialization usually takes seconds to a few minutes, depending on the number of objects.
+The initialization usually takes seconds to a few minutes, depending on the number of objects. Retry the changes once
+it's done; GitOps tools retry on their own. The fabric controller is replaced rather than rolled over during an upgrade,
+so the API is also unavailable for a few seconds while its pod restarts.
+
+When upgrading from a release without `Fabric` objects, the initialization also creates the `default` Fabric from the
+fabric settings of the Fabricator configuration, and all existing objects become part of it.
 
 ## Checking the State
 
