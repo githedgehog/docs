@@ -167,7 +167,7 @@ spec:
           port: leaf-01/E1/8 # (2)!
           ip: 172.30.128.0/31 # (3)!
         gateway:
-          port: gateway-1/enp2s1 # (4)!
+          port: gateway-1/port1 # (4)!
           ip: 172.30.128.1/31 # (5)!
 ---
 apiVersion: wiring.githedgehog.com/v1beta1
@@ -182,19 +182,19 @@ spec:
           port: leaf-02/E1/9 # (7)!
           ip: 172.30.128.10/31 # (8)!
         gateway:
-          port: gateway-1/enp2s2 # (9)!
+          port: gateway-1/port2 # (9)!
           ip: 172.30.128.11/31 # (10)!
 ```
 
 1. Connection name - we typically use the pattern `<switch>--gateway--<gateway>` but any name will work
 2. Switch port must be a valid port on the switch (see [Switch Profiles](profiles.md))
 3. Allocate a unique /31 IP from `config.fabric.fabricSubnet` for the switch side
-4. Gateway physical network interface name (will be referenced in Gateway resource)
+4. Gateway port name, any name unique within the gateway, it is defined in the Gateway resource `interfaces`
 5. Allocate the paired /31 IP from `config.fabric.fabricSubnet` for the gateway side
 6. Connection name for the second uplink
 7. Switch port for the second uplink
 8. Allocate another unique /31 IP pair from `config.fabric.fabricSubnet` for the switch side
-9. Gateway physical network interface name for the second uplink
+9. Gateway port name for the second uplink
 10. Allocate the paired /31 IP for the gateway side
 
 Apply the Connection resources to the cluster:
@@ -230,21 +230,26 @@ spec:
   protocolIP: 172.30.8.3/32 # (2)!
   vtepIP: 172.30.12.3/32 # (3)!
   vtepMAC: 02:00:00:00:01:02 # (4)!
+  driver: dpdk # (5)!
   interfaces:
-    enp2s1: # (5)!
+    port1: # (6)!
+      pci: "0000:02:01.0" # (7)!
+      kernel: enp2s1 # (8)!
       ips:
-        - 172.30.128.1/31 # (6)!
-    enp2s2: # (7)!
+        - 172.30.128.1/31 # (9)!
+    port2: # (10)!
+      pci: "0000:02:02.0" # (11)!
+      kernel: enp2s2 # (12)!
       ips:
-        - 172.30.128.11/31 # (8)!
+        - 172.30.128.11/31 # (13)!
   neighbors:
-    - asn: 65101 # (9)!
-      ip: 172.30.128.0 # (10)!
-      source: enp2s1 # (11)!
-    - asn: 65102 # (12)!
-      ip: 172.30.128.10 # (13)!
-      source: enp2s2 # (14)!
-  workers: 8 # (15)!
+    - asn: 65101 # (14)!
+      ip: 172.30.128.0 # (15)!
+      source: port1 # (16)!
+    - asn: 65102 # (17)!
+      ip: 172.30.128.10 # (18)!
+      source: port2 # (19)!
+  workers: 8 # (20)!
 ```
 
 1. Must match the `gatewayASN` of the gateway's [fabric and domain](multi-fabric.md#fabrics-and-domains);
@@ -252,17 +257,22 @@ spec:
 2. Allocate a unique /32 from `config.fabric.protocolSubnet` (BGP router ID)
 3. Allocate a unique /32 from `config.fabric.vtepSubnet` (VXLAN tunnel endpoint)
 4. MAC address for VTEP - any valid MAC address (e.g., 02:00:00:00:01:02)
-5. Interface name must match the physical network interface on the gateway hardware and the `gateway.port` in the Connection resource
-6. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 11)
-7. Interface name for the second uplink
-8. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 26)
-9. Switch ASN - get from `kubectl get switches -o custom-columns=NAME:.metadata.name,ASN:.spec.asn` for leaf-01
-10. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 10)
-11. Must match the interface name defined above
-12. Switch ASN for the second uplink - get from `kubectl get switches` for leaf-02
-13. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 25)
-14. Must match the interface name for the second uplink
-15. Number of dataplane worker threads (typically 8)
+5. Dataplane driver, `dpdk` is recommended, see [Dataplane Driver](#dataplane-driver)
+6. Port name, any name unique within the gateway, must match the `gateway.port` in the Connection resource
+7. PCI address of the NIC port on the gateway node, required with the `dpdk` driver
+8. Linux kernel interface name of the NIC port, only used by the `kernel` driver
+9. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 11)
+10. Port name for the second uplink
+11. PCI address of the NIC port for the second uplink
+12. Linux kernel interface name of the NIC port for the second uplink
+13. Must match the `gateway.ip` from the corresponding Connection resource (gateway-connections.yaml line 26)
+14. Switch ASN - get from `kubectl get switches -o custom-columns=NAME:.metadata.name,ASN:.spec.asn` for leaf-01
+15. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 10)
+16. Must match the port name defined above
+17. Switch ASN for the second uplink - get from `kubectl get switches` for leaf-02
+18. Must match the `switch.ip` from the corresponding Connection resource (gateway-connections.yaml line 25)
+19. Must match the port name for the second uplink
+20. Number of dataplane worker threads (typically 8)
 
 Apply the Gateway resource to the cluster:
 
@@ -270,9 +280,36 @@ Apply the Gateway resource to the cluster:
 kubectl apply -f gateway.yaml
 ```
 
-!!! note
-    The interface names (enp2s1, enp2s2) must match physical network interfaces on the gateway hardware. For kernel driver
-    (default), use standard Linux interface names. For DPDK driver, configure PCI addresses.
+### Dataplane Driver
+
+The `driver` field selects how the dataplane accesses the gateway NICs:
+
+* `dpdk` is the main and recommended driver: the dataplane takes over the NICs, identified by the `pci` address of each
+  port.
+* `kernel` uses the Linux kernel network interfaces, identified by the `kernel` name of each port, and it is mainly
+  intended for testing. If `driver` is not set, `kernel` is used.
+
+The name of each port (the key in `interfaces`) could be anything unique within the gateway, it's what the Connections
+(`gateway-1/port1`) and the BGP neighbors (`source`) refer to. The `kernel` field is the Linux kernel interface name of
+the NIC port and it's only used by the `kernel` driver, so keeping both `pci` and `kernel` set allows switching
+between the drivers.
+
+To find the PCI addresses and kernel interface names of all NIC ports, run on the gateway node:
+
+```console
+core@gateway-1 ~ $ sudo lshw -c network -businfo
+Bus info          Device     Class      Description
+===================================================
+pci@0000:01:00.0  enp1s0     network    Ethernet Controller I225-LM
+pci@0000:02:01.0  enp2s1     network    MT2910 Family [ConnectX-7]
+pci@0000:02:02.0  enp2s2     network    MT2910 Family [ConnectX-7]
+```
+
+The PCI address is the `Bus info` without the `pci@` prefix, e.g. `0000:02:01.0`, and the kernel interface name is the
+`Device`, e.g. `enp2s1`.
+
+With the `dpdk` driver, the NICs used by the dataplane are not visible to host tools such as `ip` or `tcpdump` while the
+dataplane is running, see [Capturing Packets](../troubleshooting/gateway.md#capturing-packets) for an alternative.
 
 ## Installing the Gateway Node
 

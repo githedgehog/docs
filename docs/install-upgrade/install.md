@@ -160,6 +160,8 @@ image is also available, if it can be physically attached to the server.
 
 1. Configure the server to use UEFI boot **without** secure boot
 
+1. Enable IOMMU support (Intel VT-d or AMD-Vi) in the firmware, the gateway installation fails without it
+
 1. Select boot off of the attached media, the installation process is automated
 
 1. Once the gateway node has booted, it logs in automatically and begins the installation process

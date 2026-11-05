@@ -232,7 +232,7 @@ spec:
     links:
     - gateway:
         ip: 172.30.128.9/31
-        port: gateway-1/enp2s1
+        port: gateway-1/port1
       switch:
         ip: 172.30.128.8/31
         port: spine-01/E1/5
