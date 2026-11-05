@@ -26,9 +26,9 @@ Date: November 5, 2026
 
 ### Other
 
-- The allocation mode for NAT (masquerade) has changed to Endpoint-Independent Mapping (EIM), as required by RFCs 4787
-  and 5382: a given private source IP and port is always assigned, when possible, the same public source IP and port
-  mapping, regardless of the destination IP and port
+- The allocation mode for NAT (masquerade) has changed to Endpoint-Independent Mapping (EIM),
+  as required by RFCs [4787][rfc-4787] and [5382][rfc-5382]: a given private source IP and port is always assigned,
+  when possible, the same public source IP and port mapping, regardless of the destination IP and port
     - It enables NAT traversal for peer-to-peer applications behind the gateway, e.g. direct connections instead of
       relays for Tailscale, NetBird, ZeroTier or WebRTC
 - Gateway user ACLs can match TCP flags, and stateful (`flow`) rules are now allowed for any peering regardless of
@@ -37,6 +37,9 @@ Date: November 5, 2026
 - Fabric and mesh links are now BGP unnumbered by default (introduced as experimental in 26.04)
 - Support dumps are now compressed and include more of the cluster state, with credentials redacted, and can be
   extracted into a tree of files, more details [here](../troubleshooting/support-dump.md)
+
+[rfc-4787]: https://datatracker.ietf.org/doc/html/rfc4787#section-4.1
+[rfc-5382]: https://datatracker.ietf.org/doc/html/rfc5382#section-4.1
 
 ### Notes
 
