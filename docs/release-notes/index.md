@@ -42,8 +42,9 @@ Date: November 5, 2026
 
 - Upgrade is supported from 26.03.x and 26.04.x
 - Gateway nodes now require an IOMMU (VT-d or AMD-Vi enabled in the firmware) and reserve 16x1G hugepages at boot;
-  this is fully managed by Hedgehog Fabric during installation and upgrade, but requires a reboot when upgrading
-  from older releases (see [upgrade gateway nodes](../install-upgrade/upgrade.md#upgrade-gateway-nodes))
+  the kernel arguments and hugepages are managed by Hedgehog Fabric during installation and upgrade, while IOMMU
+  support must be enabled in the firmware; upgrading from older releases requires a reboot (see
+  [upgrade gateway nodes](../install-upgrade/upgrade.md#upgrade-gateway-nodes))
 
 ### Software versions
 
