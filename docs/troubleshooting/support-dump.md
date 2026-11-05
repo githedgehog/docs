@@ -16,7 +16,7 @@ The dump is written into the current directory as `hhfab-<timestamp>.hhs`, e.g. 
 It's compressed and usually takes from a few to tens of MB, and collecting it is limited to 15 minutes.
 
 !!! warning
-    Credentials are redacted from the dump (see [Redacted Data](#redacted-data)), but it still contains the full
+    Known credentials are redacted from the dump (see [Redacted Data](#redacted-data)), but it still contains the full
     configuration of the Fabric, e.g. IP addresses, names and logs. Only share it with people you trust, e.g. the
     Hedgehog support team.
 
@@ -58,9 +58,14 @@ The following data is replaced with `SUPPORT-DUMP-REDACTED`:
 
 - the data of all Secrets and ConfigMaps
 - the values of Helm charts
-- passwords, password hashes, SSH keys and tokens wherever they show up in the objects, e.g. the users of the control
-  node and the switches, the registry credentials and the credentials of the observability targets
+- passwords, password hashes, SSH keys and tokens in the known credential fields: the users of the control node and
+  the switches, the control node join token, the registry credentials, the credentials of the observability targets
+  and the cert-manager keystore passwords
 - the `kubectl.kubernetes.io/last-applied-configuration` annotation, which holds a copy of the object
+
+!!! warning
+    Only the data listed above is redacted. The pod logs are included as is, and credentials put into other fields,
+    e.g. environment variables of pods, are not redacted.
 
 ## Extracting a Support Dump
 
