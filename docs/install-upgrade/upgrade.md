@@ -36,6 +36,10 @@ and compare to the fabricator version in the release notes.
 
 Upgrade process is idempotent and can be run multiple times without any issues.
 
+After the upgrade, the new fabric controller initializes before deploying anything, and changes to the Fabric API
+objects are refused until it's done. Check that it's `Ready` with `kubectl get fabriccontrollers -A`, see
+[Fabric Controller](../troubleshooting/fabric-controller.md) for details.
+
 Check the [release notes](../release-notes/index.md) for your version to see if a [SONiC
 Upgrade](#upgrade-sonic) is available.
 
@@ -57,22 +61,30 @@ cd node--gateway-1--install
 sudo ./hhfab-recipe upgrade
 ```
 
+!!! warning
+    When upgrading from 26.04 or older, the gateway node needs a reboot to reserve hugepages and enable the IOMMU
+    with the kernel arguments. The upgrade sets them and stops with an error asking to reboot the node; reboot it and
+    run `sudo ./hhfab-recipe upgrade` again. The gateway node must have IOMMU support (Intel VT-d or AMD-Vi) enabled
+    in the firmware, see [System Requirements](requirements.md#gateway-node).
+
+    The gateway dataplane doesn't start until the gateway node is upgraded and rebooted, so traffic that goes through
+    the gateways is interrupted from the control node upgrade until then.
+
 After the upgrade, check from the control node that the gateway node is `Ready`:
 
 ```console
 core@control-1 ~ $ kubectl get nodes
 NAME        STATUS   ROLES                AGE    VERSION
-control-1   Ready    control-plane,etcd   2d2h   v1.34.1+k3s1
-gateway-1   Ready    <none>               2d2h   v1.34.1+k3s1
+control-1   Ready    control-plane,etcd   2d2h   v1.36.4+k3s1
+gateway-1   Ready    <none>               2d2h   v1.36.4+k3s1
 ```
 
-and that its gateway pods, named `gw--<gateway name>--...`, are `Running`:
+and that its gateway pod, named `gw--<gateway name>-...`, is `Running`:
 
 ```console
 core@control-1 ~ $ kubectl -n fab get pods
-NAME                             READY   STATUS    RESTARTS   AGE
-gw--gateway-1--dataplane-qtp7p   1/1     Running   0          5m
-gw--gateway-1--frr-64jzt         2/2     Running   0          5m
+NAME                  READY   STATUS    RESTARTS   AGE
+gw--gateway-1-qtp7p   2/2     Running   0          5m
 [..]
 ```
 

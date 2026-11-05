@@ -338,9 +338,12 @@ metadata:
   name: gateway-1
   namespace: fab
 spec:
+  driver: dpdk
   interfaces:
-    enp2s1: {}
-    enp2s2: {}
+    port1:
+      pci: "0000:02:01.0" # CHANGE ME
+    port2:
+      pci: "0000:02:02.0" # CHANGE ME
   logs: {}
 #
 # ConnectionList
@@ -482,7 +485,7 @@ spec:
   gateway:
     links:
     - gateway:
-        port: gateway-1/enp2s1
+        port: gateway-1/port1
       switch:
         port: spine-01/E1/3/1
 ---
@@ -494,7 +497,7 @@ spec:
   gateway:
     links:
     - gateway:
-        port: gateway-1/enp2s2
+        port: gateway-1/port2
       switch:
         port: spine-02/E1/3/1
 ```

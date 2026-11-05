@@ -45,6 +45,9 @@ For the fabric deployments over 50 switches it's required to increase CPU/RAM/St
 
 ## Gateway Node
 
+All gateway nodes require IOMMU support enabled in the firmware (Intel VT-d or AMD-Vi), the installation fails
+without it.
+
 Minimum system requirements for bandwidth under 50Gb/s:
 
 - CPU - AMD EPYC 4564P (16 cores)

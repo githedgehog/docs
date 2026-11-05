@@ -48,6 +48,21 @@ the Virtual Machine
 - There are no minimum performance guarantees when the gateway is in a VM.
 - Size the VM to meet or exceed [the gateway node requirements](./requirements.md#gateway-node).
 - Configure the management NIC as `virtio`.
+- Add a virtual IOMMU to the VM, the gateway installation fails without it. With libvirt, use the `q35` machine type
+  and add:
+
+    ```xml
+    <features>
+      <ioapic driver='qemu'/>
+    </features>
+    <devices>
+      <iommu model='intel'>
+        <driver intremap='on' caching_mode='on'/>
+      </iommu>
+    </devices>
+    ```
+
+- Give the VM at least 24 GiB of RAM, as the gateway dataplane uses 16 GiB of hugepages and will not start with less.
 - Use PCI passthrough — not SR-IOV — for the data-plane NICs. Passthrough
   usually requires host-side configuration (IOMMU, driver binding) before the
   device can be attached:
