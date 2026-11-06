@@ -58,7 +58,7 @@ Switch object.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `agent.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Agent` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `status` _[AgentStatus](#agentstatus)_ | Status is the observed state of the Agent |  |  |
 
 
@@ -80,13 +80,13 @@ _Appears in:_
 | `installID` _string_ | ID of the agent installation, used to track NOS re-installs |  |  |
 | `runID` _string_ | ID of the agent run, used to track agent restarts |  |  |
 | `bootID` _string_ | ID for the NOS boot, used to track NOS reboots |  |  |
-| `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
-| `lastAttemptTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Time of the last attempt to apply configuration |  |  |
+| `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
+| `lastAttemptTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | Time of the last attempt to apply configuration |  |  |
 | `lastAttemptGen` _integer_ | Generation of the last attempt to apply configuration |  |  |
-| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
+| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
 | `lastAppliedGen` _integer_ | Generation of the last successful configuration application |  |  |
 | `state` _[SwitchState](#switchstate)_ | Detailed switch state updated with each heartbeat |  |  |
-| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#condition-v1-meta) array_ | Conditions of the agent, includes readiness marker for use with kubectl wait |  |  |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#condition-v1-meta) array_ | Conditions of the agent, includes readiness marker for use with kubectl wait |  |  |
 | `rebootRequired` _boolean_ | RebootRequired indicates whether a reboot is required |  |  |
 | `mutate` _[MutateStatus](#mutatestatus)_ | Mutate is the state of the bcm mutate rules applied by the agent on Broadcom SONiC switches (alpha) |  |  |
 | `notes` _string_ | Notes is a comma separated summary of the agent state that needs attention |  |  |
@@ -270,7 +270,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `state` _[BFDSessionState](#bfdsessionstate)_ |  |  |  |
 | `profile` _string_ |  |  |  |
-| `lastUpTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
+| `lastUpTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
 | `fails` _integer_ |  |  |  |
 
 
@@ -290,14 +290,14 @@ _Appears in:_
 | `connDropped` _integer_ |  |  |  |
 | `enabled` _boolean_ |  |  |  |
 | `estabTrans` _integer_ |  |  |  |
-| `lastEstab` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
-| `lastRead` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
+| `lastEstab` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
+| `lastRead` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
 | `lastResetReason` _string_ |  |  |  |
-| `lastReset` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
-| `lastWrite` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
-| `localAS` _integer_ |  |  |  |
+| `lastReset` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
+| `lastWrite` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
+| `localAS` _integer_ |  |  | Format: int64 <br /> |
 | `msgs` _[BGPMessages](#bgpmessages)_ |  |  |  |
-| `peerAS` _integer_ |  |  |  |
+| `peerAS` _integer_ |  |  | Format: int64 <br /> |
 | `peerGroup` _string_ |  |  |  |
 | `peerPort` _integer_ |  |  |  |
 | `peerType` _[BGPPeerType](#bgppeertype)_ |  |  |  |
@@ -474,7 +474,7 @@ _Appears in:_
 | `admin` _[AdminStatus](#adminstatus)_ |  |  |  |
 | `oper` _[OperStatus](#operstatus)_ |  |  |  |
 | `mac` _string_ |  |  |  |
-| `change` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
+| `change` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
 | `speed` _string_ |  |  |  |
 | `auto` _boolean_ |  |  |  |
 | `fec` _string_ |  |  |  |
@@ -503,7 +503,7 @@ _Appears in:_
 | `ine` _integer_ |  |  |  |
 | `inpbs` _float_ |  |  |  |
 | `inu` _integer_ |  |  |  |
-| `clear` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ |  |  |  |
+| `clear` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ |  |  |  |
 | `outb` _integer_ |  |  |  |
 | `outbps` _float_ |  |  |  |
 | `outd` _integer_ |  |  |  |
@@ -556,7 +556,7 @@ _Appears in:_
 | `portID` _string_ |  |  |  |
 | `portDescr` _string_ |  |  |  |
 | `ttl` _integer_ | TTL advertised by the neighbor, seconds |  |  |
-| `updated` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | When the neighbor entry was last updated |  |  |
+| `updated` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | When the neighbor entry was last updated |  |  |
 | `manuf` _string_ |  |  |  |
 | `model` _string_ |  |  |  |
 | `serial` _string_ |  |  |  |
@@ -756,9 +756,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `ip` _string_ | Allocated IP address |  |  |
-| `expiry` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Expiry time of the lease |  |  |
+| `expiry` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | Expiry time of the lease |  |  |
 | `hostname` _string_ | Hostname from DHCP request |  |  |
-| `discover` _boolean_ | Discover is true if the IP was offered to a client but not yet acked, not set anymore as offers are only kept in<br />memory by the DHCP server |  |  |
 
 
 #### DHCPRoute
@@ -794,7 +793,7 @@ Not intended to be modified by the user.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `dhcp.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `DHCPSubnet` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[DHCPSubnetSpec](#dhcpsubnetspec)_ | Spec is the desired state of the DHCPSubnet |  |  |
 | `status` _[DHCPSubnetStatus](#dhcpsubnetstatus)_ | Status is the observed state of the DHCPSubnet |  |  |
 
@@ -891,7 +890,7 @@ the progress of that refresh. The fabric controller only reconciles and accepts 
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `fcint.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `FabricController` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[FabricControllerSpec](#fabriccontrollerspec)_ |  |  |  |
 | `status` _[FabricControllerStatus](#fabriccontrollerstatus)_ |  |  |  |
 
@@ -930,8 +929,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `version` _string_ | Version is the fabric controller version running the refresh |  |  |
-| `startedAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | StartedAt is the time the refresh started |  |  |
-| `finishedAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | FinishedAt is the time the refresh finished |  |  |
+| `startedAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | StartedAt is the time the refresh started |  |  |
+| `finishedAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | FinishedAt is the time the refresh finished |  |  |
 | `passes` _integer_ | Passes is the number of passes over the stored objects so far |  |  |
 | `kinds` _[FabricControllerRefreshKind](#fabriccontrollerrefreshkind) array_ | Kinds is the progress per kind |  |  |
 
@@ -991,7 +990,7 @@ _Appears in:_
 | `error` _string_ | Error is why the initialization failed, while it's retried |  |  |
 | `refresh` _[FabricControllerRefresh](#fabriccontrollerrefresh)_ | Refresh is the progress of the last or current refresh of stored objects |  |  |
 | `problems` _[FabricControllerProblem](#fabriccontrollerproblem) array_ | Problems are the objects the last refresh couldn't fix. They keep the fabric controller locked, it initializes<br />again only on a spec change, e.g. leaving maintenance to fix them, or a restart. Only the first ones are listed,<br />refresh.kinds has the counts |  |  |
-| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#condition-v1-meta) array_ | Conditions of the fabric controller: Ready |  |  |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#condition-v1-meta) array_ | Conditions of the fabric controller: Ready |  |  |
 
 
 
@@ -1093,7 +1092,7 @@ Gateway is the Schema for the gateways API.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `gateway.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `Gateway` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[GatewaySpec](#gatewayspec)_ |  |  |  |
 | `status` _[GatewayStatus](#gatewaystatus)_ |  |  |  |
 
@@ -1113,7 +1112,7 @@ _Appears in:_
 | --- | --- | --- | --- |
 | `source` _string_ | Source is the source interface for the BGP neighbor configuration |  |  |
 | `ip` _string_ | IP is the IP address of the BGP neighbor |  |  |
-| `asn` _integer_ | ASN is the remote ASN of the BGP neighbor |  |  |
+| `asn` _integer_ | ASN is the remote ASN of the BGP neighbor |  | Format: int64 <br /> |
 
 
 #### GatewayDriver
@@ -1147,7 +1146,7 @@ GatewayGroup is the Schema for the gatewaygroups API
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `gateway.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `GatewayGroup` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[GatewayGroupSpec](#gatewaygroupspec)_ |  |  |  |
 | `status` _[GatewayGroupStatus](#gatewaygroupstatus)_ |  |  |  |
 
@@ -1304,7 +1303,7 @@ GatewayPeering is the Schema for the peerings API.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `gateway.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `GatewayPeering` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[PeeringSpec](#peeringspec)_ |  |  |  |
 | `status` _[PeeringStatus](#peeringstatus)_ |  |  |  |
 
@@ -1358,7 +1357,7 @@ _Appears in:_
 | `protocolIP` _string_ | ProtocolIP is used as a loopback IP and BGP Router ID |  |  |
 | `vtepIP` _string_ | VTEP IP to be used by the gateway |  |  |
 | `vtepMAC` _string_ | VTEP MAC address to be used by the gateway |  |  |
-| `asn` _integer_ | ASN is the ASN of the gateway |  |  |
+| `asn` _integer_ | ASN is the ASN of the gateway |  | Format: int64 <br /> |
 | `vtepMTU` _integer_ | VTEPMTU is the MTU for the VTEP interface |  |  |
 | `interfaces` _object (keys:string, values:[GatewayInterface](#gatewayinterface))_ | Interfaces is a map of interface names to their configurations |  |  |
 | `neighbors` _[GatewayBGPNeighbor](#gatewaybgpneighbor) array_ | Neighbors is a list of BGP neighbors |  |  |
@@ -1617,7 +1616,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
+| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
 
 
 #### PeeringNATPortForward
@@ -1633,7 +1632,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
+| `idleTimeout` _[Duration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#duration-v1-meta)_ | Time since the last packet after which flows are removed from the connection state table |  |  |
 | `ports` _PeeringNATPortForwardEntry array_ |  |  |  |
 
 
@@ -1718,7 +1717,7 @@ VPCInfo is the Schema for the vpcinfos API.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `gateway.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `VPCInfo` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCInfoSpec](#vpcinfospec)_ |  |  |  |
 | `status` _[VPCInfoStatus](#vpcinfostatus)_ |  |  |  |
 
@@ -1892,8 +1891,8 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `enabled` _boolean_ |  |  |  |
-| `localAS` _integer_ |  |  |  |
-| `peerAS` _integer_ |  |  |  |
+| `localAS` _integer_ |  |  | Format: int64 <br /> |
+| `peerAS` _integer_ |  |  | Format: int64 <br /> |
 | `remoteRouterID` _string_ |  |  |  |
 | `sessionState` _[BGPNeighborSessionState](#bgpneighborsessionstate)_ |  |  | Enum: [unset idle connect active open established] <br /> |
 | `connectionsDropped` _integer_ |  |  |  |
@@ -1983,7 +1982,7 @@ GatewayAgent is the Schema for the gatewayagents API.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `gwint.githedgehog.com/v1alpha1` | | |
 | `kind` _string_ | `GatewayAgent` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `status` _[GatewayAgentStatus](#gatewayagentstatus)_ |  |  |  |
 
 
@@ -2001,9 +2000,9 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `agentVersion` _string_ | AgentVersion is the version of the gateway agent |  |  |
-| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
+| `lastAppliedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | Time of the last successful configuration application |  |  |
 | `lastAppliedGen` _integer_ | Generation of the last successful configuration application |  |  |
-| `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
+| `lastHeartbeat` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | Time of the last heartbeat from the agent |  |  |
 | `state` _[GatewayState](#gatewaystate)_ | State represents collected data from the dataplane API that includes FRR as well |  |  |
 
 
@@ -2020,7 +2019,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `lastCollectedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#time-v1-meta)_ | LastCollectedTime is the time of the last successful collection of data from the dataplane API |  |  |
+| `lastCollectedTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#time-v1-meta)_ | LastCollectedTime is the time of the last successful collection of data from the dataplane API |  |  |
 | `dataplane` _[DataplaneStatus](#dataplanestatus)_ | Dataplane is the status of the dataplane |  |  |
 | `frr` _[FRRStatus](#frrstatus)_ | FRR is the status of the FRR daemon |  |  |
 | `vpcs` _object (keys:string, values:[VPCStatus](#vpcstatus))_ | VPCs is the status of the VPCs where key is the vpc (vpcinfo) name |  |  |
@@ -2206,7 +2205,7 @@ worry about the details of how external system is attached to the Fabric.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `External` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ExternalSpec](#externalspec)_ | Spec is the desired state of the External |  |  |
 | `status` _[ExternalStatus](#externalstatus)_ | Status is the observed state of the External |  |  |
 
@@ -2226,7 +2225,7 @@ Effectively it represents BGP peering between the switch and external system inc
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `ExternalAttachment` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ExternalAttachmentSpec](#externalattachmentspec)_ | Spec is the desired state of the ExternalAttachment |  |  |
 | `status` _[ExternalAttachmentStatus](#externalattachmentstatus)_ | Status is the observed state of the ExternalAttachment |  |  |
 
@@ -2264,7 +2263,7 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `asn` _integer_ | ASN (optional) is the ASN of the BGP neighbor, if not set any ASN other than the switch's own is accepted |  |  |
+| `asn` _integer_ | ASN (optional) is the ASN of the BGP neighbor, if not set any ASN other than the switch's own is accepted |  | Format: int64 <br /> |
 | `ip` _string_ | IP is the IP address of the BGP neighbor to peer with (without prefix length).<br />Leave it and switch.ip empty for a BGP unnumbered session over IPv6 link-local addresses |  |  |
 | `prefixLimit` _[ExternalAttachmentPrefixLimit](#externalattachmentprefixlimit)_ | PrefixLimit (optional) limits the prefixes accepted from the neighbor |  |  |
 
@@ -2407,7 +2406,7 @@ ExternalPeering is the Schema for the externalpeerings API
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `ExternalPeering` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ExternalPeeringSpec](#externalpeeringspec)_ | Spec is the desired state of the ExternalPeering |  |  |
 | `status` _[ExternalPeeringStatus](#externalpeeringstatus)_ | Status is the observed state of the ExternalPeering |  |  |
 
@@ -2544,7 +2543,7 @@ _Appears in:_
 | `inboundCommunity` _string_ | InboundCommunity is the optional inbound community to filter routes from the external system (e.g. 65102:5000) |  |  |
 | `outboundCommunity` _string_ | OutboundCommunity is the optional outbound community that all outbound routes will be stamped with (e.g. 50000:50001) |  |  |
 | `static` _[ExternalStaticSpec](#externalstaticspec)_ | Static contains parameters specific to static externals |  |  |
-| `localASN` _integer_ | LocalASN makes every attachment to this External present the same ASN to the external system<br />instead of each border leaf's own. Changing it resets all sessions to this External, and the<br />external system has to change its remote-as to match. Static attachments ignore it. |  |  |
+| `localASN` _integer_ | LocalASN makes every attachment to this External present the same ASN to the external system<br />instead of each border leaf's own. Changing it resets all sessions to this External, and the<br />external system has to change its remote-as to match. Static attachments ignore it. |  | Format: int64 <br /> |
 | `inboundPrefixes` _object (keys:string, values:[ExternalInboundPrefix](#externalinboundprefix))_ | InboundPrefixes (optional) limits the routes accepted from the external system to these prefixes,<br />keyed by prefix. Without it any prefix outside the IPv4Namespace is accepted |  |  |
 
 
@@ -2609,7 +2608,7 @@ non-overlapping. Users can create multiple IPv4Namespaces to allocate same VPC s
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `IPv4Namespace` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[IPv4NamespaceSpec](#ipv4namespacespec)_ | Spec is the desired state of the IPv4Namespace |  |  |
 | `status` _[IPv4NamespaceStatus](#ipv4namespacestatus)_ | Status is the observed state of the IPv4Namespace |  |  |
 
@@ -2675,7 +2674,7 @@ resources with support for multiple subnets each with user-provided VLANs and on
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VPC` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCSpec](#vpcspec)_ | Spec is the desired state of the VPC |  |  |
 | `status` _[VPCStatus](#vpcstatus)_ | Status is the observed state of the VPC |  |  |
 
@@ -2694,7 +2693,7 @@ VPCAttachment is the Schema for the vpcattachments API
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VPCAttachment` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCAttachmentSpec](#vpcattachmentspec)_ | Spec is the desired state of the VPCAttachment |  |  |
 | `status` _[VPCAttachmentStatus](#vpcattachmentstatus)_ | Status is the observed state of the VPCAttachment |  |  |
 
@@ -2896,7 +2895,7 @@ Minimal example of the VPC peering showing vpc-1 to vpc-2 peering with all subne
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `vpc.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VPCPeering` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VPCPeeringSpec](#vpcpeeringspec)_ | Spec is the desired state of the VPCPeering |  |  |
 | `status` _[VPCPeeringStatus](#vpcpeeringstatus)_ | Status is the observed state of the VPCPeering |  |  |
 
@@ -3099,7 +3098,6 @@ _Appears in:_
 - [ConnGatewayLinkGateway](#conngatewaylinkgateway)
 - [ConnStaticExternalLinkSwitch](#connstaticexternallinkswitch)
 - [ServerToSwitchLink](#servertoswitchlink)
-- [SwitchToSwitchLink](#switchtoswitchlink)
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
@@ -3242,42 +3240,6 @@ _Appears in:_
 | `ip` _string_ | IP is the IP address of the switch side of the fabric link (switch port configuration) |  | Pattern: `^((25[0-5]\|(2[0-4]\|1\d\|[1-9]\|)\d)\.?\b)\{4\}/([1-2]?[0-9]\|3[0-2])$` <br /> |
 
 
-#### ConnMCLAG
-
-
-
-Deprecated: ConnMCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links)
-
-
-
-_Appears in:_
-- [ConnectionSpec](#connectionspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `links` _[ServerToSwitchLink](#servertoswitchlink) array_ | Links is the list of server-to-switch links |  | MinItems: 2 <br /> |
-| `mtu` _integer_ | MTU is the MTU to be configured on the switch port or port channel |  |  |
-| `fallback` _boolean_ | Fallback is the optional flag that used to indicate one of the links in LACP port channel to be used as a fallback link |  |  |
-
-
-#### ConnMCLAGDomain
-
-
-
-Deprecated: ConnMCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch or
-redundancy group and allows to use MCLAG connections to connect servers in a multi-homed way.
-
-
-
-_Appears in:_
-- [ConnectionSpec](#connectionspec)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `peerLinks` _[SwitchToSwitchLink](#switchtoswitchlink) array_ | PeerLinks is the list of peer links between the switches, used to pass server traffic between switch |  | MinItems: 1 <br /> |
-| `sessionLinks` _[SwitchToSwitchLink](#switchtoswitchlink) array_ | SessionLinks is the list of session links between the switches, used only to pass MCLAG control plane and BGP<br />traffic between switches |  | MinItems: 1 <br /> |
-
-
 #### ConnMesh
 
 
@@ -3381,7 +3343,7 @@ in a single Connection object.
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Connection` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ConnectionSpec](#connectionspec)_ | Spec is the desired state of the Connection |  |  |
 | `status` _[ConnectionStatus](#connectionstatus)_ | Status is the observed state of the Connection |  |  |
 
@@ -3402,9 +3364,7 @@ _Appears in:_
 | `topology` _[ConnectionTopology](#connectiontopology)_ | Topology is where the connection sits in the fabric topology |  |  |
 | `unbundled` _[ConnUnbundled](#connunbundled)_ | Unbundled defines the unbundled connection (no port channel, single server to a single switch with a single link) |  |  |
 | `bundled` _[ConnBundled](#connbundled)_ | Bundled defines the bundled connection (port channel, single server to a single switch with multiple links) |  |  |
-| `mclag` _[ConnMCLAG](#connmclag)_ | Deprecated: MCLAG defines the MCLAG connection (port channel, single server to pair of switches with multiple links) |  |  |
 | `eslag` _[ConnESLAG](#conneslag)_ | ESLAG defines the ESLAG connection (port channel, single server to 2-4 switches with multiple links) |  |  |
-| `mclagDomain` _[ConnMCLAGDomain](#connmclagdomain)_ | Deprecated: MCLAGDomain defines the MCLAG domain connection which makes two switches into a single logical switch for server multi-homing |  |  |
 | `fabric` _[ConnFabric](#connfabric)_ | Fabric defines the fabric connection (single spine to a single leaf with at least one link) |  |  |
 | `mesh` _[ConnMesh](#connmesh)_ | Mesh defines the mesh connection (direct leaf to leaf connection with at least one link) |  |  |
 | `gateway` _[ConnGateway](#conngateway)_ | Gateway defines the gateway connection (single spine to a single gateway with at least one link) |  |  |
@@ -3456,7 +3416,7 @@ Fabrics are not cabled to each other and reach each other by peering as external
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Fabric` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[FabricSpec](#fabricspec)_ | Spec is the desired state of the Fabric |  |  |
 | `status` _[FabricStatus](#fabricstatus)_ | Status is the observed state of the Fabric |  |  |
 
@@ -3474,8 +3434,8 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `spineASN` _integer_ | SpineASN is the ASN shared by all spines of this domain, outside the leaf ASN range |  |  |
-| `gatewayASN` _integer_ | GatewayASN is the ASN shared by all gateways attached to this domain, outside the leaf ASN range |  |  |
+| `spineASN` _integer_ | SpineASN is the ASN shared by all spines of this domain, outside the leaf ASN range |  | Format: int64 <br /> |
+| `gatewayASN` _integer_ | GatewayASN is the ASN shared by all gateways attached to this domain, outside the leaf ASN range |  | Format: int64 <br /> |
 
 
 #### FabricLink
@@ -3508,8 +3468,8 @@ _Appears in:_
 
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
-| `leafASNStart` _integer_ | LeafASNStart is the first ASN of the range leaves of this Fabric are allocated from |  |  |
-| `leafASNEnd` _integer_ | LeafASNEnd is the last ASN of the range leaves of this Fabric are allocated from |  |  |
+| `leafASNStart` _integer_ | LeafASNStart is the first ASN of the range leaves of this Fabric are allocated from |  | Format: int64 <br /> |
+| `leafASNEnd` _integer_ | LeafASNEnd is the last ASN of the range leaves of this Fabric are allocated from |  | Format: int64 <br /> |
 | `disableBFD` _boolean_ | DisableBFD disables BFD on the links between switches and on the sessions with the gateways |  |  |
 | `domains` _object (keys:string, values:[FabricDomainSpec](#fabricdomainspec))_ | Domains is the set of spine layers in this Fabric, at least one is required |  |  |
 
@@ -3595,7 +3555,7 @@ Server is the Schema for the servers API
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Server` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[ServerSpec](#serverspec)_ | Spec is desired state of the server |  |  |
 | `status` _[ServerStatus](#serverstatus)_ | Status is the observed state of the server |  |  |
 
@@ -3611,7 +3571,6 @@ ServerFacingConnectionConfig defines any server-facing connection (unbundled, bu
 _Appears in:_
 - [ConnBundled](#connbundled)
 - [ConnESLAG](#conneslag)
-- [ConnMCLAG](#connmclag)
 - [ConnUnbundled](#connunbundled)
 
 | Field | Description | Default | Validation |
@@ -3677,7 +3636,6 @@ ServerToSwitchLink defines the server-to-switch link
 _Appears in:_
 - [ConnBundled](#connbundled)
 - [ConnESLAG](#conneslag)
-- [ConnMCLAG](#connmclag)
 - [ConnUnbundled](#connunbundled)
 
 | Field | Description | Default | Validation |
@@ -3700,7 +3658,7 @@ Switch is the Schema for the switches API
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `Switch` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[SwitchSpec](#switchspec)_ | Spec is desired state of the switch |  |  |
 | `status` _[SwitchStatus](#switchstatus)_ | Status is the observed state of the switch |  |  |
 
@@ -3753,7 +3711,7 @@ SwitchGroup is the marker API object to group switches together, switch can belo
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `SwitchGroup` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[SwitchGroupSpec](#switchgroupspec)_ | Spec is the desired state of the SwitchGroup |  |  |
 | `status` _[SwitchGroupStatus](#switchgroupstatus)_ | Status is the observed state of the SwitchGroup |  |  |
 
@@ -3836,7 +3794,7 @@ SwitchProfile represents switch capabilities and configuration
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `SwitchProfile` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[SwitchProfileSpec](#switchprofilespec)_ |  |  |  |
 | `status` _[SwitchProfileStatus](#switchprofilestatus)_ |  |  |  |
 
@@ -3875,7 +3833,7 @@ _Appears in:_
 | `l2vni` _boolean_ | L2VNI defines if switch supports L2 VNIs |  |  |
 | `l3vni` _boolean_ | L3VNI defines if switch supports L3 VNIs |  |  |
 | `roce` _boolean_ | RoCE defines if switch supports RoCEv2 over VXLAN and related features used by the fabric |  |  |
-| `mclag` _boolean_ | MCLAG defines if switch supports MCLAG (with VXLAN) |  |  |
+| `mclag` _boolean_ | Deprecated: ignored, MCLAG isn't supported anymore. TODO: remove after 26.06 release |  |  |
 | `eslag` _boolean_ | ESLAG defines if switch supports ESLAG (ESI multi-homing) |  |  |
 | `ecmpRoCEQPN` _boolean_ | ECMPRoCEQPN defines if switch supports ECMP QPN hashing |  |  |
 | `portLocator` _boolean_ | PortLocator defines if switch supports port locator LED control |  |  |
@@ -4111,7 +4069,7 @@ _Appears in:_
 | `groups` _string array_ | Groups is a list of switch groups the switch belongs to |  |  |
 | `redundancy` _[SwitchRedundancy](#switchredundancy)_ | Redundancy is the switch redundancy configuration including name of the redundancy group switch belongs to and its type, used for ESLAG connections |  |  |
 | `vlanNamespaces` _string array_ | VLANNamespaces is a list of VLAN namespaces the switch is part of, their VLAN ranges could not overlap |  |  |
-| `asn` _integer_ | ASN is the ASN of the switch |  |  |
+| `asn` _integer_ | ASN is the ASN of the switch |  | Format: int64 <br /> |
 | `ip` _string_ | IP is the IP of the switch that could be used to access it from other switches and control nodes in the Fabric |  |  |
 | `vtepIP` _string_ | VTEPIP is the VTEP IP of the switch |  |  |
 | `protocolIP` _string_ | ProtocolIP is used as BGP Router ID for switch configuration |  |  |
@@ -4139,23 +4097,6 @@ SwitchStatus defines the observed state of Switch
 _Appears in:_
 - [Switch](#switch)
 
-
-
-#### SwitchToSwitchLink
-
-
-
-SwitchToSwitchLink defines the switch-to-switch link
-
-
-
-_Appears in:_
-- [ConnMCLAGDomain](#connmclagdomain)
-
-| Field | Description | Default | Validation |
-| --- | --- | --- | --- |
-| `switch1` _[BasePortName](#baseportname)_ | Switch1 is the first switch side of the connection |  |  |
-| `switch2` _[BasePortName](#baseportname)_ | Switch2 is the second switch side of the connection |  |  |
 
 
 #### SwitchTopology
@@ -4189,7 +4130,7 @@ VLANNamespace is the Schema for the vlannamespaces API
 | --- | --- | --- | --- |
 | `apiVersion` _string_ | `wiring.githedgehog.com/v1beta1` | | |
 | `kind` _string_ | `VLANNamespace` | | |
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.37/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
 | `spec` _[VLANNamespaceSpec](#vlannamespacespec)_ | Spec is the desired state of the VLANNamespace |  |  |
 | `status` _[VLANNamespaceStatus](#vlannamespacestatus)_ | Status is the observed state of the VLANNamespace |  |  |
 
