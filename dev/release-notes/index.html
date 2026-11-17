@@ -4296,9 +4296,9 @@ of the Fabric. Unless otherwise stated, these issues affect all the latest versi
 </ul>
 <h3 id="other">Other</h3>
 <ul>
-<li>The allocation mode for <abbr title="Network Address Translation">NAT</abbr> (masquerade) has changed to Endpoint-Independent Mapping (EIM), as required by RFCs 4787
-  and 5382: a given private source IP and port is always assigned, when possible, the same public source IP and port
-  mapping, regardless of the destination IP and port<ul>
+<li>The allocation mode for <abbr title="Network Address Translation">NAT</abbr> (masquerade) has changed to Endpoint-Independent Mapping (EIM),
+  as required by RFCs <a href="https://datatracker.ietf.org/doc/html/rfc4787#section-4.1">4787</a> and <a href="https://datatracker.ietf.org/doc/html/rfc5382#section-4.1">5382</a>: a given private source IP and port is always assigned,
+  when possible, the same public source IP and port mapping, regardless of the destination IP and port<ul>
 <li>It enables <abbr title="Network Address Translation">NAT</abbr> traversal for peer-to-peer applications behind the gateway, e.g. direct connections instead of
   relays for Tailscale, NetBird, ZeroTier or WebRTC</li>
 </ul>
