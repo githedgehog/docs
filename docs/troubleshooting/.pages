@@ -6,3 +6,4 @@ nav:
   - Switch Agent: agent.md
   - Fabric Controller: fabric-controller.md
   - ...
+  - Support Diagnostics: support_diagnostics.md
